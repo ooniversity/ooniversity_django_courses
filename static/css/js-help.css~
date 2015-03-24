@@ -1,0 +1,51 @@
+.post {
+	padding: 10px 20px;
+	position: relative;
+	background: #eee;
+	font-family: Georgia;
+	border: 1px solid #CCCCCC;
+	margin: 0px 10% 20px 10%;
+	text-align: justify;
+	-moz-border-radius:5px;  
+	-webkit-border-radius:5px;  
+	}
+.inactive {
+	color: #bbb;
+	}
+.post .title {
+	position: relative;
+	height: 1%;
+	}
+.post .title h3 {
+	font-size: 1.4em;
+	}
+.post .title h3 a {
+	text-decoration: none;
+	color: #000;
+	}
+.inactive .title h3 a {
+	color: #bbb;
+	}
+.post .title p {
+	font-size: 1.4em;
+	font-style: italic;
+	font-weight: bold;
+	margin: 0;
+	}
+.post .title span {
+	position: absolute;
+	right: 0;
+	top: 30%;
+	cursor: pointer;
+	width: 14px;
+	height: 14px;
+	background: url("../img/trigger.gif") no-repeat left bottom;
+	display: block;
+	font-size: 0;
+	}
+#content .inactive .title span {
+	background-position: left top;
+	}
+#content .post .entry {
+	padding: 10px 0;
+	}
