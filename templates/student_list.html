@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -13,12 +13,12 @@
     <title>Студенты - pyBursa</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="../static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/theme.css" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet">
   </head>
 
   <body role="document">
@@ -33,15 +33,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">
-            <img class="logo" src="../static/img/logo.png" />
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img class="logo" src="{% static 'img/logo.png' %}" />
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="contact.html">Контакты</a></li>
-            <li><a href="student_list.html">Студенты</a></li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+            <li><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -66,31 +66,31 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td><a href="student_detail.html">Петров Петр</a></td>
+                <td><a href="{% url 'student_detail' %}">Петров Петр</a></td>
                 <td>Харьков ул.Петровского 12</td>
                 <td>pety.pety</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td><a href="student_detail.html">Иванов Иван</a></td>
+                <td><a href="{% url 'student_detail' %}">Иванов Иван</a></td>
                 <td>Харьков ул.Иванова 34</td>
                 <td>vano.vano</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td><a href="student_detail.html">Сидорова Ира</a></td>
+                <td><a href="{% url 'student_detail' %}">Сидорова Ира</a></td>
                 <td>Киев ул.Сидорова 37</td>
                 <td>ira.ira</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td><a href="student_detail.html">Бондаренко Екатерина</a></td>
+                <td><a href="{% url 'student_detail' %}">Бондаренко Екатерина</a></td>
                 <td>Харьков ул.Сумская 101</td>
                 <td>katy.katy</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td><a href="student_detail.html">Бондаренко Сергей</a></td>
+                <td><a href="{% url 'student_detail' %}">Бондаренко Сергей</a></td>
                 <td>Харьков ул.Сумская 101</td>
                 <td>sergey.sergey</td>
               </tr>
@@ -104,6 +104,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   </body>
 </html>
