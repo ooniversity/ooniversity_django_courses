@@ -1,0 +1,14 @@
+li.media { 
+  padding-left: 40px; 
+  }
+
+img.media-object { 
+  width: 130px; 
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: gray; 
+  border-radius: 20px; }
+
+div.jumbotron { 
+  padding-left: 40px; 
+  }
