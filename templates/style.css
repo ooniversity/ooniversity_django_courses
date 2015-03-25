@@ -18,7 +18,7 @@
 	.floatleft{
 	  position: relative;
 	  left:20px;
-	}
+	  }
     #container {
       border: 2px solid CornflowerBlue;
       border-radius: 20px;
