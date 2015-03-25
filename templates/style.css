@@ -1,0 +1,33 @@
+	body {	
+	  background-image: url("pictures/back.jpg");
+	  }
+	div.clear {
+	  clear: both;
+      width: 100%;
+      }
+	.colortext {
+      color: white;
+	  text-align: center;
+	  position: relative; 
+      top: 20px
+	  }
+	.logo {
+	  position: relative;
+	  top: 5px
+	  }
+	.floatleft{
+	  position: relative;
+	  left:20px;
+	  }
+    #container {
+      border: 2px solid CornflowerBlue;
+      border-radius: 20px;
+	  padding:20px;
+	  background-color: white;
+	  margin-bottom: 60px;
+	  position: relative;
+      top: 40px;
+	  left: 200px;
+	  width: 70%
+	  }
+	
