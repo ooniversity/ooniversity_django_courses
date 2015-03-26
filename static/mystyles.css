@@ -16,3 +16,11 @@ div.jumbotron {
 div.table-responsive { 
   padding: 40px; 
   }
+
+th.col1 { 
+  width: 150px; 
+  }
+
+table.profile { 
+  width: 400px; 
+  }
