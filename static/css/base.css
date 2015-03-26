@@ -65,14 +65,9 @@ body {
     text-align: justify;
 }
 
-#program > ol > li{
-    font-weight: bold;
+#program-info {
+    width: 800px;
 }
-
-#program > ol {
-    padding-left: 100px; 
-}
-
 .organaizer {
     float: left;
     padding-bottom: 20px;
@@ -90,6 +85,35 @@ body {
     border: 3px solid #e3e3e3;
     border-radius: 7px;
     margin-left: 10px;
+}
+
+.teacher-photo {
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+    float: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.program thead th {
+    text-transform: uppercase;
+}
+
+.program tbody > tr > td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+th {
+    text-align: center;
+}
+
+th, td {
+    padding: 5px;
 }
 
 .text-block {
