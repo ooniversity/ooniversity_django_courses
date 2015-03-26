@@ -3,6 +3,32 @@ body {
     padding-bottom: 70px;
 }
 
+#contact {
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+#container-info {
+    background: url("../images/img_1.png") no-repeat scroll 47px 58px rgba(0, 0, 0, 0);
+    min-height: 250px;
+    text-align: center;
+}
+
+#container-info h2 {
+    padding-top: 10px;  
+    padding-bottom: 20px;
+}
+
+#container-info p {
+    padding-left: 370px;
+    text-align: justify;
+}
+
+.container > h2 {
+    text-align:  center;
+    padding-bottom: 20px;
+}
+
 .footer {
     background: #f5f5f5;
     bottom: 0;
@@ -15,43 +41,21 @@ body {
     margin: 20px 0;
 }
 
-#contact {
-    padding-left: 50px;
-    padding-top: 10px;
+.float-left {
+    float: left;
 }
 
-#container-info {
-    background: url("../images/img_1.png") no-repeat scroll 47px 58px rgba(0, 0, 0, 0);
-    min-height: 250px;
-    text-align: center;
+.float-right {
+    float: right;
 }
 
 #history-info {
-    background: url("../images/history.png") no-repeat scroll 1000px 65px rgba(0, 0, 0, 0);
+    background: url("../images/history.png") no-repeat scroll 650px 65px rgba(0, 0, 0, 0);
     min-height: 287;
     text-align: center;
 }
 
-#container-info h2 {
-    padding-top: 10px;  
-    padding-bottom: 20px;
-}
-
-#history-info h2 {
-    text-align: center;
-}
-
-#container-info p {
-    padding-left: 400px;
-    text-align: left;
-}
-
-#history-info p {
-    padding-left: 50px;
-    text-align: left; 
-}
-
-#program h2 {
+.h2-center {
     text-align: center;
 }
 
@@ -63,3 +67,41 @@ body {
     padding-left: 100px; 
 }
 
+.organaizer {
+    float: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 70px;
+    width: 600px;
+}
+
+.organaizer .float-right {
+    min-height: 100%;
+    width: 350px;
+}
+
+.img-crop {
+    border: 3px solid #e3e3e3;
+    border-radius: 7px;
+    margin-left: 10px;
+}
+
+.text-block {
+    padding-right: 30px;
+}
+
+.text-history {
+    padding-left: 20px;
+    padding-right: 180px;
+    text-align: justify;
+}
+
+/*
+.carousel-caption {
+    position: static;
+    color: grey;
+}
+
+.carousel-indicators {
+    bottom: 160px;
+}*/

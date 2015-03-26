@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Home page</title>
+  <title>Python/Django</title>
+  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../static/css/base.css">
   <script type="text/javascript" src="../static/js/jquery-2.1.3.min.js"></script>
@@ -15,210 +16,220 @@
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="index.html">
-        <span class="glyphicon glyphicon-home"></span> Home</a>      
+        <div>
+        <img src="../static/images/python_1.png" width="20", height="25">
+        Главная
+        </div>
+        </a>      
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="contact.html">Contact</a>
+          <a href="contact.html">Контакты</a>
         </li>
       </ul>
     </div>
   </header>
 
-  <div id="container-info" >
-    <h2>Как все будет проходить</h2>
-    <p>В этом курсе мы сместили акцент в сторону <b>практики</b>. </p>
-    <p>Будет умеренное количество теории - <b>максимум</b> практики.</p>
-    <p>Примерное соотношение <i>теории</i> и <i>практики</i>: <b>30%</b> на <b>70%</b>.</p>
-    <p>Курсы будут проходить с 25 февраля по 23 апреля.</p>
-    <p>Практические занятия в аудитории + видеозаписи скринкастов.</p>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="container-info" class="text-block" >
+        <h2>Как все будет проходить</h2>
+          <p>В этом курсе мы сместили акцент в сторону <b>практики</b>. </p>
+          <p>Будет умеренное количество теории - <b>максимум</b> практики.</p>
+          <p>Примерное соотношение <i>теории</i> и <i>практики</i>: <b>30%</b> на <b>70%</b>.</p>
+          <p>Курсы будут проходить с 25 февраля по 23 апреля.</p>
+          <p>Практические занятия в аудитории + видеозаписи скринкастов.</p>
+      </div>
+
+
+      <div id="history-info" class="text-block">
+        <h2 class="h2-center">История курсов</h2>
+        <div class="text-history">
+          <p>Курсы Python мы проводим уже второй раз.</p>
+          <p>Успешно завершив первый курс, мы решили продолжать
+          и усовершенствовать его.</p>
+          <p>Наш преподаватель Алексей ранее уже имел опыт преподавания
+          на курсах и конференциях.</p>
+          <p>Кроме того, недавно мы совместно организовали некоммерческий
+          проект Django Girls Kharkiv исключительно для девушек.</p>
+          <p>В этом курсе мы изменили формат проведения и постарались сделать
+          его максимально удобным для харьковчан и не только.</p>
+          <p> Теперь практические оффлайн занятия будут сопровождаться онлайн 
+          трансляцией и чередоваться с онлайн лекциями.</p>
+        </div>
+      </div>
+
+   <!--    <div id="program" class="text-block">
+        <h2 class="h2-center">Программа курса</h2>
+        <ol>
+          <li>Основы Python</li>
+            <ul>
+              <li>zen, pep8, pylint, tools, IDE</li>
+              <li>консоль, типы данных, операторы</li>
+              <li>синтаксис управляющих конструкций (if, for...)</li>
+              <li>исключения и разбор стектрейса</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Строки и итераторы </li>
+            <ul>
+              <li>работа со строками и итерируемыми типами</li>
+              <li>запуск скрипта и параметры</li>
+              <li>git http://try.github.com/levels/1/challenges/1</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Функции и модульность </li>
+            <ul>
+              <li>функции (def, lambda)</li>
+              <li>модули, структура </li>
+              &nbsp;</li>
+            </ul> 
+
+          <li> Библиотеки и пакетный менеджер </li>
+            <ul>
+              <li>встроеные библиотеки http://docs.python.org/tutorial/stdlib.html</li>
+              <li>сторонние библиотки (менеджер пакетов) PYPI</li>
+              <li>PYTHONPATH и виртуальное окружение</li>
+              &nbsp;</li>
+            </ul> 
+
+          <li> Классы и ООП, основы </li>
+            <ul>
+              <li>синтаксис, атрибуты, методы, инстанцирование</li>
+              <li>все объект, служебные методы</li>
+              &nbsp;</li>
+            </ul> 
+
+          <li> Классы и ООП, наследование </li>
+            <ul>
+              <li>наследование</li>
+              <li>переопределение методов</li>
+              <li>super</li>
+              &nbsp;</li>
+            </ul> 
+
+          <li> Основы html/css </li>
+            <ul>
+              <li>html - теги и свойства</li>
+              <li>css - свойства и селекторы</li>
+              <li>каскадное переопределение свойств</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Основы Web, HTTP </li>
+            <ul>
+              <li>Django. “Hello world!”</li>
+              <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li>
+              <li>Инструменты отладки браузера (Firebug, Web Developer)</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Django first steps </li>
+            <ul>
+              <li>почему django?</li>
+              <li>введение и описание фреймворка</li>
+              <li>старт проекта</li>
+              <li>команды manage.py</li>
+              <li>django.contrib</li>
+              <li>авторизация, django.contrib.auth</li>
+              <li>админка</li>
+              <li>статика</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Структура Web приложения </li>
+            <ul>
+              <li>MVC</li>
+              <li>Views</li>
+              <li>роутинг урлов, передача параметров</li>
+              <li>объект реквест</li>
+              <li>объект респонс</li>
+              <li>обработка реквеста, формирование респонса</li>
+              <li>обработка и изменение хедеров</li>
+              <li>мидлвар</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Работа с базами данных, ORM </li>
+            <ul>
+              <li>модели и поля, типы полей и аттрибуты</li>
+              <li>связи между таблицами и проектирование БД</li>
+              <li>миграции</li>
+              <li>фикстуры</li>
+              <li>QuerySet</li>
+              <li>Raw-sql</li>
+              <li>специальные методы</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Кастомизация админки </li>
+            <ul>
+              <li>класс админки</li>
+              <li>настройка отображения виджетов</li>
+              <li>кастомизация ItemView, ListView, редактирование в ListView</li>
+              <li>сортировка, фильтры, поиск</li>
+              <li>admin actions, редактирование полей в ListView</li>
+              <li>Admin dashboard</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Язык шаблонов </li>
+            <ul>
+              <li>синтаксис, лигические конструкции</li>
+              <li>наследование и includes</li>
+              <li>понятие контекста, контекст процессор</li>
+              <li>теги и фильтры</li>
+              &nbsp;</li>
+            </ul>
+
+          <li>Forms</li>
+            <ul>
+              <li>формы, типы полей, виджеты и аттрибуты</li>
+              <li>валидация</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Class-based (Generic) Views </li>
+            <ul>
+              <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
+              <li>Использование форм с class-based views</li>
+              <li>Миксины</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Реализация стандартных задач </li>
+            <ul>
+              <li>отправка емейл</li>
+              <li>кеширование</li>
+              <li>интернационализация</li>
+              <li>батарейки (готовые решения)</li>
+              &nbsp;</li>
+            </ul>
+
+          <li> Средства отладки и тестирование </li>
+            <ul>
+              <li>logging</li>
+              <li>pdb</li>
+              <li>debug toolbar</li>
+              <li>extensions</li>
+              <li>unit-tests</li>
+              <li>selenium</li>
+              &nbsp;</li>
+            </ul>
+
+          <li>Деплоймент</li>
+            <ul>
+              <li>nginx</li>
+              <li>управление статикой</li>
+              <li>деплоймент</li>
+              &nbsp;</li>
+            </ul>
+        </ol>
+      </div>
+    </div>
   </div>
-
-  <div id="history-info">
-    <h2>История курсов</h2>
-      <p>Курсы Python мы проводим уже второй раз.</p>
-      <p>Успешно завершив первый курс, мы решили продолжать
-      и усовершенствовать его.</p>
-      <p>Наш преподаватель Алексей ранее уже имел опыт преподавания
-      на курсах и конференциях.</p>
-      <p>Кроме того, недавно мы совместно организовали некоммерческий
-      проект Django Girls Kharkiv исключительно для девушек.</p>
-      <p>В этом курсе мы изменили формат проведения и постарались сделать
-      его максимально удобным для харьковчан и не только.</p>
-      <p> Теперь практические оффлайн занятия будут сопровождаться онлайн 
-      трансляцией и чередоваться с онлайн лекциями.</p>
-    
-  </div>
-  <div id="program">
-    <h2>Программа курса</h2>
-    <ol>
-      <li>Основы Python</li>
-        <ul>
-          <li>zen, pep8, pylint, tools, IDE</li>
-          <li>консоль, типы данных, операторы</li>
-          <li>синтаксис управляющих конструкций (if, for...)</li>
-          <li>исключения и разбор стектрейса</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Строки и итераторы </li>
-        <ul>
-          <li>работа со строками и итерируемыми типами</li>
-          <li>запуск скрипта и параметры</li>
-          <li>git http://try.github.com/levels/1/challenges/1</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Функции и модульность </li>
-        <ul>
-          <li>функции (def, lambda)</li>
-          <li>модули, структура </li>
-          &nbsp;</li>
-        </ul> 
-
-      <li> Библиотеки и пакетный менеджер </li>
-        <ul>
-          <li>встроеные библиотеки http://docs.python.org/tutorial/stdlib.html</li>
-          <li>сторонние библиотки (менеджер пакетов) PYPI</li>
-          <li>PYTHONPATH и виртуальное окружение</li>
-          &nbsp;</li>
-        </ul> 
-
-      <li> Классы и ООП, основы </li>
-        <ul>
-          <li>синтаксис, атрибуты, методы, инстанцирование</li>
-          <li>все объект, служебные методы</li>
-          &nbsp;</li>
-        </ul> 
-
-      <li> Классы и ООП, наследование </li>
-        <ul>
-          <li>наследование</li>
-          <li>переопределение методов</li>
-          <li>super</li>
-          &nbsp;</li>
-        </ul> 
-
-      <li> Основы html/css </li>
-        <ul>
-          <li>html - теги и свойства</li>
-          <li>css - свойства и селекторы</li>
-          <li>каскадное переопределение свойств</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Основы Web, HTTP </li>
-        <ul>
-          <li>Django. “Hello world!”</li>
-          <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li>
-          <li>Инструменты отладки браузера (Firebug, Web Developer)</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Django first steps </li>
-        <ul>
-          <li>почему django?</li>
-          <li>введение и описание фреймворка</li>
-          <li>старт проекта</li>
-          <li>команды manage.py</li>
-          <li>django.contrib</li>
-          <li>авторизация, django.contrib.auth</li>
-          <li>админка</li>
-          <li>статика</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Структура Web приложения </li>
-        <ul>
-          <li>MVC</li>
-          <li>Views</li>
-          <li>роутинг урлов, передача параметров</li>
-          <li>объект реквест</li>
-          <li>объект респонс</li>
-          <li>обработка реквеста, формирование респонса</li>
-          <li>обработка и изменение хедеров</li>
-          <li>мидлвар</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Работа с базами данных, ORM </li>
-        <ul>
-          <li>модели и поля, типы полей и аттрибуты</li>
-          <li>связи между таблицами и проектирование БД</li>
-          <li>миграции</li>
-          <li>фикстуры</li>
-          <li>QuerySet</li>
-          <li>Raw-sql</li>
-          <li>специальные методы</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Кастомизация админки </li>
-        <ul>
-          <li>класс админки</li>
-          <li>настройка отображения виджетов</li>
-          <li>кастомизация ItemView, ListView, редактирование в ListView</li>
-          <li>сортировка, фильтры, поиск</li>
-          <li>admin actions, редактирование полей в ListView</li>
-          <li>Admin dashboard</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Язык шаблонов </li>
-        <ul>
-          <li>синтаксис, лигические конструкции</li>
-          <li>наследование и includes</li>
-          <li>понятие контекста, контекст процессор</li>
-          <li>теги и фильтры</li>
-          &nbsp;</li>
-        </ul>
-
-      <li>Forms</li>
-        <ul>
-          <li>формы, типы полей, виджеты и аттрибуты</li>
-          <li>валидация</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Class-based (Generic) Views </li>
-        <ul>
-          <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
-          <li>Использование форм с class-based views</li>
-          <li>Миксины</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Реализация стандартных задач </li>
-        <ul>
-          <li>отправка емейл</li>
-          <li>кеширование</li>
-          <li>интернационализация</li>
-          <li>батарейки (готовые решения)</li>
-          &nbsp;</li>
-        </ul>
-
-      <li> Средства отладки и тестирование </li>
-        <ul>
-          <li>logging</li>
-          <li>pdb</li>
-          <li>debug toolbar</li>
-          <li>extensions</li>
-          <li>unit-tests</li>
-          <li>selenium</li>
-          &nbsp;</li>
-        </ul>
-
-      <li>Деплоймент</li>
-        <ul>
-          <li>nginx</li>
-          <li>управление статикой</li>
-          <li>деплоймент</li>
-          &nbsp;</li>
-        </ul>
-    </ol>
-  </div>
-
-
+ -->
   <footer class="footer navbar-fixed-bottom">
     <div class="container">
       <p class="text-muted"> &copy; 2015 All Rights Reserved</p>
