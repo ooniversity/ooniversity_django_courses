@@ -9,7 +9,7 @@
     <title>Pybursa. Главная</title>
 
 
-    <!-- Bootstrap and mystyle-->
+    <!-- Bootstrap -->
     <link href="../static/css/bootstrap.css" rel="stylesheet">
     <link href="../static/css/mystyle.css" rel="stylesheet">
 
