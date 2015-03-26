@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Django courses | Main | Главная</title>
-
+    <link rel="icon" type="image/png" href="../static/dj-logo.png" />
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,7 +19,12 @@
     <![endif]-->
 
   </head>
+
   <body>
+
+<link href="../static/index.css" rel="stylesheet">
+
+<div class="container">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -30,182 +36,251 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="../static/django-logo-positive.png" width="60px"; height="25px">
+      <a class="navbar-brand" href="index.html">
+        <img alt="Brand" src="../static/django-logo-positive.png" width="73px"; height="28px">
       </a>
     </div>
 <p class="navbar-text">Professional courses </p>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><a href="#">Главная<span class="sr-only">(current)</span></a></li>
+        <li><a href="contact.html">Контакты</a></li>
       </ul>
-
-
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+
   <div class="jumbotron">
-  <style>
-   p {
-    text-indent: 30px;
-    text-align: justify;
-  }
-  </style>
-    <h1>Про курсы</h1> 
-    <p>  Django (Джанго) — это один из самых эффективных и современных фреймворков для разработки веб-приложений на языке Python, использующий шаблон проектирования MVC. Несомненным достоинством Django является его свободное распространение и открытый код. В Django реализована система моделей для упрощения использования базы данных и встроен функциональный движок шаблонов для создания web-разработок. С помощью Джанго Вы быстро сможете создать Web-сайт или даже Web-портал. 
+
+    <h2>Про курсы</h2> 
+    <p class="text">  Django — это один из самых эффективных и современных фреймворков для разработки веб-приложений на языке Python, использующий шаблон проектирования MVC. Несомненным достоинством Django является его свободное распространение и открытый код. В Django реализована система моделей для упрощения использования базы данных и встроен функциональный движок шаблонов для создания web-разработок. С помощью Django Вы быстро сможете создать Web-сайт или даже Web-портал. 
     </p>
-    <p>  Данный курс предназначен для программистов уже знакомых с языком Python и имеющих определенный опыт его применения. Данный курс также будет интересен программистам, имеющим опыт работы с использованием РНР и СУБД и всех, кого интересует веб-разработка. Для всех желающих пройти данный курс рекомендуем сначала базовые курсы - Основы программирования на языке Python и Объектно-ориентированное программирование на языке Python.В программу курса заложен базис, освоив который, Вы сможете конкурировать на рынке труда.
+    <p class="text">  Данный курс предназначен для программистов уже знакомых с языком Python и имеющих определенный опыт его применения. Данный курс также будет интересен программистам, имеющим опыт работы с использованием РНР и СУБД и всех, кого интересует веб-разработка. Для всех желающих пройти данный курс рекомендуем сначала базовые курсы - Основы программирования на языке Python и Объектно-ориентированное программирование на языке Python.
     </p> 
-  </div>
-
-
-  <h2>Программа</h2>
-    <table>
-      <tbody>   
-        <tr>
-                        Django first steps
-                    </td>
-                    <td>
-                        <ul>                                       
-                            <li>почему django?</li>
-                            <li>введение и описание фреймворка</li> 
-        <li>старт проекта</li>
-        <li>команды manage.py</li>
-        <li>django.contrib</li>
-        <li>авторизация, django.contrib.auth</li>
-        <li>админка</li>
-        <li>статика</li>                  
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Структура Web приложения
-                    </td>
-                    <td>
-                        <ul>                                       
-                            <li>MVC</li>
-                            <li>Views</li>
-        <li>роутинг урлов, передача параметров</li>
-        <li>объект реквест</li>
-        <li>объект респонс</li>
-        <li>обработка реквеста, формирование респонса</li>
-        <li>обработка и изменение хедеров</li>
-        <li>мидлвар</li>
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Работа с базами данных, ORM
-                    </td>
-                    <td>
-                        <ul>
-                            <li>модели и поля, типы полей и аттрибуты</li>
-                            <li>связи между таблицами и проектирование БД</li>
-                            <li>миграции</li>  
-        <li>фикстуры</li>
-        <li>QuerySet</li>
-        <li>Raw-sql</li>
-        <li>специальные методы</li>
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Кастомизация админки
-                    </td>
-                    <td>
-                        <ul>
-                            <li>класс админки</li>
-                            <li>настройка отображения виджетов</li>
-                            <li>кастомизация ItemView, ListView, редактирование в ListView</li>
-                            <li>сортировка, фильтры, поиск</li>
-                            <li>admin actions, редактирование полей в ListView</li>
-                            <li>Admin dashboard</li>                                 
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Язык шаблонов
-                    </td>
-                    <td>
-                        <ul>
-                            <li>синтаксис, лигические конструкции</li>
-                            <li>наследование и includes</li>
-                            <li>понятие контекста, контекст процессор</li>
-                            <li>теги и фильтры</li>                                                                   
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Forms.
-                    </td>
-                    <td>
-                        <ul>
-                            <li>формы, типы полей, виджеты и аттрибуты</li>
-                            <li>валидация</li>                                                                      
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Class-based (Generic) Views
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
-                            <li>Использование форм с class-based views</li>
-                            <li>Миксины</li>                                                                      
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Реализация стандартных задач
-                    </td>
-                    <td>
-                        <ul>
-                            <li>отправка емейл</li>
-                            <li>кеширование</li>
-                            <li>интернационализация</li>
-                            <li>батарейки (готовые решения)</li>                                                                          
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Средства отладки и тестирование
-                    </td>
-                    <td>
-                        <ul>
-                            <li>logging</li>
-                            <li>pdb</li>
-                            <li>debug toolbar</li>
-                            <li>extensions</li>
-                            <li>unit-tests</li>
-                            <li>selenium</li>                                       
-                        </ul>
-                    </td>
-                </tr>
-        <tr>
-                        Деплоймент
-                    </td>
-                    <td>
-                        <ul>
-                            <li>nginx</li>
-                            <li>управление статикой</li>
-                            <li>деплоймент</li>                                                                           
-                        </ul>
-                    </td>
-                </tr>
-      </tbody>
-    </table>
-
 </div>
 
+  <div class="jumbotron">
+    <p><h2>Программа</h2></p>
+      <table>
+        <tbody >
+            <tr>
+                <th>
+                    ЗАНЯТИЕ
+                </th>
+                <th>
+                    ТЕМА
+                </th>
+                <th>
+                    СОДЕРЖАНИЕ
+                </th>
+            </tr>
+            <tr>
+                <td class="number_cell" style="text-aling: right">
+                    1
+                </td>
+                <td>
+                    Основы html/css
+                </td>
+                <td>
+                    <ul>
+                        <li>html - теги и свойства</li>
+                        <li>css - свойства и селекторы</li>
+                        <li>каскадное переопределение свойств</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    2
+                </td>
+                <td>
+                    Основы Web, HTTP
+                </td>
+                <td>
+                    <ul>                                        
+                        <li>Django. “Hello world!”</li>
+                        <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li> 
+                        <li>Инструменты отладки браузера (Firebug, Web Developer)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    3
+                </td>
+                <td>
+                    Django first steps
+                </td>
+                <td>
+                    <ul>                                       
+                        <li>почему django?</li>
+                        <li>введение и описание фреймворка</li> 
+    <li>старт проекта</li>
+    <li>команды manage.py</li>
+    <li>django.contrib</li>
+    <li>авторизация, django.contrib.auth</li>
+    <li>админка</li>
+    <li>статика</li>                  
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    4
+                </td>
+                <td>
+                    Структура Web приложения
+                </td>
+                <td>
+                    <ul>                                       
+                        <li>MVC</li>
+                        <li>Views</li>
+    <li>роутинг урлов, передача параметров</li>
+    <li>объект реквест</li>
+    <li>объект респонс</li>
+    <li>обработка реквеста, формирование респонса</li>
+    <li>обработка и изменение хедеров</li>
+    <li>мидлвар</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    5
+                </td>
+                <td>
+                    Работа с базами данных, ORM
+                </td>
+                <td>
+                    <ul>
+                        <li>модели и поля, типы полей и аттрибуты</li>
+                        <li>связи между таблицами и проектирование БД</li>
+                        <li>миграции</li>  
+    <li>фикстуры</li>
+    <li>QuerySet</li>
+    <li>Raw-sql</li>
+    <li>специальные методы</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    6
+                </td>
+                <td>
+                    Кастомизация админки
+                </td>
+                <td>
+                    <ul>
+                        <li>класс админки</li>
+                        <li>настройка отображения виджетов</li>
+                        <li>кастомизация ItemView, ListView, редактирование в ListView</li>
+                        <li>сортировка, фильтры, поиск</li>
+                        <li>admin actions, редактирование полей в ListView</li>
+                        <li>Admin dashboard</li>                                 
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    7
+                </td>
+                <td>
+                    Язык шаблонов
+                </td>
+                <td>
+                    <ul>
+                        <li>синтаксис, лигические конструкции</li>
+                        <li>наследование и includes</li>
+                        <li>понятие контекста, контекст процессор</li>
+                        <li>теги и фильтры</li>                                                                   
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    8
+                </td>
+                <td>
+                    Forms
+                </td>
+                <td>
+                    <ul>
+                        <li>формы, типы полей, виджеты и аттрибуты</li>
+                        <li>валидация</li>                                                                      
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    9
+                </td>
+                <td>
+                    Class-based (Generic) Views
+                </td>
+                <td>
+                    <ul>
+                        <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
+                        <li>Использование форм с class-based views</li>
+                        <li>Миксины</li>                                                                      
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    10
+                </td>
+                <td>
+                    Реализация стандартных задач
+                </td>
+                <td>
+                    <ul>
+                        <li>отправка email</li>
+                        <li>кеширование</li>
+                        <li>интернационализация</li>
+                        <li>батарейки (готовые решения)</li>                                                                          
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    11
+                </td>
+                <td>
+                    Средства отладки и тестирование
+                </td>
+                <td>
+                    <ul>
+                        <li>logging</li>
+                        <li>pdb</li>
+                        <li>debug toolbar</li>
+                        <li>extensions</li>
+                        <li>unit-tests</li>
+                        <li>selenium</li>                                       
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="number_cell">
+                    12
+                </td>
+                <td>
+                    Деплоймент
+                </td>
+                <td>
+                    <ul>
+                        <li>nginx</li>
+                        <li>управление статикой</li>
+                        <li>деплоймент</li>                                                                           
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+                </table>
 
-
-
-
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../static/bootstrap/jquery.min.js"></script>
