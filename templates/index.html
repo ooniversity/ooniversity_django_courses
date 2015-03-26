@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0050)http://getbootstrap.com/examples/jumbotron-narrow/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Главная</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <link rel="stylesheet" href="../static/css/js-help.css" type="text/css" />
+    <script type="text/javascript" src="../static/js/jquery-1.4.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+	    $('.title').append('<span></span>');
+	    $('.post span').each(function() {
+		    var trigger = $(this), state = false, el = trigger.parent().next('.entry');
+		    trigger.click(function(){
+			    state = !state;
+			    el.slideToggle();
+			    trigger.parent().parent().toggleClass('inactive');
+		    });
+	    });
+    });
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Главная</a></li>
+            <li role="presentation"><a href="contact.html">Контакты</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">ITBursa</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Профессиональные Python курсы</h1>
+        <p class="lead">Присоединяйся!</p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4 class="title">Регулярные занятия</h4>
+          <p>Двухчасовые практические занятия проходят в аудитории еженедельно.</p>
+
+          <h4 class="title">Теория + Практика</h4>
+          <p>Видеозаписи скринкастов будут предоставляться для изучения перед практическим занятием</p>
+
+          <h4 class="title">Работа в команде</h4>
+          <p>В течении курсов вы создаете проект, сотрудничаете с другими студентами.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4 class="title">Железная дисциплина</h4>
+          <p>Дважды в неделю выдаются обязательные ДЗ.</p>
+
+          <h4 class="title">Поддержка</h4>
+          <p>Одно из ДЗ будет выполняться на практическом занятии в аудитории с советами преподавателя.</p>
+
+          <h4 class="title">Возможность удаленной учебы</h4>
+          <p>Практические занятия будут сопровождаться онлайн трансляцией в Интернете с возможностью "присутствовать удаленно" и задавать вопросы.</p>
+        </div>
+      </div>
+
+
+
+
+<div id="wrap">
+	<div> 
+    <h1>В курсе будет рассматриваться</h1>
+  </div>
+	<div class="clearfix">
+	<div style="height: 25px;"></div>
+		<div id="content">
+			<div class="post inactive">
+				<div class="title">
+					<p><a href="#" title="">Basic Python</a></p>
+				</div>
+				<div class="entry" style="display:none;">
+					<p>
+            <ul>
+            <li>zen, pep8, pylint, tools, IDE</li>
+            <li>консоль, типы данных, операторы</li>
+            <li>синтаксис управляющих конструкций (if, for...)</li>
+            <li>исключения и разбор стектрейса</li>
+            <li>запуск скрипта и параметры</li>
+            <li>функции (def, lambda)</li>
+            <li>встроеные библиотеки и сторонние библиотки (менеджер пакетов) PYPI</li>
+            <li>PYTHONPATH и виртуальное окружение</li>
+            <li>классы и ООП, основы</li>
+            <li>наследование, переопределение методов, super</li>
+            </ul>
+
+
+           </p>
+				</div>
+			</div>
+			<div class="post inactive">
+				<div class="title">
+					<p><a href="#" title="">Основы Web</a></p>
+				</div>
+				<div class="entry" style="display:none;">
+					<p>
+            <ul>
+            <li>html - теги и свойства</li>
+            <li>css - свойства и селекторы</li>
+            <li>каскадное переопределение свойств</li>
+            <li>исключения и разбор стектрейса</li>
+            <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li>
+            <li>инструменты отладки браузера (Firebug, Web Developer)</li>
+            </ul>
+          </p>
+				</div>
+			</div>
+			<div class="post inactive">
+				<div class="title">
+					<p><a href="#" title="">Django</a></p>
+					</div>
+				<div class="entry" style="display:none;">
+					<p>
+            <ul>
+            <li>введение и описание фреймворка</li>
+            <li>авторизация, django.contrib.auth, админка</li>
+            <li>структура Web приложения</li>
+            <li>работа с базами данных, ORM	</li>
+            <li>кастомизация админки</li>
+            <li>язык шаблонов	</li>
+            <li>формы, типы полей, виджеты и аттрибуты, валидация</li>
+            <li>средства отладки и тестирование	</li>
+            </ul>
+
+          </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+      <footer class="footer">
+        <p>anya-k 2015</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+  
+
+  </body>
+</html>
