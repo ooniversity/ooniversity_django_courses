@@ -9,7 +9,7 @@ body {
 }
 
 #container-info {
-    background: url("../images/img_1.png") no-repeat scroll 47px 58px rgba(0, 0, 0, 0);
+    background: url("../images/img_1.png") no-repeat scroll 4px 58px rgba(0, 0, 0, 0);
     min-height: 250px;
     text-align: center;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 #container-info p {
-    padding-left: 370px;
+    padding-left: 320px;
     text-align: justify;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 #history-info {
-    background: url("../images/history.png") no-repeat scroll 650px 65px rgba(0, 0, 0, 0);
+    background: url("../images/history.png") no-repeat scroll 560px 65px rgba(0, 0, 0, 0);
     min-height: 287;
     text-align: center;
 }
@@ -94,26 +94,26 @@ body {
     float: left;
 }
 
-table, th, td {
+.program table,
+.program th, 
+.program td {
+    padding: 5px;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 .program thead th {
     text-transform: uppercase;
+    text-align: center;
 }
 
-.program tbody > tr > td:nth-child(1) {
+.program tbody td:nth-child(1) {
     text-align: center;
     font-weight: bold;
 }
 
-th {
-    text-align: center;
-}
-
-th, td {
-    padding: 5px;
+.table {
+    margin-top: 20px;
 }
 
 .text-block {
