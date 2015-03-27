@@ -1,0 +1,127 @@
+.navbar-header img{
+	width: auto;
+	height: 52px;
+	padding: 2px;
+	background-position: center;
+	background-size: contain;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#navbar ul{
+	padding: 0px 40px;
+	text-transform: uppercase;
+	font-size: 21px;
+}
+
+#slider img{
+	margin-right: auto;
+  	margin-left: auto;
+  	display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+       -o-transition: border .2s ease-in-out;
+          transition: border .2s ease-in-out;
+}
+
+.placeholders{
+	margin-left: 25px;
+}
+
+.media-heading{
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-top: 70px;
+	text-align: center;
+	margin-top: 85px;
+	font-weight: bold;
+	color: #993366;
+	font-size: 40px;
+}
+
+.teacher1-text{
+	margin-right: 30px;
+	margin-left: 15px;
+	font-size: 21px;
+	text-indent: 30px;
+	text-align: justify;
+}
+}
+
+
+.row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+#python, #django{
+	width: 370px;
+	margin-left: 83px;
+	margin-right: 83px;
+
+}
+
+.sub-header {
+	text-align: center;
+	margin-top: 130px;
+	font-weight: bold;
+	color: #993366;
+	font-size: 40px;
+}
+
+.table{
+	font-size: 20px;
+	background-color: #FF9900;
+	padding-left: 40px;
+
+}
+
+.table-responsive{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.panel-footer{
+	background-color:rgb(67, 72, 76);
+	height: 60px;
+}
+
+.panel-footer small{
+	font-size: 100%;
+	padding-left: 40px;
+	color: #FFF;
+	vertical-align: text-bottom;
+}
+
+.panel-footer p{
+	font-size: 18px;
+	padding-left: 40px;
+	color: #FFF;
+	vertical-align: text-bottom;
+	text-align: center;
+}
+.panel-footer i{
+	margin-left: 4px;
+	margin-right: 4px;
+
+}
+
+.thumbnail h2{
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #66CC00;
+	text-align: center;
+}
+.thumbnail h3{
+	text-align: center;
+}
+
+a{
+	color: #777;
+}
