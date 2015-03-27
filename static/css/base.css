@@ -1,0 +1,151 @@
+body {
+    margin: 50px 0 0;
+    padding-bottom: 70px;
+}
+
+#contact {
+    padding-left: 50px;
+    padding-top: 10px;
+}
+
+#container-info {
+    background: url("../images/img_1.png") no-repeat scroll 47px 58px rgba(0, 0, 0, 0);
+    min-height: 250px;
+    text-align: center;
+}
+
+#container-info h2 {
+    padding-top: 10px;  
+    padding-bottom: 20px;
+}
+
+#container-info p {
+    padding-left: 370px;
+    text-align: justify;
+}
+
+.container > h2 {
+    text-align:  center;
+    padding-bottom: 20px;
+}
+
+.footer {
+    background: #f5f5f5;
+    bottom: 0;
+    font-size: 15px;
+    height: 60px;
+    width:100%;
+}
+
+.footer .text-muted {
+    margin: 20px 0;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+#history-info {
+    background: url("../images/history.png") no-repeat scroll 650px 65px rgba(0, 0, 0, 0);
+    min-height: 287;
+    text-align: center;
+}
+
+.h2-center {
+    text-align: center;
+}
+
+#history-info .text-history {
+    padding-left: 20px;
+    padding-right: 180px;
+    text-align: justify;
+}
+
+#program-info {
+    width: 800px;
+}
+.organaizer {
+    float: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 70px;
+    width: 600px;
+}
+
+.organaizer .float-right {
+    min-height: 100%;
+    width: 350px;
+}
+
+.img-crop {
+    border: 3px solid #e3e3e3;
+    border-radius: 7px;
+    margin-left: 10px;
+}
+
+.teacher-photo {
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+    float: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.program thead th {
+    text-transform: uppercase;
+}
+
+.program tbody > tr > td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+th {
+    text-align: center;
+}
+
+th, td {
+    padding: 5px;
+}
+
+.text-block {
+    padding-right: 30px;
+}
+
+.teacher {
+    float: left;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    }
+
+#teacher-info .teacher .teacher_name {
+    font-size: 14px;
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+#teacher-info .teacher .teacher_name span{
+    color: grey;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+}
+
+#teacher-info .text-teacher {
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#teacher-info .float-right {
+    width: 600px;
+}
