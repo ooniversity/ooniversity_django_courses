@@ -13,20 +13,22 @@
 	padding-top: 0px;
 	top: 0px;
 	left: 0px;
-}
 
+
+
+
+}
 .header img{
 	height: 50px;
 	padding-top: 2px;
 }
 .media{
-	padding: 36px 130px 0px;
+	padding: 36px 100px 29px;
 }
 
 h2{
 	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 80px;
 	font-weight: bold;
 	color: #936;
 	font-size: 40px;
@@ -40,14 +42,14 @@ h2{
 
 .panel-footer small{
 	font-size: 100%;
-	padding-left: 40px;
+	padding-left: 40px;	
 	color: #FFF;
 	vertical-align: text-bottom;
 }
 
 .panel-footer p{
 	font-size: 18px;
-	padding-left: 40px;
+	padding-left: 40px;	
 	color: #FFF;
 	vertical-align: text-bottom;
 	text-align: center;
@@ -55,8 +57,10 @@ h2{
 .panel-footer i{
 	margin-left: 4px;
 	margin-right: 4px;
+
 }
 
 body{
 	background: #FFFF66;
 }
+
