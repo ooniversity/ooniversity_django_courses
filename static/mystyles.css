@@ -7,7 +7,8 @@ img.media-object {
   border-style: solid; 
   border-width: 1px; 
   border-color: gray; 
-  border-radius: 20px; }
+  border-radius: 20px;
+  }
 
 div.jumbotron { 
   padding-left: 40px; 
@@ -22,5 +23,11 @@ th.col1 {
   }
 
 table.profile { 
+  padding-left: 10px; 
   width: 400px; 
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: gray; 
+  border-radius: 20px;
+  display: block;
   }
