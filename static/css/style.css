@@ -1,0 +1,71 @@
+body {	
+	background-image: url("../pictures/back.jpg");
+	}
+div.clear {
+	clear: both;
+	width: 100%;
+	}
+.colortext {
+    color: white;
+	text-align: center;
+	position: relative; 
+    top: 20px
+	}
+.logo {
+	position: relative;
+	top: 5px
+	}
+.floatleft{
+	position: relative;
+	left:20px;
+	}
+#container {
+    border: 2px solid CornflowerBlue;
+    border-radius: 20px;
+	padding:20px;
+	background-color: white;
+	margin-bottom: 60px;
+	position: relative;
+    top: 40px;
+	left: 200px;
+	width: 70%
+	}
+.filterable {
+    margin-top: 15px;
+}
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+hr.style-eight {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr.style-eight:after {
+    content: "§";
+    display: inline-block;
+    position: relative; 
+    top: -0.7em;  
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
