@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>PyBursa Home</title>
 
     <!-- Bootstrap -->
     <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -19,45 +19,65 @@
   </head>
   <body>
     <div class="container">
-
-      <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="contact.html">About Us</a></li>
-    </div><!-- /.navbar-collapse -->
-      </div>
-
-<!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
-      </div>
-
-<!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-4">
-        <img src="../static/bootstrap/images/radchenkoa.jpg" class="img-circle"  alt="Generic placeholder image">
-          <h3 >АЛЕКСЕЙ РАДЧЕНКО <span class="text-muted">(учитель)</span></h3>
-          <p class="lead">Алексей в web-разработке с 2006 года, специализируется на python и django с 2007.
-Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.
-Алексей работал python разработчиком в ряде компаний, реализовал более
-10-ти проектов, принимал участие в разработке более 20-ти проектов. Участвовал как слушатель и докладчик во многих тематических конференциях, благодаря всему этому собрал набор “лучших практик”, которые применяются абсолютно всеми компаниями, использующими python.
-За последние 2-3 года участвовал в разработке SPA проектов, проектов,
-рассчитанных на большую нагрузку, проектов, имеющих сложную инфраструктуру и интеграции со множеством сторонних сервисов.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">
+                <img alt="Brand" src="../static/bootstrap/images/python_study_ic.png" style = "width: 30px; height:30px">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Главная</a></li>
+                <li class="active"><a href="#">Контакты<span class="sr-only">(current)</span></a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <div class="jumbotron">
+          <h1>Marketing stuff!</h1>
+          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+          <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
         </div>
-        <div class="col-lg-4">
-        <img src="../static/bootstrap/images/photo_assistant.jpg" style = "width: 160px; height:161px" class="img-circle"  alt="Generic placeholder image">
-           <h3>ОКСАНА СЛЮСАРЕНКО <span class="text-muted">(ассистент)</span></h2>
-          <p class="lead">Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-       </div>
+        <p>
+          Программа курсов предназначена как для тех, кто осваивает первую IT-специальность, так и для тех, кто хочет освоить новый язык программирования. Но первой группе придется серьезно попотеть и недосыпать два месяца курсов
+        </p>
 
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="../static/bootstrap/images/radchenkoa.jpg" class="img-circle"  alt="Generic placeholder image">
+            <h3 >АЛЕКСЕЙ РАДЧЕНКО <span class="text-muted">(учитель)</span></h3>
+            <p>
+              Алексей в web-разработке с 2006 года, специализируется на python и django с 2007.
+              Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.
+              Алексей работал python разработчиком в ряде компаний, реализовал более
+              10-ти проектов, принимал участие в разработке более 20-ти проектов.</p>
+            <p>
+              <a class="btn btn-primary" href="#" role="button">View details &raquo;
+              </a>
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <img src="../static/bootstrap/images/photo_assistant.jpg" style = "width: 160px; height:161px" class="img-circle"  alt="Generic placeholder image">
+            <h3>ОКСАНА СЛЮСАРЕНКО <span class="text-muted">(ассистент)</span></h2>
+            <p>
+              Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам
+              </p>
+            <p>
+              <a class="btn btn-primary" href="#" role="button">View details &raquo;
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../static/bootstrap/js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
