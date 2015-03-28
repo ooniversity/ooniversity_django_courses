@@ -67,7 +67,7 @@
           
  <div class="row">
             <div class="col-xs-6 col-lg-4">
-              <h2>Менеджер ITBursa</h2>
+              <h2>Менеджер</h2>
               <p>Анна Малахова </p>
 	      <p>anna.itbursa@gmail.com</p>
 	      <p>skype: anechka.malakhova</p>
@@ -75,7 +75,7 @@
               <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
-              <h2>Основатель ITBursa</h2>
+              <h2>Основатель</h2>
               <p>Павел Обод </p>
 	      <p>itbursa100@gmail.com</p>
 	      <p>skype: azaless</p>
@@ -83,7 +83,7 @@
               <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
             </div><!--/.col-xs-6.col-lg-4-->
             <div class="col-xs-6 col-lg-4">
-              <h2>Финансовый менеджер</h2>
+              <h2>Оплата</h2>
               <p>Татьяна Колесник </p>
 	      <p>tatyana@outsource-people.com</p>
 	      <p>skype: princessataniakolesnik</p>
