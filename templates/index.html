@@ -23,78 +23,57 @@
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-      
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="contact.html">About Us</a></li>
     </div><!-- /.navbar-collapse -->
-      </div> 
+      </div>
+
 <!-- Jumbotron -->
       <div class="jumbotron">
         <h1>Marketing stuff!</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
         <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
       </div>
-      <div class="row">
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="../static/bootstrap/images/radchenkoa.jpg"
-         alt="Generic placeholder thumbnail">
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                       <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-            <ol>
-              <li>Vestibulum id ligula porta felis euismod semper.</li>
-              <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-              <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-            </ol>
-            <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
 
-     
-   <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-         <img src="../static/bootstrap/images/photo_assistant.jpg" style = "height:161px"
-         alt="assistant Oksana" >
-      </div>
-      <div class="caption">
-         <h3>Thumbnail label</h3>
-         <p>Some sample text. Some sample text.</p>
-         <p>
-            <a href="#" class="btn btn-primary" role="button">
-               Button
-            </a>
-            <a href="#" class="btn btn-default" role="button">
-               Button
-            </a>
-         </p>
-      </div>
-   </div>
-   
-   </div>
-</div>
+
+<div class="container marketing">
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h3 class="featurette-heading">АЛЕКСЕЙ РАДЧЕНКО <span class="text-muted">(учитель)</span></h2>
+          <p class="lead">Алексей в web-разработке с 2006 года, специализируется на python и django с 2007.
+Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.
+Алексей работал python разработчиком в ряде компаний, реализовал более
+10-ти проектов, принимал участие в разработке более 20-ти проектов. Участвовал как слушатель и докладчик во многих тематических конференциях, благодаря всему этому собрал набор “лучших практик”, которые применяются абсолютно всеми компаниями, использующими python.
+За последние 2-3 года участвовал в разработке SPA проектов, проектов,
+рассчитанных на большую нагрузку, проектов, имеющих сложную инфраструктуру и интеграции со множеством сторонних сервисов.</p>
+        </div>
+        <div class="col-md-5">
+          <img src="../static/bootstrap/images/radchenkoa.jpg" class="featurette-image img-responsive center-block" data-src="holder.js/200x200/auto" alt="Generic placeholder image">
+        </div>
       </div>
 
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h3 class="featurette-heading">ОКСАНА СЛЮСАРЕНКО <span class="text-muted">(ассистент)</span></h2>
+          <p class="lead">Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам.</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img src="../static/bootstrap/images/photo_assistant.jpg" style = "height:161px" class="featurette-image img-responsive center-block" data-src="holder.js/200x200/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+
+      <!-- /END THE FEATURETTES -->
+      </div>
       <!-- Site footer -->
       <footer class="footer">
         <p>&copy; Company 2015</p>

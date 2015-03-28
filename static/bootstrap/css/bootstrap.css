@@ -1130,6 +1130,8 @@ img {
   height: auto;
 }
 .img-rounded {
+
+
   border-radius: 6px;
 }
 .img-thumbnail {
@@ -1302,7 +1304,7 @@ p {
 }
 @media (min-width: 768px) {
   .lead {
-    font-size: 21px;
+    font-size: 14px;
   }
 }
 small,
