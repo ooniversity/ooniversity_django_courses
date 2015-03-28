@@ -1,3 +1,7 @@
 *~
 *.*~
 *.pyc
+
+static/bootstrap/ie-emulation-modes-warning.js
+static/bootstrap/ie10-viewport-bug-workaround.js
+static/bootstrap/justified-nav.css
