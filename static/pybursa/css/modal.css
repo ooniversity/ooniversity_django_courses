@@ -1,0 +1,343 @@
+*{
+    margin:0;
+    padding:0;
+}
+	
+.overlay-container {
+	position:fixed !important;
+	z-index:6000;
+	display: none;
+	content: " ";
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%, rgba(127,127,127,0.9) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,0)), color-stop(100%,rgba(127,127,127,0.9)));
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+	background: -o-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+	background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007f7f7f', endColorstr='#e67f7f7f',GradientType=1 );
+}
+
+.window-container {
+	display: block;
+	background: #fff url(../img//modal-bg.jpg) no-repeat;
+	background-position: center center;
+	margin: 8em auto;
+	width: 671px;
+	height:410px;
+	text-align: left;
+	z-index: 3;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+	-webkit-transition: 0.4s ease-out;
+	-moz-transition: 0.4s ease-out;
+	-ms-transition: 0.4s ease-out;
+	-o-transition: 0.4s ease-out;
+	transition: 0.4s ease-out;
+	opacity: 0;
+}
+
+.zoomin {
+	-webkit-transform:  scale(1.2);
+	-moz-transform:  scale(1.2);
+	-ms-transform:  scale(1.2);
+	transform:  scale(1.2);
+}
+
+.zoomout {
+	-webkit-transform:  scale(0.7);
+	-moz-transform:  scale(0.7);
+	-ms-transform:  scale(0.7);
+	transform:  scale(0.7);
+}
+
+.window-container-visible {
+	-webkit-transform:  scale(1);
+	-moz-transform:  scale(1);
+	-ms-transform:  scale(1);
+	transform:  scale(1);
+	opacity: 1;
+}
+
+	.window-container h3 {
+		margin: 1em 0 0.5em;
+		font-family: "Oleo Script";
+		font-weight: normal;
+		font-size: 25px;
+		text-align: center;
+	}
+	
+	.close{
+		position:absolute;
+		top:-26px;
+		right:-26px;
+		cursor:pointer;
+		display:block;
+		width:42px;
+		height:42px;
+		background:url(../img/close.png) no-repeat center center;
+	}
+	.close:hover{
+		opacity:0.9;
+		}
+			
+.window-container div h3{
+	color:#FFF;
+	font-size:28px;
+	margin-top:15px;
+	margin-left:30px;
+	margin-bottom:23px;
+	text-shadow:1px 1px 1px #000;
+	font-family: 'trebuchet_msregular';
+	text-align:left;
+	padding-top:70px;
+	}
+#subscribe_form{
+	display:block;
+	width:175px;
+	height:50px;
+	color:#a00000;
+	border:#d1d1d1 3px solid;
+	font-family: 'trebuchet_msregular';
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-weight:bold;
+	font-size:18px;
+	background:url(../img/submit_btn.jpg) repeat-x center center;
+	margin-top:25px;
+	margin-left:30px;
+	cursor:pointer;
+	}
+#subscribe_form:hover{
+	opacity:0.95;
+	}
+input#email{
+	margin-left:30px;
+	width:308px;
+	height:44px;
+	font-family: 'trebuchet_msregular';
+	font-size:20px;
+	font-weight:bold;
+	padding-left:17px;
+	padding-right:17px;
+	color:#a9a9a9;
+	border:5px #e6e6e6 solid;
+
+	webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.@);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+	}
+	
+#modal_form label[for="email"].error{
+	position:relative;
+	top:5px;
+	left:30px;
+	font-family: 'trebuchet_msregular';
+	font-size:12px;
+	text-shadow:0px 0px 3px #000;
+	color:#fff;
+	font-weight:bold;
+	display:block;
+	}
+#modal_form label[for="email"].error+#subscribe_form{
+	display:block;
+	margin-top:10px;
+	}
+
+
+
+
+	/*---------------------------------*/
+
+
+    .overlay-container1 {
+    position:fixed !important;
+    z-index:6000;
+    display: none;
+    content: " ";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%, rgba(127,127,127,0.9) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,0)), color-stop(100%,rgba(127,127,127,0.9)));
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+    background: -o-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+    background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007f7f7f', endColorstr='#e67f7f7f',GradientType=1 );
+    cursor: pointer;
+}
+
+.window-container1 {
+    display: block;
+    background: #fff url(../img//modal-bg.jpg) no-repeat;
+    background-position: center center;
+    margin: 8em auto;
+    width: 671px;
+    height:410px;
+    text-align: left;
+    z-index: 3;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+    -webkit-transition: 0.4s ease-out;
+    -moz-transition: 0.4s ease-out;
+    -ms-transition: 0.4s ease-out;
+    -o-transition: 0.4s ease-out;
+    transition: 0.4s ease-out;
+    opacity: 1;
+}
+
+.zoomin1 {
+    -webkit-transform:  scale(1.2);
+    -moz-transform:  scale(1.2);
+    -ms-transform:  scale(1.2);
+    transform:  scale(1.2);
+}
+
+.zoomout1 {
+    -webkit-transform:  scale(0.7);
+    -moz-transform:  scale(0.7);
+    -ms-transform:  scale(0.7);
+    transform:  scale(0.7);
+}
+
+.window-container-visible1 {
+    -webkit-transform:  scale(1);
+    -moz-transform:  scale(1);
+    -ms-transform:  scale(1);
+    transform:  scale(1);
+    opacity: 1;
+}
+
+    .window-container1 h3 {
+        margin: 1em 0 0.5em;
+        font-family: "Oleo Script";
+        font-weight: normal;
+        font-size: 25px;
+        text-align: center;
+    }
+    
+    .close{
+        position:absolute;
+        top:-26px;
+        right:-26px;
+        cursor:pointer;
+        display:block;
+        width:42px;
+        height:42px;
+        background:url(../img/close.png) no-repeat center center;
+    }
+    .close:hover{
+        opacity:0.9;
+        }
+            
+.window-container1 div h3{
+    color:#FFF;
+    font-size:28px;
+    margin-top:15px;
+    margin-left:30px;
+    margin-bottom:23px;
+    text-shadow:1px 1px 1px #000;
+    font-family: 'trebuchet_msregular';
+    text-align:left;
+    padding-top:30px;
+    }
+#subscribe_form1{
+    display:block;
+    width:175px;
+    height:50px;
+    color:#a00000;
+    border:#d1d1d1 3px solid;
+    font-family: 'trebuchet_msregular';
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight:bold;
+    font-size:18px;
+    background:url(../img/submit_btn.jpg) repeat-x center center;
+    margin-top:25px;
+    margin-left:30px;
+    cursor:pointer;
+    }
+#subscribe_form1:hover{
+    opacity:0.95;
+    }
+input#email1{
+    margin-left:30px;
+    margin-bottom: 10px;
+    width:308px;
+    height:44px;
+    font-family: 'trebuchet_msregular';
+    font-size:20px;
+    font-weight:bold;
+    padding-left:17px;
+    padding-right:17px;
+    color:#a9a9a9;
+    border:5px #e6e6e6 solid;
+
+    webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.@);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    }
+
+    input#name{
+    margin-left:30px;
+    margin-bottom: 10px;
+    width:308px;
+    height:44px;
+    font-family: 'trebuchet_msregular';
+    font-size:20px;
+    font-weight:bold;
+    padding-left:17px;
+    padding-right:17px;
+    color:#a9a9a9;
+    border:5px #e6e6e6 solid;
+
+    webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.@);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    }
+
+    input#phone{
+    margin-left:30px;
+    width:308px;
+    height:44px;
+    font-family: 'trebuchet_msregular';
+    font-size:20px;
+    font-weight:bold;
+    padding-left:17px;
+    padding-right:17px;
+    color:#a9a9a9;
+    border:5px #e6e6e6 solid;
+
+    webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.@);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3), inset 3px 3px 3px 0px rgba(0,0,0,0.2);
+    }
+    
+#modal_form1 label[for="email"].error{
+    position:relative;
+    top:5px;
+    left:30px;
+    font-family: 'trebuchet_msregular';
+    font-size:12px;
+    text-shadow:0px 0px 3px #000;
+    color:#fff;
+    font-weight:bold;
+    display:block;
+    }
+#modal_form1 label[for="email"].error+#subscribe_form1{
+    display:block;
+    margin-top:10px;
+    }
