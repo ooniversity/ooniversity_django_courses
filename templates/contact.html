@@ -29,9 +29,9 @@
     <link href="../static/css/carousel.css" rel="stylesheet">
   </head>
   <body>
-
-        <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <!-- Static navbar -->
+	
+    <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -40,23 +40,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <p class="navbar-brand">TimR</p>
+          <a class="navbar-brand">Current Location: Contacts</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="collapse navbar-collapse">
+		
           <ul class="nav navbar-nav">
             <li><a href="../templates/index.html">Main</a></li>
-            <li class="active"><a href="#">Contacts</a></li>
+            <li class = 'active'><a href="#">Contacts</a></li>
+			<li><a href="../templates/student_list.html">Students</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
 	
 	<!-- Contacts Info -->
+		<div class="jumbotron">
 	<div class='container'>
-	
+	<br>
 		<div class="col-lg-4">
           <img class="img-circle" src="../static/img/1.jpg" alt="Generic placeholder image" width="140" height="140">
-          <h2>Алексей радченко</h2>
+          <h2>Алексей Радченко</h2>
           <p>Алексей в web-разработке с 2006 года, специализируется на python и django с 2007. Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.</p>
 		</div>
         
@@ -65,7 +68,7 @@
           <h2>Оксана Слюсаренко</h2>
           <p>Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам.</p>
 		</div>
-		
+		</div>
 	</div>
 
 
