@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Список студентов</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/my.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#1").load("student_detail.html #1");
+        $("#2").load("student_detail.html #2");
+        $("#3").load("student_detail.html #3");
+        $("#4").load("student_detail.html #4");
+        $("#5").load("student_detail.html #5");
+        });
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Pybursa</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="contact.html">Контакты</a></li> 
+        <li class="active"><a href="student_list.html">Студенты<span class="sr-only">(current)</span></a></li>
+      </ul>      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+  <div class="jumbotron">
+  <h2>Список студентов</h2>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <table class="table">
+      <tr>
+        <td class="cell-number">#</td>
+        <td class="cell-name-surname">Фамилия и имя студента</td>
+        <td class="cell-address">Адрес проживания</td>
+        <td>Skype</td>
+      </tr>
+    </table>  
+  </div>
+  <br>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <table class="table">
+            <tr>
+              <td class="cell-number">1</td>
+              <td class="cell-name-surname">Алексеев Алексей</td>
+              <td class="cell-address">г. Москва, ул. Первая, д. 3, кв. 50</td>
+              <td>alexeev111</td>
+            </tr>
+          </table>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body" id ="1">
+        ...
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <table class="table">  
+              <tr>
+                <td class="cell-number">2</td>
+                <td class="cell-name-surname">Бердников Владимир</td>
+                <td class="cell-address">г. Санкт-Петербург, ул. Лиговская, д. 112, кв. 136</td>
+                <td>basrmaglod78rus</td>
+              </tr>
+            </table>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body"  id ="2">
+        ...
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <table class="table">
+            <tr>
+              <td class="cell-number">3</td>
+              <td class="cell-name-surname">Венедиктов Павел</td>
+              <td class="cell-address">Амурская обл., с. Верхние Мохры, ул. Белых тигров, д. 17</td>
+              <td>pavlik_programmer</td>
+            </tr>
+          </table>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body" id ="3">
+      ...
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          <table class="table">
+            <tr>
+              <td class="cell-number">4</td>
+              <td class="cell-name-surname">Гордеев Андрей</td>
+              <td class="cell-address">г. Алма-Аты, Ул. Красных Коммунаров,  д. 32</td>
+              <td>xxx_megahacker_xxx</td>
+            </tr>
+          </table>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body" id ="4">
+        ...
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFive">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          <table class="table">
+            <tr>
+              <td class="cell-number">5</td>
+              <td class="cell-name-surname">Дмитриев Василий</td>
+              <td class="cell-address">г. Самара, ул. Авроры 105, кв. 24</td>
+              <td>vasya-admin</td>
+            </tr>
+          </table>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+      <div class="panel-body" id ="5">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<p><a class="btn btn-primary btn-lg" href="index.html" role="button">На главную</a></p> 
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/bootstrap.js"></script>
+  </body>
+</html>
