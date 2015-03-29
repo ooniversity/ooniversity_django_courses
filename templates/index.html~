@@ -40,7 +40,7 @@
 </nav>
    
    
- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -90,7 +90,7 @@
            
             <table class="table table-condensed table-bordered">
                         <tbody>
-                            <tr id="main-table">
+                            <tr id="table-head">
                                 <th>
                                         ЗАНЯТИЕ
                                 </th>
@@ -102,7 +102,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="number_cell">
                                     1
                                 </td>
                                 <td>

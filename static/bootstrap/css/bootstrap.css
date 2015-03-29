@@ -6597,4 +6597,14 @@ button.close {
     display: none !important;
   }
 }
+
+#table-head {
+  background-color: #1E90FF;
+  color: #fff;
+}
+
+#main-table {
+  background-color: #1E90FF;
+  color: #fff;
+}
 /*# sourceMappingURL=bootstrap.css.map */
