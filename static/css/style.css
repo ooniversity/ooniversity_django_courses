@@ -82,3 +82,80 @@ body
   border-color: #eadbc4;
 }
 
+.td_no
+{
+  width: 35px;
+}
+/*.td_ratio
+{
+  width: 120px;
+}
+.td_week
+{
+  width: 100px;
+}
+.td_control
+{
+  width: 100px;
+}
+.td_mark
+{
+  width: 100px;
+}*/
+
+
+table
+{
+  background-color: #f8dc8a;
+}
+.table-hover > tbody > tr:hover {
+  background-color: #f6d163;
+}
+th
+{
+  background-color: #F4C63D;
+  color: #453d3f;
+}
+
+img
+{
+  margin-bottom: 20px;
+}
+
+#student_details
+{
+	padding-right: 260px;
+
+}
+.well
+{
+ background-color: #d2dbe3;
+}
+.up
+{
+  margin-top: 20px;
+}
+.big_tr
+{
+	font-weight: bold;
+
+}
+
+.big_tr :hover 
+{
+	font-size:larger;
+}
+
+#ratings
+{
+   background-color: #d2dbe3;
+}
+#ratings th
+{
+   background-color: #286090;
+   color: #fff;
+}
+#ratings tr:hover {
+  background-color: #d2dbe3;
+}
+										
