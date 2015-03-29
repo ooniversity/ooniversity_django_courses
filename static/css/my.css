@@ -1,0 +1,14 @@
+table {
+    table-layout: fixed; /* Фиксированная ширина ячеек */
+    width: 100%; /* Ширина таблицы */
+}
+
+.cell-number { width: 10px; }
+.cell-name-surname { width: 250px; }
+.cell-address { width: 400px; }
+.cell-name { width: 100px; }
+.cell-birthdate { width: 150px; }
+.cell-contact{ width: 200px; }
+
+
+
