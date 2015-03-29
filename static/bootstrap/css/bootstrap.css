@@ -2275,6 +2275,7 @@ th {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
+  background-color: #F0F8FF;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -6596,5 +6597,19 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+#table-head {
+  background-color: #1E90FF;
+  color: #fff;
+}
+
+#main-table {
+  background-color: #1E90FF;
+  color: #fff;
+}
+
+.text {
+  position: center;
 }
 /*# sourceMappingURL=bootstrap.css.map */
