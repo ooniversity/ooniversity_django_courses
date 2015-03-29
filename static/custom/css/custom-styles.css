@@ -1,0 +1,24 @@
+body {
+  background: none;
+}
+
+.container {
+  max-width: 990px;
+}
+
+#py-img {
+    min-height: 350px;
+    background:url(pybursa/img/f1_block_bg.jpg) no-repeat top left;
+}
+
+#fourth_block .floatleft {
+  padding-left: 50px;
+}
+
+#fourth_block .floatright {
+  padding-right: 50px;
+}
+
+.more {
+  display: none;
+}
