@@ -22,3 +22,17 @@ body {
 .more {
   display: none;
 }
+
+.cursor
+{
+    cursor: pointer;
+}
+
+
+.dl-horizontal dt {
+  width: 300px;
+}
+
+.dl-horizontal dd {
+  margin-left: 320px;
+}
