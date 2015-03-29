@@ -11,7 +11,7 @@
 
      <link rel="icon" href="../static/img/py.ico">
 
-    <title>Контактная информация</title>
+    <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.css" rel="stylesheet">
@@ -53,24 +53,49 @@
       </div>
     </nav>
 
-    <div class="container">
-
-      <!--<div class="starter-template">-->
-      <pre>                          
-            <table border = "1" style = "font-size: 18px" align = "center"  width="700">
-            <caption align = "top">Список студентов</caption>
-              <tr align = "center"><td>Фамилия</td>   <td>Имя</td>   <td>Адрес</td>   <td>Логин Skype</td></tr>
-              <tr align = "center"><td><a href='student_detail.html'>Белобродский</a></td><td>Алексей</td><td>ул. Ак. Павлова, 160</td><td>Аlesvawkips</td></tr>
-              <tr align = "center"><td>Алесинская</td>   <td>Татьяна</td>   <td>ул. 23 августа 58а</td>   <td>tatnlamqivna</td></tr>
-              <tr align = "center"><td>Сербин</td><td>Виктор</td><td>ул. Артема, 9/11</td><td>vikpwoskowtor</td></tr>
-              <tr align = "center"><td>Катаев</td><td>Артем</td><td>ул. Ахсарова, 11</td><td>artytatsymem</td></tr>
-              <tr align = "center"><td>Гриценко</td><td>Михаил</td><td>ул. Блюхера, 22</td><td>mixxvyirha</td></tr>
-            </table>     
-      </pre> 
-          
-      
-
-    </div><!-- /.container -->
+<div class="container">
+  <pre>                          
+    <table class='students_list'>
+      <caption>Список студентов</caption>
+      <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Адрес</th>
+        <th>Логин Skype</th>
+      </tr>
+      <tr>
+        <td><a href='student_detail.html'>Белобродский</a></td>
+        <td>Алексей</td>
+        <td>ул. Ак. Павлова, 160 кв.110</td>
+        <td>Аlesvawkips</td>
+      </tr>
+      <tr>
+        <td>Алесинская</td>
+        <td>Татьяна</td>
+        <td>ул. 23 августа 58а кв.56</td>
+        <td>tatnlamqivna</td>
+      </tr>
+      <tr>
+        <td>Сербин</td>
+        <td>Виктор</td>
+        <td>ул. Артема, 9/11 кв.33</td>
+        <td>vikpwoskowtor</td>
+      </tr>
+      <tr>
+        <td>Катаев</td>
+        <td>Артем</td>
+        <td>ул. Ахсарова, 11 кв. 43</td>
+        <td>artytatsymem</td>
+      </tr>
+      <tr>
+        <td>Гриценко</td>
+        <td>Михаил</td>
+        <td>ул. Блюхера, 22 кв. 114</td>
+        <td>mixxvyirha</td>
+      </tr>
+    </table>     
+  </pre> 
+</div>
 
 
     <!-- Bootstrap core JavaScript
@@ -80,5 +105,9 @@
     <script src="../static/js/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/static/ie10-viewport-bug-workaround.js"></script>
-
+    <style>
+        .students_list {margin: auto; font-size: 18px;  width: 700; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
+        .students_list th, .students_list tr, .students_list td {text-align: center;  border: 1px solid black}
+        .students_list th, .students_list td {padding: 7px 20px 7px 20px;}
+    <style>
 </body></html>

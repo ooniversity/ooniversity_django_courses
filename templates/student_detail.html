@@ -11,7 +11,7 @@
 
      <link rel="icon" href="../static/img/py.ico">
 
-    <title>Контактная информация</title>
+    <title>Информация о студенте</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.css" rel="stylesheet">
@@ -54,22 +54,39 @@
     </nav>
 
     <div class="container">
-
-      <!--<div class="starter-template">-->
-       <pre>                          
-            <table border = "1" style = "font-size: 14px" width="100%">
-            <caption align = "top">Личные данные студента</caption>
-              <tr align = "center"><td>Фамилия</td>   <td>Имя</td>  <td>Отчество</td><td>Дата рождения</td> <td>Адрес</td><td>Почта</td><td>Логин Skype</td><td>П/р</td><td>К/р</td><td>Средний бал</td><td>Рейтинг</td></tr>
-              
-              <tr align = "center"><td>Белобродский</td><td>Алексей</td><td>Иванович</td><td>12.04.85</td><td>ул. Ак. Павлова, 160</td><td>Alesv@mail.ru</td><td>Аlesvawkips</td><td>50</td><td>250</td><td>150</td><td>300</td></tr>
-              
-            </table>     
+      <pre>                          
+        <table class='student_detail'>
+          <caption>Личные данные студента</caption>
+          <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>  
+            <th>Отчество</th>
+            <th>Дата рождения</th> 
+            <th>Адрес</th>
+            <th>Почта</th>
+            <th>Логин Skype</th>
+            <th>П/р</th>
+            <th>К/р</th>
+            <th>Средний бал</th>
+            <th>Рейтинг</th>
+          </tr>
+          <tr align = "center">
+            <td>Белобродский</td>
+            <td>Алексей</td>
+            <td>Иванович</td>
+            <td>12.04.85</td>
+            <td>ул. Ак. Павлова, 160</td>
+            <td>Alesv@mail.ru</td>
+            <td>Аlesvawkips</td>
+            <td>50</td>
+            <td>250</td>
+            <td>150</td>
+            <td>300</td>
+          </tr>
+        </table>
       </pre> 
-     
-          <a href='student_list.html'>Список студентов<a>
-      
-
-    </div><!-- /.container -->
+      <a href='student_list.html'>Список студентов<a>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -79,5 +96,10 @@
     <script src="../static/js/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/static/ie10-viewport-bug-workaround.js"></script>
+    <style>
+        .student_detail {margin: auto; font-size: 14px;  width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
+        .student_detail th, .student_detail tr, .student_detail td {text-align: center;  border: 1px solid black}
+        .student_detail th, .student_detail td {padding: 7px 5px 7px 5px;}
+    <style>
 
 </body></html>
