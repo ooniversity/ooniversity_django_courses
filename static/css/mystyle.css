@@ -1,6 +1,60 @@
 body 
-.jumbotron
-{ text-align: center}
-.list-group
+.jumbotron, .list-group
 { text-align: center}
 
+.list-group-item.active
+{font-size: 18px;}
+
+td, th {text-align: left}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 0px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.column05
+{width:5%}
+
+.column15
+{width:15%}
+
+.column20
+{width:20%}
+
+.column25
+{width:25%}
+
+.column30
+{width:30%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
