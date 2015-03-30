@@ -39,7 +39,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li class="active"><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
@@ -51,87 +51,29 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Курс по WEB-разработке</h1>
-        <p>Курс подразумевает, что студенты уже освоили базовый python.</p>
-        <p>В рамках курса даются азы html/css достаточные для формирования html страниц браузеру, но не достаточные для профессиональной верстки.</p>
-        <p>Глубина освоения django будет достаточной для самостоятельного написания web-проектов, которые содержат редактируемые страницы, структуру специфических данных, отображение их на фронтенде и создание-редактирование этих данных.</p>
-        <p>Все разделы django будут освещены.</p>
+        <h1>ooniversity</h1>
+        <p>Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий.</p>
       </div>
 
       <div class="page-header">
-        <h1>Программа курса</h1>
+        <h1>Выбирай на каком курсе ты хочешь учиться!</h1>
       </div>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Занятие</th>
-                <th>Тема</th>
-                <th>Содержание</th>
+                <th>Курс</th>
+                <th>Описание</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Основы html/css. GIT</td>
-                <td>
-                  <ul>
-                    <li>html - теги и свойства</li>
-                    <li>css - свойства и селекторы</li>
-                    <li>Bootstrap</li>
-                    <li>GIT basic reference</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Django first steps</td>
-                <td>
-                  <ul>
-                    <li>введение и описание фреймворка, старт проекта</li>
-                    <li>инструменты отладки браузера</li>
-                    <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li>
-                    <li>админка</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Структура Web приложения. Работа с базами данных, ORM</td>
-                <td>
-                  <ul>
-                    <li>роутинг урлов, передача параметров</li>
-                    <li>обработка реквеста, формирование респонса</li>
-                    <li>модели и поля, типы полей и аттрибуты</li>
-                    <li>QuerySet</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Кастомизация админки. Язык шаблонов</td>
-                <td>
-                  <ul>
-                    <li>настройка отображения виджетов админки</li>
-                    <li>сортировка, фильтры, поиск</li>
-                    <li>наследование и includes шаблонов</li>
-                    <li>теги и фильтры</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Forms. Class-based (Generic) Views.</td>
-                <td>
-                  <ul>
-                    <li>формы, типы полей, виджеты и аттрибуты, валидация</li>
-                    <li>встроеные class-based views (TemplateView, ListView, ItemView)</li>
-                    <li>синтаксис шаблонов, логические конструкции</li>
-                    <li>миксины</li>
-                  </ul>
-                </td>
-              </tr>
+              {% for course in courses %}
+                <tr>
+                  <td><a href="#">{{ course.name }}</a></td>
+                  <td>{{ course.short_description }}</td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
