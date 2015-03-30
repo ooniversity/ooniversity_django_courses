@@ -39,7 +39,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
@@ -51,27 +51,29 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>ooniversity</h1>
-        <p>Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий.</p>
+        <h1>{{ course.name }}</h1>
+        <p>{{ course.description }}</p>
       </div>
 
       <div class="page-header">
-        <h1>Выбирай на каком курсе ты хочешь учиться!</h1>
+        <h1>План курса</h1>
       </div>
       <div class="row">
         <div class="col-md-12">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Курс</th>
+                <th>#</th>
+                <th>Тема</th>
                 <th>Описание</th>
               </tr>
             </thead>
             <tbody>
-              {% for course in courses %}
+              {% for lesson in course.lesson_set.all %}
                 <tr>
-                  <td><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></td>
-                  <td>{{ course.short_description }}</td>
+                  <td>{{ lesson.order }}</td>
+                  <td>{{ lesson.subject }}</td>
+                  <td>{{ lesson.description }}</td>
                 </tr>
               {% endfor %}
             </tbody>
