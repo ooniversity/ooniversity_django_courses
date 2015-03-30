@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../static/img/logo.png">
@@ -31,11 +31,9 @@
   <body>
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+
+    <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-
-    
-
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -43,23 +41,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <p class="navbar-brand" >TimR</p>
+
+          <a class="navbar-brand">Current location: Main</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="collapse navbar-collapse">
+
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Main</a></li>
+            <li class = 'active'><a  href="../templates/index.html">Main</a></li>
             <li><a href="../templates/contact.html">Contacts</a></li>
+			<li><a href="../templates/student_list.html">Students</a></li>
           </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
 
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-
+<div class="jumbotron">
     <div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
+
         <h2><b>Курсы Python</b></h2>
 		<div>
 			<p>
@@ -72,7 +72,7 @@
                                         <li>zen, pep8, pylint, tools, IDE</li>
                                         <li>консоль, типы данных, операторы</li>
                                         <li>синтаксис управляющих конструкций (if, for...)</li>
-                                        <li>исключения и разбор стектрейса</li> 
+                                        <li>исключения и разбор стектрейса</li>
 									</ul>
                                   <br><p>  Строки и итераторы </p>
                                 </td>
@@ -80,15 +80,15 @@
                                     <ul>
                                         <li>работа со строками и итерируемыми типами</li>
                                         <li>запуск скрипта и параметры</li>
-                                        <li>git http://try.github.com/levels/1/challenges/1</li>                                
+                                        <li>git http://try.github.com/levels/1/challenges/1</li>
                                     </ul>
 				<br><p>Функции и модульность</p>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>функции (def, lambda)</li>
-                                        <li>модули, структура</li>                                                                  
-                                    </ul>							
+                                        <li>модули, структура</li>
+                                    </ul>
 		</div>
 
         <p>Кнопка ниже - отправит вас на офф сайт Python</p>
