@@ -1,5 +1,5 @@
 """
-Django settings for aerpyljov project.
+Django settings for pybursa project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1sghdslq01f!vx@*f7qa)zb^93@#(j)6ld_as#a(qln^+-#xb*'
+SECRET_KEY = '-cw(sm37e(eigkb#p67$6ak+siy4gqi&92(l2zqc4!)tcq&bjh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'aerpyljov.urls'
+ROOT_URLCONF = 'pybursa.urls'
 
-WSGI_APPLICATION = 'aerpyljov.wsgi.application'
+WSGI_APPLICATION = 'pybursa.wsgi.application'
 
 
 # Database
