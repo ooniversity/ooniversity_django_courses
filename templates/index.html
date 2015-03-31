@@ -15,9 +15,9 @@
   <header class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{% url 'pybursa.views.index' %}">
         <div>
-            <img src="../static/images/python_1.png" width="20" height="25">
+            <img src="{% static 'images/python_1.png' %}" width="20" height="25">
             Главная
           </div>
         </a>      
@@ -25,13 +25,13 @@
 
       <ul class="nav navbar-nav navbar-left">
         <li>
-          <a href="student_list.html">Студенты</a>
+          <a href="{% url 'pybursa.views.student_list' %}">Студенты</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="contact.html">Контакты</a>
+          <a href="{% url 'pybursa.views.contact' %}">Контакты</a>
         </li>
       </ul>
     </div>
@@ -73,7 +73,7 @@
           <div class="teacher">
 
               <div class="teacher-photo">
-                <img src="../static/images/teacher_1.jpg">
+                <img src="{% static 'images/teacher_1.jpg' %}">
                 <div>
                 <b>Алексей Радченко</b> (учитель)
                 </div>
@@ -89,7 +89,7 @@
 
           <div class="teacher">
               <div class="teacher-photo">
-                <img src="../static/images/teacher_2.jpg">
+                <img src="{% static 'images/teacher_2.jpg' %}">
                 <div>
                 <b>Оксана Слюсаренко</b>
                 <span>(ассистент)</span>

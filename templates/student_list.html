@@ -15,9 +15,9 @@
   <header class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{% url 'pybursa.views.index' %}">
           <div>
-            <img src="../static/images/python_1.png" width="20" height="25">
+            <img src="{% static 'images/python_1.png' %}" width="20" height="25">
             Главная
           </div>
         </a>      
@@ -25,13 +25,13 @@
 
       <ul class="nav navbar-nav navbar-left">
         <li>
-          <a href="student_list.html">Студенты</a>
+          <a href="{% url 'pybursa.views.student_list' %}">Студенты</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="contact.html">Контакты</a>
+          <a href="{% url 'pybursa.views.contact' %}">Контакты</a>
         </li>
       </ul>
     </div>
@@ -54,9 +54,9 @@
             <tbody>
               <tr>
                 <td>
-                  <a href="student_detail.html">Бугаенко</a></td>
+                  <a href="{% url 'pybursa.views.student_detail' %}">Бугаенко</a></td>
                 <td>
-                  <a href="student_detail.html">Кристина</a></td>
+                  <a href="{% url 'pybursa.views.student_detail' %}">Кристина</a></td>
                 <td>г. Харьков, ул. Клочковская, 295</td>
                 <td>kristi1991agata</td>
               </tr>
