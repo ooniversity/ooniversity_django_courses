@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DJ101 - Student list</title>
+        <meta charset="utf-8">
+        <script src="../static/js/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="../static/css/bootstrap.css">
+        <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
+    </head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">DJ101</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ><a href="#">Index</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="active"><a href="student_list.html">Student list<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <table cellpadding="7" border="2" width="100%" data-toggle="table" data-cache="false" data-height="299">
+        <thead>
+            <tr>
+                <th data-field="detais">Детали</th>
+                <th data-field="surname">Фамилия</th>
+                <th data-field="name">Имя</th>
+                <th data-field="address">Адрес</th>
+                <th data-field="skype">Skype</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><a href="student_detail.html">Подробно</a></td>
+            <td>Иванов</td>
+            <td>Иван</td>
+            <td>ул. Иванова</td>
+            <td>ivan1234</td>
+        </tr>
+        <tr>
+            <td><a href="student_detail.html">Подробно</a></td>
+            <td>Сидоров</td>
+            <td>Сидор</td>
+            <td>ул. Ахсарова</td>
+            <td>sid1234</td>
+        </tr>
+         <tr>
+            <td><a href="student_detail.html">Подробно</a></td>
+            <td>Петров</td>
+            <td>Петр</td>
+            <td>ул. Петровского</td>
+            <td>peter1234</td>
+        </tr>
+         <tr>
+            <td><a href="student_detail.html">Подробно</a></td>
+            <td>Степанов</td>
+            <td>Степан</td>
+            <td>ул. Новгородская</td>
+            <td>ivan1234</td>
+        </tr>
+    </table>
+</body>
+</html>
