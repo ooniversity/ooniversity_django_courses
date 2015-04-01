@@ -41,7 +41,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:list_view' %}">Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -61,39 +61,25 @@
                 <th>фамилия имя</th>
                 <th>адрес</th>
                 <th>skype</th>
+                <th>курсы</th>
               </tr>
             </thead>
             <tbody>
+
+            {% for student in students %}
               <tr>
-                <td>1</td>
-                <td><a href="{% url 'student_detail' %}">Петров Петр</a></td>
-                <td>Харьков ул.Петровского 12</td>
-                <td>pety.pety</td>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'students:detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.skype }}</td>
+                <td>
+                  {% for course in student.courses.all %}
+                    <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
+                  {% endfor %}
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td><a href="{% url 'student_detail' %}">Иванов Иван</a></td>
-                <td>Харьков ул.Иванова 34</td>
-                <td>vano.vano</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td><a href="{% url 'student_detail' %}">Сидорова Ира</a></td>
-                <td>Киев ул.Сидорова 37</td>
-                <td>ira.ira</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td><a href="{% url 'student_detail' %}">Бондаренко Екатерина</a></td>
-                <td>Харьков ул.Сумская 101</td>
-                <td>katy.katy</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td><a href="{% url 'student_detail' %}">Бондаренко Сергей</a></td>
-                <td>Харьков ул.Сумская 101</td>
-                <td>sergey.sergey</td>
-              </tr>
+            {% endfor %}
+
             </tbody>
           </table>
         </div>
