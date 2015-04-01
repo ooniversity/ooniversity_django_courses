@@ -8,7 +8,8 @@
     <title>list</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap.css" rel="stylesheet">
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +34,7 @@
               <tbody>
                 <tr>
                   <td>1.</td>
-                  <td><a href="student_detail.html">Аксенов Алексей</a></td>
+                  <td><a href="{% url 'student_detail' %}">Аксенов Алексей</a></td>
                   <td>Харьков, Пушкинская 43, кв 24</td>
                   <td>ak_al</td>
                 </tr>
@@ -69,6 +70,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <!--  // <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap.js"></script>
+    <script src="{% static 'bootstrap.js' %}"></script>
   </body>
 </html>
