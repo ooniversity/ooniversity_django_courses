@@ -9,19 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>IT Bursa Zhulanov Alexander</title>
-    <link rel="shortcut icon" href="../static/IMG/icon.gif" />
+    {% load static from staticfiles %}
+    <link rel="shortcut icon" href="{% static "IMG/icon.gif"%}" />
 
     <!-- Bootstrap core CSS -->
     <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/dashboard.css" rel="stylesheet">
-    <link href="../static/index.css" rel="stylesheet">
-    <link href="../static/student.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="{%static "dashboard.css"%}" rel="stylesheet">
+    <link href="{%static "index.css"%}" rel="stylesheet">
+    <link href="{%static "student.css"%}" rel="stylesheet">
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../JS/ie-emulation-modes-warning.js"></script>
+    <script src="{%static "JS/ie-emulation-modes-warning.js"%}"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -41,32 +42,32 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.HTML"><img src="../static/IMG/logo.gif"></a>
+        <a class="navbar-brand" href="{% url 'index_itbursa' %}"><img src="{% static "IMG/logo.gif"%}"></a>
        </div>
       <div id="navbar" class="navbar-collapse collapse">
         <form class="navbar-form navbar-right">
           <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.HTML">главная</a></li>
-          <li><A href="index.HTML">python</A></li>
-          <li><A href="index.HTML">web/django</A></li>
-          <li><A href="index.HTML">преподаватели</A></li>
-          <li><A href="#">студенты</A></li>
-          <li><a href="contact.HTML">контакты</a></li>
+          <li><a href="{% url 'index_itbursa' %}">главная</a></li>
+          <li><A href="{% url 'index_itbursa' %}">python</A></li>
+          <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
+          <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
+          <li><A href="{% url 'student_list' %}">студенты</A></li>
+          <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <br><br><br><br><br><br>
-  <!--Контакты Павла Обода-->
+  <!--Контакты Жуланова Александра Сергеевича-->
   <div class = 'row'>
       <div id = 'student' class="media">
         <div class="media-left media-middle">
           <div class="row placeholders">
             <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="../static/IMG/student.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="{% static "IMG/student.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
 
               <h4>Жуланов Александр Сергеевич</h4>
               <span class="text-muted">студент ITBursa</span>
@@ -106,10 +107,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js"%}"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../JSholder.js"></script>
+    <script src="{% static "JS/holder.js"%}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../JS/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static "JS/ie10-viewport-bug-workaround.js"%}"></script>
   </body>
 </html>

@@ -9,19 +9,20 @@
     <meta name="author" content="">
 
     <title>IT Bursa</title>
-    <link rel="shortcut icon" href="../static/IMG/icon.gif" />
+    {% load static from staticfiles %}
+    <link rel="shortcut icon" href="{% static "IMG/icon.gif"%}" />
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{%static "bootstrap/css/bootstrap.css"%}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/dashboard.css" rel="stylesheet">
-    <link href="../static/index.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="{%static "dashboard.css"%}" rel="stylesheet">
+    <link href="{%static "index.css"%}" rel="stylesheet">
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../JS/ie-emulation-modes-warning.js"></script>
+    <script src="{%static "JS/ie-emulation-modes-warning.js"%}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -42,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="../static/IMG/logo.gif"></a>
+          <a class="navbar-brand" href="#"><img src="{% static "IMG/logo.gif"%}"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -53,8 +54,8 @@
             <li><A href="#py">python</A></li>
             <li><A href="#dj">web/django</A></li>
             <li><A href="#teachers">преподаватели</A></li>
-            <li><A href="student_list.HTML">студенты</A></li>
-            <li><a href="contact.HTML">контакты</a></li>
+            <li><a href="{% url 'student_list' %}">студенты</A></li>
+            <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
           </ul>
         </div>
       </div>
@@ -65,7 +66,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-12">
           <div class="thumbnail">
-            <img src="../static/IMG/slider1.jpg" alt="...">
+            <img src="{% static "IMG/slider1.jpg"%}" alt="...">
 
           </div>
         </div>
@@ -75,7 +76,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-6" >
           <div class="thumbnail" id = 'python'>
-            <img src="../static/IMG/Python_course.jpg" alt="...">
+            <img src="{% static "IMG/Python_course.jpg"%}" alt="...">
               <div class="caption">
                 <h3>PY101 Базовый курс по Python</h3>
                  <h2>БЕСПЛАТНО</h3>
@@ -86,7 +87,7 @@
         <!--Курс Веб Джанго -->
         <div class="col-sm-6 col-md-6" >
           <div class="thumbnail" id = 'django' >
-            <img src="../static/IMG/Django_course.jpg" alt="...">
+            <img src="{% static "IMG/Django_course.jpg"%}" alt="...">
               <div class="caption">
                 <h3>DJ101 Web разработка на Python/Django</h3>
                 <h2>БЕСПЛАТНО</h3>
@@ -377,7 +378,7 @@
 
           <div class="row placeholders">
             <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="../static/IMG/radchenkoa.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="{% static "IMG/radchenkoa.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Алексей Радченко</h4>
               <span class="text-muted">преподаватель</span>
             </div>
@@ -403,7 +404,7 @@
         <div class="media-left media-middle">
           <div class="row placeholders">
             <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="../static/IMG/photo_assistant.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+              <img src="{% static "IMG/photo_assistant.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
               <h4>Оксана Слюсаренко</h4>
               <span class="text-muted">преподаватель</span>
             </div>
@@ -427,10 +428,10 @@
             <p>ITBursa</p>
         </div>
         <div class="col-sm-3 col-md-3">
-            <a href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
+            <!--<a href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
             <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x"></i></a>
             <a href="https://www.youtube.com/"><i class="fa fa-youtube-play fa-3x"></i></a>
-            <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>
+            <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>-->
         </div>
       </div>
     </div>
@@ -438,10 +439,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js"%}"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../JSholder.js"></script>
+    <script src="{% static "JS/holder.js"%}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../JS/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static "JS/ie10-viewport-bug-workaround.js"%}"></script>
   </body>
 </html>
