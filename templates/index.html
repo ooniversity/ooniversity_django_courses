@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load staticfiles %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Pybursa. Описание курса</title>
-	<link rel="icon" href="../static/pictures/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="icon" href="{% static 'pictures/favicon.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,13 +23,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
     <div  class="navbar-header">
-		<a class="logo" href="index.html"><img src="./../static/pictures/logobl.jpg" height="42" width="42"></a>
+		<a class="logo" href="{% url 'main' %}"><img src="{% static 'pictures/logobl.jpg' %}" height="42" width="42"></a>
     </div>
     <div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="index.html">Описание</a></li>
-			<li><a href="contact.html">Контакты</a></li> 
-			<li><a href="student_list.html">Студенты</a></li> 
+			<li class="active"><a href="{% url 'main' %}">Описание</a></li>
+			<li><a href="{% url 'contact' %}">Контакты</a></li> 
+			<li><a href="{% url 'student_list' %}">Студенты</a></li> 
 		</ul>
     </div>
 	</nav>
@@ -37,7 +38,7 @@
 	<br>
 	<div id="container">
 		<h1>Курсы по Python/Django — PyBursa</h1>  
-		<img src="../static/../static/pictures/logo.png" style="float:right; max-width:30%;"><br>
+		<img src="{% static 'pictures/logo.png' %}" style="float:right; max-width:30%;"><br>
 		<p><h4>ОБ ЭТОМ КУРСЕ</h4>
 			<br>
 			Данный курс дает базовые знания по языку python. Синтаксис, подходы, философия, инструменты и экосистема. Покрывает основной синтаксис и инструкции языка, некоторые встроенные модули, основы ОПП.<br>
@@ -52,7 +53,7 @@
 			<br>
 			<h4>ИНСТРУКТОРЫ</h4>
 			<br>
-			<img src="../static/pictures/inst.jpg" style="float:left; max-width:99px;">
+			<img src="{% static 'pictures/inst.jpg' %}" style="float:left; max-width:99px;">
 			<span class="floatleft">Алексей Радченко aka dixon.che<br>
 			<br>
 			Алексей в web-разработке с 2006 года, специализируется на python и django с 2007. Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.<br>
@@ -103,7 +104,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
 		<p class="colortext" >© Pybursa. A.Sviridov</p>
 	</nav>
