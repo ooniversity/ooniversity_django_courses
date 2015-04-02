@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Quadratic Results</title>
+</head>
+
+<body>
+<p> Квадратное уравнение a*x*x + b*x + c = 0 </p>
+
+<ul>
+  <li>a = {{ a }} <br>
+    {% if a_error %}
+      {{ a_error }}
+    {% endif %}
+  </li>
+  <li>b = {{ b }} <br>
+    {% if b_error %}
+      {{ b_error }}
+    {% endif %}
+  </li>
+  <li>c = {{ c }} <br>
+    {% if c_error %}
+      {{ c_error }}
+    {% endif %}
+  </li>
+</ul>
+
+{% if discr != None %}
+
+  <p>Дискриминант: {{ discr }} </p>
+
+  {% if discr < 0 %}
+    <p>
+      Дискриминант меньше нуля, квадратное уравнение не имеет действительных 
+      решений
+    </p>
+  {% elif discr == 0 %}
+    <p>
+      Дискриминант равен нулю, квадратное уравнение имеет один действительный
+      корень x1 = x2 = {{ x1 }}
+    </p>
+  {% else %}
+    <p>
+      Квадратное уравнение имеет два действительных корня: 
+      x1 = {{ x1 }}, x2 = {{ x2 }}
+    </p>
+  {% endif %}
+{% endif %}
+<p></p>
+</body>
+</html>
