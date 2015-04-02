@@ -1,0 +1,4 @@
+# pythot precompiled files:
+*.pyc
+*.pyo
+*~
