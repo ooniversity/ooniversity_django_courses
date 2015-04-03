@@ -44,4 +44,8 @@ def solve_quadratic_equation(a, b, c):
         return 'Квадратное уравнение имеет два действительных корня: х1 = {0}, х2 = {1}'.format(eq.get_eq_root(), eq.get_eq_root(order = 2))
 
 
+def get_discr(a, b, c):
+    eq = QuadraticEquation(a, b, c)
+    eq.calc_discr()
+    return eq.get_discr()
 
