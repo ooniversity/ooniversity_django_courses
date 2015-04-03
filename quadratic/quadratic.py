@@ -22,14 +22,14 @@ class QuadraticEquation(object):
 
 def check_coef(coef, isA = False):
     if coef == '':
-        return 'коэффициент не определён'
+        return '\nкоэффициент не определён'
     try:
         coef = int(coef)
     except ValueError:
-        return 'коэффициент не целое число'
+        return '\nкоэффициент не целое число'
     if isA == True:
         if coef == 0:
-            return 'коэффициент при первом слагаемом не может быть равен нулю'
+            return '\nкоэффициент при первом слагаемом не может быть равным нулю'
     return ''
 
 
