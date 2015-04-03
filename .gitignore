@@ -2,3 +2,5 @@
 *.pyc
 *.pyo
 
+# local configuration of pycharm
+*.idea
