@@ -94,7 +94,7 @@
       <p>{{ error }}</p>
       {% endfor %}
       {% else %}
-      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 > 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.1.1 > 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
+      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 >= 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.2.1 >= 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
       <p>{{ answer }}</p>
       {% endif %}
 
