@@ -17,6 +17,6 @@ def results(request):
     text += '\n• c = {0}\n'.format(c)
     text += check_coef(c)
     if check_coef(a, isA = True) == '' and check_coef(b) == '' and check_coef(c) == '':
-        text += '\nДискриминант: {0}\n\n'.format(get_discr(a, b, c))   #Дописать вычисление дискриминанта!
+        text += '\nДискриминант: {0}\n\n'.format(get_discr(a, b, c))
         text += solve_quadratic_equation(a, b, c)
     return HttpResponse (text, content_type="text/plain; charset=utf-8")
