@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from quadratic.views import results
+from views import results
 
 
 urlpatterns = patterns('',
