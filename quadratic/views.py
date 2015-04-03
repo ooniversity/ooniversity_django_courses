@@ -33,15 +33,17 @@ def results(request):
     c_com=check(c)
     answer=''
     if a_com==b_com==c_com==answer:
-        a,b,c=float(a),float(b),float(c)
+        a = int(float(a)) if int(float(a)) == float(a) else float(a)
+        b = int(float(b)) if int(float(b)) == float(b) else float(b)
+        c = int(float(c)) if int(float(c)) == float(c) else float(c)
         dis=b**2-4*a*c
         if dis<0:
             answer='Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
         elif dis==0:
             x=-b/(2.0*a)
-            answer='Дискриминант равен нулю квадратное уравнение имеет один действительный корень: x1 = x2 %d' % x
+            answer='Дискриминант равен нулю квадратное уравнение имеет один действительный корень: x1 = x2 = %d' % x
         else:
             x1=(-b+(b**2-4*a*c)**0.5)/2.0*a
             x2=(-b-(b**2-4*a*c)**0.5)/2.0*a
-            answer='Квадратное уравнение имеет два действительных корня: х1 = %d , x2 = %d' % (x1, x2)
+            answer='Квадратное уравнение имеет два действительных корня: х1 = %s , x2 = %s' % (x1, x2)
     return render(request, 'results.html', { 'list':(('a',a,a_com),('b',b,b_com),('c',c,c_com)), 'answer':answer})

@@ -87,12 +87,16 @@
     </nav>
 
     <div class="container">
+      {% if answer == '' %}
       <p>Квадратное уравнение a×x² + b×x + c = 0</p>
-      {% for n,i,j in list %}
+      {% for n,i,error in list %}
       <p>{{ n }} = {{ i }}</p>
-      <p>{{ j }}</p>
+      <p>{{ error }}</p>
       {% endfor %}
+      {% else %}
+      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 > 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.1.1 > 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
       <p>{{ answer }}</p>
+      {% endif %}
 
       <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Еще раз</a>
     </div>
