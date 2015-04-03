@@ -1,4 +1,5 @@
 #IGNORE
-node_modules
-static/bower_components
 *.sublime-*
+*.py
+*.pyc
+*.pyo
