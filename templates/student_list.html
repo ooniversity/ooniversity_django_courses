@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../static/images/favicon.ico">
+    <link rel="icon" href="{% static 'img/favicon.ico' %">
     <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/offcanvas.css" rel="stylesheet">
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -27,7 +29,7 @@
     <![endif]-->
 
     <!-- OPersian CSS -->
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
  
   </head>
 
@@ -41,12 +43,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Главная</a>
+          <a class="navbar-brand" href="{% url 'index' %}">Главная</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="contact.html">Контакты</a></li>
-            <li><a href="student_list.html">Студенты</a></li>
+          <li><a href="{% url 'contact' %}">Контакты</a></li>
+          <li><a href="{% url 'student_list' %}">Студенты</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -62,95 +64,97 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Навигация</button>
           </p>
           
- 					<div class="row">
-										<h2>Студенты курса PyBursa</h2>
-										<p>Ниже представлен список студентов, выпуск - апрель 2015.</p>                              
-										<div class="table-responsive"> <!--horizontal scrolls-->
-										 <table class="table table-hover">
-											<thead>
-												<tr>
-													<th class="td_no">№</th>
-													<th>Фамилия</th>
-													<th>Имя</th>
-													<th>Адрес</th>
-													<th>Логин skype</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="td_no">1</td>
-													<td> <a href="student_detail.html">Persianova</a></td>
-													<td>Olena</td>
-													<td>Украина, г.Харьков, пер.Урицкого, д.16, кв 3 </td>
-													<td>O.Persianova</td>
-												</tr>
+ 	<div class="row">
+	<h2>Студенты курса PyBursa</h2>
+	<p>Ниже представлен список студентов, выпуск - апрель 2015.</p>                              
+	<div class="table-responsive"> <!--horizontal scrolls-->
 
-												<tr>
-													<td class="td_no">2</td>
-													<td>Shulga</td>
-													<td>Maryna</td>
-													<td>Украина, г.Харьков, ул.Иванова, д.5, кв.6</td>
-													<td>M.Shulga</td>
-												</tr>
-												<tr>
-													<td class="td_no">3</td>
-													<td>Polishchuk</td>
-													<td> Volodymyr</td>
-													<td>Украина, г.Харьков, ул.Межлаука, д.8, кв.3</td>
-													<td>V.Polishchuk</td>
-												</tr>
-												<tr>
-													<td class="td_no">4</td>
-													<td>Zhlobinskyi</td>
-													<td>Pavel</td>
-													<td>РФ, г.Москва, ул.Петрова,д.5, кв.7 </td>
-													<td>P.Zhlobinskyi</td>
-												</tr>
-												<tr>
-													<td class="td_no">5</td>
-													<td>Zhuvanov</td>
-													<td>Yaroslav</td>
-													<td>Украина, г.Харьков, ул.Петренко, д.6, кв.9</td>
-													<td>Y.Zhuvanov</td>
-												</tr>
-												<tr>
-													<td class="td_no">6</td>
-													<td>Ishchenko</td>
-													<td>Oleg</td>
-													<td>Украина, г.Харьков, ул.Витязева, д.7, кв.11</td>
-													<td>O.Ishchenko</td>
-												</tr>
-												<tr>
-													<td class="td_no">7</td>
-													<td>Simeyko</td>
-													<td>Ivan</td>
-													<td>Украина, г.Харьков, ул. Краснова, д.9, кв.56</td>
-													<td>I.Simeyko</td>
-												</tr>
-												<tr>
-													<td class="td_no">8</td>
-													<td>Kotulska</td>
-													<td>Olga</td>
-													<td>РФ, г.Краснодар, пр.Ленина, д.4, кв.6</td>
-													<td>K.Kotulska</td>
-												</tr>
-												<tr>
-													<td class="td_no">9</td>
-													<td>Kozlov</td>
-													<td>Pavel</td>
-													<td>Беларусь, г.Минск, ул.Фрунзе, д.6, кв.5</td>
-													<td>P.Kozlov</td>
-												</tr>
-												<tr>
-													<td class="td_no">10</td>
-													<td>Bugaienko</td>
-													<td>Khrystyna</td>
-													<td>Украина, г.Харьков, ул.Урицкого, д.6, кв.7</td>
-													<td>K.Bugaienko</td>
-												</tr>
-											</tbody>
-										</table> 
-									</div><!--responsive table-->
+<table class="table table-hover">
+<thead>
+<tr>
+<th class="td_no">№</th>
+<th>Фамилия</th>
+<th>Имя</th>
+<th>Адрес</th>
+<th>Логин skype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_no">1</td>
+<td> <a href="{% url 'student_detail' %}">Persianova</a></td>
+
+<td>Olena</td>
+<td>Украина, г.Харьков, пер.Урицкого, д.16, кв 3 </td>
+<td>O.Persianova</td>
+</tr>
+
+<tr>
+<td class="td_no">2</td>
+<td>Shulga</td>
+<td>Maryna</td>
+<td>Украина, г.Харьков, ул.Иванова, д.5, кв.6</td>
+<td>M.Shulga</td>
+</tr>
+<tr>
+<td class="td_no">3</td>
+<td>Polishchuk</td>
+<td> Volodymyr</td>
+<td>Украина, г.Харьков, ул.Межлаука, д.8, кв.3</td>
+<td>V.Polishchuk</td>
+</tr>
+<tr>
+<td class="td_no">4</td>
+<td>Zhlobinskyi</td>
+<td>Pavel</td>
+<td>РФ, г.Москва, ул.Петрова,д.5, кв.7 </td>
+<td>P.Zhlobinskyi</td>
+</tr>
+<tr>
+<td class="td_no">5</td>
+<td>Zhuvanov</td>
+<td>Yaroslav</td>
+<td>Украина, г.Харьков, ул.Петренко, д.6, кв.9</td>
+<td>Y.Zhuvanov</td>
+</tr>
+<tr>
+<td class="td_no">6</td>
+<td>Ishchenko</td>
+<td>Oleg</td>
+<td>Украина, г.Харьков, ул.Витязева, д.7, кв.11</td>
+<td>O.Ishchenko</td>
+</tr>
+<tr>
+<td class="td_no">7</td>
+<td>Simeyko</td>
+<td>Ivan</td>
+<td>Украина, г.Харьков, ул. Краснова, д.9, кв.56</td>
+<td>I.Simeyko</td>
+</tr>
+<tr>
+<td class="td_no">8</td>
+<td>Kotulska</td>
+<td>Olga</td>
+<td>РФ, г.Краснодар, пр.Ленина, д.4, кв.6</td>
+<td>K.Kotulska</td>
+</tr>
+<tr>
+<td class="td_no">9</td>
+<td>Kozlov</td>
+<td>Pavel</td>
+<td>Беларусь, г.Минск, ул.Фрунзе, д.6, кв.5</td>
+<td>P.Kozlov</td>
+</tr>
+<tr>
+<td class="td_no">10</td>
+<td>Bugaienko</td>
+<td>Khrystyna</td>
+<td>Украина, г.Харьков, ул.Урицкого, д.6, кв.7</td>
+<td>K.Bugaienko</td>
+</tr>
+</tbody>
+</table> 
+</div><!--responsive table-->
 
 
           </div><!--/row-->
@@ -188,13 +192,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 
-    <script src="../static/js/offcanvas.js"></script>
+    <script src="{% static 'js/offcanvas.js' %}"></script>
 
   </body>
 </html>

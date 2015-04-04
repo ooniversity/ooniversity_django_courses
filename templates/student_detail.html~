@@ -192,30 +192,30 @@
 </tr>
 
 
-<tr>
-<td class="td_ratio" rowspan = "3">DJ101 Web разработка на Python/Django</td>
-<td class="td_week" rowspan = "3">Неделя 1</td>
-<td>Тесты</td>
-<td>100%</td>
-</tr>
+												<tr>
+													<td class="td_ratio" rowspan = "3">DJ101 Web разработка на Python/Django</td>
+													<td class="td_week" rowspan = "3">Неделя 1</td>
+													<td>Тесты</td>
+													<td>100%</td>
+												</tr>
 
-<tr>
-<td>Контрольная работа № 1</td>
-<td>100%</td>
-</tr>
+												<tr>
+													<td>Контрольная работа № 1</td>
+													<td>100%</td>
+												</tr>
 
-<tr>
-<td>Контрольная работа № 2</td>
-<td>на проверке</td>
-</tr>
-
-
-</tbody>
-</table> 
+												<tr>
+													<td>Контрольная работа № 2</td>
+													<td>на проверке</td>
+												</tr>
 
 
- </div><!--/row-->
-<div id="a_center"> <a href="#top"> Наверх </a> </div>
+											</tbody>
+										</table> 
+
+
+          </div><!--/row-->
+			<div id="a_center"> <a href="#top"> Наверх </a> </div>
 
         </div><!--/.col-xs-12.col-sm-9-->
 
