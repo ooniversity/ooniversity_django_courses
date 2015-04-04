@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from pybursa.views import *
+#from django.http import HttpResponse, HttpResponseNotFound
 
 #def test(request):
 #	print "\n--------------------------------------"
@@ -26,20 +26,7 @@ from django.shortcuts import render
 #	d = int(a)+int(b)
 #	return HttpResponse('Your result is: % d' % d)
 
-def index(request):
-	return render(request,'index.html')
 
-
-def contact(request):
-	return render(request,'contact.html')
-
-
-def student_detail(request):
-	return render(request,'student_detail.html')
-
-
-def student_list(request):
-	return render(request,'student_list.html')
 
 urlpatterns = patterns('',
     url(r'^contact/$', contact, name="contact"),
