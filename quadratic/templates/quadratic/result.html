@@ -52,13 +52,27 @@
     <div class="row marketing">
     <h3>Квадратное уравнение a*x*x + b*x +c = 0</h3>
    <ul>
-    <h4>    a = {{ a }}     </h4>
-    <h4>    b = {{ b }}     </h4>
-    <h4>    c = {{ c }}     </h4>
+    <li><h4>    a = {{ a }}     </h4>
+    {% if a_comment %}
+    <h5><i> {{ a_comment }}     </i></h5>
+    </li>
+     {% endif %}
+   <li><h4>    b = {{ b }}     </h4>
+    {% if b_comment %}
+    <h5><i> {{ b_comment }}     </i></h5>
+    {% endif %}
+    </li>
+    <li><h4>    c = {{ c }}     </h4>
+    {% if c_comment %}
+    <h5><i> {{ c_comment }}     </i></h5>
+     {% endif %}
+   </li>
     </ul>
-    <h3>Дискриминант = {{ discriminant }}</h3>
-    <h3>{{ root_message }}</h3>
-    
+    {% if need_show_discriminant %}
+    <h4>Дискриминант = {{ discriminant }}</h4>
+    <h4>{{ root_message }}</h4>
+    {% endif %}
+   
      </div>
 
 
