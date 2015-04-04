@@ -27,9 +27,13 @@
         {% if answer %}
           <p class="lead">Дискриминант равен {{ answer.d }}</p>
           <p class="lead">{{ answer.title }}</p>
-          {% for x in answer.x %}
-            <p class="lead">x{{ forloop.counter}} = {{ x }}</p>
-          {% endfor %}
+          {% if answer.x|length > 1 %}
+            {% for x in answer.x %}
+              <p class="lead">x{{ forloop.counter}} = {{ x }}</p>
+            {% endfor %}
+          {% elif answer.x|length > 0 %}
+            <p class="lead">x1 = x2 = {{ answer.x.0 }}</p>
+          {% endif %}
         {% else %}
           <p class="lead">ax<sup>2</sup> + bx + c = 0</p>
         {% endif %}
