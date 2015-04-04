@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Курс по веб программированию на языке Python</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
   </head>
   <body>
     <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="index.html">Главная</a></li>
-            <li role="presentation"><a href="contact.html">Контакты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'students.views.index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'students.views.contact' %}">Контакты</a></li>
+            <li role="presentation"><a href="{% url 'students.views.student_list' %}">Студенты</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">PY Bursa</h3>

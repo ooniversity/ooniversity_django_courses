@@ -5,18 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Список студентов курса Python</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
   </head>
   <body>
     <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="index.html">Главная</a></li>
-            <li role="presentation"><a href="contact.html">Контакты</a></li>
-            <li role="presentation" class="active"><a href="student_list.html">Наши студенты</a></li>
+            <li role="presentation"><a href="{% url 'students.views.index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'students.views.contact' %}">Контакты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'students.views.student_list' %}">Студенты</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">PY Bursa</h3>
@@ -43,14 +44,14 @@
 								<td>Валерий</td>
 								<td>Харьков, пр. Ленина 14</td>
 								<td>ivan_valera</td>
-								<td><a href="student_detail.html" target="_blank">детали >>></a></td>
+								<td><a href="{% url 'students.views.student_detail' %}" target="_blank">детали >>></a></td>
 							<tr>
 								<th scope="row">2</th>
 								<td>Пупкин</td>
 								<td>Василий</td>
 								<td>Харьков, ул. Целиноградская 58</td>
 								<td>pupkin_vasya</td>
-								<td><a href="student_detail.html" target="_blank">детали >>></a></td>
+								<td><a href="{% url 'students.views.student_detail' %}" target="_blank">детали >>></a></td>
 							</tr>
 							<tr>
 								<th scope="row">3</th>
@@ -58,7 +59,7 @@
 								<td>Виталий</td>
 								<td>Харьков, ул. Бакулина 2</td>
 								<td>anonim_kharkov</td>
-								<td><a href="student_detail.html" target="_blank">детали >>></a></td>
+								<td><a href="{% url 'students.views.student_detail' %}" target="_blank">детали >>></a></td>
 							</tr>
 							<tr>
 								<th scope="row">4</th>
@@ -66,7 +67,7 @@
 								<td>Сергей</td>
 								<td>Киев, ул. Коперника 12</td>
 								<td>sergei.4e</td>
-								<td><a href="student_detail.html" target="_blank">детали >>></a></td>
+								<td><a href="{% url 'students.views.student_detail' %}" target="_blank">детали >>></a></td>
 							</tr>
 							<tr>
 								<th scope="row">5</th>
@@ -74,7 +75,7 @@
 								<td>Артур</td>
 								<td>Москва, ул. Тусовочная 1</td>
 								<td>sexy_boy</td>
-								<td><a href="student_detail.html" target="_blank">детали >>></a></td>
+								<td><a href="{% url 'students.views.student_detail' %}" target="_blank">детали >>></a></td>
 							</tr>
 						</tbody>
 						</table>
