@@ -23,8 +23,6 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
-
-
 def vote(request, question_id):
     p = get_object_or_404(Question, pk=question_id)
     try:
