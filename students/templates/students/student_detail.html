@@ -16,7 +16,7 @@
           Back
         </a>
 
-        <h2 class="sub-header">Mick Батькович Jagger</h2>
+        <h2 class="sub-header">{{ student.user.first_name}} {{ student.user.last_name }}</h2>
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -31,12 +31,12 @@
             </thead>
             <tbody>
               <tr>
-                <td>July 26, 1943</td>
-                <td>Somestrasse 13, Pitsburg</td>
-                <td><a href="mailto:mick.jagger@gmail.com">mick.jagger@gmail.com</a></td>
-                <td>mick.jagger</td>
-                <td>170</td>
-                <td>6</td>
+                <td>{{ student.date_of_birth|date:'F j, Y' }}</td>
+                <td>{{ student.address }}</td>
+                <td><a href="mailto:{{ student.user.email }}">{{ student.user.email }}</a></td>
+                <td>{{ student.skype }}</td>
+                <td>{{ student.get_average_score }}</td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -53,27 +53,19 @@
               </tr>
             </thead>
             <tbody>
+            {% for completed_task in student.completedtask_set.all %}
               <tr>
                 <td>
-                  <i class="glyphicon glyphicon-ok"></i>
+                  {% if completed_task.was_finished_in_time %}
+                    <i class="glyphicon glyphicon-ok"></i>
+                  {% else %}
+                    <i class="glyphicon glyphicon-fire deadline"></i>
+                  {% endif %}
                 </td>
-                <td>Markup Essentials Test</td>
-                <td>100</td>
+                <td>{{ completed_task.task.title }}</td>
+                <td>{{ completed_task.score }}</td>
               </tr>
-              <tr>
-                <td>
-                  <i class="glyphicon glyphicon-ok"></i>
-                </td>
-                <td>Markup Essentials Homework 01</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>
-                  <i class="glyphicon glyphicon-fire deadline"></i>
-                </td>
-                <td>Markup Essentials Homework 02</td>
-                <td>0</td>
-              </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>
