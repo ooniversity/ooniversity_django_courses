@@ -65,95 +65,95 @@
           </p>
           
  	<div class="row">
-										<h2>Студенты курса PyBursa</h2>
-										<p>Ниже представлен список студентов, выпуск - апрель 2015.</p>                              
-										<div class="table-responsive"> <!--horizontal scrolls-->
-										 <table class="table table-hover">
-											<thead>
-												<tr>
-													<th class="td_no">№</th>
-													<th>Фамилия</th>
-													<th>Имя</th>
-													<th>Адрес</th>
-													<th>Логин skype</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="td_no">1</td>
-													<td> <a href="{% url 'student_detail' %}">Persianova</a></td>
+	<h2>Студенты курса PyBursa</h2>
+	<p>Ниже представлен список студентов, выпуск - апрель 2015.</p>                              
+	<div class="table-responsive"> <!--horizontal scrolls-->
+	<table class="table table-hover">
+	<thead>
+<tr>
+<th class="td_no">№</th>
+<th>Фамилия</th>
+<th>Имя</th>
+<th>Адрес</th>
+<th>Логин skype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="td_no">1</td>
+<td> <a href="{% url 'student_detail' %}">Persianova</a></td>
 
-													<td>Olena</td>
-													<td>Украина, г.Харьков, пер.Урицкого, д.16, кв 3 </td>
-													<td>O.Persianova</td>
-												</tr>
+<td>Olena</td>
+<td>Украина, г.Харьков, пер.Урицкого, д.16, кв 3 </td>
+<td>O.Persianova</td>
+</tr>
 
-												<tr>
-													<td class="td_no">2</td>
-													<td>Shulga</td>
-													<td>Maryna</td>
-													<td>Украина, г.Харьков, ул.Иванова, д.5, кв.6</td>
-													<td>M.Shulga</td>
-												</tr>
-												<tr>
-													<td class="td_no">3</td>
-													<td>Polishchuk</td>
-													<td> Volodymyr</td>
-													<td>Украина, г.Харьков, ул.Межлаука, д.8, кв.3</td>
-													<td>V.Polishchuk</td>
-												</tr>
-												<tr>
-													<td class="td_no">4</td>
-													<td>Zhlobinskyi</td>
-													<td>Pavel</td>
-													<td>РФ, г.Москва, ул.Петрова,д.5, кв.7 </td>
-													<td>P.Zhlobinskyi</td>
-												</tr>
-												<tr>
-													<td class="td_no">5</td>
-													<td>Zhuvanov</td>
-													<td>Yaroslav</td>
-													<td>Украина, г.Харьков, ул.Петренко, д.6, кв.9</td>
-													<td>Y.Zhuvanov</td>
-												</tr>
-												<tr>
-													<td class="td_no">6</td>
-													<td>Ishchenko</td>
-													<td>Oleg</td>
-													<td>Украина, г.Харьков, ул.Витязева, д.7, кв.11</td>
-													<td>O.Ishchenko</td>
-												</tr>
-												<tr>
-													<td class="td_no">7</td>
-													<td>Simeyko</td>
-													<td>Ivan</td>
-													<td>Украина, г.Харьков, ул. Краснова, д.9, кв.56</td>
-													<td>I.Simeyko</td>
-												</tr>
-												<tr>
-													<td class="td_no">8</td>
-													<td>Kotulska</td>
-													<td>Olga</td>
-													<td>РФ, г.Краснодар, пр.Ленина, д.4, кв.6</td>
-													<td>K.Kotulska</td>
-												</tr>
-												<tr>
-													<td class="td_no">9</td>
-													<td>Kozlov</td>
-													<td>Pavel</td>
-													<td>Беларусь, г.Минск, ул.Фрунзе, д.6, кв.5</td>
-													<td>P.Kozlov</td>
-												</tr>
-												<tr>
-													<td class="td_no">10</td>
-													<td>Bugaienko</td>
-													<td>Khrystyna</td>
-													<td>Украина, г.Харьков, ул.Урицкого, д.6, кв.7</td>
-													<td>K.Bugaienko</td>
-												</tr>
-											</tbody>
-										</table> 
-									</div><!--responsive table-->
+<tr>
+<td class="td_no">2</td>
+<td>Shulga</td>
+<td>Maryna</td>
+<td>Украина, г.Харьков, ул.Иванова, д.5, кв.6</td>
+<td>M.Shulga</td>
+</tr>
+<tr>
+<td class="td_no">3</td>
+<td>Polishchuk</td>
+<td> Volodymyr</td>
+<td>Украина, г.Харьков, ул.Межлаука, д.8, кв.3</td>
+<td>V.Polishchuk</td>
+</tr>
+<tr>
+<td class="td_no">4</td>
+<td>Zhlobinskyi</td>
+<td>Pavel</td>
+<td>РФ, г.Москва, ул.Петрова,д.5, кв.7 </td>
+<td>P.Zhlobinskyi</td>
+</tr>
+<tr>
+<td class="td_no">5</td>
+<td>Zhuvanov</td>
+<td>Yaroslav</td>
+<td>Украина, г.Харьков, ул.Петренко, д.6, кв.9</td>
+<td>Y.Zhuvanov</td>
+</tr>
+<tr>
+<td class="td_no">6</td>
+<td>Ishchenko</td>
+<td>Oleg</td>
+<td>Украина, г.Харьков, ул.Витязева, д.7, кв.11</td>
+<td>O.Ishchenko</td>
+</tr>
+<tr>
+<td class="td_no">7</td>
+<td>Simeyko</td>
+<td>Ivan</td>
+<td>Украина, г.Харьков, ул. Краснова, д.9, кв.56</td>
+<td>I.Simeyko</td>
+</tr>
+<tr>
+<td class="td_no">8</td>
+<td>Kotulska</td>
+<td>Olga</td>
+<td>РФ, г.Краснодар, пр.Ленина, д.4, кв.6</td>
+<td>K.Kotulska</td>
+</tr>
+<tr>
+<td class="td_no">9</td>
+<td>Kozlov</td>
+<td>Pavel</td>
+<td>Беларусь, г.Минск, ул.Фрунзе, д.6, кв.5</td>
+<td>P.Kozlov</td>
+</tr>
+<tr>
+<td class="td_no">10</td>
+<td>Bugaienko</td>
+<td>Khrystyna</td>
+<td>Украина, г.Харьков, ул.Урицкого, д.6, кв.7</td>
+<td>K.Bugaienko</td>
+</tr>
+</tbody>
+</table> 
+</div><!--responsive table-->
 
 
           </div><!--/row-->

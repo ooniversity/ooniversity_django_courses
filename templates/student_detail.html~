@@ -140,56 +140,56 @@
 
 <tbody>
 
-												<tr>
-													<td class="td_ratio" rowspan = "9">PY101 Введение в Python</td>
-													<td class="td_week" rowspan = "3">Неделя 1</td>
-													<td>Тесты</td>
-													<td>99%</td>
-												</tr>
+<tr>
+<td class="td_ratio" rowspan = "9">PY101 Введение в Python</td>
+<td class="td_week" rowspan = "3">Неделя 1</td>
+<td>Тесты</td>
+<td>99%</td>
+</tr>
 
-												<tr>
-													<td>Контрольная работа № 1</td>
-													<td>100%</td>
-												</tr>
+<tr>
+<td>Контрольная работа № 1</td>
+<td>100%</td>
+</tr>
 
-												<tr>
-													<td>Контрольная работа № 2</td>
-													<td>100%</td>
-												</tr>
-
-
-												<tr>
-													<td class="td_week" rowspan = "3">Неделя 2</td>
-													<td>Тесты</td>
-													<td>100%</td>
-												</tr>
-
-												<tr>
-													<td>Контрольная работа № 1</td>
-													<td>100%</td>
-												</tr>
-
-												<tr>
-													<td>Контрольная работа № 2</td>
-													<td>100%</td>
-												</tr>
+<tr>
+<td>Контрольная работа № 2</td>
+<td>100%</td>
+</tr>
 
 
-												<tr>
-													<td class="td_week" rowspan = "3">Неделя 3</td>
-													<td>Тесты</td>
-													<td>100%</td>
-												</tr>
+<tr>
+<td class="td_week" rowspan = "3">Неделя 2</td>
+<td>Тесты</td>
+<td>100%</td>
+</tr>
 
-												<tr>
-													<td>Контрольная работа № 1</td>
-													<td>100%</td>
-												</tr>
+<tr>
+<td>Контрольная работа № 1</td>
+<td>100%</td>
+</tr>
 
-												<tr>
-													<td>Контрольная работа № 2</td>
-													<td>100%</td>
-												</tr>
+<tr>
+<td>Контрольная работа № 2</td>
+<td>100%</td>
+</tr>
+
+
+<tr>
+<td class="td_week" rowspan = "3">Неделя 3</td>
+<td>Тесты</td>
+<td>100%</td>
+</tr>
+
+<tr>
+<td>Контрольная работа № 1</td>
+<td>100%</td>
+</tr>
+
+<tr>
+<td>Контрольная работа № 2</td>
+<td>100%</td>
+</tr>
 
 
 												<tr>
