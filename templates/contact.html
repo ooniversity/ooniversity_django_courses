@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <title>DJ101 - Контакты</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,15 +29,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">DJ101</a>
+          <a class="navbar-brand" href="{% url 'pybursa.views.dj101_index' %}">DJ101</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li> <a href="index.html">Главная</a></li>
-            <li class="active"><a href="contact.html">Контакты</a><span class="sr-only">(current)</span></li>
-            <li> <a href="student_list.html">Студенты</a></li>
+            <li> <a href="{% url 'pybursa.views.dj101_index' %}">Главная</a></li>
+            <li class="active"><a href="{% url 'pybursa.views.dj101_contact' %}">Контакты</a><span class="sr-only">(current)</span></li>
+            <li> <a href="{% url 'pybursa.views.dj101_student_list' %}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -53,6 +54,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   </body>
 </html>

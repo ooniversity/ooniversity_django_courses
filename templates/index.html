@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,15 +30,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">DJ101</a>
+          <a class="navbar-brand" href="{% url 'pybursa.views.dj101_index' %}">DJ101</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Главная<span class="sr-only">(current)</span></a></li>
-            <li><a href="contact.html">Контакты</a></li>
-            <li> <a href="student_list.html">Студенты</a></li>
+            <li class="active"><a href="{% url 'pybursa.views.dj101_index' %}">Главная<span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'pybursa.views.dj101_contact' %}">Контакты</a></li>
+            <li> <a href="{% url 'pybursa.views.dj101_student_list' %}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
