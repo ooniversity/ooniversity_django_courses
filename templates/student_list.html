@@ -3,10 +3,11 @@
     <head>
         <title>DJ101 - Student list</title>
         <meta charset="utf-8">
-        <script src="../static/js/bootstrap.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <link rel="stylesheet" href="../static/css/bootstrap.css">
-        <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
+        {% load staticfiles %}
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     </head>
 <body>
     <nav class="navbar navbar-default">
@@ -19,15 +20,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">DJ101</a>
+          <a class="navbar-brand" href="{% url 'index' %}">DJ101</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ><a href="#">Index</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li class="active"><a href="student_list.html">Student list<span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li class="active"><a href="{% url 'student_list' %}l">Student list<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -43,28 +44,28 @@
             </tr>
         </thead>
         <tr>
-            <td><a href="student_detail.html">Подробно</a></td>
+            <td><a href="{% url 'student_detail' %}">Подробно</a></td>
             <td>Иванов</td>
             <td>Иван</td>
             <td>ул. Иванова</td>
             <td>ivan1234</td>
         </tr>
         <tr>
-            <td><a href="student_detail.html">Подробно</a></td>
+            <td><a href="{% url 'student_detail' %}">Подробно</a></td>
             <td>Сидоров</td>
             <td>Сидор</td>
             <td>ул. Ахсарова</td>
             <td>sid1234</td>
         </tr>
          <tr>
-            <td><a href="student_detail.html">Подробно</a></td>
+            <td><a href="{% url 'student_detail' %}">Подробно</a></td>
             <td>Петров</td>
             <td>Петр</td>
             <td>ул. Петровского</td>
             <td>peter1234</td>
         </tr>
          <tr>
-            <td><a href="student_detail.html">Подробно</a></td>
+            <td><a href="{% url 'student_detail' %}">Подробно</a></td>
             <td>Степанов</td>
             <td>Степан</td>
             <td>ул. Новгородская</td>
