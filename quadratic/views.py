@@ -31,10 +31,10 @@ def quadratic_results(request):
         discr = b ** 2 - 4 * a * c
 
         if discr == 0:
-            x1 = x2 = -b / 2*a
+            x1 = x2 = float(-b) / 2 * a
         elif discr > 0:
-            x1 = (-b + discr ** 0.5) / (2 * a)
-            x2 = (-b - discr ** 0.5) / (2 * a)
+            x1 = float(-b + discr ** 0.5) / (2 * a)
+            x2 = float(-b - discr ** 0.5) / (2 * a)
 
     return render(request, 'quadratic_results.html', {
         'a':a,
