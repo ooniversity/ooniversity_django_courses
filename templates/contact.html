@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,8 +9,8 @@
     <title>Мой сайт</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %} rel="stylesheet">
+    <link href="{% static 'css/style.css' %} rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,9 +26,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Главная <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="contacts.html">Контакты</a></li>
-        <li><a href="student_list.html">Студенты</a></li>
+        <li><a href="{% url 'home' %}">Главная <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{% url 'contacts' %}">Контакты</a></li>
+        <li><a href="{% url 'student_list' %}">Студенты</a></li>
       </ul>
      </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -45,19 +46,19 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="../static/img/ctrl.png" alt="...">
+      <img src="{% static 'img/ctrl.png' %}" alt="...">
       <div class="carousel-caption">
          <h3>Python</h3>
       </div>
     </div>
     <div class="item">
-      <img src="../static/img/enter.png" alt="...">
+      <img src="{% static 'img/enter.png' %}" alt="...">
       <div class="carousel-caption">
          <h3>Django</h3>
       </div>
     </div>
     <div class="item">
-      <img src="../static/img/hand.png" alt="...">
+      <img src="{% static 'img/hand.png' %}" alt="...">
       <div class="carousel-caption">
         <h3>IT Bursa</h3>
       </div>
@@ -91,7 +92,7 @@
                             <tr>
                                 <td>
                                     <p>Павел Обод</p>
-                                    <p><img src='../static/img/obod.jpg'/></p>
+                                    <p><img src="{% static 'img/obod.jpg' %}"/></p>
                                     <p>Основатель IT Bursa</p>
                                 </td>
                                 
@@ -103,7 +104,7 @@
                                 <tr>
                                  <td>
                                     <p>Анна Малахова</p>
-                                    <p><img src='../static/img/malakhova.jpg'/></p>
+                                    <p><img src="{% static 'img/malakhova.jpg' %}"/></p>
                                     <p>Менеджер IT Bursa</p>
                                 </td>
                                 
@@ -115,7 +116,7 @@
                                  <tr>
                                  <td>
                                     <p>Татьяна Колесник</p>
-                                    <p><img src='../static/img/kolesnik.jpg'/></p>
+                                    <p><img src="{%static 'img/kolesnik.jpg' %}"/></p>
                                     <p>Оплата курсов</p>
                                 </td>
                                 
@@ -130,8 +131,8 @@
         </div>
         <div class="col-md-3">
             <img src="http://cs625422.vk.me/v625422163/291ea/igTBQVEhbw8.jpg"/>
-            <center><p class="text"><a href="https://www.djangoproject.com/"><h3><img src="../static/img/django.png"/></h3></a></p></center>
-            <center><p class="text"><a href="https://www.python.org/"><h3><img src="../static/img/python.png"></h3></a><br/></p></center>
+            <center><p class="text"><a href="https://www.djangoproject.com/"><h3><img src="{% static 'img/django.png' %}"/></h3></a></p></center>
+            <center><p class="text"><a href="https://www.python.org/"><h3><img src="{% static 'img/python.png' %}"></h3></a><br/></p></center>
        </div>
        
 
@@ -139,6 +140,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap/js/bootstrap.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
   </body>
 </html>
