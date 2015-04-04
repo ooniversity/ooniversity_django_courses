@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,18 +10,18 @@
     <title>Главная</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bs/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bs/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/custom/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{% static 'custom/css/jumbotron-narrow.css' %}" rel="stylesheet">
 
 
     <!-- Pybursa styles -->
-    <link rel="stylesheet" type="text/css" href="../static/pybursa/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../static/pybursa/css/modal.css">
+    <link href="{% static 'pybursa/css/styles.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'pybursa/css/modal.css' %}"  type="text/css" rel="stylesheet">
 
     <!-- Custom styles -->
-    <link href="../static/custom/css/custom-styles.css" rel="stylesheet">
+    <link href="{% static 'custom/css/custom-styles.css' %}" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,7 +32,7 @@
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../static/custom/js/custom.js"></script>
+    <script src="{% static 'custom/js/custom.js' %}"></script>
 
   </head>
   <body>
@@ -39,9 +40,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Главная</a></li>
-            <li role="presentation"><a href="student_list.html">Студенты</a></li>
-            <li role="presentation"><a href="contact.html">Контакты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
           </ul>
         </nav>
 
@@ -553,6 +554,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bs/js/bootstrap.min.js"></script>
+    <script src="{% static 'bs/js/bootstrap.min.js' %}"></script>
   </body>
 </html>
