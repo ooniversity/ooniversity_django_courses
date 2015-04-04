@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}DJ101 | Django Courses{% endblock %}
+    </title>
+    <link href={% static "vendors/bootstrap/dist/css/bootstrap.min.css" %} rel="stylesheet">
+      {% block css %}
+        <link href={% static "css/cover.css" %} rel="stylesheet">
+      {% endblock %}
+  </head>
+
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">
+                <i class="glyphicon glyphicon-blackboard"></i>
+                dj101
+              </h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  {% block navigation %}{% endblock %}
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/vendors/jquery/dist/jquery.js"></script>
+    <script src="../static/vendors/bootstrap/dist/js/bootstrap.js"></script>
+  </body>
+</html>

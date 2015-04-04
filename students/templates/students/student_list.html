@@ -1,0 +1,100 @@
+{% extends "students/base.html" %}
+{% load staticfiles %}
+
+{%block content%}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+        <h1 class="page-header">Students</h1>
+
+        <h2 class="sub-header">Group 02, March-April 2015</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Address</th>
+                  <th>Skype</th>
+                  <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for student in students %}
+              <tr>
+                <td><a href="{% url "students:detail" student.pk %}">{{ student.user.last_name }}</a></td>
+                <td>{{ student.user.first_name }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.skype }}</td>
+                <td>
+                  <a href="{% url "students:detail" student.pk %}">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+            <!--
+              <tr>
+                <td><a href="{% url "students:detail" 1 %}">Jagger</a></td>
+                <td>Mick</td>
+                <td>Somestrasse 13, Pitsburg</td>
+                <td>mick.jagger</td>
+                <td>
+                  <a href="student_detail.html">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="student_detail.html">Richards</a></td>
+                <td>Keith</td>
+                <td>Somestrasse 14, Pitsburg</td>
+                <td>keith.richards</td>
+                <td>
+                  <a href="student_detail.html">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="student_detail.html">Wood</a></td>
+                <td>Ronnie</td>
+                <td>Somestrasse 15, Pitsburg</td>
+                <td>ronnie.wood</td>
+                <td>
+                  <a href="student_detail.html">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="student_detail.html">Watts</a></td>
+                <td>Charlie</td>
+                <td>Somestrasse 16, Pitsburg</td>
+                <td>charlie.watts</td>
+                <td>
+                  <a href="student_detail.html">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="student_detail.html">Jones</a></td>
+                <td>Brian</td>
+                <td>Somestrasse 17, Pitsburg</td>
+                <td>brian.jones</td>
+                <td>
+                  <a href="student_detail.html">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </a>
+                </td>
+              </tr>
+              -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
