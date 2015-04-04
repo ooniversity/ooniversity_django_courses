@@ -8,7 +8,9 @@
     <title>PyBursa Home</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'customcss/pybursa_custom.css' %}" rel="stylesheet" type="text/css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,15 +31,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">
-                <img alt="Brand" src="../static/bootstrap/images/python_study_ic.png" style = "width: 30px; height:30px">
+              <a class="navbar-brand" href="{% url 'index' %}">
+                <img alt="Brand" id ="brandi" src="{% static 'bootstrap/images/python_study_ic.png' %}">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href ="#">Главная<span class="sr-only">(current)</span></a></li>
-                <li><a href="contact.html">Контакты</a></li>
-                <li><a href="student_list.html">Студенты</a></li>
+                <li class="active"><a href ="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                <li><a href="{% url 'student_l' %}">Студенты</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -63,10 +65,10 @@
         <h2>Наши учителя</h2>
         <div class="media">
           <a class="pull-left" href="#">
-            <img class="img-circle" src="../static/bootstrap/images/radchenkoa.jpg" style = "float:left" alt="coach Alexey Radchenko">
+            <img class="custom_img-circle" src="{% static 'bootstrap/images/radchenkoa.jpg' %}" alt="coach Alexey Radchenko">
           </a>
           <h3 >АЛЕКСЕЙ РАДЧЕНКО <span class="text-muted">(учитель)</span></h3>
-          <p class="well" style = "background-color: #dff0d8">
+          <p class="custom_well">
               Алексей в web-разработке с 2006 года, специализируется на python и django с 2007.
               Имеет трехлетний опыт преподавательской деятельности на кафедре “Компьютерного моделирования и информационных технологий” при ХНТУСА, опыт обучения и менторства начинающих web-разработчиков на реальных проектах, вел другие частные курсы.
               Алексей работал python разработчиком в ряде компаний, реализовал более
@@ -77,10 +79,10 @@
         </div>
         <div class="media">
           <a class="pull-right" href="#">
-            <img class="img-circle" src="../static/bootstrap/images/photo_assistant.jpg" style = "width: 159px; height:161px; float:left" alt="assistant Oksana">
+            <img class="w_img-circle" src="{% static 'bootstrap/images/photo_assistant.jpg' %}" alt="assistant Oksana">
           </a>
           <h3>ОКСАНА СЛЮСАРЕНКО <span class="text-muted">(ассистент)</span></h2>
-          <p class="well" style = "background-color: #dff0d8">
+          <p class="custom_well">
               Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам
           </p>
         </div>
@@ -332,15 +334,15 @@
           </div>
         </div>
       <h6>Следующего курса в таком формате не будет! :)</h6>
-      <footer style = "padding-top:10px">
+      <footer id="foo">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2015 PyBursa, Inc.</p>
       </footer>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../static/bootstrap/js/jquery.js"></script>
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap/bootstrap.js"></script>
+    <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
   </body>
 </html>
