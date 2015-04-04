@@ -7,19 +7,23 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- Template for static files -->
+    {% load static from staticfiles %}
+
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Student - Info </title>
+    <title>Student - Info</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/bootstrap/css/justified-nav.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/justified-nav.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/bootstrap/js/ie-emulation-modes-warning.js"></script>
+    <script src="{% static 'bootstrap/js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,11 +42,11 @@
         <h3 class="text-muted">PyBursa > Детальная информация о студенте</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="index.html">Главная</a></li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="http://pybursa.com">О курсе</a></li>
             <li><a href="#">Преподаватели</a></li>
-            <li><a href="student_list.html">Студенты</a></li>
-            <li><a href="contact.html">Контакты</a></li>
+            <li><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
         </nav>
@@ -70,6 +74,6 @@
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static 'bootstrap/js/ie10-viewport-bug-workaround.js' %}"></script>
   </body>
 </html>
