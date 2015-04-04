@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
-      {% load staticfiles %}
-     <link rel="icon" href="{% static 'img/py.ico' %}">
+     {% load staticfiles %}
+    <link rel="icon" href="{% static 'img/py.ico' %}">
 
     <title>Информация о студенте</title>
 
     <!-- Bootstrap core CSS -->
-      {% load staticfiles %}
-    <link href="{% static 'css/bootstrap.css" rel="stylesheet' %}">
+     {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

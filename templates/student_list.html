@@ -48,8 +48,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Главная</a></li>
-            <li ><a href='contact.html'>Контакты</a></li>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li ><a href="{% url 'contact' %}">Контакты</a></li>
             <li class="active"><a>Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -67,7 +67,7 @@
         <th>Логин Skype</th>
       </tr>
       <tr>
-        <td><a href='student_detail.html'>Белобродский</a></td>
+        <td><a href="{% url 'student_detail' %}">Белобродский</a></td>
         <td>Алексей</td>
         <td>ул. Ак. Павлова, 160 кв.110</td>
         <td>Аlesvawkips</td>
