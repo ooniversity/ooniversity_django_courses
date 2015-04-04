@@ -1,0 +1,47 @@
+<p>Quadratic equation: a*x*x + b*x + c = 0<p>
+
+<ul>
+    {%if a = '0'%}
+        <li>a = 0</li>
+        <i>'a' can not be equal to zero</i>
+    {%elif a = 'error_type1'%}
+        <li>a = {{a_get}}</li>
+        <i>'a' is not defined</i>
+    {%elif a = 'error_type2'%}
+        <li>a = {{a_get}}</li>
+        <i>'a' is not a number</i>
+    {%else%}
+        <li>a = {{a_get}}</li>
+    {%endif%}
+
+    {%if b = 'error_type1'%}
+        <li>b = {{b_get}}</li>
+        <i>'b' is not defined</i>
+    {%elif b = 'error_type2'%}
+       <li>b = {{b_get}}</li>
+       <i>'b' is not a number</i>
+    {%else%}
+        <li>b = {{b_get}}</li>
+    {%endif%}
+
+    {%if c = 'error_type1'%}
+        <li>c = {{c_get}}</li>
+        <i>'c' is not defined</i>
+    {%elif c = 'error_type2'%}
+       <li>c = {{c_get}}</li>
+        <i>'c' is not a number</i>
+    {%else%}
+        <li>c = {{c_get}}</li>
+    {%endif%}
+</ul>
+
+{%if d != ''%}
+    Discriminant: {{d}}<br>
+    {%if d = 0%}
+        Discriminant = 0,  so only one root exists: x1 = x2 = {{x1}}.
+    {%elif d < 0%}
+        Discriminant < 0, so there are no real roots.
+    {%else%}
+        This equation has two roots: x1 = {{x1}}, x2 = {{x2}}
+    {%endif%}
+{%endif%}
