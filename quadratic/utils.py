@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import math
 def quadratic_solver(a, b, c):
 	answer = {
 		'd': None,

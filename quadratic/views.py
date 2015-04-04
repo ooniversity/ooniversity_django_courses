@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import math
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
