@@ -1,15 +1,16 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../static/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="{% static '../static/img/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Контакты</title>
 
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static '../static/css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,9 +38,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Главная</a></li> 
-        <li class="active"><a href="#">Контакты<span class="sr-only">(current)</span></a></li>
-        <li><a href="student_list.html">Студенты</a></li>     
+        <li><a href="{% url 'views.index' %}">Главная</a></li> 
+        <li class="active"><a href="{% url 'views.contact' %}">Контакты<span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'views.student_list' %}">Студенты</a></li>     
                
       </ul>      
     </div><!-- /.navbar-collapse -->
@@ -52,7 +53,7 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="../static/img/anna.jpg" alt="...">
+          <img src="{% static '../static/img/anna.jpg' %}" alt="...">
           <div class="caption">
             <h3>Анна Малахова</h3>
             <p>Менеджер ITbursa</p>
@@ -66,7 +67,7 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="../static/img/pavel.jpg" alt="...">
+          <img src="{% static '../static/img/pavel.jpg' %}" alt="...">
           <div class="caption">
             <h3>Павел Обод</h3>
             <p>Основатель ITbursa</p>
@@ -80,7 +81,7 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="../static/img/tatiana.jpg" alt="...">
+          <img src="{% static '../static/img/tatiana.jpg' %}" alt="...">
           <div class="caption">
             <h3>Татьяна Колесник</h3>
             <p>Оплата курсов</p>
@@ -100,6 +101,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static '../static/js/bootstrap.js' %}"></script>
   </body>
 </html>
