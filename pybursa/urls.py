@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     url(r'^contact/$', contact, name='contact'),
     url(r'^student_list/$', student_list, name='stud_list'),
     url(r'^student_detail/$', student_detail, name='stud_detail'),
+    url(r'^quadratic/', include('quadratic.urls', namespace='quadratic')),
 
 )
