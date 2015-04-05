@@ -7,8 +7,9 @@
 
     <title>Contact</title>
 
-   	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
   </head>
   <body>
@@ -21,9 +22,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="index.html">Home</a></li>
-            <li role="presentation" class="active"><a href="#">Contact</a></li>
-			<li role="presentation"><a href="students.html">Students</a></li>
+            <li role="presentation"><a href={% url 'index' %}>Home</a></li>
+            <li role="presentation" class="active"><a href={% url 'contact' %}>Contact</a></li>
+			<li role="presentation"><a href={% url 'student_list' %}>Students</a></li>
           </ul>
         </nav>
         <h2 class="text-muted">Python/Django</h2>
@@ -41,7 +42,7 @@
                 <h2 class="panel-title">Павел Обод</h2>
               </div>
               <div class="panel-body">
-                <img id="photo" src="../static/img/photo_1.jpg" alt="">
+                <img id="photo" src="{% static 'img/photo_1.jpg' %}" alt="">
                 <div class="floatright">              
                   <h4>Основатель ITbursa</h4>
                   <p class="organizers_mail">
@@ -68,7 +69,7 @@
                 <h2 class="panel-title">Анна Малахова</h2>
               </div>
               <div class="panel-body">
-                <img id="photo" src="../static/img/photo_2.jpg" alt="">
+                <img id="photo" src="{% static 'img/photo_2.jpg' %}" alt="">
                 <div class="floatright">
                     <h4>Менеджер ITbursa</h4>
                     <p class="organizers_mail">
@@ -104,7 +105,7 @@
                 <h2 class="panel-title">Алексей Радченко</h2>
               </div>
               <div class="panel-body">
-                <img id="photo" src="../static/img/radchenkoa.jpg" style="height:150px">
+                <img id="photo" src="{% static 'img/radchenkoa.jpg' %}" style="height:150px">
                 <div class="floatright">              
                   <h4>Инструктор курса</h4>
                   <p class="organizers_mail">
@@ -132,7 +133,7 @@
                 <h2 class="panel-title">Оксана Слюсаренко</h2>
               </div>
               <div class="panel-body">
-                <img id="photo" src="../static/img/photo_assistant.jpg" style="height:150px">
+                <img id="photo" src="{% static 'img/photo_assistant.jpg' %}" style="height:150px">
                 <div class="floatright">
                     <h4>Ассистент инструктора</h4>
                     <p class="organizers_mail">

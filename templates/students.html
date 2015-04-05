@@ -7,8 +7,9 @@
 
     <title>Students</title>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
   </head>
   <body>
@@ -23,9 +24,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="#">Home</a></li>
-            <li role="presentation"><a href="contact.html">Contact</a></li>
-			<li role="presentation" class="active"><a href="students.html">Students</a></li>
+            <li role="presentation"><a href={% url 'index' %}>Home</a></li>
+            <li role="presentation"><a href={% url 'contact' %}>Contact</a></li>
+			<li role="presentation" class="active"><a href={% url 'student_list' %}>Students</a></li>
           </ul>
         </nav>
         <h2 class="text-muted">Python/Django</h2>
@@ -36,7 +37,7 @@
     <div class="container">
 		<div class="col-sm-4">
 		  <div class="list-group">
-			<a href="student_info.html" class="list-group-item">
+			<a href={% url 'student_detail' %} class="list-group-item">
 			  <h4 class="list-group-item-heading">Жлобинский Павел</h4>
 			  <p class="list-group-item-text"> 
 				<p>email:<span style="padding-left:10px;color:#5495d1"> paha_tet@mail.ru</span></p>

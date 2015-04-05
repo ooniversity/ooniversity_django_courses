@@ -7,9 +7,11 @@
 
     <title>Student_Info</title>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-theme.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.css' %}">
+
 
   </head>
   <body>
@@ -23,9 +25,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="index.html">Home</a></li>
-            <li role="presentation"><a href="contact.html">Contact</a></li>
-			       <li role="presentation"><a href="students.html">Students</a></li>
+            <li role="presentation"><a href="{% url 'index' %}">Home</a></li>
+            <li role="presentation"><a href="{% url 'contact' %}">Contact</a></li>
+			       <li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
           </ul>
         </nav>
         <h2 class="text-muted">Python/Django</h2>
@@ -40,7 +42,7 @@
         </div>
 
         <div class="media">
-          <a class="pull-left" href="#">
+          <a class="pull-left" href={% url 'student_detail' %}>
             <img class="media-object" src="../static/img/paha.JPG">
           </a>
           <div class="media-body">
