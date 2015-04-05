@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quadratic Equation Solver</title>
+    <link href="{% static "vendors/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="{% url "home" %}">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">DJ101</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h2>Quadratic Equation Solver</h2>
+        {% if answer %}
+          <p class="lead">Дискриминант равен {{ answer.d }}</p>
+          <p class="lead">{{ answer.title }}</p>
+          {% if answer.x|length > 1 %}
+            {% for x in answer.x %}
+              <p class="lead">x{{ forloop.counter}} = {{ x }}</p>
+            {% endfor %}
+          {% elif answer.x|length > 0 %}
+            <p class="lead">x1 = x2 = {{ answer.x.0 }}</p>
+          {% endif %}
+        {% else %}
+          <p class="lead">ax<sup>2</sup> + bx + c = 0</p>
+        {% endif %}
+        <form action="{% url 'quadratic:home' %}" method="post">
+            {% csrf_token %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Arguments</h3>
+              </div>
+              <div class="panel-body">
+                {{ form.non_field_errors }}
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">a</span>
+                  <!--<input type="text" class="form-control" aria-describedby="basic-addon1">-->
+                  {{ form.a }}
+                </div>
+                {{ form.a.errors }}
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">b</span>
+                  {{ form.b }}
+                </div>
+                {{ form.b.errors }}
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">c</span>
+                  {{ form.c }}
+                </div>
+                {{ form.c.errors }}
+              </div>
+            </div>
+            <input type="submit" class="btn btn-lg btn-success" value="Banzai!" />
+        </form>
+      </div>
+    </div> <!-- /container -->
+  </body>
+</html>
