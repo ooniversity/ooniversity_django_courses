@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from pybursa.views import *
+from quadratic.views import *
 #from django.http import HttpResponse, HttpResponseNotFound
 
 #def test(request):
@@ -29,13 +29,13 @@ from pybursa.views import *
 
 
 urlpatterns = patterns('',
-    url(r'^contact/$', contact, name="contact"),
-    url(r'^student_list/$', student_list, name="student_list"),
-    url(r'^student_detail/$', student_detail, name="student_detail"),
-    url(r'^$', index, name="home"),
-    url(r'^instructors/$', 'instructors.views.instructors_list', name="instructors_list"),
-    url(r'^quadratic/', include('quadratic.urls')),
-
+    url(r'^$', quadratic, name="quadratic"),
+    url(r'^result/$', results, name="result"),
+    #url(r'^contact/$', contact, name="contact"),
+    #url(r'^student_list/$', student_list, name="student_list"),
+    #url(r'^student_detail/$', student_detail, name="student_detail"),
+    #url(r'^$', index, name="home"),
+    #url(r'^instructors/$', 'instructors.views.instructors_list', name="instructors_list"),
     # Examples:
     #url(r'^$', index, name='home'),
     # url(r'^blog/', include('blog.urls')),
