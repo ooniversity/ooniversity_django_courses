@@ -8,7 +8,9 @@
     <title>PyBursa Student detail</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'customcss/pybursa_custom.css' %}" rel="stylesheet" type="text/css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,35 +31,35 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                  <img alt="Brand" src="../static/bootstrap/images/python_study_ic.png" style = "width: 30px; height:30px">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                  <img alt="Brand" id ="brandi" src="{% static 'bootstrap/images/python_study_ic.png' %}">
                 </a>
               </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="contact.html">Контакты</a></li>
-                <li class="active"><a href="#">Студенты<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                <li class="active"><a href="{% url 'student_d' %}">Студенты<span class="sr-only">(current)</span></a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
         <ol class="breadcrumb">
-          <li><a href="student_list.html">Студенты</a></li>
+          <li><a href="{% url 'student_l' %}">Студенты</a></li>
           <li class="active">Детальная информация о студенте</li>
         </ol>
         <div class="media">
           <a class="pull-left" href="#">
-            <img class="media-object" src="../static/bootstrap/images/student_photo.png" alt="student photo">
+            <img class="media-object" src="{% static 'bootstrap/images/student_photo.png' %}" alt="student photo">
           </a>
           <h4 class="media-heading">Железный  Александр Олегович</h4>
           <div class = "well well-sm">
             <p><b>Дата рождения:</b> 12.04.1990</p>
             <p><b>Адрес:</b> улица Метростроителей, 4</p>
             <p><b>Почта:</b><a href="mailto:zheleznya@gmail.com"> zheleznya@gmail.com</a></p>
-            <p><img src = "../static/bootstrap/images/skypeic.png"> zhelezn</p>
+            <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> zhelezn</p>
             <p><b>Место в рейтинге:</b> 1</p>
-            <div class="panel panel-info" style = "margin-top:20px">
+            <div class="custom_panel">
               <!-- Default panel contents -->
               <div class="panel-heading"><em>Оценки за контрольные работы:</em></div>
               <div class="panel-body">
@@ -76,7 +78,7 @@
                         <th>ДЗ №8</th>
                         <th>ДЗ №9</th>
                         <th>ДЗ №10</th>
-                        <th style = "color: #337ab7">Средний бал</th>
+                        <th id = "average_score">Средний бал</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -146,8 +148,8 @@
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../static/bootstrap/js/jquery.js"></script>
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap/bootstrap.js"></script>
+    <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
   </body>
 </html>

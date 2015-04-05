@@ -8,7 +8,9 @@
     <title>PyBursa Students</title>
 
     <!-- Bootstrap -->
-    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    {% load staticfiles %}
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'customcss/pybursa_custom.css' %}" rel="stylesheet" type="text/css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,15 +31,15 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                  <img alt="Brand" src="../static/bootstrap/images/python_study_ic.png" style = "width: 30px; height:30px">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                  <img alt="Brand" id ="brandi" src="{% static 'bootstrap/images/python_study_ic.png' %}">
                 </a>
               </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="contact.html">Контакты</a></li>
-                <li class="active"><a href="#">Студенты<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                <li class="active"><a href="{% url 'student_l' %}">Студенты<span class="sr-only">(current)</span></a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -57,10 +59,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="student_detail.html">1</a></td>
-                  <td><a href="student_detail.html">Железный  Александр Олегович</a></td>
-                  <td><a href="student_detail.html">улица Метростроителей, 4</a></td>
-                  <td><a href="student_detail.html">zhelez</a></td>
+                  <td><a href="{% url 'student_d' %}">1</a></td>
+                  <td><a href="{% url 'student_d' %}">Железный  Александр Олегович</a></td>
+                  <td><a href="{% url 'student_d' %}">улица Метростроителей, 4</a></td>
+                  <td><a href="{% url 'student_d' %}">zhelez</a></td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -123,8 +125,8 @@
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../static/bootstrap/js/jquery.js"></script>
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/bootstrap/bootstrap.js"></script>
+    <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
   </body>
 </html>
