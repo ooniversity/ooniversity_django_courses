@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Python Django Training</title>
-
+    {% load static from staticfiles %}
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,19 +29,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">PyBursa</a>
+      <a class="navbar-brand" href="{% url 'index_pybursa' %}">PyBursa</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="contacts.html">Contacts</a></li>
-        <li class="active"><a href="students.html">Students Overview</a></li>
+        <li><a href="{% url 'index_pybursa' %}">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'contacts_pybursa' %}">Contacts</a></li>
+        <li class="active"><a href="#">Students Overview</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Students <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="student_1.html">Ivan Ivanov</a></li>
+            <li><a href="{% url 'student_1' %}">Ivan Ivanov</a></li>
             <li><a href="student_2.html">Petr Petrov</a></li>
             <li><a href="student_3.html">Serge Sergienko</a></li>
             <li><a href="student_4.html">Alex Alexeenko</a></li>
@@ -73,7 +73,7 @@
         <td>Ivanov</td>
         <td>Moscow</td>
         <td>ivan78.21</td>
-        <td><a href="student_1.html">More...</a></td>
+        <td><a href="{% url 'student_1' %}">More...</a></td>
       </tr>
       <tr>
         <td>Petr</td>
@@ -112,6 +112,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
