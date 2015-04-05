@@ -68,8 +68,9 @@
 	<h2>Студенты курса PyBursa</h2>
 	<p>Ниже представлен список студентов, выпуск - апрель 2015.</p>                              
 	<div class="table-responsive"> <!--horizontal scrolls-->
-	<table class="table table-hover">
-	<thead>
+
+<table class="table table-hover">
+<thead>
 <tr>
 <th class="td_no">№</th>
 <th>Фамилия</th>

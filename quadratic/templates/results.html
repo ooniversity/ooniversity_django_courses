@@ -8,14 +8,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static "img/favicon.ico" %">
-
-    <title>Контакты</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %">
+    <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-
-
+    <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
@@ -50,9 +47,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="{% url 'student_list' %}">Студенты</a></li>
-            <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
+          <li><a href="{% url 'contact' %}">Контакты</a></li>
+          <li><a href="{% url 'student_list' %}">Студенты</a></li>
+          <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -68,44 +65,27 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Навигация</button>
           </p>
           
- <div class="row">
-            <div class="col-xs-6 col-lg-4">
-              <h2>Директор</h2>
-              <p>Анна Малахова </p>
-	      <p>anna.itbursa@gmail.com</p>
-	      <p>skype: anechka.malakhova</p>
-	      <p>+38 096 070 53 47 </p>
-              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Основатель</h2>
-              <p>Павел Обод </p>
-	      <p>itbursa100@gmail.com</p>
-	      <p>skype: azaless</p>
-	      <p>+38 063 702 3 703 </p>
-              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Менеджер</h2>
-              <p>Татьяна Колесник </p>
-	      <p>tatyana@outsource-people.com</p>
-	      <p>skype: princessataniakolesnik</p>
-	      <p>+38 063 729 45 67 </p>
-              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Мы в соцсетях</h2>
-              <p><a href="http://vk.com/public82364378" target="_blank"><img src="{% static 'images/vk.jpg' %}" alt="vk"></a>
+ 	<div class="row">
+	<h2>Решение квадратного уравнения (манипулирование URL) </h2>
+          <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+          {% if message == '' %}
+ 	      <ul>
+          {% for n,i,msg in list %}         
+             <li>{{ n }} = {{ i }}</li>
+             <div class="msg_ital"> {{ msg }} </div>
+          {% endfor %}
+          {% else %}
+          	 <li> a = {{ list.0.1 }}</li>
+         	 <li> b = {{ list.1.1 }}</li>
+         	 <li> c = {{ list.2.1 }}</li>
+          </ul> <br>
+          <p> Дискриминант: {{ discriminant }}</p>
+          <p>{{ message }}</p>
+          {% endif %}
 
-              <a href="https://www.facebook.com/pages/ItBursa/1539330322946469" target="_blank"><img src="{% static 'images/fb.jpg' %}" alt="fb"></a>
+        </div><!--/row-->
 
-
-              </p>
-              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
-            </div><!--/.col-xs-6.col-lg-4-->
-            
-          </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
+  </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
@@ -122,6 +102,7 @@
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>-->
           </div>
+
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
 
@@ -142,6 +123,7 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
     <script src="{% static 'js/offcanvas.js' %}"></script>
 
   </body>
