@@ -1,0 +1,31 @@
+<!--<h1>{{ question.question_text }}</h1>!-->
+<h4>Квадратное уравнение a*x*x + b*x + c = 0</h4>
+
+<li>a = {{a}}<br>
+{% if zero_a %}
+{{zero_a}}<br>
+{% endif %}
+{% if except_a %}
+{{except_a}}<br>
+{% endif %}
+
+<li>b = {{b}}<br>
+{% if except_b %}
+{{except_b}}<br>
+{% endif %}
+
+<li>c = {{c}}<br>
+{% if except_c %}
+{{except_c}}<br>
+{% endif %}
+
+{% if d %}
+<p>Дискриминант: {{d}}</p>
+{% endif %}
+
+{% if eq_root %}
+<p>{{eq_root}}</p>
+{% endif %}
+
+
+
