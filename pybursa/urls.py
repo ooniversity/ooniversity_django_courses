@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from pybursa.views import index, contact, student_l, student_d
+from quadratic import views
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^student_detail/$', student_d, name = 'student_d'),
 
     url(r'^polls/', include('polls.urls', namespace="polls")),
+    url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
     url(r'^admin/', include(admin.site.urls)),
 )
