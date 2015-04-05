@@ -1,0 +1,10 @@
+# python precompiled files:
+*.pyc
+*.pyo
+
+#idea project
+.idea/
+pybursa/lib
+pybursa/bin
+pybursa/local
+pybursa/include
