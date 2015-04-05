@@ -70,8 +70,8 @@
           <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
           {% if message == '' %}
  	      <ul>
-          {% for n,i,msg in list %}         
-             <li>{{ n }} = {{ i }}</li>
+          {% for var1,var2,msg in list %}         
+             <li>{{ var1 }} = {{ var2 }}</li>
              <div class="msg_ital"> {{ msg }} </div>
           {% endfor %}
           {% else %}

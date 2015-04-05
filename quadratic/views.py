@@ -45,10 +45,10 @@ def results(request):
         if discriminant<0:
             message='Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.'
         elif discriminant==0:
-            x=float(-b/(2.0*a))
+            x=round(float(-b/(2.0*a)), 2)
             message='Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = %s' % x
         else:
-            x1=float((-b+(b**2-4*a*c)**0.5)/2.0*a)
-            x2=float((-b-(b**2-4*a*c)**0.5)/2.0*a)
+            x1=round(float((-b+(b**2-4*a*c)**0.5)/2.0*a), 2)
+            x2=round(float((-b-(b**2-4*a*c)**0.5)/2.0*a), 2)
             message='Квадратное уравнение имеет два действительных корня: х1 = %s , x2 = %s' % (x1, x2)
     return render(request, 'results.html', { 'list':(('a',a,a_msg),('b',b,b_msg),('c',c,c_msg)), 'message':message, 'discriminant':discriminant})
