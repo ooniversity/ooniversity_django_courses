@@ -10,7 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="{% static 'bootstrap/css/bootstrap.css' %} rel="stylesheet">
-    <link href="{% static 'css/style.css' %} rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,8 +26,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'home' %}">Главная <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="{% url 'contacts' %}">Контакты</a></li>
+        <li><a href="{% url 'index' %}">Главная <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{% url 'contact' %}">Контакты</a></li>
         <li><a href="{% url 'student_list' %}">Студенты</a></li>
       </ul>
      </div><!-- /.navbar-collapse -->
