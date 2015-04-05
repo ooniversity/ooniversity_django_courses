@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+  <meta charset="utf-8">
+  <title>Quadratic Results</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <style type="text/css">
+    body { 
+      padding-top: 20px;
+      margin-top: 10px;
+    }
+    .error {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <p> Квадратное уравнение вида: <b>ax<sup><small>2</small></sup> + bx + c = 0 </b></p>
+
+        <ul>
+          <li>a = {{ a }} <br>
+            {% if a_error %}
+              <span class="error">{{ a_error }}</span>
+            {% endif %}
+          </li>
+          <li>b = {{ b }} <br>
+            {% if b_error %}
+              <span class="error">{{ b_error }}</span>
+            {% endif %}
+          </li>
+          <li>c = {{ c }} <br>
+            {% if c_error %}
+              <span class="error">{{ c_error }}</span>
+            {% endif %}
+          </li>
+        </ul>
+
+        {% if discr != None %}
+
+          <p><b> Дискриминант:</b> {{ discr }}</p>
+
+          {% if discr < 0 %}
+            <p class="error">
+              Дискриминант меньше нуля, квадратное уравнение не имеет действительных 
+              решений
+            </p>
+          {% elif discr == 0 %}
+            <p class="error">
+              Дискриминант равен нулю, квадратное уравнение имеет один действительный
+              корень x1 = x2 = {{ x1 }}
+            </p>
+          {% else %}
+            <p class="error">
+              Квадратное уравнение имеет два действительных корня: 
+              x1 = {{ x1 }}, x2 = {{ x2 }}
+            </p>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+</div>
+
+</body>
+</html>
