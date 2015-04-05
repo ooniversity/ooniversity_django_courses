@@ -1,0 +1,6 @@
+# python precompiled files:
+*.pyc
+*.pyo
+*.txt~
+*.html~
+*.css~
