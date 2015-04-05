@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
 from django.shortcuts import render
 
 def quadratic(request):
@@ -51,4 +49,4 @@ def results(request):
             x1=round(float((-b+(b**2-4*a*c)**0.5)/2.0*a), 2)
             x2=round(float((-b-(b**2-4*a*c)**0.5)/2.0*a), 2)
             message='Квадратное уравнение имеет два действительных корня: х1 = %s , x2 = %s' % (x1, x2)
-    return render(request, 'results.html', { 'list':(('a',a,a_msg),('b',b,b_msg),('c',c,c_msg)), 'message':message, 'discriminant':discriminant})
+    return render(request, 'results.html', { 'list':(('a',a,a_msg),('b',b,b_msg),('c',c,c_msg)), 'message':message, 'discriminant':discriminant}) #discriminant = 0 in case of empty message-variable: improve your code! (need to avoid zero-equal D if any parameter defined incorrectly)
