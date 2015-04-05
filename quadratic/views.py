@@ -1,3 +1,4 @@
+#no need for UTF-8 here
 from django.shortcuts import render
 
 def quadratic(request):
