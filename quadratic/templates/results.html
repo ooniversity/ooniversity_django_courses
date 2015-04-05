@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title>Quadratic</title>
+</head>
+<body>
+    <p>Квадратное уравнение Ax<sup>2</sup> + Bx + C = 0</p>
+
+    <ul>
+        <li>
+        {% if a == '0' %}
+            <p>a = {{ a }}<br>
+            коэффициент при первом слагаемом уравнения не может быть равным нулю</p>
+        {% elif a == '' %}
+            <p>a = {{ a }}<br>
+            {{ nd }}
+        {% elif a.1 == 'stringtype' %}
+           <p>a = {{ a.0 }}<br>
+            {{ ni }}
+        {% else %}
+            <p>a = {{ a }}<br>
+        {% endif %}
+        </li>
+    </ul>
+    <ul>
+        <li>
+        {% if b == '' %}
+            <p>b = {{ b }}<br>
+            {{ nd }}
+        {% elif b.1 == 'stringtype' %}
+           <p>b = {{ b.0 }}<br>
+            {{ ni }}
+        {% else %}
+            <p>b = {{ b }}<br>
+        {% endif %}
+        </li>
+    </ul>
+    <ul>
+        <li>
+        {% if c == '' %}
+            <p>c = {{ c }}<br>
+            {{ nd }}
+        {% elif c.1 == 'stringtype' %}
+           <p>c = {{ c.0 }}<br>
+            {{ ni }}
+        {% else %}
+            <p>c = {{ c }}<br>
+        {% endif %}
+        </li>
+    </ul>
+
+    {% if discr != None %}
+        <p>Дискриминант: {{ discr }} </p>
+
+        {% if discr < 0 %}
+            <p>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений.</p>
+        {% elif discr == 0 %}
+            <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень x1 = x2 = {{ x1 }}</p>
+        {% else %}
+            <p>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }}</p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
