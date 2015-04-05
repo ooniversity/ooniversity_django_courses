@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PyBursa - Студенты</title>
+    <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
+
+    {% load staticfiles %}
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+  <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->
+    <script src="{% static 'js/jquery-1.10.2.min.js' %}" type="text/javascript"></script>
+    <!-- Підключення мінімізованої збірки всіх плагінів jQuery. Можна підключати додаткові плагіни, якщо потрібно -->
+
+    <script src="{% static 'js/bootstrap.min.js' %}"  type="text/javascript"></script>
+
+
+    <!-- Our style -->
+    <link href="{% static 'css/ourstyle.css' %}" rel="stylesheet">
+
+    <!-- Вставка HTML5 поєднується з Respond.js для підтримки в IE8 елементів HTML5 та медіа-запитів -->
+    <!-- ЗАСТЕРЕЖЕННЯ: файл Respond.js не працює, якщо ви проглядаєте сторінку відкривши її з файлової системи -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="b1">
+      <img src="http://edx.ddev.com.ua/static/themes/default/images/OpenEdXLogo.2b4f39abf090.png" height="50" align="left" />
+      <div class="container" align="right">
+        <h3>PyBursa - ликбез для программастов, программонстров, программмам и программулек.</h3>
+      </div>
+    </div>
+    <div class="container">
+
+        <ul class="nav nav-pills">
+        <li role="presentation"><a href="/">Главная</a></li>
+        <li role="presentation"><a href="/contact/">Контакты</a></li>
+        <li role="presentation" class="active"><a href="/student_list/">Студенты</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+     <h3>PyBursa - это ликбез!</h3>
+     <h4>Гранит науки сейчас грызут:</h4>
+    </div>
+    <div class="container">
+        <table id="main-table" class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>№ п/п</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Адрес</th>
+        <th>Skype login</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+         <td>1</td>
+        <td > <a href="/student_detail/">Иванов</a></td>
+        <td>Петя</td>
+        <td>Харьков</td>
+        <td>p_ivanov</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td ><a href="#Petrov" data-toggle="modal">Петров</a></td>
+        <td>Ваня</td>
+        <td>Харьков</td>
+        <td>v_petrov</td>
+
+      </tr>
+      <tr>
+          <td>3</td>
+        <td ><a href="#Sidor" data-toggle="modal">Сидоров</a></td>
+        <td>Коля</td>
+        <td>Киев</td>
+        <td>k_sidorov</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td ><a href="#Fedorov" data-toggle="modal">Федоров</a></td>
+        <td>Витя</td>
+        <td>Полтава</td>
+        <td>v_fedorov</td>
+      </tr>
+        <tr>
+        <td>5</td>
+        <td ><a href="#Petrenko" data-toggle="modal">Петренко</a></td>
+        <td>Петро</td>
+        <td>Тернопіль</td>
+        <td>p_petrenko</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+<div class="modal fade" id="Sidor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Гранит науки сейчас грызет: Сидоров Николай Евгеньевич </h4>
+      </div>
+    <div class="modal-body">
+      <table width="100%" cellspacing="5" cellpadding="4">
+          <tr>
+            <td align="right" width="200">Дата рождения:</td>
+            <td width="20"></td>
+            <td> 08.11.1990</td>
+          </tr>
+          <tr>
+            <td align="right" width="200">Адрес:</td>
+             <td width="20"></td>
+            <td> Киев </td>
+          </tr>
+          <tr>
+            <td align="right" width="200">E-mail:</td>
+            <td width="20"></td>
+            <td><a href="mailto:kolya@mail.ru">kolya@mail.ru</a></td>
+          </tr>
+          <tr>
+           <td align="right" width="200">Skype login:</td>
+           <td width="20"></td>
+           <td>k_sidorov</td>
+         </tr>
+           <tr>
+           <td align="right" width="200">Выполненные задания:</td>
+           <td width="20"></td>
+           <td>№1,№2,№3</td>
+         </tr>
+          <tr>
+            <td align="right" width="200">Средний балл:</td>
+            <td width="20"></td>
+            <td>6.5</td>
+          </tr>
+         <tr>
+            <td align="right" width="200">Рейтинг:</td>
+            <td width="20"></td>
+            <td>10</td>
+          </tr>
+         </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+  <div class="modal fade" id="Ivanov" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Гранит науки сейчас грызет: Иванов Петр Иванович</h4>
+      </div>
+    <div class="modal-body">
+      <table width="100%" cellspacing="5" cellpadding="4">
+          <tr>
+            <td align="right" width="200">Дата рождения:</td>
+            <td width="20"></td>
+            <td> 01.01.1985</td>
+          </tr>
+          <tr>
+            <td align="right" width="200">Адрес:</td>
+             <td width="20"></td>
+            <td> Харьков </td>
+          </tr>
+          <tr>
+            <td align="right" width="200">E-mail:</td>
+            <td width="20"></td>
+            <td><a href="mailto:petya@mail.ru">petya@mail.ru</a></td>
+          </tr>
+          <tr>
+           <td align="right" width="200">Skype login:</td>
+           <td width="20"></td>
+           <td>p_ivanov</td>
+         </tr>
+           <tr>
+           <td align="right" width="200">Выполненные задания:</td>
+           <td width="20"></td>
+           <td>№1,№2,№3,№4</td>
+         </tr>
+          <tr>
+            <td align="right" width="200">Средний балл:</td>
+            <td width="20"></td>
+            <td>8.5</td>
+          </tr>
+         <tr>
+            <td align="right" width="200">Рейтинг:</td>
+            <td width="20"></td>
+            <td>12</td>
+          </tr>
+         </table>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+      </div>
+      </div>
+    </div>
+  </div>
+<!-- Петров -->
+<div class="modal fade" id="Petrov" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Гранит науки сейчас грызет: Петров Иван Михайлович </h4>
+      </div>
+    <div class="modal-body">
+      <table width="100%" cellspacing="5" cellpadding="4">
+          <tr>
+            <td align="right" width="200">Дата рождения:</td>
+            <td width="20"></td>
+            <td> 28.02.1990</td>
+          </tr>
+          <tr>
+            <td align="right" width="200">Адрес:</td>
+             <td width="20"></td>
+            <td> Харьков </td>
+          </tr>
+          <tr>
+            <td align="right" width="200">E-mail:</td>
+            <td width="20"></td>
+            <td><a href="mailto:vanya@mail.ru">vanya@mail.ru</a></td>
+          </tr>
+          <tr>
+           <td align="right" width="200">Skype login:</td>
+           <td width="20"></td>
+           <td>p_ivanov</td>
+         </tr>
+           <tr>
+           <td align="right" width="200">Выполненные задания:</td>
+           <td width="20"></td>
+           <td>№1,№2,№3</td>
+         </tr>
+          <tr>
+            <td align="right" width="200">Средний балл:</td>
+            <td width="20"></td>
+            <td>6.5</td>
+          </tr>
+         <tr>
+            <td align="right" width="200">Рейтинг:</td>
+            <td width="20"></td>
+            <td>10</td>
+          </tr>
+         </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Федоров -->
+  <div class="modal fade" id="Fedorov" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Гранит науки сейчас грызет: Федоров Виктор Вениаминович</h4>
+      </div>
+    <div class="modal-body">
+      <table width="100%" cellspacing="5" cellpadding="4">
+          <tr>
+            <td align="right" width="200">Дата рождения:</td>
+            <td width="20"></td>
+            <td> 14.02.1989</td>
+          </tr>
+          <tr>
+            <td align="right" width="200">Адрес:</td>
+             <td width="20"></td>
+            <td> Полтава </td>
+          </tr>
+          <tr>
+            <td align="right" width="200">E-mail:</td>
+            <td width="20"></td>
+            <td><a href="maito:vitya@mail.ru">vitya@mail.ru</a></td>
+          </tr>
+          <tr>
+           <td align="right" width="200">Skype login:</td>
+           <td width="20"></td>
+           <td>v_fedorov</td>
+         </tr>
+           <tr>
+           <td align="right" width="200">Выполненные задания:</td>
+           <td width="20"></td>
+           <td>№1,№2,№3</td>
+         </tr>
+          <tr>
+            <td align="right" width="200">Средний балл:</td>
+            <td width="20"></td>
+            <td>6.5</td>
+          </tr>
+         <tr>
+            <td align="right" width="200">Рейтинг:</td>
+            <td width="20"></td>
+            <td>10</td>
+          </tr>
+         </table>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- Петренко -->
+  <div class="modal fade" id="Petrenko" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Гранит науки сейчас грызет: Петренко Петро Юхимович</h4>
+      </div>
+    <div class="modal-body">
+      <table width="100%" cellspacing="5" cellpadding="4">
+          <tr>
+            <td align="right" width="200">Дата рождения:</td>
+            <td width="20"></td>
+            <td> 03.01.1991</td>
+          </tr>
+          <tr>
+            <td align="right" width="200">Адрес:</td>
+             <td width="20"></td>
+            <td> Тернопіль </td>
+          </tr>
+          <tr>
+            <td align="right" width="200">E-mail:</td>
+            <td width="20"></td>
+            <td><a href="mailto:petro@mail.ru">petro@mail.ru</a></td>
+          </tr>
+          <tr>
+           <td align="right" width="200">Skype login:</td>
+           <td width="20"></td>
+           <td>p_petrenko</td>
+         </tr>
+           <tr>
+           <td align="right" width="200">Выполненные задания:</td>
+           <td width="20"></td>
+           <td>№1,№2,№3,№4</td>
+         </tr>
+          <tr>
+            <td align="right" width="200">Средний балл:</td>
+            <td width="20"></td>
+            <td>8.5</td>
+          </tr>
+         <tr>
+            <td align="right" width="200">Рейтинг:</td>
+            <td width="20"></td>
+            <td>10</td>
+          </tr>
+         </table>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+  </body>
+</html>
+
