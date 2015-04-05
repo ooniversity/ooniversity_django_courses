@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PyBursa - Контакты</title>
-    <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
+    <title>Решение квадратного уравнения</title>
+
 
     {% load staticfiles %}
+
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
@@ -23,34 +24,25 @@
   </head>
   <body>
   <div class="b1">
-  <img src="http://edx.ddev.com.ua/static/themes/default/images/OpenEdXLogo.2b4f39abf090.png" height="50" align="left" />
-      <div class="container" align="right">
-      <h3>PyBursa - ликбез для программастов, программонстров, программмам и программулек.</h3>
 
-
+      <div class="container">
+        <h3>Решение квадратного уравнения вида: а*х*х + b*x + c = 0</h3>
       </div>
   </div>
-    <div class="container">
+  <br><br>
+  <div  class="container">
 
-        <ul class="nav nav-pills">
-        <li role="presentation"><a href="{% url 'index' %}">Главная</a></li>
-        <li role="presentation" class="active"><a href="{% url 'contacts' %}">Контакты</a></li>
-        <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
-        </ul>
-    </div>
+      <h4>{{ titl }}</h4>
+      <ul type="square">
+        <li>{{ str_a }}</li>
+        <li>{{ str_b }}</li>
+        <li>{{ str_c }}</li>
+      </ul>
+      <h4>{{ str_D }}</h4>
+      <h4>{{ str_x }}</h4>
 
-  <div class="container" bgcolor="008080>
-  <h3 color="#FF0000">PyBursa - это ликбез!</h3>
-   <h4>Связаться с нами:</h4>
   </div>
-    <div class="container">
-    <a href="http://edx.ddev.com.ua/">Сайт</a>
-    <ul type="square">
-        <li>главный босс тел: e-mail</li>
-        <li>главный гнобитель тел: email</li>
-        <li>ассистент главного </li>
-    </ul>
-    </div>
+
 
     <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

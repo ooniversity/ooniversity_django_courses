@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PyBursa - Контакты</title>
+    <title>PyBursa - Иванов</title>
     <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
 
     {% load staticfiles %}
+
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
@@ -33,25 +34,51 @@
     <div class="container">
 
         <ul class="nav nav-pills">
-        <li role="presentation"><a href="{% url 'index' %}">Главная</a></li>
-        <li role="presentation" class="active"><a href="{% url 'contacts' %}">Контакты</a></li>
-        <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
+        <li role="presentation"><a href="/">Главная</a></li>
+        <li role="presentation"><a href="/contact/">Контакты</a></li>
+        <li role="presentation"><a href="/student_list/">Студенты</a></li>
         </ul>
     </div>
 
-  <div class="container" bgcolor="008080>
-  <h3 color="#FF0000">PyBursa - это ликбез!</h3>
-   <h4>Связаться с нами:</h4>
+  <a name="ivanov"></a>
+
+  <div class="container">
+  <h3>PyBursa - это ликбез!</h3>
+   <h4>Гранит науки сейчас грызет:</h4>
   </div>
     <div class="container">
-    <a href="http://edx.ddev.com.ua/">Сайт</a>
-    <ul type="square">
-        <li>главный босс тел: e-mail</li>
-        <li>главный гнобитель тел: email</li>
-        <li>ассистент главного </li>
-    </ul>
-    </div>
+        <table id="main-table" class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>№ п/п</th>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Адрес</th>
+        <th>E-mail</th>
+        <th>Skype login</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+         <td>1</td>
+        <td>Иванов Петр Иванович</td>
+        <td>01.01.1985</td>
+        <td>Харьков</td>
+        <td><a href="mailto:petay@mail.ru">petay@mail.ru</a></td>
+        <td>p_ivanov</td>
+      </tr>
+    </tbody>
+   </table>
+   <h5>Выполненные задания: №1, №2, №4</h5>
+   <h5>Средний балл: 8.5</h5>
+   <h5>Рейтинг: 12</h5>
+ </div>
 
+    <div class="container">
+      <p>
+        <a href="/student_list/" class="btn btn-large btn-primary">Назад</a>
+      </p>
+    </div>
     <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Підключення мінімізованої збірки всіх плагінів jQuery. Можна підключати додаткові плагіни, якщо потрібно -->
