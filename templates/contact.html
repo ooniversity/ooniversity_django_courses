@@ -1,73 +1,68 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+    {%load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="icon" href="../static/img/favicon.ico">
+    <link rel="icon" href= "{% static 'img/favicon.ico' %}">
     <title>Pybursa. Kонтакты</title>
 
     <!-- Bootstrap and mystyle-->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/mystyle.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html"><img alt="Brand" src="../static/img/pybursa_logo.png" width="21px"></a>
+          <a class="navbar-brand" href="{% url 'course_info' %}"><img alt="Brand" src="{% static 'img/pybursa_logo.png' %}" width="21px"></a>
         </div><!-- /.navbar-header -->
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li ><a href="index.html">Главная</a></li>
+            <li ><a href="{% url 'course_info' %}">Главная</a></li>
             <li class="active"><a href="#">Контакты</a></li>
-            <li><a href="student_list.html">Студенты</a></li>
+            <li><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
-    </nav>  
+    </nav>
     <ul class="list-group">
       <a class="list-group-item active">
       Связаться с нами не сложно
       </a>
-      <li class="list-group-item"><img img src="..\static\img\Aleksey.jpg" alt=""/>
+      <li class="list-group-item"><img img src="{% static 'img\Aleksey.jpg' %}" alt=""/>
         <div class="caption">
           <h4>Преподаватель Алексей Радченко</h4>
           <h4>Skype: <a href="skype:dixon.che">dixon.che</a></h4>
         </div>
-      </li>      
-      <li class="list-group-item"><img img src="..\static\img\Oksana.jpg" alt="" width = "180px"/>
+      </li>
+      <li class="list-group-item"><img img src="{% static 'img\Oksana.jpg' %}" alt="" width = "180px"/>
         <div class="caption">
           <h4>Ассистент Оксана Слюсаренко</h4>
           <h4>Skype: <a href="skype:oksana.slu">oksana.slu</a></h4>
         </div>
       </li>
-      <li class="list-group-item"><img img src="..\static\img\Anna.jpg" alt=""/>
+      <li class="list-group-item"><img img src="{% static 'img\Anna.jpg' %}" alt=""/>
         <div class="caption">
           <h4>Менеджер ITBursa Анна Малахова</h4>
           <h4>Skype: <a href="skype:anechka.malakhova">anechka.malakhova</a></h4>
           <h4>E-mail: <a href="mailto:anna.itbursa@gmail.com">anna.itbursa@gmail.com</a></h4>
-          <h4>Тел. +38 096 070 53 47</h4>              
+          <h4>Тел. +38 096 070 53 47</h4>
         </div>
       </li>
-      <li class="list-group-item"><img img src="..\static\img\Pavel.jpg" alt=""/>
+      <li class="list-group-item"><img img src="{% static 'img\Pavel.jpg' %}" alt=""/>
         <div class="caption">
           <h4>Основатель ITBursa Павел Обод</h4>
           <h4>Skype: <a href="skype:azaless">azaless</a></h4>
           <h4>E-mail: <a href="mailto:itbursa100@gmail.com">itbursa100@gmail.com</a></h4>
-          <h4>Тел. +38 063 702 3 703</h4> 
+          <h4>Тел. +38 063 702 3 703</h4>
         </div>
       </li>
-      <li class="list-group-item"><img img src="..\static\img\Tatyana.jpg" alt=""/>
+      <li class="list-group-item"><img img src="{% static 'img\Tatyana.jpg' %}" alt=""/>
         <div class="caption">
           <h4>Оплата курсов: Татьяна Колесник</h4>
           <h4>Skype: <a href="skype:princessataniakolesnik">princessataniakolesnik</a></h4>
@@ -75,10 +70,10 @@
           <h4>Тел. +38 063 729 45 67</h4>
         </div>
       </li>
-    </ul>  
+    </ul>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
   </body>
 </html>

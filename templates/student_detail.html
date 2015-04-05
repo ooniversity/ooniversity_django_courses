@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+    {%load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="icon" href="../static/img/favicon.ico">
+    <link rel="icon" href= "{% static 'img/favicon.ico' %}">
     <title>Pybursa. Сведения о студенте</title>
     <!-- Bootstrap and mystyle-->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/css/mystyle.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-default"><!--What is this tab-->
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">          
-          <a class="navbar-brand" href="index.html"><img alt="Brand" src="../static/img/pybursa_logo.png" width="21px"></a>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'course_info' %}"><img alt="Brand" src="{%  static 'img/pybursa_logo.png' %}" width="21px"></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="contact.html">Контакты</a></li>
-            <li><a href="student_list.html">Студенты</a></li>
+            <li><a href="{% url 'course_info' %}">Главная</a></li>
+            <li><a href="{% url 'contact_list' %}">Контакты</a></li>
+            <li><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -35,39 +36,39 @@
       <table class="table">
         <tr>
         <td class="column30">Фамилия</td>
-        <td>Олексеенко</td>    
+        <td>Олексеенко</td>
         </tr>
         <tr>
         <td>Имя</td>
-        <td>Сергей</td>    
+        <td>Сергей</td>
         </tr>
         <tr>
         <td>Отчество</td>
-        <td>Иванович</td>    
+        <td>Иванович</td>
         </tr>
         <tr>
         <td>Дата рождения</td>
-        <td>11.07.1988</td>    
+        <td>11.07.1988</td>
         </tr>
         <tr>
         <td>Адрес</td>
-        <td>г. Харьков</td>    
+        <td>г. Харьков</td>
         </tr>
         <tr>
         <td>Телефон</td>
-        <td>066-232-1235</td>    
+        <td>066-232-1235</td>
         </tr>
         <tr>
         <td>E-mail</td>
-        <td>Olekseenko_Sergiy@gmail.com</td>    
+        <td>Olekseenko_Sergiy@gmail.com</td>
         </tr>
         <tr>
         <td>Skype</td>
-        <td>serg_olekseenko</td>    
+        <td>serg_olekseenko</td>
         </tr>
         <tr>
         <td>Средний балл</td>
-        <td>4.5</td>    
+        <td>4.5</td>
         </tr>
         <tr>
         <td>Место в рейтинге</td>
@@ -121,6 +122,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
   </body>
 </html>
