@@ -3,9 +3,12 @@ from django.shortcuts import render
 
 def quadratic_results(request):
 
-	a = request.GET['a']
-	b = request.GET['b']
-	c = request.GET['c']
+	try:	
+		a = request.GET['a']
+		b = request.GET['b']
+		c = request.GET['c']
+	except:
+		return render(request, 'get_items.html')
 
 	l1 = [a,b,c,0]
 	i = 0
@@ -49,6 +52,8 @@ def quadratic_results(request):
 		disc = 'Discreminant is ' + str(l1[3])
 		roots = 'Discreminant is less than Zero and doesnt have actual roots'
 		return render(request, 'get_items.html', {'a' : l1[0], 'b' : l1[1], 'c' : l1[2], 'd' : disc, 'roots' : roots})
+
+	
 
 
 
