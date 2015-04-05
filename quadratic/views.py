@@ -3,15 +3,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def basic_validation(x):
-    if len(x)<0:
+    if len(x)==0:
         return "коэффициент не определен\n"
-    elif not x[-1].isdigit():
+    elif x[-1].isdigit() == False:
         return "коэффициент не целое число\n"
 
 def advanced_validation (x):
-    if len(x)<0:
+    if len(x)==0:
         return "коэффициент не определен\n"
-    elif not x[-1].isdigit():
+    elif x[-1].isdigit() == False:
         return "коэффициент не целое число\n"
     elif int(x)==0:
         return "коэффициент при первом слагаемом не может быть равным нулю \n "
@@ -54,4 +54,4 @@ def quadratic_results(request):
             x1 = (-float(b) + d**(1/2.0))/(2*float(a))
             x2 = (-float(b) - d**(1/2.0))/(2*float(a))
             message += "Квадратное уравнение имеет два действительных корня: x1=%0.1f, x2=%0.1f \n\n" % (x1, x2)
-        return HttpResponse(message, content_type="text/plain; charset=utf-8")
+    return HttpResponse(message, content_type="text/plain; charset=utf-8")
