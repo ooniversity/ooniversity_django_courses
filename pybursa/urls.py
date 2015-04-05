@@ -13,6 +13,10 @@ urlpatterns = patterns('',
 
     url(r'^polls/', include('polls.urls', namespace = "polls")),
 
+    # Load URLs page quadratic equation to basic parser URLs
+    url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
+
+
     url(r'^$', index, name = 'index'),
     url(r'^contact/$', contact, name = 'contact'),
     url(r'^student_detail/$', student_detail, name = 'student_detail'),
