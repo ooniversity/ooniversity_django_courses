@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+  <head>
+    {% load staticfiles %}
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../static/favicon.ico">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
     <title>Main Page</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/ie-emulation-modes-warning.js"></script>
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,8 +37,8 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="contact.html">Contact</a></li>
-            <li role="presentation"><a href="student_list.html">Students</a></li>
+            <li role="presentation"><a href="{% url 'contact' %}">Contact</a></li>
+            <li role="presentation"><a href="{% url 'student_list' %}">Students</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Python courses</h3>
@@ -81,7 +83,7 @@
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %} "></script>
   
 
 </body></html>
