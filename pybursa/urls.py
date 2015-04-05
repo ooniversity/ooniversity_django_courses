@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'pybursa.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'pybursa.views.dj101_index'),
