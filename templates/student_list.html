@@ -7,18 +7,19 @@
     <title>PyBursa - Студенты</title>
     <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
 
+    {% load staticfiles %}
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
   <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->
-    <script src="../static/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-1.10.2.min.js' %}" type="text/javascript"></script>
     <!-- Підключення мінімізованої збірки всіх плагінів jQuery. Можна підключати додаткові плагіни, якщо потрібно -->
 
-    <script src="../static/js/bootstrap.min.js"  type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"  type="text/javascript"></script>
 
 
     <!-- Our style -->
-    <link href="../static/css/ourstyle.css" rel="stylesheet">
+    <link href="{% static 'css/ourstyle.css' %}" rel="stylesheet">
 
     <!-- Вставка HTML5 поєднується з Respond.js для підтримки в IE8 елементів HTML5 та медіа-запитів -->
     <!-- ЗАСТЕРЕЖЕННЯ: файл Respond.js не працює, якщо ви проглядаєте сторінку відкривши її з файлової системи -->
@@ -37,9 +38,9 @@
     <div class="container">
 
         <ul class="nav nav-pills">
-        <li role="presentation"><a href="index.html">Главная</a></li>
-        <li role="presentation"><a href="contacts.html">Контакты</a></li>
-        <li role="presentation" class="active"><a href="student_list.html">Студенты</a></li>
+        <li role="presentation"><a href="/">Главная</a></li>
+        <li role="presentation"><a href="/contact/">Контакты</a></li>
+        <li role="presentation" class="active"><a href="/student_list/">Студенты</a></li>
         </ul>
     </div>
 
@@ -61,7 +62,7 @@
     <tbody>
       <tr>
          <td>1</td>
-        <td > <a href="#Ivanov" data-toggle="modal">Иванов</a></td>
+        <td > <a href="/student_detail/">Иванов</a></td>
         <td>Петя</td>
         <td>Харьков</td>
         <td>p_ivanov</td>
