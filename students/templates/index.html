@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Курс по веб программированию на языке Python</title>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="{% url 'students.views.index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'students.views.contact' %}">Контакты</a></li>
+            <li role="presentation"><a href="{% url 'students.views.student_list' %}">Студенты</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">PY Bursa</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>Python с нуля!</h1>
+        <p class="lead">Курс по веб программированию на языке Python дас вам знания для того чтобы самостоятельно создавать сайты, программы, скрипты. И найти высокооплачиваемую работу!</p>
+	      <p><a class="btn btn-lg btn-success" href="https://siteheart.com/webconsultation/631625?" target="siteheart_sitewindow_631625" onclick="o=window.open;o('https://siteheart.com/webconsultation/631625?', 'siteheart_sitewindow_631625', 'width=550,height=400,top=30,left=30,resizable=yes'); return false;" id="butRegister" role="button">Записаться сейчас</a></p>
+	    </div>
+
+      <div class="row marketing">
+        <div >
+          <h2>Надоело собирать знания по крупицам?</h2>
+          <p> Наибольшей проблемой всех учебников и статей, по которым начинают изучать Python - это отсутствие практики с освоенным материалом. Можно читать тонны ресурсов по веб-программированию на Python - и не научиться ничему, потому что знания, которые вы не успели применить, очень быстро забываются. Многие начинающие сдаются на полпути, так как устают, им надоедает бесконечное блуждание по сети в поисках крупиц информации, из которых трудно собрать общую картину.</p>
+                	<h2>Программа Курса</h2>
+			<table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>
+                                        ЗАНЯТИЕ
+                                </th>
+                                <th>
+                                    ТЕМА
+                                </th>
+                                <th>
+                                    СОДЕРЖАНИЕ
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="number_cell">
+                                    1
+                                </td>
+                                <td>
+                                    Основы Python
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>zen, pep8, pylint, tools, IDE</li>
+                                        <li>консоль, типы данных, операторы</li>
+                                        <li>синтаксис управляющих конструкций (if, for...)</li>
+                                        <li>исключения и разбор стектрейса</li> 
+                                    </ul>
+                                </td>
+                            </tr>
+							<tr>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    Строки и итераторы
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>работа со строками и итерируемыми типами</li>
+                                        <li>запуск скрипта и параметры</li>
+                                        <li>git http://try.github.com/levels/1/challenges/1</li>                                
+                                    </ul>
+                                </td>
+                            </tr>
+                                 <tr>
+                                <td class="number_cell">
+                                    3
+                                </td>
+                                <td>
+                                    Функции и модульность
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>функции (def, lambda)</li>
+                                        <li>модули, структура</li>                                                                  
+                                    </ul>
+                                </td>
+                            </tr>      
+							 <tr>
+                                <td class="number_cell">
+                                    4
+                                </td>
+                                <td>
+                                    Библиотеки и пакетный менеджер
+                                </td>
+                                <td>
+                                    <ul>                                    
+                                        <li>встроеные библиотеки http://docs.python.org/tutorial/stdlib.html</li>
+                                        <li>сторонние библиотки (менеджер пакетов) PYPI</li>
+										<li>PYTHONPATH и виртуальное окружение</li>
+                                    </ul>
+                                </td>
+                            </tr>      
+							 <tr>
+                                <td class="number_cell">
+                                    5
+                                </td>
+                                <td>
+                                    Классы и ООП, основы
+                                </td>
+                                <td>
+                                    <ul>                                      
+                                        <li>синтаксис, атрибуты, методы, инстанцирование</li>
+                                        <li>все объект, служебные методы</li>                                     
+                                    </ul>
+                                </td>
+                            </tr>      
+							<tr>
+                                <td class="number_cell">
+                                    6
+                                </td>
+                                <td>
+                                    Классы и ООП, наследование
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>наследование</li>
+                                        <li>переопределение методов</li>
+                                        <li>super</li>                                       
+                                    </ul>
+                                </td>
+                            </tr>      
+							<tr>
+                                <td class="number_cell">
+                                    7
+                                </td>
+                                <td>
+                                    Основы html/css
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>html - теги и свойства</li>
+                                        <li>css - свойства и селекторы</li>
+										<li>каскадное переопределение свойств</li>
+                                    </ul>
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="number_cell">
+                                    8
+                                </td>
+                                <td>
+                                    Основы Web, HTTP
+                                </td>
+                                <td>
+                                    <ul>                                        
+                                        <li>Django. “Hello world!”</li>
+                                        <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li> 
+										<li>Инструменты отладки браузера (Firebug, Web Developer)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="number_cell">
+                                    9
+                                </td>
+                                <td>
+                                    Django first steps
+                                </td>
+                                <td>
+                                    <ul>                                       
+                                        <li>почему django?</li>
+                                        <li>введение и описание фреймворка</li> 
+					<li>старт проекта</li>
+					<li>команды manage.py</li>
+					<li>django.contrib</li>
+					<li>авторизация, django.contrib.auth</li>
+					<li>админка</li>
+					<li>статика</li>									
+                                    </ul>
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="number_cell">
+                                    10
+                                </td>
+                                <td>
+                                    Структура Web приложения
+                                </td>
+                                <td>
+                                    <ul>                                       
+                                        <li>MVC</li>
+                                        <li>Views</li>
+					<li>роутинг урлов, передача параметров</li>
+					<li>объект реквест</li>
+					<li>объект респонс</li>
+					<li>обработка реквеста, формирование респонса</li>
+					<li>обработка и изменение хедеров</li>
+					<li>мидлвар</li>
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    11
+                                </td>
+                                <td>
+                                    Работа с базами данных, ORM
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>модели и поля, типы полей и аттрибуты</li>
+                                        <li>связи между таблицами и проектирование БД</li>
+                                        <li>миграции</li>  
+					<li>фикстуры</li>
+					<li>QuerySet</li>
+					<li>Raw-sql</li>
+					<li>специальные методы</li>
+                                    </ul>
+                                </td>
+                            </tr>
+		      	<tr>
+                                <td class="number_cell">
+                                    12
+                                </td>
+                                <td>
+                                    Кастомизация админки
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>класс админки</li>
+                                        <li>настройка отображения виджетов</li>
+                                        <li>кастомизация ItemView, ListView, редактирование в ListView</li>
+                                        <li>сортировка, фильтры, поиск</li>
+                                        <li>admin actions, редактирование полей в ListView</li>
+                                        <li>Admin dashboard</li>                                 
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    13
+                                </td>
+                                <td>
+                                    Язык шаблонов
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>синтаксис, лигические конструкции</li>
+                                        <li>наследование и includes</li>
+                                        <li>понятие контекста, контекст процессор</li>
+                                        <li>теги и фильтры</li>                                                                   
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    14
+                                </td>
+                                <td>
+                                    Forms.
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>формы, типы полей, виджеты и аттрибуты</li>
+                                        <li>валидация</li>                                                                      
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    15
+                                </td>
+                                <td>
+                                    Class-based (Generic) Views
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
+                                        <li>Использование форм с class-based views</li>
+                                        <li>Миксины</li>                                                                      
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    16
+                                </td>
+                                <td>
+                                    Реализация стандартных задач
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>отправка емейл</li>
+                                        <li>кеширование</li>
+                                        <li>интернационализация</li>
+                                        <li>батарейки (готовые решения)</li>                                                                          
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    17
+                                </td>
+                                <td>
+                                    Средства отладки и тестирование
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>logging</li>
+                                        <li>pdb</li>
+                                        <li>debug toolbar</li>
+                                        <li>extensions</li>
+                                        <li>unit-tests</li>
+                                        <li>selenium</li>                                       
+                                    </ul>
+                                </td>
+                            </tr>
+							      <tr>
+                                <td class="number_cell">
+                                    18
+                                </td>
+                                <td>
+                                    Деплоймент
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>nginx</li>
+                                        <li>управление статикой</li>
+                                        <li>деплоймент</li>                                                                           
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+						<h3>Компании, которые используют Python</h3>
+          <p><img width="100%" src='../static/py.jpg' alt='Python companies'/></p>
+        </div>
+      </div>
+      <footer class="footer">
+        <p>&copy; Pybursa 2015</p>
+      </footer>
+    </div> 
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
