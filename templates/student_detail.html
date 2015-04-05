@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load staticfiles %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Pybursa. Подробности</title>
-	<link rel="icon" href="../static/pictures/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="icon" href="{% static 'pictures/favicon.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Bootstrap -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,13 +23,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
     <div  class="navbar-header">
-		<a class="logo" href="index.html"><img src="./../static/pictures/logobl.jpg" height="42" width="42"></a>
+		<a class="logo" href="{% url 'main' %}"><img src="{% static 'pictures/logobl.jpg' %}" height="42" width="42"></a>
     </div>
     <div>
 		<ul class="nav navbar-nav">
-			<li><a href="index.html">Описание</a></li>
-			<li><a href="contact.html">Контакты</a></li> 
-			<li><a href="student_list.html">Студенты</a></li>
+			<li><a href="{% url 'main' %}">Описание</a></li>
+			<li><a href="{% url 'contact' %}">Контакты</a></li> 
+			<li><a href="{% url 'student_list' %}">Студенты</a></li>
 			<li class="active"><a href="#"><b>Детальная информация о студентах</b></a></li>
 		</ul>
     </div>
@@ -185,7 +186,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
 		<p class="colortext" >© Pybursa. A.Sviridov</p>
 	</nav>
