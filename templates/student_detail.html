@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!-- saved from url=(0050)http://getbootstrap.com/examples/jumbotron-narrow/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,14 +13,14 @@
     <title>Детали студента</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
   
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,9 +35,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="index.html">Главная</a></li>
-            <li role="presentation"><a href="contact.html">Контакты</a></li>
-            <li role="presentation" class="active"><a href="student_list.html">Студенты</a></li>
+            <li role="presentation"><a href="{% url 'index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">ITBursa</h3>
@@ -151,7 +152,7 @@
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
   
 
   </body>
