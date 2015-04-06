@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls',
+    'quadratic',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,8 +87,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"), '/static/')
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]#Poisk shablonov
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-#TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader')
- #Zagruzka shablonov
-    #Eto vse v settingah
+
