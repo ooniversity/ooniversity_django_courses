@@ -51,9 +51,12 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li><a href="{% url 'results' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
+
+
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
 

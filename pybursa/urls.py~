@@ -16,13 +16,6 @@ urlpatterns = patterns('',
     url(r'^student_list/$', student_list, name='student_list'),
     url(r'^student_detail/$', student_detail, name='student_detail'),
 
+    url(r'^quadratic/', include('quadratic.urls')),
+    url(r'^quadratic/results/^?a=1&b=12&c=38$/$', results, name='results'), #default decision
 )
-
-
-
-#Соответствие urls и шаблонов:
-#    'http://127.0.0.1:8000/' => index.html
-#    'http://127.0.0.1:8000/contact/' => contact.html
-#    'http://127.0.0.1:8000/student_list/' => student_list.html
-#    'http://127.0.0.1:8000/student_detail/' => student_detail.html
-
