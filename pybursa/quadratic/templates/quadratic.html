@@ -45,9 +45,16 @@
 		<div class="container">
 			<h1>Решение квадратного уравнения вида a*x² + b*x + c = 0</h1>
 			<form action={% url "result" %}>
-				<p><input size="1" name="a">*x² + <input size="1" name="b">*x + <input size="1" name="c"> = 0</p>
-				<button type='submit' class="btn btn-default">Go!</button>
-			</form>
+				a = <input size="10" name="a"> <br />
+				b = <input size="10" name="b"> <br />
+				c = <input size="10" name="c"> <br />
+				<br />
+				<button type="submit" class="btn btn-default" >
+					calc
+				</button>
+				<button type="reset" class="btn btn-default" >
+					reset
+				</button>
 		</div>
 
 		<footer class="footer">

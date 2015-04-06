@@ -30,7 +30,7 @@ from quadratic.views import *
 
 urlpatterns = patterns('',
     url(r'^$', quadratic, name="quadratic"),
-    url(r'^result/$', results, name="result"),
+    url(r'^result/$', result, name="result"),
     #url(r'^contact/$', contact, name="contact"),
     #url(r'^student_list/$', student_list, name="student_list"),
     #url(r'^student_detail/$', student_detail, name="student_detail"),
