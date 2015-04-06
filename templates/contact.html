@@ -8,20 +8,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
-
-     <link rel="icon" href="../static/img/py.ico">
+      {% load staticfiles %}
+     <link rel="icon" href="{% static 'img/py.ico' %}">
 
     <title>Контактная информация</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+      {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/starter-template.css" rel="stylesheet">
+      {% load staticfiles %}
+    <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../static/js/ie-emulation-modes-warning.js"></script>
+      {% load staticfiles %}
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,9 +48,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Главная</a></li>
+            <li><a href="{% url 'home' %}">Главная</a></li>
             <li class="active"><a>Контакты</a></li>
-            <li><a href="student_list.html">Studetns</a></li>
+            <li><a href="{% url 'student_list' %}">Studetns</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -97,9 +100,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
+     {% load staticfiles %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+     {% load staticfiles %}
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/static/ie10-viewport-bug-workaround.js"></script>
+     {% load staticfiles %}
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 
 </body></html>

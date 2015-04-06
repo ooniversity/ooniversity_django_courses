@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
-     {% load staticfiles %}
-    <link rel="icon" href="{% static 'img/py.ico' %}">
+      {% load staticfiles %}
+     <link rel="icon" href="{% static 'img/py.ico' %}">
 
-    <title>Информация о студенте</title>
+    <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -56,40 +56,49 @@
       </div>
     </nav>
 
-    <div class="container">
-      <pre>                          
-        <table class='student_detail'>
-          <caption>Личные данные студента</caption>
-          <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>  
-            <th>Отчество</th>
-            <th>Дата рождения</th> 
-            <th>Адрес</th>
-            <th>Почта</th>
-            <th>Логин Skype</th>
-            <th>П/р</th>
-            <th>К/р</th>
-            <th>Средний бал</th>
-            <th>Рейтинг</th>
-          </tr>
-          <tr align = "center">
-            <td>Белобродский</td>
-            <td>Алексей</td>
-            <td>Иванович</td>
-            <td>12.04.85</td>
-            <td>ул. Ак. Павлова, 160</td>
-            <td>Alesv@mail.ru</td>
-            <td>Аlesvawkips</td>
-            <td>50</td>
-            <td>250</td>
-            <td>150</td>
-            <td>300</td>
-          </tr>
-        </table>
-      </pre> 
-      <a href="{% url 'student_list' %}">Список студентов<a>
-    </div>
+<div class="container">
+  <pre>                          
+    <table class='students_list'>
+      <caption>Список студентов</caption>
+      <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Адрес</th>
+        <th>Логин Skype</th>
+      </tr>
+      <tr>
+        <td><a href='student_detail.html'>Белобродский</a></td>
+        <td>Алексей</td>
+        <td>ул. Ак. Павлова, 160 кв.110</td>
+        <td>Аlesvawkips</td>
+      </tr>
+      <tr>
+        <td>Алесинская</td>
+        <td>Татьяна</td>
+        <td>ул. 23 августа 58а кв.56</td>
+        <td>tatnlamqivna</td>
+      </tr>
+      <tr>
+        <td>Сербин</td>
+        <td>Виктор</td>
+        <td>ул. Артема, 9/11 кв.33</td>
+        <td>vikpwoskowtor</td>
+      </tr>
+      <tr>
+        <td>Катаев</td>
+        <td>Артем</td>
+        <td>ул. Ахсарова, 11 кв. 43</td>
+        <td>artytatsymem</td>
+      </tr>
+      <tr>
+        <td>Гриценко</td>
+        <td>Михаил</td>
+        <td>ул. Блюхера, 22 кв. 114</td>
+        <td>mixxvyirha</td>
+      </tr>
+    </table>     
+  </pre> 
+</div>
 
 
     <!-- Bootstrap core JavaScript
@@ -100,12 +109,11 @@
       {% load staticfiles %}
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      {% load staticfiles %}
+       {% load staticfiles %}
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
     <style>
-        .student_detail {margin: auto; font-size: 14px;  width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
-        .student_detail th, .student_detail tr, .student_detail td {text-align: center;  border: 1px solid black}
-        .student_detail th, .student_detail td {padding: 7px 5px 7px 5px;}
+        .students_list {margin: auto; font-size: 18px;  width: 700; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
+        .students_list th, .students_list tr, .students_list td {text-align: center;  border: 1px solid black}
+        .students_list th, .students_list td {padding: 7px 20px 7px 20px;}
     <style>
-
 </body></html>

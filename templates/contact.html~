@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
-     {% load staticfiles %}
-    <link rel="icon" href="{% static 'img/py.ico' %}">
+      {% load staticfiles %}
+     <link rel="icon" href="{% static 'img/py.ico' %}">
 
-    <title>Информация о студенте</title>
+    <title>Контактная информация</title>
 
     <!-- Bootstrap core CSS -->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-     {% load staticfiles %}
+      {% load staticfiles %}
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,64 +48,64 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li ><a href="{% url 'contact' %}">Контакты</a></li>
-            <li class="active"><a>Студенты</a></li>
+            <li><a href="index.html">Главная</a></li>
+            <li class="active"><a>Контакты</a></li>
+            <li><a href="student_list.html">Studetns</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-      <pre>                          
-        <table class='student_detail'>
-          <caption>Личные данные студента</caption>
-          <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>  
-            <th>Отчество</th>
-            <th>Дата рождения</th> 
-            <th>Адрес</th>
-            <th>Почта</th>
-            <th>Логин Skype</th>
-            <th>П/р</th>
-            <th>К/р</th>
-            <th>Средний бал</th>
-            <th>Рейтинг</th>
-          </tr>
-          <tr align = "center">
-            <td>Белобродский</td>
-            <td>Алексей</td>
-            <td>Иванович</td>
-            <td>12.04.85</td>
-            <td>ул. Ак. Павлова, 160</td>
-            <td>Alesv@mail.ru</td>
-            <td>Аlesvawkips</td>
-            <td>50</td>
-            <td>250</td>
-            <td>150</td>
-            <td>300</td>
-          </tr>
-        </table>
-      </pre> 
-      <a href="{% url 'student_list' %}">Список студентов<a>
-    </div>
+
+      <!--<div class="starter-template">-->
+
+      <div style = "font-size: 16px; text-align : justify">
+
+        <h2> Контактная информация  Центра обучения</h2>
+        <p >м. Спортивная ул. Плехановская 76, к. 211, 2 этаж</p>
+        <h2>Телефоны администратора центра:  </h2>
+
+        <p >(057) 731 54 41</p>
+        <p >(057) 731 54 32</p>
+
+        <h2> Режим работы: </h2>
+        <p> Пн-Пт  с  9:00  до  21:00</p>
+        <p> Сб 10:00 до 18:00</p>
+        <p> ВЫХОДНОЙ:  ВС</p>
+
+        <h2>Учебно - образовательный центр  проводит обучение по таким темам:<h2>
+
+
+        <ul style = "font-size: 16px; text-align : left">
+            <li>Основы Python
+            <li>Строки и итераторы 
+            <li>Функции и модульность
+            <li>Библиотеки и пакетный менеджер 
+            <li>Классы и ООП, основы 
+            <li>Классы и ООП, наследование
+            <li>Основы html/css
+            <li>Основы Web, HTTP 
+            <li>Django first steps
+            <li>Структура Web приложения
+            <li>Работа с базами данных, ORM 
+           
+        </ul>
+        <p></p>
+      </div>
+
+    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/jquery.js' %}"></script>
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
-    <style>
-        .student_detail {margin: auto; font-size: 14px;  width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
-        .student_detail th, .student_detail tr, .student_detail td {text-align: center;  border: 1px solid black}
-        .student_detail th, .student_detail td {padding: 7px 5px 7px 5px;}
-    <style>
 
 </body></html>
