@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+ <html lang="en">
+{% load staticfiles %}
+
+ <head>
+   <meta charset="utf-8">
+   <title>| Решение квадратного уравнения онлайн |</title>
+  <link rel="shortcut icon" href="{% static 'ico.jpg' %}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <style type="text/css">
+    body { 
+      margin-top: 20px;
+      padding-left: 20px
+    }
+  </style>
+ </head>
+
+  <body background="{% static 'back.jpg' %}">
+    <p> Квадратное уравнение это уравнение вида:  <img style="vertical-align: middle" src="{% static 'square.gif' %}">
+    </p>
+
+    <p>Коэффициенты уравнения:<br></p> 
+
+    <ul>
+      <li>a = {{ variables.a }} <br>
+        {% if errors.a %}
+          {{ errors.a }}
+        {% endif %}
+      </li>
+      <li>b = {{ variables.b }} <br>
+        {% if errors.b %}
+          {{ errors.b }}
+        {% endif %}
+      </li>
+      <li>c = {{ variables.c }} <br>
+        {% if errors.c %}
+          {{ errors.c }}
+        {% endif %}
+      </li>
+    </ul>
+
+
+    {% if discr != None %}
+
+      <p style="color: red"> Дискриминант: {{ discr }}</p>
+
+      {% if discr < 0 %}
+        <p>
+          Дискриминант меньше нуля, квадратное уравнение не имеет действительных 
+          решений
+        </p>
+      {% elif discr == 0 %}
+        <p>
+          Дискриминант равен нулю, квадратное уравнение имеет один действительный
+          корень x1 = x2 = {{ x1 }}
+        </p>
+      {% else %}
+        <p>
+          Квадратное уравнение имеет два действительных корня: 
+          x1 = {{ x1 }}, x2 = {{ x2 }}
+        </p>
+      {% endif %}
+    {% endif %}
+
+  </body>
+
+</html>
