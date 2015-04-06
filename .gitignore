@@ -1,0 +1,6 @@
+*~
+*.pyc
+.DS_store
+# python precompiled files:
+*.pyc
+*.pyo
