@@ -7,5 +7,4 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^', include('pybursa_app.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^quadratic/', include('quadratic.urls')),
 )
