@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Course detail info
+{% endblock %}
+
+{% block content %}
+<div class="course-info">
+  <h2>{{ course.title}}</h2>
+  <p>{{ course.descr_full}}</p>
+
+  <div>
+    <h2>План курса</h2>
+    <div class="courses">
+      <table class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Тема</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lesson in course_lessons %}
+        <tr>
+          <td>{{ lesson.num_in_plan }}</td>
+          <td>{{ lesson.theme }}</td>
+          <td>{{ lesson.descr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
