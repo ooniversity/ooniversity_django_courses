@@ -1,7 +1,7 @@
 from django.db import models
 
 class Course(models.Model):
-    title = models.CharField("Title", max_length=30)
+    title = models.CharField("Title", help_text="Enter a title of course", max_length=30)
     descr_sm = models.CharField("Small description", max_length=128)
     descr_full = models.TextField("Full description")
 
@@ -14,7 +14,7 @@ class Lesson(models.Model):
     theme = models.CharField("Theme", max_length=64)
     descr = models.TextField("Description")
     course = models.ForeignKey(Course)
-    num_in_plan = models.PositiveIntegerField()
+    num_in_plan = models.PositiveIntegerField(verbose_name=u'Number in plan')
 
     def __unicode__(self):
         return self.theme
