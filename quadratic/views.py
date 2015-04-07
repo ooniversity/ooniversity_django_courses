@@ -6,12 +6,9 @@ from quadratic import check_coef, solve_quadratic_equation, get_discr
 
 
 def results(request):
-    a = request.GET.get('a')
-    b = request.GET.get('b')
-    c = request.GET.get('c')
-    if a == None: a = ''
-    if b == None: b = ''
-    if c == None: c = ''
+    a = request.GET.get('a', '')
+    b = request.GET.get('b', '')
+    c = request.GET.get('c', '')
     text = 'Квадратное уравнение a*x*x + b*x + c = 0\n'
     text += '\n• a = {0}'.format(a)
     text += check_coef(a, isA = True)
