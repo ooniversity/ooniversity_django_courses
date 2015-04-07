@@ -17,6 +17,9 @@ class Migration(migrations.Migration):
                 ('choice_text', models.CharField(max_length=200)),
                 ('votes', models.IntegerField(default=0)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Question',
@@ -25,10 +28,14 @@ class Migration(migrations.Migration):
                 ('question_text', models.CharField(max_length=200)),
                 ('pub_date', models.DateTimeField(verbose_name=b'date published')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='choice',
             name='question',
             field=models.ForeignKey(to='polls.Question'),
+            preserve_default=True,
         ),
     ]

@@ -34,8 +34,14 @@
 			            <li>
 			              <a href="{% url "student_list" %}">Студенты</a>
 			            </li>
+			       		<li>
+			       			<a href="{% url "polls:index" %}">Polls</a>
+			            </li>
 			            <li>
-			              <a href="{% url "instructors_list" %}">Инструктора</a>
+			              <a href="{% url "quadratic" %}">Quadratic</a>
+			            </li>
+			            <li>
+			              <a href="{% url "admin:index" %}">Admin</a>
 			            </li>
 					</ul>
 				</div><!--/.nav-collapse -->
@@ -43,27 +49,18 @@
 		</nav>
 
 		<div class="container">
-			<h1>Результаты решения квадратного уравнения</h1>
-
-		<div class="container">
-		<p>    
-		    <ul>
-		    	<li>a = {{ a.0 }} <br/> {{ a.1 }}</li>
-		    	<li>b = {{ b.0 }} <br/> {{ b.1 }}</li>
-		    	<li>c = {{ c.0 }} <br/> {{ c.1 }}</li>
-		    <ul>
-		</p>
-		<p>   
-	    {% if d.1 != '' %}
-	    Дискриминант: {{ d.0 }} <br/>
-	    {{ d.1 }}
-	   	{% endif %}
-		</p>
-		
-		<a href="{% url "quadratic" %}"><h2>Еще раз</h2></a>
-
-    	</div>	
-			
+			<h1>Решение квадратного уравнения вида a*x² + b*x + c = 0</h1>
+			<form action={% url "result" %}>
+				a = <input size="10" name="a"> <br />
+				b = <input size="10" name="b"> <br />
+				c = <input size="10" name="c"> <br />
+				<br />
+				<button type="submit" class="btn btn-default" >
+					calc
+				</button>
+				<button type="reset" class="btn btn-default" >
+					reset
+				</button>
 		</div>
 
 		<footer class="footer">
