@@ -35,8 +35,15 @@
 			              <a href="{% url "student_list" %}">Студенты</a>
 			            </li>
 			            <li>
-			              <a href="{% url "instructors_list" %}">Инструктора</a>
+			              <a href="{% url "polls:index" %}">Polls</a>
 			            </li>
+			            <li>
+			              <a href="{% url "quadratic" %}">Quadratic</a>
+			            </li>
+			            <li>
+			              <a href="{% url "admin:index" %}">Admin</a>
+			            </li>
+					</ul>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
@@ -46,18 +53,22 @@
 			<h1>Результаты решения квадратного уравнения</h1>
 
 		<div class="container">
-	      {% if answer == '' %}
-	      <p>Квадратное уравнение a×x² + b×x + c = 0</p>
-	      {% for n,i,error in list %}
-	      <p>{{ n }} = {{ i }}</p>
-	      <p>{{ error }}</p>
-	      {% endfor %}
-	      {% else %}
-	      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 >= 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.2.1 >= 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
-	      <p>{{ answer }}</p>
-	      {% endif %}
+		<p>    
+		    <ul>
+		    	<li>a = {{ a.0 }} <br/> {{ a.1 }}</li>
+		    	<li>b = {{ b.0 }} <br/> {{ b.1 }}</li>
+		    	<li>c = {{ c.0 }} <br/> {{ c.1 }}</li>
+		    <ul>
+		</p>
+		<p>   
+	    {% if d.1 != '' %}
+	    Дискриминант: {{ d.0 }} <br/>
+	    {{ d.1 }}
+	   	{% endif %}
+		</p>
+		
+		<a href="{% url "quadratic" %}"><h2>Еще раз</h2></a>
 
-	      <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Еще раз</a>
     	</div>	
 			
 		</div>
