@@ -3,11 +3,12 @@ from django.shortcuts import render
 
 def quadratic_results(request):
 
-
-	a = request.GET.get('a')
-	b = request.GET.get('b')
-	c = request.GET.get('c')
-
+	try:	
+		a = request.GET.get('a')
+		b = request.GET.get('b')
+		c = request.GET.get('c')
+	except TypeError:
+		return render(request, 'get_items.html')
 
 	l1 = [a,b,c,0]
 	i = 0
