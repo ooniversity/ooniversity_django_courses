@@ -12,7 +12,12 @@ def contact(request):
     return render(request, 'contact.html')
 
 def student_list(request):
-    return render(request, 'student_list.html')
+    course_id = request.GET.get('course_id')
+    if course_id == None:
+        students = Student.objects.all()
+    else:
+        students = Student.objects.filter(courses=course_id)
+    return render(request, 'student_list.html', {'students': students})
 
 def student_detail(request, student_id):
     student = Student.objects.get(id=student_id)

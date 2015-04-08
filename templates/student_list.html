@@ -39,55 +39,28 @@
         <thead>
           <tr>
             <th>№</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
+            <th>Фамилия и имя</th>
             <th>Адрес</th>
             <th>Skype</th>
+            <th>Курсы</th>
           </tr>
         </thead>
         <tbody>
+          {% for student in students %}
           <tr>
             <th scope="row">1</th>
-            <td><a href="{% url 'views.student_detail' %}">Иванов</a></td>
-            <td>Иван</td>
-            <td>Украина, Харьков</td>
-            <td>ivan_ivanov</td>
+            <td><a href="">{{student.surname}} {{student.name}}</a></td>
+            <td>{{student.address}}</td>
+            <td>{{student.skype}}</td>
+            <td>
+              {% for course in student.courses.all %}
+              <p>
+              {{course.name}}
+              </p>
+              {% endfor %}
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Петров</td>
-            <td>Петр</td>
-            <td>Украина, Киев</td>
-            <td>petr_kiev</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Максимов</td>
-            <td>Максим</td>
-            <td>Россия, Москва</td>
-            <td>max_max</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Кириллов</td>
-            <td>Кирилл</td>
-            <td>Россия, Санкт-Петербург</td>
-            <td>super_kirill</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Васильев</td>
-            <td>Василий</td>
-            <td>Украина, Днепропетровск</td>
-            <td>vasya666</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Андреев</td>
-            <td>Андрей</td>
-            <td>Украина, Мариуполь</td>
-            <td>andrey_7</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
