@@ -24,3 +24,8 @@ class Student(models.Model):
     @property
     def all_courses(self):
         return self.courses.all()
+
+    @property
+    def full_name(self):
+        return self.name + " " + self.surname
+  
