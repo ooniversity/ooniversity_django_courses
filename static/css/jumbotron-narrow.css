@@ -50,6 +50,9 @@ body {
   padding: 14px 24px;
   font-size: 21px;
 }
+.jumbotron .left{
+  text-align: left;
+}
 
 /* Supporting marketing content */
 .marketing {

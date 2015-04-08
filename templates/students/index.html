@@ -30,54 +30,55 @@
     
     <link rel="stylesheet" href="{% static "css/js-help.css" %}" type="text/css" />
     <script type="text/javascript" src="{% static "js/jquery-1.4.1.min.js" %}"></script>
- 
+
+
   </head>
 
-<body">
+<body>
 
 	
-	<div class="container">
+    <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{% url 'courses:index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'courses:index' %}">Главная</a></li>
             <li role="presentation"><a href="/">Контакты</a></li>
-	          <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-	       </ul>
+            <li role="presentation" class="active"><a href="{% url 'students:index' %}">Студенты</a></li>
+         </ul>
         </nav>
         <h3 class="text-muted">ITBursa</h3>
       </div>
-	
-      <div class="jumbotron">
-        <h1>Профессиональные курсы</h1>
-        <p class="lead">Присоединяйся!</p>
-      </div>
-
-      {% if courses_list %}
-       <table  class="table table-striped table-bordered table-hover">
+      
+      {% if students_list %}
+      <h2>Список студентов</h2>
+       <table  class="table table-striped ">
        <thead>
         <tr>
-           <th>Курс</th><th>Описание</th>
+           <th>#</th><th>Фамилия имя</th><th>Адрес</th><th>Skype</th><th>Курсы</th>
        </tr>
       </thead>
-      <tbody data-link="row" class="rowlink">
-      {% for course in courses_list %}
+      <tbody>
+      {% for student in students_list %}
        <tr>
-         <td><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></td>
-         <td>{{ course.short_description }} </td>
+         <td>{{ forloop.counter }}</a></td>
+         <td>{{ student.full_name }}</a></td>
+         <td>{{ student.address }}</a></td>
+         <td>{{ student.skype }}</a></td>
+         <td>{% for course in student.course.all %}{{ course }}<br/>{% endfor %}</td>
         </tr>
        {% endfor %}
       </tbody>
      </table>
       {% else %}
-          <p>Нет открытых курсов.</p>
+          <p>Нет студентов.</p>
       {% endif %}
+      
 
       <footer class="footer">
         <p>anya-k 2015</p>
       </footer>
 
- </div> <!-- /container -->
+    </div> <!-- /container -->
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
