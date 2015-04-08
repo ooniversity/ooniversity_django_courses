@@ -12,4 +12,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^quadratic/', include('quadratic.urls', namespace='quadratic')),
     url(r'^courses/', include('courses.urls', namespace='courses')),
+    url(r'^students/', include('students.urls', namespace='students')),
+
 )
