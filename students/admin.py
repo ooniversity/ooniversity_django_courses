@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import widgets
 from students.models import Student
 
+
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'skype']
     list_display_links = ['full_name']
@@ -14,5 +15,6 @@ class StudentAdmin(admin.ModelAdmin):
         (None, {'fields': ['courses']}),
     ]
     filter_horizontal = ['courses']
+
 
 admin.site.register(Student, StudentAdmin)

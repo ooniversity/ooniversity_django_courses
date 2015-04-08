@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import widgets
 from courses.models import Course, Lesson
 
+
 class LessonInline(admin.TabularInline):
     model = Lesson
     
