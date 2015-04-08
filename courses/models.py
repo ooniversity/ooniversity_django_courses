@@ -13,7 +13,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     theme = models.CharField("Theme", max_length=64)
     descr = models.TextField("Description")
-    course = models.ForeignKey(Course)
+    course = models.ForeignKey(Course, related_name='lessons_list')
     num_in_plan = models.PositiveIntegerField(verbose_name=u'Number in plan')
 
     def __unicode__(self):
