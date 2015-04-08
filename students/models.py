@@ -10,8 +10,10 @@ class Student(models.Model):
     surname = models.CharField("Surname", max_length=25)
     birthday = models.DateField("Birthday")
     email = models.EmailField("Email", unique=True)
-    phone_num = models.CharField(verbose_name=u'Phone number', unique=True, max_length=12)
-    address = models.CharField("Address", help_text='Enter your address', max_length=256)
+    phone_num = models.CharField(verbose_name=u'Phone number', 
+        unique=True, max_length=12)
+    address = models.CharField("Address", help_text='Enter your address', 
+        max_length=256)
     skype = models.CharField("Skype", max_length=128)
     courses = models.ManyToManyField(Course)
 
@@ -28,4 +30,3 @@ class Student(models.Model):
     @property
     def full_name(self):
         return self.name + " " + self.surname
-  

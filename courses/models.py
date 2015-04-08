@@ -1,10 +1,11 @@
 from django.db import models
 
+
 class Course(models.Model):
-    title = models.CharField("Title", help_text="Enter a title of course", max_length=30)
+    title = models.CharField("Title", help_text="Enter a title of course", 
+        max_length=30)
     descr_sm = models.CharField("Small description", max_length=128)
     descr_full = models.TextField("Full description")
-
 
     def __unicode__(self):
         return self.title

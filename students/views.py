@@ -4,7 +4,6 @@ from students.models import Student
 from courses.models import Course
 
 
-
 def students_list(request):
     course_id  = request.GET.get('course_id')
 
@@ -15,8 +14,9 @@ def students_list(request):
         students = course.student_set.all()
 
     return render(request, 'students_list.html', {
-        'students':students,
+        'students': students,
         })
+
 
 def student_detail(request, pk):
     student = Student.objects.get(pk=pk)
