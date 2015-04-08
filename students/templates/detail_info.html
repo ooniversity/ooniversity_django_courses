@@ -48,7 +48,9 @@ Detail info
         <tr>
           <th>Курсы</th>
           <td>
-            {{ student.courses_string }}
+            {% for course in student.all_courses %}
+            <a href="{% url 'courses:show' course.id %}">{{ course.title }}</a><br>
+            {% endfor %}
           </td>
         </tr>
         <!-- {% for course in courses %}

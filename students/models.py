@@ -20,7 +20,7 @@ class Student(models.Model):
 
     def get_courses(self):
         return "\n".join([p.title for p in self.courses.all()])
- 
+
     @property
-    def courses_string(self):
-        return "; ".join([p.title for p in self.courses.all()])
+    def all_courses(self):
+        return self.courses.all()

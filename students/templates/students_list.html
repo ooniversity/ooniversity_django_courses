@@ -30,7 +30,9 @@ Students
           </td>
           <td>{{ student.address }}</td>
           <td>{{ student.skype }}</td>
-          <td>{{ student.courses_string }}</td>
+          <td>{% for course in student.all_courses %}
+            <a href="{% url 'courses:show' course.id %}">{{ course.title }}</a><br>
+          {% endfor %}</td>
         </tr>
         {% endfor %}
       </tbody>
