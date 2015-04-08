@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href='{% static "img/favicon.ico" %}' type="image/x-icon">
-    <title>Квадратное уравнение</title>
+    <title>{{ object_list.Course.name }}</title>
 
     <!-- Bootstrap -->
-    <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dropdown-submenu.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,8 +19,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href='{% static "css/carousel.css" %}' rel="stylesheet">
   </head>
   <body>
+
+<!-- NAVBAR ================================================== -->
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -31,17 +37,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home' %}">
-            <img alt="Brand" src="{% static 'img/python.png' %}" height="20px">
-          </a>
+          <img alt="Brand" src="{% static 'img/python.png' %}" height="40px" vspace="5px">
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href='{% url "home" %}'>Главная</a></li>
             <li><a href='{% url "contact" %}'>Контакты</a></li>
-            <li><a href='{% url "student_list" %}'>Студенты</a></li>
+            <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты</a></li>
+            <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Материалы <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -55,6 +60,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Примеры<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{% url 'quadratic' %}">Квадратное уравнение</a></li>
+                <li><a href='{% url "student_list" %}'>Студенты</a></li>
               </ul>
             </li>
           </ul>
@@ -86,12 +92,40 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+<!-- Course ================================================== -->
+
+    
+
     <div class="container">
-      <p>Квадратное уравнение вида a×x² + b×x + c = 0</p>
-      <form action="{% url 'results' %}">
-      <p><input size ='1' name='a'>×x² + <input size ='1' name='b'>×x + <input size ='1' name='c'> = 0</p>
-      <button type="submit" class="btn btn-default">Расчитать</button>
-      </form>
+      <h1>{{ object_list.Course.name }}</h1>
+      <p>{{ object_list.Course.description }}</p>
+    </div>
+
+    <div class="container">
+      <h2 class="sub-header">План курса</h2>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Тема</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          {% for lesson in object_list.Lesson %}
+          <tbody>
+            <tr>
+              <td><p>{{ lesson.consecutive_number }}</p></td>
+              <td>{{ lesson.theme }}</td>
+              <td><p>{{ lesson.description }}</p></td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
     </div>
 
 <!-- FOOTER ================================================== -->
@@ -110,6 +144,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
