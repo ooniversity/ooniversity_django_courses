@@ -24,7 +24,8 @@ body {
     text-align: justify;
 }
 
-.course-info  h2 {
+.course-info h2,
+.detail-info h2 {
     background-color: #eeeeee;
     text-align: center;
 }
@@ -120,6 +121,10 @@ body {
 
 .table {
     margin-top: 20px;
+}
+
+.table-style th {
+    text-align: left;
 }
 
 .text-block {
