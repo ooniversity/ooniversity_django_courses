@@ -1,5 +1,7 @@
 from django.contrib import admin
 from polls.models import Choice, Question
+from courses.models import Course, Lesson
+from students.models import Student
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -15,4 +17,16 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     search_fields = ['question_text']
 
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ['name', 'short_description']
+
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'description']
+
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'surname']
+
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(Course, CourseAdmin)
+admin.site.register(Lesson, LessonAdmin)
+admin.site.register(Student, StudentAdmin)
