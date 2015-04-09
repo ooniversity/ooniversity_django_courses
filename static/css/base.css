@@ -24,6 +24,12 @@ body {
     text-align: justify;
 }
 
+.course-info h2,
+.detail-info h2 {
+    background-color: #eeeeee;
+    text-align: center;
+}
+
 .container > h2 {
     text-align:  center;
     padding-bottom: 20px;
@@ -102,7 +108,8 @@ body {
     border-collapse: collapse;
 }
 
-.program thead th {
+.program thead th,
+.courses thead, th {
     text-transform: uppercase;
     text-align: center;
 }
@@ -114,6 +121,10 @@ body {
 
 .table {
     margin-top: 20px;
+}
+
+.table-style th {
+    text-align: left;
 }
 
 .text-block {

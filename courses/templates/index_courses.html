@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Courses
+{% endblock %}
+
+{% block content %}
+
+<div id="container-info" class="text-block" >
+  <h2 class="h2-center">PyBursa</h2>
+  <p>В наших курсах мы сместили акцент в сторону <b>практики</b>. </p>
+  <p>Будет умеренное количество <i>теории</i> - <b>максимум</b> практики.</p>
+  <p>Примерное соотношение <i>теории</i> и <i>практики</i>: <b>30%</b> на <b>70%</b>.</p>
+  <p>Практические занятия в аудитории + видеозаписи скринкастов.</p>
+  <p>Жесткая система выполнения обязательных домашних заданий.</p>
+</div>
+
+<div id="couses-info">
+  <h2 class="h2-center">Выбирай курсы, которые тебе интересны!</h2>
+  <div class="courses">
+    <table class="table" style="width:100%">
+    <thead>
+      <tr>
+        <th>Курс</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td><a href="{% url 'courses:show' course.id %}">{{ course.title }}</a></td>
+        <td>{{ course.descr_sm }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

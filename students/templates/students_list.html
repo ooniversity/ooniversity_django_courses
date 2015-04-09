@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Students
+{% endblock %}
+
+{% block content %}
+<div class="course-info">
+  <h2>Список студентов</h2>
+
+  <div>
+    <div class="students">
+      <table class="table table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Фамилия Имя</th>
+          <th>Адрес</th>
+          <th>Skype</th>
+          <th>Курсы</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>{{ student.id }}</td>
+          <td><a href="{% url 'students:student_detail' student.id %}">
+              {{ student.surname}} {{ student.name}}
+              </a>
+          </td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.skype }}</td>
+          <td>{% for course in student.all_courses %}
+            <a href="{% url 'courses:show' course.id %}">{{ course.title }}</a><br>
+          {% endfor %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
