@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>PyBursa - Список студентов</title>
+    <title>ItBursa - Список студентов</title>
     <link href="{% static "bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
   </head>
@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'views.index' %}">PyBursa</a>
+          <a class="navbar-brand" href="{% url 'views.index' %}">ItBursa</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -39,55 +39,28 @@
         <thead>
           <tr>
             <th>№</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
+            <th>Фамилия и имя</th>
             <th>Адрес</th>
             <th>Skype</th>
+            <th>Курсы</th>
           </tr>
         </thead>
         <tbody>
+          {% for student in students %}
           <tr>
-            <th scope="row">1</th>
-            <td><a href="{% url 'views.student_detail' %}">Иванов</a></td>
-            <td>Иван</td>
-            <td>Украина, Харьков</td>
-            <td>ivan_ivanov</td>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'student_detail' student.id %}">{{student.surname}} {{student.name}}</a></td>
+            <td>{{student.address}}</td>
+            <td>{{student.skype}}</td>
+            <td>
+              {% for course in student.courses.all %}
+              <p>
+              <a href="{% url 'course_detail' course.id %}">{{course.name}}</a>
+              </p>
+              {% endfor %}
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Петров</td>
-            <td>Петр</td>
-            <td>Украина, Киев</td>
-            <td>petr_kiev</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Максимов</td>
-            <td>Максим</td>
-            <td>Россия, Москва</td>
-            <td>max_max</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Кириллов</td>
-            <td>Кирилл</td>
-            <td>Россия, Санкт-Петербург</td>
-            <td>super_kirill</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Васильев</td>
-            <td>Василий</td>
-            <td>Украина, Днепропетровск</td>
-            <td>vasya666</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Андреев</td>
-            <td>Андрей</td>
-            <td>Украина, Мариуполь</td>
-            <td>andrey_7</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
