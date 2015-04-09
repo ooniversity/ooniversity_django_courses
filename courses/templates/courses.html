@@ -29,7 +29,13 @@
 		<ul class="nav navbar-nav">
 			<li><a href="{% url 'main' %}">Описание</a></li>
 			<li><a href="{% url 'contact' %}">Контакты</a></li> 
-			<li><a href="{% url 'student_list' %}">Студенты</a></li> 
+			<li>
+            {% if planmodel %}
+             <a href="{% url 'students:students_list' %}?course_id={{ planmodel.id }}">Студенты</a>
+            {% else %}
+             <a href="{% url 'students:students_list' %}">Студенты</a>
+            {% endif %}
+            </li>
 		</ul>
     </div>
 	</nav>
@@ -37,12 +43,10 @@
 	<br>
 	<br>
 	<div id="container">
-		<h1>Курсы по Python/Django — PyBursa</h1>  
-		<img src="{% static 'pictures/logo.png' %}" style="float:right; max-width:30%;"><br>
-		<p><h4>ОБ ЭТОМ КУРСЕ</h4>
+		<p><h1 align="center">{{ planmodel.name }}</h1></p>
+        <p><h3 align="center">{{ planmodel.description }}</h3></p>
 
-        </p>
-        <h1 align="center">Выбирай на каком курсе ты хочеш учиться!</h1><br>
+        <h1 align="center">План курса</h1><br>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -51,7 +55,7 @@
                     <th>Описание</th>
                 </tr>
                 </thead>
-                {% for i in planmodel %}
+                {% for i in lessons %}
                 <tbody>
                 <tr>
 	                <td>{{ i.order_number }}</td>

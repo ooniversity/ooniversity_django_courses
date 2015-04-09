@@ -29,7 +29,7 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="{% url 'main' %}">Описание</a></li>
 			<li><a href="{% url 'contact' %}">Контакты</a></li> 
-			<li><a href="{% url 'student_list' %}">Студенты</a></li> 
+			<li><a href="{% url 'students:students_list' %}">Студенты</a></li>
 		</ul>
     </div>
 	</nav>
@@ -69,15 +69,15 @@
                     <th>Курс</th>
                     <th>Описание</th>
                 </tr>
-                </thead>
-                {% for i in model %}
+            </thead>
+            {% for i in model %}
                 <tbody>
                 <tr>
-	                <td>{{ i.name }}</td>
+	                <td><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></td>
 	                <td>{{ i.short_description }}</td>
                 </tr>
                 </tbody>
-                {% endfor %}
+            {% endfor %}
         </table>
     </div>
 

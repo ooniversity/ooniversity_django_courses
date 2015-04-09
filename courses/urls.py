@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
-from courses import views
+from courses.views import course_plan
 
 urlpatterns = patterns('',
-    url(r'^1/$', views.course_plan),
+    url(r'^(?P<pk>\d+)/$', course_plan, name='lessons'),
 )

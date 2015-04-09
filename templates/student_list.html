@@ -29,7 +29,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="{% url 'main' %}">Описание</a></li>
 				<li><a href="{% url 'contact' %}">Контакты</a></li> 
-				<li class="active"><a href="{% url 'student_list' %}">Студенты</a></li> 
+				<li class="active"><a href="{% url 'students:students_list' %}">Студенты</a></li>
 			</ul>
 		</div>
 		</div></nav>
@@ -50,55 +50,28 @@
 						<thead>
 							<tr class="filters">
 								<th><input type="text" class="form-control" placeholder="#"></th>
-								<th><input type="text" class="form-control" placeholder="Фамилия"></th>
-								<th><input type="text" class="form-control" placeholder="Имя"></th>
+								<th><input type="text" class="form-control" placeholder="Фамилия Имя"></th>
 								<th><input type="text" class="form-control" placeholder="Адрес"></th>
-								<th><input type="text" class="form-control" placeholder="Skype:"></th>
+								<th><input type="text" class="form-control" placeholder="Skype"></th>
+								<th><input type="text" class="form-control" placeholder="Курсы"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#1">1</a></td>
-								<td><a href="{% url 'student_detail' %}#1">Иванов</a></td>
-								<td><a href="{% url 'student_detail' %}#1">Андрей</a></td>
-								<td>Харьков ул. Солнечная д.10</td>
-								<td>aivanov</td>
+                            {% for i in students %}
+								<td>{{ i.id }}</td>
+								<td><a href="{% url 'students:student_details' i.id %}">
+                                    {{ i.surname}} {{ i.name}}
+                                </a></td>
+								<td>{{ i.address }}</td>
+								<td>{{ i.skype }}</td>
+								<td>
+                                    {% for k in i.courseset %}
+                                    <p><a href="{% url 'courses:lessons' k.id %}">{{ k.name }}</a></p>
+                                    {% endfor %}
+                                </td>
 							</tr>
-							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#2">2</a></td>
-								<td><a href="{% url 'student_detail' %}#2">Петров</a></td>
-								<td><a href="{% url 'student_detail' %}#2">Сергей</a></td>
-								<td>Харьков ул. Изобильная д. 23</td>
-								<td>spetrov</td>
-							</tr>
-							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#3">3</a></td>
-								<td><a href="{% url 'student_detail' %}#3">Cидоров</a></td>
-								<td><a href="{% url 'student_detail' %}#3">Константин</a></td>
-								<td>Чугуев ул. Оборонная д. 9</td>
-								<td>darkknight</td>
-							</tr>
-							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#4">4</a></td>
-								<td><a href="{% url 'student_detail' %}#4">Горшков</a></td>
-								<td><a href="{% url 'student_detail' %}#4">Николай</a></td>
-								<td>Люботин ул. Победы д. 2</td>
-								<td>gorshok</td>
-							</tr>
-							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#5">5</a></td>
-								<td><a href="{% url 'student_detail' %}#5">Тупиков</a></td>
-								<td><a href="{% url 'student_detail' %}#5">Андрей</a></td>
-								<td>Харьков ул. Шариковая д. 44 кв. 45</td>
-								<td>tupik</td>
-							</tr>
-							<tr style="display: table-row;">
-								<td><a href="{% url 'student_detail' %}#6">6</a></td>
-								<td><a href="{% url 'student_detail' %}#6">Дмитриев</a></td>
-								<td><a href="{% url 'student_detail' %}#6">Александр</a></td>
-								<td>Харьков ул. Тепловозная д. 5 кв. 7</td>
-								<td>dmitriev</td>
-							</tr>
+                            {% endfor %}
 						</tbody>
 					</table>
 				</div>
