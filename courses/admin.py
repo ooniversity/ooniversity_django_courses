@@ -12,3 +12,5 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ['title', 'descr_sm']
     search_fields = ['title']
     inlines = [LessonInline, ]
+
+admin.site.register(Course, CourseAdmin)
