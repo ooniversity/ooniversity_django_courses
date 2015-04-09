@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.ico' %">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
     <title>Главная</title>
 
@@ -51,7 +51,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="{% url 'student_list' %}">Студенты</a></li>
-            <li><a href="{% url 'results' %}">Уравнение</a></li>
+            <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -74,6 +74,17 @@
             <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научит <strong>ITBursa</strong> - <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank">лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>!</p>
           </div>
           </div>
+
+<!--{{ courses }}-->
+
+{% for i in courses %}
+    <br>
+    <b> <a href="{{ url.url }}">{{i.name}} </a> </b>
+    {{i.description}}
+{% endfor %}
+
+<!--http://www.tangowithdjango.com/book/chapters/models_templates.html#fig-rango-links-->
+
  <div class="row">
             <div class="col-xs-6 col-lg-4">
               <h2>Компетентно</h2>
