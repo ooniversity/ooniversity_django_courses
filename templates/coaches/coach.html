@@ -133,13 +133,13 @@
             <tr>
               <td>Курсы учитель</td>
               <td>{% for coach in object_list.Course_coarch %}
-                <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a></p>
+                <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>
             <tr>
               <td>Курсы ассистент</td>
               <td>{% for assistant in object_list.Course_assistant %}
-                <p><a href="{% url 'courses:detail' assistant.id %}">{{ assistant }}</a></p>
+                <p><a href="{% url 'courses:detail' assistant.id %}">{{ assistant }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>
           </tbody>
