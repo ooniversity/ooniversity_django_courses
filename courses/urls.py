@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from courses.views import course_plan
 
 urlpatterns = patterns('',

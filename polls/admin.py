@@ -1,7 +1,5 @@
 from django.contrib import admin
 from polls.models import Choice, Question
-from courses.models import Course, Lesson
-from students.models import Student
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
