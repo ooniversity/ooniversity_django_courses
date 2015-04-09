@@ -13,14 +13,14 @@
     <title>Главная</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+   <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,37 +43,46 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{% url 'courses:index' %}">Главная</a></li>
             <li role="presentation"><a href="/">Контакты</a></li>
-	          <li role="presentation"><a href="{% url 'students:index' %}?course_id={{ course.id }}">Студенты</a></li>
+	          <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
 	       </ul>
         </nav>
         <h3 class="text-muted">ITBursa</h3>
       </div>
-      
-      <div class="jumbotron">
-        <h1>{{ course.name }}</h1>
-        <h4 class="left">{{ course.description }}</h4>
-      </div>
-    
-      <h2>План курса</h2>
-      {% if course %}
-       <table  class="table table-striped ">
-       <thead>
-        <tr>
-           <th>#</th><th>Тема</th><th>Описание</th>
-       </tr>
-      </thead>
+       
+      {% if student %}
+      <h2>{{ student.full_name }}</h2>
+       <table  class="table ">
       <tbody>
-      {% for lesson in course_lesson_list %}
        <tr>
-         <td>{{ lesson.number_order }}</td>
-         <td>{{ lesson.theme }}</td>
-         <td>{{ lesson.description }} </td>
+         <td>Дата рождения</td>
+         <td>{{ student.date_of_birth|date:"d N Y" }}</td>
+       </tr>
+       <tr>
+          <td>Адрес</td>
+          <td>{{ student.address }}</td>
+       </tr>
+       <tr>
+          <td>Почта</td>
+          <td>{{ student.email }}</td>
+       </tr>
+       <tr>
+          <td>Логин skype</td>
+          <td>{{ student.skype }}</td>
+       </tr>
+       <tr>
+          <td>Телефон</td>
+          <td>{{ student.phone }}</td>
+       </tr>
+       <tr>
+          <td>Курсы</td>
+          <td>{% for course in student.course.all %}
+             <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+             <br/>{% endfor %}</td>
         </tr>
-       {% endfor %}
       </tbody>
      </table>
       {% else %}
-          <p>Нет доступных курсов.</p>
+          <p>Нет данных о студенте.</p>
       {% endif %}
       
 
@@ -89,5 +98,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
     
+    
+
   </body>
 </html>

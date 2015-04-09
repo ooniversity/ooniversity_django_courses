@@ -4,7 +4,7 @@ from django.views import generic
 from courses.models import Course
 
 class IndexView(generic.ListView):
-    template_name = 'index.html'
+    template_name = 'courses/index.html'
     context_object_name = 'courses_list'
 
     def get_queryset(self):

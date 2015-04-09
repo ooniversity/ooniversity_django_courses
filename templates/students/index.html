@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!-- saved from url=(0050)http://getbootstrap.com/examples/jumbotron-narrow/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,12 +8,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="{% static 'img/logo.ico' %}">
 
     <title>Главная</title>
 
     <!-- Bootstrap core CSS -->
-    {% load staticfiles %}
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -60,11 +60,13 @@
       <tbody>
       {% for student in students_list %}
        <tr>
-         <td>{{ forloop.counter }}</a></td>
-         <td>{{ student.full_name }}</a></td>
-         <td>{{ student.address }}</a></td>
-         <td>{{ student.skype }}</a></td>
-         <td>{% for course in student.course.all %}{{ course }}<br/>{% endfor %}</td>
+         <td>{{ forloop.counter }}</td>
+         <td><a href="{% url 'students:detail' student.id %}">{{ student.full_name }}</a></td>
+         <td>{{ student.address }}</td>
+         <td>{{ student.skype }}</td>
+         <td>{% for course in student.course.all %}
+             <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+             <br/>{% endfor %}</td>
         </tr>
        {% endfor %}
       </tbody>
