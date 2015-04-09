@@ -50,12 +50,13 @@
           <li><a href="{% url 'contact' %}">Контакты</a></li>
 
 {% if not message %}
-{% if student_id %}  
+{% if student_id %}
           <li><a href="{% url 'students' %}?course_id={{ student_id }}">Студенты</a></li>
 {% endif %}
 {% else %}
-          <li><a href="{% url 'students_full' %}">Студенты</a></li>
+          <li><a href="{% url 'students' %}">Студенты</a></li>
 {% endif %}
+
           <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
@@ -73,21 +74,46 @@
           </p>
           
  	<div class="row">
-	<h2> План курса </h2>
-     
-   <!-- {% for i in lessons %}
-     <br> <b> {{i.topic}}</b>
-           {{i.description}}
-    {% endfor %}-->
 
-{% if not message %}  
-    {% for i in lessons %}
+{% if not message %}
+<div class="jumbotron">
+   <div class="jumbo_internal">
+        <h1>{{course_name}}</h1>
+        <p>{{course_description}}</p>
+    </div>
+ </div>
+
+<!--{% if not message %}     
+   {% for i in lessons %}
         <br><b> {{i.topic}}</b>
            {{i.description}}
     {% endfor %}
 {% else %}
         <br><b> {{message}}</b>
+{% endif %} -->
+
+<h2> План курса </h2>
+<table class="table">
+ <thead>
+   <tr>
+      <th>#</th>
+      <th>Тема</th>
+      <th>Описание</th>
+   </tr>
+ </thead>
+ <tbody>
+{% for i in lessons %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.topic}}</td>
+      <td>{{i.description}}</td>
+    </tr>    
+{% endfor %}          
+  </tbody>
+{% else %}
+   <br><b> {{message}}</b>
 {% endif %} 
+</table>
 
         </div><!--/row-->
 

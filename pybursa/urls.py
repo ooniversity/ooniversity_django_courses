@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     #url(r'^courses/', course_detail, name='course'),
     url(r'^courses/(?P<course_id>\d+)/$', course_detail, name='course'),
 
+    url(r'^students/(?P<student_id>\d+)/$', student_one, name='student_one'),
     url(r'^students/', students, name='students'),
-    url(r'^students/$', students, name='students_full'),#WHY NOT WORKING?????????????????????????
+    url(r'^students/$', students_full, name='students_full'),
+
 )
