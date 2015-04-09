@@ -1,4 +1,5 @@
 from django.db import models
+from coaches.models import Coach
 
 
 class Course(models.Model):
@@ -6,6 +7,8 @@ class Course(models.Model):
         max_length=30)
     descr_sm = models.CharField("Small description", max_length=128)
     descr_full = models.TextField("Full description")
+    coach = models.ForeignKey(Coach, related_name='coach_n')
+    assistant = models.ForeignKey(Coach, related_name='assistant_n')
 
     def __unicode__(self):
         return self.title
