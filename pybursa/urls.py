@@ -18,7 +18,7 @@ urlpatterns = patterns('',
 
     url(r'^quadratic/', include('quadratic.urls')),
 
-    #url(r'^courses/', course_detail, name='course'),
+    url(r'^course/', course_from_student, name='course_from_student'),
     url(r'^courses/(?P<course_id>\d+)/$', course_detail, name='course'),
 
     url(r'^students/(?P<student_id>\d+)/$', student_one, name='student_one'),

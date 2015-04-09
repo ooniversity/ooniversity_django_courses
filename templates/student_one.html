@@ -66,10 +66,12 @@
           </p>
           
  	<div class="row">
-	<h2>Студенты курса X DYNAMICS</h2>
+{% if not msg %} 
+{% if student_one %}
+	<h2>{{student_one.name}} {{student_one.surname}}</h2>
                      
 	<div class="table-responsive"> <!--horizontal scrolls-->
-{% if not msg %} 
+<!--{% if not msg %} 
    {% if student_one %}
       <br>
       <b> {{student_one.surname}} </b>
@@ -79,63 +81,63 @@
    {% endif %}
 {% else %}
       <br><b> {{msg}}</b>
-{% endif %} 
+{% endif %}  -->
 
-<p class="up">Карточка студента</p>                    
+
   <div id = "student_details">
     <table class="table table-hover">										
       <tbody>
-        <tr>
-          <td>Фамилия </td>
-          <td>Персианова</td>
-        </tr>
-        <tr>
-          <td>Имя </td>
-          <td>Елена</td>
-        </tr>
-        <tr>
-          <td>Отчество </td>
-          <td>Юрьевна</td>
-        </tr>
 
-        <tr class="big_tr">
-          <td>Рейтинг </td>
-          <td>8</td>
-        </tr>
-
-        <tr class="big_tr">
-          <td>Средний балл </td>
-          <td>100 %</td>
-        </tr>
-        <tr>
-          <td>Пакет </td>
-          <td>Standard</td>
-        </tr>
         <tr>
           <td>Дата рождения </td>
-          <td>11/02/1989</td>
+          <td>{{student_one.birth_date}}</td>
         </tr>
+
         <tr>
           <td>Адрес </td>
-          <td>Украина, г.Харьков, ул.Межлаука, д.8, кв.3</td>
+          <td>{{student_one.address}}</td>
         </tr>
+
         <tr>
           <td>Почта </td>
-          <td>61010</td>
+          <td>{{student_one.email}}</td>
         </tr>
+
         <tr>
           <td>Логин scype </td>
-          <td>O.Persianova</td>
+          <td>{{student_one.scype}}</td>
         </tr>
+
+        <tr>
+          <td>Телефон </td>
+          <td>{{student_one.phone}}</td>
+        </tr>
+
+        <tr class="big_tr">
+          <td>Курсы </td>
+          <td>
+            {% for item in student_one.courses.all %}
+                <a href="{% url 'course_from_student' %}?course_id={{item.id}}">{{item.name}} </a>
+            {% endfor %}
+        </td>
+        </tr>
+        
       </tbody>
     </table>
+
+   {% endif %}
+
+
 </div> <!-- #student_details -->
 
 </div><!--????-->
-
+{% else %}
+      <br><b> {{msg}}</b>
+{% endif %}
 
           </div><!--/row-->
-	<div id="a_center"> <a href="#top"> Наверх </a> </div>
+	<!--<div id="a_center"> <a href="#top"> Наверх </a> </div>-->
+
       </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
