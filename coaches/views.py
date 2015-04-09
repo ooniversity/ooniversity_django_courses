@@ -22,10 +22,11 @@ class CoachView(generic.ListView):
     model = Coach
 
     def get_queryset(self):
-        qs = super(CoachView, self).get_queryset().filter(id=self.kwargs['id'])[0]
+        qs = super(CoachView, self).get_queryset()
+        qs_filtered = qs.filter(id=self.kwargs['id'])[0]
         course = Course.objects.all()
         return {
-            'Coach': qs,
-            'Course_coarch': course.filter(coach=qs),
-            'Course_assistant': course.filter(assistant=qs),
+            'Coach': qs_filtered,
+            'Course_coarch': course.filter(coach=qs_filtered),
+            'Course_assistant': course.filter(assistant=qs_filtered),
         }

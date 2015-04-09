@@ -19,7 +19,8 @@ class CourseDetialView(generic.ListView):
         course = Course.objects.all().filter(id=self.kwargs['id'])[0]
         coach = Coach.objects.all().filter(user=course.coach.user)[0]
         assistant = Coach.objects.all().filter(user=course.assistant.user)[0]
-        return {'Lesson': qs.filter(course=self.kwargs['id']).order_by('consecutive_number'),
-                'Course': course,
-                'Coach': {'coach': coach, 'assistant': assistant}
+        return {
+            'Lesson': qs.filter(course=self.kwargs['id']).order_by('consecutive_number'),
+            'Course': course,
+            'Coach': {'coach': coach, 'assistant': assistant}
         }
