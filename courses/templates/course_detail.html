@@ -51,10 +51,10 @@
 
 {% if not message %}
 {% if student_id %}
-          <li><a href="{% url 'students' %}?course_id={{ student_id }}">Студенты</a></li>
+          <li><a href="{% url 'students' %}?course_id={{ student_id }}">Студенты <span class="specific_menu">{{course_name}}</span></a></li>
 {% endif %}
 {% else %}
-          <li><a href="{% url 'students' %}">Студенты</a></li>
+          <li><a href="{% url 'students' %}">Студенты ITBursa</a></li>
 {% endif %}
 
           <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
@@ -92,6 +92,7 @@
         <br><b> {{message}}</b>
 {% endif %} -->
 
+
 <h2> План курса </h2>
 <table class="table">
  <thead>
@@ -104,7 +105,7 @@
  <tbody>
 {% for i in lessons %}
     <tr>
-      <td>{{forloop.counter}}</td>
+      <td><span class="badge">{{forloop.counter}}</span></td>
       <td>{{i.topic}}</td>
       <td>{{i.description}}</td>
     </tr>    

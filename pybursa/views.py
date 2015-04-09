@@ -41,27 +41,35 @@ def course_detail(request, course_id):
 #https://docs.djangoproject.com/en/1.8/ref/models/querysets/#django.db.models.query.QuerySet.get
 
 def students(request):
-    course_id = request.GET.get('course_id', '') #TO CHANGE default "" afterwards!    
-    course_name = ""#in order not to be referenced before assignment 
-    if course_id:
-        course_name = Course.objects.get(id=int(course_id))
-        course_students = Student.objects.filter(courses__id = course_id)
-    else:
-        course_students = Student.objects.all()
-    for item in course_students:
-        #student_id = item.id
-        #item.url = str(student_id) + "/"
-        item.url = str(item.id) + "/"
-    return render(request, 'students.html',  {"course_students": course_students, "course_name": course_name})
+    try:
+        course_id = request.GET.get('course_id', '') #TO CHANGE default "" afterwards!    
+        course_name = ""#in order not to be referenced before assignment 
+        course_students = ""#in order not to be referenced before assignment 
+        comment = ""
+        if course_id:
+            course_name = Course.objects.get(id=int(course_id))
+            course_students = Student.objects.filter(courses__id = course_id)
+        else:
+            course_students = Student.objects.all()
+        for item in course_students:
+            #student_id = item.id
+            #item.url = str(student_id) + "/"
+            item.url = str(item.id) + "/"
+            #item_courses = item.courses.all()
+            #for i in item.courses.all():
+             #  i.url = "courses/"+str(course_id)+"/"
+        return render(request, 'students.html',  {"course_students": course_students, "course_name": course_name, "course_id": course_id})
+    except ObjectDoesNotExist:
+        comment = "Sorry, no course with id = " + course_id + " exists yet. So no relevant students list exists."
+        return render(request, 'students.html',  {"comment": comment})        
 
-def students_full(request):
-    students_full = Student.objects.all()
-    for item in students_full:
-        item.name
-        item.surname
-        student_id = item.id
-        
-    return render(request, 'students_full.html',  {"students_full": students_full})
+#def students_full(request):
+ #   students_full = Student.objects.all()
+  #  for item in students_full:
+   #     item.name
+    #    item.surname
+     #   student_id = item.id        
+    #return render(request, 'students_full.html',  {"students_full": students_full})
 
 def student_one(request, student_id):
     try:
