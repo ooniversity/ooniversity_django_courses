@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>IT Bursa Student's list</title>
+    <title>IT Bursa</title>
     {% load static from staticfiles %}
     <link rel="shortcut icon" href="{% static "IMG/icon.gif"%}" />
 
@@ -18,7 +18,7 @@
     <!-- Custom styles for this template -->
     <link href="{%static "dashboard.css"%}" rel="stylesheet">
     <link href="{%static "index.css"%}" rel="stylesheet">
-
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -34,62 +34,55 @@
   <body>
 
     <!--Шапка -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'index_itbursa' %}"><img src="{% static "IMG/logo.gif"%}"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'index_itbursa' %}">главная</a></li>
-            <li><A href="{% url 'index_itbursa' %}L">python</A></li>
-            <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
-            <li><A href="{% url 'index_itbursa' %}L">преподаватели</A></li>
-            <li><A href="#">студенты</A></li>
-            <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'index_itbursa' %}"><img src="{% static "IMG/logo.gif"%}"></a>
+       </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <form class="navbar-form navbar-right">
+          <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'index_itbursa' %}">главная</a></li>
+          <li><A href="{% url 'index_itbursa' %}">python</A></li>
+          <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
+          <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
+          <li><A href="{% url 'student_list' %}">студенты</A></li>
+          <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
     <!--Курс Питон датальная информация представленная в табличной форме-->
     <div class="row">
-      <br><br>
+        <h2 class="sub-header">{{course.name}}</h2><br><br>
+        <p>{{course.discription}}</p>
           <div class="table-responsive">
             <table ip = 'base-python' class="table table-striped">
               <thead>
                 <tr>
-                  <th>Фамилия Имя</th>
-                  <th>Адрес</th>
-                  <th>Skype</th>
-                  <th>Курсы</th>
+                  <th>ТЕМА</th>
+                  <th>СОДЕРЖАНИЕ</th>
                 </tr>
               </thead>
               <tbody>
-                {%for student in students%}
-                  <tr>
-                    <td>
-                      <li><a href="{% url 'student_detail' %}">{{student.surname}} {{student.name}}</a></li>
-                    </td>
-                    <td>
-                      {{student.address}}
-                    </td>
-                    <td>
-                      {{student.skype}}
-                    </td>
-                    <td>
-                      {{student.course.courses}}
-                    </td>
-                  </tr>
+                {%for lesson in lessons%}
+                    <tr>
+                      <td>
+                        {{lesson.theme}}
+                      </td>
+                      <td>
+                        {{lesson.discription}}
+                      </td>
+                    </tr>
                 {%endfor%}
               </tbody>
             </table>
@@ -107,10 +100,10 @@
             <p>ITBursa</p>
         </div>
         <div class="col-sm-3 col-md-3">
-            <a href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
+            <!--<a href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
             <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x"></i></a>
             <a href="https://www.youtube.com/"><i class="fa fa-youtube-play fa-3x"></i></a>
-            <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>
+            <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>-->
         </div>
       </div>
     </div>

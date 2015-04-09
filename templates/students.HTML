@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>IT Bursa {{student.surname}} {{student.name}}</title>
+    {% load static from staticfiles %}
+    <link rel="shortcut icon" href="{% static "IMG/icon.gif"%}" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="{%static "bootstrap/css/bootstrap.css"%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{%static "dashboard.css"%}" rel="stylesheet">
+    <link href="{%static "index.css"%}" rel="stylesheet">
+    <link href="{%static "student.css"%}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{%static "JS/ie-emulation-modes-warning.js"%}"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <!--Шапка -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'index_itbursa' %}"><img src="{% static "IMG/logo.gif"%}"></a>
+       </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <form class="navbar-form navbar-right">
+          <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'index_itbursa' %}">главная</a></li>
+          <li><A href="{% url 'index_itbursa' %}">python</A></li>
+          <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
+          <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
+          <li><A href="{% url 'student_list' %}">студенты</A></li>
+          <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <br><br><br><br><br><br>
+  <!--Контакты Жуланова Александра Сергеевича-->
+  <div class = 'row'>
+      <div id = 'student' class="media">
+        <div class="media-left media-middle">
+          <div class="row placeholders">
+            <div class="col-xs-12 col-sm-12 placeholder">
+              <img src="{% static "IMG/student.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
+
+              <h4>{{student.surname}} {{student.name}}</h4>
+              <span class="text-muted">студент ITBursa</span>
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+            <div class = 'teacher1-text'>
+              <p> <small>дата рождения:</small> {{student.date_of_birth}} </p>
+              <p> <small>адрес:</small> {{student.address}} </p>
+              <p> <small>e-mail:</small> {{student.email}} </p>
+              <p> <small>skype:</small> {{student.skype}}  </p>
+              <p> <small>телефон:</small> {{student.phone}} </p>
+              <p> <small>курсы:</small> {{student.Courses.courses}}</p>
+            </div>
+        </div>
+       </div>
+  </div>
+
+  <!--Футер-->
+  <div class = 'row'>
+    <div class="panel-footer">
+      <div class="col-sm-3 col-md-3">
+        <small>2015 © Borovenskiy Nikolay</small>
+      </div>
+      <div class="col-sm-6 col-md-6">
+          <p>ITBursa</p>
+      </div>
+      <div class="col-sm-3 col-md-3">
+
+      </div>
+    </div>
+  </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js"%}"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static "JS/holder.js"%}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "JS/ie10-viewport-bug-workaround.js"%}"></script>
+  </body>
+</html>

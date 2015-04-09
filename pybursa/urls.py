@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^$', views.show_index, name = 'index_itbursa'),
     url(r'^contact/$', views.show_contacts, name = 'contacts_itbursa'),
     url(r'^student_list/$', views.show_students, name = 'student_list'),
-    url(r'^student_detail/$', views.show_student_detail, name = 'student_detail'),
+    url(r'^students/(?P<id>\d+)/$', views.show_student_detail, name = 'student_detail'),
+    url(r'^courses/(?P<id>\d+)/$', views.show_courses),
 
     url(r'^admin/', include(admin.site.urls)),
 
