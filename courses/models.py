@@ -12,7 +12,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     subject = models.CharField(u"Тема", max_length=255)
     description = models.TextField(u"Описание")
-    course = models.ForeignKey('Course', verbose_name=u"Курс", related_name='coursekey')
+    course = models.ForeignKey(Course, verbose_name=u"Курс", related_name='coursekey')
     order_number = models.PositiveIntegerField(u"Номер по порядку")
 
     def __unicode__(self):
