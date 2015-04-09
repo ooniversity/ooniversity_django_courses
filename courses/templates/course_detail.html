@@ -50,9 +50,9 @@
           <li><a href="{% url 'contact' %}">Контакты</a></li>
 
 {% if not message %}
-{% if student_id %}
+<!--{% if student_id %}-->
           <li><a href="{% url 'students' %}?course_id={{ student_id }}">Студенты <span class="specific_menu">{{course_name}}</span></a></li>
-{% endif %}
+<!--{% endif %}-->
 {% else %}
           <li><a href="{% url 'students' %}">Студенты ITBursa</a></li>
 {% endif %}

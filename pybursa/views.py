@@ -41,14 +41,18 @@ def course_detail(request, course_id):
 #https://docs.djangoproject.com/en/1.8/ref/models/querysets/#django.db.models.query.QuerySet.get
 
 def course_from_student(request):
-    course_id = request.GET.get('course_id', '')
-    course_current = Course.objects.get(id=int(course_id))
-    course_name = course_current.name
-    course_description = course_current.description
-    student_id = str(course_id)
-    lessons = Lesson.objects.filter(course = course_current) 
-    message = ""
-    return render(request, 'course_detail.html', {"lessons": lessons, "message": message, "student_id": student_id, "course_name": course_name, "course_description": course_description})
+    try:
+        course_id = request.GET.get('course_id', '')
+        course_current = Course.objects.get(id=int(course_id))
+        course_name = course_current.name
+        course_description = course_current.description
+        student_id = str(course_id)
+        lessons = Lesson.objects.filter(course = course_current) 
+        message = ""
+        return render(request, 'course_detail.html', {"lessons": lessons, "message": message, "student_id": student_id, "course_name": course_name, "course_description": course_description})
+    except ObjectDoesNotExist:
+        message = "Sorry, no course with id = " + course_id + " exists yet."
+        return render(request, 'course_detail.html',  {"message": message})       
 
 def students(request):
     try:
@@ -62,12 +66,7 @@ def students(request):
         else:
             course_students = Student.objects.all()
         for item in course_students:
-            #student_id = item.id
-            #item.url = str(student_id) + "/"
             item.url = str(item.id) + "/"
-            #item_courses = item.courses.all()
-            #for i in item.courses.all():
-             #   i.url = "courses/"+str(i.id)+"/"
         return render(request, 'students.html',  {"course_students": course_students, "course_name": course_name, "course_id": course_id})
     except ObjectDoesNotExist:
         comment = "Sorry, no course with id = " + course_id + " exists yet. So no relevant students list exists."

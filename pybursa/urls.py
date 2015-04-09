@@ -23,6 +23,8 @@ urlpatterns = patterns('',
 
     url(r'^students/(?P<student_id>\d+)/$', student_one, name='student_one'),
     url(r'^students/', students, name='students'),
+    #url(r'^students/$', students_all, name='students'),
+    #\w{11,}
     #url(r'^students/$', students_full, name='students_full'),
 
 )
