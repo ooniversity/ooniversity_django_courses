@@ -43,9 +43,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Главная</a></li>
-            <li class="active"><a href="#">Контакты <span class="sr-only">(current)</span></a></li>
-            <li><a href="{% url 'students' %}">Студенты</a></li>
-            <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="active"><a href="#">Контакты <span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'students' %}">Студенты</a></li>
+                <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
+                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Материалы <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -92,20 +98,20 @@
     </nav>
 
     <div class="jumbotron">
-      <h1 class="text-center">Преподователи</h1>
+      <h1 class="text-center"><a href="{% url 'coaches:coaches' %}">Преподаватели</a></h1>
     </div>
 
     <div class="container marketing">
       <div class="row">
         <div class="col-xs-6">
           <img class="img-circle" src="{% static 'img/Senior.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>АЛЕКСЕЙ РАДЧЕНКО</h2>
-          <p>Алексей работал python разработчиком в ряде компаний, реализовал более 10-ти проектов, принимал участие в разработке более 20-ти проектов. Участвовал как слушатель и докладчик во многих тематических конференциях, благодаря всему этому собрал набор “лучших практик”, которые применяются абсолютно всеми компаниями, использующими python.</p>
+          <h2><a href="{% url 'coaches:coach' coaches.0.id %}">{{ coaches.0.user.last_name }} {{ coaches.0.user.first_name }}</a></h2>
+          <p>{{ coaches.0.description }}</p>
         </div><!-- /.col-xs-6 -->
         <div class="col-xs-6">
           <img class="img-circle" src="{% static 'img/Oksana.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>ОКСАНА СЛЮСАРЕНКО</h2>
-          <p>Веб-разработчик с четырехлетним опытом, имеет опыт преподавания, проведения семинаров и тренингов. Умеет сочетать глубокие профессиональные знания и подачу их в доступной и легкой форме. Любит работать с людьми и считает, что любой человек может научиться даже самым сложным вещам.</p>
+          <h2><a href="{% url 'coaches:coach' coaches.1.id %}">{{ coaches.1.user.last_name }} {{ coaches.1.user.first_name }}</a></h2>
+          <p>{{ coaches.1.description }}</p>
         </div><!-- /.col-xs-6 -->
       </div><!-- /.row -->
     </div>

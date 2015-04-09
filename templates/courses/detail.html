@@ -44,9 +44,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href='{% url "home" %}'>Главная</a></li>
-            <li><a href='{% url "contact" %}'>Контакты</a></li>
-            <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты</a></li>
-            <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href='{% url "contact" %}'>Контакты</a></li>
+                <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты</a></li>
+                <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
+                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Материалы <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -94,16 +100,43 @@
 
 <!-- Course ================================================== -->
 
-    
-
     <div class="container">
       <h1>{{ object_list.Course.name }}</h1>
       <p>{{ object_list.Course.description }}</p>
     </div>
 
     <div class="container">
+      <h2 class="sub-header">Преподаватели</h2>
+    </div>
+
+    <div class="container">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Учитель</h3>
+        </div>
+        <div class="panel-body">
+          <h4><a href="{% url 'coaches:coach' object_list.Coach.coach.id %}">{{ object_list.Coach.coach.user.last_name }} {{ object_list.Coach.coach.user.first_name }}</a></h4>
+          <p>{{ object_list.Coach.coach.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Асистент</h3>
+        </div>
+        <div class="panel-body">
+          <h4><a href="{% url 'coaches:coach' object_list.Coach.assistant.id %}">{{ object_list.Coach.assistant.user.last_name }} {{ object_list.Coach.assistant.user.first_name }}</a></h4>
+          <p>{{ object_list.Coach.assistant.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
       <h2 class="sub-header">План курса</h2>
     </div>
+
 
     <div class="container">
       <div class="table-responsive">
