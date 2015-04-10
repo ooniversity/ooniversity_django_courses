@@ -29,7 +29,7 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="{% url 'main' %}">Описание</a></li>
 			<li><a href="{% url 'contact' %}">Контакты</a></li> 
-			<li><a href="{% url 'student_list' %}">Студенты</a></li> 
+			<li><a href="{% url 'students:students_list' %}">Студенты</a></li>
 		</ul>
     </div>
 	</nav>
@@ -60,47 +60,27 @@
 			<br>
 			Алексей работал python разработчиком в ряде компаний, реализовал более 10-ти проектов, принимал участие в разработке более 20-ти проектов. Участвовал как слушатель и докладчик во многих тематических конференциях, благодаря всему этому собрал набор “лучших практик”, которые применяются абсолютно всеми компаниями, использующими python.<br>
 			<br></span>
-			<h4>ПРОГРАММА КУРСА</h4>
 			<br>
-			Первая неделя. Основы синтаксиса.<br>
-			<br>
-			zen, pep8<br>
-			<br>
-			консоль python и консоль linux<br>
-			<br>
-			переменные, типы данных, операторы<br>
-			<br>
-			работа со строками и итерируемыми типами<br>
-			<br>
-			запуск скрипта и параметры<br>
-			<br>
-			синтаксис управляющих конструкций (if, for...)<br>
-			<br>
-			исключения и разбор стектрейса<br>
-			<br>
-			Вторая неделя. Функции и модульность.<br>
-			<br>
-			функции в python(def)<br>
-			<br>
-			модули, структура<br>
-			<br>
-			встроеные библиотеки stdlib<br>
-			<br>
-			сторонние библиотки, менеджер пакетов PYPI<br>
-			<br>
-			PYTHONPATH и виртуальное окружение<br>
-			<br>
-			Третья неделя. ООП.<br>
-			<br>
-			синтаксис, атрибуты, методы, инстанцирование<br>
-			<br>
-			все объект, служебные методы<br>
-			<br>
-			наследование<br>
-			<br>
-			переопределение методов, super</p>
-	</div>
-	
+        </p>
+        <h1 align="center">Выбирай на каком курсе ты хочеш учиться!</h1><br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Курс</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            {% for i in model %}
+                <tbody>
+                <tr>
+	                <td><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></td>
+	                <td>{{ i.short_description }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -29,7 +29,7 @@
 		<ul class="nav navbar-nav">
 			<li><a href="{% url 'main' %}">Описание</a></li>
 			<li><a href="{% url 'contact' %}">Контакты</a></li> 
-			<li><a href="{% url 'student_list' %}">Студенты</a></li>
+			<li><a href="{% url 'students:students_list' %}">Студенты</a></li>
 			<li class="active"><a href="#"><b>Детальная информация о студентах</b></a></li>
 		</ul>
     </div>
@@ -39,150 +39,51 @@
 	<br>
 	<div id="container">
 		<div>
-			<hr class="style-eight" id="1">
+			<hr class="style-eight">
 			<div class="row">
 				<div class="col-xs-5">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Иванов Андрей Константинович</h2></h4>
+							<h4>Детальные сведенья о студенте: <h2>{{ student.name }} {{ student.surname }}</h2></h4>
 						</div>
 						<div class="panel-body">
-							<p>
-								Дата рождения: 16.02.1984 <br> 
-								Адрес: Харьков ул. Солнечная д.10 <br>
-								Почта: aivanov@gmail.com <br>
-								Логин: a_ivanov<br>
-								Skype: aivanov<br>
-								Выполненые практ. и конр. работы: 7/14<br>
-								Средний бал: 7<br>
-								Рейтинг: 6<br>
-							</p>
+							<table class="table table-striped">
+								<tr>
+                                    <th>Дата рождения: </th>
+                                    <td> {{ student.date_of_birth }} </td>
+                                </tr>
+								<tr>
+                                    <th>Адрес: </th>
+                                    <td> {{ student.address }} </td>
+                                </tr>
+								<tr>
+                                    <th>Почта: </th>
+                                    <td> {{ student.email }} </td>
+                                </tr>
+								<tr>
+                                    <th>Логин Skype: </th>
+                                    <td> {{ student.skype }} </td>
+                                </tr>
+								<tr>
+                                    <th> Телефон: </th>
+                                    <td> {{ student.phone }} </td>
+                                </tr>
+                                <tr>
+                                    <th>Курсы: </th>
+                                    <td>
+                                    {% for i in courses %}
+                                        <p><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></p>
+                                    {% endfor %}
+                                    </td>
+                                </tr>
+							</table>
 						</div>
 					</div>
 				</div>
-            </div> 
+            </div>
+            <hr class="style-eight">
 		</div>
-		<div>
-			<hr class="style-eight" id="2">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Петров Сергей Леонидович</h2></h4>
-						</div>
-						<div class="panel-body">
-							<p>
-								Дата рождения: 24.03.1988 <br> 
-								Адрес: Харьков ул. Изобильная д. 23 <br>
-								Почта: spetrov@gmail.com <br>
-								Логин: s_petrov<br>
-								Skype: spetrov<br>
-								Выполненые практ. и конр. работы: 9/14<br>
-								Средний бал: 9<br>
-								Рейтинг: 5<br>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div> 
-		</div>
-		<div>
-			<hr class="style-eight" id="3">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Сидоров Константин Сергеевич</h2></h4>
-						</div>
-						<div class="panel-body">
-							<p>
-								Дата рождения: 13.10.1986 <br> 
-								Адрес: Чугуев ул. Оборонная д. 9 <br>
-								Почта: darkknight@mail.ru <br>
-								Логин: k_sidorov<br>
-								Skype: darkknight<br>
-								Выполненые практ. и конр. работы: 10/14<br>
-								Средний бал: 10<br>
-								Рейтинг: 4<br>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div> 
-		</div>
-		<div>
-			<hr class="style-eight" id="4">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Горшков Николай Олегович</h2></h4>
-						</div>
-						<div class="panel-body">
-							<p>
-								Дата рождения: 20.08.1985 <br> 
-								Адрес: Люботин ул. Победы д. 2 <br>
-								Почта: gorshok@mail.ru <br>
-								Логин: n_gorshkov<br>
-								Skype: gorshok<br>
-								Выполненые практ. и конр. работы: 11/14<br>
-								Средний бал: 10<br>
-								Рейтинг: 3<br>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div> 
-		</div>
-		<div>
-			<hr class="style-eight" id="5">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Тупиков Андрей Николаевич</h2></h4>
-						</div>
-						<div class="panel-body">
-							<p>
-								Дата рождения: 16.05.1989 <br> 
-								Адрес: Харьков ул. Шариковая д. 44 кв. 45 <br>
-								Почта: tupik@gmail.com <br>
-								Логин: a_tupikov<br>
-								Skype: tupik<br>
-								Выполненые практ. и конр. работы: 12/14<br>
-								Средний бал: 10<br>
-								Рейтинг: 2<br>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div> 
-		</div>
-		<div>
-			<hr class="style-eight" id="6">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>Дмитриев Александр Петрович</h2></h4>
-						</div>
-						<div class="panel-body">
-							<p>
-								Дата рождения: 8.12.1983 <br> 
-								Адрес: Харьков ул. Тепловозная д. 5 кв. 7 <br>
-								Почта: dmitriev@gmail.com <br>
-								Логин: a_dmitriev<br>
-								Skype: dmitriev<br>
-								Выполненые практ. и конр. работы: 13/14<br>
-								Средний бал: 10<br>
-								Рейтинг: 1<br>
-							</p>
-						</div>
-					</div>
-				</div>
-            </div> 
-		</div>
-	</div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -10,31 +10,31 @@ def checktype(var):
     return var
 
 def quadratic_results(request):
-    dict = {'a': '', 'b': '', 'c': '', 'nd': 'коэффициент не определён',
-            'ni':'коэффициент не целое число'}
-    for i in dict:
+    dictionary = {'a': '', 'b': '', 'c': '', 'nd': 'коэффициент не определён',
+            'ni': 'коэффициент не целое число'}
+    for i in dictionary:
         if i in request.GET:
-            dict[i] = request.GET[i]
-            if dict[i] != '':
-                dict[i] = checktype(dict[i])
+            dictionary[i] = request.GET.get(i)
+            if dictionary[i] != '':
+                dictionary[i] = checktype(dictionary[i])
 
-    if dict['a'] != '0':
-        for i in dict:
-            if dict[i] != '' and type(dict[i]) is not list:
+    if dictionary['a'] != '0':
+        for i in dictionary:
+            if dictionary[i] != '' and type(dictionary[i]) is not list:
                 pass
             else:
-                return render(request, 'quadratic.html', dict)
+                return render(request, 'quadratic.html', dictionary)
     else:
-        return render(request, 'quadratic.html', dict)
-    discr = float(dict['b']) ** 2 - 4 * float(dict['a']) * float(dict['c'])
+        return render(request, 'quadratic.html', dictionary)
+    discr = float(dictionary['b']) ** 2 - 4 * float(dictionary['a']) * float(dictionary['c'])
     x1 = 0
     x2 = 0
     if discr == 0:
-        x1 = x2 = -float(dict['b']) / 2*float(dict['a'])
+        x1 = x2 = -float(dictionary['b']) / 2*float(dictionary['a'])
     elif discr > 0:
-        x1 = (-float(dict['b']) + discr ** 0.5) / (2 * float(dict['a']))
-        x2 = (-float(dict['b']) - discr ** 0.5) / (2 * float(dict['a']))
-    dict['discr'] = int(discr)
-    dict['x1'] = x1
-    dict['x2'] = x2
-    return render(request, 'quadratic.html', dict)
+        x1 = (-float(dictionary['b']) + discr ** 0.5) / (2 * float(dictionary['a']))
+        x2 = (-float(dictionary['b']) - discr ** 0.5) / (2 * float(dictionary['a']))
+    dictionary['discr'] = int(discr)
+    dictionary['x1'] = x1
+    dictionary['x2'] = x2
+    return render(request, 'quadratic.html', dictionary)
