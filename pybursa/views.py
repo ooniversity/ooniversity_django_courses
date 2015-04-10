@@ -1,7 +1,5 @@
 from django.shortcuts import render
-
-def index(request):
-    return render(request,'index.html')
+from django.views import generic
 
 def contact(request):
     return render(request,'contact.html')
