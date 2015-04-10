@@ -42,14 +42,14 @@ h2{
 
 .panel-footer small{
 	font-size: 100%;
-	padding-left: 40px;	
+	padding-left: 40px;
 	color: #FFF;
 	vertical-align: text-bottom;
 }
 
 .panel-footer p{
 	font-size: 18px;
-	padding-left: 40px;	
+	padding-left: 40px;
 	color: #FFF;
 	vertical-align: text-bottom;
 	text-align: center;
@@ -61,6 +61,6 @@ h2{
 }
 
 body{
-	background: #FFFF66;
+	background: #FFF;
 }
 

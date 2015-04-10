@@ -50,8 +50,6 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{% url 'index_itbursa' %}">главная</a></li>
-          <li><A href="{% url 'index_itbursa' %}">python</A></li>
-          <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
           <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
           <li><A href="{% url 'student_list' %}">студенты</A></li>
           <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
@@ -60,33 +58,37 @@
     </div>
   </nav>
 
-  <br><br><br><br><br><br>
+  <br><br><br><br>
   <!--Контакты Жуланова Александра Сергеевича-->
   <div class = 'row'>
-      <div id = 'student' class="media">
-        <div class="media-left media-middle">
-          <div class="row placeholders">
-            <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="{% static "IMG/student.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
+    <div id = 'student' class="media">
+      <div class="media-left media-middle">
+        <div class="row placeholders">
+          <div class="col-xs-12 col-sm-12 placeholder">
+            <img src="{% static "IMG/student.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
 
-              <h4>{{student.surname}} {{student.name}}</h4>
-              <span class="text-muted">студент ITBursa</span>
-            </div>
+            <h4>{{student.surname}} {{student.name}}</h4>
+            <span class="text-muted">студент ITBursa</span>
           </div>
         </div>
-        <div class="media-body">
-            <div class = 'teacher1-text'>
-              <p> <small>дата рождения:</small> {{student.date_of_birth}} </p>
-              <p> <small>адрес:</small> {{student.address}} </p>
-              <p> <small>e-mail:</small> {{student.email}} </p>
-              <p> <small>skype:</small> {{student.skype}}  </p>
-              <p> <small>телефон:</small> {{student.phone}} </p>
-              <p> <small>курсы:</small> {{student.Courses.courses}}</p>
-            </div>
+      </div>
+      <div class="media-body">
+        <div class = 'teacher1-text'>
+          <p> <small>дата рождения:</small> {{student.date_of_birth}} </p>
+          <p> <small>адрес:</small> {{student.address}} </p>
+          <p> <small>e-mail:</small> {{student.email}} </p>
+          <p> <small>skype:</small> {{student.skype}}  </p>
+          <p> <small>телефон:</small> {{student.phone}} </p>
+          <p> <small>курсы:</small>
+            {%for i in student.courses.all%}
+              {{i.name}}
+            {%endfor%}
+          </p>
         </div>
-       </div>
+      </div>
+    </div>
   </div>
-
+  <br><br>
   <!--Футер-->
   <div class = 'row'>
     <div class="panel-footer">

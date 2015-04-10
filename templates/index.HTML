@@ -51,8 +51,6 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">главная</a></li>
-            <li><A href="#py">python</A></li>
-            <li><A href="#dj">web/django</A></li>
             <li><A href="#teachers">преподаватели</A></li>
             <li><a href="{% url 'student_list' %}">студенты</a></li>
             <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
@@ -76,9 +74,10 @@
     <div class="row">
         <div class="col-sm-4 col-md-4" >
           <div class="thumbnail" id = 'python'>
+            <a href="/courses/{{courses.0.id}}/">
             <img src="{% static "IMG/Python_course.jpg"%}" alt="...">
               <div class="caption">
-                <h3><a href="/courses/1/">{{courses.0.info}}</a></h3>
+                <h3>{{courses.0.info}}</h3></a>
                 <br>
                  <p>{{courses.0.discription}}</p>
                   <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
@@ -88,9 +87,10 @@
         <!--Курс JS -->
         <div class="col-sm-4 col-md-4" >
           <div class="thumbnail" id = 'django' >
+            <a href="/courses/{{courses.1.id}}/">
             <img src="{% static "IMG/Django_course.jpg"%}" alt="...">
               <div class="caption">
-                <h3><a href="/courses/2/">{{courses.1.info}}</a></h3>
+                <h3>{{courses.1.info}}</h3></a>
                 <p>{{courses.1.discription}}</p>
                   <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
               </div>
@@ -98,9 +98,10 @@
         </div>
         <div class="col-sm-4 col-md-4" >
           <div class="thumbnail" id = 'django' >
+            <a href="/courses/{{courses.2.id}}/">
             <img src="{% static "IMG/JS_course.jpg"%}" alt="...">
               <div class="caption">
-                <h3><a href="/courses/3/">{{courses.2.info}}</a></h3>
+                <h3>{{courses.2.info}}</h3></a>
                 <p>{{courses.2.discription}}</p>
                   <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
               </div>

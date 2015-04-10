@@ -10,7 +10,7 @@
 }
 
 #navbar ul{
-	padding: 0px 20px;
+	padding: 0px 150px;
 	text-transform: uppercase;
 	font-size: 19px;
 }
@@ -19,15 +19,15 @@
 	margin-right: auto;
   	margin-left: auto;
   	display: block;
-  padding: 4px;
-  margin-bottom: 20px;
-  line-height: 1.42857143;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  -webkit-transition: border .2s ease-in-out;
-       -o-transition: border .2s ease-in-out;
-          transition: border .2s ease-in-out;
+  	padding: 4px;
+  	margin-bottom: 20px;
+  	line-height: 1.42857143;
+  	background-color: #fff;
+  	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	-webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
 }
 
 .placeholders{
@@ -69,7 +69,7 @@
 
 .sub-header {
 	text-align: center;
-	margin-top: 130px;
+	margin-top: 50px;
 	font-weight: bold;
 	color: #993366;
 	font-size: 40px;
@@ -123,5 +123,16 @@
 }
 
 a{
-	color: #777;
+	color: #047105;
+}
+p{
+	text-align:justify;
+	text-indent: 25px;
+}
+.p-courses{
+	margin: 10px 30px 10px;
+	font-size: 18px;
+}
+.caption{
+	padding: 0px;
 }

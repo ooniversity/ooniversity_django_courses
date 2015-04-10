@@ -51,10 +51,8 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{% url 'index_itbursa' %}">главная</a></li>
-          <li><A href="{% url 'index_itbursa' %}">python</A></li>
-          <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
           <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
-          <li><A href="{% url 'student_list' %}">студенты</A></li>
+          <li><A href="{% url 'student_list' %}?course_id={{course.id}}">студенты</A></li>
           <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
         </ul>
       </div>
@@ -63,12 +61,13 @@
 
     <!--Курс Питон датальная информация представленная в табличной форме-->
     <div class="row">
-        <h2 class="sub-header">{{course.name}}</h2><br><br>
-        <p>{{course.discription}}</p>
+        <h2 class="sub-header">{{course.name}}</h2>
+        <p class = "p-courses">{{course.discription}}</p>
           <div class="table-responsive">
             <table ip = 'base-python' class="table table-striped">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>ТЕМА</th>
                   <th>СОДЕРЖАНИЕ</th>
                 </tr>
@@ -76,6 +75,9 @@
               <tbody>
                 {%for lesson in lessons%}
                     <tr>
+                      <td>
+                        {{forloop.counter}}
+                      </td>
                       <td>
                         {{lesson.theme}}
                       </td>

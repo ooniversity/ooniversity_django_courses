@@ -51,10 +51,8 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'index_itbursa' %}">главная</a></li>
-            <li><A href="{% url 'index_itbursa' %}L">python</A></li>
-            <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
-            <li><A href="{% url 'index_itbursa' %}L">преподаватели</A></li>
-            <li><A href="#">студенты</A></li>
+            <li><A href="{% url 'index_itbursa' %}">преподаватели</A></li>
+            <li><A href="{% url 'student_list' %}">студенты</A></li>
             <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
           </ul>
         </div>
@@ -68,6 +66,7 @@
             <table ip = 'base-python' class="table table-striped">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Фамилия Имя</th>
                   <th>Адрес</th>
                   <th>Skype</th>
@@ -78,7 +77,10 @@
                 {%for student in students%}
                   <tr>
                     <td>
-                      <li><a href="{% url 'student_detail' %}">{{student.surname}} {{student.name}}</a></li>
+                      {{forloop.counter}}
+                    </td>
+                    <td>
+                      <a href="/students/{{student.id}}">{{student.surname}} {{student.name}}</a>
                     </td>
                     <td>
                       {{student.address}}
@@ -87,7 +89,9 @@
                       {{student.skype}}
                     </td>
                     <td>
-                      {{student.course.courses}}
+                      {%for i in student.courses.all%}
+                        {{i.name}}
+                      {%endfor%}
                     </td>
                   </tr>
                 {%endfor%}
@@ -96,7 +100,7 @@
           </div>
     </div>
     <div class = 'row'></div>
-
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <!--Футер -->
     <div class = 'row'>
       <div class="panel-footer">
