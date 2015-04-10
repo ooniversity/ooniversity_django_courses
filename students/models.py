@@ -13,4 +13,7 @@ class Student(models.Model):
 
  	def __unicode__(self):
  		return self.surname+" "+self.name
+
+ 	def fullname(self):
+		return ("%s %s" % (self.name, self.surname))	
  
