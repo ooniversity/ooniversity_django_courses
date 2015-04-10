@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from courses.models import Course
+from .models import Course, Lesson
 
 class IndexView(generic.ListView):
     template_name = 'index.html'
@@ -8,7 +8,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Course.objects.order_by()
+        return Course.objects.order_by("index_number")
 
 class DetailView(generic.DetailView):
     model = Course

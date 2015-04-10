@@ -44,15 +44,40 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <h1>Введение в Pyhton</h1>
+        <h1>{{course.name}}</h1>
         <div class="jumbotron">
-          <p>Проект ItBursa был признан лучшим среди региональных IT проектов и отмечен наградой и планшетом от IT Jam 2015</p>
-          <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
+          <p>{{course.description}}</p>
+        </div>
+        <div class="panel panel-success">
+          <!-- Default panel contents -->
+          <div class="panel-heading">План курса</div>
+          <div class="table-responsive">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Занятие</th>
+                  <th>Тема</th>
+                  <th>Содержание</th>
+                </tr>
+              </thead>
+              {% for lesson in course.lesson_set.all %}
+              <tbody>
+                <tr>
+                  <td>{{lesson.index_numer}}</td>
+                  <td>{{lesson.topic}}</td>
+                  <td>
+                    <ul>
+                      <li>{{lesson.description}}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
         </div>
 
-
-
-      <h6>Следующего курса в таком формате не будет! :)</h6>
       <footer id="foo">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2015 PyBursa, Inc.</p>
