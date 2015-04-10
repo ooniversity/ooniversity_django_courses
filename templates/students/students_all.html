@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Students_all</title>
+
+    {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" >
+
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-inverse">
+      
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img class="navbar-brand" src="{% static 'img/paha.JPG' %}">
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'main' %}">Главная</a></li>
+            <li><a href="">Контакты</a></li>
+            <li><a href="{% url 'students:students_all' %}">Студенты</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+ 
+      </nav>
+    </div>
+
+    <div class="container">
+      <h2 style="color: #446785">Список студентов</h2>
+
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>фамилия имя</th>
+                <th>адрес</th>
+                <th>skype</th>
+                <th>курсы</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for students_list in students_all %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'students:student_info' students_list.id %}">{{ students_list.surname }} {{ students_list.name }}</a></td>
+                <td>{{ students_list.address }}</td>
+                <td>{{ students_list.skype }}</td>
+                <td>
+                  {% for course_list in students_list.courses.all %}
+                   <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</a></p> 
+                  {% endfor %}
+                </td> 
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>  
+  </body>
+</html>
