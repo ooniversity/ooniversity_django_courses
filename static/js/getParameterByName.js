@@ -22,10 +22,14 @@ function fill_data()
     var span_surname = document.getElementById('surname');
     var span_otchestvo = document.getElementById('otchestvo');
     var span_adress = document.getElementById('adress');
+    var a_adress = document.getElementById('adress_link');
     var span_skype = document.getElementById('skype');
+    var a_skype = document.getElementById('skype_link');
     var span_email = document.getElementById('email');
+    var a_email = document.getElementById('email_link');
     var span_raite = document.getElementById('raite');
     var rait = document.getElementById('rait');
+    var image = document.getElementById('image');
     var number = getParameterByName('number'); //Get number of student
     span_surname_name.innerHTML = data[number].surname_name;
     span_name.innerHTML = data[number].name;
@@ -36,6 +40,10 @@ function fill_data()
     span_skype.innerHTML = data[number].skype;
     span_email.innerHTML = data[number].email;
     span_raite.innerHTML = (data[number].raite/8).toFixed();
+    image.src = data[number].image;
+    a_skype.href = 'skype:'+(data[number].skype).toString();
+    a_email.href = 'mailto:'+(data[number].email).toString();
+    a_adress.href = 'https://www.google.com.ua/maps/place/'+(data[number].adress).toString();
     rait.style.width = (data[number].raite/8).toString()+"%";
     if (data[number].raite/8 > 90) {
         rait.classList.add("progress-bar-success");

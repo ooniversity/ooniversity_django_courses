@@ -40,8 +40,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href='{% url "contact" %}'>Контакты</a></li>
-            <li><a href='{% url "student_list" %}'>Студенты</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href='{% url "contact" %}'>Контакты</a></li>
+                <li><a href="{% url 'students' %}">Студенты</a></li>
+                <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
+                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Материалы <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -54,7 +61,8 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Примеры<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'quadratic' %}">Квадратное уравнение</a></li>
+                <li class="active"><a href="#">Квадратное уравнение <span class="sr-only">(current)</span></a></li>
+                <li><a href='{% url "student_list" %}'>Студенты</a></li>
               </ul>
             </li>
           </ul>
@@ -87,19 +95,13 @@
     </nav>
 
     <div class="container">
-      {% if answer == '' %}
-      <p>Квадратное уравнение a×x² + b×x + c = 0</p>
-      {% for n,i,error in list %}
-      <p>{{ n }} = {{ i }}</p>
-      <p>{{ error }}</p>
-      {% endfor %}
-      {% else %}
-      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 >= 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.2.1 >= 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
-      <p>{{ answer }}</p>
-      {% endif %}
-
-      <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Еще раз</a>
+      <p>Квадратное уравнение вида a×x² + b×x + c = 0</p>
+      <form action="{% url 'results' %}">
+        <p><input size ='1' name='a' placeholder="a">×x² + <input size ='1' name='b' placeholder="b">×x + <input size ='1' name='c' placeholder="c"> = 0</p>
+      <button type="submit" class="btn btn-default">Расчитать</button>
+      </form>
     </div>
+
 <!-- FOOTER ================================================== -->
 
     <div class="navbar-fixed-bottom row-fluid">

@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, include, url
+from django.contrib import admin
 
-from quadratic.views import *
+from students.views import *
 
 urlpatterns = patterns(
     '',
     # Examples:
     # url(r'^$', 'pybursa.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^$', quadratic, name='quadratic'),
-    url(r'^results/$', results, name='results'),
+    url(r'^$', StudentsView.as_view(), name='students'),
+    url(r'^(?P<id>\d+)/$', StudentView.as_view(), name='student'),
 )
