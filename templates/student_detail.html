@@ -70,7 +70,7 @@
             <td>
               {% for course in courses %}
               <p>
-              <a href="{% url 'course_detail' course.id %}">{{course.name}}</a>
+              <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
               </p>
               {% endfor %}
             </td>
