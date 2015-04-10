@@ -59,3 +59,6 @@ def results(request):
         output += '\n\n%s' % solve
 
     return HttpResponse(output, content_type="text/plain; charset=utf-8")
+
+
+

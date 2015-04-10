@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from courses.models import Course, Lesson
+from students.models import Student
+
 
 def home(request):
     return render(request, 'index.html')
