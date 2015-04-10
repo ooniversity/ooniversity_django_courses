@@ -2,6 +2,7 @@ import datetime
 
 from django.utils import timezone
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Coach(models.Model):
@@ -11,8 +12,8 @@ class Coach(models.Model):
     )
     user = models.OneToOneField(User)
     birth = models.DateField("Birthday")
-    sex = models.CharFiled("Sex", max_length=2, choices=SEX)
-    phone = models.CharFiled(verbose_name=u'Phone number', 
+    sex = models.CharField("Sex", max_length=2, choices=SEX)
+    phone = models.CharField(verbose_name=u'Phone number',
         unique=True, max_length=12)
     address = models.CharField("Address", help_text='Enter your address', 
         max_length=256)
@@ -20,4 +21,4 @@ class Coach(models.Model):
     descr = models.TextField("Description")
 
     def __unicode__(self):
-        return self.user
+        return unicode(self.user)
