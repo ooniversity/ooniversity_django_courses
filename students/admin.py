@@ -5,13 +5,13 @@ from students.models import Student
 
 class StudentAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Pesonal Info', {'fields': ['name', 'surname', 'date_of_birth']}),
+        ('Pesonal Info', {'fields': ['name', 'surname', 'date_of_birth', 'image']}),
         ('Contact Info', {'fields': ['email', 'phone', 'address', 'skype']}),
         (None, {'fields': ['course']})
     ]
     filter_horizontal = ['course']
 
-    list_display = ('full_name', 'email', 'skype')
+    list_display = ('full_name', 'email', 'skype', 'admin_thumbnail')
     list_filter = ['course']
     search_fields = ['surname', 'email']
 

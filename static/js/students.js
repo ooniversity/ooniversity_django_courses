@@ -9,7 +9,8 @@ var data = [
     otchestvo:"Артемович",
     adress:"просп. 50-річчя ВЛКСМ, 76",
     skype:"doc_braun",
-    email:"doc_braun@exemple.com"
+    email:"doc_braun@exemple.com",
+    image:"/static/img/stud_1.jpg"
 },
 {
     raite:435,
@@ -21,7 +22,8 @@ var data = [
     otchestvo:"Максимович",
     adress:"вул. Блюхера, 25А",
     skype:"smesharik",
-    email:"smesharik@exemple.com"
+    email:"smesharik@exemple.com",
+    image:"/static/img/stud_2.png"
 },
 {
     raite:798,
@@ -33,7 +35,8 @@ var data = [
     otchestvo:"Анастасиевна",
     adress:"Мироносицька вул., 63",
     skype:"kissa_lissa",
-    email:"kissa_lissa@exemple.com"
+    email:"kissa_lissa@exemple.com",
+    image:"/static/img/stud_3.jpg"
 },
 {
     raite:650,
@@ -45,7 +48,8 @@ var data = [
     otchestvo:"Святославич",
     adress:"Новгородська вул., 12",
     skype:"paladinium",
-    email:"paladinium@exemple.com"
+    email:"paladinium@exemple.com",
+    image:"/static/img/stud_4.jpg"
 },
 {
     raite:700,
@@ -57,7 +61,8 @@ var data = [
     otchestvo:"Кирилов",
     adress:"вул. Дерев'янка, 50",
     skype:"xXx_Valakas_xXx",
-    email:"valakas@exemple.com"
+    email:"valakas@exemple.com",
+    image:"/static/img/stud_5.jpg"
 },
 {
     raite:520,
@@ -69,6 +74,7 @@ var data = [
     otchestvo:"Виталиевич",
     adress:"вул. Цезаря Кюї, 30",
     skype:"ktulhuovich",
-    email:"ktulhuovich@exemple.com"
+    email:"ktulhuovich@exemple.com",
+    image:"/static/img/stud_6.jpg"
 }
 ]

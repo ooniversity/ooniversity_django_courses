@@ -16,13 +16,13 @@ def results(request):
         com = ''
         if cof == '':
             com = u'коэффициент не определен'
-        elif not cof.replace('-', '', 1).replace('.', '', 1).isdigit():
+        elif not cof.strip().lstrip('-').replace('.', '', 1).isdigit() and not cof.strip().lstrip('+').replace('.', '', 1).isdigit():
             com = u'коеффициент не целое число'
         return com
 
     def iszero(i):
         try:
-            return int(a.replace('-', '').replace('.', '')) == 0
+            return int(a.lstrip('-').replace('.', '', 1)) == 0
         except ValueError:
             return False
 

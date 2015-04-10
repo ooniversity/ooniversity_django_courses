@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template -->
     <link href='{% static "css/carousel.css" %}' rel="stylesheet">
+    <link href='{% static "css/google-map.css" %}' rel="stylesheet">
   </head>
   <body>
 
@@ -100,35 +101,36 @@
 
 <!-- Student ================================================== -->
     
+    <div id="map-canvas"></div>
+
     <div class="container">
       <h1>{{ object_list.surname }} {{ object_list.name }}</h1>
+      <img src="{{ object_list.image.url }}" height="140">
     </div>
 
     <div class="container">
       <div class="table-responsive">
         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Дата рождения</th>
-              <th>{{ object_list.date_of_birth }}</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
+              <td>Дата рождения</td>
+              <td>{{ object_list.date_of_birth }}</td>
+            </tr>
+            <tr>
               <td>Адрес</td>
-              <td>{{ object_list.address }}</td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.address }}" id='address_id'>{{ object_list.address }}</a></td>
             </tr>
             <tr>
               <td>Email</td>
-              <td>{{ object_list.email }}</td>
+              <td><a href="mailto:{{ object_list.email }}">{{ object_list.email }}</a></td>
             </tr>
             <tr>
               <td>Skype</td>
-              <td>{{ object_list.skype }}</td>
+              <td><a href="skype:{{ object_list.skype }}">{{ object_list.skype }}</a></td>
             </tr>
             <tr>
               <td>Телефон</td>
-              <td>{{ object_list.phone }}</td>
+              <td><a href="skype:{{ object_list.phone }}?call">{{ object_list.phone }}</a></td>
             </tr>
             <tr>
               <td>Курсы</td>
@@ -158,5 +160,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="{% static 'js/google-map.js' %}"></script>
   </body>
 </html>

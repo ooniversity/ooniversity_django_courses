@@ -48,7 +48,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href='{% url "contact" %}'>Контакты</a></li>
-                <li><a href="{% url 'students' %}">Студенты</a></li>
+                <li class="active"><a href="{% url 'students' %}">Студенты<span class="sr-only">(current)</span></a></li>
                 <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
                 <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
               </ul>
@@ -111,6 +111,7 @@
             <tr>
               <th>#</th>
               <th>Фамилия Имя</th>
+              <th>Аватарка</th>
               <th>Адрес</th>
               <th>Skype</th>
               <th>Курсы</th>
@@ -121,8 +122,9 @@
             <tr>
               <td>{{ forloop.counter }}</td>
               <td><a href="{% url 'student' id=student.id %}">{{ student.surname }} {{ student.name }}</a></td>
-              <td>{{ student.address }}</td>
-              <td>{{ student.skype }}</td>
+              <td><img src="{{ student.image.url }}" height="100"></td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ student.address }}">{{ student.address }}</a></td>
+              <td><a href="skype:{{ student.skype }}">{{ student.skype }}</a></td>
               <td>
               {% for course in student.course.all %}
                 <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>

@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template -->
     <link href='{% static "css/carousel.css" %}' rel="stylesheet">
+    <link href='{% static "css/google-map.css" %}' rel="stylesheet">
   </head>
   <body>
 
@@ -100,48 +101,53 @@
 
 <!-- Coach ================================================== -->
 
+    <div id="map-canvas"></div>
+
     <div class="container">
       <h1>{{ object_list.Coach.user.last_name }} {{ object_list.Coach.user.first_name }}</h1>
+      <img class="img-circle" src="{{ object_list.Coach.image.url }}" width="140" height="140">
     </div>
 
     <div class="container">
       <div class="table-responsive">
         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Дата рождения</th>
-              <th>{{ object_list.Coach.date_of_birth }}</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
+              <td>Дата рождения</td>
+              <td>{{ object_list.Coach.date_of_birth }}</td>
+            </tr>
+            <tr>
               <td>Адрес</td>
-              <td>{{ object_list.Coach.address }}</td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.Coach.address }}" id="address_id">{{ object_list.Coach.address }}</a></td>
             </tr>
             <tr>
               <td>Email</td>
-              <td>{{ object_list.Coach.user.email }}</td>
+              <td><a href="mailto:{{ object_list.Coach.user.email }}">{{ object_list.Coach.user.email }}</a></td>
             </tr>
             <tr>
               <td>Skype</td>
-              <td>{{ object_list.Coach.skype }}</td>
+              <td><a href="skype:{{ object_list.Coach.skype }}">{{ object_list.Coach.skype }}</a></td>
             </tr>
             <tr>
               <td>Телефон</td>
-              <td>{{ object_list.Coach.phone }}</td>
+              <td><a href="skype:{{ object_list.Coach.phone }}?call">{{ object_list.Coach.phone }}</a></td>
             </tr>
+            {% if object_list.Course_coarch %}
             <tr>
               <td>Курсы учитель</td>
               <td>{% for coach in object_list.Course_coarch %}
-                <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
+                <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a> (<a href="{% url 'students' %}?course_id={{ coach.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>
+            {% endif %}
+            {% if object_list.Course_assistant %}
             <tr>
               <td>Курсы ассистент</td>
               <td>{% for assistant in object_list.Course_assistant %}
                 <p><a href="{% url 'courses:detail' assistant.id %}">{{ assistant }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>
+            {% endif %}
           </tbody>
         </table>
       </div>
@@ -164,5 +170,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="{% static 'js/google-map.js' %}"></script>
   </body>
 </html>

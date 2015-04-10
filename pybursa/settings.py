@@ -87,6 +87,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "static", "img")
+
+MEDIA_URL = '/photos/'
+
+SERVE_MEDIA = DEBUG
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]

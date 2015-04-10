@@ -44,11 +44,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href='{% url "home" %}'>Главная</a></li>
+            <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href='{% url "contact" %}'>Контакты</a></li>
-                <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты</a></li>
+                <li><a href="{% url 'students' %}">Студенты <sub style="font-size:50%">(все)</sub></a></li>
                 <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
                 <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
               </ul>
@@ -106,7 +107,7 @@
     </div>
 
     <div class="container">
-      <h2 class="sub-header">Преподаватели</h2>
+      <h2 class="sub-header"><a href="{% url 'coaches:coaches' %}">Преподаватели</a></h2>
     </div>
 
     <div class="container">

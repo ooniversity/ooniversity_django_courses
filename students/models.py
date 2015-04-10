@@ -12,6 +12,15 @@ class Student(models.Model):
     address = models.CharField(max_length=255)
     skype = models.CharField(max_length=255, unique=True)
     course = models.ManyToManyField(Course)
+    image = models.ImageField(null=True)
 
     def __unicode__(self):
         return self.surname
+
+    def admin_thumbnail(self):
+        if self.image:
+            return u'<img src="%s" width="100" />' % (self.image.url)
+        else:
+            return '(No image)'
+    admin_thumbnail.short_description = 'Image'
+    admin_thumbnail.allow_tags = True
