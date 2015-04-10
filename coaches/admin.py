@@ -10,13 +10,13 @@ class UserInline(admin.StackedInline):
     extra = 0
 
 class CoachAdmin(admin.ModelAdmin):
-    list_display = ['username', 'first_name', 'last_name', 'email', 'date_of_birth', ]
-    list_filter = ['']
-    search_fields = ['']
-    inlines = [UserInline]
+    #list_display = ['username', 'first_name', 'last_name', 'email', 'date_of_birth', ]
+    #list_filter = ['']
+    #search_fields = ['']
+    #inlines = [UserInline]
     pass
 
-admin.site.register(Coach)
+admin.site.register(Coach, CoachAdmin)
 
 
 
