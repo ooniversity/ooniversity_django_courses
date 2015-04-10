@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'views.index' %}">Главная</a></li>
             <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'views.student_list' %}?course_id={{course.id}}">Студенты</a></li>
+            <li><a href="{% url 'students:student_list' %}?course_id={{course.id}}">Студенты</a></li>
             <li class="active"><a href="">Описание курса<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
