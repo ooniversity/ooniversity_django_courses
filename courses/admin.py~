@@ -7,4 +7,3 @@ from students.models import Student
 
 admin.site.register(Course)
 admin.site.register(Lesson)
-admin.site.register(Student)
