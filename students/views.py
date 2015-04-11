@@ -7,13 +7,11 @@ from models import Student
 def students(request):
     if request.GET.get('course_id'):
         course_id = request.GET.get('course_id')
-        course = Course.objects.filter(courses=course_id)
+        course = Course.objects.get(pk=course_id)
         students = course.student_set.all()
     else:
         students = Student.objects.all()
     return render(request, 'students/students.html', {'students': students})
-
-
 
 def student_d(request, student_id):
     student = Student.objects.get(pk=student_id)
