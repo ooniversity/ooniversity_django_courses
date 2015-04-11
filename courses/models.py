@@ -7,7 +7,7 @@ class Course (models.Model):
     name = models.CharField(verbose_name='Name', max_length=20)
     info = models.CharField(verbose_name='Short discription',null=True, blank=True, max_length=200)
     discription = models.TextField(verbose_name='Course discription', null=True, blank=True)
-    teacher = models.ForeignKey(Coach, related_name='+')
+    teacher = models.ForeignKey(Coach)
     assistent = models.ForeignKey(Coach, related_name='+', null=True, blank=True)
 
     def __unicode__(self):

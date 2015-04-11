@@ -11,4 +11,5 @@ class StudentAdmin(admin.ModelAdmin):
     (None, {'fields': ['courses']})]
     filter_horizontal = ['courses']
 
+
 admin.site.register(Student, StudentAdmin)

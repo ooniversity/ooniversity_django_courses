@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^students/(?P<id>\d+)/$', views.show_student_detail, name = 'student_detail'),
     url(r'^courses/(?P<id>\d+)/$', views.show_courses, name = 'courses'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^coaches/(?P<id_c>\d+)/$', views.show_coach_detail, name = 'coach_detail'),
 
 )

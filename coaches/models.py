@@ -10,7 +10,6 @@ class Coach (models.Model):
     phone = models.CharField(verbose_name='Phone number', max_length=15)
     address = models.CharField(verbose_name='Address', max_length=50, null=True, blank=True)
     skype = models.CharField(verbose_name='Skype', max_length=50, null=True, blank=True)
-    photo = models.FileField(verbose_name='Photo', null=True, blank=True)
     discription = models.TextField(verbose_name='Coach discription', null=True, blank=True)
 
     def __unicode__(self):
