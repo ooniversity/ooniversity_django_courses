@@ -15,9 +15,9 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{% url 'students.views.index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students.views.contact' %}">Контакты</a></li>
-            <li role="presentation"><a href="{% url 'students.views.student_list' %}">Студенты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'home' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
+            <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">KievBursa</h3>
@@ -25,40 +25,24 @@
       <div class="jumbotron">
         <h2>KievBursa - курсы по программированию в Киеве!</h2>
         <p>Курс по веб программированию на языках Python, php, Perl, ASP.NET даст вам знания для того чтобы самостоятельно создавать сайты, программы, скрипты. И найти высокооплачиваемую работу! KievBursa - более 10 лет на рынке IT образования. Более 3000 выпускников которые успешно трудоустроены.</p>
-	      <p><a class="btn btn-lg btn-success" href="https://siteheart.com/webconsultation/631625?" target="siteheart_sitewindow_631625" onclick="o=window.open;o('https://siteheart.com/webconsultation/631625?', 'siteheart_sitewindow_631625', 'width=550,height=400,top=30,left=30,resizable=yes'); return false;" id="butRegister" role="button">Связаться с нами</a></p>
+	      <!-- p><a class="btn btn-lg btn-success" href="https://siteheart.com/webconsultation/631625?" target="siteheart_sitewindow_631625" onclick="o=window.open;o('https://siteheart.com/webconsultation/631625?', 'siteheart_sitewindow_631625', 'width=550,height=400,top=30,left=30,resizable=yes'); return false;" id="butRegister" role="button">Связаться с нами</a></p -->
 	    </div>
 
       <div class="row marketing">
         <div >
-          <h2>Доступные курсы по программированию:</h2>
+          <h2>Курсы по программированию на апрель:</h2>
 			<table class="table table-striped">
                         <tbody>
-                            <tr>
-                                <th>
-                                        Курс
-                                </th>
-                                <th>
-                                    Описание
-                                </th>
-                            </tr>
-                            {% for course in cour %}
-                            <tr>
-                            <td>
-                            {{course.name}}
-                            </td><td>
-                            {{course.description}}
-                            </td>
-    						</tr>
-							{% endfor %}        
-							<tr>
-                                <td>
-                                    Основы Python
-                                </td>
-                                <td>
-                                    исключения и разбор стектрейса 
-                                    </ul>
-                                </td>
-                            </tr>
+                        <tr>
+                        <th>Курс</th>
+                        <th>Описание</th>
+                        </tr>
+			{% for course in cour %}
+			<tr>
+                        <td><a href='{% url 'course' course.id %}'>{{course.name}}</a></td>
+			<td>{{course.description}}</td>
+    			</tr>
+			{% endfor %}        
                         </tbody>
                     </table>
                     <br><br><br>
