@@ -6,11 +6,18 @@ from students.models import Student
 
 class StudentAdmin(admin.ModelAdmin):
     list_filter = ['courses']
-    search_fields = ['name', 'surname']
-    list_display = ('fullname', 'email', 'scype', )
+    search_fields = ['surname', 'email']
+    list_display = ('full_name', 'email', 'scype', )
+
+    def full_name(self, obj):
+        return (obj.name + " " + obj.surname)
+
     filter_horizontal = ['courses']
 
-    def fullname(self, obj):
-        return (obj.name + " " + obj.surname)
+    fieldsets = [
+        ('Personal info', {'fields': ['name', 'surname', 'birth_date']}),
+        ('Contact info', {'fields': ['email', 'phone', 'address', 'scype']}),      
+        (None, {'fields': ['courses']}),   
+    ]
 
 admin.site.register(Student, StudentAdmin)

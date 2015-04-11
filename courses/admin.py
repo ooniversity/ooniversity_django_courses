@@ -6,9 +6,12 @@ from courses.models import Course, Lesson
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('topic', 'description', 'index' )
 
-class LessonInline(admin.StackedInline):
+#class LessonInline(admin.StackedInline):
+class LessonInline(admin.TabularInline):
     model = Lesson
     #fields = ['topic']
+    extra = 0
+    #ordering = ['index']
 
 class CourseAdmin(admin.ModelAdmin):
     search_fields = ['name']
