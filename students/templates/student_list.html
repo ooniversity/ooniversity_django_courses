@@ -35,19 +35,19 @@
 								<th>Skype</th>
 								<th>Курсы</th>
 							</tr>
-						</thead>
-						<tbody>{% for st in stud %}
-							<tr data-href="http://google.com">
-								<th scope="row">{{st.id}}</th>
-								<td><a href="{% url 'student_detail' %}" target="_blank">{{st.first_name}} {{st.surname}}</a></td>
-								<td>{{st.adress}}</td>
-								<td>{{st.skype}}</td>
-								<td><ul>
-								</li><a href="#" target="_blank">Название курса</a></li>
-								</ul></td>
-							<tr>{% endfor %}
-						</tbody>
-						</table>
+				</thead>
+				<tbody>{% for st in stud %}
+					<tr data-href="http://google.com">
+					<th scope="row">{{st.id}}</th>
+					<td><a href="{% url 'student_detail' st.id %}">{{st.first_name}} {{st.surname}}</a></td>
+					<td>{{st.adress}}</td>
+					<td>{{st.skype}}</td>
+					<td><ul>{% for c in st.course.all %}
+					<li><a href="{% url 'course' c.id %}">{{c.name}}</a></li>
+					{% endfor %}</ul></td>
+					<tr>{% endfor %}
+					</tbody>
+					</table>
     			</div>
         </div>
       </div>

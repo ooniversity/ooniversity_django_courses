@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^courses/', include('courses.urls')),
     url(r'^contact/', 'students.views.contact', name='contact'),
     url(r'^students/', 'students.views.student_list', name='student_list'),
-    url(r'^student_detail/', 'students.views.student_detail', name='student_detail'),
+    url(r'^student_detail/', include('students.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
 )
