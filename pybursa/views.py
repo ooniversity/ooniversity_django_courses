@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from students.models import Student
 from courses.models import Course, Lesson
+from django.views import generic
 
 def mainP(request):
     courses = Course.objects.all()
