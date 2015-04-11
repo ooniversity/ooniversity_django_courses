@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav">
         <li ><a href="{% url 'index' %}">Главная <span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'contact' %}">Контакты</a></li>
-        <li class="active" ><a href="{% url 'student_list' %}">Студенты</a></li>
+        <li class="active" ><a href="{% url 'students' %}">Студенты</a></li>
       </ul>
      </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -84,44 +84,29 @@
                <h1>Студенты курса</h1>
            
             <table class="table table-striped table-bordered table-hover table-condensed ">
-             <tbody>
-                 <tr id="table-head">
-                    <th>Имя</th>
-                    <th>Фамилия</th>
+                <thead id="table-head">
+                 <tr >
+                    <th>Имя, Фамилия</th>
                     <th>Адрес</th>
-                    <th>Логин в скайп</th>
+                    <th>Скайп</th>
+                    <th>Курс</th>
                   </tr>
-                    <tr class="success">
-                      <td><a href="{% url 'student_detail' %}" >Сергей</a></td>
-                      <td><a href="{% url 'student_detail' %}">Каракаш</a></td>
-                      <td>Одесса</td>
-                      <td><a href="skype: skarakash">skarakash</td>
-                    </tr>
+                 </thead> 
+                   <tbody>
+                    {% for student in students %}
                     <tr>
-                      <td >Павел</td>
-                      <td>Козлов</td>
-                      <td>Самара</td>
-                      <td><a href="skype:sovvvest">sovvvest</td>
+                      <td><a href="{% url 'student_detail' student.id %}">{{ student.name }} {{student.surname}}</a></td>
+                      <td>{{ student.adress }}</td>
+                      <td>{{ student.skype }}</td>
+                      <td>
+                        {% for course in student.course.all %}
+                        <p>
+                        <a href="{% url 'course_detail' course.id %}">{{course.name}}</a>
+                        </p>
+                        {% endfor %}
+                      </td>
                     </tr>
-                     <tr>
-                      <td>Алексей</td>
-                      <td>Ерпилёв</td>
-                      <td>Москва</td>
-                      <td><a href="skype:aerpyljov">aerpyljov</td>
-                    </tr>
-                      <tr>
-                        <td>Александр</td>
-                        <td>Жуланов</td>
-                        <td>Киев</td>
-                        <td><a href="skype:nurekil">nurekil</td>
-                                
-                    </tr>
-                    <tr>
-                      <td>Сергей</td>
-                      <td>Черненко</td>
-                      <td>Киев</td>
-                      <td><a href="skype:sergei.4e">sergei.4e</td>
-                    </tr>     
+                    {% endfor %}
                   </tbody>
                 </table>
         </div>
