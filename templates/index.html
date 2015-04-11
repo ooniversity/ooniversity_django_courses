@@ -57,32 +57,29 @@
 	<div class="jumbotron">
 		<div class="container">
 		<!-- Main component for a primary marketing message or call to action -->
-			<h2><b>Курсы Python</b></h2>
-			<div>
-				<p>Цель данного курса - довести вас до обещанного результата. Мы осознаем всю полезность<br/>предлагаемой информации, но также ценим ваше время.</p>
-				<p>Основы Python</p>
-                <ul>
-					<li>zen, pep8, pylint, tools, IDE</li>
-                    <li>консоль, типы данных, операторы</li>
-                    <li>синтаксис управляющих конструкций (if, for...)</li>
-                    <li>исключения и разбор стектрейса</li> 
-				</ul>
-				<p>  Строки и итераторы </p>
-				<ul>
-					<li>работа со строками и итерируемыми типами</li>
-					<li>запуск скрипта и параметры</li>
-					<li>git http://try.github.com/levels/1/challenges/1</li>                                
-				</ul>
-				<p>Функции и модульность</p>
- 				<ul>
-					<li>функции (def, lambda)</li>
-					<li>модули, структура</li>                                                                  
-				</ul>	
-			</div>
-			<p>Кнопка ниже - отправит вас на офф сайт Python</p>
-			<p><a class="btn btn-lg btn-primary" href="https://www.python.org/" role="button">Python &raquo;</a></p>
-		</div>
+			<div><br>
+				<p>This page is designed to help you explore introductory programming courses on OCW. This is not meant to be a comprehensive list, but rather to suggest some good starting points.</p>
+		  </div>
+      <table style="width:100%" border = '0'>
+        <tr>
+          <th>Course name</th>
+          <th>Short Description</th> 
+        </tr>
+        {% for course in courses %}
+        <tr>
+          <p>
+            <td>
+              <a href="#"> {{ course.name }}  </a>
+            </td>
+            <td>
+            {{ course.short_description }}
+            </td>
+          </p>
+        </tr>
+        {% endfor %}
+      </table>
     </div> <!-- /container -->
+  </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
