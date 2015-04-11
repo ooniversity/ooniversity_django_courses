@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Coach(models.Model):
-    user = models.OneToOneField(User)
-    #user = models.OneToOneField(User, null=True, blank=True)
+    #user = models.OneToOneField(User)
+    user = models.OneToOneField(User, null=True, blank=True)
     birth_date = models.DateField()
     gender = models.CharField(max_length=1, choices=(('1', 'M'),('2', 'F'),))
     phone = models.CharField(max_length = 255)
@@ -19,6 +19,9 @@ class Coach(models.Model):
             return u'%s %s' % (self.user.last_name, self.user.first_name)
         else:
             return 'no user\'s name defined'
+
+
+
     user_name.short_description = 'Name'
     #user_name.allow_tags = True
 

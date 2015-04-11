@@ -178,4 +178,13 @@ h3
   color: #e1752b;
 }
 
+.panel-default > .panel-heading 
+{
+  background-color: #d2dbe3;  
+}
+.panel-body 
+{
+  background-color: #e1e4e7;
+}
+
 										

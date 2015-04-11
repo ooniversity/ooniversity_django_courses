@@ -4,6 +4,7 @@
 from django.shortcuts import render
 from courses.models import Course, Lesson
 from students.models import Student
+from coaches.models import Coach
 from django.core.exceptions import ObjectDoesNotExist
 #from django.db.models.base import ObjectDoesNotExist
 
@@ -29,9 +30,20 @@ def course_detail(request, course_id):
         course_name = course_current.name
         course_description = course_current.description
         student_id = str(course_id)
-        lessons = Lesson.objects.filter(course = course_current) 
+        lessons = Lesson.objects.filter(course = course_current)
+
+        trainer_info = {
+            "fullname": course_current.trainer.user.get_full_name(),
+            "description": course_current.trainer.description,
+        }
+
+        assistant_info = {
+            "fullname": course_current.assistant.user.get_full_name(),
+            "description": course_current.assistant.description,
+        }
+ 
         message = ""
-        return render(request, 'course_detail.html', {"lessons": lessons, "message": message, "student_id": student_id, "course_name": course_name, "course_description": course_description})
+        return render(request, 'course_detail.html', {"lessons": lessons, "message": message, "student_id": student_id, "course_name": course_name, "course_description": course_description, 'trainer_info': trainer_info, 'assistant_info': assistant_info})
     except ObjectDoesNotExist:
         message = "Sorry, no course with id = %s exists yet."%(course_id)
         return render(request, 'course_detail.html', {"message": message})
