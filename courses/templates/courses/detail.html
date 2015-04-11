@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>DJ101 - Учащиеся</title>
+    <title>Курсы</title>
 
     <!-- Bootstrap -->
+    <!-- link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet" -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -17,6 +18,25 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+      body
+      {
+          counter-reset: Serial;           /* Set the Serial counter to 0 */
+      }
+
+      table
+      {
+          border-collapse: separate;
+      }
+
+      tr td:first-child:before
+      {
+        counter-increment: Serial;      /* Increment the Serial counter */
+        content: counter(Serial); /* Display the counter */
+        min-width: 1em;
+        margin-left: 0em;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -29,55 +49,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'pybursa.views.dj101_index' %}">DJ101</a>
+          <a class="navbar-brand" href="/">Bursa</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li> <a href="{% url 'pybursa.views.dj101_index' %}">Главная</a></li>
-            <li> <a href="{% url 'pybursa.views.dj101_contact' %}">Контакты</a></li>
-            <li class="active"><a href="{% url 'pybursa.views.dj101_student_list' %}">Студенты</a><span class="sr-only">(current)</span></li>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/contact/">Контакты</a></li>
+            <li> <a href="/students/?course_id={{ course.id }}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container">
       <div class="jumbotron">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h3>Список студентов, которые учатся на данном курсе:</h3>
-          </div>
-        </div>
-        <div class="list-group">
-          <a href="{% url 'pybursa.views.dj101_student_detail' %}" class="list-group-item">
-            <h4>Иванов Иван</h4>
-            Украина, г. Киев, ул. Киевская 1 <br>
-            skype: I_Ivanov
-          </a>
-          <div class="list-group-item">
-            <h4>Петров Петр</h4>
-            Украина, г. Черкассы, ул. Черкасская 2 <br>
-            skype: P_Petrov
-          </div>
-          <div class="list-group-item">
-            <h4>Сидоров Сидор</h4>
-            Украина, г. Кировоград, ул. Кировоградская 3 <br>
-            skype: S_Sidorov
-          </div>
-          <div class="list-group-item">
-            <h4>Ильин Илья</h4>
-            Украина, г. Полтава, ул. Полтавская 4 <br>
-            skype: I_Ilyin
-          </div>
-          <div class="list-group-item">
-            <h4>Евгеньев Евгений</h4>
-            Украина, г. Днепропетровск, ул. Днепропетровская 5 <br>
-            skype: E_Evgenyev
-          </div>
 
-        </div>
+        <h3>{{ course.title }}</h3>
+        <br>
+        <p>{{ course.description }}</p>
+      </div>
+    </div>
+    <br><br>
+    <div class="container">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <align="center">
+        <div class="panel-heading" align="center"><h3>План курса</h3></div>
 
+
+        <!-- Table -->
+
+        <table class="table">
+
+          <tr>
+          <th> <div align="center"><h5>Урок №</h5></div></th>
+          <th> <div align="center"><h5>Тема занятия</h5></div></th>
+         </tr>
+
+         {% for lesson in lessons %}
+         <tr><td align="center"></td>
+         <td>
+             <p>{{ lesson.theme }}</p>
+         </td>
+         {% endfor %}
+
+         </tr>
+
+        </table>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -86,3 +105,7 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   </body>
 </html>
+
+
+
+
