@@ -66,7 +66,25 @@
             <td>{{coach.skype}}</td>
           </tr>
           <tr>
-
+            <th class="col1" scope="row">Курсы (учитель):</th>
+            <td>
+              {% for course in courses_coach %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Курсы (ассистент):</th>
+            <td>
+              {% for course in courses_assistant %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
