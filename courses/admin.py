@@ -5,5 +5,20 @@ from django.contrib import admin
 from courses.models import Course, Lesson
 
 
-admin.site.register(Course)
+class LessonInLine(admin.TabularInline):
+    model = Lesson
+    field = ['number', 'theme', 'discription']
+    extra = 0
+
+
+class CourseAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    list_display = ['title', 'short_descript']
+
+    inlines = [LessonInLine]
+
+    #ordering = ['title']
+
+
+admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson)
