@@ -10,7 +10,7 @@
 
   {% load staticfiles %}
 
-  <title>Контакты | Django courses | Джанго курсы |</title>
+  <title> PythonClasses | Контакты |</title>
   <link rel="icon" href="{% static 'dj-logo.ico' %}">
 
   <!-- Bootstrap core CSS -->
@@ -49,7 +49,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li class="active"><a href="#">Контакты</a></li>
-            <li><a href="{% url 'stud_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:students_list' %}">Студенты</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Полезные ссылки <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

@@ -10,7 +10,7 @@
   
   {% load staticfiles %}
 
-  <title> PythonClasses | {{ student.surname }} {{ student.name }} | Личные данные |</title>
+  <title> PythonClasses | {{ courses.title }} | Про курс |</title>
   <link rel="icon" href="{% static 'dj-logo.ico' %}">
 
   <!-- Bootstrap core CSS -->
@@ -49,7 +49,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="{% url 'students:students_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:students_list' %}?course_id={{ courses.id }} ">Студенты</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Полезные ссылки <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -65,66 +65,43 @@
 
 <link href="{% static 'index.css' %}" rel="stylesheet">
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1>{{ student.surname }} {{ student.name }}</h1>
-        <table>
-        <caption><h2>Личные данные:</h2></caption>
-          <tbody>
-            <tr>
-              <td>
-                дата рождения
-              </td>
-              <td>
-                {{ student.date_of_birth }}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                адрес
-              </td>
-              <td>
-                {{ student.address }}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                почта
-              </td>
-              <td>
-                {{ student.email }}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                логин skype
-              </td>
-              <td>
-                {{ student.skype }}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                телефон
-              </td>
-              <td>
-                {{ student.phone }}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                курсы
-              </td>
-              <td>
-                {% for course in courses %}
-                <a href="{% url 'course:courseinfo' course.id %}">{{course.title}}</a><br>
-                {% endfor %}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
-  </div><!-- /.container -->
+<div class="container">
+  <div class="jumbotron">
+    <h1>{{ courses.title }}</h1>
+    <p class="text">
+      {{ courses.more_info }}    
+    </p>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>
+         #  
+        </th>
+        <th>
+          Тема 
+        </th>
+        <th>
+          Описание
+        </th>
+      </tr>
+      {% for lesson in lessons%}
+      <tr>
+        <td>
+          {{ forloop.counter }}
+        </td>
+        <td class="wide">
+          {{ lesson.theme }}
+        </td>
+        <td class="just">
+          {{ lesson.about }}
+        </td>
+      </tr>
+      {% endfor %}    
+    </tbody>
+  </table>
+  </div>
+</div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
