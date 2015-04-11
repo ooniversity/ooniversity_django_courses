@@ -24,6 +24,12 @@ def student_list(request):
 def student_detail(request):
     return render(request, 'student_detail.html')
 
+def coach_detail(request, co_id):
+#def coach_detail(request):
+    coaches = Coach.objects.get(id=int(co_id))
+    #coaches = Coach.objects.all()
+    return render(request, 'coach.html', {"coaches": coaches})
+
 def course_detail(request, course_id):
     try:
         course_current = Course.objects.get(id=int(course_id))
@@ -33,13 +39,17 @@ def course_detail(request, course_id):
         lessons = Lesson.objects.filter(course = course_current)
 
         trainer_info = {
+            "id": course_current.trainer.id,       
             "fullname": course_current.trainer.user.get_full_name(),
             "description": course_current.trainer.description,
+            #"url": "coaches/"+str(course_current.trainer.id)+"/"
         }
 
         assistant_info = {
+            "id": course_current.assistant.id,       
             "fullname": course_current.assistant.user.get_full_name(),
             "description": course_current.assistant.description,
+            #"url": "coaches/"+str(course_current.assistant.id)+"/"
         }
  
         message = ""
@@ -75,3 +85,5 @@ def student_one(request, student_id):
     except ObjectDoesNotExist:        
         msg = "Sorry, no student with id = %s takes our courses yet."%(student_id)
         return render(request, 'student_one.html',  {"msg": msg})
+
+
