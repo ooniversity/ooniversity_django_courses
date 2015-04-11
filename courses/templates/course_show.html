@@ -9,6 +9,39 @@ Course detail info
   <h2>{{ course.title}}</h2>
   <p>{{ course.descr_full}}</p>
 
+  <div class="teaches">
+    <h2>Преподаватели</h2>
+
+    {% if coach_info %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Преподаватель</h3>
+      </div>
+      <div class="panel-body">
+        <a href="{% url 'coaches:coach_show' coach_info.id %}">
+          <h4>{{ coach_info.name }}</h4>
+        </a>
+        {{ coach_info.descr }}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if assistant_info %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Ассистент</h3>
+      </div>
+      <div class="panel-body">
+        <a href="{% url 'coaches:coach_show' assistant_info.id %}">
+          <h4>{{ assistant_info.name }}</h4>
+        </a>
+        {{ assistant_info.descr }}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
   <div>
     <h2>План курса</h2>
     <div class="courses">
