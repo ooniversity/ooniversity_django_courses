@@ -8,7 +8,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Course.objects.order_by("index_number")
+        return Course.objects.order_by()
 
 class DetailView(generic.DetailView):
     model = Course

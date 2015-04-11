@@ -1,15 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Student
+from .models import Student, Course
 
-class IndexView(generic.ListView):
-    template_name = 'students/students.html'
-    context_object_name = 'students_list'
+def students(request):
+    course_id = request.GET['course_id']
+    course = get_object_or_404(Course, pk=course_id)
+    return render(request, 'students/students.html', {'course': course})
 
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Course.objects.order_by("index_number")
 
-class DetailView(generic.DetailView):
-    model = Course
-    template_name = 'students/students.html'

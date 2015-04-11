@@ -9,7 +9,7 @@ class Student(models.Model):
      phone = models.CharField(max_length=15)
      address = models.CharField(max_length=255)
      skype = models.CharField(max_length=55)
-     courses = models.ManyToManyField(Course)
+     courset = models.ManyToManyField(Course)
 
      def __unicode__(self):
           return self.name
