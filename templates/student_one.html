@@ -117,7 +117,7 @@
           <td>Курсы </td>
           <td>
             {% for item in student_one.courses.all %}
-                <p><a href="{% url 'course_from_student' %}?course_id={{item.id}}">{{item.name}} </a></p>
+       <p><a href="{% url 'course_from_student' %}{{item.id}}/">{{item.name}} </a></p>
             {% endfor %}
         </td>
         </tr>
