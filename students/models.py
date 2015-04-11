@@ -17,7 +17,6 @@ class Student (models.Model):
     def __unicode__(self):
         return self.surname
 
-
     def full_name(self):
         return " ".join([self.name, self.surname])
 

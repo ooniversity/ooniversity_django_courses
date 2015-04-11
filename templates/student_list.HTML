@@ -90,7 +90,7 @@
                     </td>
                     <td>
                       {%for i in student.courses.all%}
-                        {{i.name}}
+                      <a href="/courses/{{i.id}}">{{i.name}}</a><br>
                       {%endfor%}
                     </td>
                   </tr>

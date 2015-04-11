@@ -32,6 +32,5 @@ def show_student_detail(request, id):
 
 def show_courses(request, id):
     course = Course.objects.get(id = int(id))
-    lessons = Lesson.objects.all()
     lessons = Lesson.objects.filter(course__name = course.name)
     return render(request, 'courses.HTML', {'course': course, 'lessons': lessons})
