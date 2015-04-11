@@ -41,7 +41,7 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="{% url 'index' %}">Главная</a></li>
                 <li><a href="{% url 'contact' %}">Контакты</a></li>
-		<li><a href="{% url 'student_list' %}">Студенты</a></li>
+		<li><a href="{% url 'students:students' %}">Студенты</a></li>
               </ul>
             </div>
           </div>
@@ -106,6 +106,35 @@
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
+
+<!--TABLE
+====================================================-->
+		<div class="container">
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading">Список курсов от PyBurs'ы</div>
+
+				<!-- Table -->
+				<table class="table">
+					<tr>
+						<th>Курс</th>
+    				<th>Описание</th>
+					</tr>
+{% for course in courses %}
+					<tr>
+						
+						<td><a href="{% url 'courses:courses' course.id %}">{{course.name}}</a></td>
+						<td>{{course.short_description}}</td>
+													
+					</tr>
+{% endfor %}					
+				</table>
+
+			</div><hr class="featurette-divider">
+		</div>
+
+<!--TABLE
+====================================================END-->
 
     <div class="container marketing">
 

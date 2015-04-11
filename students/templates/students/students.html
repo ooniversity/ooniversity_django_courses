@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+{% load staticfiles %}
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+    <title>Student Detail</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'carousel.css' %}" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div style="margin-top:1%">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                <li><a href="{% url 'contact' %}">Контакты</a></li>
+		<li><a href="{% url 'students:students' %}">Студенты</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+<!-- NAVBAR
+================================================== END-->
+
+
+
+<!--TABLE
+====================================================-->
+<div class="container"><h3>Список Студентов</h3>
+<div class="panel panel-default">
+	
+  <!-- Default panel contents -->
+  
+<table class="table">
+					<tr>
+						<th>#</th>
+    				                <th>Фамилия Имя</th>
+						<th>Адрес</th>
+						<th>skype</th>
+						<th>курсы</th>
+					</tr>
+{% for student in studik %}
+					<tr>
+						<td>{{student.id}}</td>
+						<td><a href="{% url 'students:get_student' student.id %}">{{student.surname}} {{student.name}}</a></td>
+						<td>{{student.address}}</td>
+						<td>{{student.skype}}</td>
+						<td>{% for c in student.courses.all %}
+						<a href="{% url 'courses:courses' c.id %}">{{c}}</a><br>
+						{% endfor %}</td>
+
+					</tr>
+{% endfor %}						
+				</table>  
+
+
+		
+
+</div></div>
+
+			
+
+			
+
+
+	
+
+<!--TABLE
+====================================================END-->
+
+ 
+		<div class="container">
+			<hr class="featurette-divider">
+						<!-- FOOTER -->
+						<footer>	
+						  <p class="pull-right"><a href="#">Back to top</a></p>
+						  <p>© 2015 PyBursa, Esk.</p>
+						</footer>
+
+					</div><!-- /.container -->
+		</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static holder.js %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="Carousel%20Template%20for%20Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+  
+
+<svg style="visibility: hidden; position: absolute; top: -100%; left: -100%;" preserveAspectRatio="none" viewBox="0 0 500 500" height="500" width="500"><defs></defs><text style="font-weight:bold;font-size:23pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle" y="23" x="0">500x500</text></svg></body></html>
