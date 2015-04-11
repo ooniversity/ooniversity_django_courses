@@ -7,5 +7,4 @@ def contact(request):
 def student_l(request):
     return render(request,'student_list.html')
 
-def student_d(request):
-    return render(request,'student_detail.html')
+

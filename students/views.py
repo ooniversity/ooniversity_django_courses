@@ -1,10 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Student, Course
+
+from courses.models import Course
+from models import Student
 
 def students(request):
-    course_id = request.GET['course_id']
-    course = get_object_or_404(Course, pk=course_id)
-    return render(request, 'students/students.html', {'course': course})
+    if request.GET.get('course_id'):
+        course_id = request.GET.get('course_id')
+        course = Course.objects.filter(courses=course_id)
+        students = course.student_set.all()
+    else:
+        students = Student.objects.all()
+    return render(request, 'students/students.html', {'students': students})
+
+
+
+def student_d(request, student_id):
+    student = Student.objects.all()
+    return render(request, 'students/student_detail.html', {'student': student})
 
 
