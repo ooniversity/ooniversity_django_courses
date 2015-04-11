@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'quadratic',
     'courses',
     'students',
+    'coaches',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,8 +82,13 @@ USE_L10N = True
 USE_TZ = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'media'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
