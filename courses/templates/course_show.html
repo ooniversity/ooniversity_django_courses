@@ -7,7 +7,7 @@ Course detail info
 {% block content %}
 <div class="course-info">
   <h2>{{ course.title}}</h2>
-  <p>{{ course.descr_full}}</p>
+  <p>{{ course.descr_full|linebreaksbr}}</p>
 
   <div class="teaches">
     <h2>Преподаватели</h2>
@@ -21,7 +21,7 @@ Course detail info
         <a href="{% url 'coaches:coach_show' coach_info.id %}">
           <h4>{{ coach_info.name }}</h4>
         </a>
-        {{ coach_info.descr }}
+        {{ coach_info.descr|linebreaksbr }}
       </div>
     </div>
     {% endif %}
@@ -35,7 +35,7 @@ Course detail info
         <a href="{% url 'coaches:coach_show' assistant_info.id %}">
           <h4>{{ assistant_info.name }}</h4>
         </a>
-        {{ assistant_info.descr }}
+        {{ assistant_info.descr|linebreaksbr }}
       </div>
     </div>
     {% endif %}
@@ -58,7 +58,7 @@ Course detail info
         <tr>
           <td>{{ lesson.num_in_plan }}</td>
           <td>{{ lesson.theme }}</td>
-          <td>{{ lesson.descr }}</td>
+          <td>{{ lesson.descr|linebreaksbr }}</td>
         </tr>
         {% endfor %}
       </tbody>

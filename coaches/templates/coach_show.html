@@ -44,15 +44,15 @@ Detail info
           <th>Курсы 'учитель'</th>
           <td>
             {% for coach_course in coach_courses %}
-              <h5>
+              <p>
                 <a href="{% url 'courses:show' coach_course.id %}">
                   {{ coach_course.title }}
                 </a>
-              </h5>
-              Студенты курса 
-              <a href="{% url 'students:students_list' %}?course_id={{ coach_course.id }}">
-                <span class="glyphicon glyphicon-new-window"></span>
-              </a>
+                [<a href="{% url 'students:students_list' %}?course_id={{ coach_course.id }}">
+                  cтуденты
+                  <span class="glyphicon glyphicon-user"></span>
+                </a>]
+              </p>
             {% endfor %}
           </td>
         </tr>
@@ -61,15 +61,15 @@ Detail info
           <th>Курсы 'ассистент'</th>
           <td>
             {% for assistant_course in assistant_courses %}
-              <h5>
+              <p>
                 <a href="{% url 'courses:show' assistant_course.id %}">
                   {{ assistant_course.title }} 
-                </a>  
-              </h5> 
-              Студенты курса 
-              <a href="{% url 'students:students_list' %}?course_id={{ assistant_course.id }}">
-                <span class="glyphicon glyphicon-new-window"></span>
-              </a>
+                </a>
+                [<a href="{% url 'students:students_list' %}?course_id={{ assistant_course.id }}">
+                  cтуденты
+                  <span class="glyphicon glyphicon-user"></span>
+                </a>]
+              </p>
             {% endfor %}
           </td>
         </tr>
