@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Pybursa Contacts</title>
+    <title>Univer.com Contacts</title>
     {% load static from staticfiles %}
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -29,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index_pybursa' %}">PyBursa</a>
+      <a class="navbar-brand" href="{% url 'index_pybursa' %}">Univer.com</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,17 +37,7 @@
       <ul class="nav navbar-nav">
         <li><a href="{% url 'index_pybursa' %}">Home <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="#">Contacts</a></li>
-        <li><a href="{% url 'students' %}">Students Overview</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Students <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url 'student_1' %}">Ivan Ivanov</a></li>
-            <li><a href="#">Petr Petrov</a></li>
-            <li><a href="student_3.html">Serge Sergienko</a></li>
-            <li><a href="student_4.html">Alex Alexeenko</a></li>
-            <li><a href="student_5.html">Michael Lamb</a></li>
-          </ul>
-        </li>
+        <li><a href="{% url 'student_list' %}">Students Overview</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -55,8 +45,8 @@
 
 <div class="container">
 <div class="jumbotron">
-  <h2>Python/Django Online Training</h2>
-  <h3>Join today to become Python guru!</h3>
+  <h2>Univer.com - study online for free!</h2>
+  <h3>Call us today to find more information!</h3>
   <ul>
   <li>cell: <i>+18254567876</i></li>
   <li>e-mail: <i>pybursa@gmail.com</i></li>
