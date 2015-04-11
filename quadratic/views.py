@@ -3,6 +3,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from quadratic import check_coef, solve_quadratic_equation, get_discr
+"""
+from django import forms
+from django.shortcuts import redirect
+
+
+class QuadraticForm(forms.Form):
+    a = forms.FloatField(label="Coef A", help_text="Enter A")
+    b = forms.FloatField()
+    c = forms.FloatField()
+
+Затем инстанс этого класса указать во вьюшке: form = QuadraticForm()
+Включить form в состав переменных в render: 'form': form
+В шаблоне страницы использовать {{ form }}, а лучше {{ form.as_p }} (чтобы не в одну строку)
+В любом случае вставляем внутрь тега <form>, где есть <input type="submit">
+
+Чтобы данные сохранялись в форме после отправки, надо во вьюшку добавить:
+
+if request.method == 'POST':
+    form = QuadraticForm(request.POST)
+    if form.is_valid():
+        print form.cleaned_data
+        return redirect('/')   #или render формы с результатами
+else:
+    form = QuadraticForm(initial={'a': 1, 'b': 1, 'c': 1})
+
+"""
 
 
 def results(request):
