@@ -51,9 +51,25 @@
     <div class="container">
       <br>
       <h2 align = 'center'>
-        {{a.name}}
+        {{ a.name }}
       </h2>
-      <p> {{a.description}} </p>
+      <p>
+        {{ a.description }}
+      </p>
+      <div class="datagrid">
+        <table>
+          <thead><tr><th><h3>Instructor</h3><a href="{% url 'coaches:coaches' a.coach.id %}">{{ a.coach.user }}</a></th></tr></thead>
+          <tbody><tr><td>{{a.coach.description}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="datagrid">
+        <table>
+          <thead><tr><th><h3>Assistant</h3><a href="{% url 'coaches:coaches' a.assist.id %}">{{ a.assist.user }}</a></th></tr></thead>
+          <tbody><tr><td>{{a.assist.description}}</td></tr>
+          </tbody>
+        </table>
+      </div>
       <h2>Course plan</h2>
         <div class="datagrid">
           <table>
