@@ -71,6 +71,7 @@
               {% for course in courses_coach %}
               <p>
               <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              (<a href="{% url 'students:student_list' %}?course_id={{course.id}}">студенты</a>)
               </p>
               {% endfor %}
             </td>
@@ -81,6 +82,7 @@
               {% for course in courses_assistant %}
               <p>
               <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              (<a href="{% url 'students:student_list' %}?course_id={{course.id}}">студенты</a>)
               </p>
               {% endfor %}
             </td>
