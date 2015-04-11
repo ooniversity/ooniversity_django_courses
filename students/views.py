@@ -12,5 +12,6 @@ def index(request):
         linked_students = Student.objects.all()
     return render(request, 'students/index.html', {'student_list': linked_students})
 
-def student_detail(request):
-    pass
+def student_detail(request, pk):
+    student = Student.objects.get(id=pk)
+    return render(request, 'students/detail.html', {'student': student})
