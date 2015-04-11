@@ -20,5 +20,8 @@ class Coach(models.Model):
 
     def full_name(self):
         name = self.user.get_full_name()
-        return '%s' % name
+        return  name
     full_name.short_description = u'Полное имя'
+
+    def descr(self):
+        return self.description

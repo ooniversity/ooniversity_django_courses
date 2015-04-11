@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^$', course_view, name='main'),
     url(r'^courses/', include('courses.urls', namespace="courses")),
+    url(r'^coaches/', include('coaches.urls', namespace="coaches")),
     url(r'^students/', include('students.urls', namespace='students')),
     url(r'^contact/$', contact, name='contact'),
     url(r'^student_list/$', student_list, name='student_list'),
