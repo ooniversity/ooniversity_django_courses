@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - {{course.name}}</title>
+    <title>ItBursa - {{ course.name }}</title>
     <link href="{% static "bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
   </head>
@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'views.index' %}">Главная</a></li>
             <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'students:student_list' %}?course_id={{course.id}}">Студенты</a></li>
+            <li><a href="{% url 'students:student_list' %}?course_id={{ course.id }}">Студенты</a></li>
             <li class="active"><a href="">Описание курса<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -34,8 +34,8 @@
     </nav>
 
     <div class="jumbotron">
-      <h1>{{course.name}}</h1>
-      <p>{{course.description}}</p>
+      <h1>{{ course.name }}</h1>
+      <p>{{ course.description }}</p>
     </div>
 
 <div class="table-responsive">
@@ -49,12 +49,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="{% url 'coaches:coach_detail' course.coach.id %}">{{course.coach.full_name}}</a></td>
-            <td><a href="{% url 'coaches:coach_detail' course.assistant.id %}">{{course.assistant.full_name}}</a></td>
+            <td><a href="{% url 'coaches:coach_detail' course.coach.id %}">{{ course.coach.full_name }}</a></td>
+            <td><a href="{% url 'coaches:coach_detail' course.assistant.id %}">{{ course.assistant.full_name }}</a></td>
           </tr>
           <tr>
-            <td>{{course.coach.description}}</td>
-            <td>{{course.assistant.description}}</td>
+            <td>{{ course.coach.description }}</td>
+            <td>{{ course.assistant.description }}</td>
           </tr>
         </tbody>
       </table>
@@ -73,9 +73,9 @@
         <tbody>
           {% for lesson in lessons %}
           <tr>
-            <td>{{lesson.number}}</td>
-            <td>{{lesson.theme}}</td>
-            <td>{{lesson.description}}</td>
+            <td>{{ lesson.number }}</td>
+            <td>{{ lesson.theme }}</td>
+            <td>{{ lesson.description }}</td>
           </tr>
           {% endfor %}
         </tbody>

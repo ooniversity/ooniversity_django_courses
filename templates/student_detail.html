@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - {{student.full_name}}</title>
+    <title>ItBursa - {{ student.full_name }}</title>
     <link href="{% static "bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
   </head>
@@ -39,38 +39,38 @@
         <tbody>
           <tr>
             <th class="col1" scope="row">Фамилия:</th>
-            <td>{{student.surname}}</td>
+            <td>{{ student.surname }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Имя:</th>
-            <td>{{student.name}}</td>
+            <td>{{ student.name }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Дата рождения:</th>
-            <td>{{student.date_of_birth}}</td>
+            <td>{{ student.date_of_birth|date:"j E Y" }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Адрес:</th>
-            <td>{{student.address}}</td>
+            <td>{{ student.address }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Телефон:</th>
-            <td>{{student.phone}}</td>
+            <td>{{ student.phone }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Email:</th>
-            <td>{{student.email}}</td>
+            <td>{{ student.email }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Skype:</th>
-            <td>{{student.skype}}</td>
+            <td>{{ student.skype }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Курсы:</th>
             <td>
               {% for course in courses %}
               <p>
-              <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
               </p>
               {% endfor %}
             </td>

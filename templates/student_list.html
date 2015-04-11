@@ -48,14 +48,14 @@
         <tbody>
           {% for student in students %}
           <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <td><a href="{% url 'students:student_detail' student.id %}">{{student.surname}} {{student.name}}</a></td>
-            <td>{{student.address}}</td>
-            <td>{{student.skype}}</td>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td><a href="{% url 'students:student_detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.skype }}</td>
             <td>
               {% for course in student.courses.all %}
               <p>
-              <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
               </p>
               {% endfor %}
             </td>

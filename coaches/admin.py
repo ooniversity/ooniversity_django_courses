@@ -7,10 +7,14 @@ from django.contrib.auth.models import User
 
 
 class CoachAdmin(admin.ModelAdmin):
-    #list_display = ['first_name', 'last_name', 'email', 'date_of_birth', ]
-    #list_filter = ['']
-    #search_fields = ['']
-    pass    
+    fieldsets = [
+        ('Pesonal Info', {'fields': ['user', 'sex', 'date_of_birth']}),
+        ('Contact Info', {'fields': ['phone', 'address', 'skype']}),
+        (None, {'fields': ['description']})
+    ]
+    list_display = ('full_name', 'user', 'skype', 'sex')
+    list_filter = ['sex']
+    #search_fields = ['user']
     
     
 
