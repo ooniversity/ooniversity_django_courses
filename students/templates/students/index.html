@@ -33,7 +33,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-    <script src="{% static 'custom/js/cursor.js' %}"></script>
+    <!--<script src="{% static 'custom/js/cursor.js' %}"></script>-->
 
   </head>
 
@@ -60,7 +60,7 @@
         </div>
 
         <h4>
-          Spisok studentov!
+          Список студентов!
         </h4>
 
 {% if student_list %}     
@@ -69,12 +69,13 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>fimilia ima</th>
-          <th>address</th>
+          <th>фамилия имя</th>
+          <th>адрес</th>
           <th>skype</th>
-          <th>courses</th>
+          <th>курсы</th>
         </tr>
       </thead>
+
       <tbody>
 
     {% for student in student_list %}
@@ -85,7 +86,10 @@
           <td>{{ student.skype }}</td>
           <td>
               {% for c in student.courses.all %}
-                 {{c}}<br>
+               <a href="{% url 'courses:detail' c.id %}">
+                 {{ c }}
+               </a>
+              <br>
               {% endfor %}
          </td>
         </tr>

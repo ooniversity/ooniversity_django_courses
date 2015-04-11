@@ -12,11 +12,11 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Student.objects.order_by('-id')[:5]
 
-def list(request):
+def linked_students(request):
     #p = get_object_or_404(Course, pk=course_id)
     course = Course.objects.get(id=pk)
-    srtud_list = Student.objects.filter(course=pk)
-    return render(request, 'courses/detail.html', {'course': course, 'lesson_list': lesson_list})
+    linked_students = Student.objects.filter(course=pk)
+    return render(request, 'students/index.html', {'course': course, 'lesson_list': linked_students})
 
 def student_detail(request):
     pass

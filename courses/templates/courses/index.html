@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Студенты</title>
+    <title>Главная</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'bs/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -33,7 +33,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-    <script src="{% static 'custom/js/cursor.js' %}"></script>
+    <!--<script src="{% static 'custom/js/cursor.js' %}"></script>-->
 
   </head>
 
@@ -43,7 +43,7 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
             <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
           </ul>
         </nav>
@@ -75,14 +75,14 @@
           <th>Описание</th>
         </tr>
       </thead>
+
       <tbody>
 
     {% for course in course_list %}
-        <tr class="cursor" url="{% url 'student_detail' %}">
+        <tr>
           <td><a href="{% url 'courses:detail' course.id %}">{{ course.title }}</a></td>
           <td>{{ course.comment }}</td>
         </tr>
-
     {% endfor %}
 
       </tbody>

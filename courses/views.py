@@ -14,13 +14,11 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Course.objects.order_by('-id')[:5]
 
-def lesson_detail(request, pk):
+def detail(request, pk):
     course = Course.objects.get(id=pk)
     lesson_list = Lesson.objects.filter(course=pk)
-    return render(request, 'courses/detail.html', {
-                'course': course,
-                'lesson_list': lesson_list,
-    })
+    return render(request, 'courses/detail.html', {'course': course, 'lesson_list': lesson_list})
+
 
 """
 class DetailView(generic.DetailView):
