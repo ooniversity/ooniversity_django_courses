@@ -52,7 +52,7 @@
           <a class="pull-left" href="#">
             <img class="media-object" src="{% static 'bootstrap/images/student_photo.png' %}" alt="student photo">
           </a>
-          <h4 class="media-heading"> {{student.name}}</h4>
+          <h4 class="media-heading"> {{student.name}} {{student.surname}}</h4>
           <div class = "well well-sm">
             <p><b>Дата рождения:</b>{{student.date_of_birth}}</p>
             <p><b>Адрес:</b> {{student.address}}</p>
