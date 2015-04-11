@@ -95,4 +95,4 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 #('django.template.loaders.filesystem.Loader',
 #'django.template.loaders.app_directories.Loader')
 
-AUTH_PROFILE_MODULE = 'coaches.Coach'
+#AUTH_PROFILE_MODULE = 'coaches.Coach'

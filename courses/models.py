@@ -1,10 +1,13 @@
 from django.db import models
+from coaches.models import Coach
 
 # Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length = 255)
     short_description = models.CharField(max_length = 250)
     description = models.TextField()
+    trainer = models.ForeignKey(Coach, related_name = "rel_trainers", blank = True, null = True)
+    assistant = models.ForeignKey(Coach, related_name = "rel_assistants", blank = True, null = True)
 
     def __unicode__(self):
         return self.name
