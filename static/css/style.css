@@ -137,13 +137,12 @@ img
 }
 .big_tr
 {
-	font-weight: bold;
-
+  font-weight: bold;
 }
 
 .big_tr :hover 
 {
-	font-size:larger;
+  font-size:larger;
 }
 
 #ratings
@@ -162,4 +161,21 @@ img
 {
   font-style: italic;
 }
+
+h3
+{
+  color: #e1752b;
+  font-weight: bold;
+}
+
+.h3_center
+{
+  text-align: center;
+}
+
+.specific_menu
+{
+  color: #e1752b;
+}
+
 										

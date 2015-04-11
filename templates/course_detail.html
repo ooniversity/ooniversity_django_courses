@@ -8,8 +8,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.ico' %">
-    <title>Студенты</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <title>Описание курса</title>
 
     <!-- Bootstrap core CSS -->
     <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
@@ -48,7 +48,15 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
           <li><a href="{% url 'contact' %}">Контакты</a></li>
-          <li><a href="{% url 'student_list' %}">Студенты</a></li>
+
+{% if not message %}
+<!--{% if student_id %}-->
+          <li><a href="{% url 'students' %}?course_id={{ student_id }}">Студенты <span class="specific_menu">{{course_name}}</span></a></li>
+<!--{% endif %}-->
+{% else %}
+          <li><a href="{% url 'students' %}">Студенты ITBursa</a></li>
+{% endif %}
+
           <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
@@ -66,11 +74,47 @@
           </p>
           
  	<div class="row">
-	<h2>Решение квадратного уравнения </h2>
-          <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-          <a href = "{% url 'results' %}"> <button class="btn btn-primary" type="button">
-            Перейти к странице решения
-          </button> </a>
+
+{% if not message %}
+<div class="jumbotron">
+   <div class="jumbo_internal">
+        <h1>{{course_name}}</h1>
+        <p>{{course_description}}</p>
+    </div>
+ </div>
+
+<!--{% if not message %}     
+   {% for i in lessons %}
+        <br><b> {{i.topic}}</b>
+           {{i.description}}
+    {% endfor %}
+{% else %}
+        <br><b> {{message}}</b>
+{% endif %} -->
+
+
+<h2> План курса </h2>
+<table class="table">
+ <thead>
+   <tr>
+      <th>#</th>
+      <th>Тема</th>
+      <th>Описание</th>
+   </tr>
+ </thead>
+ <tbody>
+{% for i in lessons %}
+    <tr>
+      <td><span class="badge">{{forloop.counter}}</span></td>
+      <td>{{i.topic}}</td>
+      <td>{{i.description}}</td>
+    </tr>    
+{% endfor %}          
+  </tbody>
+{% else %}
+   <br><b> {{message}}</b>
+{% endif %} 
+</table>
 
         </div><!--/row-->
 

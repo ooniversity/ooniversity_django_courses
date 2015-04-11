@@ -1,4 +1,6 @@
-#no need for UTF-8 here
+#!/usr/bin/python		
+# -*- coding: UTF-8 -*-
+
 from django.shortcuts import render
 
 def quadratic(request):
