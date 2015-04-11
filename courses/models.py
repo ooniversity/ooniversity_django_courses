@@ -7,8 +7,8 @@ class Course(models.Model):
     name = models.CharField(max_length=255, unique=True)
     short_description = models.CharField(max_length=255)
     description = models.TextField()
-    coach = models.ForeignKey(Coach, related_name='user+', null=True, blank=True)
-    assistant = models.ForeignKey(Coach, related_name='user+', null=True, blank=True)
+    coach = models.ForeignKey(Coach, related_name='courses_coach', null=True, blank=True)
+    assistant = models.ForeignKey(Coach, related_name='courses_assistant', null=True, blank=True)
 
     def __unicode__(self):
         return self.name

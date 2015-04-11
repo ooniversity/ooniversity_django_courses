@@ -9,7 +9,7 @@ class CoachAdmin(admin.ModelAdmin):
         ('Contact Info', {'fields': ['phone', 'address', 'skype']}),
         (None, {'fields': ['description']})
     ]
-    list_display = ('user', 'skype', 'admin_thumbnail')
+    list_display = ('user', 'admin_name', 'skype', 'admin_email', 'admin_thumbnail')
     list_filter = ['gender']
     search_fields = ['user']
 

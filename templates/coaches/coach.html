@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href='{% static "img/favicon.ico" %}' type="image/x-icon">
-    <title>{{ object_list.Coach.user.last_name }} {{ object_list.Coach.user.first_name }}</title>
+    <title>{{ object_list.0.user.last_name }} {{ object_list.0.user.first_name }}</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -99,13 +99,15 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<!-- Coach ================================================== -->
+<!-- Google-MAP ================================================== -->
 
     <div id="map-canvas"></div>
 
+<!-- Coach ================================================== -->
+
     <div class="container">
-      <h1>{{ object_list.Coach.user.last_name }} {{ object_list.Coach.user.first_name }}</h1>
-      <img class="img-circle" src="{{ object_list.Coach.image.url }}" width="140" height="140">
+      <h1>{{ object_list.0.user.last_name }} {{ object_list.0.user.first_name }}</h1>
+      <img class="img-circle" src="{{ object_list.0.image.url }}" width="140" height="140">
     </div>
 
     <div class="container">
@@ -114,36 +116,36 @@
           <tbody>
             <tr>
               <td>Дата рождения</td>
-              <td>{{ object_list.Coach.date_of_birth }}</td>
+              <td>{{ object_list.0.date_of_birth }}</td>
             </tr>
             <tr>
               <td>Адрес</td>
-              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.Coach.address }}" id="address_id">{{ object_list.Coach.address }}</a></td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.0.address }}" id="address_id">{{ object_list.0.address }}</a></td>
             </tr>
             <tr>
               <td>Email</td>
-              <td><a href="mailto:{{ object_list.Coach.user.email }}">{{ object_list.Coach.user.email }}</a></td>
+              <td><a href="mailto:{{ object_list.0.user.email }}">{{ object_list.0.user.email }}</a></td>
             </tr>
             <tr>
               <td>Skype</td>
-              <td><a href="skype:{{ object_list.Coach.skype }}">{{ object_list.Coach.skype }}</a></td>
+              <td><a href="skype:{{ object_list.0.skype }}">{{ object_list.0.skype }}</a></td>
             </tr>
             <tr>
               <td>Телефон</td>
-              <td><a href="skype:{{ object_list.Coach.phone }}?call">{{ object_list.Coach.phone }}</a></td>
+              <td><a href="skype:{{ object_list.0.phone }}?call">{{ object_list.0.phone }}</a></td>
             </tr>
-            {% if object_list.Course_coarch %}
+            {% if object_list.0.courses_coach.count %}
             <tr>
               <td>Курсы учитель</td>
-              <td>{% for coach in object_list.Course_coarch %}
+              <td>{% for coach in object_list.0.courses_coach.filter %}
                 <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a> (<a href="{% url 'students' %}?course_id={{ coach.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>
             {% endif %}
-            {% if object_list.Course_assistant %}
+            {% if object_list.0.courses_assistant.count %}
             <tr>
               <td>Курсы ассистент</td>
-              <td>{% for assistant in object_list.Course_assistant %}
+              <td>{% for assistant in object_list.0.courses_assistant.filter %}
                 <p><a href="{% url 'courses:detail' assistant.id %}">{{ assistant }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
               {% endfor %}</td>
             </tr>

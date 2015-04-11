@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href='{% static "img/favicon.ico" %}' type="image/x-icon">
-    <title>{{ object_list.Course.name }}</title>
+    <title>{{ object_list.0.name }}</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href='{% url "home" %}'>Главная</a></li>
-            <li><a href="{% url 'students' %}?course_id={{ object_list.Course.id }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
+            <li><a href="{% url 'students' %}?course_id={{ object_list.0.id }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -99,45 +99,53 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<!-- Course ================================================== -->
+<!-- Course info ================================================== -->
 
     <div class="container">
-      <h1>{{ object_list.Course.name }}</h1>
-      <p>{{ object_list.Course.description }}</p>
+      <h1>{{ object_list.0.name }}</h1>
+      <p>{{ object_list.0.description }}</p>
     </div>
+
+<!-- Coaches ================================================== -->
 
     <div class="container">
       <h2 class="sub-header"><a href="{% url 'coaches:coaches' %}">Преподаватели</a></h2>
     </div>
 
     <div class="container">
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          <h3 class="panel-title">Учитель</h3>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Учитель</h3>
+            </div>
+            <div class="panel-body">
+              <img class="img-circle" src="{{ object_list.0.coach.image.url }}" width="140" height="140">
+              <h4><a href="{% url 'coaches:coach' object_list.0.coach.id %}">{{ object_list.0.coach.user.last_name }} {{ object_list.0.coach.user.first_name }}</a></h4>
+              <p>{{ object_list.0.coach.description }}</p>
+            </div>
+          </div>
         </div>
-        <div class="panel-body">
-          <h4><a href="{% url 'coaches:coach' object_list.Coach.coach.id %}">{{ object_list.Coach.coach.user.last_name }} {{ object_list.Coach.coach.user.first_name }}</a></h4>
-          <p>{{ object_list.Coach.coach.description }}</p>
+        <div class="col-xs-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Асистент</h3>
+            </div>
+            <div class="panel-body">
+              <img class="img-circle" src="{{ object_list.0.assistant.image.url }}" width="140" height="140">
+              <h4><a href="{% url 'coaches:coach' object_list.0.assistant.id %}">{{ object_list.0.assistant.user.last_name }} {{ object_list.0.assistant.user.first_name }}</a></h4>
+              <p>{{ object_list.0.assistant.description }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Асистент</h3>
-        </div>
-        <div class="panel-body">
-          <h4><a href="{% url 'coaches:coach' object_list.Coach.assistant.id %}">{{ object_list.Coach.assistant.user.last_name }} {{ object_list.Coach.assistant.user.first_name }}</a></h4>
-          <p>{{ object_list.Coach.assistant.description }}</p>
-        </div>
-      </div>
-    </div>
+<!-- COURSE lessen ================================================== -->
 
     <div class="container">
       <h2 class="sub-header">План курса</h2>
     </div>
-
 
     <div class="container">
       <div class="table-responsive">
@@ -149,7 +157,7 @@
               <th>Описание</th>
             </tr>
           </thead>
-          {% for lesson in object_list.Lesson %}
+          {% for lesson in object_list.0.lesson_set.filter %}
           <tbody>
             <tr>
               <td><p>{{ lesson.consecutive_number }}</p></td>

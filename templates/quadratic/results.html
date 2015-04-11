@@ -21,6 +21,8 @@
   </head>
   <body>
 
+<!-- NAVBAR ================================================== -->
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,6 +96,8 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+<!-- Quadratic ================================================== -->
+
     <div class="container">
       {% if not answer%}
       <p>Квадратное уравнение a×x² + b×x + c = 0</p>
@@ -111,6 +115,7 @@
       <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Заново</a>
       {% endif %}
     </div>
+
 <!-- FOOTER ================================================== -->
 
     <div class="navbar-fixed-bottom row-fluid">
