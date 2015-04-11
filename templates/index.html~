@@ -72,11 +72,11 @@
           <div class="jumbotron">
             <div class="jumbo_internal">
             <h1>Go to ITBursa!</h1>
-            <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научит <strong>ITBursa</strong> - <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank">лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://pybursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
+            <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
           </div>
           </div>
 
-<h2>Выбирай, на каком курсе ты хочешь учиться!</h2>
+<h2>Обучитесь "модным" языкам программирования!</h2>
 
  <table class="table">
             <thead>
@@ -93,7 +93,7 @@
     <tbody>
       <tr>
       <td><a href="{{ i.url }}">{{i.name}} </a></td>
-      <td>{{i.description}}</td>
+      <td>{{i.short_description}}</td>
       </tr>
 {% endfor %}
     </tbody>

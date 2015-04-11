@@ -3,9 +3,6 @@ from django.contrib import admin
 from pybursa.views import *
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'pybursa.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^polls/', include('polls.urls')),
@@ -17,14 +14,12 @@ urlpatterns = patterns('',
     url(r'^student_detail/$', student_detail, name='student_detail'),
 
     url(r'^quadratic/', include('quadratic.urls')),
-
-    url(r'^course/', course_from_student, name='course_from_student'),
+   
     url(r'^courses/(?P<course_id>\d+)/$', course_detail, name='course'),
+    #url(r'^courses/\d*', course_from_student, name='course_from_student'),
+    url(r'^courses/\d*', course_detail, name='course_from_student'),
 
     url(r'^students/(?P<student_id>\d+)/$', student_one, name='student_one'),
-    url(r'^students/', students, name='students'),
-    #url(r'^students/$', students_all, name='students'),
-    #\w{11,}
-    #url(r'^students/$', students_full, name='students_full'),
-
+    url(r'^students/\d*$', students, name='students'),
+    #url(r'^students/', students, name='students'),
 )

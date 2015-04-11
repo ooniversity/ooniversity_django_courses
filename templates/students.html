@@ -100,7 +100,7 @@
   <td>
      <!--{{i.courses.all}}-->
 {% for item in i.courses.all %}
-       <a href="{% url 'course_from_student' %}?course_id={{item.id}}">{{item.name}} </a>
+       <p><a href="{% url 'course_from_student' %}{{item.id}}/">{{item.name}} </a></p>
 {% endfor %}
 
 <!--http://stackoverflow.com/questions/3998527/how-to-display-a-list-of-objects-containing-many-to-many-relations-in-django-tem-->
