@@ -16,7 +16,7 @@ def students(request):
 
 
 def student_d(request, student_id):
-    student = Student.objects.all()
+    student = Student.objects.get(pk=student_id)
     return render(request, 'students/student_detail.html', {'student': student})
 
 
