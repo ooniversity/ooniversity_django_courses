@@ -25,21 +25,23 @@ def student_detail(request):
     return render(request, 'student_detail.html')
 
 def coach_detail(request, co_id):
-
-    coaches = Coach.objects.get(id=int(co_id))
-
-    coaches_info = {
-        "fullname": coaches.user.get_full_name(),
-        "date": coaches.birth_date,
-        "address": coaches.address,
-        "scype": coaches.scype,
-        "phone": coaches.phone,
-        #"email": coaches.user.email(),
-        "courses_trainer": coaches.rel_trainers.all(),
-        "courses_assistant": coaches.rel_assistants.all(),
-        }
-    
-    return render(request, 'coach.html', {"coaches": coaches, "coaches_info": coaches_info})
+    try:
+        coaches = Coach.objects.get(id=int(co_id))
+        message = ""
+        coaches_info = {
+            "fullname": coaches.user.get_full_name(),
+            "date": coaches.birth_date,
+            "address": coaches.address,
+            "scype": coaches.scype,
+            "phone": coaches.phone,
+            #"email": coaches.user.email(),
+            "courses_trainer": coaches.rel_trainers.all(),
+            "courses_assistant": coaches.rel_assistants.all(),
+            }    
+        return render(request, 'coach.html', {"coaches": coaches, "coaches_info": coaches_info})
+    except ObjectDoesNotExist:
+        message = "Sorry, no coach with id = %s exists yet."%(co_id)
+        return render(request, 'coach.html', {"message": message})
 
 def course_detail(request, course_id):
     try:

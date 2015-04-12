@@ -67,8 +67,7 @@
           
  	<div class="row">
 
-
-
+{% if not message %}
                      
 	<div class="table-responsive"> <!--horizontal scrolls-->
 <!--{% if not msg %} 
@@ -151,6 +150,11 @@
 
 </div><!--????-->
 
+{% else %}
+
+<br><b>{{message}}</b>
+
+{% endif %}
 
           </div><!--/row-->
 	<!--<div id="a_center"> <a href="#top"> Наверх </a> </div>-->
