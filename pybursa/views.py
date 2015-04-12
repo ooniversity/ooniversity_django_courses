@@ -25,7 +25,7 @@ def student_detail(request):
     return render(request, 'student_detail.html')
 
 def coach_detail(request, co_id):
-#def coach_detail(request):
+
     coaches = Coach.objects.get(id=int(co_id))
 
     coaches_info = {
@@ -34,13 +34,11 @@ def coach_detail(request, co_id):
         "address": coaches.address,
         "scype": coaches.scype,
         "phone": coaches.phone,
-        #"email": coaches.user.get_email(),
+        #"email": coaches.user.email(),
         "courses_trainer": coaches.rel_trainers.all(),
         "courses_assistant": coaches.rel_assistants.all(),
         }
-
     
-    #coaches = Coach.objects.all()
     return render(request, 'coach.html', {"coaches": coaches, "coaches_info": coaches_info})
 
 def course_detail(request, course_id):

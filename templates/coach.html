@@ -101,7 +101,7 @@
 
         <tr>
           <td>Почта </td>
-          <td>{{coaches_info.email}}</td>
+          <td>{{ coaches.user.email }}</td>
         </tr>
 
         <tr>
@@ -121,7 +121,7 @@
 	    {% for i in coaches_info.courses_trainer %}
 	    <p class="big_tr"><a href="{% url 'course_from_student' %}{{i.id}}/">{{i.name}}
 	    </a>
-           <a href="{% url 'students' %}?course_id={{i.id}}">Студенты</a>
+           <a href="{% url 'students' %}?course_id={{i.id}}">[Студенты]</a>
             </p>
             {% endfor %}
 	  </td>
@@ -135,7 +135,7 @@
           <td>
 	    {% for i in coaches_info.courses_assistant %}
 	    <p class="big_tr"><a href="{% url 'course_from_student' %}{{i.id}}/">{{i.name}}</a>
-           <a href="{% url 'students' %}?course_id={{i.id}}">Студенты</a>
+           <a href="{% url 'students' %}?course_id={{i.id}}">[Студенты]</a>
             </p>
             {% endfor %}
 	  </td>

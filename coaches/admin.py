@@ -1,6 +1,7 @@
 from django.contrib import admin
 from coaches.models import Coach
 
+
 class CoachAdmin(admin.ModelAdmin):
 
     list_display = ('user', 'user_name', 'scype', 'user_email',)
@@ -9,7 +10,7 @@ class CoachAdmin(admin.ModelAdmin):
 
     fieldsets = [
         ('Pesonal Info', {'fields': ['user', 'gender', 'birth_date',]}),
-        ('Contact Info', {'fields': ['phone', 'address', 'scype']}),
+        ('Contact Info', {'fields': ['phone', 'address', 'scype',]}),
         (None, {'fields': ['description']})
     ]
 

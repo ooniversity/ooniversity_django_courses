@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Coach(models.Model):
     #user = models.OneToOneField(User)
     user = models.OneToOneField(User, null=True, blank=True)
@@ -15,6 +16,7 @@ class Coach(models.Model):
         return '%s' % (self.user) #string!
 
     def user_name(self):
+    #http://stackoverflow.com/questions/3409970/django-admin-how-to-display-fields-from-two-different-models-in-same-view
         if self.user:
             return u'%s %s' % (self.user.last_name, self.user.first_name)
         else:
