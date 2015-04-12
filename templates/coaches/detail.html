@@ -1,171 +1,76 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+{% extends "base.html" %}
 
-    <title>Сведения о преподавателе - pyBursa</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+{% block title %}Сведения о преподавателе - pyBursa{% endblock %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/theme.css' %}" rel="stylesheet">
-  </head>
 
-  <body role="document">
+{% block content %}
+<div class="page-header">
+  <h2>{{ coach.user.first_name }} {{ coach.user.last_name }}</h2>
+</div>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'index' %}">
-            <img class="logo" src="{% static 'img/logo.png' %}" />
-          </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Главная</a></li>
-            <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="{% url 'students:list_view' %}">Студенты</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+<div class="row">
+  <div class="col-xs-12 col-lg-12">
+    <div class="row">
+      <div class="col-xs-12 col-lg-12 ">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>дата рождения</td>
+              <td>{{ coach.date_of_birth }}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>адрес</td>
+              <td>{{ coach.address }}</td>
+            </tr>
+            <tr>
+              <td>почта</td>
+              <td>{{ coach.user.email }}</td>
+            </tr>
+            <tr>
+              <td>логин skype</td>
+              <td>{{ coach.skype }}</td>
+            </tr>
+            <tr>
+              <td>телефон</td>
+              <td>{{ coach.phone }}</td>
+            </tr>
+            <tr>
+              <td>курсы учитель</td>
+              <td>
+                {% for course in coach.coach_courses.all %}
+                  <p>
+                    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
+                    cтуденты курса
+                    <a href="{% url 'students:list_view' %}?course_id={{ course.id }}">
+                      <span class="glyphicon glyphicon-new-window"></span>
+                    </a>
+                  </p>
+                {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <td>курсы ассистент</td>
+              <td>
+                {% for course in coach.assistant_courses.all %}
+                  <p>
+                    <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
+                    cтуденты курса
+                    <a href="{% url 'students:list_view' %}?course_id={{ course.id }}">
+                      <span class="glyphicon glyphicon-new-window"></span>
+                    </a>
+                  </p>
+                {% endfor %}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </nav>
-
-    <div class="container theme-showcase" role="main">
-
-      <div class="page-header">
-        <h2>{{ coach.user.first_name }} {{ coach.user.last_name }}</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 col-lg-12">
-          <div class="row">
-            <div class="col-xs-12 col-lg-12 ">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <td>дата рождения</td>
-                    <td>{{ coach.date_of_birth }}</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>адрес</td>
-                    <td>{{ coach.address }}</td>
-                  </tr>
-                  <tr>
-                    <td>почта</td>
-                    <td>{{ coach.user.email }}</td>
-                  </tr>
-                  <tr>
-                    <td>логин skype</td>
-                    <td>{{ coach.skype }}</td>
-                  </tr>
-                  <tr>
-                    <td>телефон</td>
-                    <td>{{ coach.phone }}</td>
-                  </tr>
-                  <tr>
-                    <td>курсы учитель</td>
-                    <td>
-                      {% for course in coach.coach_courses.all %}
-                        <p>
-                          <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
-                          cтуденты курса
-                          <a href="{% url 'students:list_view' %}?course_id={{ course.id }}">
-                            <span class="glyphicon glyphicon-new-window"></span>
-                          </a>
-                        </p>
-                      {% endfor %}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>курсы ассистент</td>
-                    <td>
-                      {% for course in coach.assistant_courses.all %}
-                        <p>
-                          <a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a>
-                          cтуденты курса
-                          <a href="{% url 'students:list_view' %}?course_id={{ course.id }}">
-                            <span class="glyphicon glyphicon-new-window"></span>
-                          </a>
-                        </p>
-                      {% endfor %}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-{#      <div class="page-header">#}
-{#        <h3>Результаты обучения</h3>#}
-{#      </div>#}
-{##}
-{#      <div class="row">#}
-{#        <div class="col-md-12">#}
-{#          <table class="table table-bordered">#}
-{#            <thead>#}
-{#              <tr>#}
-{#                <th>ЛР 1</th>#}
-{#                <th>ЛР 2</th>#}
-{#                <th>ЛР 3</th>#}
-{#                <th>ЛР 4</th>#}
-{#                <th>ЛР 5</th>#}
-{#                <th>ЛР 6</th>#}
-{#                <th>КР 1</th>#}
-{#                <th>КР 2</th>#}
-{#                <th>КР 3</th>#}
-{#                <th>КР 4</th>#}
-{#                <th>средний бал</th>#}
-{#                <th>рейтинг</th>#}
-{#              </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#              <tr>#}
-{#                <td>10</td>#}
-{#                <td>9</td>#}
-{#                <td>10</td>#}
-{#                <td>6</td>#}
-{#                <td>7</td>#}
-{#                <td>5</td>#}
-{#                <td>9</td>#}
-{#                <td>10</td>#}
-{#                <td>10</td>#}
-{#                <td>8</td>#}
-{#                <td>8.4</td>#}
-{#                <td>3</td>#}
-{#              </tr>#}
-{##}
-{#            </tbody>#}
-{#          </table>#}
-{#        </div>#}
-{#      </div>#}
-    </div> <!-- /container -->
+    </div>
+  </div>
+</div>
+{% endblock content %}
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-  </body>
-</html>
