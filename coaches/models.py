@@ -14,5 +14,14 @@ class Coach(models.Model):
     def full_name(self):
         return u"{0} {1}".format(self.user.first_name, self.user.last_name)
 
+    def user_first_name(self):
+        return self.user.first_name
+
+    def user_last_name(self):
+        return self.user.last_name
+
+    def user_email(self):
+        return self.user.email
+
     def __unicode__(self):
         return self.full_name()
