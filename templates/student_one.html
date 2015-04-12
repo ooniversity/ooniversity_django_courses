@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.ico' %">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
@@ -48,7 +48,8 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
           <li><a href="{% url 'contact' %}">Контакты</a></li>
-          <li><a href="{% url 'student_list' %}">Студенты</a></li>
+          <li><a href="{% url 'students' %}">Студенты ITBursa</a></li>
+            <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -65,24 +66,79 @@
           </p>
           
  	<div class="row">
-	<h2>Решение квадратного уравнения </h2>
-          {% if answer == '' %}
-          <p>Квадратное уравнение a×x² + b×x + c = 0</p>
-          {% for n,i,error in list %}
-          <p>{{ n }} = {{ i }}</p>
-          <p>{{ error }}</p>
-          {% endfor %}
-          {% else %}
-          <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 >= 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.2.1 >= 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
-          <p>{{ answer }}</p>
-      {% endif %}
+{% if not msg %} 
+{% if student_one %}
+	<h2>{{student_one.name}} {{student_one.surname}}</h2>
+                     
+	<div class="table-responsive"> <!--horizontal scrolls-->
+<!--{% if not msg %} 
+   {% if student_one %}
+      <br>
+      <b> {{student_one.surname}} </b>
+      <br>{{student_one.name}}
+      <br><b>{{student_one.scype}}</b>
+      <br>{{student_one.birth_date}}
+   {% endif %}
+{% else %}
+      <br><b> {{msg}}</b>
+{% endif %}  -->
 
 
+  <div id = "student_details">
+    <table class="table table-hover">										
+      <tbody>
+
+        <tr>
+          <td>Дата рождения </td>
+          <td>{{student_one.birth_date}}</td>
+        </tr>
+
+        <tr>
+          <td>Адрес </td>
+          <td>{{student_one.address}}</td>
+        </tr>
+
+        <tr>
+          <td>Почта </td>
+          <td>{{student_one.email}}</td>
+        </tr>
+
+        <tr>
+          <td>Логин scype </td>
+          <td>{{student_one.scype}}</td>
+        </tr>
+
+        <tr>
+          <td>Телефон </td>
+          <td>{{student_one.phone}}</td>
+        </tr>
+
+        <tr class="big_tr">
+          <td>Курсы </td>
+          <td>
+            {% for item in student_one.courses.all %}
+       <p><a href="{% url 'course_from_student' %}{{item.id}}/">{{item.name}} </a></p>
+            {% endfor %}
+        </td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+   {% endif %}
 
 
-        </div><!--/row-->
-    <div id="a_center"> <a href="#top"> Наверх </a> </div>
-  </div><!--/.col-xs-12.col-sm-9-->
+</div> <!-- #student_details -->
+
+</div><!--????-->
+{% else %}
+      <br><b> {{msg}}</b>
+{% endif %}
+
+          </div><!--/row-->
+	<!--<div id="a_center"> <a href="#top"> Наверх </a> </div>-->
+
+      </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">

@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'polls',
     'quadratic',
+    'courses',
+    'students',
+    'coaches',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,3 +94,5 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 #TEMPLATE_LOADERS = 
 #('django.template.loaders.filesystem.Loader',
 #'django.template.loaders.app_directories.Loader')
+
+#AUTH_PROFILE_MODULE = 'coaches.Coach'
