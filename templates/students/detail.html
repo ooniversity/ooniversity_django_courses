@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 {% block title %}Сведения о студенте - pyBursa{% endblock %}
 
@@ -20,7 +20,7 @@
           <thead>
             <tr>
               <td>дата рождения</td>
-              <td>{{ student.date_of_birth }}</td>
+              <td>{{ student.date_of_birth|date:"d F, Y" }}</td>
             </tr>
           </thead>
           <tbody>
@@ -46,6 +46,12 @@
                 {% for course in student.courses.all %}
                   <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
                 {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <td>комментарии</td>
+              <td>
+                {{ comment|default:"не имеет комментарий" }}
               </td>
             </tr>
           </tbody>
