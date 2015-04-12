@@ -5,7 +5,6 @@ from coaches.models import Coach
 from django.contrib.auth.models import User
 
 
-
 class CoachAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Pesonal Info', {'fields': ['user', 'sex', 'date_of_birth']}),
@@ -14,8 +13,7 @@ class CoachAdmin(admin.ModelAdmin):
     ]
     list_display = ('full_name', 'user', 'skype', 'sex')
     list_filter = ['sex']
-    #search_fields = ['user']
-    
+    search_fields = ['user__first_name', 'user__last_name', 'user__username']
     
 
 admin.site.register(Coach, CoachAdmin)
