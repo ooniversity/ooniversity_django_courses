@@ -37,13 +37,42 @@
     </div>
 
     <div class="container">
-      <h2 style="color: #446785">План курса</h2>
       <div class="jumbotron">
         <h2 style="color: #446785">{{ current_course.name }}</h2>
         <p class="lead">
           <p>{{ current_course.description }}</p>
         </p>
       </div>
+
+      <h2 style="color: #446785">Преподаватели</h2>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Учитель</h3>
+            </div>
+            <div class="panel-body">
+              <a href="{% url 'coaches:coaches_info' current_course.coach.id %}"><h5>{{ current_course.coach.user.first_name }} {{ current_course.coach.user.last_name }}</h5></a>
+              <p>{{ current_course.coach.description }}</p>
+            </div>
+          </div>  
+        </div>
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Асистент</h3>
+            </div>
+            <div class="panel-body">
+              <h5><a href="{% url 'coaches:coaches_info'  current_course.assistant.id %}">{{ current_course.assistant.user.first_name }} {{ current_course.assistant.user.last_name }}</a></h5>
+              <p>{{ current_course.assistant.description }}</p>
+            </div>
+          </div>  
+        </div>
+
+      </div>
+
+      <h2 style="color: #446785">План курса</h2>
 
       <div class="row">
         <div class="col-md-10">
