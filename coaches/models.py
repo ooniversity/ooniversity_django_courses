@@ -20,8 +20,6 @@ class Coach(models.Model):
         else:
             return 'no user\'s name defined'
 
-
-
     user_name.short_description = 'Name'
     #user_name.allow_tags = True
 
