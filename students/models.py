@@ -16,6 +16,9 @@ class Student(models.Model):
  	def courses(self):
  		return self.course.all()
 
+ 	def full_name(self):
+ 		return self.name + " " + self.surname
+
  	def __unicode__(self):
  		return self.name+' '+self.surname
 
