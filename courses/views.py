@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from courses.models import Course, Lesson
+from coaches.models import Coach
+from django.contrib.auth.models import User
 
 #from polls.models import Choice, Question
 
@@ -14,6 +16,11 @@ def index(request):
 def detail(request, pk):
     course = Course.objects.filter(id=pk)[0]
     lessons = Lesson.objects.filter(course=pk)
+    instructor = Coach.objects.filter(user_id=course.instructor_id)[0]
+    u_instructor = User.objects.get(coach=instructor)
+    assistant = Coach.objects.filter(user_id=course.assistant_id)[0]
+    u_assistant = User.objects.get(coach=assistant)
+
     #print lessons
     #print lessons
     #newlessons = list(lessons)
@@ -21,7 +28,9 @@ def detail(request, pk):
     #print course
     #print course.id
     #course = qs.filter(id__in=(0,))
-    return render(request, "courses/detail.html", {'course' : course, 'lessons' : lessons})
+    return render(request, "courses/detail.html", {'course' : course, 'lessons' : lessons,\
+        'u_instructor' : u_instructor, 'u_assistant' : u_assistant,\
+        'instructor' : instructor, 'assistant' : assistant, })
 
 #class DetailView(generic.DetailView):
 #    model = Course

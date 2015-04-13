@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'courses.views.index'),
     url(r'^courses/', include('courses.urls', namespace="courses")),
     url(r'^students/', include('students.urls', namespace="students")),
+    url(r'^coaches/', include('coaches.urls', namespace="coaches")),
 
     #url(r'^$', 'pybursa.views.dj101_index'),
     url(r'^contact/$', 'pybursa.views.dj101_contact'),
