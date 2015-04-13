@@ -44,15 +44,24 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <h1>{{course.name}}</h1>
+        <h1>{{ course.name }}</h1>
         <div class="jumbotron">
-          <p>{{course.description}}</p>
+          <p>{{ course.description }}</p>
+        </div>
+        <h2>Учитель</h2>
+        <div class="media">
+          <p><a href="{% url 'courses:courses' course.id %}">{{ course.coach }}</a></p>
+          <p class="custom_well">{{ course.coach.description }}</p>
+        </div>
+        <h2>Ассистент</h2>
+        <div class="media">
+          <p><a href="{% url 'coaches:coach_d' course.coach.id %}">{{ course.assistant.user.first_name }} {{ course.assistant.user.last_name }}</a></p>
+          <p class="custom_well">{{ course.assistant.description }}</p>
         </div>
         <div class="panel panel-success">
           <!-- Default panel contents -->
           <div class="panel-heading">План курса</div>
           <div class="table-responsive">
-
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -64,11 +73,11 @@
               {% for lesson in course.lesson_set.all %}
               <tbody>
                 <tr>
-                  <td>{{lesson.index_numer}}</td>
-                  <td>{{lesson.topic}}</td>
+                  <td>{{ lesson.index_numer }}</td>
+                  <td>{{ lesson.topic }}</td>
                   <td>
                     <ul>
-                      <li>{{lesson.description}}</li>
+                      <li>{{ lesson.description }}</li>
                     </ul>
                   </td>
                 </tr>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PyBursa Students</title>
+    <title>PyBursa Student detail</title>
 
     <!-- Bootstrap -->
     {% load staticfiles %}
@@ -44,36 +44,30 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <div class="panel panel-info">
-          <!-- Default panel contents -->
-          <div class="panel-heading" style = "font-size:20px">Список группы</div>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>ФИО</th>
-                  <th>Адрес</th>
-                  <th>Skype</th>
-                  <th>Курсы</th>
-                </tr>
-              </thead>
-              {% for student in students %}
-              <tbody>
-                <tr>
-                  <td>{{ forloop.counter }}</td>
-                  <td><a href="{% url 'students:student_d' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
-                  <td>{{ student.address }}</td>
-                  <td>{{ student.skype }}</td>
-                  <td>{% for course in student.courset.all %}
-                  <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
-                  {% endfor %}</td>
-                </tr>
-              </tbody>
-              {% endfor %}
-            </table>
+        <div class="media">
+          <a class="pull-left" href="#">
+            <img class="media-object" src="{% static 'bootstrap/images/student_photo.png' %}" alt="student photo">
+          </a>
+          <h4 class="media-heading"> {{ coach.user.first_name }} {{ coach.user.last_name }}</h4>
+          <div class = "well well-sm">
+            <p><b>Дата рождения:</b> {{coach.date_of_birth}}</p>
+            <p><b>Адрес:</b> {{ coach.address }}</p>
+            <p><b>Почта:</b> {{ coach.user.email }}</a></p>
+            <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ coach.skype }}</p>
+            <p><b>Учитель на курсах:</b>
+            {% for course in student.courset.all %}
+            <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
+            {% endfor %}</p>
+            <p><b>Ассистент на курсах:</b>
+            {% for course in student.courset.all %}
+            <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
+            {% endfor %}</p>
+
           </div>
         </div>
+      </div>
+  </div>
+</div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
