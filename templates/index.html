@@ -8,10 +8,25 @@
 
 
 {% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
 <div class="jumbotron">
   <h1>ooniversity</h1>
   <p>Мы специализируемся на «модных» языках программирования. Принципиальное наше отличие от других курсов – максимум практики и жесткая система обязательных домашних заданий.</p>
 </div>
+
+<a href="{% url 'courses:add' %}" class="btn btn-primary" role="button">
+  <span class="glyphicon glyphicon-plus"></span>
+  Добавить новый курс
+</a>
 <div class="page-header">
   <h1>Выбирай на каком курсе ты хочешь учиться!</h1>
 </div>
@@ -22,6 +37,8 @@
         <tr>
           <th>Курс</th>
           <th>Описание</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +46,18 @@
           <tr>
             <td><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></td>
             <td>{{ course.short_description|truncatechars:70 }}</td>
+            <td>
+              <a href="{% url 'courses:edit' course.id  %}" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Изменить
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'courses:remove' course.id  %}" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-remove"></span>
+                Удалить
+              </a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
