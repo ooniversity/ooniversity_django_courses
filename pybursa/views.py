@@ -2,6 +2,7 @@ from django.shortcuts import render
 from courses.models import Course
 from courses.models import Lesson
 from students.models import Student
+from coaches.models import Coach
 
 
 def index(request):
@@ -29,3 +30,8 @@ def course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     lessons = Lesson.objects.filter(course=course).order_by('item_no')
     return render(request, 'course_detail.html', {'course': course, 'lessons': lessons})
+
+def coach_detail(request, coach_id):
+    coach = Coach.objects.get(id=coach_id)
+    courses = coach.course.all()
+    return render(request, 'coach_detail.html', {'coach': coach, 'courses': courses})

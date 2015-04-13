@@ -16,7 +16,7 @@ def students(request):
     if course_id == None:
         students = Student.objects.all()
     else:
-        students = Student.objects.filter(courses=course_id)
+        students = Student.objects.filter(course=course_id)
     return render(request, 'student_list.html', {'students': students})
 
 def student_detail(request, student_id):
@@ -29,3 +29,8 @@ def course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     lessons = Lesson.objects.filter(course=course).order_by('item_no')
     return render(request, 'course_detail.html', {'course': course, 'lessons': lessons})
+
+def coach_detail(request, coach_id):
+    coach = Coach.objects.get(id=coach_id)
+    courses = student.course.all()
+    return render(request, 'coach_detail.html', {'coach': coach, 'courses': courses})
