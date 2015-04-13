@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from courses.models import Course, Lesson
 from students.models import Student 
+from coaches.models import Coach
 
 def show_index(request):
 	courses = Course.objects.all()
@@ -26,3 +27,16 @@ def show_course(request, id):
     course = Course.objects.get(id = int(id))
     lessons = Lesson.objects.filter(course__name = course.name)
     return render(request, 'course.html', {'course': course, 'lessons': lessons})
+
+def show_coach(request, id):
+    coach = Coach.objects.get(id = int(id))
+    courses = Course.objects.all()
+    teacher = []
+    assistant = []
+    for i in courses:
+        if coach.user == i.teacher.user:
+            teacher.append(i)
+    for i in courses:
+        if coach.user == i.assistant.user:
+            assistant.append(i)
+    return render(request, 'coach.html', {'coach': coach, 'teacher': teacher, 'assistant': assistant})

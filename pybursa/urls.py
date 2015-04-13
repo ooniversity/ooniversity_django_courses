@@ -12,4 +12,5 @@ urlpatterns =  patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^courses/(?P<id>\d+)/$', views.show_course, name = 'course'),
+    url(r'^coaches/(?P<id>\d+)/$', views.show_coach, name = 'coach'),
 )
