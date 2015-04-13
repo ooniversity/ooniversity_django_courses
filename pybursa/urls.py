@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from courses.views import course, lesson_pd, lesson_js, lesson_rr
 from students.views import student
+
  
 
 urlpatterns = patterns('',
