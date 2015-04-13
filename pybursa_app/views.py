@@ -5,8 +5,10 @@
 from django.shortcuts import render_to_response
 from courses.models import Course, Lesson
 from students.models import Student
+from coaches.models import Coach
 from django.template import RequestContext, loader
 from django.http import HttpResponse, Http404
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -65,16 +67,29 @@ def student_detail(request, student_id):
     })
     return HttpResponse(template.render(context))
 
-
-
 def course(request, course_id):
-
-    course_list = Course.objects.get(pk=course_id)
+    course = Course.objects.get(pk=course_id)
     lesson_list = Lesson.objects.filter(lesson_course=course_id)
+
     template = loader.get_template('course.html')
     context = RequestContext(request, {
-        'course_list': course_list,
+        'course': course,
         'lesson_list': lesson_list,
+    })
+
+    return HttpResponse(template.render(context))
+
+def coach(request, coach_id):
+    coach = Coach.objects.get(pk=coach_id)
+    coach_courses = Course.objects.filter(course_coach=coach_id)
+    assistant_courses = Course.objects.filter(course_assistent=coach_id)
+
+    template = loader.get_template('coach.html')
+    context = RequestContext(request, {
+        'coach': coach,
+        'coach_courses': coach_courses,
+        'assistant_courses': assistant_courses,
+
     })
 
     return HttpResponse(template.render(context))

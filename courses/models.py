@@ -7,6 +7,12 @@ class Course(models.Model):
     course_name = models.CharField("Название",max_length=100,blank=True, null=True)
     course_brief = models.CharField("Краткое описание",max_length=200,blank=True, null=True)
     course_description = models.TextField("Описание курса")
+    course_coach = models.ForeignKey('coaches.Coach', to_field='id', \
+        blank=True, null=True, \
+        verbose_name="Тренер", related_name="coach_course")
+    course_assistent = models.ForeignKey('coaches.Coach', to_field='id',\
+        blank=True, null=True, \
+        verbose_name="Ассистент", related_name="assistent_course")
     def __unicode__(self):
         return self.course_name
 

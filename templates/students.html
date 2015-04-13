@@ -69,8 +69,6 @@
         <td>{{ student.student_addr }}</td>
         <td>{{ student.student_skype }}</td>
         <td>{% for course in student.student_course.all %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a> <br>{% endfor %} </td>
-    e = Student.objects.get(id=1)
-    cc=e.student_course.all()
       </tr>
       {% endfor %}
     </tbody>

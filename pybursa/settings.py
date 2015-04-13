@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'polls',
     'pybursa_app',
     'courses',
-    'students'
+    'students',
+    'coaches',
 )
 
 MIDDLEWARE_CLASSES = (
