@@ -24,7 +24,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'courses_main' %}">Главная</a></li>
             <li><a href="{% url 'contact_list' %}">Контакты</a></li>
-            <li><a href="{% url 'students:students_on_course' %}">Студенты</a></li>
+            <li class="active"><a href="{% url 'students:students_on_course' %}">Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -46,7 +46,7 @@
           <td>{{student.adress}}</td>
           <td>{{student.skype}}</td>
           <td>
-          {% for course in student.course.all %}
+          {% for course in student.courses.all %}
           <p><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></p>
           {% endfor %}<!--  May be student.student_courses -->
           </td>

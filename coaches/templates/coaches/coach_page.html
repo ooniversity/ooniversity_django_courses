@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="icon" href= "{% static "img/favicon.ico" %}">
-    <title>Pybursa. Студент</title>
+    <title>Pybursa. Преподаватель</title>
     <!-- Bootstrap and mystyle-->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
@@ -30,37 +30,50 @@
       </div><!-- /.container-fluid -->
     </nav> 
     <div class="panel panel-default">
-      <div class="panel-heading"><h3>{{student_info.name}}  {{student_info.surname}}</h3>
-      </div>  
+      <div class="panel-heading">
+        <h3>{{coach_info.user.first_name}}  {{coach_info.user.last_name}}</h3>
+      </div>
       <table class="table">
         <tr>
           <td class="column25">Дата рождения</td>
-          <td>{{student_info.birth_date}}</td>           
+          <td>{{coach_info.birth_date}}</td>           
         </tr>
         <tr>
           <td>Адрес</td>
-          <td>{{student_info.adress}}</td>           
-        </tr>
-        <tr>
-          <td>Почта</td>
-          <td>{{student_info.email}}</td>           
+          <td>{{coach_info.adress}}</td>           
         </tr>
         <tr>
           <td>Cкайп</td>
-          <td>{{student_info.skype}}</td>           
+          <td>{{coach_info.skype}}</td>           
         </tr>
         <tr>
           <td>Телефон</td>
-          <td>{{student_info.phone}}</td>           
+          <td>{{coach_info.phone}}</td>           
         </tr>  
         <tr>
-          <td>Курсы</td>
+          <td>Курсы учитель</td>
           <td>
-            {% for course in student_info.courses.all %}
-            <p><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></p>
+            {% for course in coach_info.coach_on_course.all %} 
+            <p>
+              <a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a> - Cтуденты курса
+              <a href="{% url 'students:students_on_course' %}?course_id={{course.id}}">
+              <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
+            </p>
             {% endfor %}
           </td>           
-        </tr>          
+        </tr> 
+        <tr>
+          <td>Курсы ассистент</td>
+          <td>
+            {% for course in coach_info.assistant_on_course.all %} 
+            <p>
+              <a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a> - Cтуденты курса
+              <a href="{% url 'students:students_on_course' %}?course_id={{course.id}}">
+              <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
+            </p>
+            {% endfor %}
+         </td>           
+        </tr>           
       </table>     
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

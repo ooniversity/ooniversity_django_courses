@@ -39,7 +39,7 @@
         <th class="column20">Скайп</th>
         <th>Курсы</th>       
       </tr>
-        {% for student in students %}
+      {% for student in students %}
       <tr>
         <td>{{student.id}}</td>
         <td><a href="{% url 'students:student_info' student.id%}">{{student.surname}} {{student.name}}</a></td>
@@ -48,7 +48,7 @@
         <td>
           {% for course in student.courses.all %}
           <p><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></p>
-          {% endfor %}<!--  May be student.student_courses -->
+          {% endfor %}
         </td>
       </tr>
       {% endfor %}

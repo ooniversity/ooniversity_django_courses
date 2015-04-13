@@ -7,8 +7,7 @@ from courses.views import courses_main
 
 urlpatterns = patterns('',
 	url(r'^$', courses_main, name='courses_main'),
-	#url(r'^$', course_info, name='course_info'),
-   
+	   
     url(r'^contact/', contact_list, name='contact_list'),
     url(r'^student_list/', student_list, name='student_list'),
     url(r'^student_detail/', student_detail, name='student_detail'),
@@ -19,5 +18,6 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
 
     url(r'^courses/', include('courses.urls', namespace="courses")),    
-    url(r'^students/', include('students.urls', namespace="students")),          #####
+    url(r'^students/', include('students.urls', namespace="students")),
+    url(r'^coaches/', include('coaches.urls', namespace="coaches")),           #####
     )

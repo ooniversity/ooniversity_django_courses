@@ -31,10 +31,9 @@
       </div><!-- /.container-fluid -->
     </nav>
     <div class="jumbotron"><h1>ooniversity</h1>
-      <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования </h3></p> 
+      <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования</h3></p> 
       <br>
       <br>     
-      </div>
     </div>
     <div class="list-group">
       <a class="list-group-item active">
@@ -57,10 +56,10 @@
         <th>Описание</th> 
       </tr> 
       {% for course in courses %}
-        <tr>
+      <tr>
         <td><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></td>
         <td>{{course.short_description}}</td>
-        </tr>
+      </tr>
       {% endfor %}
     </table> 
   </div> 
