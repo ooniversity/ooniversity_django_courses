@@ -65,7 +65,22 @@
         <h2>Web разработка на Ruby on Rails</h2>
         <p >Через ряд лекций и практических занятий вы узнаете, как использовать такие мощные инструменты, как язык программирования Ruby и MVC Framework Ruby on Rails. Также вы познакомитесь с практиками Extreme Programming (XP), поучаствуете в разработке проектов по методологии Scrum. Но первой группе придется серьезно попотеть и недосыпать два месяца курсов.</p>
                 	
-    <pre>                          
+    <pre> 
+    <h2>Преподаватели<h3>
+    <table class='courses_list'>
+        <tr>
+        <th>№</th>
+        <th>Ф.И.О</th>
+        <th>Телефон</th>
+        </tr>
+    {% for coach in coaches %}
+        <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{coach.user}}</td>
+        <td>{{coach.phone}}</td>
+        </tr>
+    {% endfor %}
+    </table>                         
     <table class='courses_list'>
         <tr>
         <th>№</th>
