@@ -11,17 +11,17 @@ class Student(models.Model):
     student_phone = models.CharField("Телефон",max_length=20,blank=True, null=True)
     student_addr = models.CharField("Почтовый адрес",max_length=50,blank=True, null=True)
     student_skype = models.CharField("Логин Skype",max_length=50,blank=True, null=True)
-    student_course = models.ManyToManyField('courses.Course', verbose_name="Курс")
+    student_course = models.ManyToManyField('courses.Course', verbose_name="Курсы")
     def __unicode__(self):
         return self.student_last_name
+    def _get_full_name(self):
+        return '%s %s' % (self.student_name, self.student_last_name)
+    _get_full_name.short_description = 'Студент'
+    _get_full_name.admin_order_field = 'student_last_name'
 
-        class Meta:
-            def _get_full_name(self):
-                return '%s %s' % (self.student_name, self.student_last_name)
+    class Meta:
 
-            student_full_name = property(_get_full_name())
+        unique_together = (("student_last_name", "student_name"),)
 
-            unique_together = (("student_last_name", "student_name"),)
-
-            ordering = ['student_last_name']
+        ordering = ['student_last_name']
 
