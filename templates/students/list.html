@@ -36,6 +36,7 @@
           <th>skype</th>
           <th>курсы</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +55,12 @@
               <a href="{% url 'students:edit' student.id  %}" class="btn btn-primary" role="button">
                 <span class="glyphicon glyphicon-pencil"></span>
                 Изменить
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'students:remove' student.id  %}" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-remove"></span>
+                Удалить
               </a>
             </td>
           </tr>

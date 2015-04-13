@@ -42,3 +42,12 @@ def edit(request, pk):
     else:
         form = StudentModelForm(instance=student)
     return render(request, 'students/edit.html', {'form': form})
+
+
+def remove(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == "POST":
+        student.delete()
+        messages.success(request, u'Студент {} {} был удален.'.format(student.name, student.surname))
+        return redirect('students:list')
+    return render(request, 'students/remove.html', {'student': student})
