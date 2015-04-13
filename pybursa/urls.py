@@ -4,12 +4,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from courses import views
+from pybursa.views import contact
 
 urlpatterns = patterns('',
     # old url for task1
     url(r'^$', views.IndexView.as_view(), name='index'),
     # url(r'^$', views.index, name='index'),
-    # url(r'^contact/$', views.contact, name='contact'),
+    url(r'^contact/$', contact, name='contact'),
     # url(r'^student_list/$', views.student_list, name='student_list'),
     # url(r'^student_detail/$', views.student_detail, name='student_detail'),
 
