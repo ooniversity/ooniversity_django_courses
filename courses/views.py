@@ -12,8 +12,8 @@ class IndexView(generic.ListView):
         return Course.objects.all()
 
 
-def course_detail(request, question_id):
-    c = get_object_or_404(Course, pk=question_id)
+def course_detail(request, course_id):
+    c = get_object_or_404(Course, pk=course_id)
     course_lesson_list = c.lesson_set.all()
     template_name = 'courses/detail_course.html'
     return render(request, template_name, {'course': c,

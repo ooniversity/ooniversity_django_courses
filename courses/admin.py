@@ -13,6 +13,6 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ['name']
     inlines = [LessonInline]
 
-# Register your models here.
+
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson)

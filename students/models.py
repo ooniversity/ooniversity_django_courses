@@ -11,7 +11,7 @@ class Student(models.Model):
     phone = models.CharField(max_length=13)
     address = models.CharField(max_length=200)
     skype = models.CharField(max_length=200)
-    course = models.ManyToManyField(Course)
+    course = models.ManyToManyField(Course, related_name='course')
 
     def __unicode__(self):
         return u'{0} {1}'.format(self.surname, self.name)

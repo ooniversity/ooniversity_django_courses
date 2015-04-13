@@ -4,5 +4,5 @@ from courses import views
 
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<question_id>\d+)/$', views.course_detail, name='detail'),
+    url(r'^(?P<course_id>\d+)/$', views.course_detail, name='detail'),
 )
