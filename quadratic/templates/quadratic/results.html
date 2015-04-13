@@ -6,12 +6,11 @@
 
   <body>
     <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-    <ul>
-      <li>a = {{ a }} {% if a_error %}<br /><em>{{ a_error }}</em>{% endif %}</li>
-      <li>b = {{ b }} {% if b_error %}<br /><em>{{ b_error }}</em>{% endif %}</li>
-      <li>c = {{ c }} {% if c_error %}<br /><em>{{ c_error }}</em>{% endif %}</li>
-    </ul>
-    {% if not error %}
+    <form method="get">
+      {{ form.as_p }}
+      <input type="submit" value="Решить" />
+    </form>
+    {% if not form.errors and d != None %}
       <p>Дискриминант: {{ d }}</p>
       <p>{{ result_message }}</p>
     {% endif %}
