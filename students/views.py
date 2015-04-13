@@ -29,3 +29,16 @@ def create(request):
     else:
         form = StudentModelForm()
     return render(request, 'students/add.html', {'form': form})
+
+
+def edit(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == "POST":
+        form = StudentModelForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            messages.success(request, u'Данные изменены.')
+            return redirect('students:edit', student.id)
+    else:
+        form = StudentModelForm(instance=student)
+    return render(request, 'students/edit.html', {'form': form})

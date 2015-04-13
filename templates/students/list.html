@@ -35,6 +35,7 @@
           <th>адрес</th>
           <th>skype</th>
           <th>курсы</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -48,6 +49,12 @@
               {% for course in student.courses.all %}
                 <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
               {% endfor %}
+            </td>
+            <td>
+              <a href="{% url 'students:edit' student.id  %}" class="btn btn-primary" role="button">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Изменить
+              </a>
             </td>
           </tr>
         {% endfor %}

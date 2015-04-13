@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block title %}Редактирование данных студента - pyBursa{% endblock %}
+
+
+{% block nav_students %}active{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<div class="page-header">
+  <h2>Редактирование данных студента</h2>
+</div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Изменить">
+  </form>
+{% endblock content %}
