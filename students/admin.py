@@ -3,6 +3,7 @@ from django.contrib import admin
 from students.models import Student
 
 
+# configuration class for model Student
 class StudentAdmin(admin.ModelAdmin):
     search_fields = ['surname', 'email']
     list_display = ('full_name', 'email', 'skype')
@@ -12,6 +13,4 @@ class StudentAdmin(admin.ModelAdmin):
         ('Contact info', {'fields': ['email', 'phone', 'address', 'skype']}),
         (None, {'fields': ['courses']}),
     ]
-
-
 admin.site.register(Student, StudentAdmin)
