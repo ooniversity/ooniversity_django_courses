@@ -18,7 +18,8 @@ def detail(request, pk):
     student = get_object_or_404(Student, pk=pk)
     return render(request, 'students/detail.html', {'student': student})
 
-def add(request):
+
+def create(request):
     if request.method == "POST":
         form = StudentModelForm(request.POST)
         if form.is_valid():
