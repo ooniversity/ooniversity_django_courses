@@ -15,3 +15,4 @@ def students_of_the_course(request):
 def student_info(request, student_id):
     student = Student.objects.get(pk=student_id)
     return render(request, 'student_info.html', {'student': student})
+
