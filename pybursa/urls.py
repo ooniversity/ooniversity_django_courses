@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-import students
-import courses
+# import students
+# import courses
 
 urlpatterns = patterns('',
     # Examples:
@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^contact/', 'students.views.contact', name='contact'),
     url(r'^students/', 'students.views.student_list', name='student_list'),
     url(r'^student_detail/', include('students.urls')),
+    url(r'^coach/', include('coaches.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -27,6 +27,15 @@
         <p>{{course.text}}</p>
 	    </div>
 
+	<div>
+        <h3>Преподаватель</h3>
+	<p><b><a href="{% url 'coach' course.trener.id %}">{{course.trener.user.first_name}} {{course.trener.user.last_name}}</a></b></p>
+        <p>{{course.trener.desc}}</p>
+        <h3>Ассистент</h3>
+	<p><b><a href="{% url 'coach' course.assist.id %}">{{course.assist.user.first_name}} {{course.assist.user.last_name}}</a></b></p>
+	<p>{{course.assist.desc}}</p>
+	</div>
+
       <div class="row marketing">
         <div >
           <h2>Расписание занятий</h2>
