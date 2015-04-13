@@ -10,7 +10,7 @@
   
   {% load staticfiles %}
 
-  <title>Django courses | Джанго курсы | Главная |</title>
+  <title> PythonClasses | Главная |</title>
   <link rel="icon" href="{% static 'dj-logo.ico' %}">
 
   <!-- Bootstrap core CSS -->
@@ -49,7 +49,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="{% url 'stud_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:students_list' %}">Студенты</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Полезные ссылки <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -65,236 +65,37 @@
 
 <link href="{% static 'index.css' %}" rel="stylesheet">
 
-    <div class="container">
-      <div class="jumbotron">
-        <h2>Про курсы</h2> 
-        <p class="text">  Django — это один из самых эффективных и современных фреймворков для разработки веб-приложений на языке Python, использующий шаблон проектирования MVC. Несомненным достоинством Django является его свободное распространение и открытый код. В Django реализована система моделей для упрощения использования базы данных и встроен функциональный движок шаблонов для создания web-разработок. С помощью Django Вы быстро сможете создать Web-сайт или даже Web-портал. 
-        </p>
-        <p class="text">  Данный курс предназначен для программистов уже знакомых с языком Python и имеющих определенный опыт его применения. Данный курс также будет интересен программистам, имеющим опыт работы с использованием РНР и СУБД и всех, кого интересует веб-разработка. Для всех желающих пройти данный курс рекомендуем сначала базовые курсы - Основы программирования на языке Python и Объектно-ориентированное программирование на языке Python.
-        </p> 
-      </div>
-
-      <div class="jumbotron">
-        <p><h2>Программа</h2></p>
-          <table>
-            <tbody >
-                <tr>
-                    <th>
-                        ЗАНЯТИЕ
-                    </th>
-                    <th>
-                        ТЕМА
-                    </th>
-                    <th>
-                        СОДЕРЖАНИЕ
-                    </th>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        1
-                    </td>
-                    <td>
-                        Основы html/css
-                    </td>
-                    <td>
-                        <ul>
-                            <li>html - теги и свойства</li>
-                            <li>css - свойства и селекторы</li>
-                            <li>каскадное переопределение свойств</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        2
-                    </td>
-                    <td>
-                        Основы Web, HTTP
-                    </td>
-                    <td>
-                        <ul>                                        
-                            <li>Django. “Hello world!”</li>
-                            <li>HTTP (GET, POST), (200, 404, 500), headers, cookies</li> 
-                            <li>Инструменты отладки браузера (Firebug, Web Developer)</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        3
-                    </td>
-                    <td>
-                        Django first steps
-                    </td>
-                    <td>
-                        <ul>                                       
-                            <li>почему django?</li>
-                            <li>введение и описание фреймворка</li> 
-        <li>старт проекта</li>
-        <li>команды manage.py</li>
-        <li>django.contrib</li>
-        <li>авторизация, django.contrib.auth</li>
-        <li>админка</li>
-        <li>статика</li>                  
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        4
-                    </td>
-                    <td>
-                        Структура Web приложения
-                    </td>
-                    <td>
-                        <ul>                                       
-                            <li>MVC</li>
-                            <li>Views</li>
-        <li>роутинг урлов, передача параметров</li>
-        <li>объект реквест</li>
-        <li>объект респонс</li>
-        <li>обработка реквеста, формирование респонса</li>
-        <li>обработка и изменение хедеров</li>
-        <li>мидлвар</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        5
-                    </td>
-                    <td>
-                        Работа с базами данных, ORM
-                    </td>
-                    <td>
-                        <ul>
-                            <li>модели и поля, типы полей и аттрибуты</li>
-                            <li>связи между таблицами и проектирование БД</li>
-                            <li>миграции</li>  
-        <li>фикстуры</li>
-        <li>QuerySet</li>
-        <li>Raw-sql</li>
-        <li>специальные методы</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        6
-                    </td>
-                    <td>
-                        Кастомизация админки
-                    </td>
-                    <td>
-                        <ul>
-                            <li>класс админки</li>
-                            <li>настройка отображения виджетов</li>
-                            <li>кастомизация ItemView, ListView, редактирование в ListView</li>
-                            <li>сортировка, фильтры, поиск</li>
-                            <li>admin actions, редактирование полей в ListView</li>
-                            <li>Admin dashboard</li>                                 
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        7
-                    </td>
-                    <td>
-                        Язык шаблонов
-                    </td>
-                    <td>
-                        <ul>
-                            <li>синтаксис, лигические конструкции</li>
-                            <li>наследование и includes</li>
-                            <li>понятие контекста, контекст процессор</li>
-                            <li>теги и фильтры</li>                                                                   
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        8
-                    </td>
-                    <td>
-                        Forms
-                    </td>
-                    <td>
-                        <ul>
-                            <li>формы, типы полей, виджеты и аттрибуты</li>
-                            <li>валидация</li>                                                                      
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        9
-                    </td>
-                    <td>
-                        Class-based (Generic) Views
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Встроеные class-based views (TemplateView, ListView, ItemView)</li>
-                            <li>Использование форм с class-based views</li>
-                            <li>Миксины</li>                                                                      
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        10
-                    </td>
-                    <td>
-                        Реализация стандартных задач
-                    </td>
-                    <td>
-                        <ul>
-                            <li>отправка email</li>
-                            <li>кеширование</li>
-                            <li>интернационализация</li>
-                            <li>батарейки (готовые решения)</li>                                                                          
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        11
-                    </td>
-                    <td>
-                        Средства отладки и тестирование
-                    </td>
-                    <td>
-                        <ul>
-                            <li>logging</li>
-                            <li>pdb</li>
-                            <li>debug toolbar</li>
-                            <li>extensions</li>
-                            <li>unit-tests</li>
-                            <li>selenium</li>                                       
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="number_cell">
-                        12
-                    </td>
-                    <td>
-                        Деплоймент
-                    </td>
-                    <td>
-                        <ul>
-                            <li>nginx</li>
-                            <li>управление статикой</li>
-                            <li>деплоймент</li>                                                                           
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-                    </table>
-
-      </div>
-    </div><!-- /.container -->
+  <div class="container">
+    <div class = jumbotron>
+      <h1>PythonClasses</h1>
+      <p class="text">
+        Преимуществом наших курсов над остальными является индивидуальный подход к каждому студенту и 
+        онлайн консультирование в skype
+      </p>
+    </div>
+    <table>
+    <caption><h2>Выбери курсы, которые хочешь освоить:</h2></caption>
+      <tbody>
+        <tr>
+          <th>
+            Курс
+          </th>
+          <th>
+            Описание
+          </th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+          <td><a href="/courses/{{ forloop.counter }}/">{{ course.title }}</a>
+          </td>
+          <td>
+            {{ course.about }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript

@@ -8,8 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Студенты| Django courses | Джанго курсы |</title>
-    {% load staticfiles %}<link rel="icon" href="{% static 'dj-logo.ico' %}">
+    <title> PythonClasses | Список студентов |</title>
+    {% load staticfiles %}
+
+    <link rel="icon" href="{% static 'dj-logo.ico' %}">
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -48,6 +50,14 @@
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li class="active"><a href="#">Студенты</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Полезные ссылки <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+                <li><a href="http://pep8.ru/doc/pep8/" target="_blank">PEP8</a></li>
+                <li><a href="http://htmlbook.ru/" target="_blank">HTML Book</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,22 +68,15 @@
   <div class="container">
     <div class="jumbotron">
 
-    <h2>Список студентов:</h2> 
-
     <table>
-      <tbody class="stud">
+      <caption><h2>Список студентов:</h2></caption
+      <tbody>
         <tr>
           <th>
               #
           </th>
           <th>
-              Фамилия
-          </th>
-          <th>
-              Имя
-          </th>
-          <th>
-              Nickname
+              Фамилия Имя
           </th>
           <th>
               Адрес
@@ -81,149 +84,33 @@
           <th>
               Skype
           </th>
+          <th>
+              Курсы
+          </th>
         </tr>
-        <tr class="first" class="curs" onclick="location.pathname='student_detail';">
-        <!--<tr class="first" class="curs" href="{% url 'stud_detail' %}">-->
+        {% for student in students %}
+        <tr>
           <td> 
-              1
+              {{ forloop.counter }}
           </td>
           <td>
-              Антонов
-          </td>
-          <td>
-              Сергей
-          </td>
-          <td>
-              skawer91
+              <a href="{% url 'students:student_detail' student.id %}">{{student.surname}} {{student.name}}</a>
           </td>
           <td class="address">
-              г. Харьков, пр. Победы д. 45 кв. 78
+              {{ student.address }}
           </td>
           <td>
-              ska9119
-          </td> 
-        </tr>
-        <tr>
-          <td>
-              2
+              {{ student.skype }}
           </td>
           <td>
-              Александрова
-          </td>
-          <td>
-              Алина
-          </td>
-          <td>
-              lina_
-          </td>
-          <td class="address">
-              г. Харьков, пр. Людвига Свободы д. 42 кв. 56
-          </td>
-          <td>
-              linaask
+            {% for course in student.courses.all %}
+              <p>
+              <a href="{% url 'course:courseinfo' course.id %}">{{course.title}}</a>
+              </p>
+            {% endfor %}
           </td>
         </tr>
-        <tr>
-          <td>
-              3
-          </td>
-          <td>
-              Боровой
-          </td>
-          <td>
-              Денис
-          </td>
-          <td>
-              den_is
-          </td>
-          <td class="address">
-              г. Херсон, ул. Дзюбы д. 34 кв. 59
-          </td>
-          <td>
-              dencher
-          </td>
-        </tr>
-        <tr>
-          <td>
-              4
-          </td>
-          <td>
-              Кутько
-          </td>
-          <td>
-              Максим
-          </td>
-          <td>
-              kytma
-          </td>
-          <td class="address">
-              г. Москва, ул. Дружбы народов д. 12 кв. 68
-          </td>
-          <td>
-              kyt-max
-          </td>
-        </tr>
-        <tr>
-          <td>
-              5
-          </td>
-          <td>
-              Ларионов
-          </td>
-          <td>
-              Иван
-          </td>
-          <td>
-              laran1111
-          </td>
-          <td class="address">
-              г. Киев, пр. Ленина д. 145 кв. 43
-          </td>
-          <td>
-              lariiva
-          </td>
-        </tr>
-        <tr>
-          <td>
-              6
-          </td>
-          <td>
-              Семенова
-          </td>
-          <td>
-              Ирина
-          </td>
-          <td>
-              iria
-          </td>
-          <td class="address">
-              г. Запорожье, ул. Шевченко д. 5 кв. 55
-          </td>
-          <td>
-              semeria
-          </td>
-        </tr>
-        <tr>
-          <td>
-              7
-          </td>
-          <td>
-              Павлов
-          </td>
-          <td>
-              Андрей
-          </td>
-          <td>
-              pavaxer    
-          </td>
-          <td class="address">
-              г. Харьков, пр. Московский д. 111 кв. 34
-          </td>
-          <td>
-              pavan
-          </td>
-        </tr>
-
+        {% endfor%}
       </tbody>
     </table>
 
