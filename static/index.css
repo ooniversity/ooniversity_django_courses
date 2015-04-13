@@ -18,4 +18,6 @@ p.text {text-indent: 30px; text-align: justify;}
 p.name {color: orange; font-weight:bold}
 img.photo {border: 5px double #778899; width: 110px; height: 115px;}
 
+a.external {background: url(http://www.stocksistemas.com.br/icones/indica.png) no-repeat 125% 5px; padding-left: 20px;}
+
 .jumbotron {padding-top: 15px; padding-bottom: 15px;}
