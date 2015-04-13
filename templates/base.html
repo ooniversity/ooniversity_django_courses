@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" >
+
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-inverse">
+      
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img class="navbar-brand" src="{% static 'img/paha.JPG' %}">
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="{% block nav_class_main %}{% endblock %}"><a href="{% url 'main' %}">Главная</a></li>
+            <li class="{% block nav_class_contacts %}{% endblock %}"><a href="">Контакты</a></li>
+            <li  class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students:students_all' %}{% block url_students %}{% endblock %}">Студенты</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </nav>
+    </div>
+    <div class="container">
+{% block main_content %}
+{% endblock main_content %}
+    </div>  
+  </body>
+</html>

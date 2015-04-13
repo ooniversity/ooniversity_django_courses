@@ -1,101 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-    <title>Course_info</title>
+{% block title %}Course_info{% endblock %}
+{% block url_students %}?course_id={{ current_course.id }}{% endblock %}
 
-    {% load staticfiles %}
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" >
+{% block main_content %}
+  <div class="jumbotron">
+    <h2 style="color: #446785">{{ current_course.name }}</h2>
+    <p class="lead">
+      <p>{{ current_course.description }}</p>
+    </p>
+  </div>
+  <h2 style="color: #446785">Преподаватели</h2>
+  <div class="row">
+    {% include "inc_instructor.html" with block_title="Учитель" instructor=current_course.coach %}
 
-  </head>
-
-  <body>
-    <div class="container">
-      <nav class="navbar navbar-inverse">
-      
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <img class="navbar-brand" src="{% static 'img/paha.JPG' %}">
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'main' %}">Главная</a></li>
-            <li><a href="">Контакты</a></li>
-            <li><a href="{% url 'students:students_all' %}?course_id={{ current_course.id }}">Студенты</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
- 
-      </nav>
+    {% include "inc_instructor.html" with block_title="Асистент" instructor=current_course.assistant %}
+  </div>
+  <h2 style="color: #446785">План курса</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Тема</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for choice_lesson in lessons_list %}
+          <tr>
+            <td>{{ choice_lesson.number_order }}</td>
+            <td>{{ choice_lesson.topic }}</td>
+            <td>{{ choice_lesson.description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-
-    <div class="container">
-      <div class="jumbotron">
-        <h2 style="color: #446785">{{ current_course.name }}</h2>
-        <p class="lead">
-          <p>{{ current_course.description }}</p>
-        </p>
-      </div>
-
-      <h2 style="color: #446785">Преподаватели</h2>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Учитель</h3>
-            </div>
-            <div class="panel-body">
-              <a href="{% url 'coaches:coaches_info' current_course.coach.id %}"><h5>{{ current_course.coach.user.first_name }} {{ current_course.coach.user.last_name }}</h5></a>
-              <p>{{ current_course.coach.description }}</p>
-            </div>
-          </div>  
-        </div>
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Асистент</h3>
-            </div>
-            <div class="panel-body">
-              <h5><a href="{% url 'coaches:coaches_info'  current_course.assistant.id %}">{{ current_course.assistant.user.first_name }} {{ current_course.assistant.user.last_name }}</a></h5>
-              <p>{{ current_course.assistant.description }}</p>
-            </div>
-          </div>  
-        </div>
-
-      </div>
-
-      <h2 style="color: #446785">План курса</h2>
-
-      <div class="row">
-        <div class="col-md-10">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Тема</th>
-                <th>Описание</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for choice_lesson in lessons_list %}
-              <tr>
-                <td>{{ choice_lesson.number_order }}</td>
-                <td>{{ choice_lesson.topic }}</td>
-                <td>{{ choice_lesson.description }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>  
-  </body>
-</html>
+  </div>
+{% endblock main_content %}

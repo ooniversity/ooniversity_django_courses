@@ -1,95 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'students/base.html' %}
 
-    <title>Coach_info</title>
+{% block title %}Coach_info{% endblock %}
 
-    {% load staticfiles %}
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" >
+{% block page_header %}{{ coaches_info.user.first_name }}  {{ coaches_info.user.last_name }}{% endblock %}
 
-  </head>
-
-  <body>
-    <div class="container">
-      <nav class="navbar navbar-inverse">
-      
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <img class="navbar-brand" src="{% static 'img/paha.JPG' %}">
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'main' %}">Главная</a></li>
-            <li><a href="">Контакты</a></li>
-            <li><a href="{% url 'students:students_all' %}">Студенты</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
- 
-      </nav>
-    </div>
-
-    <div class="container">
-      <h2 style="color: #446785">{{ coaches_info.user.first_name }}  {{ coaches_info.user.last_name }}</h2>
-
-      <div class="row">
-        <div class="col-md-9">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>дата рождения</td>
-                <td>{{ coaches_info.birth_date }}</td>
-              </tr>
-              <tr>
-                <td>адрес</td>
-                <td>{{ coaches_info.address }}</td>
-              </tr>
-              <tr>
-                <td>почта</td>
-                <td>{{ coaches_info.user.email }}</td>
-              </tr>
-              <tr>
-                <td>логин skype</td>
-                <td>{{ coaches_info.skype }}</td>
-              </tr>
-              <tr>
-                <td>телефон</td>
-                <td>{{ coaches_info.phone }}</td>
-              </tr>
-              <tr>
-                <td>курсы учитель</td>
-                <td>
-                    
-                  {% for coach_course in coaches_info.coach.all %}
-                    <p><a href="{% url 'courses:course_info' coach_course.id %}">{{ coach_course.name }}</a>
-                 студенты курса<a href="{% url 'students:students_all' %}?course_id={{ coach_course.id }}">  --></a></p>
-                  {% endfor %}
-                     
-                </td>
-              </tr>
-              <tr>
-                <td>курсы ассистент</td>
-                <td>
-                    
-                  {% for assistant_course in coaches_info.assistant.all %}
-                    <p><a href="{% url 'courses:course_info' assistant_course.id %}">{{ assistant_course.name }}</a>
-                 студенты курса<a href="{% url 'students:students_all' %}?course_id={{ assistant_course.id }}">  --></a></p>
-                  {% endfor %}
-                     
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>  
-  </body>
-</html>
+{% block page_content %}
+  <div class="col-md-9">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>дата рождения</td>
+          <td>{{ coaches_info.birth_date }}</td>
+        </tr>
+        <tr>
+          <td>адрес</td>
+          <td>{{ coaches_info.address }}</td>
+        </tr>
+        <tr>
+          <td>почта</td>
+          <td>{{ coaches_info.user.email }}</td>
+        </tr>
+        <tr>
+          <td>логин skype</td>
+          <td>{{ coaches_info.skype }}</td>
+        </tr>
+        <tr>
+          <td>телефон</td>
+          <td>{{ coaches_info.phone }}</td>
+        </tr>
+        <tr>
+          {% include "inc_instructor_info.html" with table_title="курсы учитель" instructor_course=coach_course instructor=coaches_info.coach %}
+        </tr>
+        <tr>
+          {% include "inc_instructor_info.html" with table_title="курсы ассистент" instructor_course=assistant_course instructor=coaches_info.assistant %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+      {% endblock page_content %}

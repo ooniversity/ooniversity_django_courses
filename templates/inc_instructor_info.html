@@ -1,0 +1,7 @@
+<td>{{ table_title }}</td>
+  <td>
+    {% for instructor_course in instructor.all %}
+      <p><a href="{% url 'courses:course_info' instructor_course.id %}">{{ instructor_course.name }}</a>
+   студенты курса<a href="{% url 'students:students_all' %}?course_id={{ instructor_course.id }}">  --></a></p>
+    {% endfor %}
+  </td>
