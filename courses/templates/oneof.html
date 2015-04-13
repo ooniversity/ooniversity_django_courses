@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Главная</title>
+		<title>{{ course.name }}</title>
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
@@ -56,31 +56,31 @@
 			</ol>
 			<div class="jumbotron">
 				<div class="jumbo_internal">
-					<h1>Go ooniversity!</h1>
+					<h1>{{ course.name }}</h1>
 					<p>
-						Различные курсы для различных целей тра-та-та!
+						{{ course.description }}
 					</p>
 				</div>
 			</div>
 			<div class="panel panel-default">
 		      <!-- Default panel contents -->
-		      <div class="panel-heading">Выбирай курс на котором хочешь учиться!</div>
+		      <div class="panel-heading">План курса</div>
 
 		      <!-- Table -->
 		      <table class="table">
 		        <thead>
 		          <tr>
 		          	 <th scope="row">#</th>
-		            <th>Курс</th>
+		            <th>Урок</th>
 		            <th>Описание</th>
 		          </tr>
 		        </thead>
 		        <tbody>
-		        {% for c in courses %}
+		        {% for l in lessons %}
 		          <tr>
-		          	 <th scope="row">{{ c.id }}</th>
-		            <td><a href="{% url "courses:oneof" c.id %}">{{ c.name }}</a></td>
-		            <td>{{ c.short_description }}</td>
+		          	 <th scope="row">{{ l.num }}</th>
+		            <td>{{ l.theme }}</td>
+		            <td>{{ l.description }}</td>
 		          </tr>
 		        {% endfor%}
 		        </tbody>
