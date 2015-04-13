@@ -40,7 +40,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="{% url 'index' %}">Главная</a></li>
                 <li><a href="{% url 'contact' %}">Контакты</a></li>
-		<li><a href="{% url 'students:students' %}?course_id={{courses.crs.id}}">Студенты</a></li>
+		<li><a href="{% url 'students:students' %}">Студенты</a></li>
               </ul>
             </div>
           </div>
@@ -52,85 +52,37 @@
 <!-- NAVBAR
 ================================================== END-->
 
-<div class="container">
-<div class="jumbotron">
-  			<div class="container">
 
-					<h1>{{ courses.crs.name }}</h1>
- 				  <p>{{ courses.crs.description }}</p>
-  				
-    
-  			</div>
-		</div>	
-</div>
-
-
-	<!-- 
-	TEACHER START
-	-->
-	<div class='container'>
-	<h2>Преподаватели</h2>
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Учитель</h3>
-	  </div>
-	  <div class="panel-body">
-	    <p><a href="{% url 'coaches:coach' courses.cch.user.id %}">{{courses.cch.user.first_name}} {{courses.cch.user.last_name}}</a></p>
-            <p>{{courses.cch.description}}</p>
-	  </div>
-	</div>
-	</div>
-	<!-- 
-	TEACHER START
-	-->
-
-
-	<!-- 
-	ASSISTANT START
-	-->
-	<div class='container'>
-	<div class="panel panel-default">
-
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Ассистент</h3>
-	  </div>
-	  <div class="panel-body">
-	    <p><a href="{% url 'coaches:coach' courses.assst.user.id %}">{{courses.assst.user.first_name}} {{courses.assst.user.last_name}}</a></p>
-            <p>{{courses.assst.description}}</p>
-	  </div>
-	</div>
-	</div>
-
-	<!-- 
-	ASSISTANT START
-	-->
 
 <!--TABLE
 ====================================================-->
-<div class="container"><h3>План курса</h3>
-<div class="panel panel-default">
+<div class="container"><h2>{{dd.cch.user.first_name}} {{dd.cch.user.last_name}}</h2>
+
+
+<p><b>дата рождения:</b> {{dd.cch.date_of_birth}}</p>
+<p><b>адрес:</b> {{dd.cch.address}}</p>
+<p><b>почта:</b> {{dd.cch.user.email}}</p>
+<p><b>логин skype:</b> {{dd.cch.skype}}</p>
+<p><b>телефон:</b> {{dd.cch.phone}}</p>
+
+<p><b>{{dd.text.0}}</b> {% for course in dd.crs_teacher %}
+  <a href="{% url 'courses:courses' course.id %}"> {{course.name}}</a> <a href="{% url 'students:students' %}?course_id={{course.id}}">студенты курса</a>||
+                         {% endfor %}
+</p>
+
+
+<p><b>{{dd.text.1}}</b> {% for course in dd.crs_assist %}
+  <a href="{% url 'courses:courses' course.id %}">{{course.name}}</a> <a href="{% url 'students:students' %}?course_id={{course.id}}">студенты курса</a>||
+                         {% endfor %}
+</p>
 	
   <!-- Default panel contents -->
   
-<table class="table">
-					<tr>
-						<th>#</th>
-    				<th>Урок</th>
-						<th>Описание</th>
-					</tr>
-{% for les in courses.lssn %}
-					<tr>
-						<td>{{les.order_number}}</td>
-						<td>{{les.theme}}</td>
-						<td>{{les.description}}</td>
-					</tr>
-{% endfor %}						
-				</table>  
 
 
 		
 
-</div></div>
+</div>
 
 			
 
