@@ -52,15 +52,15 @@
           <a class="pull-left" href="#">
             <img class="media-object" src="{% static 'bootstrap/images/student_photo.png' %}" alt="student photo">
           </a>
-          <h4 class="media-heading"> {{student.name}} {{student.surname}}</h4>
+          <h4 class="media-heading"> {{ student.name }} {{ student.surname }}</h4>
           <div class = "well well-sm">
             <p><b>Дата рождения:</b>{{student.date_of_birth}}</p>
-            <p><b>Адрес:</b> {{student.address}}</p>
-            <p><b>Почта:</b> {{student.email}}</a></p>
-            <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{student.skype}}</p>
+            <p><b>Адрес:</b> {{ student.address }}</p>
+            <p><b>Почта:</b> {{ student.email }}</a></p>
+            <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ student.skype }}</p>
             <p><b>Курсы:</b>
             {% for course in student.courset.all %}
-            <a href="{% url 'courses:courses' course.id %}">{{course}}</a></br>
+            <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
             {% endfor %}</p>
 
           </div>

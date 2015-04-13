@@ -50,7 +50,7 @@
         </div>
         <h2>Учитель</h2>
         <div class="media">
-          <p><a href="{% url 'coaches:coach_d' course.coach.id %}">{{course.coach.user.first_name}} {{course.coach.user.last_name}}</a></p>
+          <p><a href="{% url 'coaches:coach_d' course.coach.id %}">{{ course.coach.user.first_name }} {{ course.coach.user.last_name }}</a></p>
           <p class="custom_well">{{ course.coach.description }}</p>
         </div>
         <h2>Ассистент</h2>
