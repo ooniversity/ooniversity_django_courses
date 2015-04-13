@@ -94,7 +94,7 @@
               {{ forloop.counter }}
           </td>
           <td>
-              <a href="/students/{{ student.id }}">{{student.surname}} {{student.name}}</a>
+              <a href="{% url 'students:student_detail' student.id %}">{{student.surname}} {{student.name}}</a>
           </td>
           <td class="address">
               {{ student.address }}
