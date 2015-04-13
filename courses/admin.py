@@ -19,6 +19,8 @@ class CourseAdmin(admin.ModelAdmin):
 
     #ordering = ['title']
 
+    save_on_top = True
+
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson)

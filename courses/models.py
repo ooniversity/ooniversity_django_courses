@@ -2,11 +2,18 @@
 
 from django.db import models
 
+from coaches.models import Coach
+
 
 class Course(models.Model):
     title = models.CharField(verbose_name = u'Название курса', max_length = 100)
     short_descript = models.CharField(verbose_name = u'Краткое описание', max_length = 255)
     description = models.TextField(verbose_name = u'Описание')
+
+    coach = models.ForeignKey(Coach, verbose_name = u'Тренер', null = True, blank = True,
+                                     related_name = 'coach')
+    assistant = models.ForeignKey(Coach, verbose_name = u'Ассистент', null = True, blank = True,
+                                         related_name = 'assistant')
 
     def __unicode__(self):
         return self.title

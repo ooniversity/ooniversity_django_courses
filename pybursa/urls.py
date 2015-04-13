@@ -5,6 +5,8 @@ from pybursa.views import index, contact, student_detail, student_list
 
 from pybursa.views import ooniversity, course, students, student_info
 
+from pybursa.views import course_with_coaches, coach_info
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -20,12 +22,23 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
 
 
+
     # Ooniversity site pages - Django Control 5
+
     url(r'^$', ooniversity, name = 'ooniversity'),
 
-    url(r'^courses/(?P<id_course>\d+)/$', course),
+    #url(r'^courses/(?P<id_course>\d+)/$', course),
     url(r'^students/(?P<id_stud>\d+)/$', student_info, name = 'student_info'),
     url(r'^students/$', students, name = 'students'),
+
+
+
+    # Added app coaches in courses - Django Control 6
+
+    url(r'^courses/(?P<id_course>\d+)/$', course_with_coaches, name = 'course_coaches'),
+
+    url(r'^coaches/(?P<id_coach>\d+)/$', coach_info, name = 'coach_info'),
+
 
 
     # PyBursa site pages - Django Control 3
