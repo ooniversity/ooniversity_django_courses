@@ -51,7 +51,7 @@ def add_lesson(request, pk):
         if form.is_valid():
             lesson = form.save()
             messages.success(request, u'Занятие {} было создано.'.format(lesson.subject))
-            return redirect('courses:detail', course.id)
+            return redirect('courses:detail', lesson.course_id)
     else:
         form = LessonModelForm(initial={'course': course})
     return render(request, 'courses/add_lesson.html', {'form': form})
