@@ -50,12 +50,12 @@
         </div>
         <h2>Учитель</h2>
         <div class="media">
-          <p><a href="{% url 'courses:courses' course.id %}">{{ course.coach }}</a></p>
+          <p><a href="{% url 'courses:courses' course.id %}">{{course.coach.user.first_name}} {{course.coach.user.last_name}}</a></p>
           <p class="custom_well">{{ course.coach.description }}</p>
         </div>
         <h2>Ассистент</h2>
         <div class="media">
-          <p><a href="{% url 'coaches:coach_d' course.coach.id %}">{{ course.assistant.user.first_name }} {{ course.assistant.user.last_name }}</a></p>
+          <p><a href="{% url 'coaches:coach_d' coach.id %}">{{ course.assistant.user.first_name }} {{ course.assistant.user.last_name }}</a></p>
           <p class="custom_well">{{ course.assistant.description }}</p>
         </div>
         <div class="panel panel-success">

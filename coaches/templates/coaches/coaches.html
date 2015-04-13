@@ -54,15 +54,18 @@
             <p><b>Адрес:</b> {{ coach.address }}</p>
             <p><b>Почта:</b> {{ coach.user.email }}</a></p>
             <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ coach.skype }}</p>
-            <p><b>Учитель на курсах:</b>
-            {% for course in student.courset.all %}
-            <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
-            {% endfor %}</p>
-            <p><b>Ассистент на курсах:</b>
-            {% for course in student.courset.all %}
-            <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
-            {% endfor %}</p>
-
+            <p><b>Учитель на курсах:</b></p>
+              {% for course in coach.coach.all %}
+              <p><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></br></p>
+              {% empty %}
+              <p>{{ coach.user.first_name }} не является инструктором ни на одном из курсов</p>
+              {% endfor %}
+            <p><b>Ассистент на курсах:</b></p>
+              {% for course in coach.assistant.all %}
+              <a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></br>
+              {% empty %}
+              <p>{{ coach.user.first_name }} не является ассистентом ни на одном из курсов</p>
+              {% endfor %}
           </div>
         </div>
       </div>
