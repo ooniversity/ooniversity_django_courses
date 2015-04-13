@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from courses.forms import CourseModelForm
+from courses.forms import CourseModelForm, LessonModelForm
 from courses.models import Course
 
 
@@ -42,3 +42,16 @@ def remove(request, pk):
         messages.success(request, u'Курс {} был удален.'.format(course.name))
         return redirect('index')
     return render(request, 'courses/remove.html', {'course': course})
+
+
+def add_lesson(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    if request.method == "POST":
+        form = LessonModelForm(request.POST)
+        if form.is_valid():
+            lesson = form.save()
+            messages.success(request, u'Занятие {} было создано.'.format(lesson.subject))
+            return redirect('courses:detail', course.id)
+    else:
+        form = LessonModelForm(initial={'course': course})
+    return render(request, 'courses/add_lesson.html', {'form': form})
