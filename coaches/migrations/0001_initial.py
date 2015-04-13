@@ -2,27 +2,27 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('courses', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name='Coach',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=255)),
-                ('surname', models.CharField(max_length=255)),
-                ('email', models.EmailField(max_length=75)),
                 ('date_of_birth', models.DateField()),
-                ('phone', models.CharField(max_length=255)),
-                ('address', models.CharField(max_length=255)),
+                ('gender', models.CharField(max_length=1, choices=[(b'M', b'Male'), (b'F', b'Female')])),
+                ('phone', models.CharField(max_length=10)),
+                ('address', models.CharField(default=b'', max_length=255)),
                 ('skype', models.CharField(max_length=255)),
-                ('course', models.ManyToManyField(related_name='students', to='courses.Course')),
+                ('description', models.TextField(null=True, blank=True)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },

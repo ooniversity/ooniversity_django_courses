@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{{ course.name }}</title>
+		<title>Студенты курса {{ course.name }}</title>
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
@@ -25,14 +25,14 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active">
+						<li>
 			              <a href="{% url "home" %}">Главная<span class="sr-only">(current)</span></a>
 			            </li>
 			            <li>
 			              <a href="{% url "contact" %}">Контакты</a>
 			            </li>
-			            <li>
-			              <a href="{% url 'students:index' %}?course_id={{ course.id }}">Студенты</a>
+			            <li class="active">
+			              <a href="{% url 'students:index' %}">Студенты</a>
 			            </li>
 			            <li>
 			              <a href="{% url "polls:index" %}">Polls</a>
@@ -50,69 +50,50 @@
 		</nav>
 
 		<div class="container">
+
+			<h1>{{ coach.user.first_name }} {{coach.user.last_name}}</h1>
 			
-			<ol class="breadcrumb">
-			  <li class="active">Главная</li>
-			</ol>
-			<div class="jumbotron">
-				<div class="jumbo_internal">
-
-					<h1>{{ course.name }}</h1>
-					<p>
-						{{ course.description }}
-					</p>
-				</div>
-			</div>
-
-			<h2>
-				Преподаватели
-			</h2>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Учитель</h3>
-				</div>
-				<div class="panel-body">
-				    <a href="{% url "coaches:oneof" trainer.id %}">{{ trainer.user.first_name }} {{ trainer.user.last_name }}</a>
-				    <br />
-				    {{ trainer.description }}
-				</div>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-				    <h3 class="panel-title">Ассистент</h3>
-				</div>
-				<div class="panel-body">
-				    <a href="{% url "coaches:oneof" assistant.id %}">{{ assistant.user.first_name }} {{ assistant.user.last_name }}</a>
-				    <br />
-				    {{ assistant.description }}
-				</div>
-			</div>
-			
-			<div class="panel panel-default">
-		      <!-- Default panel contents -->
-		      <div class="panel-heading">План курса</div>
-
 		      <!-- Table -->
 		      <table class="table">
-		        <thead>
-		          <tr>
-		          	 <th scope="row">#</th>
-		            <th>Урок</th>
-		            <th>Описание</th>
-		          </tr>
-		        </thead>
 		        <tbody>
-		        {% for l in lessons %}
-		          <tr>
-		          	 <th scope="row">{{ l.num }}</th>
-		            <td>{{ l.theme }}</td>
-		            <td>{{ l.description }}</td>
-		          </tr>
-		        {% endfor%}
+		        <tr>
+		          	<td>дата рождения</td>
+		            <td>{{ coach.date_of_birth }}</td>
+		        </tr>
+		        <tr>
+		          	<td>адрес</td>
+		            <td>{{ coach.address }}</td>
+		        </tr>
+		        <tr>
+		          	<td>почта</td>
+		            <td>{{ coach.user.email }}</td>
+		        </tr>
+		        <tr>
+		          	<td>skype</td>
+		            <td>{{ coach.skype }}</td>
+		        </tr>
+		        <tr>
+		          	<td>телефон</td>
+		            <td>{{ coach.phone }}</td>
+		        </tr>
+		        <tr>
+		          	<td>курсы учитель</td>
+		            <td>
+		            	{% for c in trainer_courses %}
+			            	<a href="{% url "courses:oneof" c.id %}">{{ c }}</a> | <a href="{% url 'students:index' %}?course_id={{ c.id }}">студенты курса</a><br />
+			            {% endfor%}
+		            </td>
+		        </tr>
+		        <tr>
+		          	<td>курсы ассистент</td>
+		            <td>
+		            	{% for c in assistant_courses %}
+			            	<a href="{% url "courses:oneof" c.id %}">{{ c }}</a> | <a href="{% url 'students:index' %}?course_id={{ c.id }}">студенты курса</a><br />
+			            {% endfor%}
+		            </td>
+		        </tr>
 		        </tbody>
 		      </table>
-		    </div>
 
 			
 		</div><!--/.container-->
@@ -133,3 +114,4 @@
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	</body>
 </html>
+

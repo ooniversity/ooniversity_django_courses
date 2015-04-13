@@ -7,6 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('coaches', '0001_initial'),
     ]
 
     operations = [
@@ -17,6 +18,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('short_description', models.CharField(max_length=255)),
                 ('description', models.TextField(null=True, blank=True)),
+                ('assistant', models.ForeignKey(related_name='assistants', blank=True, to='coaches.Coach', null=True)),
+                ('trainer', models.ForeignKey(related_name='trainers', blank=True, to='coaches.Coach', null=True)),
             ],
             options={
             },
@@ -29,7 +32,7 @@ class Migration(migrations.Migration):
                 ('theme', models.CharField(max_length=255)),
                 ('description', models.TextField(null=True, blank=True)),
                 ('num', models.PositiveIntegerField()),
-                ('course', models.ForeignKey(to='courses.Course')),
+                ('course', models.ForeignKey(related_name='lessons', to='courses.Course')),
             ],
             options={
             },
