@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>{{ course.title }}</title>
+    <title>Преподаватели</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'bs/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -42,89 +42,60 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{% url 'courses:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}?course_id={{course.id}}">Студенты</a></li>
+            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
             <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
           </ul>
         </nav>
       </div>
 
         <h2>
-          {{ course.title }}
+
         </h2>
 
         <div>
           <h4>
-            {{ course.description }} 
+            
           </h4>
         </div>
 
-  {% if course.coach or course.assistant %}
         <h4>
-          Преподаватели
+          Список преподавателей
         </h4>
 
-    {% if course.coach %}
-     <div class="panel panel-default">
-       <div class="panel-heading">
-         <h3 class="panel-title">Учитель</h3>
-       </div>
-       <div class="panel-body">
-         <a href="{% url 'coaches:detail' course.coach.id %}">
-           {{ course.coach.full_name }}
-         </a>
-         <br>
-         {{ course.coach.description }}
-       </div>
-     </div>
-    {% endif %}
-
-    {% if course.assistant %}
-     <div class="panel panel-default">
-       <div class="panel-heading">
-         <h3 class="panel-title">Ассистент</h3>
-       </div>
-       <div class="panel-body">
-         <a href="{% url 'coaches:detail' course.assistant.id %}">
-           {{ course.assistant.full_name }}
-         </a>
-         <br>
-         {{ course.assistant.description }}
-       </div>
-     </div>
-    {% endif %}
-
-  {% endif %}
-        <h4>
-          План курса
-        </h4>
-
-  {% if lesson_list %}     
+{% if coach_list %}     
       <table class="table table-hover">
 
       <thead>
         <tr>
           <th>#</th>
-          <th>Тема</th>
-          <th>Описание</th>
+          <th>фамилия имя</th>
+          <th>адрес</th>
+          <th>skype</th>
+          <!--<th>курсы</th>-->
         </tr>
       </thead>
+
       <tbody>
 
-    {% for lesson in lesson_list %}
-        <tr >
-          <td>{{ lesson.release_num }}</a></td>
-          <td>{{ lesson.title }}</a></td>
-          <td>{{ lesson.description }}</td>
+    {% for coach in coach_list %}
+        <tr>
+          <td>{{ coach.id }}</td>
+          <td><a href="{% url 'coaches:detail' coach.id %}">{{ coach.full_name }}</a></td>
+          <td>{{ coach.address }}</td>
+          <td>{{ coach.skype }}</td>
+          <td>
+
+         </td>
         </tr>
     {% endfor %}
 
       </tbody>
     </table>
 
-  {% else %}
-    <p>No lessons are available.</p>
-  {% endif %}
+{% else %}
+    <p>No coaches are available.</p>
+{% endif %}
 
       <footer class="footer">
         <p>&copy; Py.bursa 2014</p>
