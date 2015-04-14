@@ -1,0 +1,31 @@
+
+body{
+	background: #FFF;
+}
+
+a{
+	color: #069C08;
+}
+
+.text-muted {
+    color: #FFCC00;
+    font-size: 16px;
+}
+
+.teacher1-text{
+	color: #f044057;
+	font-size: 25px;
+	padding-left: 10px;
+}
+
+.placeholder h4{
+	font-size: 30px;
+}
+
+.media-body small{
+	color: #8F8D88;
+}
+
+#student div{
+    padding-left: 40px;
+}

@@ -51,10 +51,7 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'index_itbursa' %}">главная</a></li>
-            <li><A href="{% url 'index_itbursa' %}L">python</A></li>
-            <li><A href="{% url 'index_itbursa' %}">web/django</A></li>
-            <li><A href="{% url 'index_itbursa' %}L">преподаватели</A></li>
-            <li><A href="#">студенты</A></li>
+            <li><A href="{% url 'student_list' %}">студенты</A></li>
             <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
           </ul>
         </div>
@@ -68,413 +65,41 @@
             <table ip = 'base-python' class="table table-striped">
               <thead>
                 <tr>
-                  <th>ИМЯ СТУДЕНТА</th>
-                  <th>КОНТАКТНЫЕ ДАННЫЕ</th>
+                  <th>#</th>
+                  <th>Фамилия Имя</th>
+                  <th>Адрес</th>
+                  <th>Skype</th>
+                  <th>Курсы</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <li><a href="{% url 'student_detail' %}">Жуланов Александр</a></li>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Котулская Ольга
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Хатиновский Владимир
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Костенко Анна
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Мешков Кирил
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Козлов Павел
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Свиридов Андрей
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Бугаенко Кристина
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Семейко Иван
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Жлобинский Павел
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Мовчан Александр
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Ерпылёв Алексей
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Жуванов Ярослав
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Ищенко Олег
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Черненко Сергей
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Олейник Андрей
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Рустамов Тимур
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Теплов Александр
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Гостева Лиза
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Персанова Елена
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Степанов Глеб
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Иващанка Артем
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Полищук Владимир
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Звягинцев Кирил
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Каракаш Сергей
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Набойченко Влад
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Белозеров Максим
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Харюк Олег
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Рижков Иван
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Василенко Вячеслав
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Яровой Руслан
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Шульга Марина
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Боровенский Николай
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Домашний адрес</li>
-                      <li>Логин</li>
-                      <li>Skype</li>
-                    </ul>
-                  </td>
-                </tr>
+                {%for student in students%}
+                  <tr>
+                    <td>
+                      {{forloop.counter}}
+                    </td>
+                    <td>
+                      <a href="/students/{{student.id}}">{{student.surname}} {{student.name}}</a>
+                    </td>
+                    <td>
+                      {{student.address}}
+                    </td>
+                    <td>
+                      {{student.skype}}
+                    </td>
+                    <td>
+                      {%for i in student.courses.all%}
+                      <a href="/courses/{{i.id}}">{{i.name}}</a><br>
+                      {%endfor%}
+                    </td>
+                  </tr>
+                {%endfor%}
               </tbody>
             </table>
           </div>
     </div>
     <div class = 'row'></div>
-
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <!--Футер -->
     <div class = 'row'>
       <div class="panel-footer">
