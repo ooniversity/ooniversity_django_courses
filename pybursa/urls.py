@@ -3,6 +3,10 @@ from django.contrib import admin
 
 from pybursa.views import index, contact, student_detail, student_list
 
+from pybursa.views import ooniversity, course, students, student_info
+
+from pybursa.views import course_with_coaches, coach_info
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,11 +17,32 @@ urlpatterns = patterns('',
 
     url(r'^polls/', include('polls.urls', namespace = "polls")),
 
-    # Load URLs page quadratic equation to basic parser URLs
+
+    # Load URLs page quadratic equation to basic parser URLs  [*??? Django Control 4 ???*]
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
 
 
-    url(r'^$', index, name = 'index'),
+
+    # Ooniversity site pages - Django Control 5
+
+    url(r'^$', ooniversity, name = 'ooniversity'),
+
+    #url(r'^courses/(?P<id_course>\d+)/$', course),
+    url(r'^students/(?P<id_stud>\d+)/$', student_info, name = 'student_info'),
+    url(r'^students/$', students, name = 'students'),
+
+
+
+    # Added app coaches in courses - Django Control 6
+
+    url(r'^courses/(?P<id_course>\d+)/$', course_with_coaches, name = 'course_coaches'),
+
+    url(r'^coaches/(?P<id_coach>\d+)/$', coach_info, name = 'coach_info'),
+
+
+
+    # PyBursa site pages - Django Control 3
+    #url(r'^$', index, name = 'index'),
     url(r'^contact/$', contact, name = 'contact'),
     url(r'^student_detail/$', student_detail, name = 'student_detail'),
     url(r'^student_list/$', student_list, name = 'student_list'),
