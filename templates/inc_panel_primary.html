@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+<div class="panel panel-primary">
+ <div class="panel-heading">
+    <h3 class="panel-title">{{ block_title }}</h3>
+ </div>
+ <div class="panel-body">
+  <div class="media">
+    {% if image_src %}
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" src="{% static image_src %}" alt="{{ person.full_name }}">
+        </a>
+      </div>
+    {% endif %}
+    <div class="media-body">
+      <h4 class="media-heading">
+          <a href="{% url 'coaches:detail' person.id %}">{{ person.full_name }}</a>
+      </h4>
+       <p>{{ person.description|linebreaks }}</p>
+    </div>
+  </div>
+ </div>
+</div>
+<br />
+

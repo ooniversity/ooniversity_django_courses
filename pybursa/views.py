@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
+from coaches.models import Coach
 
 def index(request):
     return render(request, 'index.html')
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    c = get_object_or_404(Coach, pk=1)
+    return render(request, 'contact.html', {'coach': c
+                                            })
 
 
 def student_list(request):
