@@ -1,14 +1,14 @@
 {% extends "base_person_detail.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ student.full_name }}{% endblock %}
+{% block title %}{{ student.full_name|default:"Профиль студента" }}{% endblock %}
 
 {% block nav_extra_li %}
   {% include "includes/inc_nav_extra_li.html" with li_title="Профиль студента" %}
 {% endblock nav_extra_li %}
 
 
-{% block surname %} {{ student.surname }} {% endblock %}
+{% block surname %} {{ student.surname|upper }} {% endblock %}
 {% block name %} {{ student.name }} {% endblock %}
 {% block date_of_birth %} {{ student.date_of_birth|date:"j E Y" }} {% endblock %}
 {% block address %} {{ student.address }} {% endblock %}

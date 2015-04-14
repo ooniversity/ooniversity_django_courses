@@ -24,7 +24,7 @@
           <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td><a href="{% url 'students:student_detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
-            <td>{{ student.address }}</td>
+            <td>{{ student.address|truncatechars:50 }}</td>
             <td>{{ student.skype }}</td>
             <td>
               {% for course in student.courses.all %}

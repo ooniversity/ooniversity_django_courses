@@ -1,14 +1,14 @@
 {% extends "base_person_detail.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ coach.full_name }}{% endblock %}
+{% block title %}{{ coach.full_name|default:"Профиль преподавателя" }}{% endblock %}
 
 {% block nav_extra_li %}
   {% include "includes/inc_nav_extra_li.html" with li_title="Профиль преподавателя" %}
 {% endblock nav_extra_li %}
 
 
-{% block surname %} {{ coach.user.last_name }} {% endblock %}
+{% block surname %} {{ coach.user.last_name|upper }} {% endblock %}
 {% block name %} {{ coach.user.first_name }} {% endblock %}
 {% block date_of_birth %} {{ coach.date_of_birth|date:"j E Y" }} {% endblock %}
 {% block address %} {{ coach.address }} {% endblock %}
