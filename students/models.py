@@ -1,6 +1,7 @@
 from django.db import models
 from courses.models import Course
 
+
 class Student(models.Model):
 	name = models.CharField(max_length=10)
  	surname = models.CharField(max_length=10)
@@ -12,8 +13,8 @@ class Student(models.Model):
  	courses = models.ManyToManyField(Course)
 
  	def __unicode__(self):
- 		return self.surname+" "+self.name
+ 		return self.surname
 
- 	def fullname(self):
+	def fullname(self):
 		return ("%s %s" % (self.name, self.surname))	
  

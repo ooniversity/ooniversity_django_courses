@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
+{% extends "base.html" %}
 
-    <title>main</title>
+{% block page_title %}List students {{ block.super }}{% endblock %}
 
-    <!-- Bootstrap core CSS -->
-    {% load staticfiles %}
-    <link href="{% static 'bootstrap.css' %}" rel="stylesheet">
+{% block content %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'jumbotron-narrow.css' %}" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static 'ie-emulation-modes-warning.js' %}"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-      <div class="container">
+    <div class="container">
     
       <div class="header clearfix">
         <nav>
@@ -45,43 +18,34 @@
 
           
       <h2 class="sub-header">Список студентов</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>№</th>
-                  <th>фамилия, имя</th>
-                  <th>адрес</th>
-                  <th>skype</th>
-                  <th>курсы</th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for student in students %}
-                <tr>
-                  <td>{{forloop.counter}}</td>
-                  <td><a href="{% url 'student' student.id %}">{{student.surname}} {{student.name}}</a></td>
-                  <td>{{student.address}}</td>
-                  <td>{{student.skype}}</td>
-                  <td>{% for course in student.courses.all%}
-                      <a href="{% url 'course-description' course.id %}">{{course}}</a></br>
-                      {% endfor %}</td>
-                </tr>
-              {% endfor %} 
-              </tbody>
-            </table>
-          </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <!--  // <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'bootstrap.js' %}"></script>
-      
-
-      
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>фамилия, имя</th>
+                <th>адрес</th>
+                <th>skype</th>
+                <th>курсы</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for student in students %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'student' student.id %}">{{student.surname}} {{student.name}}</a></td>
+                <td>{{student.address}}</td>
+                <td>{{student.skype}}</td>
+                <td>{% for course in student.courses.all%}
+                  <a href="{% url 'course-description' course.id %}">{{course}}</a></br>
+                    {% endfor %}
+                </td>
+              </tr>
+            {% endfor %} 
+            </tbody>
+          </table>
+        </div>     
     
 
-     </div>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-     </body>
-</html>
+    </div>
+{% endblock %}
