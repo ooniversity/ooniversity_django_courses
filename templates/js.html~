@@ -8,22 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
-      {% load staticfiles %}
-     <link rel="icon" href="{% static 'img/py.ico' %}">
+     {% load staticfiles %}
+    <link rel="icon" href="{% static 'img/py.ico' %}">
 
-    <title>Студенты</title>
+    <title>Профессиональные курсы</title>
 
     <!-- Bootstrap core CSS -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -50,51 +50,61 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Главная</a></li>
             
-            <li class="active"><a>Студенты</a></li>
+            <li ><a href="{% url 'student' %}">Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-<div class="container">
-  <pre>                          
-    <table class='students_list'>
+    <div class="container">
+
+      <!--<div class="starter-template">-->
+
+      <div style = "font-size: 16px; text-align : justify">
+
+        <h2>Web разработка на JavaScript</h2>
+        <p >Это курс для тех, кто хочет получить современную и актуальную профессию в области разработки user interfaces. Вы узнаете о самых современных фреймворках и научитесь создавать динамичные, красивые сайты. Курс будет полезен как для тех, кто уже сталкивался с версткой и программированием, так и для новичков. Но первой группе придется серьезно попотеть и недосыпать два месяца курсов.</p>
+                	
+    <pre>                          
+    <table class='courses_list'>
         <tr>
         <th>№</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Адресс</th>
-        <th>Skype</th>
-        <th>Курсы</th>
+        <th>Тема</th>
+        <th>Описание</th>
         </tr>
     {% for lesson in lessons %}
         <tr>
         <td>{{forloop.counter}}</td>
-        <td>{{student.name}}</td>
-        <td>{{student.surname}}</td>
-        <td>{{student.address}}</td>
-        <td>{{student.skype}}</td>
-        <td>{{student.course}}</td>
+        <td>{{lesson.theme}}</td>
+        <td>{{lesson.desription}}</td>
         </tr>
     {% endfor %}
     </table>     
-  </pre> 
-</div>
+    </pre>
+
+
+        
+
+    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/jquery.js' %}"></script>
-      {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-       {% load staticfiles %}
+     {% load staticfiles %}
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
     <style>
-        .students_list {margin: auto; font-size: 18px;  width: 700; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
-        .students_list th, .students_list tr, .students_list td {text-align: center;  border: 1px solid black}
-        .students_list th, .students_list td {padding: 7px 20px 7px 20px;}
+        .courses_list {margin: auto; font-size: 12px;  width: 700; box-shadow: 0 0 10px rgba(0,0,0,0.5)}
+        .courses_list th, .courses_list tr, .courses_list td {text-align: left;  border: 1px solid black}
+        .courses_list th, .courses_list td {padding: 7px 20px 7px 20px;}
     <style>
+
 </body></html>
+
+
+

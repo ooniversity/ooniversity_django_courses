@@ -49,7 +49,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}">Главная</a></li>
-            
+            <li ><a href="{% url 'contact' %}">Контакты</a></li>
             <li class="active"><a>Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -67,7 +67,7 @@
         <th>Skype</th>
         <th>Курсы</th>
         </tr>
-    {% for lesson in lessons %}
+    {% for student in students %}
         <tr>
         <td>{{forloop.counter}}</td>
         <td>{{student.name}}</td>
