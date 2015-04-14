@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from coaches.models import Coach
 
 class Course(models.Model):
     name = models.CharField(u"Название", max_length=255)
     short_description = models.CharField(u"Краткое описание", max_length=255)
     description = models.TextField(u"Описание")
+    coach = models.ForeignKey(Coach, verbose_name=u"Тренер", blank=True,
+        null=True, related_name='coachkey')
+    assistant = models.ForeignKey(Coach, verbose_name=u"Ассистент", blank=True,
+        null=True, related_name='assistantkey')
 
     def __unicode__(self):
         return self.name

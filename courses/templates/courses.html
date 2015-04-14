@@ -44,7 +44,33 @@
 	<br>
 	<div id="container">
 		<p><h1 align="center">{{ planmodel.name }}</h1></p>
-        <p><h3 align="center">{{ planmodel.description }}</h3></p>
+        <p><h3 align="center">{{ planmodel.description }}</h3></p><br>
+    <p><h2 align="center">Преподаватели курса</h2></p>
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Учитель: <a href="{% url 'coaches:coach' coach.0.id %}">
+              {{ coach.0.full_name }}</a></h3>
+        </div>
+        <div class="panel-body">
+
+          <p>{{ coach.1 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Асcистент: <a href="{% url 'coaches:coach' assistant.0.id %}">
+              {{ assistant.0.full_name }}</a></h3>
+        </div>
+        <div class="panel-body">
+
+          <p>{{ assistant.1 }}</p>
+        </div>
+      </div>
+    </div>
 
         <h1 align="center">План курса</h1><br>
         <table class="table table-bordered">
