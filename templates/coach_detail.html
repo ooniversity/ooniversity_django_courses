@@ -67,6 +67,7 @@
 
   <div class="container">
     <div class="jumbotron">
+
       <h1>{{ student.surname }} {{ student.name }}</h1>
         <table>
         <caption><h2>Личные данные:</h2></caption>
@@ -76,7 +77,7 @@
                 дата рождения
               </td>
               <td>
-                {{ student.date_of_birth }}
+                {{ coach.date_of_birth }}
               </td>
             </tr>
             <tr>
@@ -84,7 +85,7 @@
                 адрес
               </td>
               <td>
-                {{ student.address }}
+                {{ coach.address }}
               </td>
             </tr>
             <tr>
@@ -92,7 +93,7 @@
                 почта
               </td>
               <td>
-                {{ student.email }}
+                {{ coach.user.email }}
               </td>
             </tr>
             <tr>
@@ -100,7 +101,7 @@
                 логин skype
               </td>
               <td>
-                {{ student.skype }}
+                {{ coach.skype }}
               </td>
             </tr>
             <tr>
@@ -108,16 +109,28 @@
                 телефон
               </td>
               <td>
-                {{ student.phone }}
+                {{ coach.phone }}
               </td>
             </tr>
             <tr>
               <td>
-                курсы
+                курсы учитель
+              </td> 
+              <td>
+                {% for coach in coursecoach %}
+                    <p><a href="{% url 'course:courseinfo' coach.id %}">{{coach.title}}</a>
+                    студенты курса<a href="{% url 'students:students_list' %}?course_id={{ init.id }}"class="external"></a></p>
+                {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                курсы ассистент   
               </td>
               <td>
-                {% for course in courses %}
-                <a href="{% url 'course:courseinfo' course.id %}">{{course.title}}</a><br>
+                {% for assist in courseassist %}
+                    <p><a href="{% url 'course:courseinfo' assist.id %}">{{ assist.title }}</a>
+                    студенты курса<a href="{% url 'students:students_list' %}?course_id={{ init.id }}"class="external"></a></p>
                 {% endfor %}
               </td>
             </tr>

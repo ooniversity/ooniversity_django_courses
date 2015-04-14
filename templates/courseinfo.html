@@ -77,8 +77,10 @@
     <div class="panel panel-default">
       <div class="panel-heading"><b>Учитель</b></div>
       <div class="panel-body">
-        <p class="name"><a href="{% url 'coaches:coach_detail' coach.0.id %}">{{ coach.0.full_name }}</a>
+        <p class="name"><a href="{% url 'coaches:coach_detail' courses.coach.id %}">
+              {{ coach.0.full_name }}</a>
           </p>
+
         <p class="text">
           {{ coach.1 }}
         </p>
@@ -88,7 +90,8 @@
     <div class="panel panel-default">
       <div class="panel-heading"><b>Ассистент</b></div>
       <div class="panel-body">
-        <p class="name"><a href="{% url 'coaches:coach_detail' course.assistant.0.id %}">{{ assistant.0.full_name }}</a>
+        <p class="name"><a href="{% url 'coaches:coach_detail' courses.assistant.id %}">
+              {{ assistant.0.full_name }}</a>
           </p>
         <p class="text">
           {{ assistant.1 }}

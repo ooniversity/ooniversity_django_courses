@@ -1,16 +1,23 @@
 ul {text-align: justify; }
 
-td {text-align: center; font-size: 1.5em}
+td {text-align: left; font-size: 1.5em}
+
+td.just {text-align: justify;}
+td.wide {width: 220px;}
 td.number_cell {text-align: center; font-size: 2.25em; }
-td.adress {text-align: left; padding: 20px}
+td.address {text-align: left; padding: 20px}
 table {width: 100%; border-collapse: collapse; }
 td, th {padding: 20px; border: 1px solid #000080; }
-th {background: #000080;color: #ffe; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 1.5em; }
+th {background: #000080; color: #ffe; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 1.5em; }
+th.contr {background: #FF9966; color: #ffe; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 1.5em; }
 
-tbody.stud tr.first:hover {background: #f3bd48; color: #fff;}
+tbody.stud tr.first:hover {background: #f3bd48; color: #fff; cursor: pointer;}
 
 p {text-align: justify;}
 p.text {text-indent: 30px; text-align: justify;}
+p.name {color: orange; font-weight:bold}
 img.photo {border: 5px double #778899; width: 110px; height: 115px;}
 
+a.external {background: url(http://www.stocksistemas.com.br/icones/indica.png) no-repeat 100% 5px; padding-left: 20px;}
 
+.jumbotron {padding-top: 15px; padding-bottom: 15px;}
