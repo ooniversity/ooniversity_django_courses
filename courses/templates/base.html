@@ -30,6 +30,18 @@
   </head>
 
   <body>
+   <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="{% block nav_main %}{% endblock %}">
+            <a href="{% url 'main' %}">Главная</a></li>
+            <li role="presentation" class="{% block nav_student %}{% endblock %}">
+            <a href="{% url 'list-students' %}?course_id={{ course.id }}">Студенты</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">MathBursa</h3>
+      </div>
   {% block content %}{% endblock %}
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>

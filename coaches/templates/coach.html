@@ -2,52 +2,41 @@
 
 {% block page_title %}Coach {{ block.super }}{% endblock %}
 
-{% block content %}
-      <div class="container">
-    
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="{% url 'main' %}">Главная</a></li>
-            <li role="presentation" ><a href="{% url 'list-students' %}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">MathBursa</h3>
-      </div>
+{% block nav_main %}active{% endblock %}
 
-          
-      <h2 class="sub-header">{{coach.user.get_full_name}}</h2>
+{% block content %}              
+      <h2 class="sub-header">{{ coach.user.get_full_name }}</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <tbody>
                 <tr>
                   <td>дата рождения</td>
-                  <td>{{coach.birthday}}</td>
+                  <td>{{ coach.birthday }}</td>
                 </tr>
                 <tr>
                   <td>адрес</td>
-                  <td>{{coach.address}}</td>
+                  <td>{{ coach.address }}</td>
                 </tr>
                 <tr>
                   <td>почта</td>
-                  <td>{{coach.user.email}}</td>
+                  <td>{{ coach.user.email }}</td>
                 </tr>
                 <tr>
                   <td>логин skype</td>
-                  <td>{{coach.skype}}</td>
+                  <td>{{ coach.skype }}</td>
                 </tr>
                 <tr>
                   <td>телефон</td>
-                  <td>{{coach.phone}}</td>
+                  <td>{{ coach.phone }}</td>
                 </tr>
                 <tr>
                   <td>курсы учитель</td>
                   <td>
                       {% if trainer_courses %}
                         {% for course in trainer_courses %}
-                          <a href="{% url 'course-description' course.id %}">{{course}}</a> 
+                          <a href="{% url 'course-description' course.id %}">{{ course }}</a> 
                           студенты курса
-                          <a href="{% url 'list-students' %}?course_id={{course.id}}">
+                          <a href="{% url 'list-students' %}?course_id={{ course.id }}">
                           <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
                           </a></br>
                         {% endfor %}
@@ -59,9 +48,9 @@
                   <td>
                       {% if assistant_courses %}
                         {% for course in assistant_courses %}
-                          <a href="{% url 'course-description' course.id %}">{{course}}</a>
+                          <a href="{% url 'course-description' course.id %}">{{ course }}</a>
                           студенты курса
-                          <a href="{% url 'list-students' %}?course_id={{course.id}}">
+                          <a href="{% url 'list-students' %}?course_id={{ course.id }}">
                           <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
                           </a></br>
                         {% endfor %}

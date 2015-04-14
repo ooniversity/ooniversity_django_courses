@@ -1,19 +1,13 @@
 {% extends "base.html" %}
 
+
 {% block page_title %}Main {{ block.super }}{% endblock %}
 
-{% block content %}
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="">Главная</a></li>
-            <li role="presentation"><a href="{% url 'list-students' %}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">MathBursa</h3>
-      </div>
 
+{% block nav_main %}active{% endblock %}
+
+
+{% block content %}
       <div class="jumbotron">
         <h2Высшая математика</h2>
         <p class="lead">Наши занятия помогут вам освоить основы высшей математики. Сложное станет простым. На наших занятиях вы будете развивать свое логическое мышление, пространственное воображение.</p>
@@ -31,8 +25,8 @@
               <tbody>
               {% for course in courses %}
                 <tr>
-                  <td><a href="{% url 'course-description' course.id %}">{{course.name}}</a></td>
-                  <td>{{course.short_description}}</td>
+                  <td><a href="{% url 'course-description' course.id %}">{{ course.name }}</a></td>
+                  <td>{{ course.short_description|truncatechars:30 }}</td>
                 </tr>
               {% endfor %} 
               </tbody>
@@ -40,5 +34,4 @@
           </div>
 
       
-    </div> <!-- /container -->
 {% endblock %}

@@ -1,25 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_students.html" %}
 
-{% block page_title %}List students {{ block.super }}{% endblock %}
 
-{% block content %}
+{% block page-header %}Список студентов{% endblock %}
 
-    <div class="container">
-    
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="{% url 'main' %}">Главная</a></li>
-            <li role="presentation" class="active"><a href="">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">MathBursa</h3>
-      </div>
-
-          
-      <h2 class="sub-header">Список студентов</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
+  
+{% block page-content %}   
             <thead>
               <tr>
                 <th>№</th>
@@ -32,20 +17,15 @@
             <tbody>
             {% for student in students %}
               <tr>
-                <td>{{forloop.counter}}</td>
-                <td><a href="{% url 'student' student.id %}">{{student.surname}} {{student.name}}</a></td>
-                <td>{{student.address}}</td>
-                <td>{{student.skype}}</td>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'student' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.skype }}</td>
                 <td>{% for course in student.courses.all%}
-                  <a href="{% url 'course-description' course.id %}">{{course}}</a></br>
+                  <a href="{% url 'course-description' course.id %}">{{ course }}</a></br>
                     {% endfor %}
                 </td>
               </tr>
             {% endfor %} 
             </tbody>
-          </table>
-        </div>     
-    
-
-    </div>
 {% endblock %}
