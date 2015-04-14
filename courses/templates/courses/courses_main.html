@@ -24,18 +24,16 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Главная</a></li>
             <li><a href="{% url 'contact_list' %}">Контакты</a></li>
-            <li><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:students_on_course' %}">
+            Студенты</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="jumbotron"><h1>Хочешь найти работу в IT?</h1>
-      <div><h3>Мы поможем тебе в этом! </h3></div>
-      <div><h2>ooniversity</h2></div>
-      <br>Профессиональные курсы, специализирующиеся на "модных" языках программирования
+    <div class="jumbotron"><h1>ooniversity</h1>
+      <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования</h3></p> 
       <br>
       <br>     
-      </div>
     </div>
     <div class="list-group">
       <a class="list-group-item active">
@@ -48,51 +46,26 @@
       <a class="list-group-item">Дедлайны</a>
       <a class="list-group-item">В работе это пригодится!</a>
     </div>
-
   <div class="panel panel-default">
     <div class="panel-body">
-    <h3>Выбирай курс, на котором хочешь учиться!</h3>
+     <h3>Выбирай курс, на котором хочешь учиться!</h3>
     </div> 
-
     <table class="table">
       <tr>
         <th class="column25">Курс</th>
         <th>Описание</th> 
-      </tr>
-
-      <!--{% csrf_token %}
-      {% for course in course_set.all %}
-      <tr>
-        <td><a href= "{% url 'courses:course_info' course.id %}"> gggg</a></td>
-        <td>Smith</td>       
-      </tr>
-      {% endfor %} -->
-
+      </tr> 
       {% for course in courses %}
-        <tr>
-        <td><a href="{% url 'courses_main' course.id %}">{{course.title}}</a></td>
+      <tr>
+        <td><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></td>
         <td>{{course.short_description}}</td>
-        </tr>
-      {% endfor %} 
-      S
-    </table>
-
-     
-      
-      
-     
-  </div>    
-
-    <div class="jumbotron">
-      <br>
-      <p><a class="btn btn-primary btn-lg" href="http://pybursa.com/index.html" role="button">Подробнее о курсах</a></p>
-      <br>
-      <p><a class="btn btn-primary btn-lg" href="http://pybursa.com/index.html#below_seventeenth_block" role="button">Запись на курсы</a></p>
-    </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
+      </tr>
+      {% endfor %}
+    </table> 
+  </div> 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/bootstrap.js' %}"></script>
   </body>
 </html>

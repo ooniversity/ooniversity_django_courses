@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
+#from courses import views           
+from courses.models import Course
+from django.views import generic
+
 def course_info(request):
     return render (request, 'index.html')
 
