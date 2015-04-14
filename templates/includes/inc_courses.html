@@ -1,0 +1,32 @@
+<!-- Courses ================================================== -->
+
+    <hr class="featurette-divider">
+
+    <div class="container">
+      <h2 class="sub-header"><a href="{% url 'courses:courses' %}">Курсы</a></h2>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Курс</th>
+              <th>Описание</th>
+            </tr>
+          </thead>
+          {% for course in object_list %}
+          <tbody>
+            <tr>
+              <td><p>{{ forloop.counter }}</p></td>
+              <td><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></td>
+              <td><p>{{ course.short_description|truncatechars:70 }}</p></td>
+            </tr>
+          </tbody>
+          {% empty %}
+          <p>Простите, но сейчас нет доступных курсов.</p>
+          {% endfor %}
+        </table>
+      </div>
+    </div>

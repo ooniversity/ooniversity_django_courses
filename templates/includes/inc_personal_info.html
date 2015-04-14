@@ -1,0 +1,60 @@
+<!-- Personal Info ================================================== -->
+
+    <div class="container">
+      <h1>{% if person.user %}{{ person.user.last_name }} {{ person.user.first_name }}{% else %}{{ person.surname }} {{ person.name }}{% endif %}</h1>
+      <img class="{{ block_img_class }}" src="{{ person.image.url }}" width="{{ block_img_width }}" height="140">
+    </div>
+
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td>Дата рождения</td>
+              <td>{{ person.date_of_birth|date:"D d N Y" }}</td>
+            </tr>
+            <tr>
+              <td>Адрес</td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ person.address }}" id="address_id">{{ person.address }}</a></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><a href="mailto:{% if person.user %}{{ person.user.email }}{% else %}{{ person.email }}{% endif %}">{% if person.user %}{{ person.user.email }}{% else %}{{ person.email }}{% endif %}</a></td>
+            </tr>
+            <tr>
+              <td>Skype</td>
+              <td><a href="skype:{{ person.skype }}">{{ person.skype }}</a></td>
+            </tr>
+            <tr>
+              <td>Телефон</td>
+              <td><a href="skype:{{ person.phone }}?call">{{ person.phone }}</a></td>
+            </tr>
+            {% if person.user %}
+            {% if person.courses_coach.count %}
+            <tr>
+              <td>Курсы учитель</td>
+              <td>{% for coach in person.courses_coach.filter %}
+                <p><a href="{% url 'courses:detail' coach.id %}">{{ coach }}</a> (<a href="{% url 'students' %}?course_id={{ coach.id }}">Студенты курса</a>)</p>
+              {% endfor %}</td>
+            </tr>
+            {% endif %}
+            {% if person.courses_assistant.count %}
+            <tr>
+              <td>Курсы ассистент</td>
+              <td>{% for assistant in person.courses_assistant.filter %}
+                <p><a href="{% url 'courses:detail' assistant.id %}">{{ assistant }}</a> (<a href="{% url 'students' %}?course_id={{ assistant.id }}">Студенты курса</a>)</p>
+              {% endfor %}</td>
+            </tr>
+            {% endif %}
+            {% else %}
+            <tr>
+              <td>Курсы</td>
+              <td>{% for course in person.course.all %}
+                <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
+              {% endfor %}</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>

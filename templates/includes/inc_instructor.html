@@ -1,0 +1,5 @@
+        <div class="col-xs-6">
+          <img class="img-circle" src="{{ instructor.image.url }}" width="140" height="140">
+          <h2><a href="{% url 'coaches:coach' instructor.id %}">{{ instructor.user.last_name }} {{ instructor.user.first_name }}</a></h2>
+          <p>{{ instructor.description }}</p>
+        </div><!-- /.col-xs-6 -->
