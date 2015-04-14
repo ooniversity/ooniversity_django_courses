@@ -22,5 +22,5 @@ class StudentView(generic.ListView):
     model = Student
 
     def get_queryset(self):
-        qs = super(StudentView, self).get_queryset()
-        return qs.filter(id=self.kwargs['id'])[0]
+        qs = super(StudentView, self).get_queryset().filter(id=self.kwargs['id'])
+        return qs

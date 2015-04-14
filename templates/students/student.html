@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href='{% static "img/favicon.ico" %}' type="image/x-icon">
-    <title>{{ object_list.surname }} {{ object_list.name }}</title>
+    <title>{{ object_list.0.surname }} {{ object_list.0.name }}</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -99,13 +99,15 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<!-- Student ================================================== -->
+<!-- Google-map ================================================== -->
     
     <div id="map-canvas"></div>
 
+<!-- Student ================================================== -->
+
     <div class="container">
-      <h1>{{ object_list.surname }} {{ object_list.name }}</h1>
-      <img src="{{ object_list.image.url }}" height="140">
+      <h1>{{ object_list.0.surname }} {{ object_list.0.name }}</h1>
+      <img src="{{ object_list.0.image.url }}" height="140">
     </div>
 
     <div class="container">
@@ -114,27 +116,27 @@
           <tbody>
             <tr>
               <td>Дата рождения</td>
-              <td>{{ object_list.date_of_birth }}</td>
+              <td>{{ object_list.0.date_of_birth }}</td>
             </tr>
             <tr>
               <td>Адрес</td>
-              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.address }}" id='address_id'>{{ object_list.address }}</a></td>
+              <td><a href="https://www.google.com.ua/maps/place/{{ object_list.0.address }}" id='address_id'>{{ object_list.0.address }}</a></td>
             </tr>
             <tr>
               <td>Email</td>
-              <td><a href="mailto:{{ object_list.email }}">{{ object_list.email }}</a></td>
+              <td><a href="mailto:{{ object_list.0.email }}">{{ object_list.0.email }}</a></td>
             </tr>
             <tr>
               <td>Skype</td>
-              <td><a href="skype:{{ object_list.skype }}">{{ object_list.skype }}</a></td>
+              <td><a href="skype:{{ object_list.0.skype }}">{{ object_list.0.skype }}</a></td>
             </tr>
             <tr>
               <td>Телефон</td>
-              <td><a href="skype:{{ object_list.phone }}?call">{{ object_list.phone }}</a></td>
+              <td><a href="skype:{{ object_list.0.phone }}?call">{{ object_list.0.phone }}</a></td>
             </tr>
             <tr>
               <td>Курсы</td>
-              <td>{% for course in object_list.course.all %}
+              <td>{% for course in object_list.0.course.all %}
                 <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
               {% endfor %}</td>
             </tr>

@@ -50,7 +50,7 @@
                 <li><a href='{% url "contact" %}'>Контакты</a></li>
                 <li><a href="{% url 'students' %}">Студенты</a></li>
                 <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
-                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
+                <li class="active"><a href=#>Преподаватели<span class="sr-only">(current)</span></a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -98,7 +98,7 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<!-- Student ================================================== -->
+<!-- Coaches ================================================== -->
     
     <div class="container">
       <h1>Преподаватели</h1>
@@ -119,28 +119,30 @@
             </tr>
           </thead>
           <tbody>
-            {% for item in object_list.Coach %}
+            {% for item in object_list %}
             <tr>
               <td>{{ forloop.counter }}</td>
               <td><a href="{% url 'coaches:coach' item.id %}">{{ item.user.last_name }} {{ item.user.first_name }}</a></td>
-              <td><img class="img-circle" src="{{ item.image.url }}" width="100" height="100"></td>
+              <td><img class="img-circle" src="{{ item.image.url }}" width="120" height="120"></td>
               <td><a href="mailto:{{ item.user.email }}">{{ item.user.email }}</a></td>
               <td><a href="skype:{{ item.skype }}">{{ item.skype }}</a></td>
               <td><a href="skype:{{ item.phone }}?call">{{ item.phone }}</a></td>
               <td>
+              {% if item.courses_coach.count %}
               <p>как преподаватель:</p>
-              {% for courses in object_list.Course %}
-              {% if courses.coach == item %}
+              {% for courses in item.courses_coach.filter %}
               <p><a href="{% url 'courses:detail' courses.id %}">{{ courses }}</a></p>
-              {% endif %}
               {% endfor %}
+              {% endif %}
+              {% if item.courses_coach.count and item.courses_assistant.count %}
               <hr>
-              <p>как ассистент:</p>
-              {% for courses in object_list.Course %}
-              {% if courses.assistant == item %}
-              <p><a href="{% url 'courses:detail' courses.id %}">{{ courses }}</a></p>
               {% endif %}
+              {% if item.courses_assistant.count %}
+              <p>как ассистент:</p>
+              {% for courses in item.courses_assistant.filter %}
+              <p><a href="{% url 'courses:detail' courses.id %}">{{ courses }}</a></p>
               {% endfor %}
+              {% endif %}
               </td>
             </tr>
             {% endfor %}
