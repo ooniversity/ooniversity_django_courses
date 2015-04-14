@@ -2,11 +2,13 @@
 
 {% load static from staticfiles %}
 
-{% block title %}IT Bursa - {{coach.user.last_name}} {{coach.user.first_name}} {% endblock title %}
+{% block title %}IT Bursa - {{ coach.user.last_name }} {{ coach.user.first_name }} {% endblock title %}
+
 
 {% block css_for_page %}
-    <link href="{%static "coach.css"%}" rel="stylesheet">
+    <link href="{% static 'coach.css' %}" rel="stylesheet">
 {% endblock css_for_page %}
+
 
 {% block main_content %}
   <br><br><br><br><br><br>
@@ -16,38 +18,38 @@
       <div class="media-left media-middle">
         <div class="row placeholders">
           <div class="col-xs-12 col-sm-12 placeholder">
-            <img src="/static/IMG/{{coach.user}}.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
+            <img src="/static/IMG/{{ coach.user }}.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
 
-            <h4>{{coach.user.last_name}} {{coach.user.first_name}}</h4>
+            <h4>{{ coach.user.last_name }} {{ coach.user.first_name }}</h4>
           </div>
         </div>
       </div>
       <div class="media-body">
         <div class = 'teacher1-text'>
-          <p> <small>дата рождения:</small> {{coach.date_of_birth}} </p>
-          <p> <small>адрес:</small> {{coach.address}} </p>
-          <p> <small>почта:</small> {{coach.email}} </p>
-          <p> <small>логин skype:</small> {{coach.skype}}  </p>
-          <p> <small>телефон:</small> {{coach.phone}} </p>
+          <p> <small>дата рождения:</small> {{ coach.date_of_birth }} </p>
+          <p> <small>адрес:</small> {{ coach.address }} </p>
+          <p> <small>почта:</small> {{ coach.email }} </p>
+          <p> <small>логин skype:</small> {{ coach.skype }}  </p>
+          <p> <small>телефон:</small> {{ coach.phone }} </p>
           <p> <small>курсы учитель:</small>
-            {%if teacher %}
-              {%for i in teacher%}
-              <a href="{% url 'courses:courses' i.id %}">{{i.name}}  </a>
-              <small>студенты курса</small> <a href="{% url 'students:student_list' %}?course_id={{i.id}}"><img src="{% static "IMG/hw6.png"%}" alt="..."></a>
-              {%endfor%}
-            {%else%}
+            {% if teacher %}
+              {% for i in teacher %}
+              <a href="{% url 'courses:courses' i.id %}">{{ i.name }}  </a>
+              <small>студенты курса</small> <a href="{% url 'students:student_list' %}?course_id={{ i.id }}"><img src="{% static "IMG/hw6.png" %}" alt="..."></a>
+              {% endfor %}
+            {% else %}
               в данное время не преподает
-            {%endif%}
+            {% endif %}
           </p>
           <p><small>курсы ассистент:</small>
-            {%if assistent %}
-              {%for i in assistent%}
-                <a href="{% url 'courses:courses' i.id %}">{{i.name}}  </a>
-                <small>студенты курса</small> <a href="{% url 'students:student_list' %}?course_id={{i.id}}"><img src="{% static "IMG/hw6.png"%}" alt="..."></a>
-              {%endfor%}
-            {%else%}
+            {% if assistent %}
+              {% for i in assistent %}
+                <a href="{% url 'courses:courses' i.id %}">{{ i.name }}  </a>
+                <small>студенты курса</small> <a href="{% url 'students:student_list' %}?course_id={{ i.id }}"><img src="{% static "IMG/hw6.png" %}" alt="..."></a>
+              {% endfor %}
+            {% else %}
               в данное время не ассистирует
-            {%endif%}
+            {% endif %}
           </p>
         </div>
       </div>

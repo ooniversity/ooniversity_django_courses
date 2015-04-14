@@ -1,0 +1,22 @@
+  {% load static from staticfiles %}
+
+    <div class = 'row'>
+      <div class="media">
+        <div class="media-left media-middle">
+          <div class="row placeholders">
+            <div class="col-xs-12 col-sm-12 placeholder">
+              <img src="{% static  block_photo  %}" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>{{ block_name }}</h4>
+              <span class="text-muted">{{ block_status }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+            <div class = 'teacher1-text'>
+              <p> {{ block_email }} </p>
+              <p> {{ block_skype }} </p>
+              <p> {{ block_phone }} </p>
+            </div>
+        </div>
+      </div>
+    </div>

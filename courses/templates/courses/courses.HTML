@@ -4,52 +4,27 @@
 
 {% block title %}IT Bursa - {{ course.name|title }}{% endblock title %}
 
+
 {% block students_list %}<a href="{% url 'students:student_list' %}?course_id={{course.id}}">студенты</a>{% endblock students_list %}
 
 {% block main_content %}
+<!--Вставка слайдера-->
+{% include "inc_main_slider.HTML"%}
+
   <!--Курс Питон датальная информация представленная в табличной форме-->
   <div class="row">
     <h2 class="sub-header">{{course.name}}</h2>
     <p class = "p-courses">{{course.discription}}</p>
-    <!--Информация о преподавателе курса -->
     <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
-    <div class="media">
-      <div class="media-left media-middle">
-        <div class="row placeholders">
-          <div class="col-xs-12 col-sm-12 placeholder">
-            <img src="/static/IMG/{{course.teacher.user}}.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4><a href="{% url 'coaches:coach_detail' course.teacher.id %}">{{course.teacher.full_name}}</a></h4>
-            <span class="text-muted">преподаватель</span>
-          </div>
-        </div>
-      </div>
-      <div class="media-body">
-        <div class = 'teacher1-text'>
-          <p>{{course.teacher.discription}}</p>
-        </div>
-      </div>
-    </div>
+
+<!--Информация о преподавателе курса -->
+{% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
 
     <br><br><br><br><br>
-    <!--Иформация о ассистенте курса -->
-    <div class = 'row'>
-      <div class="media">
-        <div class="media-left media-middle">
-          <div class="row placeholders">
-            <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="/static/IMG/{{course.assistent.user}}.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4><a href="{% url 'coaches:coach_detail' course.assistent.id %}">{{course.assistent.full_name}}</a></h4>
-              <span class="text-muted">ассистент</span>
-            </div>
-          </div>
-        </div>
-        <div class="media-body">
-            <div class = 'teacher1-text'>
-              <p> {{course.assistent.discription}}</p>
-            </div>
-        </div>
-      </div>
-    </div>
+
+<!--Иформация о ассистенте курса -->
+{% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+
     <h2 class="media-heading">ПЛАН КУРСА</h2>
     <div class="table-responsive">
       <table ip = 'base-python' class="table table-striped">

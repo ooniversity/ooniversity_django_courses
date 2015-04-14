@@ -10,19 +10,19 @@
     <meta name="author" content="">
 
     <title>{% block title %}IT Bursa{% endblock title %}</title>
-    <link rel="shortcut icon" href="{% static "IMG/icon.gif"%}" />
+    <link rel="shortcut icon" href="{% static "IMG/icon.gif" %}" />
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{%static "dashboard.css"%}" rel="stylesheet">
-    <link href="{%static "index.css"%}" rel="stylesheet">
+    <link href="{% static "dashboard.css" %}" rel="stylesheet">
+    <link href="{% static "index.css" %}" rel="stylesheet">
 
   {% block css_for_page %}
   {% endblock css_for_page %}
 
-    <script src="{%static "JS/ie-emulation-modes-warning.js"%}"></script>
+    <script src="{% static "JS/ie-emulation-modes-warning.js" %}"></script>
   </head>
 
   <body>
@@ -37,16 +37,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><img src="{% static "IMG/logo.gif"%}"></a>
+          <a class="navbar-brand" href="/"><img src="{% static "IMG/logo.gif" %}"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="/">главная</a></li>
-            <li>{% block students_list %}<a href="{% url 'students:student_list' %}">студенты</a>{% endblock students_list %}</li>
-            <li><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
+            <li class="{% block nav_class_index %}{% endblock %}"><a href="/">главная</a></li>
+            <li class="{% block nav_class_student_list %}{% endblock %}">{% block students_list %}<a href="{% url 'students:student_list' %}">студенты</a>{% endblock students_list %}</li>
+            <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
           </ul>
         </div>
       </div>
@@ -70,6 +70,7 @@
             <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x"></i></a>
             <a href="https://www.youtube.com/"><i class="fa fa-youtube-play fa-3x"></i></a>
             <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>-->
+            <small>Kharkov Ukrain</small>
         </div>
       </div>
     </div>

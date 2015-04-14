@@ -4,18 +4,13 @@
 
 {% block title %}IT Bursa - Главная{% endblock title %}
 
-{% block main_content %}
-  <!--Слайдер -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12 col-md-12">
-          <div class="thumbnail">
-            <img src="{% static "IMG/slider1.jpg" %}" alt="...">
-          </div>
-        </div>
-      </div>
-    </div>
 
+{% block nav_class_index %}active{% endblock %}
+
+
+{% block main_content %}
+
+{% include "inc_main_slider.HTML"%}
     <!--Все курсы -->
     <div class="row">
       {% for course in courses %}
@@ -24,9 +19,9 @@
             <a href="{% url 'courses:courses' course.id %}">
               <img src = "/static/IMG/Course_{{course.id}}.jpg" alt="...">
               <div class="caption">
-                <h3>{{course.info}}</h3></a>
+                <h3>{{ course.info }}</h3></a>
                 <br>
-                  <p>{{course.discription}}</p>
+                  <p>{{ course.discription }}</p>
                   <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
               </div>
             </div>

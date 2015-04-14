@@ -4,77 +4,24 @@
 
 {% block title %}IT Bursa - Контакты{% endblock title %}
 
-<link href="{%static "contact.css"%}" rel="stylesheet">
+
+{% block nav_class_contact %}active{% endblock %}
+
 
 {% block css_for_page %}
-    <link href="{%static "contact.css"%}" rel="stylesheet">
+    <link href="{% static "contact.css" %}" rel="stylesheet">
 {% endblock css_for_page %}
+
 
 {% block main_content %}
   <!--Контакты Павла Обода-->
-  <div class = 'row'>
-    <h2>Контакты</h2>
-      <div class="media">
-        <div class="media-left media-middle">
-          <div class="row placeholders">
-            <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="{% static "IMG/photo_1.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Павел Обод</h4>
-              <span class="text-muted">основатель</span>
-            </div>
-          </div>
-        </div>
-        <div class="media-body">
-            <div class = 'teacher1-text'>
-              <p>  itbursa100@gmail.com </p>
-              <p> skype: azaless </p>
-              <p> +38 063 702 3 703 </p>
-            </div>
-        </div>
-       </div>
-  </div>
+{% include 'inc_contact.HTML' with block_photo='IMG/photo_1.jpg' block_name='Павел Обод' block_status='основатель' block_email='itbursa100@gmail.com' block_skype='skype: azaless' block_phone='+38 063 702 3 703' %}
+
 
   <!--Контакты Татьяны Колесник-->
-  <div class = 'row'>
-    <div class="media">
-      <div class="media-left media-middle">
-        <div class="row placeholders">
-          <div class="col-xs-12 col-sm-12 placeholder">
-            <img src="{% static "IMG/photo_3.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Татьяна Колесник</h4>
-            <span class="text-muted">менеджер ITbursa</span>
-          </div>
-        </div>
-      </div>
-      <div class="media-body">
-        <div class = 'teacher1-text'>
-          <p> tatyana@outsource-people.com</p>
-          <p> skype: princessataniakolesnik </p>
-          <p> +38 063 729 45 67  </p>
-          </div>
-      </div>
-    </div>
-  </div>
-     <!--Контакты Анны Малаховой-->
-  <div class = 'row'>
-    <div class="media">
-      <div class="media-left media-middle">
-        <div class="row placeholders">
-          <div class="col-xs-12 col-sm-12 placeholder">
-            <img src="{% static "IMG/photo_2.jpg"%}" class="img-responsive" alt="Generic placeholder thumbnail">
+{% include 'inc_contact.HTML' with block_photo='IMG/photo_3.jpg' block_name='Татьяна Колесник' block_status='менеджер ITbursa' block_email='tatyana@outsource-people.com' block_skype='skype: princessataniakolesnik' block_phone='+38 063 729 45 67' %}
 
-            <h4>Анна Малахова</h4>
-            <span class="text-muted">менеджер ITbursa</span>
-          </div>
-        </div>
-      </div>
-      <div class="media-body">
-        <div class = 'teacher1-text'>
-          <p> anna.itbursa@gmail.com </p>
-          <p> skype: anechka.malakhova </p>
-          <p> +38 096 070 53 47 </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--Контакты Анны Малаховой-->
+{% include 'inc_contact.HTML' with block_photo='IMG/photo_2.jpg' block_name='Анна Малахова' block_status='менеджер ITbursa' block_email='anna.itbursa@gmail.com' block_skype='skype: anechka.malakhova' block_phone='+38 096 070 53 47' %}
+
 {% endblock main_content %}
