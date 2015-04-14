@@ -2,14 +2,14 @@ from django.contrib import admin
 from polls.models import Choice, Question
 
 
-class ChoiceInline(admin.TabularInline):
+class ChoiceInline(admin.TabularInline):	
     model = Choice
     extra = 3
 
 
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['question_text']}),
+        ('DATA',               {'fields': ['question_text']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
     inlines = [ChoiceInline]
