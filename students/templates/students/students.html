@@ -39,7 +39,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="{% url 'index' %}">Главная</a></li>
                 <li><a href="{% url 'contact' %}">Контакты</a></li>
-                <li class="active"><a href="{% url 'student_l' %}">Студенты<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{% url 'students:students' %}">Студенты<span class="sr-only">(current)</span></a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -55,70 +55,22 @@
                   <th>ФИО</th>
                   <th>Адрес</th>
                   <th>Skype</th>
+                  <th>Курсы</th>
                 </tr>
               </thead>
+              {% for student in students %}
               <tbody>
                 <tr>
-                  <td><a href="{% url 'student_d' %}">1</a></td>
-                  <td><a href="{% url 'student_d' %}">Железный  Александр Олегович</a></td>
-                  <td><a href="{% url 'student_d' %}">улица Метростроителей, 4</a></td>
-                  <td><a href="{% url 'student_d' %}">zhelez</a></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Комков  Степан  Алексеевич</td>
-                  <td>улица Блюхера, 11</td>
-                  <td>komkov123</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Лебедева Юлия Владимировна</td>
-                  <td>улица Гвардейцев Широнинцев, 114</td>
-                  <td>yulia91</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Непомнящих Мария Федоровна</td>
-                  <td>улица Старошишковская, 12</td>
-                  <td>forgetmenot</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Обухов Дмитрий Алексеевич</td>
-                  <td>улица Академика Павлова, 160</td>
-                  <td>45obuhov</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Сидоров Андрей Александрович</td>
-                  <td>улица Академика Вальтера, 7-А</td>
-                  <td>sidorovkoza</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Смирнова Дарья Александровна</td>
-                  <td>улица Чернышевская, 26</td>
-                  <td>masha_smir</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>Иванов Павел Владиславович</td>
-                  <td>переулок Короленко, 19</td>
-                  <td>ivanovpppp</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>Бабушкин Сергей Сергеевич</td>
-                  <td>улица Артема, 40</td>
-                  <td>lacinia</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>Андреева Наталья Сергеевна</td>
-                  <td>улица Мироносицкая, 15</td>
-                  <td>natali178</td>
+                  <td>{{ forloop.counter }}</td>
+                  <td><a href="{% url 'students:student_d' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.skype }}</td>
+                  <td>{% for course in student.courset.all %}
+                  <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
+                  {% endfor %}</td>
                 </tr>
               </tbody>
+              {% endfor %}
             </table>
           </div>
         </div>

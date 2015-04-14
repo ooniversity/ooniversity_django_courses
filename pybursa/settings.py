@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
+    'courses',
+    'students',
+    'coaches',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +85,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'), 
+)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
