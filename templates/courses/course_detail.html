@@ -5,7 +5,9 @@
 
 {% block course_students %}?course_id={{ course.id }}{% endblock %}
 
-{% block nav_extra_li %}<li class="active"><a href="">Описание курса</a></li>{% endblock %}
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title="Описание курса" %}
+{% endblock nav_extra_li %}
 
 
 {% block body %}
@@ -51,7 +53,7 @@
           <tr>
             <td>{{ lesson.number }}</td>
             <td>{{ lesson.theme }}</td>
-            <td>{{ lesson.description }}</td>
+            <td>{{ lesson.description | linebreaks }}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -3,7 +3,9 @@
 
 {% block title %}{{ coach.full_name }}{% endblock %}
 
-{% block nav_extra_li %}<li class="active"><a href="">Профиль преподавателя</a></li>{% endblock %}
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title="Профиль преподавателя" %}
+{% endblock nav_extra_li %}
 
 
 {% block body %}
