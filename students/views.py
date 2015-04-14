@@ -5,7 +5,7 @@ from courses.models import Course
 
 
 def students_list(request):
-    course_id  = request.GET.get('course_id')
+    course_id = request.GET.get('course_id')
 
     if course_id is None:
         students = Student.objects.all()

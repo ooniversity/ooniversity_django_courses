@@ -3,6 +3,7 @@
 
 from django.shortcuts import render
 
+
 def validate(request, name):
     value = request.GET.get(name)
     if value == '' or value == None:
@@ -37,10 +38,10 @@ def quadratic_results(request):
             x2 = float(-b - discr ** 0.5) / (2 * a)
 
     return render(request, 'quadratic_results.html', {
-        'a':a,
-        'b':b,
-        'c':c,
-        'discr':discr,
+        'a': a,
+        'b': b,
+        'c': c,
+        'discr': discr,
         'a_error': a_error,
         'b_error': b_error,
         'c_error': c_error,

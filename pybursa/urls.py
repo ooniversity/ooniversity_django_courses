@@ -3,7 +3,8 @@ from django.contrib import admin
 from pybursa.views import index, contact, student_list, student_detail
 from courses.views import index_courses
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', index_courses, name='home'),
     url(r'^contact/$', contact, name='contact'),
     # url(r'^student_list/$', student_list, name='student_list'),
@@ -13,5 +14,7 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace='quadratic')),
     url(r'^courses/', include('courses.urls', namespace='courses')),
     url(r'^students/', include('students.urls', namespace='students')),
+    url(r'^coaches/', include('coaches.urls', namespace='coaches')),
+
 
 )
