@@ -1,57 +1,43 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ student.full_name }}{% endblock %}
-
-{% block nav_extra_li %}
-  {% include "includes/inc_nav_extra_li.html" with li_title="Профиль студента" %}
-{% endblock nav_extra_li %}
-
-
 {% block body %}
+
     <div class="table-responsive">
       <table class="table table-condensed profile">
         <tbody>
           <tr>
             <th class="col1" scope="row">Фамилия:</th>
-            <td>{{ student.surname }}</td>
+            <td>{% block surname %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Имя:</th>
-            <td>{{ student.name }}</td>
+            <td>{% block name %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Дата рождения:</th>
-            <td>{{ student.date_of_birth|date:"j E Y" }}</td>
+            <td>{% block date_of_birth %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Адрес:</th>
-            <td>{{ student.address }}</td>
+            <td>{% block address %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Телефон:</th>
-            <td>{{ student.phone }}</td>
+            <td>{% block phone %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Email:</th>
-            <td>{{ student.email|urlize }}</td>
+            <td>{% block email %}{% endblock %}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Skype:</th>
-            <td>{{ student.skype }}</td>
+            <td>{% block skype %}{% endblock %}</td>
           </tr>
-          <tr>
-            <th class="col1" scope="row">Курсы:</th>
-            <td>
-              {% for course in courses %}
-              <p>
-              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
-              </p>
-              {% endfor %}
-            </td>
-          </tr>
+          {% block extra_tr %}{% endblock %}
         </tbody>
       </table>
     </div>
+
 {% endblock body %}
 

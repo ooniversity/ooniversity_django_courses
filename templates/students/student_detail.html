@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_person_detail.html" %}
 {% load staticfiles %}
 
 {% block title %}{{ student.full_name }}{% endblock %}
@@ -8,38 +8,14 @@
 {% endblock nav_extra_li %}
 
 
-{% block body %}
-    <div class="table-responsive">
-      <table class="table table-condensed profile">
-        <tbody>
-          <tr>
-            <th class="col1" scope="row">Фамилия:</th>
-            <td>{{ student.surname }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Имя:</th>
-            <td>{{ student.name }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Дата рождения:</th>
-            <td>{{ student.date_of_birth|date:"j E Y" }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Адрес:</th>
-            <td>{{ student.address }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Телефон:</th>
-            <td>{{ student.phone }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Email:</th>
-            <td>{{ student.email|urlize }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Skype:</th>
-            <td>{{ student.skype }}</td>
-          </tr>
+{% block surname %} {{ student.surname }} {% endblock %}
+{% block name %} {{ student.name }} {% endblock %}
+{% block date_of_birth %} {{ student.date_of_birth|date:"j E Y" }} {% endblock %}
+{% block address %} {{ student.address }} {% endblock %}
+{% block phone %} {{ student.phone }} {% endblock %}
+{% block email %} {{ student.email|urlize }} {% endblock %}
+{% block skype %} {{ student.skype }} {% endblock %}
+{% block extra_tr %} 
           <tr>
             <th class="col1" scope="row">Курсы:</th>
             <td>
@@ -50,8 +26,4 @@
               {% endfor %}
             </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-{% endblock body %}
-
+{% endblock extra_tr %}
