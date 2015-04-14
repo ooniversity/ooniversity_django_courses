@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Course_info{% endblock %}
+{% block url_students %}?course_id={{ current_course.id }}{% endblock %}
+
+{% block main_content %}
+  <div class="jumbotron">
+    <h2 style="color: #446785">{{ current_course.name }}</h2>
+    <p class="lead">
+      <p>{{ current_course.description }}</p>
+    </p>
+  </div>
+  <h2 style="color: #446785">Преподаватели</h2>
+  <div class="row">
+    {% include "inc_instructor.html" with block_title="Учитель" instructor=current_course.coach %}
+
+    {% include "inc_instructor.html" with block_title="Асистент" instructor=current_course.assistant %}
+  </div>
+  <h2 style="color: #446785">План курса</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Тема</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for choice_lesson in lessons_list %}
+          <tr>
+            <td>{{ choice_lesson.number_order }}</td>
+            <td>{{ choice_lesson.topic }}</td>
+            <td>{{ choice_lesson.description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock main_content %}

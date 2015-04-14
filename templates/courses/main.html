@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Main{% endblock %}
+
+{% block nav_class_main %}active{% endblock %}
+
+{% block main_content %}
+  <div class="jumbotron">
+    <h2 style="color: #446785">ooniversity</h2>
+    <p class="lead">
+      <p>Мы специализируемся на "модных" языках программирования. </p>
+      <p>Принципиальное наше отличие от других курсов - максимум </p>
+      <p>практики и жесткая система обязательных ДЗ.</p>
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Курс</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for main_course in courses_list %}
+          <tr>
+            <td><a href="{% url 'courses:course_info' main_course.id %}">{{ main_course.name }}</a></td>
+            <td>{{ main_course.short_description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock main_content %}

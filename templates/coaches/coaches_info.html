@@ -1,0 +1,40 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Coach_info{% endblock %}
+
+{% block page_header %}{{ coaches_info.user.first_name }}  {{ coaches_info.user.last_name }}{% endblock %}
+
+{% block page_content %}
+  <div class="col-md-9">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>дата рождения</td>
+          <td>{{ coaches_info.birth_date }}</td>
+        </tr>
+        <tr>
+          <td>адрес</td>
+          <td>{{ coaches_info.address }}</td>
+        </tr>
+        <tr>
+          <td>почта</td>
+          <td>{{ coaches_info.user.email }}</td>
+        </tr>
+        <tr>
+          <td>логин skype</td>
+          <td>{{ coaches_info.skype }}</td>
+        </tr>
+        <tr>
+          <td>телефон</td>
+          <td>{{ coaches_info.phone }}</td>
+        </tr>
+        <tr>
+          {% include "inc_instructor_info.html" with table_title="курсы учитель" instructor_course=coach_course instructor=coaches_info.coach %}
+        </tr>
+        <tr>
+          {% include "inc_instructor_info.html" with table_title="курсы ассистент" instructor_course=assistant_course instructor=coaches_info.assistant %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+      {% endblock page_content %}

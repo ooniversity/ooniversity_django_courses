@@ -1,0 +1,42 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Student_info{% endblock %}
+
+{% block page_header %}{{ student_info.surname }}  {{ student_info.name }}{% endblock %}
+
+{% block page_content %}
+  <div class="col-md-9">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>дата рождения</td>
+          <td>{{ student_info.birth_date }}</td>
+        </tr>
+        <tr>
+          <td>адрес</td>
+          <td>{{ student_info.address }}</td>
+        </tr>
+        <tr>
+          <td>почта</td>
+          <td>{{ student_info.email }}</td>
+        </tr>
+        <tr>
+          <td>логин skype</td>
+          <td>{{ student_info.skype }}</td>
+        </tr>
+        <tr>
+          <td>телефон</td>
+          <td>{{ student_info.phone }}</td>
+        </tr>
+        <tr>
+          <td>курсы</td>
+          <td>
+            {% for course_list in student_info.courses.all %}
+              <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</p> 
+            {% endfor %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock page_content %}
