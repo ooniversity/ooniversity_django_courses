@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PyBursa - Иванов</title>
+    <title>PyBursa - {{ student_list.student_last_name }}</title>
     <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
 
     {% load staticfiles %}
@@ -36,42 +36,44 @@
         <ul class="nav nav-pills">
         <li role="presentation"><a href="{% url 'index' %}">Главная</a></li>
         <li role="presentation"><a href="{% url 'contacts' %}">Контакты</a></li>
-        <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
+        <li role="presentation" class="active"><a href="{% url 'student_list' %}">Студенты</a></li>
         </ul>
     </div>
 
-  <a name="ivanov"></a>
+
 
   <div class="container">
   <h3>PyBursa - это ликбез!</h3>
-   <h4>Гранит науки сейчас грызет:</h4>
+   <h4>Гранит науки сейчас грызет   <b><a href="/student_detail/{{ student_list.id }}">{{ student_list.student_last_name }} {{ student_list.student_name }}</a></b></h4>
   </div>
     <div class="container">
         <table id="main-table" class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
-        <th>№ п/п</th>
-        <th>ФИО</th>
+
         <th>Дата рождения</th>
-        <th>Адрес</th>
         <th>E-mail</th>
+        <th>Телефон</th>
+        <th>Адрес</th>
         <th>Skype login</th>
+        <th>Курс</th>
       </tr>
     </thead>
     <tbody>
+
       <tr>
-         <td>1</td>
-        <td>Иванов Петр Иванович</td>
-        <td>01.01.1985</td>
-        <td>Харьков</td>
-        <td><a href="mailto:petay@mail.ru">petay@mail.ru</a></td>
-        <td>p_ivanov</td>
+
+        <td>{{ student_list.student_birth }}</td>
+        <td><a href="mailto:{{ student_list.student_email }}">{{ student_list.student_email }}</a></td>
+        <td>{{ student_list.student_phone }}</td>
+        <td>{{ student_list.student_addr }}</td>
+        <td>{{ student_list.student_skype }}</td>
+        <td>{% for course in course_list %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a><br>{% endfor %} </td>
       </tr>
+
     </tbody>
    </table>
-   <h5>Выполненные задания: №1, №2, №4</h5>
-   <h5>Средний балл: 8.5</h5>
-   <h5>Рейтинг: 12</h5>
+
  </div>
 
     <div class="container">

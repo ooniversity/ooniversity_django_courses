@@ -46,7 +46,7 @@
 
     <div class="container">
      <h3>PyBursa - это ликбез!</h3>
-     <h4>Гранит науки сейчас грызут (осваивают  <b><a href="{% url 'course' course_list.id %}">{{ course_list.course_name }}</a></b> ) :</h4>
+     <h4>Гранит науки сейчас грызут:</h4>
     </div>
     {% if student_list %}
     <div class="container">
@@ -57,7 +57,7 @@
         <th>Фамилия имя</th>
         <th>Адрес</th>
         <th>Skype login</th>
-
+        <th>Курс</th>
       </tr>
     </thead>
 
@@ -68,7 +68,7 @@
         <td > <a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
         <td>{{ student.student_addr }}</td>
         <td>{{ student.student_skype }}</td>
-
+        <td>{% for course in student.student_course.all %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a> <br>{% endfor %} </td>
       </tr>
       {% endfor %}
     </tbody>
