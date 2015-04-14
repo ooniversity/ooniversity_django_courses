@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{% static 'img/logo.ico' %}">
 
-    <title>Детали курса</title>
+    <title>Преподаватель</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -41,79 +41,65 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{% url 'courses:index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'courses:index' %}">Главная</a></li>
             <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-	          <li role="presentation"><a href="{% url 'students:index' %}?course_id={{ course.id }}">Студенты</a></li>
+	        <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
 	       </ul>
         </nav>
         <h3 class="text-muted">ITBursa</h3>
       </div>
       
-      <div class="jumbotron">
-        <h1>{{ course.name }}</h1>
-        <h4 class="left">{{ course.description }}</h4>
-      </div>
-    
-      <h2>Преподаватели</h2>
-      {% if course %}
-      <div class="panel panel-primary">
-       <div class="panel-heading">
-          <h3 class="panel-title">Учитель</h3>
-       </div>
-       <div class="panel-body">
-        <div class="media">
-          <div class="media-body">
-            <h4 class="media-heading">
-                <a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.full_name }}</a>
-            </h4>
-             <p>{{ course.coach.description }}</p>
-          </div>
-        </div>
-       </div>
-      </div>
-      <br />
-        <div class="panel panel-primary">
-       <div class="panel-heading">
-          <h3 class="panel-title">Ассистент</h3>
-       </div>
-       <div class="panel-body">
-        <div class="media">
-          <div class="media-body">
-            <h4 class="media-heading">
-                <a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.full_name }}</a>
-            </h4>
-             <p>{{ course.assistant.description }}</p>
-          </div>
-        </div>
-       </div>
-      </div>
-      <br />
-      {% else %}
-          <p>Нет ведущих преподавателей.</p>
-      {% endif %}
-
-      <h2>План курса</h2>
-      {% if course %}
-       <table  class="table table-striped ">
-       <thead>
-        <tr>
-           <th>#</th><th>Тема</th><th>Описание</th>
-       </tr>
-      </thead>
+      {% if coaches %}
+      <h2>{{ coaches.full_name }}</h2>
+       <table  class="table ">
       <tbody>
-      {% for lesson in course_lesson_list %}
        <tr>
-         <td>{{ lesson.number_order }}</td>
-         <td>{{ lesson.theme }}</td>
-         <td>{{ lesson.description }} </td>
+         <td>Дата рождения</td>
+         <td>{{ coaches.date_of_birth|date:"d N Y" }}</td>
+       </tr>
+       <tr>
+          <td>Адрес</td>
+          <td>{{ coaches.address }}</td>
+       </tr>
+       <tr>
+          <td>Почта</td>
+          <td>{{ coaches.user.email }}</td>
+       </tr>
+       <tr>
+          <td>Логин skype</td>
+          <td>{{ coaches.skype }}</td>
+       </tr>
+       <tr>
+          <td>Телефон</td>
+          <td>{{ coaches.phone }}</td>
+       </tr>
+       <tr>
+          <td>Курсы учитель</td>
+          <td>{% for course in coaches.coach.all %}
+             <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+              студентов <a href="{% url 'students:index' %}?course_id={{ course.id }}">посмотреть</a>
+             <br/>
+              {% empty %}
+                Нет курсов
+              {% endfor %}
+          </td>
         </tr>
-       {% endfor %}
+       <tr>
+          <td>Курсы ассистент</td>
+          <td>{% for course in coaches.assistant.all %}
+             <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+              студентов <a href="{% url 'students:index' %}?course_id={{ course.id }}">посмотреть</a>
+             <br/>
+              {% empty %}
+                Нет курсов
+              {% endfor %}
+          </td>
+        </tr>
       </tbody>
      </table>
       {% else %}
-          <p>Нет доступных уроков.</p>
+          <p>Нет данных о студенте.</p>
       {% endif %}
-      
 
       <footer class="footer">
         <p>anya-k 2015</p>
