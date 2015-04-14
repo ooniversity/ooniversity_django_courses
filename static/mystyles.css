@@ -31,3 +31,7 @@ table.profile {
   border-radius: 20px;
   display: block;
   }
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}

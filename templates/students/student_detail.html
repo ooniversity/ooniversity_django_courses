@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - {{course.name}}</title>
+    <title>ItBursa - {{ student.full_name }}</title>
     <link href="{% static "bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
   </head>
@@ -26,39 +26,62 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'views.index' %}">Главная</a></li>
             <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'views.student_list' %}?course_id={{course.id}}">Студенты</a></li>
-            <li class="active"><a href="">Описание курса<span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'students:student_list' %}">Студенты</a></li>
+            <li class="active"><a href="">Профиль студента<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="jumbotron">
-      <h1>{{course.name}}</h1>
-      <p>{{course.description}}</p>
-    </div>
 
-<div class="table-responsive">
-      <table class="table table-hover">
-        <caption>План курса</caption
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Тема</th>
-            <th>Описание</th>
-          </tr>
-        </thead>
+    <div class="table-responsive">
+      <table class="table table-condensed profile">
         <tbody>
-          {% for lesson in lessons %}
           <tr>
-            <td>{{lesson.number}}</td>
-            <td>{{lesson.theme}}</td>
-            <td>{{lesson.description}}</td>
+            <th class="col1" scope="row">Фамилия:</th>
+            <td>{{ student.surname }}</td>
           </tr>
-          {% endfor %}
+          <tr>
+            <th class="col1" scope="row">Имя:</th>
+            <td>{{ student.name }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Дата рождения:</th>
+            <td>{{ student.date_of_birth|date:"j E Y" }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Адрес:</th>
+            <td>{{ student.address }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Телефон:</th>
+            <td>{{ student.phone }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Email:</th>
+            <td>{{ student.email|urlize }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Skype:</th>
+            <td>{{ student.skype }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Курсы:</th>
+            <td>
+              {% for course in courses %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
+
+
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

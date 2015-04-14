@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - {{student.full_name}}</title>
+    <title>ItBursa - {{ coach.full_name }}</title>
     <link href="{% static "bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
   </head>
@@ -26,8 +26,8 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'views.index' %}">Главная</a></li>
             <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'views.student_list' %}">Студенты</a></li>
-            <li class="active"><a href="">Профиль студента<span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'students:student_list' %}">Студенты</a></li>
+            <li class="active"><a href="">Профиль преподавателя<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -39,38 +39,50 @@
         <tbody>
           <tr>
             <th class="col1" scope="row">Фамилия:</th>
-            <td>{{student.surname}}</td>
+            <td>{{ coach.user.last_name }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Имя:</th>
-            <td>{{student.name}}</td>
+            <td>{{ coach.user.first_name }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Дата рождения:</th>
-            <td>{{student.date_of_birth}}</td>
+            <td>{{ coach.date_of_birth|date:"j E Y" }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Адрес:</th>
-            <td>{{student.address}}</td>
+            <td>{{ coach.address }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Телефон:</th>
-            <td>{{student.phone}}</td>
+            <td>{{ coach.phone }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Email:</th>
-            <td>{{student.email}}</td>
+            <td>{{ coach.user.email|urlize }}</td>
           </tr>
           <tr>
             <th class="col1" scope="row">Skype:</th>
-            <td>{{student.skype}}</td>
+            <td>{{ coach.skype }}</td>
           </tr>
           <tr>
-            <th class="col1" scope="row">Курсы:</th>
+            <th class="col1" scope="row">Курсы (учитель):</th>
             <td>
-              {% for course in courses %}
+              {% for course in courses_coach %}
               <p>
-              <a href="{% url 'course_detail' course.id %}">{{course.name}}</a>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
+              (<a href="{% url 'students:student_list' %}?course_id={{ course.id }}" target="_blank">студенты</a>)
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Курсы (ассистент):</th>
+            <td>
+              {% for course in courses_assistant %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
+              (<a href="{% url 'students:student_list' %}?course_id={{ course.id }}" target="_blank">студенты</a>)
               </p>
               {% endfor %}
             </td>
