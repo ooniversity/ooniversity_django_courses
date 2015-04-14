@@ -6,19 +6,18 @@
 
 
 {% block quadratic %}
-      {% if not answer%}
-      <p>Квадратное уравнение a×x² + b×x + c = 0</p>
-      <form action="{% url 'results' %}">
-      {% for n,i,error in list %}
-      <p>{{ n }} = {% if not error %}<input size ='1' name='{{ n }}' placeholder="{{ i }}" value="{{ i }}">{% else %}<input size ='1' name='{{ n }}' placeholder="{{ i }}">{% endif %}</p>
-      <p>{{ error|upper }}</p>
-      {% endfor %}
-      <button type="submit" class="btn btn-danger">Расчитать</button>
-      <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Заново</a>
-      </form>
-      {% else %}
-      <p>Квадратное уравнение {{ list.0.1 }}×x² {% if list.1.1 >= 0 %}+{% endif %} {{ list.1.1 }}×x {% if list.2.1 >= 0 %}+{% endif %} {{ list.2.1 }} = 0</p>
-      <p>{{ answer }}</p>
-      <a href="{% url 'quadratic' %}" class="btn btn-info" role="button">Заново</a>
-      {% endif %}
+<form>
+{% if answer %}
+  <p>Квадратное уравнение вида {{ form.a.value }}×x² + {{ form.b.value }}×x + {{ form.c.value }} = 0</p>
+{% else %}
+  <p>Квадратное уравнение вида a×x² + b×x + c = 0</p>
+{% endif %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-info">Расчитать</button>
+</form>
+{% if answer %}
+<br />
+<p>Дискриминант = {{ dis }}</p>
+<p>{{ answer }}</p>
+{% endif %}
 {% endblock %}
