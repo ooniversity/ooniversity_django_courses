@@ -83,7 +83,7 @@
         </tr>
     {% endfor %}
     </table>
-              {{coaches}} 
+            
               
     <table class='courses_list'>
         <tr>
