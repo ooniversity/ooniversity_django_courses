@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Главная</title>
+		<title>{{ course.name }}</title>
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
@@ -32,7 +32,7 @@
 			              <a href="{% url "contact" %}">Контакты</a>
 			            </li>
 			            <li>
-			              <a href="{% url "student_list" %}">Студенты</a>
+			              <a href="{% url 'students:index' %}?course_id={{ course.id }}">Студенты</a>
 			            </li>
 			            <li>
 			              <a href="{% url "polls:index" %}">Polls</a>
@@ -56,31 +56,58 @@
 			</ol>
 			<div class="jumbotron">
 				<div class="jumbo_internal">
-					<h1>Go ooniversity!</h1>
+
+					<h1>{{ course.name }}</h1>
 					<p>
-						Различные курсы для различных целей тра-та-та!
+						{{ course.description }}
 					</p>
 				</div>
 			</div>
+
+			<h2>
+				Преподаватели
+			</h2>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				    <h3 class="panel-title">Учитель</h3>
+				</div>
+				<div class="panel-body">
+				    <a href="{% url "coaches:oneof" trainer.id %}">{{ trainer.user.first_name }} {{ trainer.user.last_name }}</a>
+				    <br />
+				    {{ trainer.description }}
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				    <h3 class="panel-title">Ассистент</h3>
+				</div>
+				<div class="panel-body">
+				    <a href="{% url "coaches:oneof" assistant.id %}">{{ assistant.user.first_name }} {{ assistant.user.last_name }}</a>
+				    <br />
+				    {{ assistant.description }}
+				</div>
+			</div>
+			
 			<div class="panel panel-default">
 		      <!-- Default panel contents -->
-		      <div class="panel-heading">Выбирай курс на котором хочешь учиться!</div>
+		      <div class="panel-heading">План курса</div>
 
 		      <!-- Table -->
 		      <table class="table">
 		        <thead>
 		          <tr>
 		          	 <th scope="row">#</th>
-		            <th>Курс</th>
+		            <th>Урок</th>
 		            <th>Описание</th>
 		          </tr>
 		        </thead>
 		        <tbody>
-		        {% for c in courses %}
+		        {% for l in lessons %}
 		          <tr>
-		          	 <th scope="row">{{ c.id }}</th>
-		            <td><a href="{% url "courses:oneof" c.id %}">{{ c.name }}</a></td>
-		            <td>{{ c.short_description }}</td>
+		          	 <th scope="row">{{ l.num }}</th>
+		            <td>{{ l.theme }}</td>
+		            <td>{{ l.description }}</td>
 		          </tr>
 		        {% endfor%}
 		        </tbody>

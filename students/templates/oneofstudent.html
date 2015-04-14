@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Главная</title>
+		<title>Студенты курса {{ course.name }}</title>
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
@@ -25,14 +25,14 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active">
+						<li>
 			              <a href="{% url "home" %}">Главная<span class="sr-only">(current)</span></a>
 			            </li>
 			            <li>
 			              <a href="{% url "contact" %}">Контакты</a>
 			            </li>
-			            <li>
-			              <a href="{% url "student_list" %}">Студенты</a>
+			            <li class="active">
+			              <a href="{% url 'students:index' %}">Студенты</a>
 			            </li>
 			            <li>
 			              <a href="{% url "polls:index" %}">Polls</a>
@@ -50,42 +50,45 @@
 		</nav>
 
 		<div class="container">
+			<h1>{{ student.name }} {{student.surname}}</h1>
 			
-			<ol class="breadcrumb">
-			  <li class="active">Главная</li>
-			</ol>
-			<div class="jumbotron">
-				<div class="jumbo_internal">
-					<h1>Go ooniversity!</h1>
-					<p>
-						Различные курсы для различных целей тра-та-та!
-					</p>
-				</div>
-			</div>
-			<div class="panel panel-default">
-		      <!-- Default panel contents -->
-		      <div class="panel-heading">Выбирай курс на котором хочешь учиться!</div>
-
 		      <!-- Table -->
 		      <table class="table">
-		        <thead>
-		          <tr>
-		          	 <th scope="row">#</th>
-		            <th>Курс</th>
-		            <th>Описание</th>
-		          </tr>
-		        </thead>
 		        <tbody>
-		        {% for c in courses %}
-		          <tr>
-		          	 <th scope="row">{{ c.id }}</th>
-		            <td><a href="{% url "courses:oneof" c.id %}">{{ c.name }}</a></td>
-		            <td>{{ c.short_description }}</td>
-		          </tr>
-		        {% endfor%}
+		        <tr>
+		          	<td>дата рождения</td>
+		            <td>{{ student.date_of_birth }}</td>
+		        </tr>
+		        <tr>
+		          	<td>адрес</td>
+		            <td>{{ student.address }}</td>
+		        </tr>
+		        <tr>
+		          	<td>почта</td>
+		            <td>{{ student.email }}</td>
+		        </tr>
+		        <tr>
+		          	<td>skype</td>
+		            <td>{{ student.skype }}</td>
+		        </tr>
+		        <tr>
+		          	<td>телефон</td>
+		            <td>{{ student.phone }}</td>
+		        </tr>
+		        <tr>
+		          	<td>курсы</td>
+		            <td>
+		            	{% for c in student.courses %}
+			            	<a href="{% url "courses:oneof" c.id %}">{{ c }}</a> <br />
+			            {% endfor%}
+		            </td>
+		        </tr>
+		        <tr>
+		          	<td></td>
+		            <td>{{ student. }}</td>
+		        </tr>
 		        </tbody>
 		      </table>
-		    </div>
 
 			
 		</div><!--/.container-->
@@ -106,3 +109,4 @@
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	</body>
 </html>
+
