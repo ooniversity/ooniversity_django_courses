@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.ico' %">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
@@ -48,8 +48,8 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
           <li><a href="{% url 'contact' %}">Контакты</a></li>
-          <li><a href="{% url 'student_list' %}">Студенты</a></li>
-          <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
+          <li><a href="{% url 'students' %}">Студенты ITBursa</a></li>
+            <li><a href="{% url 'quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -66,15 +66,64 @@
           </p>
           
  	<div class="row">
-	<h2>Решение квадратного уравнения </h2>
-          <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-          <a href = "{% url 'results' %}"> <button class="btn btn-primary" type="button">
-            Перейти к странице решения
-          </button> </a>
 
-        </div><!--/row-->
+                     
+	<div class="table-responsive"> <!--horizontal scrolls-->
+{% if not comment %}
+	<h2>Студенты {{course_name}}</h2>
+<!--{% for i in course_students %}
+    <br>
+    <b> <a href="{{ i.url }}">{{i.surname}} </a> </b>
+    {{i.name}}
+    <b>{{i.scype}}</b>
+{% endfor %}-->
 
-  </div><!--/.col-xs-12.col-sm-9-->
+<table class="table table-hover">
+<thead>
+<tr>
+  <th class="td_no">#</th>
+  <th>Фамилия, имя</th>
+  <th>Адрес</th>
+  <th>Skype</th>
+  <th>Курсы</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for i in course_students %}
+<tr>
+  <td class="td_no">{{forloop.counter}}</td>
+  <td> <a href="{{ i.url }}">{{i.surname}} {{i.name}} </td>
+  <td>{{i.address}} </td>
+  <td>{{i.scype}}</td>
+  <td>
+     <!--{{i.courses.all}}-->
+{% for item in i.courses.all %}
+       <p><a href="{% url 'course_from_student' %}{{item.id}}/">{{item.name}} </a></p>
+{% endfor %}
+
+<!--http://stackoverflow.com/questions/3998527/how-to-display-a-list-of-objects-containing-many-to-many-relations-in-django-tem-->
+   </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+</table> 
+
+{% else %}
+
+<br> <b> {{comment}} </b>
+
+{% endif %}
+
+</div><!--responsive table-->
+
+          </div><!--/row-->
+<div id="a_center"> <a href="#top"> Наверх </a> </div>
+        </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
