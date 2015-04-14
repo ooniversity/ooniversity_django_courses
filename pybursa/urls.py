@@ -11,10 +11,9 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
     url(r'^$', views.show_index, name = 'index_itbursa'),
     url(r'^contact/$', views.show_contacts, name = 'contacts_itbursa'),
-    url(r'^students/$', views.show_students, name = 'student_list'),
-    url(r'^students/(?P<id>\d+)/$', views.show_student_detail, name = 'student_detail'),
-    url(r'^courses/(?P<id>\d+)/$', views.show_courses, name = 'courses'),
+    url(r'^students/', include('students.urls', namespace = "students")),
+    url(r'^courses/', include('courses.urls', namespace = "courses")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^coaches/(?P<id_c>\d+)/$', views.show_coach_detail, name = 'coach_detail'),
+    url(r'^coaches/', include('coaches.urls', namespace = "coaches")),
 
 )
