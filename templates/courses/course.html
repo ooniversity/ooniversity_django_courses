@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Course description{% endblock %}
+
+
+{% block main %}
+<div class="container">
+<div class="jumbotron">
+  <h2>Univer.com - study online for free!</h2>
+  <h3>Course: {{course.name|upper}}</h3>
+</div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Teachers</h3>
+  </div>
+  <div class="panel-body">
+    <h4><a href="/coaches/{{course.teacher.id}}">{{course.teacher.fullname}}</a></h4>
+    <h5>{{course.teacher.description}}</h5>
+  </div>
+</div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Assistants</h3>
+  </div>
+  <div class="panel-body">
+   <h4><a href="/coaches/{{course.assistant.id}}">{{course.assistant.fullname}}</a></h4>
+   <h5>{{course.assistant.description}}</h5>
+  </div>
+</div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Lessons</h3>
+  </div>
+  <div class="panel-body">        
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Theme</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for lesson in lessons%}
+        <tr>
+          <td>
+            {{forloop.counter}}
+          </td>
+          <td>
+            {{lesson.theme}}
+          </td>
+          <td>
+            {{lesson.description|truncatechars:30}}
+          </td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+{% endblock main %}

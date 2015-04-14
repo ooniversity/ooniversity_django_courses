@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Student detail{% endblock %}
+    
+
+{% block active_students %}active{% endblock %}
+
+
+{% block main %}
+<div class="container">
+<div class="jumbotron">
+  <h2>Univer.com - study online for free!</h2>
+  <h3>Info about {{student.name|upper}} {{student.surname|upper}}</h3>
+</div>
+</div>
+
+<div class="container">  
+<div class="jumbotron">        
+  <table class="table">
+    <tbody>
+    <tr>
+        <td>Date of birth</td>
+        <td>{{student.birthday}}</td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>{{student.address}}</td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td>{{student.email}}</td>
+      </tr>
+       <tr>
+        <td>Skype</td>
+        <td>{{student.skype}}</td>
+      </tr>
+       <tr>
+        <td>Cell</td>
+        <td>{{student.cell}}</td>
+      </tr>
+       <tr>
+        <td>Courses</td>
+        <td>
+           {%for i in student.courses.all%}
+              <a href="/courses/{{i.id}}/">{{i.name}}</a>
+           {%endfor%}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock main %}
+
