@@ -1,0 +1,14 @@
+{% extends 'students/base_registration_and_edit.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Регистрация нового студента{% endblock %}
+
+
+{% block form_name %}Форма регистрации{% endblock form_name %}
+
+
+{% block submit_buttom %}
+    <button type="submit" class="btn btn-success">Регистрация</button>
+    <button type="reset" class="btn btn-danger">Очистить</button>
+{% endblock submit_buttom %}

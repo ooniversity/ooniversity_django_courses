@@ -1,8 +1,9 @@
+{% load staticfiles %}
 <!-- Personal Info ================================================== -->
 
     <div class="container">
       <h1>{% if person.user %}{{ person.user.last_name }} {{ person.user.first_name }}{% else %}{{ person.surname }} {{ person.name }}{% endif %}</h1>
-      <img class="{{ block_img_class }}" src="{{ person.image.url }}" width="{{ block_img_width }}" height="140">
+      <img class="{{ block_img_class }}" src="{% if person.image %}{{ person.image.url }}{% else %}{% static 'img/No_image_available.svg' %}{% endif %}" width="{{ block_img_width }}" height="140">
     </div>
 
     <div class="container">

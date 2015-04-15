@@ -8,6 +8,14 @@
 {% block nav_class_students %}active{% endblock %}
 
 {% block main %}
+{% include "includes/inc_messages.html" %}
+
+<!-- Register buttom ================================================== -->
+
+    <div class="container">
+      <a href="{% url 'student_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Регистрация нового студента</a>
+    </div>
+
 <!-- Students ================================================== -->
 
     <div class="container">
@@ -25,6 +33,8 @@
               <th>Адрес</th>
               <th>Skype</th>
               <th>Курсы</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           {% for student in object_list %}
@@ -32,7 +42,7 @@
             <tr>
               <td>{{ forloop.counter }}</td>
               <td><a href="{% url 'student' id=student.id %}">{{ student.surname }} {{ student.name }}</a></td>
-              <td><img src="{{ student.image.url }}" height="100"></td>
+              <td><img src="{% if student.image %}{{ student.image.url }}{% else %}{% static 'img/No_image_available.svg' %}{% endif %}" height="100"></td>
               <td><a href="https://www.google.com.ua/maps/place/{{ student.address }}">{{ student.address }}</a></td>
               <td><a href="skype:{{ student.skype }}">{{ student.skype }}</a></td>
               <td>
@@ -40,6 +50,8 @@
                 <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
               {% endfor %}
               </td>
+              <td><a href="{% url 'student_edit' pk=student.id %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
+              <td><a href="{% url 'student_remove' pk=student.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
             </tr>
           </tbody>
           {% endfor %}
