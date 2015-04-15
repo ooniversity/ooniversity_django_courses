@@ -1,10 +1,18 @@
 from django.shortcuts import render
+from django import forms
 
 from quadratic.models import ReportAnError, ResultsCalc
 from quadratic.utils import QuadraticEquation
 
+class QuadraticForm(forms.Form):
+	a = forms.FloatField()
+	b = forms.FloatField()
+	c = forms.FloatField()
+
 
 def quadratic_results(request):
+
+	form = QuadraticForm()
 
 	a = request.GET['a']
 	b = request.GET['b']
@@ -30,7 +38,7 @@ def quadratic_results(request):
 		re_c = "%s" %ReportAnError.objects.get(id=3)	
 
 	if re_a or re_b or re_c:
-		return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
+		return render(request, "result.html", {'form': form, 'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
 	
 	a = int(a)
 	b = int(b)
@@ -42,18 +50,17 @@ def quadratic_results(request):
 	if qe.get_discr() < 0:
 		line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
 		line_2 = "%s" %ResultsCalc.objects.get(id=2)
-		return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
+		return render(request, "result.html", {'form': form, 'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
 	else:
 		x1 = qe.get_eq_root()
 		x2 = qe.get_eq_root(order = 2)
 
-		print type(x1), type(x2)
 		if x1 == x2:
 			line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
 			line_2 = "%s x1 = x2 = %g" %(ResultsCalc.objects.get(id=3), x1)
-			return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
+			return render(request, "result.html", {'form': form, 'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
 		else:
 			line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
 			line_2 = "%s x1 = %d x2 = %d" %(ResultsCalc.objects.get(id=4), x1, x2)
-			return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
+			return render(request, "result.html", {'form': form, 'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
 

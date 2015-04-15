@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="{% block nav_class_main %}{% endblock %}"><a href="{% url 'main' %}">Главная</a></li>
-            <li class="{% block nav_class_contacts %}{% endblock %}"><a href="">Контакты</a></li>
+            <li class="{% block nav_class_contacts %}{% endblock %}"><a href="{% url 'courses:contacts' %}">Контакты</a></li>
             <li  class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students:students_all' %}{% block url_students %}{% endblock %}">Студенты</a></li>
           </ul>
         </div><!--/.nav-collapse -->

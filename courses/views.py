@@ -12,3 +12,6 @@ def course_info(request, course_id):
     lessons_list = Lesson.objects.filter(course__id=course_id).order_by('number_order')
     return render(request, 'courses/course_info.html', {'current_course': current_course, 'lessons_list': lessons_list})
 
+def contacts(request):
+    return render(request, 'courses/contacts.html')
+
