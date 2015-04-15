@@ -4,7 +4,8 @@ from students.models import Student
 
 
 def home(request):
-    return render(request, 'index.html')
+    courses = Course.objects.all()
+    return render(request, 'index.html', {'courses': courses})
 
 def contact(request):
     return render(request, 'contact.html')

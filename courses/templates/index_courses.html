@@ -49,6 +49,7 @@
               <h2 align='center'>Выбирай, на каком курсе ты хочешь учиться!</h2>
               <thead>
                   <tr>
+                      <th>#</th>
                       <th>Курс</th>
                       <th>Описание</th>
                   </tr>
@@ -56,8 +57,13 @@
               <tbody>
                   {% for course in courses %}
                       <tr>
-                          <td><a href="{% url 'course_description' course.id %}">{{course.name}}</a></td>
-                          <td>{{course.description}}</td>
+                          <td>{{ forloop.counter }}</td>
+                          <td><a href="{% url 'course_description' course.id %}">{{ course.name }}</a></td>
+                          <td>{{ course.short_description }}</td>
+                      </tr>
+                  {% empty%}
+                      <tr>
+                          <td>Идет формирование списка курсов. Просим извенения за некоторые неудобства</td>
                       </tr>
                   {% endfor %}
               </tbody>
