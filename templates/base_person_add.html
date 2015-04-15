@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+
+<div class="page-header">
+  <h1>{% block page-header %}{% endblock %}</h1>
+</div>
+
+
+<form method="POST">
+  {% csrf_token %}
+  {{ model_form.as_p }}
+  <input type="Submit" value="Создать">
+<form>
+
+{% endblock body %}
+

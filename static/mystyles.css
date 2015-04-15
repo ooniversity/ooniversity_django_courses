@@ -10,7 +10,7 @@ img.media-object {
   border-radius: 20px;
   }
 
-div.jumbotron { 
+div.jumbotron, div.page-header { 
   padding-left: 40px; 
   }
 
