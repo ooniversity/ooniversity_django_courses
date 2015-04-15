@@ -7,9 +7,9 @@ from django.shortcuts import render, redirect
 
 
 class QuadraticForm(forms.Form):
-    a = forms.IntegerField(label="Коэффициент a:")
-    b = forms.IntegerField(label="Коэффициент b:")
-    c = forms.IntegerField(label="Коэффициент c:")
+    a = forms.FloatField(label="Коэффициент a:")
+    b = forms.FloatField(label="Коэффициент b:")
+    c = forms.FloatField(label="Коэффициент c:")
 
     def clean_a(self):
         a = self.cleaned_data.get('a')
