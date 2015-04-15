@@ -26,7 +26,7 @@
                   {% for course in courses %}
                       <tr>
                           <td>{{ forloop.counter }}</td>
-                          <td><a href="{% url 'course_description' course.id %}">{{ course.name }}</a></td>
+                          <td><a href="{% url 'course_description' course.id %}">{{ course.name|upper }}</a></td>
                           <td>{{ course.short_description }}</td>
                       </tr>
                   {% empty%}

@@ -1,9 +1,11 @@
-{% extends "templates/base.html" %}
+{% extends "templates/base_students.html" %}
 
 
 {% block title %}Information about the student{% endblock title %}
 
+
 {% block name_table %}Информация о студенте{% endblock name_table %}
+
 
 {% block maincontain %}
       <h2 >{{student.name}} {{student.surname}}</h2>
@@ -18,13 +20,13 @@
           </thead>
           <tbody>
               <tr>
-                  <td>{{student.date_of_birth}}</td>
-                  <td>{{student.address}}</td>
-                  <td>{{student.email}}</td>
-                  <td>{{student.skype}}</td>
-                  <td>{{student.phone}}</td>
-                  <td>{% for course in student.courses.all%}
-                      <a href="{% url 'course_description' course.id %}">{{course}}</a></br>
+                  <td>{{ student.date_of_birth|date:"D d N Y" }}</td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.skype }}</td>
+                  <td>{{ student.phone }}</td>
+                  <td>{% for course in student.courses.all %}
+                      <a href="{% url 'course_description' course.id %}">{{ course }}</a></br>
                       {% endfor %}</td>
               </tr>
         </table>
