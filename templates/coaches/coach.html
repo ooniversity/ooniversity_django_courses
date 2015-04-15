@@ -45,7 +45,7 @@
            {%if teacher %}
               {%for i in teacher%}
               <a href="/courses/{{i.id}}/">{{i.name}}  </a>
-              <a href="{% url 'student_list' %}?course_id={{i.id}}">(students) | </a>
+              <a href="{% url 'students:student_list' %}?course_id={{i.id}}">(students) | </a>
               {%endfor%}
             {%else%}
               N/A
@@ -58,7 +58,7 @@
             {%if assistant %}
               {%for i in assistant%}
                 <a href="/courses/{{i.id}}/">{{i.name}}  </a>
-                <a href="{% url 'student_list' %}?course_id={{i.id}}">(students) | </a>
+                <a href="{% url 'students:student_list' %}?course_id={{i.id}}">(students) | </a>
               {%endfor%}
             {%else%}
               N/A

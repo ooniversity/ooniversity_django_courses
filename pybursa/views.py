@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import HttpResponse
 from courses.models import Course, Lesson
 from students.models import Student 
 from coaches.models import Coach
 from datetime import datetime
+
 
 def show_index(request):
 	courses = Course.objects.all()
@@ -11,18 +13,6 @@ def show_index(request):
 
 def contacts(request):
 	return render(request, 'contacts.html', {'date_now': datetime.now()})
-
-def show_students(request):
-    if request.GET.get('course_id') is None:
-        students = Student.objects.all()
-        return render(request, 'students/student_list.html', {'students': students})
-    else:
-        students = Student.objects.filter(courses__id = int(request.GET.get('course_id')))
-        return render(request, 'students/student_list.html', {'students': students})
-
-def show_student(request, id):
-    student = Student.objects.get(id = int(id))
-    return render(request, 'students/student_detail.html', {'student': student})
 
 def show_course(request, id):
     course = Course.objects.get(id = int(id))
