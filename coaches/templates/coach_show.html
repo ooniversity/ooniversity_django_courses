@@ -12,12 +12,12 @@ Detail info
       <table class="table table-striped table-style" style="width:100%">
         <tr>
           <th>Имя и Фамилия</th>
-          <td>{{ coach_name }}</td>
+          <td>{{ coach_name|default:"Anonymous" }}</td>
         </tr>
 
         <tr>
           <th>Дата рождения</th>
-          <td>{{ coach_info.birth }}</td>
+          <td>{{ coach_info.birth|date:"F d, Y" }}</td>
         </tr>
 
         <tr>
