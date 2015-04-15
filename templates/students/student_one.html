@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{% static 'img/favicon.ico' %}">
-    <title>Коучи</title>
+    <title>Студенты</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
@@ -66,8 +66,9 @@
           </p>
           
  	<div class="row">
-
-{% if not message %}
+{% if not msg %} 
+{% if student_one %}
+	<h2>{{student_one.name}} {{student_one.surname}}</h2>
                      
 	<div class="table-responsive"> <!--horizontal scrolls-->
 <!--{% if not msg %} 
@@ -82,7 +83,6 @@
       <br><b> {{msg}}</b>
 {% endif %}  -->
 
-<h2> {{coaches_info.fullname}}</h2>
 
   <div id = "student_details">
     <table class="table table-hover">										
@@ -90,70 +90,49 @@
 
         <tr>
           <td>Дата рождения </td>
-          <td>{{coaches_info.date}}</td>
+          <td>{{student_one.birth_date}}</td>
         </tr>
 
         <tr>
           <td>Адрес </td>
-          <td>{{coaches_info.address}}</td>
+          <td>{{student_one.address}}</td>
         </tr>
 
         <tr>
           <td>Почта </td>
-          <td>{{ coaches.user.email }}</td>
+          <td>{{student_one.email}}</td>
         </tr>
 
         <tr>
           <td>Логин scype </td>
-          <td>{{coaches_info.scype}}</td>
+          <td>{{student_one.scype}}</td>
         </tr>
 
         <tr>
           <td>Телефон </td>
-          <td>{{coaches_info.phone}}</td>
+          <td>{{student_one.phone}}</td>
         </tr>
 
-{% if coaches_info.courses_trainer %}
-        <tr >
-          <td>Курсы учитель </td>
+        <tr class="big_tr">
+          <td>Курсы </td>
           <td>
-	    {% for i in coaches_info.courses_trainer %}
-	    <p class="big_tr"><a href="{% url 'course_from_student' %}{{i.id}}/">{{i.name}}
-	    </a>
-           <a href="{% url 'students' %}?course_id={{i.id}}">[Студенты]</a>
-            </p>
+            {% for item in student_one.courses.all %}
+       <p><a href="{% url 'course' item.id %}">{{item.name}} </a></p>
             {% endfor %}
-	  </td>
-
+        </td>
         </tr>
-{% endif %}
-
-{% if coaches_info.courses_assistant %}
-        <tr>
-          <td>Курсы ассистент </td>
-          <td>
-	    {% for i in coaches_info.courses_assistant %}
-	    <p class="big_tr"><a href="{% url 'course_from_student' %}{{i.id}}/">{{i.name}}</a>
-           <a href="{% url 'students' %}?course_id={{i.id}}">[Студенты]</a>
-            </p>
-            {% endfor %}
-	  </td>
-        </tr>
-{% endif %}
         
       </tbody>
     </table>
 
+   {% endif %}
 
 
 </div> <!-- #student_details -->
 
 </div><!--????-->
-
 {% else %}
-
-<br><b>{{message}}</b>
-
+      <br><b> {{msg}}</b>
 {% endif %}
 
           </div><!--/row-->
