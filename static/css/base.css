@@ -74,6 +74,14 @@ body {
 #program-info {
     width: 800px;
 }
+
+#page-contact .nav-contact,
+#page-students .nav-students,
+#page-home .nav-home {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
 .organaizer {
     float: left;
     padding-bottom: 20px;
