@@ -6,14 +6,18 @@
  </div>
  <div class="panel-body">
   <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="{% static image_src %}" alt="{{ full_name }}">
+      </a>
+    </div>
     <div class="media-body">
       <h4 class="media-heading">
-          <a href="{% url 'coaches:detail' person.id %}">{{ person.full_name }}</a>
+        {{ full_name }}
       </h4>
-       <p>{{ person.description|default:"Нет описания"|linebreaks }}</p>
+       <p>{{ description|default:"Нет описания"|linebreaks }}</p>
     </div>
   </div>
  </div>
 </div>
 <br />
-

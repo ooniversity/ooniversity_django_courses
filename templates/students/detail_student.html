@@ -7,7 +7,7 @@
 
 {% block content %}
   {% if student %}
-  <h2>{{ student.full_name }}</h2>
+  <h2>{{ student.full_name|upper }}</h2>
 
   <table  class="table ">
   <tbody>

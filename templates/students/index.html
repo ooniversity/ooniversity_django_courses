@@ -22,7 +22,7 @@
       <tr>
        <td>{{ forloop.counter }}</td>
        <td><a href="{% url 'students:detail' student.id %}">{{ student.full_name }}</a></td>
-       <td>{{ student.address }}</td>
+       <td>{{ student.address|truncatechars:16 }}</td>
        <td>{{ student.skype }}</td>
        <td>{% for course in student.course.all %}
            <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>

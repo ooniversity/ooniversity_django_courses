@@ -8,13 +8,13 @@
 {% block content %}
   <div class="jumbotron">
     <h1>{{ course.name }}</h1>
-    <h4 class="left">{{ course.description }}</h4>
+    <h4 class="left">{{ course.description|default:"Нет описания" }}</h4>
   </div>
     
   <h2>Преподаватели</h2>
   {% if course %}
-    {% include "inc_panel_primary.html" with block_title="Учитель" person=course.coach %}
-    {% include "inc_panel_primary.html" with block_title="Ассистент" person=course.assistant %}
+    {% include "inc_panel_primary.html" with block_title="Учитель" person=course.coach  %}
+    {% include "inc_panel_primary.html" with block_title="Ассистент" person=course.assistant  %}
   {% else %}
       <p>Нет ведущих преподавателей.</p>
   {% endif %}
@@ -32,7 +32,7 @@
    <tr>
      <td>{{ lesson.number_order }}</td>
      <td>{{ lesson.theme }}</td>
-     <td>{{ lesson.description }} </td>
+     <td>{{ lesson.description|linebreaks }} </td>
     </tr>
    {% endfor %}
   </tbody>
