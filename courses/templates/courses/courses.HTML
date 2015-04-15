@@ -5,7 +5,7 @@
 {% block title %}IT Bursa - {{ course.name|title }}{% endblock title %}
 
 
-{% block students_list %}<a href="{% url 'students:student_list' %}?course_id={{course.id}}">студенты</a>{% endblock students_list %}
+{% block students_list %}<a href="{% url 'students:student_list' %}?course_id={{ course.id }}">студенты</a>{% endblock students_list %}
 
 {% block main_content %}
 <!--Вставка слайдера-->
@@ -13,8 +13,8 @@
 
   <!--Курс Питон датальная информация представленная в табличной форме-->
   <div class="row">
-    <h2 class="sub-header">{{course.name}}</h2>
-    <p class = "p-courses">{{course.discription}}</p>
+    <h2 class="sub-header">{{ course.name }}</h2>
+    <p class = "p-courses">{{ course.discription }}</p>
     <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
 
 <!--Информация о преподавателе курса -->
@@ -24,7 +24,6 @@
 
 <!--Иформация о ассистенте курса -->
 {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
-
     <h2 class="media-heading">ПЛАН КУРСА</h2>
     <div class="table-responsive">
       <table ip = 'base-python' class="table table-striped">
@@ -36,19 +35,22 @@
           </tr>
         </thead>
         <tbody>
-          {%for lesson in lessons%}
+
+          {% for lesson in lessonss %}
             <tr>
               <td>
-                {{forloop.counter}}
+                {{ forloop.counter }}
               </td>
               <td>
-                {{lesson.theme}}
+                {{ lesson.theme }}
               </td>
               <td>
-                {{lesson.discription}}
+                {{ lesson.discription }}
               </td>
             </tr>
-          {%endfor%}
+          {% empty %}
+            ни один урок пока не создан
+          {% endfor %}
         </tbody>
       </table>
     </div>

@@ -30,10 +30,10 @@
       </div>
       <div class="media-body">
         <div class = 'teacher1-text'>
-          <p> <small>дата рождения:</small> {{ student.date_of_birth }} </p>
-          <p> <small>адрес:</small> {{ student.address }} </p>
+          <p> <small>дата рождения:</small> {{ student.date_of_birth|date:"d M Y" }} </p>
+          <p> <small>адрес:</small> {{ student.address|default:'адрес не задан' }} </p>
           <p> <small>e-mail:</small> {{ student.email }} </p>
-          <p> <small>skype:</small> {{ student.skype }}  </p>
+          <p> <small>skype:</small> {{ student.skype|default:'Skype не задан' }}  </p>
           <p> <small>телефон:</small> {{ student.phone }} </p>
           <p> <small>курсы:</small>
             {% for i in student.courses.all %}

@@ -21,11 +21,13 @@
               <div class="caption">
                 <h3>{{ course.info }}</h3></a>
                 <br>
-                  <p>{{ course.discription }}</p>
+                  <p>{{ course.discription|truncatechars:350 }}</p>
                   <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
               </div>
             </div>
         </div>
+      {% empty %}
+        нет активных курсов
       {% endfor %}
     </div>
 {% endblock main_content %}

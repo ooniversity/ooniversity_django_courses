@@ -30,7 +30,7 @@
                       {{ forloop.counter }}
                     </td>
                     <td>
-                      <a href="{% url 'students:student_detail' student.id %}">{{ student.surname }} {{ student.name }}</a>
+                      <a href="{% url 'students:student_detail' student.id %}">{{ student.surname|upper }} {{ student.name|upper }}</a>
                     </td>
                     <td>
                       {{ student.address }}
@@ -45,6 +45,8 @@
                       {% endfor %}
                     </td>
                   </tr>
+                {% empty %}
+                  ни один студент пока не зарегистрирован
                 {% endfor %}
               </tbody>
             </table>
