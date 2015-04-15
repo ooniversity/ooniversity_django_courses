@@ -31,7 +31,11 @@
   </div>
   <br><br>
   <div  class="container">
-
+    <form  method="post">
+    {% csrf_token%}
+      {{ form.as_p}}
+     <input type="submit" value="Решить"/>
+    </form>
       <h4>{{ titl }}</h4>
       <ul type="square">
         <li>{{ str_a }}</li>

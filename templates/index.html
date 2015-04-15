@@ -1,55 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PyBursa - Главная</title>
-    <link rel="icon" type="image/x-icon" href="http://edx.ddev.com.ua/static/themes/default/images/favicon.e68cfcf188d7.ico" />
-    <style type="text/css">
-        .b1 {background: #ccc}
-    </style>
-    <!-- Bootstrap -->
-      <!-- link href="../static/css/bootstrap.css" rel="stylesheet" -->
-    {% load staticfiles %}
+{% extends "base.html" %}
 
-    <link href = "{% static "css/bootstrap.css" %}" rel="stylesheet">
+{% block title %} PyBursa - Главная {% endblock title %}
 
-    <!-- Our style -->
-    <!-- link href="../static/css/ourstyle.css" rel="stylesheet" -->
-    <link href="{% static "css/ourstyle.css" %}" rel="stylesheet">
-    <!-- Вставка HTML5 поєднується з Respond.js для підтримки в IE8 елементів HTML5 та медіа-запитів -->
-    <!-- ЗАСТЕРЕЖЕННЯ: файл Respond.js не працює, якщо ви проглядаєте сторінку відкривши її з файлової системи -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-  <div class="b1">
-     <img src="http://edx.ddev.com.ua/static/themes/default/images/OpenEdXLogo.2b4f39abf090.png" height="50" align="left" />
-    <div class="container text-right">
+{% block nav_class_index %}active {% endblock %}
 
-      <h3>PyBursa - ликбез для программастов, программонстров, программмам и программулек.</h3>
-    </div>
-  </div>
-  <div class="container">
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="{% url 'index' %}">Главная</a></li>
-        <li role="presentation"> <a href="{% url 'contacts' %}">Контакты</a></li>
-        <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
-      </ul>
-  </div>
-
-  <div class="container">
-   <h3>PyBursa - это ликбез!</h3>
-   <h4>Здесь Вас научат:</h4>
-    <ul type="square">
-      <li>завивать PYTHON кольцами;</li>
-      <li>поражать Интернет сайтами;</li>
-      <li>не отвлекаться от учебы по пустякам (еда, сон и т.п.);</li>
-    </ul>
-  </div>
+{% block content %}
   <br><br>
   <div class="container">
   <h3>Вам предлагаются следующие курсы:</h3>
@@ -66,10 +21,6 @@
     <p>Ничего нет по Вашему запросу.</p>
   {% endif %}
   </div>
-    <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Підключення мінімізованої збірки всіх плагінів jQuery. Можна підключати додаткові плагіни, якщо потрібно -->
-    <!-- script src="../static/js/bootstrap.min.js"></script -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </body>
-</html>
+
+{% endblock content %}
+
