@@ -1,3 +1,6 @@
+#!/usr/bin/python		
+# -*- coding: UTF-8 -*-
+
 from django.shortcuts import render
 from courses.models import Course, Lesson
 from students.models import Student
