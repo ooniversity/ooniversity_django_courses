@@ -20,14 +20,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'views.index' %}">ItBursa</a>
+          <a class="navbar-brand" href="{% url 'index' %}">ItBursa</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li {% block nav_class_index %}{% endblock %}><a href="{% url 'views.index' %}">Главная</a></li>
-            <li {% block nav_class_contact %}{% endblock %}><a href="{% url 'views.contact' %}">Контакты</a></li>
+            <li {% block nav_class_index %}{% endblock %}><a href="{% url 'index' %}">Главная</a></li>
+            <li {% block nav_class_contact %}{% endblock %}><a href="{% url 'contact' %}">Контакты</a></li>
             <li {% block nav_class_students %}{% endblock %}><a href="{% url 'students:student_list' %}{% block course_students %}{% endblock %}">Студенты</a></li>
             {% block nav_extra_li %}{% endblock %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Другие проекты<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'quadratic:results' %}">Квадратное уравнение</a></li>
+                <li><a href="{% url 'polls:index' %}">Polls - Tutorial</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
