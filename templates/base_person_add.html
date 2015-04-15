@@ -10,7 +10,9 @@
 
 <form method="POST">
   {% csrf_token %}
-  {{ model_form.as_p }}
+  <table>
+   {{ model_form.as_table }}
+  </table>
   <input type="Submit" value="Создать">
 <form>
 

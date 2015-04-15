@@ -27,9 +27,10 @@ def results(request):
             c = form.cleaned_data.get('c')
             text = '\n\nДискриминант: {0}\n\n'.format(get_discr(a, b, c))
             text += solve_quadratic_equation(a, b, c)
-            return render(request, "quadratic/quadratic.html", {'form': form, 'text': text})
+            return render(request, "quadratic/quadratic.html", 
+                          {'form': form, 'text': text})
         else:
-            return render(request, "quadratic/quadratic.html", {'form': form})            
+            return render(request, "quadratic/quadratic.html", {'form': form})           
     else:
         form = QuadraticForm()
         return render(request, "quadratic/quadratic.html", {'form': form})
