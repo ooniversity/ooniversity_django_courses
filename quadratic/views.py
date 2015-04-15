@@ -8,11 +8,11 @@ class EquationForm(forms.Form):
 	b = forms.IntegerField()
 	c = forms.IntegerField()
 
-    def clean_a(self):
-    	data = self.cleaned_data['a']
-    	if data == 0:
-    		raise forms.ValidationError("коэффициент при первом слагаемом не может быть равным 0")
-    	return data
+	def clean_a(self):
+		data = self.cleaned_data['a']
+		if data == 0:
+			raise forms.ValidationError("коэффициент при первом слагаемом не может быть равным 0")
+		return data
 
 	
 def quadratic_results(request):
