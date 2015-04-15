@@ -4,6 +4,7 @@ from django.contrib import messages
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 
+from static.python.AdminImageWidget import AdminImageWidget
 from students.models import Student
 from courses.models import Course
 
@@ -14,7 +15,7 @@ birth_years = xrange(2015,1930,-1)
 class StudentAddForm(forms.ModelForm):
     class Meta:
         model = Student
-        widgets = {'course': forms.CheckboxSelectMultiple(), 'date_of_birth': SelectDateWidget(years=birth_years)}
+        widgets = {'course': forms.CheckboxSelectMultiple(), 'date_of_birth': SelectDateWidget(years=birth_years), 'image': AdminImageWidget()}
         labels = {'image': 'Photo'}
         help_texts = {'course': "You can choose more then one course." , 'image': 'Not a required field.', 'address': 'Not a required field.'}
         fields = '__all__'
