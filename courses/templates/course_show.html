@@ -33,7 +33,7 @@ Course detail info
       </div>
       <div class="panel-body">
         <a href="{% url 'coaches:coach_show' assistant_info.id %}">
-          <h4>{{ assistant_info.name }}</h4>
+          <h4>{{ assistant_info.name|truncatechars:256 }}</h4>
         </a>
         {{ assistant_info.descr|linebreaksbr }}
       </div>
