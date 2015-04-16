@@ -6,8 +6,15 @@
 Students
 {% endblock %}
 
+{% block extra_menu %}
+  <li>
+    <a href="{% url 'students:student-add' %}">Новый студент</a>
+  </li>
+{% endblock %}
+
 {% block content %}
 <div class="course-info">
+
   <h2>Список студентов</h2>
 
   <div>
@@ -26,7 +33,7 @@ Students
         {% for student in students %}
         <tr>
           <td>{{ student.id }}</td>
-          <td><a href="{% url 'students:student_detail' student.id %}">
+          <td><a href="{% url 'students:student-detail' student.id %}">
               {{ student.surname}} {{ student.name}}
               </a>
           </td>
