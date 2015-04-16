@@ -82,6 +82,18 @@ body {
     background-color: #f0f0f0;
 }
 
+.messages li {
+    list-style-type: none;
+}
+
+.messages {
+    padding: 0;
+}
+
+.messages-info {
+    padding: 20px;
+}
+
 .organaizer {
     float: left;
     padding-bottom: 20px;
@@ -112,23 +124,19 @@ body {
     margin-bottom: 20px;
 }
 
-.program table,
-.program th, 
-.program td {
-    padding: 5px;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-.program thead th,
-.courses thead, th {
+.courses thead th {
     text-transform: uppercase;
     text-align: center;
 }
 
-.program tbody td:nth-child(1) {
+.student-add h2 {
+    background-color: #eeeeee;
     text-align: center;
-    font-weight: bold;
+}
+
+.style-form td,
+.style-form th {
+    padding: 5px;
 }
 
 .table {
@@ -180,4 +188,9 @@ body {
 
 .errorlist {
     color: red;
+    padding: 0;
+}
+
+.errorlist li {
+    list-style-type: none;
 }
