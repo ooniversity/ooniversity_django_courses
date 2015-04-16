@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav">
         <li ><a href="{% url 'index' %}">Главная <span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'contact' %}">Контакты</a></li>
-        <li class="active" ><a href="{% url 'students' %}">Студенты</a></li>
+        <li class="active" ><a href="{% url 'students:students' %}">Студенты</a></li>
       </ul>
      </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -83,7 +83,7 @@
           
                <h1>Студенты курса</h1>
            
-            <table class="table table-striped table-bordered table-hover table-condensed ">
+           <table class="table table-striped table-bordered table-hover table-condensed ">
                 <thead id="table-head">
                  <tr >
                     <th>Имя, Фамилия</th>
@@ -95,21 +95,21 @@
                    <tbody>
                     {% for student in students %}
                     <tr>
-                      <td><a href="{% url 'student_detail' student.id %}">{{ student.name }} {{student.surname}}</a></td>
+                      <td><a href="{% url 'students:student_detail' student.id %}">{{ student.name }} {{student.surname}}</a></td>
                       <td>{{ student.adress }}</td>
                       <td>{{ student.skype }}</td>
                       <td>
                         {% for course in student.course.all %}
                         <p>
-                        <a href="{% url 'course_detail' course.id %}">{{course.name}}</a>
+                        <a href="{% url 'courses:course_detail' course.id %}">{{course.name}}</a>
                         </p>
                         {% endfor %}
                       </td>
                     </tr>
                     {% endfor %}
                   </tbody>
-                </table>
-        </div>
+                </table> 
+        </div> 
          <div class="col-md-3">
             <img src="http://cs625422.vk.me/v625422163/291ea/igTBQVEhbw8.jpg"/>
             <center><p class="text"><a href="https://www.djangoproject.com/"><h3><img src="{% static 'img/django.png' %}"/></h3></a></p></center>
