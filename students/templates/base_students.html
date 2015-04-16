@@ -7,11 +7,12 @@
 {% block nav_student %}active{% endblock %}
 
 
-{% block content %}        
-      <h2 class="sub-header">{% block page-header %}{% endblock %}</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
-{% block page-content %}{% endblock %}            
-          </table>
-        </div>    
+{% block content %} 
+{% block additional-info %}{% endblock %}       
+  <h2 class="sub-header">{% block page-header %}{% endblock %}</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        {% block page-content %}{% endblock %}            
+      </table>
+    </div>    
 {% endblock %}
