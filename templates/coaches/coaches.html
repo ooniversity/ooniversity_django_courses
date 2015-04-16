@@ -8,6 +8,14 @@
 {% block nav_class_coaches:coaches %}active{% endblock %}
 
 {% block main %}
+{% include "includes/inc_messages.html" %}
+
+<!-- Register buttom ================================================== -->
+
+    <div class="container">
+      <a href="{% url 'coaches:coach_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Регистрация нового преподавателя</a>
+    </div>
+
 <!-- Coaches ================================================== -->
     
     <div class="container">
@@ -25,31 +33,36 @@
               <th>Email</th>
               <th>Skype</th>
               <th>Phone</th>
+              <th></th>
               <th>Курсы</th>
             </tr>
           </thead>
           <tbody>
-            {% for item in object_list %}
+            {% for teacher in object_list %}
             <tr>
               <td>{{ forloop.counter }}</td>
-              <td><a href="{% url 'coaches:coach' item.id %}">{{ item.user.last_name }} {{ item.user.first_name }}</a></td>
-              <td><img class="img-circle" src="{{ item.image.url }}" width="120" height="120"></td>
-              <td><a href="mailto:{{ item.user.email }}">{{ item.user.email }}</a></td>
-              <td><a href="skype:{{ item.skype }}">{{ item.skype }}</a></td>
-              <td><a href="skype:{{ item.phone }}?call">{{ item.phone }}</a></td>
+              <td><a href="{% url 'coaches:coach' teacher.id %}">{{ teacher.user.last_name }} {{ teacher.user.first_name }}</a></td>
+              <td><img class="img-circle" src="{% if teacher.image %}{{ teacher.image.url }}{% else %}{% static 'img/No_image_available.svg' %}{% endif %}" width="120" height="120"></td>
+              <td><a href="mailto:{{ teacher.user.email }}">{{ teacher.user.email }}</a></td>
+              <td><a href="skype:{{ teacher.skype }}">{{ teacher.skype }}</a></td>
+              <td><a href="skype:{{ teacher.phone }}?call">{{ teacher.phone }}</a></td>
               <td>
-              {% if item.courses_coach.count %}
+                <a href="{% url 'coaches:coach_edit' pk=teacher.pk %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                <a href="{% url 'coaches:coach_remove' pk=teacher.pk %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+              </td>
+              <td>
+              {% if teacher.courses_coach.count %}
               <p>как преподаватель:</p>
-              {% for courses in item.courses_coach.filter %}
+              {% for courses in teacher.courses_coach.filter %}
               <p><a href="{% url 'courses:detail' courses.id %}">{{ courses }}</a></p>
               {% endfor %}
               {% endif %}
-              {% if item.courses_coach.count and item.courses_assistant.count %}
+              {% if teacher.courses_coach.count and teacher.courses_assistant.count %}
               <hr>
               {% endif %}
-              {% if item.courses_assistant.count %}
+              {% if teacher.courses_assistant.count %}
               <p>как ассистент:</p>
-              {% for courses in item.courses_assistant.filter %}
+              {% for courses in teacher.courses_assistant.filter %}
               <p><a href="{% url 'courses:detail' courses.id %}">{{ courses }}</a></p>
               {% endfor %}
               {% endif %}

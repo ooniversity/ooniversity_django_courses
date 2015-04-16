@@ -1,0 +1,14 @@
+{% extends 'base_registration.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Регистрация нового преподавателя{% endblock %}
+
+
+{% block form_name %}Форма регистрации
+<h5>Необходимо предварительно зарегестрировать User'а!</h5>{% endblock form_name %}
+
+
+{% block buttom_back %}
+    <a href="{% url 'coaches:coaches' %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

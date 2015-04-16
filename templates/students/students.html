@@ -41,17 +41,17 @@
           <tbody>
             <tr>
               <td>{{ forloop.counter }}</td>
-              <td><a href="{% url 'student' id=student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+              <td><a href="{% url 'student' pk=student.pk %}">{{ student.surname }} {{ student.name }}</a></td>
               <td><img src="{% if student.image %}{{ student.image.url }}{% else %}{% static 'img/No_image_available.svg' %}{% endif %}" height="100"></td>
               <td><a href="https://www.google.com.ua/maps/place/{{ student.address }}">{{ student.address }}</a></td>
               <td><a href="skype:{{ student.skype }}">{{ student.skype }}</a></td>
               <td>
               {% for course in student.course.all %}
-                <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></p>
+                <p><a href="{% url 'courses:detail' course.pk %}">{{ course.name }}</a></p>
               {% endfor %}
               </td>
-              <td><a href="{% url 'student_edit' pk=student.id %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
-              <td><a href="{% url 'student_remove' pk=student.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
+              <td><a href="{% url 'student_edit' pk=student.pk %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
+              <td><a href="{% url 'student_remove' pk=student.pk %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
             </tr>
           </tbody>
           {% endfor %}

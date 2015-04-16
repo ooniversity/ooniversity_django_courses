@@ -17,15 +17,32 @@ class LessonAddForm(forms.ModelForm):
         model = Lesson
         fields = '__all__'
 
+    def clean_consecutive_number(self):
+        data = self.cleaned_data['consecutive_number']
+        consecutive_number_list=[]
+        for i in Lesson.objects.filter(course=self.cleaned_data['course']):
+            consecutive_number_list.append(i.consecutive_number)
+        if data in consecutive_number_list and data != self.instance.consecutive_number:
+            raise forms.ValidationError(u"Такой номер уже задействован!")
+        return data
+
 
 class CourseAddForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
 
+    def clean_coach(self):
+        data = self.cleaned_data['coach']
+        if not data:
+            raise forms.ValidationError(u"Выбирете преподавателя.")
+        return data
+
     def clean_assistant(self):
         data = self.cleaned_data['assistant']
-        if data == self.cleaned_data['coach']:
+        if not data:
+            raise forms.ValidationError(u"Выбирете ассистента.")
+        elif data == self.cleaned_data['coach']:
             raise forms.ValidationError(u"Преподаватель и ассистент должны быть разными.")
         return data
 
@@ -40,7 +57,7 @@ class CourseDetialView(generic.ListView):
     model = Course
 
     def get_queryset(self):
-        qs = super(CourseDetialView, self).get_queryset().filter(id=self.kwargs['id'])
+        qs = super(CourseDetialView, self).get_queryset().filter(pk=self.kwargs['pk'])
         return qs
 
 
@@ -52,7 +69,7 @@ def add_lesson(request, pk):
         if form.is_valid():
             application = form.save()
             messages.success(request, 'Registration complite!')
-            return redirect('courses:detail', id=context['course_id'])
+            return redirect('courses:detail', pk=context['course_id'])
     else:
         consecutive_number = get_consecutive_number(pk)
         course_name = Course.objects.get(pk=pk).name
@@ -60,6 +77,27 @@ def add_lesson(request, pk):
         form = LessonAddForm(initial={'course': pk, 'consecutive_number': consecutive_number, 'theme': theme})
     context['form'] = form
     return render(request, 'courses/add_lesson.html', context)
+
+
+def edit_lesson(request, pk):
+    application = Lesson.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = LessonAddForm(request.POST, instance=application)
+        if form.is_valid():
+            application = form.save()
+            messages.success(request, 'Changes have been saved!')
+    else:
+        form = LessonAddForm(instance=application)
+    return render(request, 'courses/edit_lesson.html', {'form': form, 'application': application})
+
+
+def remove_lesson(request, pk):
+    application = Lesson.objects.get(pk=pk)
+    if request.method == 'POST':
+        application.delete()
+        messages.warning(request, u'Object {} deleted!'.format(application.theme))
+        return redirect('courses:detail', pk=application.course.pk)
+    return render(request, 'courses/delete_lesson.html', {'application': application})
 
 
 def course_add(request):
@@ -75,6 +113,7 @@ def course_add(request):
     context['form'] = form
     return render(request, 'courses/add_course.html', context)
 
+
 def course_edit(request, pk):
     application = Course.objects.get(pk=pk)
     if request.method == 'POST':
@@ -85,6 +124,7 @@ def course_edit(request, pk):
     else:
         form = CourseAddForm(instance=application)
     return render(request, 'courses/edit_course.html', {'form': form})
+
 
 def course_remove(request, pk):
     application = Course.objects.get(pk=pk)

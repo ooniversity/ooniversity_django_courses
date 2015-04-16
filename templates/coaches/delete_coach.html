@@ -1,0 +1,14 @@
+{% extends 'base_delete.html' %}
+{% load staticfiles %}
+
+
+{% block title_deleted_name %}{{ application.user.last_name }} {{ application.user.first_name }}{% endblock %}
+
+
+{% block deleted_name %}Преподаватель {{ application.user.last_name }} {{ application.user.first_name }}{% endblock %}
+
+
+{% block deleted_comment %}преподавателей{% endblock %}
+
+
+{% block back_url %}{% url 'coaches:coaches' %}{% endblock %}

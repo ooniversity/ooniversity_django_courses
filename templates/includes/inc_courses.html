@@ -28,10 +28,10 @@
           <tbody>
             <tr>
               <td><p>{{ forloop.counter }}</p></td>
-              <td><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></td>
+              <td><a href="{% url 'courses:detail' course.pk %}">{{ course.name }}</a></td>
               <td><p>{{ course.short_description|truncatechars:70 }}</p></td>
-              <td><a href="{% url 'courses:course_edit' pk=course.id %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
-              <td><a href="{% url 'courses:course_remove' pk=course.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
+              <td><a href="{% url 'courses:course_edit' pk=course.pk %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
+              <td><a href="{% url 'courses:course_remove' pk=course.pk %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
             </tr>
           </tbody>
           {% empty %}

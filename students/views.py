@@ -13,6 +13,7 @@ birth_years = xrange(2015,1930,-1)
 
 
 class StudentAddForm(forms.ModelForm):
+    
     class Meta:
         model = Student
         widgets = {'course': forms.CheckboxSelectMultiple(), 'date_of_birth': SelectDateWidget(years=birth_years), 'image': AdminImageWidget()}
@@ -27,7 +28,7 @@ class StudentsView(generic.ListView):
     model = Student
 
     def get_queryset(self):
-        query = Course.objects.filter(id=self.request.GET.get('course_id'))
+        query = Course.objects.filter(pk=self.request.GET.get('course_id'))
         if query:
             return Student.objects.filter(course=query)
         else:
@@ -39,7 +40,7 @@ class StudentView(generic.ListView):
     model = Student
 
     def get_queryset(self):
-        qs = super(StudentView, self).get_queryset().filter(id=self.kwargs['id'])
+        qs = super(StudentView, self).get_queryset().filter(pk=self.kwargs['pk'])
         return qs
 
 def student_add(request):
@@ -56,7 +57,7 @@ def student_add(request):
     return render(request, 'students/add_student.html', context)
 
 def student_edit(request, pk):
-    application = Student.objects.get(id=pk)
+    application = Student.objects.get(pk=pk)
     if request.method == 'POST':
         form = StudentAddForm(request.POST, request.FILES, instance=application)
         if form.is_valid():
@@ -67,7 +68,7 @@ def student_edit(request, pk):
     return render(request, 'students/edit_student.html', {'form': form})
 
 def student_remove(request, pk):
-    application = Student.objects.get(id=pk)
+    application = Student.objects.get(pk=pk)
     if request.method == 'POST':
         application.delete()
         messages.warning(request, u'Object {} {} deleted!'.format(application.surname, application.name))

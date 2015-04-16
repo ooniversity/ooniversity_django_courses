@@ -5,22 +5,9 @@
 {% block message %}
 {% include "includes/inc_messages.html" %}
 {% endblock message %}
-{% block main %}
-<div class='container'>
-  <h1>{% block form_name %}{% endblock %}</h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table class="table table-striped">
-    {{ form.as_table }}
-    </table>
+
+
 {% block submit_buttom %}
     <button type="submit" class="btn btn-success">Сохранить</button>
     <button type="reset" class="btn btn-warning">Откатить изменения</button>
 {% endblock submit_buttom %}
-{% block buttom_back %}
-{% endblock %}
-  </form>
-</div>
-<div class='jumbotron'>
-</div>
-{% endblock main %}
