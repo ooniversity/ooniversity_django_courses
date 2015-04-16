@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
-from students.models import Student
+from students.models import Student, StudentForm
 from courses.models import Course
 
 
@@ -25,4 +26,21 @@ def student_detail(request, pk):
     return render(request, 'detail_info.html', {
         'student': student,
         'courses': courses,
+        })
+
+
+def student_add(request):
+    if request.method == "POST":
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save()
+            messages.success(
+                request, "Student {} {} add success!".format(
+                    student.name, student.surname))
+            return redirect('students:students-list')
+    else:
+        form = StudentForm()
+
+    return render(request, 'add.html', {
+        'form': form,
         })
