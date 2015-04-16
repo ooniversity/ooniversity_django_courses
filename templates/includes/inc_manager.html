@@ -1,7 +1,8 @@
+{% load staticfiles %}
       <li class="media">
         <div class="media-left">
           <a href="http://pybursa.com">
-            <img class="media-object" src="{{ photo }}" alt="{{ name }}"/>
+            <img class="media-object" src="{% static photo %}" alt="{{ name }}"/>
           </a>
         </div>
         <div class="media-body">

@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django import forms
+from django.contrib import messages
 from students.models import Student
 
 
@@ -25,11 +28,18 @@ class StudentForm(forms.ModelForm):
         model = Student
 
 
-
 def student_add(request):
-    model_form = StudentForm()
-    """
-Model forms, 2 video, 2:55
-    """
-    return render(request, 'students/student_add.html', {'model_form': model_form})
+    print request.method
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            new_student = Student()
+            new_student = form.save()
+            messages.success(request, "Студент {0} успешно добавлен".format(new_student.full_name()))
+            return redirect('students:student_add')
+        else:
+            return render(request, 'students/student_add.html', {'form': form})
+    else:
+        form = StudentForm()   
+    return render(request, 'students/student_add.html', {'form': form})
 
