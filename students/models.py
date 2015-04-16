@@ -1,8 +1,11 @@
 import datetime
 
 from django.db import models
+from django.forms import ModelForm
 from django.utils import timezone
 from courses.models import Course
+from django import forms
+from django.forms import widgets
 
 
 class Student(models.Model):
@@ -14,8 +17,7 @@ class Student(models.Model):
         verbose_name=u'Phone number',
         unique=True, max_length=12)
     address = models.CharField(
-        "Address", help_text='Enter your address',
-        max_length=256)
+        "Address", max_length=256)
     skype = models.CharField("Skype", max_length=128)
     courses = models.ManyToManyField(Course)
 
@@ -32,3 +34,15 @@ class Student(models.Model):
     @property
     def full_name(self):
         return self.name + " " + self.surname
+
+
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        widgets = {
+            'email': forms.EmailInput,
+            'courses': forms.SelectMultiple,
+        }
+        labels = {
+            'phone_num': 'Phone',
+        }
