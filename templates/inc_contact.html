@@ -1,10 +1,11 @@
-<div class="col-sm-5">
+{% load staticfiles %}
+<div class="col-sm-6">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h2 class="panel-title">{{ name }}</h2>
     </div>
     <div class="panel-body">
-      <img id="photo" src="{{ image_path }}" alt="">
+      <img id="photo" src="{% static image_path %}" style="height:150px" alt="">
       <div class="floatright">              
         <h4>{{ rank }}</h4>
         <p class="organizers_mail">

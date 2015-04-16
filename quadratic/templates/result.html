@@ -1,16 +1,16 @@
-<h1>Квадратное уравнение a*x*x + b*x + c = 0</h1>
-{{ form.as_p }}
-<ul>
-    <li> a= {{ a }}
-        {% if re_a %}<p>  {{ re_a }}  </p>{% endif %}
-    </li>
-    <li> b= {{ b }}
-        {% if re_b %}<p>  {{ re_b }}  </p>{% endif %}
-    </li>
-    <li> c= {{ c }}
-        {% if re_c %}<p>  {{ re_c }}  </p>{% endif %}
-    </li>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>quadratic</title>
+  <head>
 
-</ul>
-{% if line_1 %}<p> {{ line_1 }}</p>{% endif %}
-{% if line_2 %}<p> {{ line_2 }}</p>{% endif %}
+  <h3>Квадратное уравнение a*x*x + b*x + c = 0</h3>
+<form>
+{{ form.as_p }}
+<input type='Submit' value='Решить'/>
+</form>
+{% if line_2 %}
+<p>{{ line_1 }}  {{ discriminant }}</p>
+<p>{{ line_2 }}</p>
+{% endif %}
+</html>
