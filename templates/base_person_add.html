@@ -11,7 +11,7 @@
 <form method="POST">
   {% csrf_token %}
   <table>
-   {{ model_form.as_table }}
+   {{ form.as_table }}
   </table>
   <input type="Submit" value="Создать">
 <form>
