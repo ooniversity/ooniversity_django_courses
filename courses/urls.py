@@ -6,4 +6,5 @@ from courses import views
 urlpatterns = patterns('',
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<pk>\d+)/$', views.detail, name='detail'),
+    #url(r'^contact/', views.contact, name='contact'),
 )

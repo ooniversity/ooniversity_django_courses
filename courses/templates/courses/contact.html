@@ -1,0 +1,42 @@
+﻿{% extends "base/base_index.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}
+  Контакты
+{% endblock %}
+
+
+{% block content %}
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
+            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
+            <li role="presentation" class="active"><a href="{% url 'contact' %}">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
+
+        <h2>
+          ooniversity
+        </h2>
+
+        <div>
+          <h4>
+            Тут контакты организации.
+          </h4>
+        </div>
+
+        <h4>
+          Выбирай на каком курсе хочешь учиться!
+        </h4>
+
+
+
+      <footer class="footer">
+        <p>&copy; Py.bursa 2014</p>
+      </footer>
+{% endblock %}
+

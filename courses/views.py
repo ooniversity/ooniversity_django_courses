@@ -11,25 +11,15 @@ class IndexView(generic.ListView):
     context_object_name = 'course_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
-        return Course.objects.order_by('-id')[:5]
+        return Course.objects.order_by('-id')
 
 def detail(request, pk):
     course = Course.objects.get(id=pk)
     lesson_list = Lesson.objects.filter(course=pk)
     return render(request, 'courses/detail.html', {'course': course, 'lesson_list': lesson_list})
 
+def contact(request):
+    return render(request, 'courses/contact.html')
 
-"""
-class DetailView(generic.DetailView):
-    template_name = 'courses/detail.html'
-    model = Course
-
-    context_object_name = 'lesson_list'
-
-    def get_queryset(self):
-        return Lesson.objects.filter(course=pk)
-
-"""
 
 

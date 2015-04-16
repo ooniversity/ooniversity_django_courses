@@ -11,7 +11,7 @@ class IndexView(generic.ListView):
     context_object_name = 'coach_list'
 
     def get_queryset(self):
-        return Coach.objects.order_by('-id')[:5]
+        return Coach.objects.order_by('-id')
 
 class DetailView(generic.DetailView):
     model = Coach
