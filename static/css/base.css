@@ -172,3 +172,12 @@ body {
 #teacher-info .float-right {
     width: 600px;
 }
+
+.quadr-p {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.errorlist {
+    color: red;
+}
