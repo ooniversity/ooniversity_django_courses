@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Add course{% endblock %}
+
+
+{% block main %}
+
+<div class="container"> 
+<div class="jumbotron">         
+  <form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+  </form>
+</div>
+</div>
+
+{% endblock main %}
+

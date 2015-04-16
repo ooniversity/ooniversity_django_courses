@@ -7,6 +7,7 @@ from coaches.models import Coach
 from datetime import datetime
 from django import forms
 
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
@@ -36,6 +37,7 @@ def edit_student(request, id):
         form = StudentForm(instance=student)
     return render(request, 'students/edit_student.html', {'form': form})
 
+
 def delete_student(request, id):
     student = Student.objects.get(id=id)
     if request.method == 'POST':
@@ -53,6 +55,7 @@ def show_students(request):
     else:
         students = Student.objects.filter(courses__id = int(request.GET.get('course_id')))
         return render(request, 'students/student_list.html', {'students': students})
+
 
 def show_student(request, id):
     student = Student.objects.get(id = int(id))

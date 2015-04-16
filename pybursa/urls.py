@@ -10,6 +10,6 @@ urlpatterns =  patterns('',
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^courses/(?P<id>\d+)/$', views.show_course, name = 'course'),
+    url(r'^courses', include('courses.urls', namespace = "courses")),
     url(r'^coaches/(?P<id>\d+)/$', views.show_coach, name = 'coach'),
 )

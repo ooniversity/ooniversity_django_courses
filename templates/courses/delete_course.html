@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Delete course{% endblock %}
+
+
+{% block main %}
+
+<div class="container"> 
+<div class="jumbotron">         
+  <p class="lead">Course {{ name }} will be deleted. Press delete if OK.</p>
+  
+  <form method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Delete">
+  </form>
+
+</div>
+</div>
+
+{% endblock main %}
+

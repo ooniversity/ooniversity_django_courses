@@ -16,6 +16,16 @@
 {% include "inc_index.html" only%}
 
 <div class="container">
+  {% if messages %}
+  {% for message in messages%}
+  <p class="bg-success">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+
+<p>
+  <a href="{% url 'courses:add_course' %}" role="button" class="btn btn-default btn-xs">+ Add new course
+  </a>
+</p>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">You can choose your course from below:</h3>
@@ -29,18 +39,18 @@
       </tr>
     </thead>
     <tbody>
+      {% for course in courses %}
       <tr>
-        <td><a href="/courses/{{courses.0.id}}/">{{courses.0.name}}</a></td>
-        <td>{{courses.0.description}}</td>
+        <td><a href="/courses/{{course.id}}/">{{course.name}}</a></td>
+        <td>{{course.description}}</td>
+        <td>
+          <a href="/courses/edit/{{course.id}}/" role="button" class="btn btn-default btn-xs">Edit</a>
+        </td>
+        <td>
+          <a href="/courses/delete/{{course.id}}/" role="button" class="btn btn-default btn-xs">Delete</a>
+        </td>
       </tr>
-      <tr>
-        <td><a href="/courses/{{courses.1.id}}/">{{courses.1.name}}</a></td>
-        <td>{{courses.1.description}}</td>
-      </tr>
-      <tr>
-        <td><a href="/courses/{{courses.2.id}}/">{{courses.2.name}}</a></td>
-        <td>{{courses.2.description}}</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
