@@ -1,0 +1,20 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Новый студент {% endblock title %}
+
+
+{% block nav_class_student_list %}active{% endblock %}
+
+
+{% block main_content %}
+  <h3 class="media-heading"> Создать нового студента </h3><br>
+
+  <!--Создание формы для нового студента-->
+  <form method="post">
+    {% csrf_token %}
+    {{ model_form.as_p }}
+    <input type='submit'>
+  </form>
+{% endblock main_content %}

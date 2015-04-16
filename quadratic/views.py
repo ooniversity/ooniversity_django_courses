@@ -12,37 +12,41 @@ class QuadraticForm(forms.Form):
     b = forms.FloatField(required=True, label='коеффициент b')
     c = forms.FloatField(required=True, label='коеффициент c')
 
-    def valid_a(self, var):
-        data = var
+    def clean_a(self):
+        data = self.cleaned_data['a']
+        #Кастомизированная валидация параметров
         if data == 0:
-            raise forms.ValidationError("You have forgotten about Fred!")
-        # Always return the cleaned data, whether you have changed it or
-        # not.
+            raise forms.ValidationError("Коеффициент при первом слагаемом \
+                                        уравнения не может быть равным 0")
         return data
 
 
 def quadratic_results (request):
     #Инстанцируем форму
     form = QuadraticForm()
+    diction = {}
     #Делаем так, чтобы значение после GET-запроса(нажали на Решить)
-    #не исчезали, а оставались в полях. Чтобы пользователь не вводил данные много раз
-    #есть данные были не корректные
-    if request.method == "GET":
-        form = QuadraticForm(request.GET)
-        #Проверка данных на правильность (валидность)
-        if form.is_valid():
-            form.valid_a(form.cleaned_data['a'])
-            #print form.cleaned_data Джанго сохраняет очищенные данные в переменной cleaned_data
-            #Вызываем функция quadratic_equel, которая посчитает квадратное уравнение
-            #Функция возвращаем словать со всеми значениями, которые нужно будет передать на WEB
-            #Мне показалось, что так удобне
-            dict_quadr = utils.quadratic_equel(form.cleaned_data['a'], form.cleaned_data['b'], form.cleaned_data['c'])
+    #не исчезали, а оставались в полях. Чтобы пользователь не вводил
+    #данные много раз есть данные были не корректные
+    if request.GET.get('a') != None and request.GET.get('b') != None \
+       and request.GET.get('c') != None:
+        if request.method == "GET":
+            form = QuadraticForm(request.GET)
+            #Проверка данных на правильность (валидность)
+            if form.is_valid():
+                #print form.cleaned_data Джанго сохраняет очищенные данные в
+                #переменной cleaned_data
+                #Вызываем функция quadratic_equel, которая посчитает квадратное
+                #уравнение
+                #Функция возвращаем словать со всеми значениями, которые нужно
+                #будет передать на WEB
+                #Мне показалось, что так удобне
+                diction = utils.quadratic_equel(form.cleaned_data['a'],
+                                                form.cleaned_data['b'],
+                                                form.cleaned_data['c'])
         else:
-            dict_quadr = {}
-    else:
-        form = QuadraticForm(request.POST)
+            form = QuadraticForm()
+    context = {'diction':diction, 'form':form,}
+    return render (request, 'quadratic/index_quadratic.html', context) #Отображаем HTML страничку и передаем ей все необходимие переменные
 
-    #context = {'a_native':request.GET.get('a'), 'b_native':request.GET.get('b'), 'c_native':request.GET.get('c'), }
-    context = {'diction':dict_quadr, 'form':form, }
-    #Отображаем HTML страничку и передаем ей все необходимие переменные
-    return render (request, 'quadratic/index_quadratic.html', context)
+

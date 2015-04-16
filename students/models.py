@@ -10,13 +10,15 @@ class Student (models.Model):
     date_of_birth = models.DateField(verbose_name='Birth date')
     email = models.EmailField(verbose_name='E-mail')
     phone = models.CharField(verbose_name='Phone number', max_length=15)
-    address = models.CharField(verbose_name='Address', max_length=50, null=True, blank=True)
-    skype = models.CharField(verbose_name='Skype', max_length=50, null=True, blank=True)
+    address = models.CharField(verbose_name='Address', max_length=50, null=True,
+                               blank=True)
+    skype = models.CharField(verbose_name='Skype', max_length=50, null=True,
+                             blank=True)
     courses = models.ManyToManyField(Course)
 
     def __unicode__(self):
         return self.surname
 
     def full_name(self):
-        return " ".join([self.name, self.surname])
+        return u'{} {}'.format(self.name, self.surname)
 

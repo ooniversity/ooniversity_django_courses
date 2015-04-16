@@ -3,6 +3,7 @@ from django.shortcuts import render
 from courses.models import Course
 from coaches.models import Coach
 
+
 # Create your views here.
 def show_coach_detail(request, id_c):
     id_coach=int(id_c)
@@ -18,5 +19,6 @@ def show_coach_detail(request, id_c):
     for i in courses:
         if coach.user == i.assistent.user:
             assistent.append(i)
-    return render(request, 'coaches/coaches.HTML', {'coach': coach, 'teacher': teacher,
-                                            'assistent': assistent})
+    return render(request, 'coaches/coaches.HTML', {'coach': coach,
+                                                    'teacher': teacher,
+                                                    'assistent': assistent})
