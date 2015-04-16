@@ -1,0 +1,75 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+
+{% block title %} Главная {% endblock title %}
+{% block nav_class_index %}active{% endblock %}
+
+{% block jumbotron %}
+            <div class="jumbotron">
+            <div class="jumbo_internal">
+            <h1>Go to ITBursa!</h1>
+            <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
+          </div>
+          </div>
+{% endblock jumbotron %}
+
+{% block courses_table %}
+<h2>Обучитесь "модным" языкам программирования</h2>
+
+ <table class="table">
+            <thead>
+              <tr>
+                <th>Курс</th>
+                <th>Описание</th>
+               </tr>
+            </thead>
+               
+{% for i in courses %}
+    <!--<br>
+    <b> <a href="{{ i.url }}">{{i.name}} </a> </b>
+    {{i.description}}-->
+    <tbody>
+      <tr>
+      <td><a href="{{ i.url }}">{{i.name}} </a></td>
+      <td>{{i.short_description}}</td>
+      </tr>
+{% endfor %}
+    </tbody>
+    </table>
+{% endblock courses_table %}
+
+<h2>{% block content_header %}Особенности {% endblock content_header %}</h2>
+
+  {% block main_content %}
+            <div class="col-xs-6 col-lg-4">
+              <h3>Компетентно</h3>
+              <p>Провести два месяца на курсах, которых отличает: опыт и профессионализм <a href = "http://dou.ua/lenta/interviews/it-career-185/" target="_blank">тренера </a>, уникальный материал, максимум практики! </p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h3>Навылет</h3>
+              <p>Мотивация 100 %. Вы или выполняете все домашние задания, или...вылетаете из курса! Метод "кнута и пряника" сделает Вас практикующим программистом. </p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h3>Дух захватит</h3>
+              <p>...от успеха, напора, огромных объемов новой информации и, самое главное, самого процесса написания кода! Каждый шаг нацелен на результат - готовое решение!</p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h3>Стать профи</h3>
+              <p>PyBursa - мощнейший толчок в становлении профессионала. Системное изложение материала и море практики (98 % курса!) научит....продолжать, ориентироваться в документации, повышать свой уровень постоянно!</p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h3>Команда</h3>
+              <p>Трудно представить разработчика, который один в поле воин. Кандидатов в разработчики проверяют не только на знание предмета, но и на коммуникабельность и умение работать в команде. PyBursa и к этому готовит! </p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h3>Бонусы</h3>
+              <p>Записи лекций сохранятся у Вас еще долго. Поддержка тренеров - гарантирована. Организованное комьюнити - часть курса. (Здесь прописать прочие бонусы) А также забота и поддержка организаторов и некоторые приятные мелочи:)</p>
+              <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+            </div><!--/.col-xs-6.col-lg-4-->
+{% endblock main_content %}
+
