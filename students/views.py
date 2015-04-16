@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django import forms
 from django.contrib import messages
@@ -33,14 +34,33 @@ def student_add(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
-            print "Is valid"
             new_student = Student()
             new_student = form.save()
-            messages.success(request, u"Студент {0} успешно добавлен".format(new_student.full_name()))
+            messages.success(request, 
+                             u"Студент {0} успешно добавлен"\
+                              .format(new_student.full_name()))
             return redirect('students:student_list')
         else:
             return render(request, 'students/student_add.html', {'form': form})
     else:
         form = StudentForm()   
     return render(request, 'students/student_add.html', {'form': form})
+
+
+def student_edit(request, student_id):
+    student = Student.objects.get(id=student_id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            messages.success(request, 
+                            u"Изменения данных студента сохранены в {0}"\
+                             .format(datetime.now().strftime("%H:%M:%S")))
+            return redirect('students:student_edit', student_id)
+        else:
+            return render(request, 
+                          'students/student_edit.html', {'form': form})
+    else:
+        form = StudentForm(instance=student)   
+    return render(request, 'students/student_edit.html', {'form': form})
 

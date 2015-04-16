@@ -1,7 +1,7 @@
 {% extends "base_person_add.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ student.full_name|default:"Создание нового студента" }}{% endblock %}
+{% block title %}Создание нового студента{% endblock %}
 
 {% block nav_extra_li %}
   {% include "includes/inc_nav_extra_li.html" with li_title="Создание нового студента" %}
@@ -9,3 +9,5 @@
 
 
 {% block page-header %}Создание нового студента{% endblock %}
+
+{% block submit_button %}Создать{% endblock %}
