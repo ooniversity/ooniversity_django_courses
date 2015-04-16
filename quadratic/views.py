@@ -2,11 +2,29 @@
 # -*- coding: UTF-8 -*-
 
 from django.shortcuts import render
+from django import forms
+
+class QuadraticForm(forms.Form):
+    a = forms.FloatField(label="коэффициент a")
+    b = forms.FloatField(label="коэффициент b")
+    c = forms.FloatField(label="коэффициент c")
+
+    def clean_a(self):
+    #https://docs.djangoproject.com/en/1.7/ref/forms/validation/#cleaning-a-specific-field-attribute
+        a=self.cleaned_data['a']
+        if a==0:
+            raise forms.ValidationError("коеффициент при первом слагаемом уравнения не может быть равен нулю")
+        return a
 
 def quadratic(request):
     return render(request, 'quadratic/quadratic.html')
 
 def results(request):
+
+    form = QuadraticForm()
+    if request.method == "GET":
+        form = QuadraticForm(request.GET)
+
 #http://stackoverflow.com/questions/150505/capturing-url-parameters-in-request-get
     a=request.GET.get('a', '')
     b=request.GET.get('b', '')
@@ -52,4 +70,4 @@ def results(request):
             x1=round(float((-b+(b**2-4*a*c)**0.5)/2.0*a), 2)
             x2=round(float((-b-(b**2-4*a*c)**0.5)/2.0*a), 2)
             message='Квадратное уравнение имеет два действительных корня: х1 = %s , x2 = %s' % (x1, x2)
-    return render(request, 'quadratic/results.html', { 'list':(('a',a,a_msg),('b',b,b_msg),('c',c,c_msg)), 'message':message, 'discriminant':discriminant}) #discriminant = 0 in case of empty message-variable: improve your code! (need to avoid zero-equal D if any parameter defined incorrectly)
+    return render(request, 'quadratic/results.html', { 'list':(('a',a,a_msg),('b',b,b_msg),('c',c,c_msg)), 'message':message, 'discriminant':discriminant, 'form': form}) #discriminant = 0 in case of empty message-variable: improve your code! (need to avoid zero-equal D if any parameter defined incorrectly)

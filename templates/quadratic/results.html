@@ -1,19 +1,21 @@
 {% extends "tech/base.html" %}
 {% load staticfiles %}
-
-{% block title %} Decision {% endblock title %}
+{% block title %} Решение {% endblock title %}
 {% block nav_class_quadratic %}active{% endblock %}
-
 {% block jumbotron %}{% endblock jumbotron %}
 {% block courses_table %}{% endblock courses_table %}
-
 {% block content_header %}{% endblock content_header %}
 
 {% block main_content %}
-
-<h2>Решение квадратного уравнения (манипулирование URL) </h2>
+<h2>Решение квадратного уравнения</h2>
           <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
-          {% if message == '' %}
+
+          <form method="get">
+              {{form.as_p}}
+              <input type='submit' value='Решить' />    
+          </form>
+
+          <!--{% if message == '' %}
  	      <ul>
           {% for var1,var2,msg in list %}         
              <li>{{ var1 }} = {{ var2 }}</li>
@@ -26,7 +28,12 @@
           </ul> <br>
           <p> Дискриминант: {{ discriminant }}</p>
           <p>{{ message }}</p>
-          {% endif %}
+          {% endif %} -->
 
+          {% if not list.0.2 %}
+          <br/><p> Дискриминант: {{ discriminant }}</p>
+          <p>{{ message }}</p>
+
+          {% endif %}
 
 {% endblock main_content %}

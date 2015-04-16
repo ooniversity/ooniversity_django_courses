@@ -1,21 +1,16 @@
 {% extends "tech/base.html" %}
 {% load staticfiles %}
-
-{% block title %} Equation {% endblock title %}
+{% block title %} Уравнение {% endblock title %}
 {% block nav_class_quadratic %}active{% endblock %}
-
 {% block jumbotron %}{% endblock jumbotron %}
 {% block courses_table %}{% endblock courses_table %}
-
 {% block content_header %}{% endblock content_header %}
 
 {% block main_content %}
-
 	<h2>Решение квадратного уравнения </h2>
           <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
           <a href = "{% url 'results' %}"> <button class="btn btn-primary" type="button">
             Перейти к странице решения
           </button> </a>
-
 {% endblock main_content %}
 
