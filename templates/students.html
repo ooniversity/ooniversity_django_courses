@@ -7,8 +7,20 @@
 {% block content %}
     <div class="container">
      <h4>Гранит науки сейчас грызут:</h4>
+     {% if text %}
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <p> {{ text }} </p>
+      </div>
+      {% endif %}
     </div>
     {% if student_list %}
+
+      <div class="container text-right">
+
+       <p><a href="{% url 'student_add' %}">
+       <button class="btn btn-small btn-primary" type="button">Добавить</button></a></p>
+     </div>
       <div class="container">
         <table id="main-table" class="table table-hover table-bordered">
           <thead>
@@ -18,6 +30,7 @@
               <th>Адрес</th>
               <th>Skype login</th>
               <th>Курс</th>
+              <th> </th>
            </tr>
           </thead>
 
@@ -29,8 +42,16 @@
               <td>{{ student.student_addr }}</td>
               <td>{{ student.student_skype }}</td>
               <td>{% for course in student.student_course.all %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a> <br>{% endfor %} </td>
-             </tr>
+              <td>
+              <a href="/student_mod/{{ student.id }}"<button class="btn btn-mini btn-primary" type="button">Изменить</button></a>
+                  <a href="/student_rem/{{ student.id }}"<button class="btn btn-mini btn-primary" type="button"> Удалить</a>
+              </td>
+            </tr>
+
+
+
            {% endfor %}
+
            </tbody>
          </table>
        {% else %}

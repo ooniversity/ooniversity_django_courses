@@ -8,10 +8,10 @@
   <br><br>
   <div class="container">
       <h3>На курсе преподают: </h3>
-      <p>Тренер: <b><a href="{% url 'coach' course.course_coach.id %}">
+      <p>Тренер: <b><a href="/coach/' course.course_coach.id">
       {{ course.course_coach.coach_user.get_full_name }}
       </a></b> - {{ course.course_coach.coach_description }}</p>
-      <p>Ассистент: <b><a href="{% url 'coach' course.course_assistent.id %}">
+      <p>Ассистент: <b><a href="/coach/ course.course_assistent.id">
       {{ course.course_assistent.coach_user.get_full_name }}
       </a></b> - {{ course.course_assistent.coach_description }}</p>
   </div>
