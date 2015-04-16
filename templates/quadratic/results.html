@@ -8,7 +8,7 @@
 {% block quadratic %}
 <form>
 {% if answer %}
-  <p>Квадратное уравнение вида {{ form.a.value }}×x² + {{ form.b.value }}×x + {{ form.c.value }} = 0</p>
+  <p>Квадратное уравнение вида {{ form.a.value }}×x² {% if form.b.value >= '0' %}+{% endif %} {{ form.b.value }}×x {% if form.c.value >= '0' %}+{% endif %} {{ form.c.value }} = 0</p>
 {% else %}
   <p>Квадратное уравнение вида a×x² + b×x + c = 0</p>
 {% endif %}

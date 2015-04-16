@@ -1,4 +1,4 @@
-{% extends 'students/base_registration_and_edit.html' %}
+{% extends 'base_edit.html' %}
 {% load staticfiles %}
 
 
@@ -7,12 +7,6 @@
 
 {% block form_name %}{{ form.surname.value }} {{ form.name.value }}{% endblock form_name %}
 
-
-{% block message %}
-{% include "includes/inc_messages.html" %}
-{% endblock message %}
-
-{% block submit_buttom %}
-    <button type="submit" class="btn btn-success">Сохранить</button>
-    <button type="reset" class="btn btn-warning">Откатить изменения</button>
-{% endblock submit_buttom %}
+{% block buttom_back %}
+    <a href="{% url 'students' %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

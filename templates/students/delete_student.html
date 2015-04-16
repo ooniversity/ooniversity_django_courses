@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base_delete.html' %}
 {% load staticfiles %}
 
 
-{% block title %}Удаление {{ application.surname }} {{ application.name }}{% endblock %}
+{% block title_deleted_name %}{{ application.surname }} {{ application.name }}{% endblock %}
 
 
-{% block main %}
-<div class='container'>
-  <h1>Студент {{ application.surname }} {{ application.name }} будет удален из списка студентов.</h1>
-  <form method="post">
-  {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Удалить</button>
-  <a href="{% url 'students' %}" class="btn btn-primary" role="button">Назад</a>
-  </form>
-</div>
-{% endblock main %}
+{% block deleted_name %}Студент {{ application.surname }} {{ application.name }}{% endblock %}
+
+
+{% block deleted_comment %}студентов{% endblock %}
+
+
+{% block back_url %}{% url 'students' %}{% endblock %}

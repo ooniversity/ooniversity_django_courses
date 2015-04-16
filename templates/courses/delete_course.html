@@ -1,0 +1,17 @@
+{% extends 'base_delete.html' %}
+{% load staticfiles %}
+
+
+{% block title_deleted_name %}{{ application.name }}{% endblock %}
+
+
+{% block deleted_name %}Курс {{ application.name }}{% endblock %}
+
+
+{% block deleted_comment %}курсов, со всеми его курсами{% endblock %}
+
+
+{% block back_url %}{% url 'courses:courses' %}{% endblock %}
+
+
+{% block title %}Удаление {{ application.name }}{% endblock %}

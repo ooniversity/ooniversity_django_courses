@@ -1,0 +1,12 @@
+{% extends 'base_edit.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{ form.name.value }}{% endblock %}
+
+
+{% block form_name %}{{ form.name.value }}{% endblock form_name %}
+
+{% block buttom_back %}
+    <a href="{% url 'courses:courses' %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

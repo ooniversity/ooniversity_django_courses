@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_registration_and_edit.html' %}
 {% load staticfiles %}
 
 
-{% block main %}
 {% block message %}
-{% endblock %}
+{% include "includes/inc_messages.html" %}
+{% endblock message %}
+{% block main %}
 <div class='container'>
   <h1>{% block form_name %}{% endblock %}</h1>
   <form method="post" enctype="multipart/form-data">
@@ -13,8 +14,11 @@
     {{ form.as_table }}
     </table>
 {% block submit_buttom %}
+    <button type="submit" class="btn btn-success">Регистрация</button>
+    <button type="reset" class="btn btn-danger">Очистить</button>
+{% endblock submit_buttom %}
+{% block buttom_back %}
 {% endblock %}
-    <a href="{% url 'students' %}" class="btn btn-primary" role="button">Назад</a>
   </form>
 </div>
 <div class='jumbotron'>

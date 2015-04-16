@@ -10,6 +10,7 @@
 
 
 {% block main %}
+{% include "includes/inc_messages.html" %}
 <!-- Course info ================================================== -->
 
     <div class="container">
@@ -25,9 +26,15 @@
 
     <div class="container">
       <div class="row">
-{% include 'includes/inc_block_instructor.html' with block_title='Учитель' instructor=object_list.0.coach %}
-{% include 'includes/inc_block_instructor.html' with block_title='Асистент' instructor=object_list.0.assistant %}
+{% include 'includes/inc_block_instructor.html' with title='Учитель' instructor=object_list.0.coach %}
+{% include 'includes/inc_block_instructor.html' with title='Асистент' instructor=object_list.0.assistant %}
       </div>
+    </div>
+
+<!-- Button add lessen ================================================== -->
+
+    <div class="container">
+      <a href="{% url 'courses:add_lesson' object_list.0.id %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Добавление лекции</a>
     </div>
 
 <!-- COURSE lessen ================================================== -->

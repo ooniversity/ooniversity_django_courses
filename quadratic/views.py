@@ -9,9 +9,9 @@ class QuadraticForm(forms.Form):
     b = forms.FloatField(label=u"Коэффициент b")
     c = forms.FloatField(label=u"Коэффициент c")
 
-    def clean(self):
-        data = self.cleaned_data
-        if data.get('a') == 0.0:
+    def clean_a(self):
+        data = self.cleaned_data['a']
+        if data == 0.0:
             raise forms.ValidationError(u"Коэффициент при первом слогаемом уравнения не может быть равным нулю")
         return data
 

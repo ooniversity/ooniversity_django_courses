@@ -2,12 +2,12 @@
 {% load staticfiles %}
 
 
-{% block title %}Регистрация нового студента{% endblock %}
+{% block title %}Регистрация нового курса{% endblock %}
 
 
 {% block form_name %}Форма регистрации{% endblock form_name %}
 
 
 {% block buttom_back %}
-    <a href="{% url 'students' %}" class="btn btn-primary" role="button">Назад</a>
+    <a href="{% url 'courses:courses' %}" class="btn btn-primary" role="button">Назад</a>
 {% endblock %}

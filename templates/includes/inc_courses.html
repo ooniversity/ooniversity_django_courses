@@ -6,6 +6,12 @@
       <h2 class="sub-header"><a href="{% url 'courses:courses' %}">Курсы</a></h2>
     </div>
 
+    <!-- Register buttom ================================================== -->
+
+    <div class="container">
+      <a href="{% url 'courses:course_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Регистрация нового курса</a>
+    </div>
+
     <div class="container">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -14,6 +20,8 @@
               <th>#</th>
               <th>Курс</th>
               <th>Описание</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           {% for course in object_list %}
@@ -22,6 +30,8 @@
               <td><p>{{ forloop.counter }}</p></td>
               <td><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></td>
               <td><p>{{ course.short_description|truncatechars:70 }}</p></td>
+              <td><a href="{% url 'courses:course_edit' pk=course.id %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
+              <td><a href="{% url 'courses:course_remove' pk=course.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
             </tr>
           </tbody>
           {% empty %}
