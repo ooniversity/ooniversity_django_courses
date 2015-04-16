@@ -22,13 +22,16 @@ def quadratic(request):
 def results(request):
 
     form = QuadraticForm()
-    if request.method == "GET":
-        form = QuadraticForm(request.GET)
 
 #http://stackoverflow.com/questions/150505/capturing-url-parameters-in-request-get
     a=request.GET.get('a', '')
     b=request.GET.get('b', '')
     c=request.GET.get('c', '')
+    
+    if a or b or c:
+        form = QuadraticForm(request.GET)
+    #if request.method == "GET":
+     #   form = QuadraticForm(request.GET)
 
     def a_exists(number):
         try:
