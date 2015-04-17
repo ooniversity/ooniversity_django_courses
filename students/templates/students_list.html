@@ -27,6 +27,8 @@ Students
           <th>Адрес</th>
           <th>Skype</th>
           <th>Курсы</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +44,16 @@ Students
           <td>{% for course in student.all_courses %}
             <a href="{% url 'courses:show' course.id %}">{{ course.title }}</a><br>
           {% endfor %}</td>
+          <td>
+            <a href="{% url 'students:student-edit' student.id %}">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'students:student-delete' student.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
