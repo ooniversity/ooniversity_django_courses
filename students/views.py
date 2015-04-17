@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import Http404
 
 from students.models import Student, StudentForm
 from courses.models import Course
@@ -16,7 +17,7 @@ def students_list(request):
 
     return render(request, 'students_list.html', {
         'students': students,
-        })
+    })
 
 
 def student_detail(request, pk):
@@ -26,7 +27,7 @@ def student_detail(request, pk):
     return render(request, 'detail_info.html', {
         'student': student,
         'courses': courses,
-        })
+    })
 
 
 def student_add(request):
@@ -45,4 +46,42 @@ def student_add(request):
 
     return render(request, 'add.html', {
         'form': form,
-        })
+    })
+
+
+def student_edit(request, pk):
+    student = Student.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student.save()
+            messages.success(
+                request, u"{} {} update success!".format(
+                    student.name, student.surname))
+            return redirect('students:students-list')
+    else:
+        form = StudentForm(instance=student)
+
+    return render(request, 'edit.html', {
+        'form': form,
+    })
+
+
+def student_delete(request, pk):
+    # try:
+    #     student = Student.objects.get(id=pk)
+    # except Student.DoesNotExist:
+    #     raise Http404("Student does not exist")
+    student = get_object_or_404(Student, pk=pk)
+
+    if request.method == "POST":
+        student.delete()
+        messages.success(
+            request, u"Student: {} {} was deleted".format(
+                student.name, student.surname))
+        return redirect('students:students-list')
+
+    return render(request, 'delete.html', {
+        'student': student,
+    })
