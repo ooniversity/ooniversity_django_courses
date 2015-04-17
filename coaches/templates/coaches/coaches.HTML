@@ -33,7 +33,7 @@
           <p> <small>телефон:</small> {{ coach.phone }} </p>
           <p> <small>курсы учитель:</small>
               {% for i in teacher %}
-                <a href="{% url 'courses:courses' i.id %}">{{ i.name }}  </a>
+                <a href="{% url 'courses:course' i.id %}">{{ i.name }}  </a>
                 <small>студенты курса</small> <a href="{% url 'students:student-list' %}?course_id={{ i.id }}"><img src="{% static "IMG/hw6.png" %}" alt="..."></a>
               {% empty %}
                 в данное время не преподает
@@ -41,7 +41,7 @@
           </p>
           <p><small>курсы ассистент:</small>
               {% for i in assistent %}
-                <a href="{% url 'courses:courses' i.id %}">{{ i.name }}  </a>
+                <a href="{% url 'courses:course' i.id %}">{{ i.name }}  </a>
                 <small>студенты курса</small> <a href="{% url 'students:student-list' %}?course_id={{ i.id }}"><img src="{% static "IMG/hw6.png" %}" alt="..."></a>
               {% empty %}
                 в данное время не ассистирует

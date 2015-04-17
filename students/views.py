@@ -26,6 +26,7 @@ def create_student(request):
     return render(request, 'students/new_student.HTML',
                   {'model_form':model_form})
 
+
 #Вьюшка для редактирования данных студента
 def edit_student(request, pk):
     application = Student.objects.get(id=pk)
@@ -39,6 +40,7 @@ def edit_student(request, pk):
         model_form = StudentForm(instance=application)
     return render(request, 'students/edit_data_student.HTML',
                   {'model_form':model_form})
+
 
 
 #Вьюшка для удаления студента

@@ -5,11 +5,18 @@
 {% block title %}IT Bursa - {{ course.name|title }}{% endblock title %}
 
 
+{% block css_for_page %}
+    <link href="{% static "students-list.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
 {% block students_list %}<a href="{% url 'students:student-list' %}?course_id={{ course.id }}">студенты</a>{% endblock students_list %}
 
 {% block main_content %}
 <!--Вставка слайдера-->
 {% include "inc_main_slider.HTML"%}
+<!--Сообщение-->
+{% include "inc_message.HTML"%}
 
   <!--Курс Питон датальная информация представленная в табличной форме-->
   <div class="row">
@@ -18,12 +25,18 @@
     <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
 
 <!--Информация о преподавателе курса -->
-{% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
+    {% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
 
     <br><br><br><br><br>
 
 <!--Иформация о ассистенте курса -->
-{% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+  {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+    <!--Кнопка добавить нового студента-->
+    <div class="row">
+      <a class="add btn btn-success btn-md " href="add_lesson/">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить новый урок
+      </a>
+    </div>
     <h2 class="media-heading">ПЛАН КУРСА</h2>
     <div class="table-responsive">
       <table ip = 'base-python' class="table table-striped">
@@ -35,7 +48,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for lesson in lessonss %}
+          {% for lesson in lessons %}
             <tr>
               <td>
                 {{ forloop.counter }}

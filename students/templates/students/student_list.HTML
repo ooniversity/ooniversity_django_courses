@@ -15,19 +15,8 @@
 
 {% block main_content %}
 
-
-
-  <!--Сообщение - новый студент успесшо создан-->
-{% if messages %}
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
+ <!--Сообщение-->
+  {% include "inc_message.HTML"%}
   <!--Кнопка добавить нового студента-->
   <div class="row">
     <a class="add btn btn-success btn-md " href="{% url 'students:create-student' %}">
@@ -67,7 +56,7 @@
               <td>
                 {% for i in student.courses.all %}
 
-                <a href="{% url 'courses:courses' i.id %}">{{ i.name }}</a><br>
+                <a href="{% url 'courses:course' i.id %}">{{ i.name }}</a><br>
                 {% endfor %}
               </td>
               <td>

@@ -20,8 +20,9 @@ class Lesson (models.Model):
     theme = models.CharField(verbose_name='Theme of lesson', max_length=40)
     discription = models.TextField(verbose_name='Lesson discription', null=True,
                                    blank=True)
-    course = models.ForeignKey(Course)
-    number = models.PositiveIntegerField(verbose_name='Number of lesson')
+    course = models.ForeignKey(Course, related_name='course_lesson')
+    number = models.PositiveIntegerField(verbose_name='Number of lesson',
+                                         unique = 'True')
 
     def __unicode__(self):
-        return self.theme
+        return str(self.number) + ' ' + self.theme
