@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% load bootstrap3 %}
+
 {% block title %}
 Add Student
 {% endblock %}
@@ -19,14 +21,20 @@ Add Student
 <div class="student-add">
   <h2>Анкета нового студента</h2>
 
-  <div>
+  <div class="col-md-6 col-md-offset-3">
     <form action="" method="post">
       {% csrf_token %}
-      <table class="style-form">
-      {{ form.as_table }}
-      </table>
-      <input type="submit" value="Создать" class="btn btn-default btn-sm btn-info"
-      style="margin-top:30px;" />
+      {% bootstrap_form form %}
+      {% buttons %}
+        <!-- <input type="submit" value="Создать" class="btn btn-default btn-sm btn-info"
+        style="margin-top:30px;" /> -->
+        <div class="row" style="margin-bottom: 10px; padding-left:10px;">
+          <button class="btn btn-info" type="submit">Создать</button>
+          <a class="btn btn-default" href="{% url 'students:students-list' %}">
+            Отменить
+          </a>
+        </div>
+      {% endbuttons %}
     </form>
 
   </div> 
