@@ -87,6 +87,13 @@ class CoachEditForm(forms.ModelForm):
         help_texts = {'address': 'Not a required field.'}
 
 
+class CoachEditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = Coach
+        fields = ['user']
+
+
 class CoachesView(generic.ListView):
     template_name = 'coaches/coaches.html'
     model = Coach
@@ -140,6 +147,20 @@ def coach_edit(request, pk):
         form = CoachEditForm(instance=application)
     application = get_object_or_404(Coach, pk=pk)
     return render(request, 'coaches/edit_coach.html', {'form': form, 'application': application})
+
+
+def coach_edit_user(request, pk):
+    application = get_object_or_404(Coach, pk=pk)
+    if request.method == 'POST':
+        form = CoachEditUserForm(request.POST, request.FILES, instance=application)
+        if form.is_valid():
+            application = form.save()
+            messages.success(request, 'Changes have been saved!')
+            return redirect('coaches:coach_edit', pk=application.pk)
+    else:
+        form = CoachEditUserForm(instance=application)
+    application = get_object_or_404(Coach, pk=pk)
+    return render(request, 'coaches/edit_coach.html', {'form': form, 'application': application, 'coach_edit_user': True})
 
 
 def coach_remove(request, pk):

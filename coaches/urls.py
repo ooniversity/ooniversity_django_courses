@@ -11,6 +11,7 @@ urlpatterns = patterns(
     url(r'^(?P<pk>\d+)/$', CoachView.as_view(), name='coach'),
     url(r'^add/$', coach_add, name='coach_add'),
     url(r'^edit/(?P<pk>\d+)/$', coach_edit, name='coach_edit'),
+    url(r'^edit/(?P<pk>\d+)/user$', coach_edit_user, name='coach_edit_user'),
     url(r'^remove/(?P<pk>\d+)/$', coach_remove, name='coach_remove'),
     url(r'^adduser/$', user_add, name='user_add'),
 )
