@@ -48,7 +48,7 @@ Detail info
                 <a href="{% url 'courses:show' coach_course.id %}">
                   {{ coach_course.title }}
                 </a>
-                [<a href="{% url 'students:students_list' %}?course_id={{ coach_course.id }}">
+                [<a href="{% url 'students:students-list' %}?course_id={{ coach_course.id }}">
                   cтуденты
                   <span class="glyphicon glyphicon-user"></span>
                 </a>]
@@ -65,7 +65,7 @@ Detail info
                 <a href="{% url 'courses:show' assistant_course.id %}">
                   {{ assistant_course.title }} 
                 </a>
-                [<a href="{% url 'students:students_list' %}?course_id={{ assistant_course.id }}">
+                [<a href="{% url 'students:students-list' %}?course_id={{ assistant_course.id }}">
                   cтуденты
                   <span class="glyphicon glyphicon-user"></span>
                 </a>]
