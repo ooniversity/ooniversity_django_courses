@@ -5,7 +5,7 @@
         <div class="row placeholders">
           <div class="col-xs-12 col-sm-12 placeholder">
             <img src="/static/IMG/{{ instructor.user }}.jpg" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4><a href="{% url 'coaches:coach_detail' instructor.id %}">{{ instructor.full_name|upper }}</a></h4>
+            <h4><a href="{% url 'coaches:coach-detail' instructor.id %}">{{ instructor.full_name|upper }}</a></h4>
             <span class="text-muted">{{ block_title }}</span>
           </div>
         </div>

@@ -5,7 +5,7 @@
 {% block title %}IT Bursa - {{ course.name|title }}{% endblock title %}
 
 
-{% block students_list %}<a href="{% url 'students:student_list' %}?course_id={{ course.id }}">студенты</a>{% endblock students_list %}
+{% block students_list %}<a href="{% url 'students:student-list' %}?course_id={{ course.id }}">студенты</a>{% endblock students_list %}
 
 {% block main_content %}
 <!--Вставка слайдера-->

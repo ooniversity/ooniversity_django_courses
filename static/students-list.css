@@ -1,0 +1,52 @@
+
+.add {
+    margin: 40px;
+    height: 45px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-align:center;
+}
+
+.del .edit {
+    height: 45px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-align:center;
+}
+
+.media-heading {
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #936;
+    font-size: 30px;
+}
+
+.custome{
+    margin-left: 450px;
+    height: 500px;
+}
+
+#custom_btn{
+    margin: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-align:center;
+    width: 200px;
+}
+
+#custom_btn_delete{
+    margin: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 10px;
+    text-align:center;
+    width: 200px;
+
+}
+

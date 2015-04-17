@@ -20,12 +20,36 @@ def create_student(request):
         if model_form.is_valid():
             application = model_form.save()
             messages.success(request, u'Студент {} {} успешно добавлен'.format(application.surname, application.name))
-            return redirect ('students:student_list')
+            return redirect ('students:student-list')
     else:
         model_form = StudentForm()
-
     return render(request, 'students/new_student.HTML',
                   {'model_form':model_form})
+
+#Вьюшка для редактирования данных студента
+def edit_student(request, pk):
+    application = Student.objects.get(id=pk)
+    if request.method == 'POST':
+        model_form = StudentForm(request.POST, instance=application)
+        if model_form.is_valid():
+            application = model_form.save()
+            messages.success(request, u'Данные студента {} {} успешно изменены'.format(application.surname, application.name))
+            return redirect (request.path)
+    else:
+        model_form = StudentForm(instance=application)
+    return render(request, 'students/edit_data_student.HTML',
+                  {'model_form':model_form})
+
+
+#Вьюшка для удаления студента
+def remove_student(request, pk):
+    application = Student.objects.get(id=pk)
+    if request.method == 'POST':
+        application.delete()
+        messages.success(request, u'Студент {} {} был удален'.format(application.surname, application.name))
+        return redirect ('students:student-list')
+    return render(request, 'students/remove_student.HTML',
+                  {'student':application})
 
 #
 def show_students(request):
