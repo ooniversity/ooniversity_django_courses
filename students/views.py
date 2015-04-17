@@ -9,18 +9,17 @@ from students.models import Student
 from courses.models import Course
 
 
-birth_years = xrange(2015,1930,-1)
+birth_years = xrange(2015, 1930, -1)
 
 
 class StudentAddForm(forms.ModelForm):
-    
+
     class Meta:
         model = Student
         widgets = {'course': forms.CheckboxSelectMultiple(), 'date_of_birth': SelectDateWidget(years=birth_years), 'image': AdminImageWidget()}
         labels = {'image': 'Photo'}
-        help_texts = {'course': "You can choose more then one course." , 'image': 'Not a required field.', 'address': 'Not a required field.'}
+        help_texts = {'course': "You can choose more then one course.", 'image': 'Not a required field.', 'address': 'Not a required field.'}
         fields = '__all__'
-
 
 
 class StudentsView(generic.ListView):
@@ -43,6 +42,7 @@ class StudentView(generic.ListView):
         qs = super(StudentView, self).get_queryset().filter(pk=self.kwargs['pk'])
         return qs
 
+
 def student_add(request):
     context = dict()
     if request.method == 'POST':
@@ -56,6 +56,7 @@ def student_add(request):
     context['form'] = form
     return render(request, 'students/add_student.html', context)
 
+
 def student_edit(request, pk):
     application = Student.objects.get(pk=pk)
     if request.method == 'POST':
@@ -66,6 +67,7 @@ def student_edit(request, pk):
     else:
         form = StudentAddForm(instance=application)
     return render(request, 'students/edit_student.html', {'form': form})
+
 
 def student_remove(request, pk):
     application = Student.objects.get(pk=pk)

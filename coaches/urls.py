@@ -12,4 +12,5 @@ urlpatterns = patterns(
     url(r'^add/$', coach_add, name='coach_add'),
     url(r'^edit/(?P<pk>\d+)/$', coach_edit, name='coach_edit'),
     url(r'^remove/(?P<pk>\d+)/$', coach_remove, name='coach_remove'),
+    url(r'^adduser/$', user_add, name='user_add'),
 )

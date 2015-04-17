@@ -19,7 +19,7 @@ class LessonAddForm(forms.ModelForm):
 
     def clean_consecutive_number(self):
         data = self.cleaned_data['consecutive_number']
-        consecutive_number_list=[]
+        consecutive_number_list = []
         for i in Lesson.objects.filter(course=self.cleaned_data['course']):
             consecutive_number_list.append(i.consecutive_number)
         if data in consecutive_number_list and data != self.instance.consecutive_number:
@@ -42,9 +42,19 @@ class CourseAddForm(forms.ModelForm):
         data = self.cleaned_data['assistant']
         if not data:
             raise forms.ValidationError(u"Выбирете ассистента.")
-        elif data == self.cleaned_data['coach']:
-            raise forms.ValidationError(u"Преподаватель и ассистент должны быть разными.")
+
         return data
+
+    def clean(self):
+        cleaned_data = super(CourseAddForm, self).clean()
+        coach = cleaned_data.get("coach")
+        assistant = cleaned_data.get("assistant")
+
+        if coach == assistant:
+            msg = u"Преподаватель и ассистент должны быть разными."
+            self.add_error('coach', msg)
+            self.add_error('assistant', msg)
+        return cleaned_data
 
 
 class CourseView(generic.ListView):

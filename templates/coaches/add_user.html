@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Регистрация нового пользователя{% endblock %}
+
+
+
+{% block main %}
+{% include "includes/inc_messages.html" %}
+<div class='container'>
+  <h1>Форма регистрации пользователя</h1>
+  <form method="post">
+    {% csrf_token %}
+    <table class="table table-striped">
+    {{userform.as_table}}
+    </table>
+    <button type="submit" class="btn btn-success">Регистрация</button>
+    <button type="reset" class="btn btn-danger">Очистить</button>
+    <a href="{% url 'coaches:coaches' %}" class="btn btn-primary" role="button">Назад</a>
+  </form>
+</div>
+<div class='jumbotron'>
+</div>
+{% endblock main %}
+
+
+
+
+

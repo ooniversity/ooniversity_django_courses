@@ -6,7 +6,7 @@
 
 
 {% block form_name %}Форма регистрации
-<h5>Необходимо предварительно зарегестрировать User'а!</h5>{% endblock form_name %}
+<h5>Необходимо предварительно зарегистрировать <a href="{% url 'coaches:user_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> User'a</a> !!!</h5>{% endblock form_name %}
 
 
 {% block buttom_back %}

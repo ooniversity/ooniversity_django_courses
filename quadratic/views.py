@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+
 from django.shortcuts import render
 from django import forms
 
@@ -17,7 +18,7 @@ class QuadraticForm(forms.Form):
 
 
 def results(request):
-    context=dict()
+    context = dict()
     if request.GET:
         form = QuadraticForm(request.GET)
         if form.is_valid():
