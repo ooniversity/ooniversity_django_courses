@@ -42,10 +42,10 @@
         <h3 class="text-muted">Ooniversity > {{student.surname}} {{student.name}}</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="{% url 'ooniversity' %}">Главная</a></li>
+            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
             <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'students' %}">Студенты</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href="{% url 'students:students-list' %}">Студенты</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
         </nav>
@@ -87,7 +87,10 @@
               <th><h2  align="right">Курсы:</h2></th>
               <th>
                 {% for stud_course in student.courses.all %}
-                    <a href="/courses/{{ stud_course.id }}/"><big><big><big>{{ stud_course.title }}</big></big></big></a><br>
+                    <a href="{% url 'courses:course-coaches' stud_course.id %}">
+                      <big><big><big>{{ stud_course.title }}</big></big></big>
+                    </a>
+                    <br>
                 {% endfor %}
               </th>
             </tr>

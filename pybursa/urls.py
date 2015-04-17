@@ -1,11 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from pybursa.views import index, contact, student_detail, student_list
-
-from pybursa.views import ooniversity, course, students, student_info
-
-from pybursa.views import course_with_coaches, coach_info
+from pybursa.views import index_ooniversity, contact
 
 
 urlpatterns = patterns('',
@@ -22,29 +18,11 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
 
 
-
-    # Ooniversity site pages - Django Control 5
-
-    url(r'^$', ooniversity, name = 'ooniversity'),
-
-    #url(r'^courses/(?P<id_course>\d+)/$', course),
-    url(r'^students/(?P<id_stud>\d+)/$', student_info, name = 'student_info'),
-    url(r'^students/$', students, name = 'students'),
-
-
-
-    # Added app coaches in courses - Django Control 6
-
-    url(r'^courses/(?P<id_course>\d+)/$', course_with_coaches, name = 'course_coaches'),
-
-    url(r'^coaches/(?P<id_coach>\d+)/$', coach_info, name = 'coach_info'),
-
-
-
-    # PyBursa site pages - Django Control 3
-    #url(r'^$', index, name = 'index'),
+    url(r'^$', index_ooniversity, name = 'index-ooniversity'),
     url(r'^contact/$', contact, name = 'contact'),
-    url(r'^student_detail/$', student_detail, name = 'student_detail'),
-    url(r'^student_list/$', student_list, name = 'student_list'),
+
+    url(r'^', include('students.urls', namespace = "students")),	# app - students
+    url(r'^', include('courses.urls', namespace = "courses")),		# app - courses
+    url(r'^', include('coaches.urls', namespace = "coaches")),		# app - coaches
 
 )

@@ -45,10 +45,10 @@
         <h3 class="text-muted">Ooniversity > Студенты</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="{% url 'ooniversity' %}">Главная</a></li>
+            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
             <li><a href="#">Преподаватели</a></li>
-            <li class="active"><a href="{% url 'students' %}">Студенты</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li class="active"><a href="{% url 'students:students-list' %}">Студенты</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
         </nav>
@@ -83,7 +83,9 @@
                   </td>
 
                   <td>
-                    <a href="/students/{{ student.id }}"><h4>{{ student.surname }} {{ student.name }}</h4></a>
+                    <a href="{% url 'students:student-info' student.id %}">
+                      <h4>{{ student.surname }} {{ student.name }}</h4>
+                    </a>
                   </td>
 
                   <td>
@@ -96,7 +98,10 @@
 
                   <td>
                     {% for stud_course in student.courses.all %}
-                        <a href="/courses/{{ stud_course.id }}/"><big>{{ stud_course.title }}</big></a><br>
+                        <a href="{% url 'courses:course-coaches' stud_course.id %}">
+                          <big>{{ stud_course.title }}</big>
+                        </a>
+                        <br>
                     {% endfor %}
                   </td>
                 </tr>

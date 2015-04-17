@@ -42,10 +42,10 @@
         <h3 class="text-muted">Ooniversity > {{ coach.full_name }}</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="{% url 'ooniversity' %}">Главная</a></li>
+            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
             <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'students' %}">Студенты</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href="{% url 'students:students-list' %}">Студенты</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
         </nav>
@@ -84,12 +84,37 @@
               <th><h2>{{ coach.phone }}</h2></th>
             </tr>
             <tr>
-              <th><h2  align="right">Курсы:</h2></th>
-              <th>
-                {% for coach_course in courses %}
-                    <a href="/courses/{{ coach_course.id }}/"><big><big><big>{{ coach_course.title }}</big></big></big></a><br>
+
+              <td><h2  align="right">Курсы - учитель:</h2></td>
+              <td>
+                {% for course in coach.coach.all %}
+                    <p>
+                      <a href="{% url 'courses:course-coaches' course.id %}">
+                        <big><big><big>{{ course.title }}</big></big></big>
+                      </a>
+                        <big><big><big> - cтуденты курса</big></big></big>
+                      <a href="{% url 'students:students-list' %}?course_id={{ course.id }}">
+                        <big><big><span class="glyphicon glyphicon-new-window"></span></big></big>
+                      </a>
+                    </p>
                 {% endfor %}
-              </th>
+              </td>
+            </tr>
+            <tr>
+              <td><h2  align="right">Курсы - ассистент:</h2></td>
+              <td>
+                {% for course in coach.assistant.all %}
+                    <p>
+                      <a href="{% url 'courses:course-coaches' course.id %}">
+                        <big><big><big>{{ course.title }}</big></big></big>
+                      </a>
+                        <big><big><big> - cтуденты курса</big></big></big>
+                      <a href="{% url 'students:students-list' %}?course_id={{ course.id }}">
+                        <big><big><span class="glyphicon glyphicon-new-window"></span></big></big>
+                      </a>
+                    </p>
+                {% endfor %}
+              </td>
             </tr>
           </tbody>
         </table>

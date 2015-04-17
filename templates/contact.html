@@ -42,10 +42,9 @@
         <h3 class="text-muted">PyBursa > Контакты</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="{% url 'index' %}">Главная</a></li>
-            <li><a href="http://pybursa.com">О курсе</a></li>
+            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
             <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'student_list' %}">Студенты</a></li>
+            <li><a href="{% url 'students:students-list' %}">Студенты</a></li>
             <li class="active"><a href="{% url 'contact' %}">Контакты</a></li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
