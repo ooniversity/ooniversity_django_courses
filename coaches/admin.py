@@ -9,4 +9,3 @@ class CoachAdmin(admin.ModelAdmin):
 	list_filter = ['gender']
 
 admin.site.register(Coach, CoachAdmin)
-

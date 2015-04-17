@@ -4,7 +4,9 @@ from django.shortcuts import render
 from courses.models import Course
 from django.views import generic
 
-def course_info(request):
+
+
+def courses_main(request):
     return render (request, 'index.html')
 
 def contact_list(request):

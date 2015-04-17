@@ -5,6 +5,7 @@ from django.views import generic
 
 from polls.models import Choice, Question
 
+
 class IndexView(generic.ListView):
     template_name = 'polls/index.html' #dobavil templates
     context_object_name = 'latest_question_list'
@@ -18,9 +19,11 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
+
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
@@ -38,6 +41,3 @@ def detail(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
-
-
-

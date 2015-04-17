@@ -7,9 +7,7 @@ def courses_main(request):
 
 def course_info(request, course_id):  	
 	return render (request, 'courses/course_page.html',
-	{'course_id': Course.objects.get(id=course_id).id,
-	'course_title': Course.objects.get(id=course_id).title,	
-	'course_shortdescription': Course.objects.get(id=course_id).short_description,
+	{'course': Course.objects.get(id=course_id),
 	'lessons': Lesson.objects.filter(course__id=course_id).order_by('number'),
 	'coach': Course.objects.get(id=course_id).coach,
 	'assistant': Course.objects.get(id=course_id).assistant
