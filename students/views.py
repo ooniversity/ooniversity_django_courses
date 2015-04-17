@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from models import Student 
+from models import Student
+
 
 def students_list(request):
     course_id = request.GET.get('course_id')
@@ -9,6 +10,7 @@ def students_list(request):
     else:
         students = Student.objects.filter(courses=course_id)
     return render(request, 'students_list.html', {'students': students})
+
 
 def student_info(request, id):
     student = Student.objects.get(id=id)

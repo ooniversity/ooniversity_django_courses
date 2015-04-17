@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><b>{{ block_title }}</b></div>
+      <div class="panel-body">
+        <p class="name"><a href="{% url 'coaches:coach_detail' position.id %}">
+              {{ position.full_name }}</a>
+          </p>
+
+        <p class="text">
+          {{ position.description }}
+        </p>
+      </div>
+    </div>

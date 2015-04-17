@@ -3,15 +3,19 @@
 from django.db import models
 from coaches.models import Coach
 
+
 class Course(models.Model):
     title = models.CharField(max_length=70)
     about = models.CharField(max_length=300)
     more_info = models.TextField()
-    coach = models.ForeignKey(Coach, blank=True, null=True, related_name='coachh')
-    assistant = models.ForeignKey(Coach, blank=True, null=True, related_name='assistantt')
+    coach = models.ForeignKey(
+        Coach, blank=True, null=True, related_name='courses_coach')
+    assistant = models.ForeignKey(
+        Coach, blank=True, null=True, related_name='courses_assistant')
 
     def __unicode__(self):
         return self.title
+
 
 class Lesson(models.Model):
     theme = models.CharField(max_length=100)

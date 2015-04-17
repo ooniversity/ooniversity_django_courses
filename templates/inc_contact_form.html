@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail" coverflow: auto;>
+      <div style="text-align: center">
+          <div>
+              <img class="photo" src="{% static image_name %}" alt="" />
+          </div>
+          <div>
+              {{ name }}
+          </div>
+      </div>
+    <div class="caption"; style="text-aling: center">
+      <h2>{{ position }}</h2>
+      <p>{{ email }}</p>
+      <p>
+          <span>skype:</span>
+          <a>{{ skype }}</a>
+      </p>
+      <p>{{ phone_num }}</p>
+    </div>
+  </div>
+</div>
