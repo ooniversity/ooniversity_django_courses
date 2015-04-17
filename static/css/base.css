@@ -25,14 +25,23 @@ body {
 }
 
 .course-info h2,
-.detail-info h2 {
+.detail-info h2,
+.student-add h2,
+.student-delete h2,
+.contacts h2 {
     background-color: #eeeeee;
     text-align: center;
+    padding: 10px;
 }
 
 .container > h2 {
     text-align:  center;
     padding-bottom: 20px;
+}
+
+.delete-std {
+    margin: 10px;
+    padding-top: 30px;
 }
 
 .footer {
@@ -58,10 +67,6 @@ body {
 #history-info {
     background: url("../images/history.png") no-repeat scroll 560px 65px rgba(0, 0, 0, 0);
     min-height: 287;
-    text-align: center;
-}
-
-.h2-center {
     text-align: center;
 }
 
@@ -126,11 +131,6 @@ body {
 
 .courses thead th {
     text-transform: uppercase;
-    text-align: center;
-}
-
-.student-add h2 {
-    background-color: #eeeeee;
     text-align: center;
 }
 
