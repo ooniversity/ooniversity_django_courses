@@ -1,0 +1,13 @@
+{% extends "base_add_edit.html" %}
+{% load staticfiles %}
+
+{% block title %}Редактирование курса{% endblock %}
+
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title="Редактирование курса" %}
+{% endblock nav_extra_li %}
+
+
+{% block page-header %}Редактирование курса{% endblock %}
+
+{% block submit_button %}Сохранить изменения{% endblock %}
