@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from students.views import student_list, student_detail, student_add, student_edit
+from students.views import student_list, student_detail, student_add, student_edit, student_remove
 
 
 urlpatterns = patterns('',
@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^(?P<student_id>\d+)/$', student_detail, name='student_detail'),
     url(r'^add/$', student_add, name='student_add'),
     url(r'^edit/(?P<student_id>\d+)/$', student_edit, name='student_edit'),
+    url(r'^remove/(?P<student_id>\d+)/$', student_remove, name='student_remove'),
 )

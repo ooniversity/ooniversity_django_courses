@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+
+<div class="page-header">
+  <h1>{% block page-header %}{% endblock %}</h1>
+</div>
+
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="Submit" value="{% block submit_button %}Удалить{% endblock %}">
+<form>
+
+{% endblock body %}
+

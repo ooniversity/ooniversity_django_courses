@@ -1,0 +1,12 @@
+{% extends "base_person_remove.html" %}
+{% load staticfiles %}
+
+{% block title %}Удаление студента{% endblock %}
+
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title="Удаление студента" %}
+{% endblock nav_extra_li %}
+
+
+{% block page-header %}Студент {{ student }} будет удалён.{% endblock %}
+

@@ -64,3 +64,14 @@ def student_edit(request, student_id):
         form = StudentForm(instance=student)   
     return render(request, 'students/student_edit.html', {'form': form})
 
+
+def student_remove(request, student_id):
+    student = Student.objects.get(id=student_id)
+    if request.method == 'POST':
+        full_name = student.full_name()
+        student.delete()
+        messages.success(request,u"Студент {0} был удалён"\
+                         .format(full_name))
+        return redirect('students:student_list')
+    return render(request, 'students/student_remove.html', {'student': student})
+
