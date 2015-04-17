@@ -40,3 +40,7 @@ table.profile {
 form { 
   padding: 40px; 
   }
+
+ul.messages {
+  color: #5cb85c;
+  }
