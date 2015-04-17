@@ -1,41 +1,50 @@
 # coding: utf8
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django import forms
+
+
+class QuadraticForm(forms.Form):
+    a = forms.FloatField(
+        label='Коэффициент a:', error_messages={'required': 'Введите коэффициент!'})
+    b = forms.FloatField(
+        label='Коэффициент b:', error_messages={'required': 'Введите коэффициент!'})
+    c = forms.FloatField(
+        label='Коэффициент c:', error_messages={'required': 'Введите коэффициент!'})
+
+    def clean_a(self):
+        value = self.cleaned_data['a']
+        if value == 0:
+            raise forms.ValidationError(
+                "Коэффициент при первом слогаемом в уравнении не может быть равен нулю")
+        return value
+
+
+def discr(a, b, c):
+    pretenz_discr = b ** 2 - 4 * a * c
+    result = round(pretenz_discr, 3)
+    return result
+
+
+def get_roots(a, b, c):
+    if discr(a, b, c) >= 0:
+        pretenz_x1 = (-b - discr(a, b, c) ** 0.5) / 2 * a
+        pretenz_x2 = (-b + discr(a, b, c) ** 0.5) / 2 * a
+
+        x1 = round(pretenz_x1, 3)
+        x2 = round(pretenz_x2, 3)
+        return (x1, x2)
 
 
 def quadratic_results(request):
+    if request.GET:
+        form = QuadraticForm(request.GET)
+        if form.is_valid():
+            a = form.cleaned_data.get('a')
+            b = form.cleaned_data.get('b')
+            c = form.cleaned_data.get('c')
 
-    errors = {'a': '', 'b': '', 'c': ''}
-
-    variables = {'a': str(request.GET['a']), 'b': str(request.GET['b']),
-                 'c': str(request.GET['c'])}
-    discr = None
-    x1 = None
-    x2 = None
-
-    if variables['a'] == '0':
-        errors[
-            'a'] = 'коэффициент при первом слогаемом уравнении не может быть равен нулю'
-
-    for var in variables:
-        if variables[var] == '':
-            errors[var] = 'коэффициент не определен'
-            continue
-        try:
-            variables[var] = int(variables[var])
-        except ValueError:
-            errors[var] = 'коэффициент не целое число'
-
-    temp = ''.join(errors.values())
-
-    if temp == '':  # if errors are empty == a,b,c are valid
-
-        discr = variables['b'] ** 2 - 4 * variables['a'] * variables['c']
-        if discr >= 0:
-            x1 = (-variables['b'] - discr ** 0.5) / 2 * variables['a']
-            x2 = (-variables['b'] + discr ** 0.5) / 2 * variables['a']
-
-    return render(request, 'quadratic_results.html',
-                  {'variables': variables, 'errors': errors, 'discr': discr,
-                   'x1': x1, 'x2': x2})
+            return render(request, "quadratic_results.html", {'form': form, 'discr': discr(a, b, c), 'roots': get_roots(a, b, c)})
+    else:
+        form = QuadraticForm()
+    return render(request, "quadratic_results.html", {'form': form})

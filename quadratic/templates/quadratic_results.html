@@ -4,7 +4,7 @@
 
  <head>
    <meta charset="utf-8">
-   <title>| Решение квадратного уравнения онлайн |</title>
+   <title>Решение квадратного уравнения онлайн |</title>
   <link rel="shortcut icon" href="{% static 'ico.jpg' %}" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
   <style type="text/css">
@@ -21,28 +21,15 @@
 
     <p>Коэффициенты уравнения:<br></p> 
 
-    <ul>
-      <li>a = {{ variables.a }} <br>
-        {% if errors.a %}
-          {{ errors.a }}
-        {% endif %}
-      </li>
-      <li>b = {{ variables.b }} <br>
-        {% if errors.b %}
-          {{ errors.b }}
-        {% endif %}
-      </li>
-      <li>c = {{ variables.c }} <br>
-        {% if errors.c %}
-          {{ errors.c }}
-        {% endif %}
-      </li>
-    </ul>
+    <form size="4">
+      {{ form.as_p }}
+      <input type="submit" value="Решить"> <br>
 
+    </form>
 
     {% if discr != None %}
 
-      <p style="color: red"> Дискриминант: {{ discr }}</p>
+      <h4 style="color: red"> Дискриминант: {{ discr }}</h4>
 
       {% if discr < 0 %}
         <p>
@@ -52,12 +39,12 @@
       {% elif discr == 0 %}
         <p>
           Дискриминант равен нулю, квадратное уравнение имеет один действительный
-          корень x1 = x2 = {{ x1 }}
+          корень x1 = x2 = {{ roots.0 }}
         </p>
       {% else %}
         <p>
           Квадратное уравнение имеет два действительных корня: 
-          x1 = {{ x1 }}, x2 = {{ x2 }}
+          x1 = {{ roots.0 }}, x2 = {{ roots.1 }}
         </p>
       {% endif %}
     {% endif %}
