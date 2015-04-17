@@ -30,7 +30,7 @@
                   <ul class="nav navbar-nav">
                       <li class="{% block nav_class_index %}{% endblock %}"><a href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a></li>
                       <li class="{% block nav_class_contact %}{% endblock %}"><a href='{% url "contact" %}'>Контакты</a></li>
-                      <li class="{% block nav_class_student %}{% endblock %}"><a href='{% url "students_of_the_course" %}'>Students</a></li>
+                      <li class="{% block nav_class_student %}{% endblock %}"><a href='{% url "students:students_of_the_course" %}'>Students</a></li>
                   </ul>
               </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

@@ -28,14 +28,14 @@
             <td>{{ coach.phone }}</td>
             <td>{% if course_instructor %}
                    {% for course in course_instructor %}
-                   <a href="{% url 'course_description' course.id %}">{{course}}</a></br>
-                   <a href="{% url 'students_of_the_course' %}?course_id={{course.id}}"> студенты инструктора</a></br>
+                   <a href="{% url 'courses:course_description' course.id %}">{{course}}</a></br>
+                   <a href="{% url 'students:students_of_the_course' %}?course_id={{course.id}}"> студенты инструктора</a></br>
                    {% endfor %}
                 {% endif %}</td>
                 <td>{% if course_assistant %}
                         {% for course in course_assistant %}
-                        <a href="{% url 'course_description' course.id %}">{{course}}</a></br>
-                        <a href="{% url 'students_of_the_course' %}?course_id={{course.id}}"> студенты ассистента</a></br>
+                        <a href="{% url 'courses:course_description' course.id %}">{{course}}</a></br>
+                        <a href="{% url 'students:students_of_the_course' %}?course_id={{course.id}}"> студенты ассистента</a></br>
                         {% endfor %}
                     {% endif %}</td>
         </tr>

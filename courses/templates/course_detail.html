@@ -32,11 +32,11 @@
           </thead>
           <tbody>
                <tr>
-                   <td><a href="{% url 'coach_info' course.instructor.id %}">{{ course.instructor }}</a></td>
+                   <td><a href="{% url 'coaches:coach_info' course.instructor.id %}">{{ course.instructor }}</a></td>
                    <td>{{ course.instructor.description }}</td>
                </tr>
                <tr>
-                   <td> <a href="{% url 'coach_info' course.assistant.id %}">{{ course.assistant }} </a></td>
+                   <td> <a href="{% url 'coaches:coach_info' course.assistant.id %}">{{ course.assistant }} </a></td>
                    <td>{{ course.assistant.description }}</td>
                </tr>
 

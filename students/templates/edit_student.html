@@ -1,0 +1,19 @@
+{% extends "templates/base_students.html" %}
+
+
+{% block title %} Add_student {% endblock title %}
+
+
+{% block name_table %}Редактирование данных студента {% endblock name_table %}
+
+
+{% block maincontain %}
+
+<form method="post" >
+
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="Submit" value="Сохранить данные студента">
+</form>
+
+{% endblock maincontain %}

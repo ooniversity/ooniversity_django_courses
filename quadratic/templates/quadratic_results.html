@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Расчет квадратного уравнения{% endblock title %}
+
+
+{% block container %}
+<h3>Решение квадратного уравнения вида a*x^2 + b*x + c = 0</h3>
+<br />
+
+<form method = 'get'>
+
+    {{ form.as_p }}
+
+    <input type="Submit" value="Вычислить">
+</form>
+
+<br />
+{{ discr }} <br />
+{{ solv }}
+
+{% endblock container %}

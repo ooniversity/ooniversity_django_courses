@@ -1,6 +1,22 @@
 {% extends "templates/base_students.html" %}
 
 {% block maincontain %}
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<a class="btn btn-primary active" href="{% url 'students:add_student' %}" role="button">
+<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+Добавить нового студента
+</a>
+
 <div class="table-responsive">
           <table class="table table-striped">
               <thead>
@@ -10,18 +26,32 @@
                       <th>адрес</th>
                       <th>skype</th>
                       <th>курсы</th>
+                      <th>редактировать данные</th>
+                      <th>удалить данные</th>
                   </tr>
               </thead>
           <tbody>
           {% for student in students %}
             <tr>
                 <td>{{forloop.counter}}</td>
-                <td> <a href="{% url 'student_info' student.id %}">{{student.name}} {{student.surname}}</a></td>
+                <td> <a href="{% url 'students:student_info' student.id %}">{{student.name}} {{student.surname}}</a></td>
                 <td>{{student.address}}</td>
                 <td>{{student.skype}}</td>
                 <td>{% for course in student.courses.all %}
-                    <a href="{% url 'course_description' course.id %}">{{course}}</a></br>
+                    <a href="{% url 'courses:course_description' course.id %}">{{course}}</a></br>
                     {% endfor %}</td>
+                <td>
+                    <a class="btn btn-primary active" href="{% url 'students:edit_student' student.id %}" role="button">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                  Редактировать данные
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-primary active" href="{% url 'students:delete_student' student.id %}" role="button">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                  удалить данные
+                    </a>
+                </td>
                 </tr>
           {% endfor %}
           </tbody>

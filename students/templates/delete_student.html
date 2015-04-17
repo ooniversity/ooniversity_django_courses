@@ -1,0 +1,20 @@
+{% extends "templates/base_students.html" %}
+
+
+{% block title %} Delete_student {% endblock title %}
+
+
+{% block name_table %} Удаление данных студента {% endblock name_table %}
+
+
+{% block maincontain %}
+
+Delete {{ student.name }} {{ student.surname }}
+<form method="post" >
+
+  {% csrf_token %}
+
+  <input type="Submit" value="Удалить данные студента">
+</form>
+
+{% endblock maincontain %}
