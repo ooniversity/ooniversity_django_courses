@@ -44,7 +44,7 @@
       <td>{{ student.skype }}</td>
       <td>
         {% for course in student.courses.all%}
-          <a href="{% url 'course-description' course.id %}">{{ course }}</a></br>
+          <a href="{% url 'courses:course_description' course.id %}">{{ course }}</a></br>
         {% endfor %}
       </td>
       <td>

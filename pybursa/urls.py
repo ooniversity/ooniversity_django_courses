@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = patterns('',
 	url(r'^$', 'courses.views.main', name='main'),
 	url(r'^coaches/', include('coaches.urls')),
-	url(r'^courses/', include('courses.urls')),
+	url(r'^courses/', include('courses.urls', namespace="courses")),
 	url(r'^students/', include('students.urls', namespace="students")),
 	url(r'^contact/$', 'pybursa.views.contact', name='contact'),
 	url(r'^student_list/$', 'pybursa.views.student_list', name='student_list'),

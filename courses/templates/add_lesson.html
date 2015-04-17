@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block page_title %}Создание нового занятия{% endblock %}
+
+
+{% block nav_main %}active{% endblock %}
+
+
+{% block content %}
+<form method="post" > 
+  {% csrf_token %}    
+  <p>{{ form.as_p }}</p>
+  <input type="submit" value="Создать"> 
+</form>           
+{% endblock %} 

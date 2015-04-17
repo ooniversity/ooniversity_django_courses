@@ -8,6 +8,15 @@
 
 
 {% block content %}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
       <div class="jumbotron">
         <h2>{{ course.name|upper }}</h2>
         <p class="lead">{{ course.description }}</p>
@@ -18,6 +27,11 @@
 {% include "include_coach.html" with block_title="Ассистент" instructor=course.assistant %}    
 
       <h2 class="sub-header">План курса</h2>
+      <a class="btn btn-primary active" 
+         href="{% url 'courses:add_lesson' course.id %}" role="button">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+         Добавить занятие
+      </a>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>

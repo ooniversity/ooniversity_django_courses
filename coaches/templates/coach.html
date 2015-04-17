@@ -34,9 +34,9 @@
                   <td>
                       {% if trainer_courses %}
                         {% for course in trainer_courses %}
-                          <a href="{% url 'course-description' course.id %}">{{ course }}</a> 
+                          <a href="{% url 'courses:course_description' course.id %}">{{ course }}</a> 
                           студенты курса
-                          <a href="{% url 'list-students' %}?course_id={{ course.id }}">
+                          <a href="{% url 'students:list-students' %}?course_id={{ course.id }}">
                           <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
                           </a></br>
                         {% endfor %}
@@ -48,9 +48,9 @@
                   <td>
                       {% if assistant_courses %}
                         {% for course in assistant_courses %}
-                          <a href="{% url 'course-description' course.id %}">{{ course }}</a>
+                          <a href="{% url 'courses:course_description' course.id %}">{{ course }}</a>
                           студенты курса
-                          <a href="{% url 'list-students' %}?course_id={{ course.id }}">
+                          <a href="{% url 'students:list-students' %}?course_id={{ course.id }}">
                           <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
                           </a></br>
                         {% endfor %}
