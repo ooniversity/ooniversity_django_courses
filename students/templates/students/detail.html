@@ -8,16 +8,10 @@
 {% endblock %}
 
 
-{% block content %}
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-          </ul>
-        </nav>
-      </div>
+{% block menu_students %}active{% endblock menu_students %}
+
+
+{% block main_content %}
 
         <h2>
 
@@ -40,7 +34,7 @@
 
         <tr>
           <td>дата рождения</td>
-          <td>{{ student.birth_date }}</td>
+          <td>{{ student.birth_date|date:"SHORT_DATE_FORMAT" }}</td>
         </tr>
         <tr>
           <td>адрес</td>
@@ -79,5 +73,5 @@
 {% endif %}
 
 
-{% endblock %}
+{% endblock main_content %}
 

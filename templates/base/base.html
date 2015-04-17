@@ -44,8 +44,26 @@
 
 
     <div class="container">
-      {% block content %}
-      {% endblock %}
+      <!-- menu block -->
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="{% block menu_index %}{% endblock %}">
+              <a href="{% url 'courses_i:index' %}">Главная</a>
+            </li>
+            <li role="presentation" class="{% block menu_students %}{% endblock %}">
+              <a href="{% url 'students:index' %}{% block course_info %}{% endblock %}">Студенты</a>
+            </li>
+            <li role="presentation" class="{% block menu_contact %}{% endblock %}">
+              <a href="{% url 'contact' %}">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- end menu -->
+
+      {% block main_content %}
+      {% endblock main_content %}
 
       {% include "base/inc_footer.html" %}
     </div> <!-- /container -->

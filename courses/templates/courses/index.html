@@ -5,19 +5,13 @@
 
 {% block title %}
   Главная
-{% endblock %}
+{% endblock title %}
 
 
-{% block content %}
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-          </ul>
-        </nav>
-      </div>
+{% block menu_index %}active{% endblock menu_index %}
+
+
+{% block main_content %}
 
         <h2>
           ooniversity
@@ -63,5 +57,5 @@
 {% endif %}
 
 
-{% endblock %}
+{% endblock main_content %}
 

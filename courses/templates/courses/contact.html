@@ -8,16 +8,10 @@
 {% endblock %}
 
 
-{% block content %}
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-            <li role="presentation" class="active"><a href="{% url 'contact' %}">Контакты</a></li>
-          </ul>
-        </nav>
-      </div>
+{% block menu_contact %}active{% endblock menu_contact %}
+
+
+{% block main_content %}
 
         <h2>
           ooniversity
@@ -25,7 +19,10 @@
 
         <div>
           <h4>
-            Тут контакты организации.
+            Тут контакты организаторов. <br>
+            Тут контакты организаторов. <br>
+            Тут контакты организаторов. <br>
+            Тут контакты организаторов. <br>
           </h4>
         </div>
 
@@ -33,5 +30,5 @@
           Выбирай на каком курсе хочешь учиться!
         </h4>
 
-{% endblock %}
+{% endblock main_content %}
 

@@ -8,16 +8,7 @@
 {% endblock %}
 
 
-{% block content %}
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-          </ul>
-        </nav>
-      </div>
+{% block main_content %}
 
         <h2>
 
@@ -67,7 +58,7 @@
                </a>
                &nbsp
               студенты курса
-              <a href="{% url 'students:index' %}?course_id={{course.id}}">
+              <a href="{% url 'students:index' %}?course_id={{ course.id }}">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
               </a>
               <br>
@@ -83,7 +74,7 @@
                </a>
               &nbsp
               студенты курса
-              <a href="{% url 'students:index' %}?course_id={{course.id}}">
+              <a href="{% url 'students:index' %}?course_id={{ course.id }}">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
               </a>
               <br>
@@ -100,5 +91,5 @@
 {% endif %}
 
 
-{% endblock %}
+{% endblock main_content %}
 
