@@ -7,6 +7,8 @@ from django.contrib import messages
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 
+from django.shortcuts import get_object_or_404
+
 from static.python.AdminImageWidget import AdminImageWidget
 from coaches.models import Coach
 from courses.models import Course
@@ -95,7 +97,7 @@ class CoachView(generic.ListView):
     model = Coach
 
     def get_queryset(self):
-        qs = super(CoachView, self).get_queryset().filter(pk=self.kwargs['pk'])
+        qs = get_object_or_404(Coach, pk=self.kwargs['pk'])
         return qs
 
 
@@ -106,7 +108,7 @@ def user_add(request):
         if user_form.is_valid():
             user = user_form.save()
             messages.success(request, 'User registration complite!')
-            return redirect('coaches:coaches')
+            return redirect('coaches:coach_add')
     else:
         user_form = UserAddForm()
     context['userform'] = user_form
@@ -128,7 +130,7 @@ def coach_add(request):
 
 
 def coach_edit(request, pk):
-    application = Coach.objects.get(pk=pk)
+    application = get_object_or_404(Coach, pk=pk)
     if request.method == 'POST':
         form = CoachEditForm(request.POST, request.FILES, instance=application)
         if form.is_valid():
@@ -136,12 +138,12 @@ def coach_edit(request, pk):
             messages.success(request, 'Changes have been saved!')
     else:
         form = CoachEditForm(instance=application)
-    application = Coach.objects.get(pk=pk)
+    application = get_object_or_404(Coach, pk=pk)
     return render(request, 'coaches/edit_coach.html', {'form': form, 'application': application})
 
 
 def coach_remove(request, pk):
-    application = Coach.objects.get(pk=pk)
+    application = get_object_or_404(Coach, pk=pk)
     if request.method == 'POST':
         application.delete()
         messages.warning(request, u'Object {} {} deleted!'.format(application.user.last_name, application.user.first_name))

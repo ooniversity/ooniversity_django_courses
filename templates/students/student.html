@@ -2,9 +2,9 @@
 {% load staticfiles %}
 
 
-{% block title %}{{ object_list.0.surname }} {{ object_list.0.name }}{% endblock %}
+{% block title %}{{ object_list.surname }} {{ object_list.name }}{% endblock %}
 
 
 {% block personal_info %}
-{% include 'includes/inc_personal_info.html' with person=object_list.0 img_class='' img_width='' %}
+{% include 'includes/inc_personal_info.html' with person=object_list img_class='' img_width='' %}
 {% endblock personal_info %}

@@ -2,10 +2,10 @@
 {% load staticfiles %}
 
 
-{% block title %}{{ object_list.0.name }}{% endblock %}
+{% block title %}{{ object_list.name }}{% endblock %}
 
 {% block nav_additional_botton %}
-            <li><a href="{% url 'students' %}?course_id={{ object_list.0.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
+            <li><a href="{% url 'students' %}?course_id={{ object_list.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
 {% endblock %}
 
 
@@ -14,8 +14,8 @@
 <!-- Course info ================================================== -->
 
     <div class="container">
-      <h1>{{ object_list.0.name }}</h1>
-      <p>{{ object_list.0.description|linebreaks }}</p>
+      <h1>{{ object_list.name }}</h1>
+      <p>{{ object_list.description|linebreaks }}</p>
     </div>
 
 <!-- Coaches ================================================== -->
@@ -26,15 +26,15 @@
 
     <div class="container">
       <div class="row">
-{% include 'includes/inc_block_instructor.html' with title='Учитель' instructor=object_list.0.coach %}
-{% include 'includes/inc_block_instructor.html' with title='Ассистент' instructor=object_list.0.assistant %}
+{% include 'includes/inc_block_instructor.html' with title='Учитель' instructor=object_list.coach %}
+{% include 'includes/inc_block_instructor.html' with title='Ассистент' instructor=object_list.assistant %}
       </div>
     </div>
 
 <!-- Button add lessen ================================================== -->
 
     <div class="container">
-      <a href="{% url 'courses:add_lesson' object_list.0.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Добавление лекции</a>
+      <a href="{% url 'courses:add_lesson' object_list.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Добавление лекции</a>
     </div>
 
 <!-- COURSE lessen ================================================== -->
@@ -54,7 +54,7 @@
               <th></th>
             </tr>
           </thead>
-          {% for lesson in object_list.0.lesson_set.filter|dictsort:"consecutive_number" %}
+          {% for lesson in object_list.lesson_set.filter|dictsort:"consecutive_number" %}
           <tbody>
             <tr>
               <td><p>{{ lesson.consecutive_number }}</p></td>

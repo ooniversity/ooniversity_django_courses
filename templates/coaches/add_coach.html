@@ -5,6 +5,11 @@
 {% block title %}Регистрация нового преподавателя{% endblock %}
 
 
+{% block message %}
+{% include "includes/inc_messages.html" %}
+{% endblock message %}
+
+
 {% block form_name %}Форма регистрации
 <h5>Необходимо предварительно зарегистрировать <a href="{% url 'coaches:user_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> User'a</a> !!!</h5>{% endblock form_name %}
 

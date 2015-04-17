@@ -1,8 +1,14 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
+
+from django.shortcuts import get_object_or_404
 
 from static.python.AdminImageWidget import AdminImageWidget
 from students.models import Student
@@ -16,9 +22,17 @@ class StudentAddForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        widgets = {'course': forms.CheckboxSelectMultiple(), 'date_of_birth': SelectDateWidget(years=birth_years), 'image': AdminImageWidget()}
+        widgets = {
+            'course': forms.CheckboxSelectMultiple(),
+            'date_of_birth': SelectDateWidget(years=birth_years),
+            'image': AdminImageWidget()
+            }
         labels = {'image': 'Photo'}
-        help_texts = {'course': "You can choose more then one course.", 'image': 'Not a required field.', 'address': 'Not a required field.'}
+        help_texts = {
+            'course': "You can choose more then one course.",
+            'image': 'Not a required field.',
+            'address': 'Not a required field.'
+            }
         fields = '__all__'
 
 
@@ -39,7 +53,7 @@ class StudentView(generic.ListView):
     model = Student
 
     def get_queryset(self):
-        qs = super(StudentView, self).get_queryset().filter(pk=self.kwargs['pk'])
+        qs = get_object_or_404(Student, pk=self.kwargs['pk'])
         return qs
 
 
@@ -58,7 +72,7 @@ def student_add(request):
 
 
 def student_edit(request, pk):
-    application = Student.objects.get(pk=pk)
+    application = get_object_or_404(Student, pk=pk)
     if request.method == 'POST':
         form = StudentAddForm(request.POST, request.FILES, instance=application)
         if form.is_valid():
@@ -70,7 +84,7 @@ def student_edit(request, pk):
 
 
 def student_remove(request, pk):
-    application = Student.objects.get(pk=pk)
+    application = get_object_or_404(Student, pk=pk)
     if request.method == 'POST':
         application.delete()
         messages.warning(request, u'Object {} {} deleted!'.format(application.surname, application.name))

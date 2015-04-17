@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.views import generic
 from django import forms
 
+from django.shortcuts import get_object_or_404, get_list_or_404
+
 from courses.models import Course, Lesson
 from coaches.models import Coach
 
@@ -67,7 +69,7 @@ class CourseDetialView(generic.ListView):
     model = Course
 
     def get_queryset(self):
-        qs = super(CourseDetialView, self).get_queryset().filter(pk=self.kwargs['pk'])
+        qs = get_object_or_404(Course, pk=self.kwargs['pk'])
         return qs
 
 
@@ -82,7 +84,7 @@ def add_lesson(request, pk):
             return redirect('courses:detail', pk=context['course_id'])
     else:
         consecutive_number = get_consecutive_number(pk)
-        course_name = Course.objects.get(pk=pk).name
+        course_name = get_object_or_404(Course, pk=pk).name
         theme = u'{}, лекция {}'.format(course_name, consecutive_number)
         form = LessonAddForm(initial={'course': pk, 'consecutive_number': consecutive_number, 'theme': theme})
     context['form'] = form
@@ -90,7 +92,7 @@ def add_lesson(request, pk):
 
 
 def edit_lesson(request, pk):
-    application = Lesson.objects.get(pk=pk)
+    application = get_object_or_404(Lesson, pk=pk)
     if request.method == 'POST':
         form = LessonAddForm(request.POST, instance=application)
         if form.is_valid():
@@ -102,7 +104,7 @@ def edit_lesson(request, pk):
 
 
 def remove_lesson(request, pk):
-    application = Lesson.objects.get(pk=pk)
+    application = get_object_or_404(Lesson, pk=pk)
     if request.method == 'POST':
         application.delete()
         messages.warning(request, u'Object {} deleted!'.format(application.theme))
@@ -125,7 +127,7 @@ def course_add(request):
 
 
 def course_edit(request, pk):
-    application = Course.objects.get(pk=pk)
+    application = get_object_or_404(Course, pk=pk)
     if request.method == 'POST':
         form = CourseAddForm(request.POST, instance=application)
         if form.is_valid():
@@ -137,7 +139,7 @@ def course_edit(request, pk):
 
 
 def course_remove(request, pk):
-    application = Course.objects.get(pk=pk)
+    application = get_object_or_404(Course, pk=pk)
     lessons = Lesson.objects.filter(course=application)
     if request.method == 'POST':
         for lesson in lessons:
@@ -145,4 +147,4 @@ def course_remove(request, pk):
         application.delete()
         messages.warning(request, u'Object {} deleted!'.format(application.name))
         return redirect('courses:courses')
-    return render(request, 'courses/delete_course.html', {'application': application})
+    return render(request, 'courses/delete_course.html', {'application': application, 'lessons_count': len(lessons)})

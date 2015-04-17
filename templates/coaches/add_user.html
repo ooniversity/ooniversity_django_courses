@@ -9,7 +9,7 @@
 {% block main %}
 {% include "includes/inc_messages.html" %}
 <div class='container'>
-  <h1>Форма регистрации пользователя</h1>
+  <h1>Форма регистрации нового пользователя</h1>
   <form method="post">
     {% csrf_token %}
     <table class="table table-striped">
@@ -17,7 +17,7 @@
     </table>
     <button type="submit" class="btn btn-success">Регистрация</button>
     <button type="reset" class="btn btn-danger">Очистить</button>
-    <a href="{% url 'coaches:coaches' %}" class="btn btn-primary" role="button">Назад</a>
+    <a href="{% url 'coaches:coach_add' %}" class="btn btn-primary" role="button">Назад</a>
   </form>
 </div>
 <div class='jumbotron'>

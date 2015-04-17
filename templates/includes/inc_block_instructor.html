@@ -1,10 +1,11 @@
+{% load staticfiles %}
         <div class="col-xs-6">
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">{{ title|default:"Instructor" }}</h3>
             </div>
             <div class="panel-body">
-              <img class="img-circle" src="{{ instructor.image.url|default:"" }}" width="140" height="140">
+              <img class="img-circle" src="{% if instructor.image %}{{ instructor.image.url }}{% else %}{% static 'img/No_image_available.svg' %}{% endif %}" width="140" height="140">
               <h4><a href="{% url 'coaches:coach' instructor.pk|default:0 %}">{{ instructor.user.last_name|default:"Last_Name" }} {{ instructor.user.first_name|default:"First_Name" }}</a></h4>
               <p>{{ instructor.description|default:"Description"|linebreaks }}</p>
             </div>
