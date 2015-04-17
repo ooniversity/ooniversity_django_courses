@@ -34,8 +34,6 @@ def student_add(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
-            form.cleaned_data['name'] = form.cleaned_data['name'].capitalize()
-            form.cleaned_data['surname'] = form.cleaned_data['surname'].capitalize()
             student = form.save()
             messages.success(
                 request, u"Student {} {} add success!".format(

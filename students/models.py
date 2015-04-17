@@ -46,11 +46,12 @@ class StudentForm(ModelForm):
         labels = {
             'phone_num': 'Phone',
         }
+        fields = '__all__'
 
     def clean_name(self):
-       name = self.cleaned_data['name'].capitalize()
-       return name
+        name = self.cleaned_data['name'].capitalize()
+        return name
 
     def clean_surname(self):
-       surname = self.cleaned_data['surname'].capitalize()
-       return surname
+        surname = self.cleaned_data['surname'].capitalize()
+        return surname
