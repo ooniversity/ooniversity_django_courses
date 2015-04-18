@@ -4,6 +4,7 @@ from students import views
 
 urlpatterns = patterns('',
     url(r'^/$', views.students, name='students'),
-    url(r'/(?P<pk>\d+)/$', views.student_d, name='student_d'), 
+    url(r'/(?P<pk>\d+)/$', views.student_d, name='student_d'),
+    url(r'add/$', views.add_stundent, name='add_stundent'), 
 )
 
