@@ -1,110 +1,50 @@
-<!DOCTYPE html>
-<html lang="en"><head>
+{% extends "students/base.html" %}
+
+
 {% load staticfiles %}
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
-    <title>Student Detail</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+{% block title %}Course Detail{% endblock title %}
 
-    
-    <!-- Custom styles for this template -->
-    <link href="{% static 'carousel.css' %}" rel="stylesheet">
-  </head>
-<!-- NAVBAR
-================================================== -->
-  <body>
-    <div style="margin-top:1%">
-      <div class="container">
 
-        <nav class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="{% url 'index' %}">PyBursa</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="{% url 'index' %}">Главная</a></li>
-                <li><a href="{% url 'contact' %}">Контакты</a></li>
-		<li><a href="{% url 'students:students' %}?course_id={{courses.crs.id}}">Студенты</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+{% block nav_class_students %}{% endblock %}
 
-      </div>
-    </div>
 
-<!-- NAVBAR
-================================================== END-->
+{% block main_content %}
 
-<div class="container">
 <div class="jumbotron">
   			<div class="container">
 
 					<h1>{{ courses.crs.name }}</h1>
- 				  <p>{{ courses.crs.description }}</p>
+ 				  <p>{{ courses.crs.description|truncatechars:158 }}</p>
   				
     
   			</div>
 		</div>	
 </div>
 
-
-	<!-- 
-	TEACHER START
-	-->
-	<div class='container'>
+<div class='container'>
 	<h2>Преподаватели</h2>
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Учитель</h3>
-	  </div>
-	  <div class="panel-body">
-	    <p><a href="{% url 'coaches:coach' courses.cch.user.id %}">{{courses.cch.user.first_name}} {{courses.cch.user.last_name}}</a></p>
-            <p>{{courses.cch.description}}</p>
-	  </div>
-	</div>
-	</div>
 	<!-- 
 	TEACHER START
 	-->
 
+{% include "courses/inc_instructor.html" with block_title="Учитель" instructor=courses.cch %}
+
+	<!-- 
+	TEACHER START
+	-->
 
 	<!-- 
 	ASSISTANT START
 	-->
-	<div class='container'>
-	<div class="panel panel-default">
-
-	  <div class="panel-heading">
-	    <h3 class="panel-title">Ассистент</h3>
-	  </div>
-	  <div class="panel-body">
-	    <p><a href="{% url 'coaches:coach' courses.assst.user.id %}">{{courses.assst.user.first_name}} {{courses.assst.user.last_name}}</a></p>
-            <p>{{courses.assst.description}}</p>
-	  </div>
-	</div>
-	</div>
-
+	
+{% include "courses/inc_instructor.html" with block_title="Ассистент" instructor=courses.assst %}
+	
 	<!-- 
 	ASSISTANT START
 	-->
-
+</div>
 <!--TABLE
 ====================================================-->
 <div class="container"><h3>План курса</h3>
@@ -127,42 +67,6 @@
 {% endfor %}						
 				</table>  
 
-
-		
-
 </div></div>
-
-			
-
-			
-
-
-	
-
-<!--TABLE
-====================================================END-->
-
- 
-		<div class="container">
-			<hr class="featurette-divider">
-						<!-- FOOTER -->
-						<footer>	
-						  <p class="pull-right"><a href="#">Back to top</a></p>
-						  <p>© 2015 PyBursa, Esk.</p>
-						</footer>
-
-					</div><!-- /.container -->
-		</div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'jquery.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="{% static holder.js %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="Carousel%20Template%20for%20Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
-  
-
-<svg style="visibility: hidden; position: absolute; top: -100%; left: -100%;" preserveAspectRatio="none" viewBox="0 0 500 500" height="500" width="500"><defs></defs><text style="font-weight:bold;font-size:23pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle" y="23" x="0">500x500</text></svg></body></html>
+		
+{% endblock main_content %}

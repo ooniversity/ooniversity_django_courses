@@ -4,16 +4,10 @@ from django.shortcuts import render
 from coaches.models import Coach
 from courses.models import Course
 
-def coach(request, coa):
-    cch = Coach.objects.get(user_id = coa)
-    text1 = ''
-    text2 = ''
-    crs_teacher = Course.objects.filter(coach = cch)
-    if crs_teacher:
-        text1 = "Курсы учитель: "
-    crs_assist = Course.objects.filter(assistant = cch)
-    if crs_assist:
-        text2 = "Курсы ассистент: "
-    d = {'cch':cch, 'crs_teacher': crs_teacher, 'crs_assist': crs_assist, 'text':[text1, text2]}
-    return render(request, 'coaches/coach.html', {'dd':d})
+def coach(request, coach_id):
+    coach = Coach.objects.get(user_id=coach_id)
+    teacher_courses = Course.objects.filter(coach=coach)
+    assistant_courses = Course.objects.filter(assistant=coach)
+    d = {'coach':coach, 'teacher_courses': teacher_courses, 'assistant_courses': assistant_courses}
+    return render(request, 'coaches/coach.html', d)
 
