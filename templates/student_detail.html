@@ -43,7 +43,7 @@
                 логин skype
               </td>
               <td>
-                {{ student.skype }}
+                {{ student.skype|default:"---------" }}
               </td>
             </tr>
             <tr>

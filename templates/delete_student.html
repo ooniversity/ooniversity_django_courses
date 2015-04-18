@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+
+{% block title %} PythonClasses | Удаление данных студента |{% endblock %}
+
+
+{% block nav_class_student %} active {% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+
+    {% if messages %}
+        <p class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><h2>Удаление данных студента</h2></div>
+      <div class="panel-body">
+
+        <div class="row" style="margin-top:30px; margin-left:30px">
+          <form method="post">
+            {% csrf_token %}
+            <h3 style="color:red">
+              Вы действительно хотите удалить выбранного студента? <br>
+            </h3>
+            <input type="submit" value="Подтверждаю" class="btn btn-danger">
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+</div>
+
+  
+{% endblock %}

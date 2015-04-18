@@ -6,6 +6,9 @@
 {% block title %} PythonClasses | {{ courses.title }} | Про курс |{% endblock %}
 
 
+{% block idcourse %}?course_id={{ course.id }}{% endblock %}
+
+
 {% block content %}
 
 <div class="container">
@@ -15,10 +18,11 @@
       {{ course.more_info }}    
     </p>
 
-    <h2>Преподаватели:</h2>
+    <h2>Преподаватели:</h2><p></p>
 
 {% include "inc_coach_name_about.html" with block_title="Учитель" position=course.coach %}
 {% include "inc_coach_name_about.html" with block_title="Ассистент" position=course.assistant %}
+
 
 
   <table>

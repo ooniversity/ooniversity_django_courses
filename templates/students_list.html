@@ -14,6 +14,19 @@
   <div class="container">
     <div class="jumbotron">
 
+      {% if messages %}
+          <p class="messages">
+              {% for message in messages %}
+                  <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% endfor %}
+          </p>
+      {% endif %}
+
+      <a href="{% url 'students:student_add' %}">
+        <button class="btn btn-primary" type="button">
+          <span class="glyphicon glyphicon-plus"> </span> Добавить студента
+        </button>
+      </a>
     <table>
       <caption><h2>Список студентов:</h2></caption
       <tbody>
@@ -33,11 +46,14 @@
           <th>
               Курсы
           </th>
+          <th>
+              
+          </th>
         </tr>
         {% for student in students %}
         <tr>
           <td> 
-              {{ forloop.counter }}
+            {{ forloop.counter }}
           </td>
           <td>
               <a href="{% url 'students:student_detail' student.id %}">{{student.surname}} {{student.name|truncatechars:4}}</a>
@@ -54,6 +70,22 @@
               <a href="{% url 'courses:courseinfo' course.id %}">{{course.title}}</a>
               </p>
             {% endfor %}
+          </td>
+          <td>
+            <p>
+            <a href="{% url 'students:edit_student' student.id %}">
+              <button class="btn btn-primary" type="button">
+                <span class="glyphicon glyphicon-pencil"> </span> Изменить
+              </button>
+            </a>
+            </p>
+            <p>
+            <a href="{% url 'students:delete_student' student.id %}">
+              <button class="btn btn-primary" type="button">
+                <span class="glyphicon glyphicon-erase"> </span> Удалить
+              </button>
+            </a>
+            </p>
           </td>
         </tr>
         {% endfor%}
