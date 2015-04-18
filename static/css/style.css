@@ -196,4 +196,12 @@ label
   font-weight: bold;
   color: red;
 }
+
+.alert-warning {
+  color: #2e6da4;
+  background-color: #dfe7fd;
+  border-color: #c0cffb;
+}
+
+
 										

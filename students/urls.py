@@ -7,5 +7,5 @@ urlpatterns = patterns('',
 
     url(r'^(?P<student_id>\d+)/$', student_one, name='student_one'),
     url(r'^\d*$', students, name='students'),
-
+    url(r'^add/$', student_add, name='student_add'),
 )

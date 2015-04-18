@@ -1,12 +1,13 @@
 #!/usr/bin/python		
 # -*- coding: UTF-8 -*-
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from courses.models import Course, Lesson
 from students.models import Student
 from django.core.exceptions import ObjectDoesNotExist
+from django import forms
+from django.contrib import messages
 
-# Create your views here.
 def students(request):
     try:
         course_id = request.GET.get('course_id', '')
@@ -22,6 +23,23 @@ def students(request):
     except ObjectDoesNotExist:
         comment = "Sorry, no course with id = %s exists yet. So no relevant students list exists."%(course_id)
         return render(request, 'students/students.html',  {"comment": comment})        
+
+class StudentAddNew(forms.ModelForm):
+    class Meta:
+        model = Student
+
+
+def student_add(request):
+    student = Student()#??????????????
+    if request.method == "POST":
+        model_form = StudentAddNew(request.POST)
+        if model_form.is_valid():                
+            student = model_form.save()
+            messages.success(request, 'Info on a new student successfully added!');
+            return redirect("students")
+    else:
+        model_form = StudentAddNew()
+    return render(request, 'students/student_add.html', {"model_form": model_form})
 
 
 def student_one(request, student_id):
