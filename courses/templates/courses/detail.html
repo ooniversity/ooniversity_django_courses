@@ -17,12 +17,12 @@
 {% block main_content %}
 
         <h2>
-          {{ course.title }}
+          {{ course.title|upper }}
         </h2>
 
         <div>
           <h4>
-            {{ course.description }} 
+            {{ course.description|truncatechars:9|default:"Description should be added" }} 
           </h4>
         </div>
 
