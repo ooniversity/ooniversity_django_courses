@@ -8,9 +8,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'pybursa.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     # url(r'^polls/', include('polls.urls', namespace="polls")),
-    # url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
     # url(r'^courses/', include('courses.urls')),
-    
+
+    url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
     url(r'^$', 'courses.views.index', name='home'),
     url(r'^courses/', include('courses.urls')),
     url(r'^contact/', 'students.views.contact', name='contact'),
