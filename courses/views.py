@@ -18,7 +18,6 @@ def lesson_pd (request):
 
 
 
-
 def lesson_js (request):
     lessons = Lesson.objects.filter(course__id=2)
     coaches = Coach.objects.all()
