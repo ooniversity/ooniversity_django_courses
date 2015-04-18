@@ -6,16 +6,16 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Coach(models.Model):
-    user = models.OneToOneField(User, verbose_name = 'User')
-    date_of_birth = models.DateField(verbose_name = u'Дата рождения')
+    user = models.OneToOneField(User, verbose_name='User')
+    date_of_birth = models.DateField(verbose_name=u'Дата рождения')
 
-    gender = models.CharField(verbose_name = u'Пол', max_length = 1,
+    gender = models.CharField(verbose_name=u'Пол', max_length=1,
                               choices = (('X', u'мужской'), ('Y', u'женский'))
 )
-    phone = models.CharField(verbose_name = u'Телефон', max_length = 15)
-    address = models.CharField(verbose_name = u'Адрес', max_length = 255)
-    skype = models.CharField(verbose_name = 'Skype', max_length = 80)
-    description = models.TextField(verbose_name = u'Описание')
+    phone = models.CharField(verbose_name=u'Телефон', max_length=15)
+    address = models.CharField(verbose_name=u'Адрес', max_length=255)
+    skype = models.CharField(verbose_name='Skype', max_length=80)
+    description = models.TextField(verbose_name=u'Описание', null=True, blank=True)
 
     def __unicode__(self):
         return self.user.first_name

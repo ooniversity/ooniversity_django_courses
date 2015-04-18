@@ -1,61 +1,20 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends "base.html" %}
 
-    <!-- Template for static files -->
-    {% load static from staticfiles %}
+{% load static from staticfiles %}
 
-    <link rel="icon" href="_.ico">
 
-    <title>{{student.surname}} {{student.name}}</title>
+{% block title %}{{ student.surname|title }} {{ student.name|title }}{% endblock %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'bootstrap/css/justified-nav.css' %}" rel="stylesheet">
+{% block nav_header %}Ooniversity > {{ student.surname|title }} {{ student.name|title }}{% endblock %}
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static 'bootstrap/js/ie-emulation-modes-warning.js' %}"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
-        <h3 class="text-muted">Ooniversity > {{student.surname}} {{student.name}}</h3>
-        <nav>
-          <ul class="nav nav-justified">
-            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
-            <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'students:students-list' %}">Студенты</a></li>
-            <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
-          </ul>
-        </nav>
-      </div>
-      <br>
+{% block main_content %}
 
       <!-- Student Information -->
 
       <div class="jumbotron">
-        <h1>{{student.surname}} {{student.name}}</h1>
+        <h1>{{ student.surname|upper }} {{ student.name|upper }}</h1>
       </div>
 
       <div class="panel panel-default">
@@ -63,26 +22,11 @@
         <!-- Table -->
         <table class="table">
           <tbody>
-            <tr>
-              <th><h2  align="right">Дата рождения:</h2></th>
-              <th><h2>{{ student.date_of_birth }}</h2></th>
-            </tr>
-            <tr>
-              <th><h2  align="right">Адрес:</h2></th>
-              <th><h2>{{ student.address }}</h2></th>
-            </tr>
-            <tr>
-              <th><h2  align="right">E-mail:</h2></th>
-              <th><h2>{{ student.email }}</h2></th>
-            </tr>
-            <tr>
-              <th><h2  align="right">Skype:</h2></th>
-              <th><h2>{{ student.skype }}</h2></th>
-            </tr>
-            <tr>
-              <th><h2  align="right">Телефон:</h2></th>
-              <th><h2>{{ student.phone }}</h2></th>
-            </tr>
+
+
+{% include "includes/inc_person_detail.html" with person=student person_mail=student.email %}
+
+
             <tr>
               <th><h2  align="right">Курсы:</h2></th>
               <th>
@@ -99,16 +43,4 @@
 
       </div>
 
-
-      <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; Alexander Teplov Ukraian 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'bootstrap/js/ie10-viewport-bug-workaround.js' %}"></script>
-  </body>
-</html>
+{% endblock main_content %}

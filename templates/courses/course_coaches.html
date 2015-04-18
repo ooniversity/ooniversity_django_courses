@@ -1,56 +1,18 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends "base.html" %}
 
-    <!-- Template for static files -->
-    {% load static from staticfiles %}
+{% load static from staticfiles %}
 
-    <link rel="icon" href="_.ico">
 
-    <title>{{ course.title }}</title>
+{% block title %}{{ course.title }}{% endblock %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'bootstrap/css/justified-nav.css' %}" rel="stylesheet">
+{% block nav_header %}Курсы > {{ course.title }}{% endblock %}
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static 'bootstrap/js/ie-emulation-modes-warning.js' %}"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+{% block urlget %}?course_id={{ course.id }}{% endblock %}
 
-  <body>
 
-    <div class="container">
-
-      <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
-        <h3 class="text-muted">Курсы > {{ course.title }}</h3>
-        <nav>
-          <ul class="nav nav-justified">
-            <li><a href="{% url 'index-ooniversity' %}">Главная</a></li>
-            <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'students:students-list' %}?course_id={{ course.id }}">Студенты</a></li>
-            <li><a href="{% url 'contact' %}">Контакты</a></li>
-            <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
-          </ul>
-        </nav>
-      </div>
-      <br>
+{% block main_content %}
 
       <!-- lead :  Information about course ! -->
       <div>
@@ -67,60 +29,12 @@
       <h2>Преподаватели</h2>
       <br>
 
-      <div class="panel panel-default">
 
-        <div>
-          <!-- Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th><h3><b>Учитель</b></h3></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <th>
-                  <a href="{% url 'coaches:coach-info' course.coach.id %}">
-                    <h4>{{ course.coach.full_name }}</h4>
-                  </a>
-                  <br>
-                  <p><big>{{ course.coach.description }}</big></p>
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+{% include "includes/inc_instructor.html" with block_title='Учитель' instructor=course.coach %}
 
       <br>
 
-      <div class="panel panel-default">
-
-        <div>
-          <!-- Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th><h3><b>Ассистент</b></h3></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <th>
-                  <a href="{% url 'coaches:coach-info' course.assistant.id %}">
-                    <h4>{{ course.assistant.full_name }}</h4>
-                  </a>
-                  <br>
-                  <p><big>{{ course.assistant.description }}</big></p>
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
+{% include "includes/inc_instructor.html" with block_title='Ассистент' instructor=course.assistant %}
 
 
       <br>
@@ -151,25 +65,12 @@
                   </td>
 
                   <td>
-                    <h4>{{ lesson.description }}</h4>
+                    <h4>{{ lesson.description|default:"< описание отсутствует >" }}</h4>
                   </td>
                 </tr>
             {% endfor %}
           </tbody>
         </table>
-
       </div>
 
-
-      <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; Alexander Teplov Ukraian 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'bootstrap/js/ie10-viewport-bug-workaround.js' %}"></script>
-  </body>
-</html>
+{% endblock main_content %}

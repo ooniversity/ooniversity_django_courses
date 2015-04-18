@@ -1,0 +1,20 @@
+            <tr>
+              <th><h2  align="right">Дата рождения:</h2></th>
+              <th><h2>{{ person.date_of_birth|date:'n-b-Y' }}</h2></th>
+            </tr>
+            <tr>
+              <th><h2  align="right">Адрес:</h2></th>
+              <th><h2>{{ person.address }}</h2></th>
+            </tr>
+            <tr>
+              <th><h2  align="right">E-mail:</h2></th>
+              <th><h2>{{ person_mail|lower }}</h2></th>
+            </tr>
+            <tr>
+              <th><h2  align="right">Skype:</h2></th>
+              <th><h2>{{ person.skype|lower }}</h2></th>
+            </tr>
+            <tr>
+              <th><h2  align="right">Телефон:</h2></th>
+              <th><h2>{{ person.phone }}</h2></th>
+            </tr>

@@ -1,0 +1,20 @@
+            <tr>
+              <td><h2  align="right">Курсы - {{ block_title }}:</h2></td>
+              <td>
+                {%if instructors.all %}
+                    {% for course in instructors.all %}
+                        <p>
+                          <a href="{% url 'courses:course-coaches' course.id %}">
+                            <big><big><big>{{ course.title }}</big></big></big>
+                          </a>
+                            <big><big><big> - cтуденты курса</big></big></big>
+                          <a href="{% url 'students:students-list' %}?course_id={{ course.id }}">
+                            <big><big><span class="glyphicon glyphicon-new-window"></span></big></big>
+                          </a>
+                        </p>
+                    {% endfor %}
+                {%else%}
+                    <h3>{{ '< не числится >' }}</h3>
+                {%endif%}
+              </td>
+            </tr>
