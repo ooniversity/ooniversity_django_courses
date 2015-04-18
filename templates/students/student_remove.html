@@ -4,16 +4,6 @@
 
 {% block page_header %}Студент {{ application.name }} {{ application.surname }} будет удален{% endblock %}
 
-{% block message_button %}
-{% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-warning">
-    {{ message }}
-  </div>  
-  {% endfor %}
-{% endif %}
-{% endblock %} 
-
 {% block page_content %}
 
   <form method='post'>

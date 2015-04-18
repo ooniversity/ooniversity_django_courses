@@ -11,13 +11,23 @@
       <p>{{ current_course.description }}</p>
     </p>
   </div>
-  <h2 style="color: #446785">Преподаватели</h2>
+  <div class="page-header">
+    <h2 style="color: #446785">Преподаватели</h2>
+  </div>
   <div class="row">
     {% include "inc_instructor.html" with block_title="Учитель" instructor=current_course.coach %}
 
     {% include "inc_instructor.html" with block_title="Асистент" instructor=current_course.assistant %}
   </div>
-  <h2 style="color: #446785">План курса</h2>
+  <div class="page-header">
+    <h2 style="color: #446785">План курса</h2>
+  </div>
+  <form action="{% url 'courses:add_lesson' current_course.id %}">
+    <button type='submit' class="btn btn-info btn-sm">
+      <span class="glyphicon glyphicon-plus">
+      </span> Добавить занятие</button>
+  </form>
+
   <div class="row">
     <div class="col-md-10">
       <table class="table table-striped">

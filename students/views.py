@@ -43,6 +43,7 @@ def student_edit(request, student_id):
         if form.is_valid():
             application = form.save()
             messages.success(request, u'Данные о студенте %s %s изменены' %(application.surname, application.name))
+            return redirect('students:student_edit', application.id)
     else:
         form = StudentApplicationForm(instance=application)
     return render(request, 'students/student_edit.html', {'form': form, 'application': application})
