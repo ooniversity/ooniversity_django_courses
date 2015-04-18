@@ -13,7 +13,7 @@ def index_courses(request):
 
 def course_show(request, pk):
     course = Course.objects.get(pk=pk)
-    course_lessons = course.lessons_list.all()
+    course_lessons = course.lessons_list.all().order_by('num_in_plan')
 
     coach_info = None
     if course.coach is not None:
@@ -88,5 +88,64 @@ def course_edit(request, pk):
     return render(request, 'course_edit.html', {
         'form': form,
     })
+
+
+def lesson_add(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if request.method == "POST":
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            lesson = form.save()
+            messages.success(
+                request, u"Lesson {} add success!".format(
+                    lesson.theme))
+            return redirect('courses:show', course_id)
+    else:
+        form = LessonForm(initial={'course': course})
+
+    return render(request, 'lesson_add.html', {
+        'form': form,
+        'course': course,
+    })
+
+
+def lesson_edit(request, pk):
+    lesson = Lesson.objects.get(id=pk)
+    course = lesson.course
+
+    if request.method == "POST":
+        form = LessonForm(request.POST, instance=lesson)
+        if form.is_valid():
+            lesson.save()
+            messages.success(
+                request, u"{} update success!".format(
+                    lesson.theme))
+            return redirect('courses:show', course.id)
+    else:
+        form = LessonForm(instance=lesson)
+
+    return render(request, 'lesson_edit.html', {
+        'form': form,
+        'course': course,
+    })
+
+
+def lesson_delete(request, pk):
+    lesson = get_object_or_404(Lesson, pk=pk)
+    course = lesson.course
+
+    if request.method == "POST":
+        lesson.delete()
+        messages.success(
+            request, u"Lesson: {} was deleted".format(
+                lesson.theme))
+        return redirect('courses:show', course.id)
+
+    return render(request, 'lesson_delete.html', {
+        'lesson': lesson,
+        'course': course,
+    })
+
+
 
 
