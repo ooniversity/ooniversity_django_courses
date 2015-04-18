@@ -1,6 +1,6 @@
 from django.contrib import admin
 from courses.models import Coach
-from courses.models import Courses
+
 
 class CoachAdmin(admin.ModelAdmin):
     list_display = ['user', 'skype', 'phone']

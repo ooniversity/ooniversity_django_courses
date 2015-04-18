@@ -1,69 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{coach.user.first_name}} {{coach.user.last_name}} | Информация о преподавателе</title>
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
-    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'home' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-            <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">PY Bursa</h3>
-      </div>
-      <div class="row marketing">
-        <h2>{{coach.user.first_name}} {{coach.user.last_name}}</h2>
-					<div class="table-responsive">
-						<table class="table table-hover">
-						  <tbody>
-						    <tr data-href="http://google.com">
-						      <th scope="row">Дата рождения</th>
-						      <td>{{coach.bdate}}</td>
-						    <tr>
-						      <th scope="row">Адрес</th>
-						      <td>{{coach.adress}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Почта</th>
-						      <td>{{coach.user.email}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Логин skype</th>
-						      <td>{{coach.skype}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Телефон</th>
-						      <td>{{coach.phone}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Преподает на курсах:</th>
-						      <td>{% for c in coach.coach_courses.all %}
-					<a href="{% url 'course' c.id %}">{{c.name}}</a> (<a href="{% url 'student_list' %}?course_id={{c.id}}">студенты</a>) <br />
-					{% endfor %}</td>
-						    <tr>
-						      <th scope="row">Ассистент на курсах:</th>
-						      <td>{% for c in coach.assistant_courses.all %}
-					<a href="{% url 'course' c.id %}">{{c.name}}</a> (<a href="{% url 'student_list' %}?course_id={{c.id}}">студенты</a>) <br /> {% endfor %}</td>
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-      	</div>
-      <footer class="footer">
-        <p>&copy; Pybursa 2015</p>
-      </footer>
-    </div> 
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
+{% extends "base.html" %}
+
+
+{% block title %}{{coach.user.first_name}} {{coach.user.last_name}} - преподает или ассистирует на курсах:
+    {% for c in coach.coach_courses.all %}
+        {{c.name}}{% if coach.coach_courses.all|length != forloop.counter %}, {% else %}{% endif %}
+    {% endfor %}
+    {% for c in coach.assistant_courses.all %}
+        , {{c.name}}
+    {% endfor %}
+{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+
+{% block table %}
+<h2>{{coach.user.first_name}} {{coach.user.last_name}}</h2>
+<div class="table-responsive">
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">Дата рождения</th>
+          <td>{{coach.bdate|date:"d.m.Y"}}</td>
+        <tr>
+          <th scope="row">Адрес</th>
+          <td>{{coach.adress}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Почта</th>
+          <td>{{coach.user.email}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Логин skype</th>
+          <td>{{coach.skype}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Телефон</th>
+          <td>{{coach.phone}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Преподает на курсах:</th>
+          <td>{% for c in coach.coach_courses.all %}
+<a href="{% url 'course' c.id %}">{{c.name}}</a> (<a href="{% url 'student_list' %}?course_id={{c.id}}">студенты</a>) <br />
+{% endfor %}</td>
+        <tr>
+          <th scope="row">Ассистент на курсах:</th>
+          <td>{% for c in coach.assistant_courses.all %}
+<a href="{% url 'course' c.id %}">{{c.name}}</a> (<a href="{% url 'student_list' %}?course_id={{c.id}}">студенты</a>) <br /> {% endfor %}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock table %}
