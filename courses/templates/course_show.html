@@ -24,6 +24,14 @@ Course detail info
 
   <div>
     <h2>План курса</h2>
+
+    <div class="lesson-add">
+      <a href="{% url 'courses:lesson-add' course.id %}">
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Добавить новый урок
+      </a>
+    </div>
+
     <div class="courses">
       <table class="table table-striped" style="width:100%">
       <thead>
@@ -31,6 +39,8 @@ Course detail info
           <th>№</th>
           <th>Тема</th>
           <th>Описание</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +49,16 @@ Course detail info
           <td>{{ lesson.num_in_plan }}</td>
           <td>{{ lesson.theme }}</td>
           <td>{{ lesson.descr|linebreaksbr }}</td>
+          <td>
+            <a href="{% url 'courses:lesson-edit' lesson.id %}">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'courses:lesson-delete' lesson.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
