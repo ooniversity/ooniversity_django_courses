@@ -21,6 +21,7 @@ class CourseForm(forms.ModelForm):
 
 
 def course_add(request):
+    page_title = u"Создание нового курса"
     if request.method == 'POST':
         form = CourseForm(request.POST)
         if form.is_valid():
@@ -31,13 +32,14 @@ def course_add(request):
                               .format(new_course.name))
             return redirect('index')
         else:
-            return render(request, 'courses/course_add.html', {'form': form})
+            return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
     else:
         form = CourseForm()   
-    return render(request, 'courses/course_add.html', {'form': form})
+    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
 
 
 def course_edit(request, course_id):
+    page_title = u"Редактирование курса"
     course = get_object_or_404(Course, pk=course_id)
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
@@ -49,21 +51,23 @@ def course_edit(request, course_id):
             return redirect('courses:course_edit', course_id)
         else:
             return render(request, 
-                          'courses/course_edit.html', {'form': form})
+                          'add_edit.html', {'form': form, 'page_title':page_title})
     else:
         form = CourseForm(instance=course)   
-    return render(request, 'courses/course_edit.html', {'form': form})
+    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
 
 
 def course_remove(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
+    name = course.name
+    page_title = u"Удаление курса"
+    page_header = u'Курс "{0}" будет удалён'.format(name)
     if request.method == 'POST':
-        name = course.name
         course.delete()
         messages.success(request,u'Курс "{0}" был удалён'\
                          .format(name))
         return redirect('index')
-    return render(request, 'courses/course_remove.html', {'course': course})
+    return render(request, 'remove.html', {'page_title':page_title, 'page_header':page_header})
 
 
 class LessonForm(forms.ModelForm):
@@ -73,6 +77,7 @@ class LessonForm(forms.ModelForm):
 
 
 def lesson_add(request, course_id):
+    page_title = u"Создание нового занятия"
     course = get_object_or_404(Course, pk=course_id)
     if request.method == 'POST':
         form = LessonForm(request.POST)
@@ -84,7 +89,7 @@ def lesson_add(request, course_id):
                               .format(new_lesson.theme))
             return redirect('courses:course_detail', course_id=course_id)
         else:
-            return render(request, 'courses/lesson_add.html', {'form': form})
+            return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
     else:
         form = LessonForm(initial={'course':course})   
-    return render(request, 'courses/lesson_add.html', {'form': form})
+    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})

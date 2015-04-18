@@ -31,6 +31,7 @@ class StudentForm(forms.ModelForm):
 
 
 def student_add(request):
+    page_title = u"Создание нового студента"
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -41,13 +42,14 @@ def student_add(request):
                               .format(new_student.full_name()))
             return redirect('students:student_list')
         else:
-            return render(request, 'students/student_add.html', {'form': form})
+            return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
     else:
         form = StudentForm()   
-    return render(request, 'students/student_add.html', {'form': form})
+    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
 
 
 def student_edit(request, student_id):
+    page_title = u"Редактирование данных студента"
     student = get_object_or_404(Student, pk=student_id)
     if request.method == 'POST':
         form = StudentForm(request.POST, instance=student)
@@ -59,19 +61,21 @@ def student_edit(request, student_id):
             return redirect('students:student_edit', student_id)
         else:
             return render(request, 
-                          'students/student_edit.html', {'form': form})
+                          'add_edit.html', {'form': form, 'page_title':page_title})
     else:
         form = StudentForm(instance=student)   
-    return render(request, 'students/student_edit.html', {'form': form})
+    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
 
 
 def student_remove(request, student_id):
     student = get_object_or_404(Student, pk=student_id)
+    full_name = student.full_name()
+    page_title = u"Удаление студента"
+    page_header = u"Студент {0} будет удалён".format(full_name)
     if request.method == 'POST':
-        full_name = student.full_name()
         student.delete()
         messages.success(request,u"Студент {0} был удалён"\
                          .format(full_name))
         return redirect('students:student_list')
-    return render(request, 'students/student_remove.html', {'student': student})
+    return render(request, 'remove.html', {'student': student, 'page_title':page_title, 'page_header':page_header})
 
