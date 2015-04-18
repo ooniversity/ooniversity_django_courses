@@ -3,6 +3,7 @@
 from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
+from django.db.models import Max
 from django.contrib import messages
 from courses.models import Course, Lesson
 
@@ -73,16 +74,18 @@ def course_remove(request, course_id):
 class LessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
-        fields = '__all__'
+        exclude = ['course']
 
 
 def lesson_add(request, course_id):
-    page_title = u"Создание нового занятия"
     course = get_object_or_404(Course, pk=course_id)
+    page_title = u'Создание нового занятия для курса "{0}"'.format(course.name)
     if request.method == 'POST':
         form = LessonForm(request.POST)
         if form.is_valid():
             new_lesson = Lesson()
+            new_lesson = form.save(commit=False)
+            new_lesson.course = course
             new_lesson = form.save()
             messages.success(request, 
                              u'Занятие "{0}" успешно добавлено'\
@@ -91,5 +94,9 @@ def lesson_add(request, course_id):
         else:
             return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
     else:
-        form = LessonForm(initial={'course':course})   
+        max_number = Lesson.objects.filter(course=course).aggregate(Max('number'))
+        if not max_number.get('number__max'):
+            max_number['number__max'] = 0
+        new_number = max_number.get('number__max', 0) + 1
+        form = LessonForm(initial={'course':course, 'number':new_number})   
     return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
