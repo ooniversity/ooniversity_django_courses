@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.contrib import messages
 from students.models import Student
@@ -18,7 +18,7 @@ def student_list(request):
 
 
 def student_detail(request, student_id):
-    student = Student.objects.get(id=student_id)
+    student = get_object_or_404(Student, pk=student_id)
     courses = student.courses.all()
     return render(request, 'students/student_detail.html', 
                   {'student': student, 'courses': courses})
@@ -48,7 +48,7 @@ def student_add(request):
 
 
 def student_edit(request, student_id):
-    student = Student.objects.get(id=student_id)
+    student = get_object_or_404(Student, pk=student_id)
     if request.method == 'POST':
         form = StudentForm(request.POST, instance=student)
         if form.is_valid():
@@ -66,7 +66,7 @@ def student_edit(request, student_id):
 
 
 def student_remove(request, student_id):
-    student = Student.objects.get(id=student_id)
+    student = get_object_or_404(Student, pk=student_id)
     if request.method == 'POST':
         full_name = student.full_name()
         student.delete()
