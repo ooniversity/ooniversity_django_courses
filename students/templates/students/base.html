@@ -11,14 +11,23 @@
 
 
 {% block main_content %}
-        <div class="panel panel-info">
-          <!-- Default panel contents -->
 
-          <div class="panel-heading" style = "font-size:20px">{% block page_header %}{% endblock %}</div>
-          {% block page_content %}
-          {% endblock page_content %}
-        </div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}{{student.name}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h5><a href="{% url 'students:add_stundent' %}">Добавить нового студента</a></h5>
+<div class="panel panel-info">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style = "font-size:20px">{% block page_header %}{% endblock %}</div>
+  {% block page_content %}
+  {% endblock page_content %}
+</div>
 
 
-  {% endblock main_content %}
+{% endblock main_content %}
 

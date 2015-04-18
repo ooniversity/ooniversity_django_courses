@@ -19,6 +19,7 @@
         <th>Адрес</th>
         <th>Skype</th>
         <th>Курсы</th>
+        <th>Действие</th>
       </tr>
     </thead>
     {% for student in students %}
@@ -28,14 +29,14 @@
         <td><a href="{% url 'students:student_d' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
         <td>{{ student.address|default:"No address provided"|truncatechars:19 }}</td>
         <td>{{ student.skype }}</td>
-        <td>{% for course in student.courset.all %}
+        <td>{% for course in student.courses.all %}
         <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
         {% endfor %}</td>
+        <td><a href="{% url 'students:edit_student' %}">Изменить</a></td>
       </tr>
     </tbody>
     {% endfor %}
   </table>
 </div>
-
 
 {% endblock page_content %}
