@@ -1,95 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 {% load staticfiles %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Pybursa. Подробности</title>
-	<link rel="icon" href="{% static 'pictures/favicon.ico' %}" type="image/x-icon">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-    <div  class="navbar-header">
-		<a class="logo" href="{% url 'main' %}"><img src="{% static 'pictures/logobl.jpg' %}" height="42" width="42"></a>
-    </div>
-    <div>
-		<ul class="nav navbar-nav">
-			<li><a href="{% url 'main' %}">Описание</a></li>
-			<li><a href="{% url 'contact' %}">Контакты</a></li> 
-			<li><a href="{% url 'students:students_list' %}">Студенты</a></li>
-			<li class="active"><a href="#"><b>Детальная информация о студентах</b></a></li>
-		</ul>
-    </div>
-	</nav>
-	<br>
-	<br>
-	<br>
-	<div id="container">
-		<div>
-			<hr class="style-eight">
-			<div class="row">
-				<div class="col-xs-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>Детальные сведенья о студенте: <h2>{{ student.name }} {{ student.surname }}</h2></h4>
-						</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-								<tr>
-                                    <th>Дата рождения: </th>
-                                    <td> {{ student.date_of_birth }} </td>
-                                </tr>
-								<tr>
-                                    <th>Адрес: </th>
-                                    <td> {{ student.address }} </td>
-                                </tr>
-								<tr>
-                                    <th>Почта: </th>
-                                    <td> {{ student.email }} </td>
-                                </tr>
-								<tr>
-                                    <th>Логин Skype: </th>
-                                    <td> {{ student.skype }} </td>
-                                </tr>
-								<tr>
-                                    <th> Телефон: </th>
-                                    <td> {{ student.phone }} </td>
-                                </tr>
-                                <tr>
-                                    <th>Курсы: </th>
-                                    <td>
-                                    {% for i in courses %}
-                                        <p><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></p>
-                                    {% endfor %}
-                                    </td>
-                                </tr>
-							</table>
-						</div>
-					</div>
-				</div>
-            </div>
-            <hr class="style-eight">
-		</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-	<nav class="navbar navbar-inverse navbar-fixed-bottom">
-		<p class="colortext" >© Pybursa. A.Sviridov</p>
-	</nav>
-</body>
-</html>
+{% block title %}Pybursa.Детально{% endblock %}
+
+
+{% block bodyhead %}{% endblock %}
+
+
+{% block content %}
+<hr class="style-eight">
+<h4>Детальные сведенья о студенте: <h2>{{ student.name }} {{ student.surname }}</h2></h4>
+<div class="panel-body">
+    <table class="table table-striped">
+		<tr>
+            <th>Дата рождения: </th>
+            <td> {{ student.date_of_birth|date:"d N Y" }} </td>
+        </tr>
+		<tr>
+            <th>Адрес: </th>
+            <td> {{ student.address }} </td>
+        </tr>
+		<tr>
+            <th>Почта: </th>
+            <td> {{ student.email }} </td>
+        </tr>
+		<tr>
+            <th>Логин Skype: </th>
+            <td> {{ student.skype|default:"нет" }} </td>
+        </tr>
+		<tr>
+            <th> Телефон: </th>
+            <td> {{ student.phone|default:"нет" }} </td>
+        </tr>
+        <tr>
+            <th>Курсы: </th>
+            <td>
+            {% for i in courses %}
+               <p><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></p>
+            {% endfor %}
+            </td>
+        </tr>
+	</table>
+    <hr class="style-eight">
+</div>
+{% endblock content %}
