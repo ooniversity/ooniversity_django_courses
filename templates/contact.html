@@ -32,7 +32,16 @@
   <p><a href="https://www.google.com.ua/maps/place/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9B%D0%B5%D0%BD%D1%96%D0%BD%D0%B0,+56,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C/@50.031623,36.22195,17z/data=!3m1!4b1!4m2!3m1!1s0x4127a14aa1c818d3:0x1f67a8c4e4bf6dbc?hl=ru">Посмотреть на карте</a></p>
 </div><!-- /.blog-post -->
 <h2 id="header">Организаторы</h2>
-  <div class="col-lg-4">
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/obod.jpg" block_name="Павел Обод" block_position="Основатель ITbursa" block_email="itbursa100@gmail.com" block_skype="azaless" block_phone="+38 063 702 3 703" alt_text="Courses founder" %}
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/malahova.jpg" block_name="Анна Малахова" block_position="Менеджер ITbursa" block_email="anna.itbursa@gmail.com" block_skype="anechka.malakhova" block_phone="+38 096 070 53 47" alt_text="Courses director" %}
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/kolesnik.jpg" block_name="Татьяна Колесник" block_position="Оплата курсов" block_email="tatyana@outsource-people.com" block_skype="princessataniakolesnik" block_phone="+38 063 729 45 67" alt_text="Courses Accountant" %}
+<!-- <div class="col-lg-4">
     <img class = "w_img-circle" src="{% static 'bootstrap/images/obod.jpg' %}" alt="Courses founder">
     <h3 >Павел Обод </h3>
     <span class="text-muted">Основатель ITbursa</span>
@@ -58,5 +67,5 @@
       <p class="lead"><img src = "{% static 'bootstrap/images/skypeic.png' %}"> princessataniakolesnik</p>
       <p class="lead">+38 063 729 45 67</p>
       <p><a class="btn btn-primary" href="mailto:tatyana@outsource-people.com" role="button">Написать письмо</a></p>
-  </div>
+  </div>-->
 {% endblock main_content %}
