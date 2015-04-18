@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %} PyBursa Home {% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}{% endblock %}
+
+
+{% block main_content %}
+
+
+<h1>Попади в тренд современной WEB разработки c ItBursa</h1>
+  <div class="jumbotron">
+    <p>Проект ItBursa был признан лучшим среди региональных IT проектов и отмечен наградой и планшетом от IT Jam 2015</p>
+    <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
+  </div>
+  <h2>Наши курсы</h2>
+
+  {% if courses %}
+    <div class="media">
+      {% for course in courses %}
+        <p><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
+        <p class="custom_well">{{ course.short_description }}</p>
+      {% endfor %}
+  {% else %}
+    <p>No courses are available.</p>
+  {% endif %}
+    </div>
+  <h6>Следующего курса в таком формате не будет! :)</h6>
+
+
+{% endblock main_content %}

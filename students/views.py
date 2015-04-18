@@ -5,16 +5,15 @@ from courses.models import Course
 from models import Student
 
 def students(request):
-    if request.GET.get('course_id'):
-        course_id = request.GET.get('course_id')
-        course = Course.objects.get(pk=course_id)
-        students = course.student_set.all()
+    course_id = request.GET.get('course_id', None)
+    if course_id:
+        students = Student.objects.filter(courset__id=course_id)
     else:
         students = Student.objects.all()
     return render(request, 'students/students.html', {'students': students})
 
-def student_d(request, student_id):
-    student = Student.objects.get(pk=student_id)
+def student_d(request, pk):
+    student = get_object_or_404(Student, pk=pk)
     return render(request, 'students/student_detail.html', {'student': student})
 
-
+ 

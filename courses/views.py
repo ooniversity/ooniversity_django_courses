@@ -1,20 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from models import Course
 from coaches.models import Coach
 
-
-class IndexView(generic.ListView):
-    template_name = 'courses/index.html'
-    context_object_name = 'courses_list'
-
-    def get_queryset(self):
-        return Course.objects.order_by()
-
 def course_d(request, course_id):
-    course = Course.objects.get(pk=course_id)
-    coach = Coach.objects.all()
-    return render(request, 'courses/courses.html', {'course':course, 'coach':coach})
+    course = get_object_or_404(Course, pk=course_id)
+    return render(request, 'courses/courses.html', {'course':course})
     
 #def courses(request):
     #return render(request,'courses/courses.html')
