@@ -25,34 +25,7 @@
 {% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
 
 
-<div class="panel panel-success">
-  <!-- Default panel contents -->
-  <div class="panel-heading">План курса</div>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Занятие</th>
-          <th>Тема</th>
-          <th>Содержание</th>
-        </tr>
-      </thead>
-      {% for lesson in course.lesson_set.all %}
-      <tbody>
-        <tr>
-          <td>{{ lesson.index_numer }}</td>
-          <td>{{ lesson.topic }}</td>
-          <td>
-            <ul>
-              <li>{{ lesson.description }}</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-      {% endfor %}
-    </table>
-  </div>
-</div>
+{% include "inc_lessons.html" with lessons=course.lesson_set.all %}
 
 
 {% endblock main_content %}

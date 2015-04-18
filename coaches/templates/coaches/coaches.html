@@ -22,7 +22,7 @@
   </a>
   <h4 class="media-heading"> {{ coach.user.first_name }} {{ coach.user.last_name }}</h4>
   <div class = "well well-sm">
-    <p><b>Дата рождения:</b> {{ coach.date_of_birth }}</p>
+    <p><b>Дата рождения:</b> {{ coach.date_of_birth|date:'F j, Y' }}</p>
     <p><b>Адрес:</b> {{ coach.address }}</p>
     <p><b>Почта:</b> {{ coach.user.email }}</a></p>
     <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ coach.skype }}</p>

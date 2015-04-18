@@ -7,7 +7,7 @@ class Student(models.Model):
      date_of_birth = models.DateField()
      email = models.EmailField()
      phone = models.CharField(max_length=15)
-     address = models.CharField(max_length=255)
+     address = models.CharField(max_length=255, blank=True)
      skype = models.CharField(max_length=55)
      courset = models.ManyToManyField(Course)
 

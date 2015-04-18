@@ -7,7 +7,7 @@ class Coach(models.Model):
      date_of_birth = models.DateField()
      sex_choices = models.CharField(max_length=15, choices=(('male', 'male'),('female', 'female')))
      phone = models.CharField(max_length=15)
-     address = models.CharField(max_length=255)
+     address = models.CharField(max_length=255, blank=True)
      skype = models.CharField(max_length=55)
      description = models.TextField()
      

@@ -23,8 +23,8 @@
   </a>
   <h4 class="media-heading"> {{ student.name }} {{ student.surname }}</h4>
   <div class = "well well-sm">
-    <p><b>Дата рождения:</b>{{student.date_of_birth}}</p>
-    <p><b>Адрес:</b> {{ student.address }}</p>
+    <p><b>Дата рождения:</b> {{student.date_of_birth|date:'F j, Y'}}</p>
+    <p><b>Адрес:</b> {{ student.address|default:"No address provided"|truncatechars:19 }}</p>
     <p><b>Почта:</b> {{ student.email }}</a></p>
     <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ student.skype }}</p>
     <p><b>Курсы:</b>
