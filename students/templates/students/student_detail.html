@@ -28,7 +28,7 @@
     <p><b>Почта:</b> {{ student.email }}</a></p>
     <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ student.skype }}</p>
     <p><b>Курсы:</b>
-    {% for course in student.courset.all %}
+    {% for course in student.courses.all %}
     <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
     {% endfor %}</p>
   </div>

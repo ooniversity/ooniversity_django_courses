@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 
-{% block title %}Edit Students{% endblock title %}
+{% block title %}REmove Students{% endblock title %}
 
 
 {% block nav_class_students %}active{% endblock %}
@@ -15,10 +15,5 @@
 
 {% block page_content %}
 
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-  <input type="submit" value="Изменить"/>
-</form>
 
 {% endblock page_content %}

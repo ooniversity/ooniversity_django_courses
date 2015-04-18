@@ -7,7 +7,7 @@ from django import forms
 from courses.models import Course
 from models import Student
 
-class StudentFrom(forms.ModelForm):
+class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
 
@@ -24,17 +24,26 @@ def student_d(request, pk):
     student = get_object_or_404(Student, pk=pk)
     return render(request, 'students/student_detail.html', {'student': student})
 
-def add_stundent(request):
+def add_student(request):
     if request.method == 'POST':
-        form = StudentFrom(request.POST)
+        form = StudentForm(request.POST)
         if form.is_valid():
-            new_student = form.save()
-            student = Student.objects.get(id=9)
-            messages.success(request, 'Студент успешно добавлен', {student:student})
+            student = form.save()
+            #student = Student.objects.get(id=9)
+            messages.success(request, 'Студент успешно добавлен', {'student':student})
             return redirect('students:students')
     else:
-        form = StudentFrom()
+        form = StudentForm()
     return render(request,'students/add.html', {'form':form})
 
-def edit_student(request):
-    return render(request,'students/edit.html')
+def edit_student(request, pk):
+    student = Student.objects.get(id=pk)
+    form = StudentForm(instance=student)
+
+    return render(request,'students/edit.html', {'form':form})
+
+def remove_student(request, pk):
+    student = Student.objects.get(id=pk)
+    return render(request,'students/remove.html')
+
+
