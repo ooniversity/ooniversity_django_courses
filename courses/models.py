@@ -50,7 +50,7 @@ class LessonForm(ModelForm):
     class Meta:
         model = Lesson
         widgets = {
-            'course': forms.SelectMultiple,
+            'course': forms.Select,
         }
         labels = {
             'descr': 'Description',
