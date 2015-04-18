@@ -38,6 +38,22 @@
       </table>
     </div>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <a class="button-main" href="{% url 'courses:lesson_add' course.id %}">
+      <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить занятие
+      </button>
+    </a>
+
 <div class="table-responsive">
       <table class="table table-hover">
         <caption>План курса</caption

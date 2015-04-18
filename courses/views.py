@@ -64,3 +64,27 @@ def course_remove(request, course_id):
                          .format(name))
         return redirect('index')
     return render(request, 'courses/course_remove.html', {'course': course})
+
+
+class LessonForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+        fields = '__all__'
+
+
+def lesson_add(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            new_lesson = Lesson()
+            new_lesson = form.save()
+            messages.success(request, 
+                             u'Занятие "{0}" успешно добавлено'\
+                              .format(new_lesson.theme))
+            return redirect('courses:course_detail', course_id=course_id)
+        else:
+            return render(request, 'courses/lesson_add.html', {'form': form})
+    else:
+        form = LessonForm(initial={'course':course})   
+    return render(request, 'courses/lesson_add.html', {'form': form})
