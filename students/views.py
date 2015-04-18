@@ -8,10 +8,10 @@ def students(request):
         students = Student.objects.all()
     else:
         students = Student.objects.filter(course=course_id)
-    return render(request, 'student_list.html', {'students': students})
+    return render(request, 'students/student_list.html', {'students': students})
 
 def student_detail(request, student_id):
     student = Student.objects.get(id=student_id)
     courses = student.course.all()
-    return render(request, 'student_detail.html', {'student': student, 'courses': courses})
+    return render(request, 'students/student_detail.html', {'student': student, 'courses': courses})
 

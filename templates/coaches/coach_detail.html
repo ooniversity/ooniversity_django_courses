@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}PD0102 - Coach detail {% endblock title %}
+
+
+{% block main_content %}
+   
+    <div class="main">
+    <div class="container">
+        <div class="col-md-9">
+            
+        <h1>{{ coach.user.full_name }}</h1>
+
+     <table class="table table-striped table-bordered table-hover table-condensed">
+          <tbody>
+          <tr>
+            <th class="col1" scope="row">Фамилия:</th>
+            <td>{{ coach.user.last_name }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Имя:</th>
+            <td>{{ coach.user.first_name }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Дата рождения:</th>
+            <td>{{ coach.date_of_birth|date:"SHORT_DATE_FORMAT" }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Адрес:</th>
+            <td>{{ coach.address|upper }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Телефон:</th>
+            <td>{{ coach.phone }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Email:</th>
+            <td>{{ coach.user.email|urlize }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Skype:</th>
+            <td>{{ coach.skype }}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Курсы (учитель):</th>
+            <td>
+              {% for course in courses_coach %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
+              (<a href="{% url 'students:students' %}?course_id={{ course.id }}" target="_blank">студенты</a>)
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Курсы (ассистент):</th>
+            <td>
+              {% for course in courses_assistant %}
+              <p>
+              <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
+              (<a href="{% url 'students:students' %}?course_id={{ course.id }}" target="_blank">студенты</a>)
+              </p>
+              {% endfor %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div> 
+{% include "inc_links.html" %}
+    </div>
+  </div>  
+{% endblock main_content %} 
