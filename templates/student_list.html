@@ -41,7 +41,7 @@
                               {{ i.surname}} {{ i.name}}
                         </a></td>
 					<td>{{ i.address }}</td>
-					<td>{{ i.skype }}</td>
+					<td>{{ i.skype|default:"нет" }}</td>
 					<td>
                        {% for k in i.courseset %}
                        <p><a href="{% url 'courses:lessons' k.id %}">{{ k.name }}</a></p>

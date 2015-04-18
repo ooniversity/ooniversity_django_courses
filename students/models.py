@@ -9,7 +9,8 @@ class Student(models.Model):
     email = models.EmailField(u"Эл. почта")
     phone = models.CharField(u"Телефон", max_length=255)
     address = models.CharField(u"Адрес", max_length=255)
-    skype = models.CharField(u"Скайп", max_length=255)
+    skype = models.CharField(u"Скайп", max_length=255, blank=True,
+        null=True)
     courses = models.ManyToManyField(Course, verbose_name=u"Курсы")
 
     def full_name(self):
