@@ -7,7 +7,7 @@
 {% block content %}
   <br><br>
   <div class="container">
-     <h4>Гранит науки сейчас грызут (осваивают  <b><a href="{% url 'course' course_list.id %}">{{ course_list.course_name }}</a></b> ) :</h4>
+     <h4>Гранит науки сейчас грызут (осваивают  <b><a href="{% url 'pybursa_app:course' course_list.id %}">{{ course_list.course_name }}</a></b> ) :</h4>
     </div>
     {% if student_list %}
     <div class="container">
@@ -26,7 +26,7 @@
      {% for student in student_list %}
       <tr>
          <td>{{ forloop.counter }}</td>
-        <td > <a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
+        <td > <a href="{% url 'pybursa_app:student_detail' student.id %}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
         <td>{{ student.student_addr }}</td>
         <td>{{ student.student_skype }}</td>
 

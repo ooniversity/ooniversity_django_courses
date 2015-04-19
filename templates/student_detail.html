@@ -27,7 +27,7 @@
             <td>{{ student_list.student_phone }}</td>
             <td>{{ student_list.student_addr }}</td>
             <td>{{ student_list.student_skype }}</td>
-            <td>{% for course in course_list %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a><br>{% endfor %} </td>
+            <td>{% for course in course_list %} <a href="{% url 'pybursa_app:course' course.id %}">{{ course.course_name }}</a><br>{% endfor %} </td>
           </tr>
          </tbody>
       </table>
@@ -35,7 +35,7 @@
 
     <div class="container">
       <p>
-        <a href="{% url 'student_list' %}" class="btn btn-large btn-primary">Назад</a>
+        <a href="{% url 'pybursa_app:student_list' %}" class="btn btn-large btn-primary">Назад</a>
       </p>
     </div>
 

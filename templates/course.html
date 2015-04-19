@@ -8,17 +8,31 @@
   <br><br>
   <div class="container">
       <h3>На курсе преподают: </h3>
-      <p>Тренер: <b><a href="/coach/' course.course_coach.id">
+      <p>Тренер: <b><a href="/coach/{{ course.course_coach.id }}">
       {{ course.course_coach.coach_user.get_full_name }}
       </a></b> - {{ course.course_coach.coach_description }}</p>
-      <p>Ассистент: <b><a href="/coach/ course.course_assistent.id">
+      <p>Ассистент: <b><a href="/coach/{{ course.course_assistent.id }}">
       {{ course.course_assistent.coach_user.get_full_name }}
       </a></b> - {{ course.course_assistent.coach_description }}</p>
   </div>
+    {% if text %}
+    <div class="container">
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <p> {{ text }} </p>
+      </div>
+    </div>
+    {% endif %}
   <div class="container">
       <h3>Содержание курса: <b>{{ course.course_name }}</b></h3>
   </div>
+  <div class="container text-right">
+    <p><a href="{% url 'courses:lesson_add' course.id %}">
+      <button class="btn btn-small btn-primary" type="button">Добавить</button></a>
+    </p>
+  </div>
   {% if lesson_list %}
+
     <div class="container">
     <table id="main-table" class="table table-striped table-hover table-bordered">
     <thead>
@@ -26,6 +40,8 @@
         <th>№ </th>
         <th>Тема</th>
         <th>Реферат</th>
+        <th> </th>
+        <th> </th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +49,13 @@
         <tr>
           <td>{{ lesson.lesson_number }}</td>
           <td>{{ lesson.lesson_theme }}</td>
-          <td>{{ lesson.lesson_description|truncatewords:"60" }}</td>
+          <td>{{ lesson.lesson_description }}</td>
+            <td>
+              <a href="{% url 'courses:lesson_mod' lesson.id %}"<button class="btn btn-mini btn-primary" type="button">Изменить</button></a>
+            </td>
+            <td>
+              <a href="{% url 'courses:lesson_rem' lesson.id %}"<button class="btn btn-mini btn-primary" type="button"> Удалить</button></a>
+            </td>
         </tr>
       {% endfor %}
     </tbody>

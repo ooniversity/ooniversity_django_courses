@@ -18,7 +18,7 @@
 
       <div class="container text-right">
 
-       <p><a href="{% url 'student_add' %}">
+       <p><a href="/student_add/">
        <button class="btn btn-small btn-primary" type="button">Добавить</button></a></p>
      </div>
       <div class="container">
@@ -41,10 +41,11 @@
               <td > <a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
               <td>{{ student.student_addr }}</td>
               <td>{{ student.student_skype }}</td>
-              <td>{% for course in student.student_course.all %} <a href="{% url 'course' course.id %}">{{ course.course_name }}</a> <br>{% endfor %} </td>
               <td>
-              <a href="/student_mod/{{ student.id }}"<button class="btn btn-mini btn-primary" type="button">Изменить</button></a>
-                  <a href="/student_rem/{{ student.id }}"<button class="btn btn-mini btn-primary" type="button"> Удалить</a>
+                {% for c in student.student_course.all %} <a href="{% url 'pybursa_app:course' c.id %}" >{{ c.course_name }}</a> <br>{% endfor %} </td>
+              <td>
+              <a href="{% url 'pybursa_app:student_mod' student.id %}"<button class="btn btn-mini btn-primary" type="button">Изменить</button></a>
+                  <a href="{% url 'pybursa_app:student_rem' student.id %}"<button class="btn btn-mini btn-primary" type="button"> Удалить</button></a>
               </td>
             </tr>
 

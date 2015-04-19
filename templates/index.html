@@ -5,15 +5,17 @@
 {% block nav_class_index %}active {% endblock %}
 
 {% block content %}
-  <br><br>
+  <br>
   <div class="container">
   <h3>Вам предлагаются следующие курсы:</h3>
   {% if course_list %}
     <ul>
-      {% for course in course_list %}
-        <li><a href="{% url 'course' course.id %}">{{ course.course_name }}</a> -
-        <a href="{% url 'student_cours' course.id %}">студенты</a>
-        <br> {{ course.course_description }}</li>
+      {% for c in course_list %}
+        <li>
+          <a href="/course/{{ c.id }}">{{ c.course_name }}</a> --
+          <a href="/student_list/{{ c.id }}">студенты</a>
+          <br> {{ c.course_description }}
+        </li>
 
       {% endfor %}
     </ul>

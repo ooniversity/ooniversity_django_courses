@@ -9,17 +9,19 @@
     <h3>{{ coach.coach_user.get_full_name }}</h3>
     <h4>Преподает:</h4>
     <ul>
-      {% for course in coach_courses %}
-        <li><a href="{% url 'course' course.id %}">{{ course.course_name }}</a> -
-        <a href="{% url 'student_cours' course.id %}">студенты</a>
+      {% for c in coach_courses %}
+        <li>
+        <a href="/course/{{ c.id }}">{{ c.course_name }}</a> --
+        <a href="/student_list/{{ c.id }}">студенты</a>
         </li>
       {% endfor %}
     </ul>
     <h4>Ассистирует:</h4>
     <ul>
-      {% for course in assistant_courses %}
-        <li><a href="{% url 'course' course.id %}">{{ course.course_name }}</a> -
-        <a href="{% url 'student_cours' course.id %}">студенты</a>
+      {% for c in assistant_courses %}
+        <li>
+        <a href="/course/{{ c.id }}">{{ c.course_name }}</a> --
+        <a href="/student_list/{{ c.id }}">студенты</a>
         </li>
       {% endfor %}
     </ul>
