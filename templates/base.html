@@ -2,16 +2,16 @@
 <html lang="en">
 	<head>
 		{% load static from staticfiles %}
+		{# {% load staticfiles%} #}
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Студенты курса {{ course.name }}</title>
+		<title>{% block title %}pyBursa{% endblock title %}</title>
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
 		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
 	</head>
 	<body>
-		<!-- Static navbar -->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -21,23 +21,29 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Go Python!</a>
+					<a class="navbar-brand" href="{% url "home" %}">Go Python!</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active">
-			              <a href="{% url "home" %}">Главная<span class="sr-only">(current)</span></a>
-			            </li>
-			            <li>
-			              <a href="{% url "contact" %}">Контакты</a>
-			            </li>
-			            <li>
-			              <a href="{% url 'students:index' %}">Студенты</a>
-			            </li>
-			            <li>
+						<li class="{% block nav_class_index %}{% endblock %}">
+							<a href="{% url "home" %}">Главная</a>
+						</li>
+						<li class="{% block nav_class_contacts %}{% endblock %}">
+							<a href="{% url "contact" %}">Контакты</a>
+						</li>
+						<li class="{% block nav_class_students %}{% endblock %}">
+							<a href="{% url "students:index" %}">Студенты</a>
+						</li>
+						<li class="{% block nav_class_courses %}{% endblock %}">
+							<a href="{% url "courses:index" %}">Курсы</a>
+						</li>
+						<li class="{% block nav_class_coaches %}{% endblock %}">
+							<a href="{% url "coaches:index" %}">Тренера</a>
+						</li>
+						<li class="{% block nav_class_polls %}{% endblock %}">
 			              <a href="{% url "polls:index" %}">Polls</a>
 			            </li>
-			            <li>
+			            <li class="{% block nav_class_quadratic %}{% endblock %}">
 			              <a href="{% url "quadratic" %}">Quadratic</a>
 			            </li>
 			            <li>
@@ -48,41 +54,11 @@
 				</div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
 		</nav>
-
 		<div class="container">
-			
-			<ol class="breadcrumb">
-			  <li class="active">Список студентов</li>
-			</ol>
-			
-			<div class="panel panel-default">
-		      <!-- Default panel contents -->
-		      <div class="panel-heading">План курса</div>
-
-		      <!-- Table -->
-		      <table class="table">
-		        <thead>
-		          <tr>
-		          	 <th scope="row">#</th>
-		            <th>Урок</th>
-		            <th>Описание</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		        {% for l in lessons %}
-		          <tr>
-		          	 <th scope="row">{{ l.num }}</th>
-		            <td>{{ l.theme }}</td>
-		            <td>{{ l.description }}</td>
-		          </tr>
-		        {% endfor%}
-		        </tbody>
-		      </table>
-		    </div>
-
-			
+		{% block main_content%}
+		{% endblock main_content%}
+		
 		</div><!--/.container-->
-
 		<footer class="footer">
 			<div class="container">
 				<p class="text-muted">

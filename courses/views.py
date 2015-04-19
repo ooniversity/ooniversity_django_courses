@@ -4,7 +4,7 @@ from coaches.models import Coach
 
 def courses_home_page(request):
 	courses = Course.objects.all()
-	return render(request, 'index.html', {'courses': courses})
+	return render(request, 'courses.html', {'courses': courses})
 
 def courses_one_of(request, pk):
 	course_one = Course.objects.get(id=pk) #id?

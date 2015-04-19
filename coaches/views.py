@@ -3,7 +3,8 @@ from coaches.models import Coach
 from courses.models import Course
 
 def allcoaches(request):
-	pass
+	coach = Coach.objects.all()
+	return render(request, 'coaches.html', {'coach':coach})
 
 def onecoach(request, pk):
 	coach = Coach.objects.get(id=pk)
