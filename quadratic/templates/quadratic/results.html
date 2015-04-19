@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title> Count Equation </title>
+  <meta charset="utf-8">
+  <title> Count Equation </title>
 </head>
 
 <body>
-
-	<p> Квадратное уравнение a*x*x + b*x + c = 0 </p>
   
-	<ul>
-		<li>
-			a = {{disc.var.0}}
-		</li>
-		<p><i>{{disc.strings.0}}</i></p>
-		<li>
-			b = {{disc.var.1}}
-		</li>
-		<p><i>{{disc.strings.1}}</i></p>
-		<li>
-			c = {{disc.var.2}}
-		</li>
-		<p><i>{{disc.strings.2}}</i></p>
-  </ul>
-  <p>{{disc.discs.0}}</p>
-	<p>{{disc.discs.1}}</p>
+  <p> Квадратное уравнение a*x*x + b*x + c = 0 </p>
+  
+	<form method="get">
+  {% csrf_token %}
+	{{form.as_p}}
+    <input type="submit" value="Решить" />
+	</form>
+  
+  {% if discriminant or discriminant == 0 %}
+  <p>Дискриминант: {{ discriminant }}</p>
+  {% endif %}
+
+  {% if message %}
+  <p>{{ message }}</p>
+  {% endif %}
 
 </body>
-
-
-
-
 </html>
