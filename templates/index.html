@@ -15,10 +15,13 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} >
+    {{ message }}
+    </div>
     {% endfor %}
 </ul>
 {% endif %}
+
 <h1>Попади в тренд современной WEB разработки c ItBursa</h1>
   <div class="jumbotron">
     <p>Проект ItBursa был признан лучшим среди региональных IT проектов и отмечен наградой и планшетом от IT Jam 2015</p>

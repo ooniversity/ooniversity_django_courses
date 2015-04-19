@@ -18,10 +18,14 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} >
+    {{ message }}
+    </div>
     {% endfor %}
 </ul>
 {% endif %}
+
+<h3>Редактирование данных студента</h3>
 
 <form method="post">
 {% csrf_token %}
