@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %} PD0102 - Course detail {% endblock title %}
+
+
+{% block main_content %}   
+    <div class="main">
+    <div class="container">
+        <div class="col-md-9">
+                 <h1>Удаление данных о курсе</h1>
+
+         <form method='post'>
+          {% csrf_token %}
+         <button type="submit button" class="btn btn-success" value='Are you sure?'>Удалить</button>
+
+{% include "inc_instructor.html" with block_title="Учитель" instructor=course.coach %}
+
+
+{% include "inc_instructor.html" with block_title="Ассистент" instructor=course.assistant %}
+         
+     
+        </div>
+{% include "inc_links.html" %}
+      </div>
+    </div>
+       
+{% endblock main_content %}  
+ 
