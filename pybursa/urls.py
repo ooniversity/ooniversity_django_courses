@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^contact/$', views.contact, name ='contact'),
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^quadratic/', include('quadratic.urls', namespace="quadratic")),
-    url(r'^courses', include('courses.urls', namespace="courses")),
+    url(r'^courses/', include('courses.urls', namespace="courses")),
     url(r'^students', include('students.urls', namespace="students")),
     url(r'^coaches/', include('coaches.urls', namespace="coaches")),
 

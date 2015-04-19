@@ -15,7 +15,7 @@
 
 {% block page_content %}
 
-<p>Студент {{student.name}} {{student.surname}} будет удален</p>
+<p>Student <b>{{student.name}} {{student.surname}}</b> will be deleted</p>
 
 <form method="post">
 {% csrf_token %}

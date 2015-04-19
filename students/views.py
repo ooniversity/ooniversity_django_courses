@@ -31,8 +31,7 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             student = form.save()
-            #student = Student.objects.get(id=9)
-            messages.success(request, 'Студент успешно добавлен')
+            messages.success(request, 'Student %s %s was successfully added' % (student.name, student.surname))
             return redirect('students:students')
     else:
         form = StudentForm()
@@ -44,7 +43,7 @@ def edit_student(request, pk):
         form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             student = form.save()
-            messages.success(request, 'Данные изменены')
+            messages.success(request, 'The data were successfully changed')
             return HttpResponseRedirect('http://127.0.0.1:8000/students/edit/%i/' % student.pk)
     else:
         form = StudentForm(instance=student)
@@ -53,10 +52,8 @@ def edit_student(request, pk):
 def remove_student(request, pk):
     student = Student.objects.get(id=pk)
     if request.method == 'POST':
-        context = {'name':student.name, 'surname':student.surname}
-
-        messages.success(request, context)
         student.delete()
+        messages.success(request, 'Student %s %s was successfully deleted' %  (student.name, student.surname))
         return redirect('students:students')
     form = None
     return render(request,'students/remove.html', {'student':student})

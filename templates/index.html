@@ -12,14 +12,20 @@
 
 {% block main_content %}
 
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <h1>Попади в тренд современной WEB разработки c ItBursa</h1>
   <div class="jumbotron">
     <p>Проект ItBursa был признан лучшим среди региональных IT проектов и отмечен наградой и планшетом от IT Jam 2015</p>
     <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
   </div>
   <h2>Наши курсы</h2>
-  <h3><a href="{% url 'courses:add_course' %}">Добавить new course</a></h3>
+  <h3><a href="{% url 'courses:add_course' %}">Добавить новый курс</a></h3>
   {% if courses %}
     <div class="media">
       {% for course in courses %}
