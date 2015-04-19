@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}Отредактировать данные студента{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" with active_students='active' %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+{% block table %}
+<h2>Отредактировать данные студента</h2>
+<div class="table-responsive">
+
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Редакрировать данные">
+</form>
+
+</div>
+{% endblock table %}

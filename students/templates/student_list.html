@@ -11,7 +11,16 @@
 
 
 {% block table %}
-<h2>Список студентов</h2>
+<h2>Список студентов</h2><br />
+    {% if messages %}
+        <ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+        </ul>
+    {% endif %}
+<p><a class="btn btn-primary glyphicon glyphicon-plus"
+      href="{% url 'student_add' %}" role="button"> Добавить студента</a></p><br />
 <div class="table-responsive">
 <table class="table table-striped">
     <thead>
@@ -21,6 +30,8 @@
         <th>Адрес</th>
         <th>Skype</th>
         <th>Курсы</th>
+        <th></th>
+
     </tr>
     </thead>
     <tbody>{% for st in stud %}
@@ -32,6 +43,8 @@
             <td><ul>{% for c in st.course.all %}
                 <li><a href="{% url 'course' c.id %}">{{c.name}}</a></li>{% endfor %}
                 </ul></td>
+            <td><a class="btn btn-primary glyphicon glyphicon-pencil"
+                   href="{% url 'student_edit' st.id %}" role="button"> Изменить</a></td>
         <tr>{% endfor %}
     </tbody>
 </table>

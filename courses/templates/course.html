@@ -7,7 +7,21 @@
 {% block title %}{{course.name|upper}} - Курс по веб программированию{% endblock title %}
 
 
-{% block nav %}{% include "nav.html" with active_home='active' %}{% endblock nav %}
+{% block nav %}
+<div class="header clearfix">
+<nav>
+    <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active">
+            <a href="{% url 'home' %}">Главная</a></li>
+        <li role="presentation">
+            <a href="{% url 'contact' %}">Контакты</a></li>
+        <li role="presentation">
+            <a href="{% url 'student_list' %}?course_id={{ course.id }}">Студенты</a></li>
+    </ul>
+</nav>
+<h3 class="text-muted">KievBursa</h3>
+</div>
+{% endblock nav %}
 
 
 
