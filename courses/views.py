@@ -59,7 +59,7 @@ def delete_course(request, pk_course):
         course_app.delete()
         course_mess = u'Курс - {} - был успешно удален !'.format(course_app.title)
         messages.success(request, course_mess)
-        return redirect ('index-ooniversity')
+        return redirect('index-ooniversity')
     return render(request, 'courses/delete_course.html', {'course_app': course_app})
 
 

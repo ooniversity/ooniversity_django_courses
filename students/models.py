@@ -21,4 +21,4 @@ class Student(models.Model):
 
     def full_name(self):
         # (verbose_name = u'Полное имя')
-        return (self.name + ' ' + self.surname)
+        return (self.name + u' ' + self.surname)

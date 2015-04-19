@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}Edition Student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock %}
+
+
+{% block main_content %}
+
+    <br>
+
+{% include "includes/inc_messages.html" %}  {# Подключение сообщения #}
+
+    <div>
+      <br>
+      <h2> Редактирование данных студента - {{ student_app.full_name|title }}</h2>
+      <br>
+      <br>
+
+      <!-- Форма редактирования данных студента -->
+
+      <form method="post">
+        {% csrf_token %}
+        {{ student_form.as_p }}
+        <br>
+        <br>
+        <input class="btn btn-primary" type='submit' value="Изменить">
+      </form>
+    </div>
+
+{% endblock main_content %}

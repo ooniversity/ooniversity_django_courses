@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}Deletion Student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock %}
+
+
+{% block main_content %}
+
+    <div>
+      <br>
+      <h1><b> А Вы уверены, что хотите удалить студента - {{ student_app.full_name|upper }} ? </b></h1>
+      <br>
+      <h2> Студент - {{ student_app.full_name|upper }} - будет удален !!! </h2>
+      <br>
+      <br>
+
+      <!-- Удаление студента !!! -->
+
+      <form method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger" type='submit' value="Удалить">
+      </form>
+    </div>
+
+{% endblock main_content %}
