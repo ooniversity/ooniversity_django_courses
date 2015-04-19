@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from courses.models import Course
 from coaches.models import Coach
+from django import forms
+from django.contrib import messages
 
 def courses_home_page(request):
 	courses = Course.objects.all()
@@ -17,3 +19,48 @@ def courses_one_of(request, pk):
 		'trainer':trainer, 
 		'assistant':assistant,
 		})
+
+class CourseForm(forms.ModelForm):
+	class Meta:
+		model = Course
+
+def add_course(request):
+	if request.method == 'POST':
+		form = CourseForm(request.POST)
+		if form.is_valid():
+		 	application = form.save()
+
+		 	messages.success(request, 'Course saved!')
+
+		 	return redirect('courses:add')
+
+	else:
+		form = CourseForm()
+	return render(request, 'add.html',{'form':form})
+	
+
+def edit_course(request, pk):
+	course = Course.objects.get(id=pk)
+
+	if request.method == 'POST':
+		form = CourseForm(request.POST, instance=course)
+		if form.is_valid():
+			application = form.save()
+		 	messages.success(request, 'Course saved! [by edit]')
+
+		 	#return redirect('course:index')
+	else:
+		form = CourseForm(instance=course)
+	return render(request, 'edit.html', {'form':form})
+	
+def delete_course(request, pk):
+	course = Course.objects.get(id=pk)
+
+	if request.method == 'POST':
+		course.delete()
+		messages.success(request, 'Object deleted!')
+	 	return redirect('courses:index')
+	return render(request, 'delete.html',{'course':course})
+
+def add_lesson(request, pk):
+	pass
