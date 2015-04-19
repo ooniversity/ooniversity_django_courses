@@ -20,6 +20,6 @@ class Student(models.Model):
  		return self.name + " " + self.surname
 
  	def __unicode__(self):
- 		return self.name+' '+self.surname
+ 		return u'{} {}'.format(self.name, self.surname) #self.name+' '+self.surname
 
 

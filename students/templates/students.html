@@ -11,7 +11,19 @@
 			  <li class="active">Список студентов</li>
 			</ol>
 			
-			<div class="panel panel-default">
+			 {% if messages %}
+		    	<ul class="messages">
+		    	{% for message in messages %}
+		    		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+		    			{{ message }}
+		    		</li>
+		    	{% endfor %}
+		    	<ul>
+		    {% endif %}
+		    <br />
+		    </ul>
+			<a href="{% url "students:add" %}">[+] добавить студента</a>
+ 			<div class="panel panel-default">
 		      <!-- Default panel contents -->
 		      <div class="panel-heading">План курса</div>
 
@@ -25,6 +37,8 @@
 		            <th>адрес</th>
 		            <th>skype</th>
 		            <th>курсы</th>
+		            <th></th>
+		            <th></th>
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -40,6 +54,12 @@
 			            {% for c in s.courses %}
 			            	<a href="{% url "courses:oneof" c.id %}">{{ c }}</a> <br />
 			            {% endfor%}
+		            </td>
+		            <td>
+		            	<a href="{% url "students:edit" s.id %}">edit</a>
+		            </td>
+		             <td>
+		            	<a href="{% url "students:delete" s.id %}">delete</a>
 		            </td>
 		          </tr>
 		        {% endfor%}
