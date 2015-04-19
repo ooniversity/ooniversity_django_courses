@@ -50,6 +50,23 @@
 
 		<div class="container">
 		<h1>Решение квадратного уравнения вида a*x² + b*x + c = 0</h1>
+			
+			<h2>1. Новая форма</h2>
+
+				<form action={% url "result" %}>
+				<!--
+				<form method='post'> 
+		    	{% csrf_token %}
+		    	-->
+		    	{{ form.as_p }}
+		    	<br />
+				<button type="submit" class="btn btn-default" >
+					calc
+				</button>
+		    	</form>
+				
+			<!--
+			<h2>2. Старая форма</h2>
 			<form action={% url "result" %}>
 				a = <input size="10" name="a"> <br />
 				b = <input size="10" name="b"> <br />
@@ -61,6 +78,7 @@
 				<button type="reset" class="btn btn-default" >
 					reset
 				</button>
+			-->
 		</div>
 
 		<footer class="footer">

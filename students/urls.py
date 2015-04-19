@@ -4,5 +4,6 @@ from students.views import *
 
 urlpatterns = patterns('',
     url(r'^$', students_all, name='index'),
+    url(r'^apply/$', apply_to_course, name='apply'),
     url(r'^(?P<pk>\d+)/$', one_of_student, name='oneof'),
 )
