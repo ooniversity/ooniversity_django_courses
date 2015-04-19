@@ -15,7 +15,7 @@
 
 {% block main_content %}
 
-<p>Курс <b>{{course.name}}</b> будет удален</p>
+<div class="alert alert-warning" role="alert">Курс <b>{{course.name}}</b> будет удален</div>
 
 <form method="post">
 {% csrf_token %}
