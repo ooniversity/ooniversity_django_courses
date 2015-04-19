@@ -25,12 +25,12 @@
 </ul>
 {% endif %}
 
-<h3>Редактирование данных студента</h3>
+<h3>{{ page_title }}</h3>
 
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}
-  <input type="submit" value="Изменить"/>
+  <input type="submit" value="Сохранить"/>
 </form>
 
 {% endblock page_content %}
