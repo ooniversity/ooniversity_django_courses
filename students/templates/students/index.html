@@ -13,15 +13,23 @@
 
 {% block main_content %}
 
-        <h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-        </h2>
+        <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Добавить нового студента
+        </button>
 
-        <div>
-          <h4>
-            Тут будет описание
-          </h4>
-        </div>
+        <a href="{% url 'students:add' %}" class="btn btn-primary" role="button">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Добавить нового студента
+        </a>
 
         <h4>
           Список студентов!
