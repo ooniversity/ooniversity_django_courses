@@ -1,6 +1,5 @@
 {% extends "tech/base.html" %}
 {% load staticfiles %}
-
 {% block title %} Главная {% endblock title %}
 {% block nav_class_index %}active{% endblock %}
 
@@ -16,21 +15,19 @@
 {% block courses_table %}
 <h2>Обучитесь "модным" языкам программирования</h2>
 
- <table class="table">
-            <thead>
-              <tr>
-                <th>Курс</th>
-                <th>Описание</th>
-               </tr>
-            </thead>
+<table class="table">
+ <thead>
+   <tr>
+     <th>Курс</th>
+     <th>Описание</th>
+   </tr>
+ </thead>
                
 {% for i in courses %}
-    <!--<br>
-    <b> <a href="{{ i.url }}">{{i.name}} </a> </b>
-    {{i.description}}-->
     <tbody>
       <tr>
       <td><a href="{{ i.url }}">{{i.name|upper}} </a></td>
+
       <td>{{i.short_description}}</td>
       </tr>
 {% endfor %}

@@ -15,22 +15,7 @@
               <input type='submit' value='Решить' />    
           </form>
 
-          <!--{% if message == '' %}
- 	      <ul>
-          {% for var1,var2,msg in list %}         
-             <li>{{ var1 }} = {{ var2 }}</li>
-             <div class="msg_ital"> {{ msg }} </div>
-          {% endfor %}
-          {% else %}
-          	 <li> a = {{ list.0.1 }}</li>
-         	 <li> b = {{ list.1.1 }}</li>
-         	 <li> c = {{ list.2.1 }}</li>
-          </ul> <br>
-          <p> Дискриминант: {{ discriminant }}</p>
-          <p>{{ message }}</p>
-          {% endif %} -->
-
-          {% if not list.0.2 %}
+          {% if message %}
           <br/><p> Дискриминант: {{ discriminant }}</p>
           <p>{{ message }}</p>
 

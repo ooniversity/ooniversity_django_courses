@@ -12,7 +12,6 @@
 
     <title>{% block title %} ТИТУЛ {% endblock title %} </title>
 
-    <!-- Bootstrap core CSS -->
     <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -49,9 +48,14 @@
           <ul class="nav navbar-nav">
           <li class="{% block nav_class_index %}{% endblock %}" ><a href="{% url 'index' %}">Главная</a></li>
             <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contact' %}">Контакты</a></li>
-            <!--<li><a href="{% url 'student_list' %}">Студенты</a></li>-->
-            <li class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students' %}">Студенты ITBursa</a></li>
-            <li class="{% block nav_class_quadratic %}{% endblock %}"><a href="{% url 'quadratic' %}">Уравнение</a></li>
+            {% block nav_students %} 
+              <li class="{% block nav_class_students %}{% endblock %}">
+                <a href="{% url 'students:students' %}">
+                    Студенты  ITBursa
+                </a>
+            {% endblock %}
+            </li>
+            <li class="{% block nav_class_quadratic %}{% endblock %}"><a href="{% url 'quadratic:quadratic' %}">Уравнение</a></li>
             <!--<li><a href="#contact">Contact</a></li>-->
           </ul>
         </div><!-- /.nav-collapse -->
@@ -72,8 +76,10 @@
           {% block jumbotron %}
             <div class="jumbotron">
             <div class="jumbo_internal">
-            <h1>Go to ITBursa!</h1>
-            <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
+            {% block jumbotron_content %}
+				<h1>Go to ITBursa!</h1>
+				<p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
+            {% endblock jumbotron_content %}
           </div>
           </div>
          {% endblock jumbotron %}
@@ -90,9 +96,6 @@
             </thead>
                
 {% for i in courses %}
-    <!--<br>
-    <b> <a href="{{ i.url }}">{{i.name}} </a> </b>
-    {{i.description}}-->
     <tbody>
       <tr>
       <td><a href="{{ i.url }}">{{i.name}} </a></td>
@@ -104,8 +107,6 @@
 {% endblock courses_table %}
 
 <!--http://www.tangowithdjango.com/book/chapters/models_templates.html#fig-rango-links-->
-
-<!--{{ courses }}-->
 
 <h2>{% block content_header %}Особенности {% endblock content_header %}</h2>
 

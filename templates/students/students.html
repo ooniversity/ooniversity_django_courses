@@ -9,16 +9,17 @@
 {% block main_content %}
 
 {% if messages %}
-<!--http://getbootstrap.com/javascript/#alerts-->
-<div class="alert alert-warning alert-dismissible fade in" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-    {% for message in messages %}
-      {{ message }}
-    {% endfor %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
 {% endif %}
-</div>
 
-        <a href="{% url 'student_add' %}">
+
+        <a href="{% url 'students:student_add' %}">
           <button class="btn btn-primary">
             Добавить студента
           </button>
@@ -28,12 +29,6 @@
 
 {% if not comment %}
 
-<!--{% for i in course_students %}
-    <br>
-    <b> <a href="{{ i.url }}">{{i.surname}} </a> </b>
-    {{i.name}}
-    <b>{{i.scype}}</b>
-{% endfor %}-->
 <div class="table-responsive"> <!--horizontal scrolls-->
 <table class="table table-hover">
 <thead>
@@ -58,15 +53,15 @@
   <td>
      <!--{{i.courses.all}}-->
   {% for item in i.courses.all %}
-      <p><a href="{% url 'course' item.id %}">{{item.name}} </a></p>
+      <p><a href="{% url 'courses:course' item.id %}">{{item.name}} </a></p>
   {% endfor %}
    <!--http://stackoverflow.com/questions/3998527/how-to-display-a-list-of-objects-containing-many-to-many-relations-in-django-tem-->
    </td>
    <td> 
-     <a href="{% url 'student_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
+     <a href="{% url 'students:student_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
    </td>
    <td> 
-     <a href="{% url 'student_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a> 
+     <a href="{% url 'students:student_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a> 
    </td>
 </tr>
 {% endfor %}

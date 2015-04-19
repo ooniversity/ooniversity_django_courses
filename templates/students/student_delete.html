@@ -7,7 +7,7 @@
 {% block content_header %}{% endblock content_header %}
 
 {% block main_content %}
-<h2>Студент {{student.name}} {{student.surname|upper}} будет удален! </h2>
+<h3>Информация о студенте {{student.name}} {{student.surname|upper}} будет удалена! </h3>
 
           <form method="post">
               {% csrf_token %}

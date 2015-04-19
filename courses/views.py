@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def course_detail(request, course_id):
     try:
-        course_current = Course.objects.get(id=int(course_id))
+        course_current = Course.objects.get(id=course_id)
         course_name = course_current.name
         course_description = course_current.description
         student_id = str(course_id)

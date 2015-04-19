@@ -10,7 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def coach_detail(request, co_id):
     try:
-        coaches = Coach.objects.get(id=int(co_id))
+        coaches = Coach.objects.get(id=co_id)
         message = ""
         coaches_info = {
             "fullname": coaches.user.get_full_name(),

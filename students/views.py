@@ -13,7 +13,7 @@ def students(request):
         course_id = request.GET.get('course_id', '')
         comment, course_name, course_students = "", "", "" #in order not to be referenced before assignment
         if course_id:
-            course_name = Course.objects.get(id=int(course_id))
+            course_name = Course.objects.get(id=course_id)
             course_students = Student.objects.filter(courses__id = course_id)
         else:
             course_students = Student.objects.all()
@@ -27,7 +27,7 @@ def students(request):
 
 def student_one(request, student_id):
     try:
-        student_one = Student.objects.get(id=int(student_id))
+        student_one = Student.objects.get(id=student_id)
         msg = ""
         return render(request, 'students/student_one.html',  {"student_one": student_one, "msg": msg, "student_id": student_id})
     except ObjectDoesNotExist:        
@@ -67,7 +67,7 @@ def student_edit(request, stud_id):
 
 
 def student_delete(request, stud_id):
-    student = Student.objects.get(id=int(stud_id))
+    student = Student.objects.get(id=stud_id)
     if request.method == "POST":
         student.delete()
         messages.success(request, "Info on student %s %s has been deleted."%(student.name, student.surname))
