@@ -9,6 +9,19 @@
 
 {% block main_content %}
 
+  {% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+{{ message }}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<a href="{% url 'students:add_student' %}" class="glyphicon glyphicon-plus btn btn-info">Добавить нового студента</a>
+
+
 <h3>Список Студентов</h3>
 
 <div class="panel panel-default">
@@ -19,6 +32,8 @@
        <th>Адрес</th>
        <th>skype</th>
        <th>курсы</th>
+       <th></th>
+       <th></th>
      </tr>
 {% for student in studik %}
      <tr>
@@ -27,9 +42,12 @@
        <td>{{student.address}}</td>
        <td>{{student.skype}}</td>
        <td>{% for c in student.courses.all %}
-				<a href="{% url 'courses:courses' c.id %}">{{c|upper}}</a><br>
+				<a href="{% url 'courses:courses' c.id %}">{{c|upper}}</a><br />
 				{% endfor %}</td>
+       <td><a href="{% url 'students:edit_student' student.id %}" class="glyphicon glyphicon-pencil btn btn-info">Изменить</a></td>
+       <td><a href="{% url 'students:remove_student' student.id %}" class="glyphicon glyphicon-remove btn btn-info">Удалить</a></td>
      </tr>
+    
 {% endfor %}						
   </table>  
 </div>

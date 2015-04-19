@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}Changing Student{% endblock title %}
+
+
+{% block handler_wrapper %}style="margin-top:1%"{% endblock %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block carousel %}{% endblock carousel %}
+
+
+{% block main_content %}
+
+  {% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+{{ message }}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+  <h3>Редактирование данных студента</h3>
+
+
+
+  <form method='post'>
+    {% csrf_token %}  
+    {{ form.as_p }}
+    <input type="submit" value="Изменить">
+  </form>
+
+{% endblock main_content %}
+

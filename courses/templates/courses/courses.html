@@ -7,6 +7,9 @@
 {% block title %}Course Detail{% endblock title %}
 
 
+{% block goToStudentCourse %} "{% url 'students:students' %}?course_id={{courses.crs.id}}" {% endblock %}
+
+
 {% block nav_class_students %}{% endblock %}
 
 
