@@ -6,7 +6,7 @@
 
 
 {% block content %}
-  <h3>Вы уверены, что хотите удалить {{ student.full_name }} </h3>
+  <h3>Вы уверены, что хотите удалить студента {{ student.full_name }} </h3>
   <form method="post">
     {% csrf_token %}
     <input type="submit" class="btn btn-primary" name="Delete" value="Удалить" />
@@ -14,5 +14,5 @@
         <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
     </a>
   </form>
-
+  <br />
 {% endblock content %}

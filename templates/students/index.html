@@ -9,6 +9,17 @@
 
 
 {% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ message }}</h3>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
+
   <form action="{% url 'students:add_student' %}">
   <button type="submit" class="btn btn-primary" value="Add">
     <span class="glyphicon glyphicon-plus"></span> Добавить студента
