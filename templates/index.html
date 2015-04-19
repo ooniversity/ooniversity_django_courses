@@ -12,14 +12,28 @@
 
 {% block content %}
 
-{% include "info.html" %}
+{% if messages %}
+<div class="alert alert-success">
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
-       <h1 align="center">Выбирай на каком курсе ты хочеш учиться!</h1><br>
-       <table class="table table-bordered">
+{% include "info.html" %}
+<h1 align="center">Курсы</h1><br>
+<p>
+     <a href="{% url 'courses:course_add' %}" class="btn btn-large btn-primary" type="button">Добавить курс</a>
+</p>
+
+     <table class="table table-bordered">
            <thead>
                <tr>
                    <th>Курс</th>
                    <th>Описание</th>
+                   <th></th>
                </tr>
            </thead>
            {% for i in model %}
@@ -27,6 +41,14 @@
                 <tr>
                      <td><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></td>
                      <td>{{ i.short_description }}</td>
+                     <td>
+                         <p>
+                            <a href="{% url 'courses:course_edit' i.id %}" class="btn btn-success btn-small btn-primary" type="button">ПРАВИТЬ</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'courses:course_delete' i.id %}" class="btn btn-danger btn-small" type="button">УДАЛИТЬ</a>
+                        </p>
+                     </td>
                 </tr>
            </tbody>
            {% endfor %}

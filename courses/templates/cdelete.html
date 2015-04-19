@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Pybursa.Удаление{% endblock %}
+
+
+{% block nav_active_students %}active{% endblock %}
+
+
+{% block nav_st_detail %}{% endblock %}
+
+
+{% block bodyhead %}{% endblock %}
+
+
+{% block content %}
+<div class="page-header">
+  <h1>Курс {{ course.name }} будет удалён</h1>
+</div>
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="Submit" value="Удалить">
+<form>
+{% endblock content %}
