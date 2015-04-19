@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.contrib import messages
-from django import forms 
+from django import forms
 
 from courses.models import Course
 from models import Student
@@ -30,7 +32,7 @@ def add_student(request):
         if form.is_valid():
             student = form.save()
             #student = Student.objects.get(id=9)
-            messages.success(request, 'Студент успешно добавлен', {'student':student})
+            messages.success(request, 'Студент успешно добавлен')
             return redirect('students:students')
     else:
         form = StudentForm()
@@ -38,12 +40,25 @@ def add_student(request):
 
 def edit_student(request, pk):
     student = Student.objects.get(id=pk)
-    form = StudentForm(instance=student)
-
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            messages.success(request, 'Данные изменены')
+            return HttpResponseRedirect('http://127.0.0.1:8000/students/edit/%i/' % student.pk)
+    else:
+        form = StudentForm(instance=student)
     return render(request,'students/edit.html', {'form':form})
 
 def remove_student(request, pk):
     student = Student.objects.get(id=pk)
-    return render(request,'students/remove.html')
+    if request.method == 'POST':
+        context = {'name':student.name, 'surname':student.surname}
+
+        messages.success(request, context)
+        student.delete()
+        return redirect('students:students')
+    form = None
+    return render(request,'students/remove.html', {'student':student})
 
 

@@ -10,6 +10,7 @@
 {% block page_content %}
 
 
+<h5><a href="{% url 'students:add_student' %}">Добавить нового студента</a></h5>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -19,7 +20,6 @@
         <th>Адрес</th>
         <th>Skype</th>
         <th>Курсы</th>
-        <th>Действие</th>
       </tr>
     </thead>
     {% for student in students %}
@@ -33,6 +33,7 @@
         <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
         {% endfor %}</td>
         <td><a href="{% url 'students:edit_student' student.id %}">Изменить</a></td>
+        <td><a href="{% url 'students:remove_student' student.id %}">Удалить</a></td>
       </tr>
     </tbody>
     {% endfor %}

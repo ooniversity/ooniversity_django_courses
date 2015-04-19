@@ -19,7 +19,7 @@
     <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
   </div>
   <h2>Наши курсы</h2>
-
+  <h3><a href="{% url 'courses:add_course' %}">Добавить new course</a></h3>
   {% if courses %}
     <div class="media">
       {% for course in courses %}
