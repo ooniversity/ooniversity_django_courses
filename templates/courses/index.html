@@ -8,11 +8,6 @@
 
 
 {% block content %}
-  <div class="jumbotron">
-    <h1>Профессиональные курсы</h1>
-    <p class="lead">Присоединяйся!</p>
-  </div>
-
 {% if messages %}
   {% for message in messages %}
   <div class="panel panel-success">
@@ -22,6 +17,11 @@
   </div>
   {% endfor %}
 {% endif %}
+
+  <div class="jumbotron">
+    <h1>Профессиональные курсы</h1>
+    <p class="lead">Присоединяйся!</p>
+  </div>
 
   <form action="{% url 'courses:add_course' %}">
     <button type="submit" class="btn btn-primary" value="Add">

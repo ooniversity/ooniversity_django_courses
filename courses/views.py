@@ -4,7 +4,7 @@ from django.views import generic
 from django.contrib import messages
 
 from courses.models import Course
-from courses.forms import CourseForm
+from courses.forms import CourseForm, LessonForm
 
 
 class IndexView(generic.ListView):
@@ -16,10 +16,10 @@ class IndexView(generic.ListView):
 
 
 def course_detail(request, course_id):
-    c = get_object_or_404(Course, pk=course_id)
-    course_lesson_list = c.lesson_set.all()
+    course = get_object_or_404(Course, pk=course_id)
+    course_lesson_list = course.lesson_set.all()
     template_name = 'courses/detail_course.html'
-    return render(request, template_name, {'course': c,
+    return render(request, template_name, {'course': course,
                                            'course_lesson_list': course_lesson_list,
                                            })
 
@@ -59,3 +59,17 @@ def delete_course(request, pk):
         return redirect('courses:index')
     template_name = 'courses/delete_course.html'
     return render(request, template_name, {'course': current_course})
+
+
+def add_lesson(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    if request.method == "POST":
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            new_lesson = form.save()
+            messages.success(request, 'Занятие {0} успешно добавлено'.format(new_lesson))
+            return redirect('courses:detail', course_id=course_id)
+    else:
+        form = LessonForm(initial={'course_id': course_id})
+    template_name = 'courses/add_lesson.html'
+    return render(request, template_name, {'course': course, 'form': form})

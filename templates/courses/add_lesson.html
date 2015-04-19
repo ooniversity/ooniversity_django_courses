@@ -2,17 +2,17 @@
 {% load staticfiles %}
 
 
-{% block title %} Создать студента {% endblock title %}
+{% block title %} Создать занятие {% endblock title %}
 
 
 {% block content %}
   {% if form %}
-   <h3>Создание нового студента</h3>
+   <h3>Создание нового занятия</h3>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="btn btn-primary" value="Создать" />
-    <a href="{% url 'students:index' %}">
+    <a href="{% url 'courses:detail' course.id %}">
       <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
     </a>
   </form>

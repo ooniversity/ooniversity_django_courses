@@ -7,7 +7,7 @@
 
 {% block content %}
   {% if form %}
-   <h3>{% block title_form %}Создание нового курса{% endblock title_form %}</h3>
+   <h3>Создание нового курса</h3>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
