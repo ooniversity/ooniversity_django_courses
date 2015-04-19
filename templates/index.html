@@ -10,7 +10,15 @@
 
 
 {% block main_content %}
+
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+
 <div class="panel panel-default">
+
+
+
 				<!-- Default panel contents -->
 				<div class="panel-heading">Список курсов от PyBurs'ы</div>
 
@@ -19,22 +27,29 @@
 					<tr>
 						<th>Курс</th>
     				<th>Описание</th>
+            <th></th>
+            <th></th>
 					</tr>
 {% for course in courses %}
 					<tr>
 						
 						<td><a href="{% url 'courses:courses' course.id %}">{{course.name}}</a></td>
 						<td>{{course.short_description}}</td>
-													
+						<td><a href="{% url 'courses:edit_course' course.id %}" class="glyphicon glyphicon-pencil btn btn-info">Изменить</a></td>
+            <td><a href="{% url 'courses:remove_course' course.id %}" class="glyphicon glyphicon-remove btn btn-info">Удалить</a></td>						
 					</tr>
 {% endfor %}					
 				</table>
+                        
+			</div><p><a href="{% url 'courses:add_course' %}" class="glyphicon glyphicon-plus btn btn-info">Добавить новый курс</a></p>
+<hr class="featurette-divider">
 
-			</div><hr class="featurette-divider">
 		</div>
 	
 <!--TABLE
 ====================================================END-->
+
+   
 
     <div class="container marketing">
 

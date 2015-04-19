@@ -17,16 +17,9 @@
 
 {% block main_content %}
 
-  {% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-{{ message }}
-</li>
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
 {% endfor %}
-</ul>
-{% endif %}
-
   <h3>Редактирование данных студента</h3>
 
 

@@ -1,0 +1,27 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Edit Course{% endblock title %}
+
+
+{% block nav_class_students %}{% endblock %}
+
+
+{% block main_content %}
+
+
+<h3>Редактирование курса</h3>
+
+
+
+  <form method='post'>
+    {% csrf_token %}  
+    {{ form.as_p }}
+    <input type="submit" value="Изменить">
+  </form>
+
+{% endblock main_content %}
+
