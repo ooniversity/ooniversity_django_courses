@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
-
-from quadratic import views
+from django.conf.urls import patterns, include, url
+from django.contrib import admin
+from quadratic.views import *
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index'),
-    url(r'^results/(?P<a>\d+)/(?P<b>\d+)/(?P<c>\d+)/$', views.results, name='results'),
+url(r'^$', quadratic, name="quadratic"),
+url(r'^result/$', result, name="result"),
 )

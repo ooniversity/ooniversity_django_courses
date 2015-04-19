@@ -13,6 +13,6 @@ urlpatterns = patterns('',
     url(r'^students/$', student, name='student'),
     
     url(r'^polls/', include('polls.urls', namespace="polls")),
-   
+    url(r'^quadratic/', include('quadratic.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
