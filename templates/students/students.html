@@ -1,0 +1,82 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Студенты {% endblock title %}
+{% block nav_class_students %}active{% endblock %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+{% if messages %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+
+        <a href="{% url 'students:student_add' %}">
+          <button class="btn btn-primary">
+            Добавить студента
+          </button>
+        </a> 
+
+	<h2>Студенты {{course_name}}</h2>
+
+{% if not comment %}
+
+<div class="table-responsive"> <!--horizontal scrolls-->
+<table class="table table-hover">
+<thead>
+<tr>
+  <th class="td_no">#</th>
+  <th>Фамилия, имя</th>
+  <th>Адрес</th>
+  <th>Skype</th>
+  <th>Курсы</th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+
+<tbody>
+{% for i in course_students %}
+<tr>
+
+  <td class="td_no">{{forloop.counter}}</td>
+  <td> <a href="{% url 'students:student_one' i.id %}">{{i.surname|upper}} {{i.name}} </td>
+  <td>{{i.address}} </td>
+  <td>{{i.scype}}</td>
+  <td>
+     <!--{{i.courses.all}}-->
+  {% for item in i.courses.all %}
+      <p><a href="{% url 'courses:course' item.id %}">{{item.name}} </a></p>
+  {% endfor %}
+   <!--http://stackoverflow.com/questions/3998527/how-to-display-a-list-of-objects-containing-many-to-many-relations-in-django-tem-->
+   </td>
+   <td> 
+     <a href="{% url 'students:student_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
+   </td>
+   <td> 
+     <a href="{% url 'students:student_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a> 
+   </td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table> 
+
+{% else %}
+
+<br> <b> {{comment}} </b>
+
+{% endif %}
+
+</div><!--responsive table-->
+
+{% endblock main_content %}
+

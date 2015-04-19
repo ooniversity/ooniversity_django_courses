@@ -1,0 +1,30 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Добавление курса {% endblock title %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+{% if messages %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+<h2>Изменение курса</h2>
+
+          <form method="post">
+              {% csrf_token %}
+              {{form_edit.as_p}}
+              <input type='submit' class="btn btn-primary" value='Создать' />    
+          </form>
+
+{% endblock main_content %}
+
+

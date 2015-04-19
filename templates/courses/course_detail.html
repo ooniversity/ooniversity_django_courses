@@ -1,0 +1,73 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+
+{% block nav_students %}
+	<li><a href="{% url 'students:students' %}?course_id={{ course_id }}">
+	   Студенты <span class="specific_menu">{{course_name}}</span></a>
+	</li>
+{% endblock nav_students %}
+
+{% block title %} Описание курса {% endblock title %}
+
+{% block jumbotron_content %}
+    {% if not message %}
+        <h1>{{course_name}}</h1>
+        <p>{{course_description|truncatechars:250}}</p>
+    {% endif %}
+{% endblock jumbotron_content %}
+
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+	<h2> Преподаватели </h2>
+
+	{% if not message %}
+		{% include "tech/incl_coach.html" with block_title="Учитель" instructor=trainer_info|default:"no instructor assigned" %}
+		{% include "tech/incl_coach.html" with block_title="Ассистент" instructor=assistant_info|default:"no assistant assigned" %}
+
+    <h2> План курса </h2>
+
+{% if messages %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+       <a href="{% url 'courses:lesson_add' course_current.id %}">
+          <button class="btn btn-primary">
+            Добавить урок
+          </button>
+       </a>
+
+		<table class="table">
+		 <thead>
+		   <tr>
+			  <th>#</th>
+			  <th>Тема</th>
+			  <th>Описание</th>
+		   </tr>
+		 </thead>
+		 <tbody>
+		{% for i in lessons %}
+			<tr>
+			  <td><span class="badge">{{forloop.counter}}</span></td>
+			  <td>{{i.topic}}</td>
+			  <td>{{i.description}}</td>
+			</tr>    
+		{% endfor %}          
+		  </tbody>
+
+	{% else %}
+	   <br><b> {{message}}</b>
+	{% endif %} 
+	</table>
+
+{% endblock main_content %}
+
+

@@ -1,0 +1,67 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Инфо о студенте {% endblock title %}
+{% block nav_class_students %}active{% endblock %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+{% if not msg %} 
+{% if student_one %}
+  <h2>{{student_one.name}} {{student_one.surname|upper}}</h2>
+                     
+  <div class="table-responsive"> <!--horizontal scrolls-->
+    <div id = "student_details">
+      <table class="table table-hover">
+       <tbody>
+
+        <tr>
+          <td>Дата рождения </td>
+          <td>{{student_one.birth_date|date:'Y, F j'}}</td>
+        </tr>
+
+        <tr>
+          <td>Адрес </td>
+          <td>{{student_one.address}}</td>
+        </tr>
+
+        <tr>
+          <td>Почта </td>
+          <td>{{student_one.email}}</td>
+        </tr>
+
+        <tr>
+          <td>Логин scype </td>
+          <td>{{student_one.scype}}</td>
+        </tr>
+
+        <tr>
+          <td>Телефон </td>
+          <td>{{student_one.phone}}</td>
+        </tr>
+
+        <tr class="big_tr">
+          <td>Курсы </td>
+          <td>
+            {% for item in student_one.courses.all %}
+       <p><a href="{% url 'courses:course' item.id %}">{{item.name}} </a></p>
+            {% endfor %}
+        </td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+   {% endif %}
+
+   </div> <!-- #student_details -->
+
+  </div><!--????-->
+
+  {% else %}
+      <br><b> {{msg}}</b>
+  {% endif %}
+
+{% endblock main_content %}
