@@ -1,0 +1,84 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Коучи {% endblock title %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+{% if not message %}
+                     
+<div class="table-responsive"> <!--horizontal scrolls-->
+  <h2> {{coaches_info.fullname|upper}}</h2>
+
+  <div id = "student_details">
+    <table class="table table-hover">		
+      <tbody>
+
+        <tr>
+          <td>Дата рождения </td>
+          <td>{{coaches_info.date|date:'Y, F j'}}</td>
+        </tr>
+
+        <tr>
+          <td>Адрес </td>
+          <td>{{coaches_info.address}}</td>
+        </tr>
+
+        <tr>
+          <td>Почта </td>
+          <td>{{ coaches.user.email }}</td>
+        </tr>
+
+        <tr>
+          <td>Логин scype </td>
+          <td>{{coaches_info.scype}}</td>
+        </tr>
+
+        <tr>
+          <td>Телефон </td>
+          <td>{{coaches_info.phone}}</td>
+        </tr>
+
+{% if coaches_info.courses_trainer %}
+        <tr >
+          <td>Курсы учитель </td>
+          <td>
+	    {% for i in coaches_info.courses_trainer %}
+	    <p class="big_tr"><a href="{% url 'courses:course' i.id%}">{{i.name}}
+	    </a>
+           <a href="{% url 'students:students' %}?course_id={{i.id}}">[Студенты]</a>
+            </p>
+            {% endfor %}
+	  </td>
+
+        </tr>
+{% endif %}
+
+{% if coaches_info.courses_assistant %}
+        <tr>
+          <td>Курсы ассистент </td>
+          <td>
+	    {% for i in coaches_info.courses_assistant %}
+	    <p class="big_tr"><a href="{% url 'courses:course' i.id %}">{{i.name}}</a>
+           <a href="{% url 'students:students' %}?course_id={{i.id}}">[Студенты]</a>
+            </p>
+            {% endfor %}
+	  </td>
+        </tr>
+{% endif %}
+        
+      </tbody>
+    </table>
+
+</div> <!-- #student_details -->
+</div><!--????-->
+
+{% else %}
+  <br><b>{{message}}</b>
+{% endif %}
+
+{% endblock main_content %}
+
+

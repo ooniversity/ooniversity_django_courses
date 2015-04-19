@@ -4,6 +4,4 @@ from quadratic.views import *
 urlpatterns = patterns('',
     url(r'^$', quadratic, name='quadratic'),
     url(r'^results/$', results, name='results'),
-
-
 )

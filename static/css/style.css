@@ -186,5 +186,22 @@ h3
 {
   background-color: #e1e4e7;
 }
+label
+{
+  font-weight: normal;
+  color: #E1752B;
+}
+.errorlist
+{
+  font-weight: bold;
+  color: red;
+}
+
+.alert-warning {
+  color: #2e6da4;
+  background-color: #dfe7fd;
+  border-color: #c0cffb;
+}
+
 
 										
