@@ -28,7 +28,7 @@ def get_eq_root(a, b, d, order=1):
 
 def quadratic_results(request):
     context = {}
-    if request.method == 'GET':
+    if request.GET:
         form = QuadraticForm(request.GET)
         if form.is_valid():
             a = form.cleaned_data.get('a')
@@ -47,7 +47,6 @@ def quadratic_results(request):
 
             context.update({'d': d, 'result_message': result_message})
             context.update({'form':form})
-            print context
             return render(request, 'quadratic/results.html', context)
 
     else:
