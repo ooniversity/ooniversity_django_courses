@@ -42,5 +42,5 @@ def lesson_adding(request, id):
         maxlessonnum = lessons.aggregate(Max('num'))    # определяем максимальный номер урока на курсе
         nextNum = maxlessonnum['num__max'] + 1          # предлагаем сохранить урок под след. номером после максимального
 
-        form = LessonAddingForm(initial={'course': id, 'num': nextNum, 'num(help_text)': 'dfsdfsdf'})
+        form = LessonAddingForm(initial={'course': id, 'num': nextNum })
     return render(request, 'add_course.html', {'form': form})
