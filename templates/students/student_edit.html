@@ -1,0 +1,29 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Редактировать {% endblock title %}
+{% block nav_class_students %}active{% endblock %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+{% if messages %}
+<!--http://getbootstrap.com/javascript/#alerts-->
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+{% endif %}
+</div>
+
+<h2>Редактирование данных студента</h2>
+
+          <form method="post">
+              {% csrf_token %}
+              {{form_edit.as_p}}
+              <input type='submit' class="btn btn-primary" value='Сохранить' />    
+          </form>
+
+{% endblock main_content %}

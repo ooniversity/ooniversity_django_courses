@@ -1,19 +1,17 @@
 {% extends "tech/base.html" %}
 {% load staticfiles %}
-{% block title %} Новый студент {% endblock title %}
+{% block title %} Редактировать {% endblock title %}
 {% block nav_class_students %}active{% endblock %}
 {% block jumbotron %}{% endblock jumbotron %}
 {% block courses_table %}{% endblock courses_table %}
 {% block content_header %}{% endblock content_header %}
 
 {% block main_content %}
-
-<h2>Создание нового студента</h2>
+<h2>Студент {{student.name}} {{student.surname|upper}} будет удален! </h2>
 
           <form method="post">
               {% csrf_token %}
-              {{form_add.as_p}}
-              <input type='submit' class="btn btn-primary" value='Создать' />    
+              <br/><input type='submit' class="btn btn-primary" value='Удалить'/>    
           </form>
 
 {% endblock main_content %}

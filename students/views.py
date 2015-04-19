@@ -24,23 +24,6 @@ def students(request):
         comment = "Sorry, no course with id = %s exists yet. So no relevant students list exists."%(course_id)
         return render(request, 'students/students.html',  {"comment": comment})        
 
-class StudentAddNew(forms.ModelForm):
-    class Meta:
-        model = Student
-
-
-def student_add(request):
-    student = Student()#??????????????
-    if request.method == "POST":
-        model_form = StudentAddNew(request.POST)
-        if model_form.is_valid():                
-            student = model_form.save()
-            messages.success(request, 'Info on a new student successfully added!');
-            return redirect("students")
-    else:
-        model_form = StudentAddNew()
-    return render(request, 'students/student_add.html', {"model_form": model_form})
-
 
 def student_one(request, student_id):
     try:
@@ -50,3 +33,44 @@ def student_one(request, student_id):
     except ObjectDoesNotExist:        
         msg = "Sorry, no student with id = %s takes our courses yet."%(student_id)
         return render(request, 'students/student_one.html',  {"msg": msg})
+
+
+class StudentModification(forms.ModelForm):
+    class Meta:
+        model = Student
+
+
+def student_add(request):
+    student = Student()
+    if request.method == "POST":
+        form_add = StudentModification(request.POST)
+        if form_add.is_valid():                
+            student = form_add.save()
+            messages.success(request, 'Info on a new student successfully added!');
+            return redirect("students")
+    else:
+        form_add = StudentModification()
+    return render(request, 'students/student_add.html', {"form_add": form_add})
+
+
+def student_edit(request, stud_id):
+    student = Student.objects.get(id=int(stud_id))
+    if request.method == "POST":
+        form_edit = StudentModification(request.POST, instance=student)
+        if form_edit.is_valid():                
+            student = form_edit.save()
+            messages.success(request, 'Info successfully changed!')
+            #return redirect("student_edit")
+    else:
+        form_edit = StudentModification(instance=student)
+    return render(request, 'students/student_edit.html', {"form_edit": form_edit})
+
+
+def student_delete(request, stud_id):
+    student = Student.objects.get(id=int(stud_id))
+    if request.method == "POST":
+        student.delete()
+        messages.success(request, "Info on student %s %s has been deleted."%(student.name, student.surname))
+        return redirect("students")
+    return render(request, 'students/student_delete.html', {"student": student})
+
