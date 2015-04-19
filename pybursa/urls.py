@@ -18,11 +18,11 @@ urlpatterns = patterns('',
     url(r'^quadratic/', include('quadratic.urls', namespace = "quadratic")),
 
 
-    url(r'^$', index_ooniversity, name = 'index-ooniversity'),
-    url(r'^contact/$', contact, name = 'contact'),
+    url(r'^$', index_ooniversity, name='index-ooniversity'),
+    url(r'^contact/$', contact, name='contact'),
 
-    url(r'^', include('students.urls', namespace = "students")),	# app - students
-    url(r'^', include('courses.urls', namespace = "courses")),		# app - courses
-    url(r'^', include('coaches.urls', namespace = "coaches")),		# app - coaches
+    url(r'^', include('students.urls', namespace='students')),		# app - students
+    url(r'^', include('courses.urls', namespace='courses')),		# app - courses
+    url(r'^', include('coaches.urls', namespace='coaches')),		# app - coaches
 
 )

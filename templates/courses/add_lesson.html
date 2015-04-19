@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}New lesson - {{ lesson_course.title }}{% endblock title %}
+
+
+{% block main_content %}
+
+    <div>
+      <br>
+      <h2> Создание нового занятия </h2>
+      <br>
+      <br>
+
+      <!-- Создание формы для нового занятия -->
+
+      <form method="post">
+        {% csrf_token %}
+        {{ lesson_form.as_p }}
+        <br>
+        <br>
+        <input class="btn btn-primary"  type='submit' value="Создать">
+      </form>
+
+    </div>
+
+{% endblock main_content %}

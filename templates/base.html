@@ -47,7 +47,7 @@
             </li>
             <li><a href="#">Преподаватели</a></li>
             <li class="{% block nav_class_student %}{% endblock %}">
-              <a href="{% url 'students:students-list' %}{% block urlget %}{% endblock %}">Студенты</a>
+              <a href="{% url 'students:student-list' %}{% block urlget %}{% endblock %}">Студенты</a>
             </li>
             <li class="{% block nav_class_contact %}{% endblock %}">
               <a href="{% url 'contact' %}">Контакты</a>

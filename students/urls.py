@@ -5,7 +5,7 @@ from students.views import students, student_info
 
 urlpatterns = patterns('',
 
-    url(r'^students/$', students, name = 'students-list'),
+    url(r'^students/$', students, name = 'student-list'),
     url(r'^students/(?P<id_stud>\d+)/$', student_info, name = 'student-info'),
 
 )
