@@ -9,12 +9,17 @@
 
 
 {% block content %}
+  <form action="{% url 'students:add_student' %}">
+  <button type="submit" class="btn btn-primary" value="Add">
+    <span class="glyphicon glyphicon-plus"></span> Добавить студента
+  </button>
+  </form>
   {% if students_list %}
   <h2>Список студентов</h2>
   <table  class="table table-striped ">
     <thead>
       <tr>
-       <th>#</th><th>Фамилия имя</th><th>Адрес</th><th>Skype</th><th>Курсы</th>
+       <th>#</th><th>Фамилия имя</th><th>Адрес</th><th>Skype</th><th>Курсы</th><th></th><th></th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +31,22 @@
        <td>{{ student.skype }}</td>
        <td>{% for course in student.course.all %}
            <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
-           <br/>{% endfor %}</td>
+           <br/>{% endfor %}
+       </td>
+        <td>
+          <form action="{% url 'students:edit_student' student.id %}">
+            <button type="submit" class="btn btn-primary" value="Edit">
+              <span class="glyphicon glyphicon-pencil"></span> Редактировать
+            </button>
+          </form>
+        </td>
+        <td>
+          <form action="{% url 'students:delete_student' student.id %}">
+            <button type="submit" class="btn btn-primary" value="Delete">
+              <span class="glyphicon glyphicon-trash"></span> Удалить
+            </button>
+          </form>
+        </td>
       </tr>
     {% endfor %}
     </tbody>

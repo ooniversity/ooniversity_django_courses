@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+from django import forms
+
+from students.models import Student
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        labels = {'name': "Имя",
+                  'surname': "Фамилия",
+                  'date_of_birth': "Дата рождения",
+                  'phone': "Телефон",
+                  'address': "Адрес",
+                  'course': "Курсы"
+                  }
+        # help_texts = {'course': 'Удерживайте нажатой кнопку "Control", или "Command" на Mac, чтобы выбрать более одного.'}
+
+    def __init__(self, *args, **kwargs):
+        super(StudentForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.error_messages = {'required': 'Поле {fieldname} обязательно должен быть заполнен!'.format(
+                fieldname=field.label)}

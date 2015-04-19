@@ -1,0 +1,21 @@
+{% extends 'students/index.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Создать студента {% endblock title %}
+
+
+{% block content %}
+    {% if form %}
+     <h3>Создание нового студента</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary" value="Создать" />
+      <a href="{% url 'students:index' %}">
+        <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
+      </a>
+    </form>
+    {% endif %}
+
+{% endblock content %}
