@@ -58,7 +58,6 @@ def edit_student(request, pk):
             application = form.save()
             messages.add_message(request, messages.INFO, "Данные изменены")
 
-            # return render_to_response('students:edit_student/pk')
             return render(request, 'change_student.html', {'form': form})
     else:
         form = StudentAddingForm(instance=application)

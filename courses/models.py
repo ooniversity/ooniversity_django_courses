@@ -21,7 +21,7 @@ class Lesson(models.Model):
     theme = models.CharField(max_length=100)
     about = models.TextField()
     course = models.ForeignKey(Course)
-    num = models.PositiveIntegerField()
+    num = models.PositiveIntegerField(help_text="уроки с номерами ниже уже существуют")
 
     def __unicode__(self):
         return self.theme

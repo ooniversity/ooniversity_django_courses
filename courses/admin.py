@@ -6,6 +6,8 @@ class LessonInline(admin.TabularInline):
     model = Lesson
     extra = 0
 
+class LessonAdmin(admin.ModelAdmin):
+	list_display = ['theme', 'num']
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['title', 'about']
@@ -14,4 +16,4 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
 
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Lesson)
+admin.site.register(Lesson, LessonAdmin)
