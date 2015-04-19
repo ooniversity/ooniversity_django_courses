@@ -11,19 +11,34 @@
 
 
 {% block table %}
-<h2>Курсы по программированию на апрель:</h2>
+<h2>Доступные курсы по программированию:</h2><br />
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+        </div>
+    {% endif %}
+<p><a class="btn btn-primary glyphicon glyphicon-plus"
+      href="{% url 'course_add' %}" role="button"> Добавить курс</a></p><br />
 <table class="table table-striped">
     <tbody>
     <tr>
         <th>Курс</th>
         <th>Описание</th>
+        <th></th>
+        <th></th>
     </tr>
-{% for course in cour %}
-<tr>
-    <td><a href='{% url 'course' course.id %}'>{{course.name}}</a></td>
-<td>{{course.description}}</td>
+    {% for course in cour %}
+    <tr>
+        <td><a href='{% url 'course' course.id %}'>{{course.name}}</a></td>
+        <td>{{course.description}}</td>
+        <td><a class="btn btn-primary glyphicon glyphicon-pencil"
+                   href="{% url 'course_edit' course.id %}" role="button"> Изменить</a></td>
+        <td><a class="btn btn-primary glyphicon glyphicon-remove"
+                   href="{% url 'course_delete' course.id %}" role="button"> Удалить</a></td>
     </tr>
-{% endfor %}
+    {% endfor %}
     </tbody>
 </table>
 {{text|default:"Это дефолтное описание, если мы добавим переменную text в этот шаблон, то она заменит это описание."}}

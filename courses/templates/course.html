@@ -44,7 +44,19 @@
 {% endblock jumbotron %}
 
 {% block table %}
-<h2>Расписание занятий</h2>
+<h2>Расписание занятий</h2><br />
+
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+        </div>
+    {% endif %}
+
+<p><a class="btn btn-primary glyphicon glyphicon-plus"
+      href="{% url 'add_lesson' course.id %}" role="button"> Добавить занятие</a></p><br />
+
 <table class="table table-striped">
     <tbody>
     <tr>
@@ -54,7 +66,7 @@
     </tr>
     {% for les in lessons %}
     <tr>
-        <td>{{les.id}}</td>
+        <td>{{les.num}}</td>
         <td>{{les.thema}}</td>
         <td>{{les.text}}</td>
     </tr>

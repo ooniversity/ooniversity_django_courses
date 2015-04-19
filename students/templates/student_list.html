@@ -13,11 +13,11 @@
 {% block table %}
 <h2>Список студентов</h2><br />
     {% if messages %}
-        <ul class="messages">
+        <div class="alert alert-success" role="alert">
     {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {{ message }}
     {% endfor %}
-        </ul>
+        </div>
     {% endif %}
 <p><a class="btn btn-primary glyphicon glyphicon-plus"
       href="{% url 'student_add' %}" role="button"> Добавить студента</a></p><br />
