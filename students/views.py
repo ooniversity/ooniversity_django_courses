@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from models import Student
 from courses.models import Course
 
 from django import forms
 from django.contrib import messages
+from pybursa.utils import detail_view
 
 
 def students_of_the_course(request):
@@ -19,8 +20,12 @@ def students_of_the_course(request):
 
 
 def student_info(request, student_id):
-    student = Student.objects.get(pk=student_id)
-    return render(request, 'student_info.html', {'student': student})
+    return detail_view(request, student_id, Student)
+
+# my old function
+#def student_info(request, student_id):
+#    student = Student.objects.get(pk=student_id)
+#    return render(request, 'student_info.html', {'student': student})
 
 
 class StudentForm(forms.ModelForm):
@@ -33,6 +38,28 @@ class StudentForm(forms.ModelForm):
         #fields = '__all__'
 
 
+#create universal function
+def add_edit_student(request, student_id=None):
+    if student_id is None:
+        student = None
+        message = "Student successfully added"
+        page_title = u'Создание нового студента'
+    else:
+        student = Student.objects.get(pk=student_id)
+        message = "Data students was successfully changed"
+        page_title = u'Редактирование данных студента'
+    if request.method == "POST":
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            messages.success(request, message)
+            return redirect('students:students_of_the_course')
+    else:
+        form = StudentForm(instance=student)
+    return render(request, 'add_edit.html', {'form': form, 'page_title': page_title})
+
+# my old function
+'''
 def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
@@ -43,8 +70,9 @@ def add_student(request):
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {'form': form})
-
-
+'''
+# my old function
+'''
 def edit_student(request, student_id):
     student = Student.objects.get(pk=student_id)
     if request.method == "POST":
@@ -56,7 +84,7 @@ def edit_student(request, student_id):
     else:
         form = StudentForm(instance=student)
     return render(request, 'edit_student.html', {'form': form})
-
+'''
 
 def delete_student(request, student_id):
     student = Student.objects.get(pk=student_id)

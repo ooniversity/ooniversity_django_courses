@@ -7,6 +7,9 @@
 {% block title %} {{ course.name }} {% endblock title %}
 
 
+{% block students_link %}{% url 'students:students_of_the_course' %}?course_id={{ course.id }}{% endblock %}
+
+
 {% block container %}
 
 

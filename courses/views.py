@@ -17,7 +17,7 @@ class LessonForm(forms.ModelForm):
 
 
 def index_courses(request):
-    courses = Course.objects.all()
+    courses = Course.objects.get()
     return render(request, 'index_courses.html', {'courses': courses})
 
 
