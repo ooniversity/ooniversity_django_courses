@@ -6,15 +6,20 @@
 
 {% block main_contant %}
 
+
+{% block message %}{% endblock%} 
+
 <div class="panel panel-default">
   <div class="panel-heading"><h3>Список студентов</h3></div>  
   <table class="table">     
     <tr>
       <th class="column05">#</th>        
-      <th class="column30">Фамилия, Имя</th> 
+      <th class="column20">Фамилия, Имя</th> 
       <th class="column30">Адрес</th> 
-      <th class="column20">Скайп</th>
-      <th>Курсы</th>       
+      <th class="column15">Скайп</th>
+      <th class="column15">Курсы</th>
+      <th></th> 
+      <th></th>      
     </tr>
     {% for student in students %}
     <tr>
@@ -27,6 +32,14 @@
       <p><a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a></p>
       {% endfor %}
       </td>
+
+      <td>
+        <p><a class="btn btn-success" href="{% url 'students:edit_student' student.id%}" role="button">Изменить</a></p>  
+      </td>
+      <td>
+        <p><a class="btn btn-danger" href="{% url 'students:remove_student' student.id%}" role="button">Удалить</a></p>  
+      </td>
+
     </tr>    
     {% endfor %}
   </table>
