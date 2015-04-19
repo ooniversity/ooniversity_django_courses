@@ -19,3 +19,10 @@ class Student(models.Model):
 
     def courseset(self):
         return self.courses.all()
+
+    def update_data(self, **kwargs):
+        for attr in kwargs:
+            if getattr(self, attr):
+                setattr(self, attr, kwargs.get(attr))
+
+

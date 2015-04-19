@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Pybursa.Новый_студент{% endblock %}
+
+
+{% block nav_active_students %}active{% endblock %}
+
+
+{% block nav_st_detail %}{% endblock %}
+
+
+{% block bodyhead %}{% endblock %}
+
+
+{% block content %}
+<div class="page-header">
+  <h1>Добавить нового студента</h1>
+</div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+   {{ form.as_p }}
+  </table>
+  <input type="Submit" value="Сохранить">
+<form>
+{% endblock content %}

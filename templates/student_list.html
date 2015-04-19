@@ -16,8 +16,18 @@
 {% block content %}
 <h1>Список студентов</h1>
 <p>
-    <a href="#" class="btn btn-large btn-primary" type="button">Добавить студента</a>
+     <a href="{% url 'students:student_add' %}" class="btn btn-large btn-primary" type="button">Добавить студента</a>
 </p>
+
+{% if messages %}
+<div class="alert alert-success">
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 <div class="row">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
@@ -49,10 +59,10 @@
                     </td>
                     <td>
                         <p>
-                            <a href="#" class="btn btn-success btn-small btn-primary" type="button">ПРАВИТЬ</a>
+                            <a href="{% url 'students:student_edit' i.id %}" class="btn btn-success btn-small btn-primary" type="button">ПРАВИТЬ</a>
                         </p>
                         <p>
-                            <a href="#" class="btn btn-danger btn-small" type="button">УДАЛИТЬ</a>
+                            <a href="{% url 'students:student_remove' i.id %}" class="btn btn-danger btn-small" type="button">УДАЛИТЬ</a>
                         </p>
                     </td>
 				</tr>
