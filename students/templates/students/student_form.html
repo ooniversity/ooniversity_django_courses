@@ -1,5 +1,9 @@
     <form method='post'>
-        {% csrf_token %}
+      {% csrf_token %}
+
+      {% if form %}
         {{ form.as_p }}
-        <input type='submit' value=' Создать '>
+      {% endif %}
+
+      <input type='submit' value="{{ action_name }}">
     </form> 
