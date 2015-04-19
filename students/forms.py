@@ -13,7 +13,6 @@ class StudentForm(forms.ModelForm):
                   'address': "Адрес",
                   'course': "Курсы"
                   }
-        # help_texts = {'course': 'Удерживайте нажатой кнопку "Control", или "Command" на Mac, чтобы выбрать более одного.'}
 
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
