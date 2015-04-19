@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect, HttpResponse
 from models import Course, Lesson
 from coaches.models import Coach
 from django.contrib import messages
 from django import forms
+from pybursa.utils import detail_view
 
 
 class LessonForm(forms.ModelForm):
@@ -19,9 +19,7 @@ class CourseForm(forms.ModelForm):
 
 
 def course_d(request, pk):
-    course = get_object_or_404(Course, pk=pk)
-    return render(request, 'courses/courses.html', {'course': course})
-
+    return detail_view(request, pk, Course)
 
 def add_course(request):
     if request.method == 'POST':

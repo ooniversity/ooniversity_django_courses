@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.contrib import messages
 from django import forms
 from courses.models import Course
 from models import Student
-
+from pybursa.utils import detail_view
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -24,11 +24,7 @@ def students(request):
 
 
 def student_d(request, pk):
-    student = get_object_or_404(Student, pk=pk)
-    return render(
-                request,
-                'students/student_detail.html',
-                {'student': student})
+    return detail_view(request, pk, Student)
 
 
 def add_student(request):

@@ -1,8 +1,6 @@
-from django.shortcuts import render
 from models import Coach
 from courses.models import Course
+from pybursa.utils import detail_view
 
-
-def coach_d(request, coach_id):
-    coach = Coach.objects.get(pk=coach_id)
-    return render(request, 'coaches/coaches.html', {'coach': coach})
+def coach_d(request, pk):
+    return detail_view(request, pk, Coach)
