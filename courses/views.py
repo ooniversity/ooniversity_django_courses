@@ -22,6 +22,10 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
 
+class LessonForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+
 
 
 def add_course(request):
@@ -68,7 +72,23 @@ def remove_course(request, id):
 
 
 
+def add_lesson(request, id):
+    course = Course.objects.get(pk=id)
+    if request.method == "POST":
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            new_lesson = Lesson()
+            new_lesson.course = course
+            new_lesson = form.save()
+            messages.success(request, u"Занятие {0} успешно создано".format(new_lesson.theme))
+            return redirect('courses:courses', id)
+        else:
+            return render(request, 'courses/add_lesson.html', {'form': form}) 
 
+    else:
+        form = LessonForm(initial={'course':course})
+
+    return render(request, 'courses/add_lesson.html', {'form': form}) 
 
 
 
