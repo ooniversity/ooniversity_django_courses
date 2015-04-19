@@ -1,0 +1,21 @@
+{% extends 'courses/index.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Редактирование курса {% endblock title %}
+
+
+{% block content %}
+  {% if form %}
+   <h3>Редактирование данных курса</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Сохранить" />
+    <a href="{% url 'courses:index' %}">
+      <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
+    </a>
+  </form>
+  {% endif %}
+  <br />
+{% endblock content %}
