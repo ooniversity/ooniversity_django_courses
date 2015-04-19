@@ -31,21 +31,21 @@ def add_course(request):
         form = CourseForm()
     return render(request,'courses/add.html', {'form':form})
 
-def edit_course(request, course_id):
-    course = Course.objects.get(id=course_id)
+def edit_course(request, pk):
+    course = Course.objects.get(id=pk)
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
         if form.is_valid():
             course = form.save()
             messages.success(request, "The data were successfully changed")
-            return HttpResponseRedirect('http://127.0.0.1:8000/courses/edit/%i/' % course.id)
+            return HttpResponseRedirect('http://127.0.0.1:8000/courses/edit/%i/' % course.pk)
 
     else:
         form = CourseForm(instance=course)
     return render(request,'courses/edit.html', {'form':form})
 
-def remove_course(request, course_id):
-    course = Course.objects.get(id=course_id)
+def remove_course(request, pk):
+    course = Course.objects.get(id=pk)
     if request.method == 'POST':
         course.delete()
         messages.success(request,"Course %s was successfully deleted" % (course.name))
