@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
@@ -24,7 +25,8 @@ def student_add(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             new_student = form.save()
-            messages.success(request, 'added')
+            add_message = 'Студент ' + ' успешно добавлен'
+            messages.success(request, add_message)
             return redirect('students:index')
     else:
         form = StudentForm()
