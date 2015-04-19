@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block nav_students %}
-	<li><a href="{% url 'students:students' %}?course_id={{ student_id }}">
+	<li><a href="{% url 'students:students' %}?course_id={{ course_id }}">
 	   Студенты <span class="specific_menu">{{course_name}}</span></a>
 	</li>
 {% endblock nav_students %}
@@ -39,7 +39,7 @@
     </div>
 {% endif %}
 
-       <a href="{{add_lesson_url}}">
+       <a href="{% url 'courses:lesson_add' course_current.id %}">
           <button class="btn btn-primary">
             Добавить урок
           </button>

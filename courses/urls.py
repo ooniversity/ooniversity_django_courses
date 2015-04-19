@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     url(r'^edit/(?P<course_id>\d+)/$', course_edit, name='course_edit'),
     url(r'^delete/(?P<course_id>\d+)/$', course_delete, name='course_delete'),
     #url(r'^\d*/$', course_detail, name='course_detail'),
-    url(r'^(?P<course_id>\d+)/add_lesson$', lesson_add, name='lesson_add'),
+    url(r'^(?P<course_id>\d+)/add_lesson/$', lesson_add, name='lesson_add'),
 
 )

@@ -10,9 +10,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     courses = Course.objects.all()
-    for item in courses:
-        course_id = item.id
-        item.url = "courses/%s/"%(str(course_id))
     return render(request, 'index.html', {"courses": courses})
 
 def contact(request):

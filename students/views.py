@@ -47,7 +47,7 @@ def student_add(request):
         if form_add.is_valid():                
             student = form_add.save()
             messages.success(request, 'Info on a new student successfully added!');
-            return redirect("students")
+            return redirect("students:students")
     else:
         form_add = StudentModification()
     return render(request, 'students/student_add.html', {"form_add": form_add})
@@ -71,6 +71,6 @@ def student_delete(request, stud_id):
     if request.method == "POST":
         student.delete()
         messages.success(request, "Info on student %s %s has been deleted."%(student.name, student.surname))
-        return redirect("students")
+        return redirect("students:students")
     return render(request, 'students/student_delete.html', {"student": student})
 

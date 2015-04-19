@@ -9,32 +9,28 @@ from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from django.contrib import messages
 
-# Create your views here.
 def course_detail(request, course_id):
     try:
         course_current = Course.objects.get(id=course_id)
         course_name = course_current.name
         course_description = course_current.description
-        student_id = str(course_id)
+        course_id = course_id #to show relevant list of students (nav student href in course_detail.html template)
         lessons = Lesson.objects.filter(course=course_current)
 
         trainer_info = {
             "id": course_current.trainer.id,       
             "fullname": course_current.trainer.user.get_full_name(),
             "description": course_current.trainer.description,
-            #"url": "coaches/"+str(course_current.trainer.id)+"/"
         }
 
         assistant_info = {
             "id": course_current.assistant.id,       
             "fullname": course_current.assistant.user.get_full_name(),
             "description": course_current.assistant.description,
-            #"url": "coaches/"+str(course_current.assistant.id)+"/"
         }
-        add_lesson_url = "add_lesson"
  
         message = ""
-        return render(request, 'courses/course_detail.html', {"lessons": lessons, "message": message, "student_id": student_id, "course_name": course_name, "course_description": course_description, 'trainer_info': trainer_info, 'assistant_info': assistant_info, 'add_lesson_url':add_lesson_url})
+        return render(request, 'courses/course_detail.html', {"course_current":course_current,"lessons": lessons, "message": message, "course_name": course_name, "course_description": course_description, 'trainer_info': trainer_info, 'assistant_info': assistant_info, 'course_id': course_id})
     except ObjectDoesNotExist:
         message = "Sorry, no course with id = %s exists yet."%(course_id)
         return render(request, 'course_detail.html', {"message": message})
