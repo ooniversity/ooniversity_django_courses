@@ -50,15 +50,15 @@ def student_add(request):
     return render(request, 'add_edit.html', {'form': form,})
 
 
-def student_edit(request, _id):
-    student = get_object_or_404(Student, pk=_id)
+def student_edit(request, id):
+    student = get_object_or_404(Student, pk=id)
     if request.method == "POST":
         form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             student.update_data(**form.cleaned_data)
             student.save()
             messages.success(request, u"Данные изменены!")
-            return redirect('students:students_list')
+            return redirect('students:student_edit', id)
     else:
         form = StudentForm(instance=student)
     return render(request, 'add_edit.html', {'form': form,})
