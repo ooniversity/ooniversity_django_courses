@@ -10,11 +10,20 @@
 
 
 {% block main_content %}
+<div class="row row-offcanvas row-offcanvas-right">
+	<div class="col-xs-12 col-sm-9">
 	<h1>Тренера</h1>
 
 		{% for c in coach %}
 				{{ forloop.counter }}: <a href="{% url "coaches:index"%}{{ c.id }}">{{ c.user.first_name }} {{ c.user.last_name }}</a><br/>
 
 		{% endfor %}
+
+	</div><!--/.col-xs-12.col-sm-9-->
+				
+	{% include "inc_submenu.html" %}
+
+</div><!--/.row.row-offcanvas.row-offcanvas-right-->
+
 {% endblock main_content %}
 
