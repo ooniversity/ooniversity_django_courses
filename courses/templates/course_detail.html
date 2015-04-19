@@ -12,6 +12,15 @@
 
 {%include 'inc_ooniversity_descr.html' %}
 
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} >
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
 
   <div class="container">
       <div class="jumbotron">
@@ -44,11 +53,21 @@
       </table>
   </div>
 
+
+
   <div class="table-responsive">
       <table class="table table-hover">
           <h2 align='center'>План курса</h2>
+
+          <a class="btn btn-primary active"
+          href="{% url 'courses:add_lesson' course.id %}" role="button">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Добавить занятие
+          </a>
+
           <thead>
               <tr>
+                  <th>#</th>
                   <th>Тема</th>
                   <th>Описание</th>
               </tr>
@@ -65,3 +84,5 @@
       </table>
   </div>
 {% endblock container %}
+
+

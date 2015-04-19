@@ -1,0 +1,18 @@
+{% extends "templates/base_students.html" %}
+
+
+{% block title %} Edit_course {% endblock title %}
+
+
+{% block name_table %}Редактирование курса {% endblock name_table %}
+
+
+{% block maincontain %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="Submit" value="Редактировать курс">
+</form>
+
+{% endblock maincontain %}

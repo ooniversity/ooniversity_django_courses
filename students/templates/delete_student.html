@@ -9,12 +9,12 @@
 
 {% block maincontain %}
 
+
 Delete {{ student.name }} {{ student.surname }}
 <form method="post" >
-
   {% csrf_token %}
-
   <input type="Submit" value="Удалить данные студента">
 </form>
+
 
 {% endblock maincontain %}
