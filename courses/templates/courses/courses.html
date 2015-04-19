@@ -15,6 +15,13 @@
 
 {% block main_content %}
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% include "inc_course_description.html" %}
 
@@ -24,6 +31,7 @@
 
 {% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
 
+<h3><a href="{% url 'courses:add_lesson' course.id %}">Добавить новый урок</a></h3>
 
 {% include "inc_lessons.html" with lessons=course.lesson_set.all %}
 

@@ -9,6 +9,13 @@
 
 {% block page_content %}
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 <h5><a href="{% url 'students:add_student' %}">Добавить нового студента</a></h5>
 <div class="table-responsive">

@@ -5,9 +5,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 from django.contrib import messages
 from django import forms
-
 from courses.models import Course
 from models import Student
+
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -22,20 +22,29 @@ def students(request):
         students = Student.objects.all()
     return render(request, 'students/students.html', {'students': students})
 
+
 def student_d(request, pk):
     student = get_object_or_404(Student, pk=pk)
-    return render(request, 'students/student_detail.html', {'student': student})
+    return render(
+                request,
+                'students/student_detail.html',
+                {'student': student})
+
 
 def add_student(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
             student = form.save()
-            messages.success(request, 'Student %s %s was successfully added' % (student.name, student.surname))
+            messages.success(
+                            request,
+                            u'Студент %s %s успешно добавлен' %
+                            (student.name, student.surname))
             return redirect('students:students')
     else:
         form = StudentForm()
-    return render(request,'students/add.html', {'form':form})
+    return render(request, 'students/add.html', {'form': form})
+
 
 def edit_student(request, pk):
     student = Student.objects.get(id=pk)
@@ -43,19 +52,19 @@ def edit_student(request, pk):
         form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             student = form.save()
-            messages.success(request, 'The data were successfully changed')
-            return HttpResponseRedirect('http://127.0.0.1:8000/students/edit/%i/' % student.pk)
+            messages.success(request, u'Данные изменены')
     else:
         form = StudentForm(instance=student)
-    return render(request,'students/edit.html', {'form':form})
+    return render(request, 'students/edit.html', {'form': form})
+
 
 def remove_student(request, pk):
     student = Student.objects.get(id=pk)
     if request.method == 'POST':
         student.delete()
-        messages.success(request, 'Student %s %s was successfully deleted' %  (student.name, student.surname))
-        return redirect('students:students')
+        messages.success(
+                        request, u'Студент  %s %s был успешно удален' %
+                        (student.name, student.surname))
+        return redirect('students: students')
     form = None
-    return render(request,'students/remove.html', {'student':student})
-
-
+    return render(request, 'students/remove.html', {'student': student})

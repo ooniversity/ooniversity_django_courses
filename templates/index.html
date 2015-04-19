@@ -31,6 +31,8 @@
       {% for course in courses %}
         <p><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
         <p class="custom_well">{{ course.short_description }}</p>
+        <p><a href="{% url 'courses:edit_course' course.id %}">Изменить курс</a></p>
+        <p><a href="{% url 'courses:remove_course' course.id %}">Удалить курс</a></p>
       {% endfor %}
   {% else %}
     <p>No courses are available.</p>

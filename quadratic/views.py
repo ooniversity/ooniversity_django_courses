@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django import forms
 
+
 class QuadraticForm(forms.Form):
     a = forms.FloatField(label="Коэффициент a")
     b = forms.FloatField(label="Коэффициент b")
@@ -10,8 +11,12 @@ class QuadraticForm(forms.Form):
     def clean_a(self):
                 data = self.cleaned_data['a']
                 if data == 0.0:
-                    raise forms.ValidationError("коэффициент при первом слагаемом не может быть равным 0")
+                    raise forms.ValidationError(
+                                               "коэффициент при"
+                                               "первом слагаемом"
+                                               " не может быть равным 0")
                 return data
+
 
 def get_discr(a, b, c):
     d = b**2 - 4*a*c
@@ -46,14 +51,9 @@ def quadratic_results(request):
                 result_message = "Квадратное уравнение имеет два действительных корня: x1 = {}, x2 = {}".format(x1, x2)
 
             context.update({'d': d, 'result_message': result_message})
-            context.update({'form':form})
+            context.update({'form': form})
             return render(request, 'quadratic/results.html', context)
 
     else:
         form = QuadraticForm()
-    return render(request, 'quadratic/results.html', {'form':form})
-
-
-
-
-
+    return render(request, 'quadratic/results.html', {'form': form})
