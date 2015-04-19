@@ -98,5 +98,5 @@ def delete_student(request, pk):
 		student.delete()
 		messages.success(request, 'Object deleted!')
 	 	return redirect('students:index')
-	return render(request, 'delete.html')
+	return render(request, 'delete.html',{'student':student})
 
