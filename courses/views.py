@@ -58,6 +58,26 @@ def course_add(request):
         form_add = CoursetModification()
     return render(request, 'courses/course_add.html', {"form_add": form_add})
 
+def course_edit(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if request.method == "POST":
+        form_edit = CoursetModification(request.POST, instance=course)
+        if form_edit.is_valid():                
+            course = form_edit.save()
+            messages.success(request, 'Info on a course has been modified!');
+            #return redirect("/")
+    else:
+        form_edit = CoursetModification(instance=course)
+    return render(request, 'courses/course_edit.html', {"form_edit": form_edit})
+
+
+def course_delete(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if request.method == "POST":
+        course.delete()
+        messages.success(request, "Course %s has been deleted."%(course.name))
+        return redirect("/")
+    return render(request, 'courses/course_delete.html', {"course": course})
 
 
 
