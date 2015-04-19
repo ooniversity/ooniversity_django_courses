@@ -13,22 +13,46 @@
 {% endblock jumbotron %}
 
 {% block courses_table %}
+
 <h2>Обучитесь "модным" языкам программирования</h2>
 
+{% if messages %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+        <a href="{% url 'course_add' %}">
+          <button class="btn btn-primary">
+            Добавить курс
+          </button>
+        </a> 
+<br/>
 <table class="table">
  <thead>
    <tr>
      <th>Курс</th>
      <th>Описание</th>
+     <th></th>
+     <th></th>
    </tr>
  </thead>
                
 {% for i in courses %}
     <tbody>
       <tr>
-      <td><a href="{% url 'courses:course_detail' i.id %}">{{i.name|upper}} </a></td>
-
+      <td><a href="{{ i.url }}">{{i.name|upper}} </a></td>
       <td>{{i.short_description}}</td>
+      <td>
+         <a href="{% url 'course_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
+     </td>
+      <td>
+         <a href="{% url 'course_edit' i.id %}"><button class="btn btn-primary">Удалить</button></a>
+     </td>
       </tr>
 {% endfor %}
     </tbody>

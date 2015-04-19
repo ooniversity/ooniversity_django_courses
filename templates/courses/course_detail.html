@@ -3,7 +3,7 @@
 
 {% block nav_students %}
 	<li><a href="{% url 'students:students' %}?course_id={{ student_id }}">
-		Студенты <span class="specific_menu">{{course_name}}</span></a>
+	   Студенты <span class="specific_menu">{{course_name}}</span></a>
 	</li>
 {% endblock nav_students %}
 
@@ -26,7 +26,25 @@
 	{% if not message %}
 		{% include "tech/incl_coach.html" with block_title="Учитель" instructor=trainer_info|default:"no instructor assigned" %}
 		{% include "tech/incl_coach.html" with block_title="Ассистент" instructor=assistant_info|default:"no assistant assigned" %}
-		<h2> План курса </h2>
+
+    <h2> План курса </h2>
+
+{% if messages %}
+  {% for message in messages %}
+  <!--http://getbootstrap.com/javascript/#alerts-->
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+       <a href="{{add_lesson_url}}">
+          <button class="btn btn-primary">
+            Добавить урок
+          </button>
+       </a>
+
 		<table class="table">
 		 <thead>
 		   <tr>

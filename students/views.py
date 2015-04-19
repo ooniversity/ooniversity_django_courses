@@ -54,7 +54,7 @@ def student_add(request):
 
 
 def student_edit(request, stud_id):
-    student = Student.objects.get(id=int(stud_id))
+    student = Student.objects.get(id=stud_id)
     if request.method == "POST":
         form_edit = StudentModification(request.POST, instance=student)
         if form_edit.is_valid():                
