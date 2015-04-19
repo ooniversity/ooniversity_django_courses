@@ -31,7 +31,7 @@
 
 {% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
 
-<h3><a href="{% url 'courses:add_lesson' course.id %}">Добавить новый урок</a></h3>
+<h3><a class="btn btn-primary active" href="{% url 'courses:add_lesson' course.id %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Добавить новый урок</span></a></h3>
 
 {% include "inc_lessons.html" with lessons=course.lesson_set.all %}
 

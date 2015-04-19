@@ -25,14 +25,20 @@
     <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
   </div>
   <h2>Наши курсы</h2>
-  <h3><a href="{% url 'courses:add_course' %}">Добавить новый курс</a></h3>
+  <h3><a class="btn btn-primary active" href="{% url 'courses:add_course' %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Добавить новый курс</span></a></h3>
   {% if courses %}
     <div class="media">
       {% for course in courses %}
         <p><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
         <p class="custom_well">{{ course.short_description }}</p>
-        <p><a href="{% url 'courses:edit_course' course.id %}">Изменить курс</a></p>
-        <p><a href="{% url 'courses:remove_course' course.id %}">Удалить курс</a></p>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td><a class="btn btn-primary active" href="{% url 'courses:edit_course' course.id %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Изменить курс</span></a></td>
+              <td><a class="btn btn-primary active" href="{% url 'courses:remove_course' course.id %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Удалить курс</span></a></td>
+            </tr>
+          </tbody>
+        </table>
       {% endfor %}
   {% else %}
     <p>No courses are available.</p>
