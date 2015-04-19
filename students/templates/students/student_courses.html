@@ -6,4 +6,25 @@
 {% block students_link %}
 <a href="{% url 'students:students_on_course' %}">
 {% endblock students_link %}
+
+
+{% block message %} 
+
+<div class="row">
+  {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+   {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a class="btn btn-primary btn-lg" href="{% url 'students:add_student' %}" role="button">Зарегистрировать студента</a>
+  </div>
+</div>
+
+{% endblock message%} 
      

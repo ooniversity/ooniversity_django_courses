@@ -10,37 +10,56 @@
 
 {% block main_contant %}
 
-<h1>{{ course.title|upper }}</h1>
-<div class="panel panel-default">
-  <div class="panel-body"><h2>Преподаватели</h2></div>    
-  <div class="panel-heading"><span><h4>Учитель:</h4></span></div>
-  <div class="panel-body"><a href="{% url 'coaches:coach_info' coach.id %}">{{ coach }}
-  </a><br>
-  {{ coach.description }}
-  </div>    
-  <div class="panel-heading"><p><h4>Ассистент:</h4></p></div>
-  <div class="panel-body"><a href="{% url 'coaches:coach_info' assistant.id %}">{{ assistant }}</a><br>
-  {{ assistant.description }}
-  </div>
+{% block message %} 
+<div class="row">
+  {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+   {% endfor %}
+  </ul>
+  {% endif %}
 </div>
-<div class="panel panel-default">
-  <div class="panel-body"><h2>План курса</h2></div>
-</div>
-<table class="table">
-  <tr>
-    <th class="column10">#</th>
-    <th class="column20">Тема</th> 
-    <th>Описание</th>
-  </tr>
-  {% for lesson in lessons %}
-  <tr>
-    <td>{{ lesson.number }}</td>
-    <td>{{ lesson.theme }}</td>
-    <td>{{ lesson.description }}</td>
-  </tr>
-  {% endfor %}
-</table>
+{% endblock message %}
 
-{% include "inc_add_events.html" %}
+
+<h3>{{ course.title|upper }}</h3>
+
+<div class="panel-body"><h3>Преподаватели</h3></div> 
+
+<div class="panel panel-default">      
+  <div class="panel-heading"><h4>Учитель:</h4></div>
+  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' coach.id %}">
+  {{ coach }}</a></h4></p>{{ coach.description }}</div>
+</div>
+<div class="panel panel-default"> 
+  <div class="panel-heading"><p><h4>Ассистент:</h4></p></div>
+  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' assistant.id %}">
+  {{ assistant }}</a></h4></p>{{ assistant.description }}</div>
+</div>
+
+<div class="panel-body"><h3>План курса</h3></div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <a class="btn btn-primary" href="{% url 'courses:add_lesson' course.id %}" role="button">Добавить занятие</a>
+  </div>
+  <table class="table">
+    <tr>
+      <th class="column10">#</th>
+      <th class="column20">Тема</th> 
+      <th>Описание</th>
+    </tr>
+    {% for lesson in lessons %}
+    <tr>
+      <td>{{ lesson.number }}</td>
+      <td>{{ lesson.theme }}</td>
+      <td>{{ lesson.description }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+
+{% include 'inc_add_events.html' %}
 
 {% endblock main_contant %}

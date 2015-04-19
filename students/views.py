@@ -27,11 +27,13 @@ def student_info(request, student_id):
 	})
 
 def add_student(request):
+	print request.POST, request.method
 	if request.method == 'POST':
 		form = StudentAdditionForm(request.POST)
 		if form.is_valid():
 			application = form.save()
-			messages.success(request, u'Студент %s %s успешно добавлен!' %(application.name, application.surname))
+			messages.success(request, u'Студент %s %s успешно добавлен!' %(application.name, 
+				             application.surname))
 			return redirect ('students:students_on_course')
 	else:
 		form = StudentAdditionForm()		
@@ -48,6 +50,7 @@ def edit_student(request, student_id):
 	else:
 		form = StudentAdditionForm(instance = application)
 	return render (request, 'students/edit_student.html',{'form': form})
+
 
 def remove_student(request, student_id):
 	application = Student.objects.get(id=student_id)
