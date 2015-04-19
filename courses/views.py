@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from courses.models import Course
+from courses.models import Course, Lesson
 from coaches.models import Coach
 from django import forms
 from django.contrib import messages
@@ -23,6 +23,10 @@ def courses_one_of(request, pk):
 class CourseForm(forms.ModelForm):
 	class Meta:
 		model = Course
+
+class LessonForm(forms.ModelForm):
+	class Meta:
+		model = Lesson
 
 def add_course(request):
 	if request.method == 'POST':
@@ -63,4 +67,15 @@ def delete_course(request, pk):
 	return render(request, 'delete.html',{'course':course})
 
 def add_lesson(request, pk):
-	pass
+	if request.method == 'POST':
+		form = LessonForm(request.POST)
+		if form.is_valid():
+		 	application = form.save()
+
+		 	messages.success(request, 'Lesson saved!')
+
+		 	return redirect('courses:index')
+
+	else:
+		form = LessonForm()
+	return render(request, 'add_lesson.html',{'form':form})
