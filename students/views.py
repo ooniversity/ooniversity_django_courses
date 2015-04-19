@@ -28,7 +28,7 @@ def student_add(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             new_student = form.save()
-            info_message = 'Студент ' + ' успешно добавлен'
+            info_message = 'Студент ' + str(new_student.full_name()) + ' успешно добавлен'
             messages.success(request, info_message)
             return redirect('students:index')
     else:
@@ -60,5 +60,16 @@ def student_edit(request, pk):
 
 def student_remove(request, pk):
     student = Student.objects.get(id=pk)
+    if request.method == 'POST':
+        info_message = 'Студент ' + str(student.full_name()) + ' был удален.'
+        student.delete()
+        messages.success(request, info_message)
+        return redirect('students:index')
+    form = None
+    action_name = "   Удалить   "
 
-    return render(request, 'students/detail.html', {'student': student})
+    return render(request, 'students/remove.html', {
+        'form': form,
+        'action_name': action_name,
+        'student': student.full_name,})
+
