@@ -52,8 +52,19 @@ def student_edit(request, pk):
         form = StudentsForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
-            student = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['surname']
-            messages.success(request, (u'Информация о студенте %s обновлена' % student))
+            student_name = student.first_name + ' ' + student.surname
+            messages.success(request, (u'Информация о студенте %s обновлена' % student_name))
             return redirect('student_list')
     context = {'form': form}
     return render(request, 'student_edit.html', context)
+
+
+def student_delete(request, pk):
+    student = Students.objects.get(id__exact=int(pk))
+    if request.method == 'POST':
+        student.delete()
+        student_name = student.first_name + ' ' + student.surname
+        messages.success(request, (u'Студент %s был удален' % student_name))
+        return redirect('student_list')
+    context = {'student': student}
+    return render(request, 'student_delete.html', context)

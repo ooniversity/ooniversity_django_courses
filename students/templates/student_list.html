@@ -31,7 +31,7 @@
         <th>Skype</th>
         <th>Курсы</th>
         <th></th>
-
+        <th></th>
     </tr>
     </thead>
     <tbody>{% for st in stud %}
@@ -45,6 +45,8 @@
                 </ul></td>
             <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                    href="{% url 'student_edit' st.id %}" role="button"> Изменить</a></td>
+            <td><a class="btn btn-primary glyphicon glyphicon-remove"
+                   href="{% url 'student_delete' st.id %}" role="button"> Удалить</a></td>
         <tr>{% endfor %}
     </tbody>
 </table>
