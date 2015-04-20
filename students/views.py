@@ -59,8 +59,9 @@ class StudentCreateView(CreateView):
     success_url = reverse_lazy('students')
 
     def form_valid(self, form):
+        response = super(StudentCreateView, self).form_valid(form)
         messages.success(self.request, 'Registration complete!')
-        return super(StudentCreateView, self).form_valid(form)
+        return response
 
 
 class StudentUpdateView(UpdateView):
@@ -69,13 +70,13 @@ class StudentUpdateView(UpdateView):
     success_url = '#'
 
     def form_valid(self, form):
+        response = super(StudentUpdateView, self).form_valid(form)
         messages.success(self.request, 'Changes have been saved!')
-        return super(StudentUpdateView, self).form_valid(form)
+        return response
 
 
 class StudentDeleteView(DeleteView):
     model = Student
-    form_class = StudentAddForm
     success_url = reverse_lazy('students')
 
     def delete(self, request, *args, **kwargs):

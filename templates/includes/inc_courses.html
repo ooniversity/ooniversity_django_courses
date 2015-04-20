@@ -5,13 +5,13 @@
     <div class="container">
       <h2 class="sub-header"><a href="{% url 'courses:courses' %}">Курсы</a></h2>
     </div>
-
+{% if buttoms %}
     <!-- Register buttom ================================================== -->
 
     <div class="container">
       <a href="{% url 'courses:course_add' %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Регистрация нового курса</a>
     </div>
-
+{% endif %}
     <div class="container">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -30,8 +30,10 @@
               <td><p>{{ forloop.counter }}</p></td>
               <td><a href="{% url 'courses:detail' course.pk %}">{{ course.name }}</a></td>
               <td><p>{{ course.short_description|truncatechars:70 }}</p></td>
+              {% if buttoms %}
               <td><a href="{% url 'courses:course_edit' pk=course.pk %}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать</a></td>
               <td><a href="{% url 'courses:course_remove' pk=course.pk %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить</a></td>
+              {% endif %}
             </tr>
           </tbody>
           {% empty %}
