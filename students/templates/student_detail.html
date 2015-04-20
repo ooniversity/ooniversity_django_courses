@@ -1,66 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{stud.first_name}} {{stud.surname}} | Информация о студенте</title>
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
-    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'home' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-            <li role="presentation" class="active"><a href="{% url 'student_list' %}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">PY Bursa</h3>
-      </div>
-      <div class="row marketing">
-      	<p><a href="{% url 'student_list' %}">Вернуться к списку</a></p>
-        <h2>{{stud.first_name}} {{stud.surname}}</h2>
-					<div class="table-responsive">
-						<table class="table table-hover">
-						  <tbody>
-						    <tr data-href="http://google.com">
-						      <th scope="row">Дата рождения</th>
-						      <td>{{stud.birdth_date}}</td>
-						    <tr>
-						      <th scope="row">Адрес</th>
-						      <td>{{stud.adress}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Почта</th>
-						      <td>{{stud.email}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Логин skype</th>
-						      <td>{{stud.skype}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Телефон</th>
-						      <td>{{stud.phone}}</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">Курсы</th>
-						      <td>{% for c in stud.course.all %}
-					<a href="{% url 'course' c.id %}">{{c.name}}</a><br />
-					{% endfor %}</td>
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-      	</div>
-      <footer class="footer">
-        <p>&copy; Pybursa 2015</p>
-      </footer>
-    </div> 
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
+{% extends "base.html" %}
+
+
+{% block title %}{{stud.first_name}} {{stud.surname}} - студент Pybursa на курсах:
+    {% for c in stud.course.all %}
+        {{c.name}}{% if stud.course.all|length != forloop.counter %}, {% else %}{% endif %}
+    {% endfor %}
+{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" with active_students='active' %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+{% block table %}
+<p><a href="{% url 'student_list' %}">Вернуться к списку</a></p>
+<h2>{{stud.first_name}} {{stud.surname}}</h2>
+<div class="table-responsive">
+<table class="table table-hover">
+  <tbody>
+    <tr data-href="http://google.com">
+      <th scope="row">Дата рождения</th>
+      <td>{{stud.birdth_date|date:"d.m.Y"}}</td>
+    <tr>
+      <th scope="row">Адрес</th>
+      <td>{{stud.adress}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Почта</th>
+      <td>{{stud.email}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Логин skype</th>
+      <td>{{stud.skype}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Телефон</th>
+      <td>{{stud.phone}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Курсы</th>
+      <td>{% for c in stud.course.all %}
+          <a href="{% url 'course' c.id %}">{{c.name}}</a><br />{% endfor %}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+{% endblock table %}

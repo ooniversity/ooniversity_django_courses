@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      {% block nav %}{% include "nav.html" %}{% endblock nav %}
+        {% block jumbotron %}
+        <div class="jumbotron">
+        <h2>{% block page_name %}KievBursa - курсы по программированию в Киеве!{% endblock page_name %}</h2>
+        <p>{% block page_description %}Курс по веб программированию на языках Python, php, Perl, ASP.NET даст вам
+            знания для того чтобы самостоятельно создавать сайты, программы, скрипты. И найти высокооплачиваемую работу!
+            KievBursa - более 10 лет на рынке IT образования. Более 3000 выпускников которые успешно трудоустроены.
+            {% endblock page_description %}</p>
+        </div>
+        {% endblock jumbotron %}
+      <div class="row marketing">
+        <div >
+        {% block table %}{% endblock table %}
+        {% block companies %}{% endblock companies %}
+        </div>
+      </div>
+      <footer class="footer">
+          <p>&copy; Pybursa 2015</p>
+      </footer>
+    </div>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>

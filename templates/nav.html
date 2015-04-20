@@ -1,0 +1,13 @@
+<div class="header clearfix">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="{{ active_home }}">
+                <a href="{% url 'home' %}">Главная</a></li>
+            <li role="presentation" class="{{ active_contact }}">
+                <a href="{% url 'contact' %}">Контакты</a></li>
+            <li role="presentation" class="{{ active_students }}">
+                <a href="{% url 'student_list' %}{{ get }}">Студенты</a></li>
+        </ul>
+    </nav>
+    <h3 class="text-muted">KievBursa</h3>
+</div>

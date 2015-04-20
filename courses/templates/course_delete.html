@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block title %}Подтверждение удаления курса {{ course.name }}{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" with active_students='active' %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+{% block table %}
+<h2>Удалить курс {{ course.name }}?</h2>
+<div class="table-responsive">
+
+<form method="post">
+{% csrf_token %}
+<input type="submit" value="Удалить">
+</form>
+
+</div>
+{% endblock table %}

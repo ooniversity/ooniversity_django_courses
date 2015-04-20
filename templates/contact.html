@@ -1,57 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact page on my first Python website</title>
-    {% load static %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/jumbotron-narrow.css' %}" rel="stylesheet">
-    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
-  </head>
-
-  <body>
-
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'home' %}">Главная</a></li>
-            <li role="presentation" class="active"><a href="{% url 'contact' %}">Контакты</a></li>
-            <li role="presentation"><a href="{% url 'student_list' %}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">PY Bursa</h3>
-      </div>
-
-      <div class="row marketing">
-        <div >
-          <h2>Контактная информация</h2>
-          <h4>Адрес:</h4>
-          <p>
-					61072 Харьков Украина
-					просп. Ленина 40/3    </p>    
-					<p><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2563.3480359744744!2d36.22443700000001!3d50.023573999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a1311ecf5f61%3A0x1aa590c7c846dc8c!2z0L_RgNC-0YHQvy4g0JvQtdC90ZbQvdCwLCA0MC8zLCDQpdCw0YDQutGW0LIsINCl0LDRgNC60ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGM!5e0!3m2!1suk!2sua!4v1427410715344" width="600" height="450" frameborder="0" style="border:0"></iframe></p>  
-          <h4>Информация:</h4>
-					<p>Двухчасовые практические занятия в аудитории будут
-					проходить по средам с 19:00 до 21:00.
-					При этом практические занятия будут сопровождаться
-					онлайн трансляцией в Интернете с возможностью
-					"присутствовать удаленно" и задавать вопросы.
-					Видеозаписи скринкастов будут предоставляться для
-					изучения в воскресенье.</p>
-				</div>
-      </div>
-
-      <footer class="footer">
-        <p>&copy; Pybursa 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
+{% extends "base.html" %}
 
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
+{% block title %}Контакты Pybursa{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" with active_contact='active' %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+
+{% block table %}
+<h2>Контактная информация</h2>
+<h4>Адрес:</h4>
+<p>61072 Харьков Украина
+  просп. Ленина 40/3</p>
+<p><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2563.3480359744744!2d36.22443700000001!3d50.023573999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a1311ecf5f61%3A0x1aa590c7c846dc8c!2z0L_RgNC-0YHQvy4g0JvQtdC90ZbQvdCwLCA0MC8zLCDQpdCw0YDQutGW0LIsINCl0LDRgNC60ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGM!5e0!3m2!1suk!2sua!4v1427410715344" width="600" height="450" frameborder="0" style="border:0"></iframe></p>
+<h4>Информация:</h4>
+<p>Двухчасовые практические занятия в аудитории будут
+    проходить по средам с 19:00 до 21:00.
+    При этом практические занятия будут сопровождаться
+    онлайн трансляцией в Интернете с возможностью
+    "присутствовать удаленно" и задавать вопросы.
+    Видеозаписи скринкастов будут предоставляться для
+    изучения в воскресенье.</p>
+{% endblock table %}
