@@ -1,0 +1,18 @@
+﻿<div class="datagrid">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Theme</th>
+                <th>Desription</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in lesson %}
+              <tr>
+                <td>{{ item.number }}</td><td>{{ item.theme }}</td><td>{{ item.description }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>

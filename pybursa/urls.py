@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 	url(r'^polls/', include('polls.urls', namespace="polls")),
 	url(r'^quadratic/results', 'quadratic.views.quadratic_results', name = 'quadratic'),
+	url(r'^quadratic/', 'quadratic.views.quadratic_start', name = 'quadraticStart'),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,0 +1,43 @@
+﻿<div>
+  <br>
+  <p>
+    {% filter title %}
+    {# This is a test comment #}
+    This page is designed to help you explore introductory programming courses on pybursa. This is not meant to be a comprehensive list, but rather to suggest some good starting points.
+    {% endfilter %}
+  </p>
+</div>
+
+<table style="width:100%" border = '0'>
+  <tr>
+   <th>Course name</th>
+   <th>Short Description</th> 
+  </tr>
+
+{% if courses %}
+
+  {% for course in courses %}
+  <tr>
+    <p>
+      <td>
+        <a href="{% url 'courses:detail' course.id %}"> 
+          {{ course.name|upper|default:"No course" }} 
+        </a>
+      </td>
+      <td>
+        {{ course.short_description|truncatechars:90 }}
+      </td>
+    </p>
+  </tr>
+  {% endfor %}
+
+{% else %}
+  <tr>
+    <td>
+      <p>No courses</p>
+    </td>
+  </tr>
+
+{% endif %}
+
+</table>
