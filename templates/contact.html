@@ -1,101 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PyBursa Contacts</title>
+{% extends "base.html" %}
 
-    <!-- Bootstrap -->
-    {% load staticfiles %}
-    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'customcss/pybursa_custom.css' %}" rel="stylesheet" type="text/css"/>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-      <div class="masthead">
-         <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'index' %}">
-                  <img alt="Brand" id ="brandi" src="{% static 'bootstrap/images/python_study_ic.png' %}">
-                </a>
-              </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="{% url 'index' %}">Главная</a></li>
-                <li class="active"><a href="{% url 'contact' %}">Контакты<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'students:students' %}">Студенты</a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-        <div class="blog-post">
-          <h2 class="blog-post-title">Где, как, когда</h2>
-          <p>
-            Двухчасовые практические занятия в аудитории будут
-            проходить по средам с 19:00 до 21:00.
-            При этом практические занятия будут сопровождаться
-            онлайн трансляцией в Интернете с возможностью
-            "присутствовать удаленно" и задавать вопросы.
-            Видеозаписи скринкастов будут предоставляться для
-            изучения в воскресенье.
-            Дважды в неделю будут выдаваться обязательные ДЗ.
-            Одно из ДЗ будет выполняться на практическом занятии аудитории.</p>
-          <hr>
-          <p>Адрес: ст.м "23 августа", проспект Ленина,56 </p>
-          <p><img class = "map" src="{% static 'bootstrap/images/address.jpg' %}" alt="Office location"></p>
-          <p><a href="https://www.google.com.ua/maps/place/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9B%D0%B5%D0%BD%D1%96%D0%BD%D0%B0,+56,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C/@50.031623,36.22195,17z/data=!3m1!4b1!4m2!3m1!1s0x4127a14aa1c818d3:0x1f67a8c4e4bf6dbc?hl=ru">Посмотреть на карте</a></p>
-        </div><!-- /.blog-post -->
-        <div class="row">
-        <h2 id="header">Организаторы</h2>
-          <div class="col-lg-4">
-            <img class = "w_img-circle" src="{% static 'bootstrap/images/obod.jpg' %}" alt="Courses founder">
-            <h3 >Павел Обод </h3>
-            <span class="text-muted">Основатель ITbursa</span>
-            <p class="lead">itbursa100@gmail.com</p>
-            <p class="lead"><img src = "{% static 'bootstrap/images/skypeic.png' %}"> azaless</p>
-            <p class="lead">+38 063 702 3 703</p>
-            <p><a class="btn btn-primary" href="mailto:itbursa100@gmail.com" role="button">Написать письмо</a></p>
-          </div>
-          <div class="col-lg-4">
-            <img class = "w_img-circle" src="{% static 'bootstrap/images/malahova.jpg' %}" alt="Courses director">
-            <h3>Анна Малахова</h3>
-            <span class="text-muted"> Менеджер ITbursa</span>
-            <p class="lead">anna.itbursa@gmail.com</p>
-            <p class="lead"><img src = "{% static 'bootstrap/images/skypeic.png' %}"> anechka.malakhova</p>
-            <p class="lead">+38 096 070 53 47</p>
-            <p><a class="btn btn-primary" href="mailto:anna.itbursa@gmail.com" role="button">Написать письмо</a></p>
-          </div>
-          <div class="col-lg-4">
-            <img class = "w_img-circle" src="{% static 'bootstrap/images/kolesnik.jpg' %}" alt="Courses Accountant">
-              <h3>Татьяна Колесник </h3>
-              <span class="text-muted">Оплата курсов</span>
-              <p class="lead">tatyana@outsource-people.com</p>
-              <p class="lead"><img src = "{% static 'bootstrap/images/skypeic.png' %}"> princessataniakolesnik</p>
-              <p class="lead">+38 063 729 45 67</p>
-              <p><a class="btn btn-primary" href="mailto:tatyana@outsource-people.com" role="button">Написать письмо</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
-  </body>
-</html>
+{% load staticfiles %}
+
+
+{% block title %} PyBursa Contacts {% endblock title %}
+
+
+{% block nav_class_contact %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}{% endblock %}
+
+
+{% block main_content %}
+<div class="blog-post">
+  <h2 class="blog-post-title">Где, как, когда</h2>
+  <p>
+    Двухчасовые практические занятия в аудитории будут
+    проходить по средам с 19:00 до 21:00.
+    При этом практические занятия будут сопровождаться
+    онлайн трансляцией в Интернете с возможностью
+    "присутствовать удаленно" и задавать вопросы.
+    Видеозаписи скринкастов будут предоставляться для
+    изучения в воскресенье.
+    Дважды в неделю будут выдаваться обязательные ДЗ.
+    Одно из ДЗ будет выполняться на практическом занятии аудитории.</p>
+  <hr>
+  <p>Адрес: ст.м "23 августа", проспект Ленина,56 </p>
+  <p><img class = "map" src="{% static 'bootstrap/images/address.jpg' %}" alt="Office location"></p>
+  <p><a href="https://www.google.com.ua/maps/place/%D0%BF%D1%80%D0%BE%D1%81%D0%BF.+%D0%9B%D0%B5%D0%BD%D1%96%D0%BD%D0%B0,+56,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,+%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C/@50.031623,36.22195,17z/data=!3m1!4b1!4m2!3m1!1s0x4127a14aa1c818d3:0x1f67a8c4e4bf6dbc?hl=ru">Посмотреть на карте</a></p>
+</div><!-- /.blog-post -->
+<h2 id="header">Организаторы</h2>
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/obod.jpg" block_name="Павел Обод" block_position="Основатель ITbursa" block_email="itbursa100@gmail.com" block_skype="azaless" block_phone="+38 063 702 3 703" alt_text="Courses founder" %}
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/malahova.jpg" block_name="Анна Малахова" block_position="Менеджер ITbursa" block_email="anna.itbursa@gmail.com" block_skype="anechka.malakhova" block_phone="+38 096 070 53 47" alt_text="Courses director" %}
+
+
+{% include "inc_organizers.html" with photo="bootstrap/images/kolesnik.jpg" block_name="Татьяна Колесник" block_position="Оплата курсов" block_email="tatyana@outsource-people.com" block_skype="princessataniakolesnik" block_phone="+38 063 729 45 67" alt_text="Courses Accountant" %}
+
+
+{% endblock main_content %}

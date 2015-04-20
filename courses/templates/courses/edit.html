@@ -25,17 +25,12 @@
 </ul>
 {% endif %}
 
-{% include "inc_course_description.html" %}
+<h3>Редактирование курса</h3>
 
-
-{% include "inc_instructor.html" with block_title="Учитель" instructor=course.coach %}
-
-
-{% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
-
-<h3><a class="btn btn-primary active" href="{% url 'courses:add_lesson' course.id %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Добавить новый урок</span></a></h3>
-
-{% include "inc_lessons.html" with lessons=course.lesson_set.all %}
-
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+  <input type="submit" value="Изменить"/>
+</form>
 
 {% endblock main_content %}

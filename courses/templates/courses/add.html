@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %} Add Courses {% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block main_content %}
+
+
+<h3>Создание нового курса</h3>
+
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+  <input type="submit" value="Создать"/>
+</form>
+
+{% endblock main_content %}

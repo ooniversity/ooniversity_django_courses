@@ -1,57 +1,59 @@
-#coding: utf-8
-from django.shortcuts import render
-from django.http import HttpResponse
+# -*- coding: utf-8 -*-
+from django.shortcuts import render, redirect
+from django import forms
 
-def basic_validation(x):
-    if len(x)==0:
-        return "коэффициент не определен\n"
-    elif x[-1].isdigit() == False:
-        return "коэффициент не целое число\n"
 
-def advanced_validation (x):
-    if len(x)==0:
-        return "коэффициент не определен\n"
-    elif x[-1].isdigit() == False:
-        return "коэффициент не целое число\n"
-    elif int(x)==0:
-        return "коэффициент при первом слагаемом не может быть равным нулю \n "
+class QuadraticForm(forms.Form):
+    a = forms.FloatField(label="Коэффициент a")
+    b = forms.FloatField(label="Коэффициент b")
+    c = forms.FloatField(label="Коэффициент c")
+
+    def clean_a(self):
+                data = self.cleaned_data['a']
+                if data == 0.0:
+                    raise forms.ValidationError(
+                                               "коэффициент при"
+                                               "первом слагаемом"
+                                               " не может быть равным 0")
+                return data
+
+
+def get_discr(a, b, c):
+    d = b**2 - 4*a*c
+    return d
+
+
+def get_eq_root(a, b, d, order=1):
+    if order == 1:
+        x = (-b + d**(1/2.0)) / 2*a
+    else:
+        x = (-b - d**(1/2.0)) / 2*a
+    return x
+
 
 def quadratic_results(request):
-    message = ""
-    a = request.GET['a']
-    b = request.GET['b']
-    c = request.GET['c']
-    message += "Квадратное уравнение a*x*x + b*x + c = 0 \n\n"
+    context = {}
+    if request.GET:
+        form = QuadraticForm(request.GET)
+        if form.is_valid():
+            a = form.cleaned_data.get('a')
+            b = form.cleaned_data.get('b')
+            c = form.cleaned_data.get('c')
+            d = get_discr(a, b, c)
+            if d < 0:
+                result_message = "Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений."
+            elif d == 0:
+                x = get_eq_root(a, b, d)
+                result_message = "Дискриминант равен нулю, квадратное уравнение имеет один действительных корень: x1 = x2 = {}".format(x)
+            else:
+                x1 = get_eq_root(a, b, d)
+                x2 = get_eq_root(a, b, d, order=2)
+                result_message = "Квадратное уравнение имеет два действительных корня: x1 = {}, x2 = {}".format(x1, x2)
 
-    message += "a = %s \n" % str(a)
-    try:
-        message += advanced_validation(a)
-    except TypeError:
-        pass
-    message += "b = %s \n" % str(b)
-    try:
-        message += basic_validation(b)
-    except TypeError:
-        pass
-    message += "c = %s \n\n" % str(c)
-    try:
-        message += basic_validation(c)
-    except TypeError:
-        pass
+            context.update({'d': d, 'result_message': result_message})
+            context.update({'form': form})
+            return render(request, 'quadratic/results.html', context)
 
-    if advanced_validation(a) is None and basic_validation(b) is None and basic_validation(c) is None:
-        d = float(b)**2-4*float(a)*float(c)
-        message += "Дискриминант: d=%d \n\n" % d
-
-        if d < 0:
-            message += "Дискриминант меньше нуля, квадратное не имеет действительных решений \n\n"
-            #return HttpResponse(message, content_type="text/plain; charset=utf-8")
-        elif d == 0:
-            x = -float(b) / 2*float(a)
-            message += "Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1=x2=%0.1f \n\n" % x
-            #return HttpResponse(message, content_type="text/plain; charset=utf-8")
-        else:
-            x1 = (-float(b) + d**(1/2.0))/(2*float(a))
-            x2 = (-float(b) - d**(1/2.0))/(2*float(a))
-            message += "Квадратное уравнение имеет два действительных корня: x1=%0.1f, x2=%0.1f \n\n" % (x1, x2)
-    return HttpResponse(message, content_type="text/plain; charset=utf-8")
+    else:
+        form = QuadraticForm()
+    return render(request, 'quadratic/results.html', {'form': form})

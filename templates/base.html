@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PyBursa Home</title>
+    <title>{% block title %} PyBursa {% endblock title %}</title>
 
     <!-- Bootstrap -->
     {% load staticfiles %}
@@ -37,32 +37,16 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href ="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'contact' %}">Контакты</a></li>
-                <li><a href="{% url 'students:students' %}">Студенты</a></li>
+                <li class="{% block nav_class_index %}{% endblock %}"><a href ="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a></li>
+                <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contact' %}">Контакты</a></li>
+                <li class="{% block nav_class_student %}{% endblock %}"><a href="{% block students_link %}{% endblock %}">Студенты</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <h1>Попади в тренд современной WEB разработки c ItBursa</h1>
-        <div class="jumbotron">
-          <p>Проект ItBursa был признан лучшим среди региональных IT проектов и отмечен наградой и планшетом от IT Jam 2015</p>
-          <p><a class="btn btn-lg btn-success" href="https://www.facebook.com/permalink.php?story_fbid=1600711990141635&id=1539330322946469" role="button">Читать на Facebook</a></p>
-        </div>
-        <h2>Наши курсы</h2>
+       {% block main_content %}
 
-        {% if courses_list %}
-          <div class="media">
-            {% for course in courses_list %}
-              <p><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
-              <p class="custom_well">{{ course.short_description }}</p>
-            {% endfor %}
-        {% else %}
-          <p>No courses are available.</p>
-        {% endif %}
-          </div>
-        </div>
-      <h6>Следующего курса в таком формате не будет! :)</h6>
+       {% endblock main_content %}
       <footer id="foo">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2015 PyBursa, Inc.</p>

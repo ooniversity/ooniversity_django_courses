@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+<div class="col-lg-4">
+ <img class = "w_img-circle" src="{% static photo %}" alt="{{alt_text}}">
+ <h3 >{{ block_name }}</h3>
+ <span class="text-muted">{{ block_position }}</span>
+ <p class="lead">{{ block_email }}</p>
+ <p class="lead"><img src = "{% static 'bootstrap/images/skypeic.png' %}">{{ block_skype }}</p>
+ <p class="lead">{{ block_phone }}</p>
+ <p><a class="btn btn-primary" href="mailto:{{ block_email }}" role="button">Написать письмо</a></p>
+</div>

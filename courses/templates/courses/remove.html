@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %} Remove Courses {% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block main_content %}
+
+<div class="alert alert-warning" role="alert">Курс <b>{{course.name}}</b> будет удален</div>
+
+<form method="post">
+{% csrf_token %}
+  <input type="submit" value="Удалить"/>
+</form>
+
+
+{% endblock main_content %}

@@ -1,0 +1,26 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Add Students{% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}{% endblock %}
+
+
+{% block page_content %}
+
+<h2>Создание нового студента</h2>
+
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+  <input type="submit" value="Создать"/>
+</form>
+
+{% endblock page_content %}

@@ -1,0 +1,36 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Edit Students{% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block students_link %}{% url 'students:students' %}{% endblock %}
+
+
+{% block page_content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} >
+    {{ message }}
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h3>Редактирование данных студента</h3>
+
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+  <input type="submit" value="Изменить"/>
+</form>
+
+{% endblock page_content %}

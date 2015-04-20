@@ -1,0 +1,28 @@
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading">План курса</div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Занятие</th>
+          <th>Тема</th>
+          <th>Содержание</th>
+        </tr>
+      </thead>
+      {% for lesson in lessons %}
+      <tbody>
+        <tr>
+          <td>{{ lesson.index_numer }}</td>
+          <td>{{ lesson.topic }}</td>
+          <td>
+            <ul>
+              <li>{{ lesson.description }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+</div>

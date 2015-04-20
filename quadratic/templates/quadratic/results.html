@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Квадратное уравнение</title>
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="statis/customcss/pybursa_custom.css'" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <p>Квадратное уравнение a*x*x + b*x + c = 0</p>
+    <form method="get">
+      {{ form.as_p }}
+      <input type="submit" value="Решить"/>
+    </form>
+    {% if d %}
+    <p>Дискриминант: {{ d }}</p>
+    {% endif %}
+    <p>{{ result_message }}</p>
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="static/bootstrap/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/bootstrap/bootstrap.js"></script>
+  </body>
+</html>
