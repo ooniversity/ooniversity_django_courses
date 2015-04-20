@@ -1,0 +1,7 @@
+from django.conf.urls import patterns, url
+from courses.views import course_detail
+
+urlpatterns = patterns('',
+    url(r'^courses/', include('courses.urls', namespace="courses")),
+    url(r'^courses/(?P<course_id>\d+)/$', course_detail, name='course_detail'),
+)

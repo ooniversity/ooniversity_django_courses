@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}Организаторы курса{% endblock title %}
+
+
+{% block nav_class_contact %}active{% endblock nav_class_contact %}
+
+
+{% block main_content %}
+<div class="main">
+    <div class="container">
+        <div class="col-md-9">
+          
+               <h1>Организаторы курса</h1>
+           
+            <table class="table table-condensed table-bordered">
+                        <tbody>
+                            <tr id="main-table">
+                                <th>Имя</th>
+                                <th>Контакты</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Павел Обод</p>
+                                    <p><img src="{% static 'img/obod.jpg' %}"/></p>
+                                    <p>Основатель IT Bursa</p>
+                                </td>
+                                
+                                <td>
+                                    <p><a ref="mailto: itbursa100@gmail.com">itbursa100@gmail.com</p>
+                                    <p><a href="skype: azaless">azaless</p>
+                                    <p><strong>+38 063 702 3 703<strong></p>
+                                </tr>
+                                <tr>
+                                 <td>
+                                    <p>Анна Малахова</p>
+                                    <p><img src="{% static 'img/malakhova.jpg' %}"/></p>
+                                    <p>Менеджер IT Bursa</p>
+                                </td>
+                                
+                                <td>
+                                    <p><a ref="mailto: anna.itbursa@gmail.com">anna.itbursa@gmail.com</p>
+                                    <p><a href="skype: anechka.malakhova">anechka.malakhova</p>
+                                    <p><strong>+38 096 070 53 47<strong></p>
+                                </tr>
+                                 <tr>
+                                 <td>
+                                    <p>Татьяна Колесник</p>
+                                    <p><img src="{%static 'img/kolesnik.jpg' %}"/></p>
+                                    <p>Оплата курсов</p>
+                                </td>
+                                
+                                <td>
+                                    <p><a ref="mailto: tatyana@outsource-people.com">tatyana@outsource-people.com</p>
+                                    <p><a href="skype: princessataniakolesnik">princessataniakolesnik</p>
+                                    <p><strong>+38 063 729 45 67<strong></p>
+                                </tr>
+                               
+                        </tbody>
+                    </table>
+        </div>
+{% include "inc_links.html" %}
+    </div>
+</div> 
+{% endblock main_content %}
+   
+  

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block title %}PD0102 - Main page{% endblock title %}
+
+
+{% block nav_class_index %}active{% endblock nav_class_index %}
+
+
+{% block main_content %}
+  <div class="main">
+    <div class="container">
+        <div class="col-md-9">
+            <h1>Выбирай на каком курсе ты хочешь учиться</h1>
+
+{% if messages %}
+<ul class="alert alert-success" role="alert">
+{% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+            
+            <table class="table table-striped table-bordered table-hover table-condensed">
+        
+            <thead id="table-head">
+              <tr>
+                <th>Название</th>
+                <th>Краткое описание</th>
+                <th>Описание</th>
+                <th>#</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for course in courses %}
+              <tr>
+                <td><a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a></td>
+                <td>{{ course.short_description }}</td>
+                <td>{{ course.description }}</td>
+                <td>
+                      <a href="{% url 'courses:edit-course' course.id %}"><button class="btn btn-primary" type="button">Изменить</button></a>
+                </td>
+                <td>
+                      <a href="{% url 'courses:delete-course' course.id %}"><button class="btn btn-primary" type="button">Удалить</button></a>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table> 
+          <div>
+                <p>
+                  <a href="{% url 'courses:course-adding' %}"><button class="btn btn-primary" type="button">Добавить курс</button>
+                </p>
+             </div>   
+        </div>
+ {% include "inc_links.html" %}       
+     </div>
+  </div>
+  {% endblock main_content %}
+    
