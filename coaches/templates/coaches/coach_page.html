@@ -1,84 +1,61 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    {%load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="icon" href= "{% static "img/favicon.ico" %}">
-    <title>Pybursa. Преподаватель</title>
-    <!-- Bootstrap and mystyle-->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-default"><!--What is this tab-->
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'courses_main' %}"><img alt="Brand" src="{% static 'img/pybursa_logo.png' %}" width="21px"></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'courses_main' %}">Главная</a></li>
-            <li><a href="{% url 'contact_list' %}">Контакты</a></li>
-            <li><a href="{% url 'students:students_on_course' %}">Студенты</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav> 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>{{coach_info.user.first_name}}  {{coach_info.user.last_name}}</h3>
-      </div>
-      <table class="table">
-        <tr>
-          <td class="column25">Дата рождения</td>
-          <td>{{coach_info.birth_date}}</td>           
-        </tr>
-        <tr>
-          <td>Адрес</td>
-          <td>{{coach_info.adress}}</td>           
-        </tr>
-        <tr>
-          <td>Cкайп</td>
-          <td>{{coach_info.skype}}</td>           
-        </tr>
-        <tr>
-          <td>Телефон</td>
-          <td>{{coach_info.phone}}</td>           
-        </tr>  
-        <tr>
-          <td>Курсы учитель</td>
-          <td>
-            {% for course in coach_info.coach_on_course.all %} 
-            <p>
-              <a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a> - Cтуденты курса
-              <a href="{% url 'students:students_on_course' %}?course_id={{course.id}}">
-              <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
-            </p>
-            {% endfor %}
-          </td>           
-        </tr> 
-        <tr>
-          <td>Курсы ассистент</td>
-          <td>
-            {% for course in coach_info.assistant_on_course.all %} 
-            <p>
-              <a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a> - Cтуденты курса
-              <a href="{% url 'students:students_on_course' %}?course_id={{course.id}}">
-              <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
-            </p>
-            {% endfor %}
-         </td>           
-        </tr>           
-      </table>     
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-  </body>
-</html>
-     
+{% extends "base.html" %}
+
+{% block title %}Pybursa. Coach{% endblock title %}
+
+
+{% block students_link %}
+<a href="{% url 'students:students_on_course' %}">
+{% endblock students_link %}
+
+
+{% block main_contant %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>{{ coach_info.user.first_name }}  {{ coach_info.user.last_name }}</h3>
+  </div>
+  <table class="table">
+    <tr>
+      <td class="column25">Дата рождения</td>
+      <td>{{ coach_info.birth_date|date:"d.m.Y" }}</td>           
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td>{{ coach_info.adress }}</td>           
+    </tr>
+    <tr>
+      <td>Cкайп</td>
+      <td>{{ coach_info.skype }}</td>           
+    </tr>
+      <tr>
+      <td>Телефон</td>
+      <td>{{ coach_info.phone }}</td>           
+    </tr>  
+    <tr>
+      <td>Курсы учитель</td>
+      <td>
+      {% for course in coach_info.coach_on_course.all %} 
+        <p>
+          <a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a> - Cтуденты курса
+          <a href="{% url 'students:students_on_course' %}?course_id={{ course.id }}">
+          <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
+        </p>
+        {% endfor %}
+      </td>           
+    </tr> 
+    <tr>
+      <td>Курсы ассистент</td>
+      <td>
+        {% for course in coach_info.assistant_on_course.all %} 
+        <p>
+          <a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a> - Cтуденты курса
+          <a href="{% url 'students:students_on_course' %}?course_id={{ course.id }}">
+          <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
+        </p>
+        {% endfor %}
+      </td>           
+    </tr>           
+  </table>
+</div>   
+ 
+{% endblock main_contant %}

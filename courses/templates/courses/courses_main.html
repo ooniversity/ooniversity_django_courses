@@ -1,71 +1,53 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    {%load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="icon" href= "{% static "img/favicon.ico" %}">
-    <title>Pybursa. Главная</title>
-    <!-- Bootstrap and mystyle-->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "css/mystyle.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-default"><!--What is this tab-->
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'courses_main' %}"><img alt="Brand" src="{% static 'img/pybursa_logo.png' %}" width="21px"></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Главная</a></li>
-            <li><a href="{% url 'contact_list' %}">Контакты</a></li>
-            <li><a href="{% url 'students:students_on_course' %}">
-            Студенты</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <div class="jumbotron"><h1>ooniversity</h1>
-      <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования</h3></p> 
-      <br>
-      <br>     
-    </div>
-    <div class="list-group">
-      <a class="list-group-item active">
-        Преимущества курсов:</a>
-      <a class="list-group-item">Учат не слушать, а решать поставленные задачи</a>
-      <a class="list-group-item">Практика занимает 90% учебного процесса</a>
-      <a class="list-group-item">Написание реального проекта</a>
-      <a class="list-group-item">Командная работа</a>
-      <a class="list-group-item">Рейтинговая система</a>
-      <a class="list-group-item">Дедлайны</a>
-      <a class="list-group-item">В работе это пригодится!</a>
-    </div>
+{% extends "base.html" %}
+
+{% block title %}Pybursa. Главная{% endblock title %}
+
+
+{% block nav_class_main %}active{% endblock %}
+
+
+{% block students_link %}
+<a href="{% url 'students:students_on_course' %}">
+{% endblock students_link %}
+
+
+{% block main_contant %}
+
+<div class="jumbotron"><h1>ooniversity</h1>
+  <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования</h3></p> 
+    <br>
+    <br>     
+</div>
+<div class="list-group">
+  <a class="list-group-item active">
+    <b>Преимущества курсов:</b>
+  </a>
+  <a class="list-group-item">Учат не слушать, а решать поставленные задачи</a>
+    <a class="list-group-item">Практика занимает 90% учебного процесса</a>
+    <a class="list-group-item">Написание реального проекта</a>
+    <a class="list-group-item">Командная работа</a>
+    <a class="list-group-item">Рейтинговая система</a>
+    <a class="list-group-item">Дедлайны</a>
+    <a class="list-group-item">В работе это пригодится!</a>
+  </div>
   <div class="panel panel-default">
     <div class="panel-body">
-     <h3>Выбирай курс, на котором хочешь учиться!</h3>
+      <h3>Выбирай курс, на котором хочешь учиться!</h3>
     </div> 
-    <table class="table">
+    <table class="table main-table" >
       <tr>
         <th class="column25">Курс</th>
         <th>Описание</th> 
       </tr> 
       {% for course in courses %}
       <tr>
-        <td><a href="{% url 'courses:course_info' course.id %}">{{course.title}}</a></td>
-        <td>{{course.short_description}}</td>
+        <td><a href="{% url 'courses:course_info' course.id %}"><b>{{ course.title }}</b></a></td>
+          <td>{{ course.short_description }}</td>
       </tr>
       {% endfor %}
-    </table> 
-  </div> 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  </body>
-</html>
+    </table>       
+  </div>
+
+{% include "inc_add_events.html" %} 
+
+{% endblock main_contant %}

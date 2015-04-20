@@ -8,9 +8,10 @@ class Student(models.Model):
 	birth_date = models.DateField()
 	email = models.EmailField()
 	phone = models.CharField(max_length=15)
-	adress = models.CharField(max_length=255)
+	adress = models.CharField(max_length=255, null = True, blank=True)
 	skype = models.CharField(max_length=15)
 	courses = models.ManyToManyField(Course)
 
 	def __unicode__ (self):
 		return self.name
+
