@@ -1,53 +1,14 @@
-﻿<!DOCTYPE html>
+{% extends "base/base.html" %}
+
 {% load staticfiles %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <title>Преподаватель</title>
-
-    <!-- Bootstrap -->
-    <link href="{% static 'bs/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'custom/css/jumbotron-narrow.css' %}" rel="stylesheet">
 
 
-    <!-- Pybursa styles -->
-    <link href="{% static 'pybursa/css/styles.css' %}" type="text/css" rel="stylesheet">
-    <link href="{% static 'pybursa/css/modal.css' %}"  type="text/css" rel="stylesheet">
-
-    <!-- Custom styles -->
-    <link href="{% static 'custom/css/custom-styles.css' %}" rel="stylesheet">
+{% block title %}
+  Преподаватель
+{% endblock %}
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    <!--<script src="{% static 'custom/js/cursor.js' %}"></script>-->
-
-  </head>
-
-  <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'courses_i:index' %}">Главная</a></li>
-            <li role="presentation"><a href="{% url 'students:index' %}">Студенты</a></li>
-            <li role="presentation"><a href="{% url 'contact' %}">Контакты</a></li>
-          </ul>
-        </nav>
-      </div>
+{% block main_content %}
 
         <h2>
 
@@ -70,7 +31,7 @@
 
         <tr>
           <td>дата рождения</td>
-          <td>{{ coach.birth_date }}</td>
+          <td>{{ coach.birth_date|date:"SHORT_DATE_FORMAT" }}</td>
         </tr>
         <tr>
           <td>адрес</td>
@@ -97,7 +58,7 @@
                </a>
                &nbsp
               студенты курса
-              <a href="{% url 'students:index' %}?course_id={{course.id}}">
+              <a href="{% url 'students:index' %}?course_id={{ course.id }}">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
               </a>
               <br>
@@ -113,7 +74,7 @@
                </a>
               &nbsp
               студенты курса
-              <a href="{% url 'students:index' %}?course_id={{course.id}}">
+              <a href="{% url 'students:index' %}?course_id={{ course.id }}">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
               </a>
               <br>
@@ -129,16 +90,6 @@
     <p>No coaches are available.</p>
 {% endif %}
 
-      <footer class="footer">
-        <p>&copy; Py.bursa 2014</p>
-      </footer>
 
-    </div> <!-- /container -->
+{% endblock main_content %}
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'bs/js/bootstrap.min.js' %}"></script>
-  </body>
-</html>

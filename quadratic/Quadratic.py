@@ -18,3 +18,17 @@ class Quadratic(object):
         else:
             x = (-self.b - self.d ** (1/2.0)) / 2*self.a
         return x
+
+def quadratic_eval(a, b, c):
+    variables = {}
+
+    quad = Quadratic(a, b, c)
+    quad.calc_discrim()
+    d = quad.get_discrim()
+    variables.update(d=d)
+    if d >= 0:
+        x1 = quad.get_eq_root()
+        x2 = quad.get_eq_root(order=2)
+        variables.update(x1=x1, x2=x2)
+
+    return variables

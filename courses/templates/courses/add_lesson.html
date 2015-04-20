@@ -1,0 +1,31 @@
+﻿{% extends "base/base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}
+  Занятия
+{% endblock %}
+
+
+{% block menu_students %}{% endblock menu_students %}
+
+
+{% block main_content %}
+
+        <h2>
+
+        </h2>
+
+        <div>
+          <h4>
+            Создание нового занятия
+          </h4>
+        </div>
+
+
+{% include "courses/item_form.html" %}
+
+
+{% endblock main_content %}
+

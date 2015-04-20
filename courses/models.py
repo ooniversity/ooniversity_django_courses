@@ -14,6 +14,9 @@ class Course(models.Model):
     def __unicode__(self):              # __unicode__ on Python 2
         return self.title
 
+    class Meta:
+        ordering = ['id']
+
 class Lesson(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
