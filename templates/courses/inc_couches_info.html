@@ -1,0 +1,17 @@
+﻿      <div class="datagrid">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <h3>{{ block_title }}</h3>
+                <a href="{% url 'coaches:coaches' instructor.id %}">{{ instructor.user }}</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{instructor.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
