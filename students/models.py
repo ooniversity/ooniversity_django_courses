@@ -16,4 +16,14 @@ class Student(models.Model):
     def __unicode__(self):
         return self.name
 
+class CourseApplication(models.Model):
+    name = models.CharField(max_length=70)
+    email = models.EmailField()
+    courses = models.ForeignKey(Course)
+    package = models.CharField(max_length=70, choices=(
+        ('standart', "Standart"), ('gold', "Gold"), ('vip', "VIP")))
+    comment = models.TextField()
+    is_active = models.BooleanField(default=True)
 
+    def __unicode__(self):
+        return self.name
