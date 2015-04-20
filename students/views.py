@@ -1,85 +1,56 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import Http404
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 
 from students.models import Student, StudentForm
 from courses.models import Course
 
-
-def students_list(request):
-    course_id = request.GET.get('course_id')
-
-    if course_id is None:
-        students = Student.objects.all()
-    else:
-        course = Course.objects.get(pk=int(course_id))
-        students = course.student_set.all()
-
-    return render(request, 'students_list.html', {
-        'students': students,
-    })
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-def student_detail(request, pk):
-    student = Student.objects.get(pk=pk)
-    courses = student.courses.all()
+class StudentListView(ListView):
+    model = Student
+    context_object_name = "students"
 
-    return render(request, 'detail_info.html', {
-        'student': student,
-        'courses': courses,
-    })
-
-
-def student_add(request):
-    if request.method == "POST":
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            student = form.save()
-            messages.success(
-                request, u"Student {} {} add success!".format(
-                    student.name, student.surname))
-            return redirect('students:students-list')
-    else:
-        form = StudentForm()
-
-    return render(request, 'add.html', {
-        'form': form,
-    })
+    def get_queryset(self):
+        student = super(StudentListView, self).get_queryset()
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            student = student.filter(courses=course_id)
+        return student
 
 
-def student_edit(request, pk):
-    student = Student.objects.get(id=pk)
-
-    if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            student.save()
-            messages.success(
-                request, u"{} {} update success!".format(
-                    student.name, student.surname))
-            return redirect('students:students-list')
-    else:
-        form = StudentForm(instance=student)
-
-    return render(request, 'edit.html', {
-        'form': form,
-    })
+class StudentDetailView(DetailView):
+    model = Student
 
 
-def student_delete(request, pk):
-    # try:
-    #     student = Student.objects.get(id=pk)
-    # except Student.DoesNotExist:
-    #     raise Http404("Student does not exist")
-    student = get_object_or_404(Student, pk=pk)
+class StudentCreateView(SuccessMessageMixin, CreateView):
+    model = Student
+    success_url = reverse_lazy('students:students-list')
+# show messages on page
+    success_message = "Student: %(surname)s %(name)s was added success!"
 
-    if request.method == "POST":
-        student.delete()
-        messages.success(
-            request, u"Student: {} {} was deleted".format(
-                student.name, student.surname))
-        return redirect('students:students-list')
 
-    return render(request, 'delete.html', {
-        'student': student,
-    })
+class StudentUpdateView(SuccessMessageMixin, UpdateView):
+    model = Student
+    success_url = reverse_lazy('students:students-list')
+    template_name_suffix = '_update_form'
+    success_message = "Student: %(surname)s %(name)s was updated success!"
+
+
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:students-list')
+    template_name_suffix = "_check_delete"
+    success_message = "Student: %(surname)s %(name)s was deleted success!"
+
+    def delete(self, request, *args, **kwargs):
+        student = self.get_object()
+        messages.success(self.request, self.success_message % {
+            'surname': student.surname,
+            'name': student.name,
+        })
+        return super(StudentDeleteView, self).delete(request, *args, **kwargs)
