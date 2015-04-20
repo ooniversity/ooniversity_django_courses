@@ -6,6 +6,8 @@ from django import forms
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse_lazy
 from students.models import Student
 
 
@@ -25,12 +27,29 @@ class StudentDetailView(DetailView):
     model = Student
 
 
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy('students:student_list')
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Создание нового студента"
+        return context
+    
+    def form_valid(self, form):
+        form = super(StudentCreateView, self).form_valid(form)
+        messages.success(self.request, 
+                 u"Студент {0} успешно добавлен"\
+                  .format(self.object.full_name()))
+        return form
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
 
-
+'''
 def student_add(request):
     page_title = u"Создание нового студента"
     if request.method == 'POST':
@@ -47,7 +66,7 @@ def student_add(request):
     else:
         form = StudentForm()   
     return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-
+'''
 
 def student_edit(request, student_id):
     page_title = u"Редактирование данных студента"
