@@ -1,90 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!-- saved from url=(0050)http://getbootstrap.com/examples/jumbotron-narrow/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-    <title>Главная</title>
 
-    <!-- Bootstrap core CSS -->
-    {% load staticfiles %}
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+{% block title %} Квадратное уравнение {% endblock title %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
+{% block content %}
+    {% if form %}
+     <h3>Квадратное уравнение a &#8729 x<sup>2</sup> + b &#8729 x + c = 0</h3>
+    <form>
+      {{ form.as_p }}
+      <input type="submit" value="Решить" />
+    </form>
+    {% endif %}
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    <link rel="stylesheet" href="{% static "css/js-help.css" %}" type="text/css" />
-    <script type="text/javascript" src="{% static "js/jquery-1.4.1.min.js" %}"></script>
-    <script>
-    $(document).ready(function() {
-	    $('.title').append('<span></span>');
-	    $('.post span').each(function() {
-		    var trigger = $(this), state = false, el = trigger.parent().next('.entry');
-		    trigger.click(function(){
-			    state = !state;
-			    el.slideToggle();
-			    trigger.parent().parent().toggleClass('inactive');
-		    });
-	    });
-    });
-    </script>
-
-  </head>
-
-<body">
-   <div class="container">
-      
     <div class="row marketing">
-    <h3>Квадратное уравнение a*x*x + b*x +c = 0</h3>
-   <ul>
-    <li><h4>    a = {{ a }}     </h4>
-    {% if a_comment %}
-    <h5><i> {{ a_comment }}     </i></h5>
-    </li>
-     {% endif %}
-   <li><h4>    b = {{ b }}     </h4>
-    {% if b_comment %}
-    <h5><i> {{ b_comment }}     </i></h5>
-    {% endif %}
-    </li>
-    <li><h4>    c = {{ c }}     </h4>
-    {% if c_comment %}
-    <h5><i> {{ c_comment }}     </i></h5>
-     {% endif %}
-   </li>
-    </ul>
-    {% if need_show_discriminant %}
-    <h4>Дискриминант = {{ discriminant }}</h4>
-    <h4>{{ root_message }}</h4>
-    {% endif %}
-   
-     </div>
+      {% if root_message %}
+       <h4>Дискриминант = {{ discriminant }}</h4>
+       <h4>{{ root_message }}</h4>
+      {% endif %}
+    </div>
 
 
-   <footer class="footer">
-        <p>anya-k 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-  
-
-  </body>
-</html>
+{% endblock content %}

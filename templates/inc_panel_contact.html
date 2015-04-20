@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<div class="panel panel-primary">
+ <div class="panel-heading">
+    <h3 class="panel-title">{{ block_title }}</h3>
+ </div>
+ <div class="panel-body">
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="{% static image_src %}" alt="{{ full_name }}">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        {{ full_name }}
+      </h4>
+       <p>{{ description|default:"Нет описания"|linebreaks }}</p>
+    </div>
+  </div>
+ </div>
+</div>
+<br />
