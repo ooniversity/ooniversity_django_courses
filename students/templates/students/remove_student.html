@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}Remove Student{% endblock title %}
+
+
+{% block handler_wrapper %}style="margin-top:1%"{% endblock %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block carousel %}{% endblock carousel %}
+
+
+{% block main_content %}
+
+
+<h3>Студент {{ student.full_name }} будет удален</h3>
+
+  <form method='post'>
+    {% csrf_token %}  
+    <input type="submit" value="Удалить">
+  </form>
+
+{% endblock main_content %}
+

@@ -1,0 +1,24 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Remove Course{% endblock title %}
+
+
+{% block nav_class_students %}{% endblock %}
+
+
+{% block main_content %}
+
+
+<h3>Курс {{ course.name }} будет удален</h3>
+
+  <form method='post'>
+    {% csrf_token %}  
+    <input type="submit" value="Удалить">
+  </form>
+
+{% endblock main_content %}
+

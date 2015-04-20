@@ -11,4 +11,7 @@ class Coach(models.Model):
     description = models.TextField()
 
     def __unicode__(self):
-        return unicode(self.user)
+        return self.full_name()
+
+    def full_name(self):
+        return u"{0} {1}".format(self.user.first_name, self.user.last_name)
