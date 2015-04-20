@@ -4,17 +4,20 @@ from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.contrib import messages
+from django.views.generic.list import ListView
 from students.models import Student
 
 
-def student_list(request):
-    course_id = request.GET.get('course_id')
-    if course_id == None:
-        students = Student.objects.all()
-    else:
-        students = Student.objects.filter(courses=course_id)
-    return render(request, 'students/student_list.html',
-                  {'students': students})
+class StudentsListView(ListView):
+    model = Student
+
+    def get_queryset(self):
+        course_id = self.request.GET.get('course_id')
+        if course_id:
+            students = Student.objects.filter(courses=course_id)
+        else:
+            students = Student.objects.all()
+        return students
 
 
 def student_detail(request, student_id):
