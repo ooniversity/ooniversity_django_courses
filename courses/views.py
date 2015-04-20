@@ -2,7 +2,7 @@ from django.shortcuts import render
 from courses.models import Course
 from courses.models import Lesson
 from coaches.models import Coach
-
+from django import forms
 
 def course (request):
     courses = Course.objects.all()
@@ -15,7 +15,6 @@ def lesson_pd (request):
     coaches = Coach.objects.all()
     return render(request, 'pd.html', 
                   {'lessons': lessons, 'coaches': coaches})
-
 
 
 
@@ -32,5 +31,14 @@ def lesson_rr (request):
     return render(request, 'rr.html', 
                   {'lessons':lessons, 'coaches': coaches})
 
+class LessonForm(forms.ModelForm):
+      class Meta:
+            model = Lesson  
+    
 
 
+def add_lesson(request):
+    model_form = LessonForm()
+    return render(request, 'add_lesson.html', 
+                    {'model_form':model_form}
+      )

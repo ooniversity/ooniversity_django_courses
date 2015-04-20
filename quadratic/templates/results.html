@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Решение квадратного уравнения</title>
+
+</head>
+<body>
+<div class="container">
+<h2>Результаты решения</h2>
+<div class="container">
+<p>
+<ul>
+<li>a = {{ a.0 }} <br/> {{ a.1 }}</li>
+<li>b = {{ b.0 }} <br/> {{ b.1 }}</li>
+<li>c = {{ c.0 }} <br/> {{ c.1 }}</li>
+<ul>
+</p>
+<p>
+{% if d.1 != '' %}
+Дискриминант: {{ d.0 }} <br/>
+{{ d.1 }}
+{% endif %}
+</p>
+<a href="{% url "quadratic" %}"><h4>Решение квадратного уравнения</h4></a>
+</div>
+</div>
+
+</body>
+</html>

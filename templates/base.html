@@ -11,7 +11,7 @@
      {% load staticfiles %}
     <link rel="icon" href="{% static 'img/py.ico' %}">
 
-    <title>Профессиональные курсы</title>
+    <title>{% block title %}Профессиональные курсы{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
      {% load staticfiles %}
@@ -48,9 +48,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
+
+            <li class="{% block nav_class_index %}{% endblock %}">
+            <a href="{% url 'home' %}">Главная</a></li>
             
-            <li ><a href="{% url 'student' %}">Студенты</a></li>
+            <li class="{% block nav_class_student %}{% endblock %}">
+            <a href="{% url 'student' %}">Студенты</a></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,32 +62,8 @@
 
     <div class="container">
 
-      <!--<div class="starter-template">-->
-
-      <div style = "font-size: 16px; text-align : justify">
-
-        <h2>Web разработка на Ruby on Rails</h2>
-        <p >Через ряд лекций и практических занятий вы узнаете, как использовать такие мощные инструменты, как язык программирования Ruby и MVC Framework Ruby on Rails. Также вы познакомитесь с практиками Extreme Programming (XP), поучаствуете в разработке проектов по методологии Scrum. Но первой группе придется серьезно попотеть и недосыпать два месяца курсов.</p>
-                	
-    <pre>                          
-    <table class='courses_list'>
-        <tr>
-        <th>№</th>
-        <th>Тема</th>
-        <th>Описание</th>
-        </tr>
-    {% for lesson in lessons %}
-        <tr>
-        <td>{{forloop.counter}}</td>
-        <td>{{lesson.theme}}</td>
-        <td>{{lesson.desription}}</td>
-        </tr>
-    {% endfor %}
-    </table>     
-    </pre>
-
-
-        
+{% block content %}      
+{% endblock content %}        
 
     </div><!-- /.container -->
 
@@ -105,6 +85,3 @@
     <style>
 
 </body></html>
-
-
-
