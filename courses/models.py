@@ -11,7 +11,7 @@ class Course(models.Model):
 
 	def __unicode__(self):
 		return self.name
-		
+
 
 class Lessons(models.Model):
 	theme = models.CharField(max_length=40)

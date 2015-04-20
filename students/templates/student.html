@@ -1,60 +1,42 @@
-{% extends "base.html" %}
+{% extends "base_students.html" %}
 
-{% block page_title %}Student {{ block.super }}{% endblock %}
 
-{% block content %}
-     <div class="container">
-    
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" ><a href="{% url 'main' %}">Главная</a></li>
-            <li role="presentation" class="active"><a href="">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">MathBursa</h3>
-      </div>
+{% block page-header %}{{ student.surname }} {{ student.name }}{% endblock %}
 
-          
-      <h2 class="sub-header">{{student.surname}} {{student.name}}</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <tbody>
+
+{% block page-content %}    
               <tr>
                 <td>дата рождения</td>
-                <td>{{student.data_birthday}}</td>
+                <td>{{ student.date_birthday|date:'F j, Y' }}</td>
               </tr>
               <tr>
                 <td>адрес</td>
-                <td>{{student.address}}</td>
+                <td>{{ student.address }}</td>
               </tr>
               <tr>
                 <td>почта</td>
-                <td>{{student.mail}}</td>
+                <td>{{ student.mail }}</td>
               </tr>
               <tr>
                 <td>логин skype</td>
-                <td>{{student.skype}}</td>
+                <td>{{ student.skype }}</td>
               </tr>
               <tr>
                 <td>телефон</td>
-                <td>{{student.phone}}</td>
+                <td>{{ student.phone }}</td>
               </tr>
               <tr>
                 <td>курсы</td>
                 <td>{% for course in student.courses.all%}
-                      <a href="{% url 'course-description' course.id %}">{{course}}</a></br>
+                      <a href="{% url 'course-description' course.id %}">{{ course }}</a></br>
                       {% endfor %}
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
+{% endblock %}            
 
        
 
       
     
 
-     </div>
-{% endblock %}
+ 

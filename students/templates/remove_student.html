@@ -1,0 +1,19 @@
+{% extends "base_students.html" %}
+
+
+{% block page-header %}Студент {{ student.fullname }} будет удален{% endblock %}
+
+
+{% block page-content %}
+<form method="post" > 
+  {% csrf_token %}    
+  <input type="submit" value="Удалить"> 
+</form>   
+{% endblock %}            
+
+       
+
+      
+    
+
+ 

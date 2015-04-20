@@ -12,9 +12,5 @@ class StudentAdmin(admin.ModelAdmin):
 				 (None, {'fields': ('courses',)})
 				 ]
 	
-	
-
-
-	
 
 admin.site.register(Student, StudentAdmin)

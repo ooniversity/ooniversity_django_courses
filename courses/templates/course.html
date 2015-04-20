@@ -1,45 +1,37 @@
 {% extends "base.html" %}
 
+
 {% block page_title %}Course {{ block.super }}{% endblock %}
 
+
+{% block nav_main %}active{% endblock %}
+
+
 {% block content %}
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="{% url 'main' %}">Главное</a></li>
-            <li role="presentation"><a href="{% url 'list-students' %}?course_id={{course.id}}">Студенты</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">MathBursa</h3>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
       </div>
-
+    {% endfor %}
+  </ul>
+{% endif %}
       <div class="jumbotron">
-        <h2>{{course.name}}</h2>
-        <p class="lead">{{course.description}}</p>
-      </div>
-      
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Учитель</h3>
-        </div>
-        <div class="panel-body">
-          <a href="{% url 'coach' course.trainer.id %}">{{course.trainer.user.get_full_name}}</a></br>
-          {{course.trainer.description}}
-        </div>
+        <h2>{{ course.name|upper }}</h2>
+        <p class="lead">{{ course.description }}</p>
       </div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Ассистент</h3>
-        </div>
-        <div class="panel-body">
-          <a href="{% url 'coach' course.assistant.id %}">{{course.assistant.user.get_full_name}}</a></br>
-          {{course.assistant.description}}
-        </div>
-      </div>
-      
+{% include "include_coach.html" with block_title="Учитель" instructor=course.trainer %}   
+
+{% include "include_coach.html" with block_title="Ассистент" instructor=course.assistant %}    
+
       <h2 class="sub-header">План курса</h2>
+      <a class="btn btn-primary active" 
+         href="{% url 'courses:add_lesson' course.id %}" role="button">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+         Добавить занятие
+      </a>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -52,13 +44,13 @@
               <tbody>
               {% for lesson in lessons %}
                 <tr>
-                  <td>{{lesson.number}}</td>
-                  <td>{{lesson.theme}}</a></td>
-                  <td>{{lesson.description}}</td>
+                  <td>{{ lesson.number }}</td>
+                  <td>{{ lesson.theme }}</a></td>
+                  <td>{{ lesson.description }}</td>
                 </tr>
                {% endfor %} 
               </tbody>
             </table>
           </div>
-    </div> <!-- /container -->
+    
 {% endblock %}

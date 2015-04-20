@@ -9,7 +9,7 @@ class Coach(models.Model):
 	phone = models.CharField(max_length=20)
 	address = models.CharField(max_length=30)
 	skype = models.CharField(max_length=10)
-	description = models.TextField()
+	description = models.TextField(blank=True, null=True)
 
 	def __unicode__(self):
 		return self.user.get_full_name()
