@@ -1,36 +1,43 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.http import HttpResponse
 from quadratic import check_coef, solve_quadratic_equation, get_discr
-"""
 from django import forms
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 
 
 class QuadraticForm(forms.Form):
-    a = forms.FloatField(label="Coef A", help_text="Enter A")
-    b = forms.FloatField()
-    c = forms.FloatField()
+    a = forms.FloatField(label="Коэффициент a:")
+    b = forms.FloatField(label="Коэффициент b:")
+    c = forms.FloatField(label="Коэффициент c:")
 
-Затем инстанс этого класса указать во вьюшке: form = QuadraticForm()
-Включить form в состав переменных в render: 'form': form
-В шаблоне страницы использовать {{ form }}, а лучше {{ form.as_p }} (чтобы не в одну строку)
-В любом случае вставляем внутрь тега <form>, где есть <input type="submit">
+    def clean_a(self):
+        a = self.cleaned_data.get('a')
+        if a == 0:
+            raise forms.ValidationError("Коэффициент при первом слагаемом не может быть равным нулю.")
+        return a
 
-Чтобы данные сохранялись в форме после отправки, надо во вьюшку добавить:
 
-if request.method == 'POST':
-    form = QuadraticForm(request.POST)
-    if form.is_valid():
-        print form.cleaned_data
-        return redirect('/')   #или render формы с результатами
-else:
-    form = QuadraticForm(initial={'a': 1, 'b': 1, 'c': 1})
+def results(request):
+    if request.GET:
+        form = QuadraticForm(request.GET)
+        if form.is_valid():
+            a = form.cleaned_data.get('a')
+            b = form.cleaned_data.get('b')
+            c = form.cleaned_data.get('c')
+            text = '\n\nДискриминант: {0}\n\n'.format(get_discr(a, b, c))
+            text += solve_quadratic_equation(a, b, c)
+            return render(request, "quadratic/quadratic.html", 
+                          {'form': form, 'text': text})
+        else:
+            return render(request, "quadratic/quadratic.html", {'form': form})           
+    else:
+        form = QuadraticForm()
+        return render(request, "quadratic/quadratic.html", {'form': form})
+
+
 
 """
-
-
 def results(request):
     a = request.GET.get('a', '')
     b = request.GET.get('b', '')
@@ -46,3 +53,6 @@ def results(request):
         text += '\n\nДискриминант: {0}\n\n'.format(get_discr(a, b, c))
         text += solve_quadratic_equation(a, b, c)
     return HttpResponse (text, content_type="text/plain; charset=utf-8")
+"""
+
+

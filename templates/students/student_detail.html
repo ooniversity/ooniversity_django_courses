@@ -1,70 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - {{ student.full_name }}</title>
-    <link href="{% static "bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "mystyles.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'views.index' %}">ItBursa</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'views.index' %}">Главная</a></li>
-            <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'students:student_list' %}">Студенты</a></li>
-            <li class="active"><a href="">Профиль студента<span class="sr-only">(current)</span></a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+{% extends "base_person_detail.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ student.full_name|default:"Профиль студента" }}{% endblock %}
+
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title="Профиль студента" %}
+{% endblock nav_extra_li %}
 
 
-    <div class="table-responsive">
-      <table class="table table-condensed profile">
-        <tbody>
-          <tr>
-            <th class="col1" scope="row">Фамилия:</th>
-            <td>{{ student.surname }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Имя:</th>
-            <td>{{ student.name }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Дата рождения:</th>
-            <td>{{ student.date_of_birth|date:"j E Y" }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Адрес:</th>
-            <td>{{ student.address }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Телефон:</th>
-            <td>{{ student.phone }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Email:</th>
-            <td>{{ student.email|urlize }}</td>
-          </tr>
-          <tr>
-            <th class="col1" scope="row">Skype:</th>
-            <td>{{ student.skype }}</td>
-          </tr>
+{% block surname %} {{ student.surname|upper }} {% endblock %}
+{% block name %} {{ student.name }} {% endblock %}
+{% block date_of_birth %} {{ student.date_of_birth|date:"j E Y" }} {% endblock %}
+{% block address %} {{ student.address }} {% endblock %}
+{% block phone %} {{ student.phone }} {% endblock %}
+{% block email %} {{ student.email|urlize }} {% endblock %}
+{% block skype %} {{ student.skype }} {% endblock %}
+{% block extra_tr %} 
           <tr>
             <th class="col1" scope="row">Курсы:</th>
             <td>
@@ -75,17 +26,4 @@
               {% endfor %}
             </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-
-
-
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="{% static "bootstrap.js" %}"></script>
-  </body>
-</html>
-
+{% endblock extra_tr %}

@@ -4,7 +4,7 @@ from pybursa.views import index, contact
 
 
 urlpatterns = patterns('',
-    url(r'^$', index, name='home'),
+    url(r'^$', index, name='index'),
     url(r'^contact/$', contact, name='contact'),
     url(r'^courses/', include('courses.urls', namespace="courses")),
     url(r'^coaches/', include('coaches.urls', namespace="coaches")),

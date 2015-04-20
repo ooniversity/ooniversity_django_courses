@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+
+    <div class="table-responsive">
+      <table class="table table-condensed profile">
+        <tbody>
+          <tr>
+            <th class="col1" scope="row">Фамилия:</th>
+            <td>{% block surname %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Имя:</th>
+            <td>{% block name %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Дата рождения:</th>
+            <td>{% block date_of_birth %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Адрес:</th>
+            <td>{% block address %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Телефон:</th>
+            <td>{% block phone %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Email:</th>
+            <td>{% block email %}{% endblock %}</td>
+          </tr>
+          <tr>
+            <th class="col1" scope="row">Skype:</th>
+            <td>{% block skype %}{% endblock %}</td>
+          </tr>
+          {% block extra_tr %}{% endblock %}
+        </tbody>
+      </table>
+    </div>
+
+{% endblock body %}
+

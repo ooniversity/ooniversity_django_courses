@@ -1,0 +1,15 @@
+{% load staticfiles %}
+      <li class="media">
+        <div class="media-left">
+          <a href="http://pybursa.com">
+            <img class="media-object" src="{% static photo %}" alt="{{ name }}"/>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ name }}</h4>
+          <div><i>{{ desc }}</i></div>
+          <div>{{ email }}</div>
+          <div>Skype: {{ skype }}</div>
+          <div>{{ phone }}</div>
+        </div>
+      </li>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block nav_extra_li %}
+  {% include "includes/inc_nav_extra_li.html" with li_title=page_title %}
+{% endblock nav_extra_li %}
+
+{% block body %}
+
+<div class="page-header">
+  <h1>{{ page_header }}</h1>
+</div>
+
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="Submit" value="Удалить">
+<form>
+
+{% endblock body %}
+

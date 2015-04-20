@@ -1,42 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-    <title>ItBursa - Главная</title>
-    <link href="{% static "bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "mystyles.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'views.index' %}">ItBursa</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="">Главная<span class="sr-only">(current)</span></a></li>
-            <li><a href="{% url 'views.contact' %}">Контакты</a></li>
-            <li><a href="{% url 'students:student_list' %}">Студенты</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+{% extends "base.html" %}
+{% load staticfiles %}
 
+{% block title %}Главная{% endblock %}
+
+{% block nav_class_index %}class="active"{% endblock %}
+
+{% block body %}
     <div class="jumbotron">
       <h1>ItBursa</h1>
       <p>Мы специализируемся на "модных" языках программирования.</p>
       <p>Принципиальное наше отличие от других курсов - максимум практики и жесткая система домашних заданий.</p>
     </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <a class="button-main" href="{% url 'courses:course_add' %}">
+      <button type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Добавить новый курс
+      </button>
+    </a>
 
 <div class="table-responsive">
       <table class="table table-hover">
@@ -45,6 +35,8 @@
           <tr>
             <th>Курс</th>
             <th>Описание</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -52,15 +44,23 @@
           <tr>
             <td><a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a></td>
             <td>{{ course.short_description }}</td>
+            <td>
+              <a class="button" href="{% url 'courses:course_edit' course.id %}">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Изменить
+                </button>
+              </a>
+            </td>
+            <td>
+              <a class="button" href="{% url 'courses:course_remove' course.id %}">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Удалить
+                </button>
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="{% static "bootstrap.js" %}"></script>
-  </body>
-</html>
-
+{% endblock body %}

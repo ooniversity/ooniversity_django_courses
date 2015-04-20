@@ -3,9 +3,9 @@
 
 class QuadraticEquation(object):
     def __init__(self, a, b, c):
-        self.a = int(a)
-        self.b = int(b)
-        self.c = int(c)
+        self.a = float(a)
+        self.b = float(b)
+        self.c = float(c)
 
     def calc_discr(self):
         self.d = self.b ** 2 - 4 * self.a * self.c
