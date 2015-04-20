@@ -2,6 +2,7 @@
 from django.db import models
 from coaches.models import Coach
 
+
 class Course(models.Model):
     name = models.CharField(u"Название", max_length=255)
     short_description = models.CharField(u"Краткое описание", max_length=255)
@@ -14,6 +15,12 @@ class Course(models.Model):
     def __unicode__(self):
         return self.name
 
+    def update_data(self, **kwargs):
+        for attr in kwargs:
+            if getattr(self, attr):
+                setattr(self, attr, kwargs.get(attr))
+
+
 class Lesson(models.Model):
     subject = models.CharField(u"Тема", max_length=255)
     description = models.TextField(u"Описание")
@@ -22,3 +29,8 @@ class Lesson(models.Model):
 
     def __unicode__(self):
         return self.subject
+
+    def update_data(self, **kwargs):
+        for attr in kwargs:
+            if getattr(self, attr):
+                setattr(self, attr, kwargs.get(attr))

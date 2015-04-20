@@ -12,7 +12,8 @@ class Coach(models.Model):
     gender = models.CharField(u'Пол', max_length=1, choices=gender_choises)
     phone = models.CharField(u'Телефон', max_length=255, unique=True)
     address = models.CharField(u'Адрес', max_length=255)
-    skype = models.CharField(u'Скайп', max_length=255, unique=True)
+    skype = models.CharField(u'Скайп', max_length=255, unique=True, blank=True,
+        null=True)
     description = models.TextField(u'Описание')
 
     def __unicode__(self):
