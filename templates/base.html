@@ -13,7 +13,7 @@
 
     <link rel="icon" href="_.ico">
 
-    <title>{{ course.title }}</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
@@ -39,64 +39,27 @@
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-        <h3 class="text-muted">Курсы > {{ course.title }}</h3>
+        <h3 class="text-muted">{% block nav_header %}{% endblock %}</h3>
         <nav>
           <ul class="nav nav-justified">
-            <li><a href="{% url 'ooniversity' %}">Главная</a></li>
+            <li class="{% block nav_class_index %}{% endblock %}">
+              <a href="{% url 'index-ooniversity' %}">Главная</a>
+            </li>
             <li><a href="#">Преподаватели</a></li>
-            <li><a href="{% url 'students' %}?course_id={{ course.id }}">Студенты</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li class="{% block nav_class_student %}{% endblock %}">
+              <a href="{% url 'students:student-list' %}{% block urlget %}{% endblock %}">Студенты</a>
+            </li>
+            <li class="{% block nav_class_contact %}{% endblock %}">
+              <a href="{% url 'contact' %}">Контакты</a>
+            </li>
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
           </ul>
         </nav>
       </div>
-      <br>
-
-      <!-- Jumbotron - lead -->
-      <div>
-        <br>
-        <h1><b>{{ course.title }} !</b></h1>
-        <br>
-        <p class="lead"><i>{{ course.description }}</i></p>
-      </div>
-
-      <br>
-      <h2>План курса</h2>
-      <br>
 
 
-      <div class="panel panel-default">
-
-        <!-- Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th><h3>№</h3></th>
-              <th><h3>Курс</h3></th>
-              <th><h3>Описание</h3></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for lesson in lessons %}
-                <tr>
-                  <td>
-                    <h4>{{ lesson.number }}</h4>
-                  </td>
-
-                  <td>
-                    <h4>{{ lesson.theme }}</h4>
-                  </td>
-
-                  <td>
-                    <h4>{{ lesson.description }}</h4>
-                  </td>
-                </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-      </div>
+{% block main_content %}
+{% endblock main_content %}
 
 
       <!-- Site footer -->

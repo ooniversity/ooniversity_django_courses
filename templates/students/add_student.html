@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}Ooniversity - New student{% endblock title %}
+
+
+{% block nav_class_student %}active{% endblock %}
+
+
+{% block main_content %}
+
+    <div>
+      <br>
+      <h2> Добавление нового студента </h2>
+      <br>
+      <br>
+
+      <!-- Создание формы для нового студента -->
+
+      <form method="post">
+        {% csrf_token %}
+        {{ student_form.as_p }}
+        <br>
+        <br>
+        <input class="btn btn-primary"  type='submit' value="Создать">
+      </form>
+
+    </div>
+
+{% endblock main_content %}

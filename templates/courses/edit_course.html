@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}Edition course{% endblock title %}
+
+
+{% block main_content %}
+
+    <br>
+
+{% include "includes/inc_messages.html" %}  {# Подключение сообщения #}
+
+    <div>
+      <br>
+      <h2> Редактирование курса - {{ course_app.title }}</h2>
+      <br>
+      <br>
+
+      <!-- Форма редактирования курса -->
+
+      <form method="post">
+        {% csrf_token %}
+        {{ course_form.as_p }}
+        <br>
+        <br>
+        <input class="btn btn-primary" type='submit' value="Изменить">
+      </form>
+    </div>
+
+{% endblock main_content %}

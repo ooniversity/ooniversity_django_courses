@@ -1,0 +1,25 @@
+      <div class="panel panel-default">
+
+        <div>
+          <!-- Table -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th><h3><b>{{ block_title|title }}</b></h3></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th>
+                  <a href="{% url 'coaches:coach-info' instructor.id %}">
+                    <h4>{{ instructor.full_name|upper }}</h4>
+                  </a>
+                  <br>
+                  <p><big>{{ instructor.description|truncatechars:365 }}</big></p>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

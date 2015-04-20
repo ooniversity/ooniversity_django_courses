@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}{{ course.title }}{% endblock %}
+
+
+{% block nav_header %}Курсы > {{ course.title }}{% endblock %}
+
+
+{% block urlget %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block main_content %}
+
+<br>
+
+{% include "includes/inc_messages.html" %}  {# Подключение сообщений #}
+
+
+      <!-- lead :  Information about course ! -->
+      <div>
+        <br>
+        <h1><b>{{ course.title }} !</b></h1>
+        <br>
+        <p class="lead"><i>{{ course.description }}</i></p>
+      </div>
+
+      <!-- Block information about coaches ! -->
+      <br>
+      <h2>Преподаватели</h2>
+      <br>
+
+{% include "includes/inc_instructor.html" with block_title='Учитель' instructor=course.coach %}
+
+      <br>
+
+{% include "includes/inc_instructor.html" with block_title='Ассистент' instructor=course.assistant %}
+
+      <br>
+      <h2>План курса</h2>
+      <br>
+
+      <div class="panel panel-default">
+
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th><h3>№</h3></th>
+              <th><h3>Курс</h3></th>
+              <th><h3>Описание</h3></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for lesson in lessons %}
+                <tr>
+                  <td>
+                    <h4>{{ lesson.number }}</h4>
+                  </td>
+
+                  <td>
+                    <h4>{{ lesson.theme }}</h4>
+                  </td>
+
+                  <td>
+                    <h4>{{ lesson.description|default:"< описание отсутствует >" }}</h4>
+                  </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- Кнопка - Добавить новое занятие -->
+      <br>
+      <div>
+        <a class="add btn btn-success btn-md " href="{% url 'courses:add-lesson' course.id %}">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <big>Добавить занятие</big>
+        </a>
+      </div>
+
+{% endblock main_content %}
