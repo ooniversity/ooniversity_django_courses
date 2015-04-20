@@ -1,0 +1,19 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+{% block title %} Добавление курса {% endblock title %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+
+<h3>Информация о курсе {{course.name}} будет удалена! </h3>
+
+          <form method="post">
+              {% csrf_token %}
+              <br/><input type='submit' class="btn btn-primary" value='Удалить'/>    
+          </form>
+
+{% endblock main_content %}
+
+
