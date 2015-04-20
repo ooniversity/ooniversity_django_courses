@@ -1,102 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <title>Контакты</title>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-    <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/dropdown-submenu.css' %}" rel="stylesheet">
+{% block title %}Контакты{% endblock %}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
 
-<!-- NAVBAR ================================================== -->
+{% block nav_class_contact %}active{% endblock %}
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">
-            <img alt="Brand" src="{% static 'img/python.png' %}" height="20px">
-          </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="active"><a href="#">Контакты<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'students' %}">Студенты</a></li>
-                <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
-                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Материалы <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="http://edx.ddev.com.ua/">Курсы</a></li>
-                <li><a href="https://www.python.org/">Python</a></li>
-                <li class="divider"></li>
-                <li><a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Примеры<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'quadratic' %}">Квадратное уравнение</a></li>
-                <li><a href='{% url "student_list" %}'>Студенты</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
-            <div class="form-group">
-              <input type="text" name="q" class="form-control" placeholder="Поиск">
-              <button type="submit" class="btn btn-default">Искать</button>
-            </div>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://pybursa.com/">Запись на курс</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Мы в... <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="https://www.vk.com/public82364378">Вконтакте</a></li>
-                <li><a href="https://www.facebook.com/pages/ItBursa/1539330322946469">Facebook</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-submenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Другие наши курсы</a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="http://rubybursa.com/">Ruby</a></li>
-                    <li><a href="http://jsbursa.com/">Java</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-
+{% block main %}
 <!-- Contacts ================================================== -->
 
     <!-- coaches ================================================== -->
@@ -107,16 +17,8 @@
 
     <div class="container marketing">
       <div class="row">
-        <div class="col-xs-6">
-          <img class="img-circle" src="{{ coaches.0.image.url }}" width="140" height="140">
-          <h2><a href="{% url 'coaches:coach' coaches.0.id %}">{{ coaches.0.user.last_name }} {{ coaches.0.user.first_name }}</a></h2>
-          <p>{{ coaches.0.description }}</p>
-        </div><!-- /.col-xs-6 -->
-        <div class="col-xs-6">
-          <img class="img-circle" src="{{ coaches.1.image.url }}" width="140" height="140">
-          <h2><a href="{% url 'coaches:coach' coaches.1.id %}">{{ coaches.1.user.last_name }} {{ coaches.1.user.first_name }}</a></h2>
-          <p>{{ coaches.1.description }}</p>
-        </div><!-- /.col-xs-6 -->
+{% include 'includes/inc_instructor.html' with instructor=coaches.0 %}
+{% include 'includes/inc_instructor.html' with instructor=coaches.1 %}
       </div><!-- /.row -->
     </div>
 
@@ -128,30 +30,9 @@
 
     <div class="container marketing">
       <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="{% static 'img/Anna.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>Анна Малахова</h2>
-          <p>Менеджер ITbursa</p>
-          <p><a href="mailto:anna.itbursa@gmail.com">anna.itbursa@gmail.com</a></p>
-          <p><a href="skype:anechka.malakhova">skype: anechka.malakhova</a></p>
-          <p><a href="skype:+380960705347?call">+38 096 070 53 47</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="{% static 'img/Pavel.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>Павел Обод</h2>
-          <p>Основатель ITbursa</p>
-          <p><a href="mailto:itbursa100@gmail.com">itbursa100@gmail.com</a></p>
-          <p><a href="skype:azaless">skype: azaless</a></p>
-          <p><a href="skype:+380637023703?call">+38 063 702 3 703</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" src="{% static 'img/Tanya.jpg' %}" alt="Generic placeholder image" width="140" height="140">
-          <h2>Татьяна Колесник</h2>
-          <p>Оплата курсов</p>
-          <p><a href="mailto:tatyana@outsource-people.com">tatyana@outsource-people.com</a></p>
-          <p><a href="skype:princessataniakolesnik">skype: princessataniakolesnik</a></p>
-          <p><a href="skype:+380637294567?call">+38 063 729 45 67</a></p>
-        </div><!-- /.col-lg-4 -->
+{% include 'includes/inc_org.html' with img_name='img/Anna.jpg' name="Анна Малахова" post="Менеджер ITbursa" email="anna.itbursa@gmail.com" skype="+380960705347" %}
+{% include 'includes/inc_org.html' with img_name='img/Pavel.jpg' name="Павел Обод" post="Основатель ITbursa" email="itbursa100@gmail.com" skype="+380637023703" %}
+{% include 'includes/inc_org.html' with img_name='img/Tanya.jpg' name="Татьяна Колесник" post="Оплата курсов" email="tatyana@outsource-people.com" skype="+380637294567" %}
       </div><!-- /.row -->
     </div>
 
@@ -159,23 +40,4 @@
 
     <div class="jumbotron">
     </div>
-
-<!-- FOOTER ================================================== -->
-
-    <div class="navbar-fixed-bottom row-fluid">
-      <div class="navbar-inner">
-        <div class="container">
-          <footer>
-            <p class="pull-right"><a href="#">Наверх</a></p>
-            <p>&copy; 2015 ItBursa, by Jaroslav Zhuvanov.</p>
-          </footer>
-        </div>
-      </div>
-    </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </body>
-</html>
+{% endblock main %}

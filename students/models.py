@@ -9,10 +9,10 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=18, unique=True)
-    address = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, null=True, blank=True)
     skype = models.CharField(max_length=255, unique=True)
     course = models.ManyToManyField(Course)
-    image = models.ImageField(null=True)
+    image = models.ImageField(null=True, blank=True)
 
     def __unicode__(self):
         return self.surname

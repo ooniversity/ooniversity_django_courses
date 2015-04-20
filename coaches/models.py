@@ -6,12 +6,12 @@ class Coach(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     date_of_birth = models.DateField()
     gender_choises = (('M', 'Male'), ('F', 'Female'))
-    gender = models.CharField(max_length=1, choices=gender_choises)
+    gender = models.CharField(max_length=1, choices=gender_choises, default='M')
     phone = models.CharField(max_length=18, unique=True)
-    address = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, null=True, blank=True)
     skype = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    image = models.ImageField(null=True)
+    image = models.ImageField(null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.user)

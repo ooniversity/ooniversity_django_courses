@@ -1,0 +1,13 @@
+{% extends 'base_registration.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Создание новго занятия{% endblock %}
+
+
+{% block form_name %}Создание новго занятия{% endblock %}
+
+
+{% block buttom_back %}
+    <a href="{% url 'courses:detail' course_id %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

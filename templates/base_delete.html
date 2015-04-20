@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Удаление {% block title_deleted_name %}{% endblock %}{% endblock %}
+
+
+{% block main %}
+<div class='container'>
+  <h1>{% block deleted_name %}{% endblock %} будет удален из списка {% block deleted_comment %}{% endblock %}.</h1>
+  <form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Удалить</button>
+  <a href="{% block back_url %}{% endblock %}" class="btn btn-primary" role="button">Назад</a>
+  </form>
+</div>
+{% endblock main %}

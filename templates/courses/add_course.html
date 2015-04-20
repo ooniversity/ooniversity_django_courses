@@ -1,0 +1,13 @@
+{% extends 'base_registration.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Регистрация нового курса{% endblock %}
+
+
+{% block form_name %}Форма регистрации{% endblock form_name %}
+
+
+{% block buttom_back %}
+    <a href="{% url 'courses:courses' %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

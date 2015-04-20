@@ -1,16 +1,17 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="shortcut icon" href='{% static "img/favicon.ico" %}' type="image/x-icon">
-    <title>Квадратное уравнение</title>
+    <title id="{% block title_id %}{% endblock %}">{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap -->
-    <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dropdown-submenu.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,8 +19,12 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Custom styles for this template -->
+{% block custom_styles %}
+{% endblock %}
   </head>
-  <body>
+  <body onload="{% block body_onload %}{% endblock %}">
 
 <!-- NAVBAR ================================================== -->
 
@@ -41,14 +46,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li class="{% block nav_class_home %}{% endblock %}"><a href="{% url 'home' %}">Главная</a></li>
+{% block nav_additional_botton %}
+{% endblock %}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Инфо<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href='{% url "contact" %}'>Контакты</a></li>
-                <li><a href="{% url 'students' %}">Студенты</a></li>
-                <li><a href="{% url 'courses:courses' %}">Курсы</a></li>
-                <li><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
+                <li class="{% block nav_class_contact %}{% endblock %}"><a href='{% url "contact" %}'>Контакты</a></li>
+                <li class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students' %}">Студенты</a></li>
+                <li class="{% block nav_class_courses:courses %}{% endblock %}"><a href="{% url 'courses:courses' %}">Курсы</a></li>
+                <li class="{% block nav_class_coaches:coaches %}{% endblock %}"><a href="{% url 'coaches:coaches' %}">Преподаватели</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -63,8 +70,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Примеры<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li class="active"><a href="#">Квадратное уравнение <span class="sr-only">(current)</span></a></li>
-                <li><a href='{% url "student_list" %}'>Студенты</a></li>
+                <li class="{% block nav_class_quadratic %}{% endblock %}"><a href="{% url 'quadratics:results' %}">Квадратное уравнение</a></li>
+                <li class="{% block nav_class_quadratic_old %}{% endblock %}"><a href="{% url 'quadratics:quadratic_old' %}">Квадратное уравнение <sub style="font-size:50%">(старое)</sub></a></li>
+                <li class="{% block nav_class_student_list %}{% endblock %}"><a href='{% url "student_list" %}'>Студенты</a></li>
               </ul>
             </li>
           </ul>
@@ -95,17 +103,8 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
-<!-- Quadratic ================================================== -->
-
-    <div class="container">
-      <p>Квадратное уравнение вида a×x² + b×x + c = 0</p>
-      <form action="{% url 'results' %}">
-        <p><input size ='1' name='a' placeholder="a">×x² + <input size ='1' name='b' placeholder="b">×x + <input size ='1' name='c' placeholder="c"> = 0</p>
-      <button type="submit" class="btn btn-default">Расчитать</button>
-      </form>
-    </div>
-
+{% block main %}
+{% endblock main %}
 <!-- FOOTER ================================================== -->
 
     <div class="navbar-fixed-bottom row-fluid">
@@ -122,6 +121,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src='{% static "js/bootstrap.min.js" %}'></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% block custom_plugins %}
+{% endblock %}
   </body>
 </html>

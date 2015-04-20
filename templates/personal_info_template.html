@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block custom_styles %}
+    <link href='{% static "css/google-map.css" %}' rel="stylesheet">
+{% endblock %}
+
+
+{% block main %}
+<!-- Google-MAP ================================================== -->
+
+    <div id="map-canvas"></div>
+
+{% block personal_info %}
+{% endblock personal_info %}
+{% endblock main %}
+
+
+{% block custom_plugins %}
+    <!-- Script for google-map -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="{% static 'js/google-map.js' %}"></script>
+{% endblock %}
