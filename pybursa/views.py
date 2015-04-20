@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
+from datetime import *
 
 #from polls.models import Choice, Question
 
@@ -9,7 +10,8 @@ def dj101_index(request):
     return render(request, "index.html")
 
 def dj101_contact(request):
-    return render(request, "contact.html")
+    enddate = datetime.now()
+    return render(request, "contact.html", {'enddate': enddate})
 
 def dj101_student_list(request):
     return render(request, "student_list.html")
