@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
-    )
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,6 +87,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),'/static/',)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), '/static/',)
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), 'quadratic/templates']
