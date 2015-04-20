@@ -1,11 +1,25 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 
+def quadratic_start(request):
+    return render(request, 'get_items.html', {'a': 'No Item in adress bar', 'b': 'No Item in adress bar', 'c': 'No Item in adress bar', 'd': 'No Item in adress bar', 'roots': 'No Item in adress bar'})
 
 def quadratic_results(request):
 
-    a = request.GET.get('a')
-    b = request.GET.get('b')
-    c = request.GET.get('c')
+    try:
+        a = request.GET.get('a')
+    except DoesNotExist:
+        raise Http404("NO parametrs given in the adress line")
+    try:
+        b = request.GET.get('b')
+    except DoesNotExist:
+        raise Http404("NO parametrs given in the adress line")
+    try:
+        c = request.GET.get('c')
+    except DoesNotExist:
+        raise Http404("NO parametrs given in the adress line")
+
 
     l1 = [a, b, c, 0]
     i = 0

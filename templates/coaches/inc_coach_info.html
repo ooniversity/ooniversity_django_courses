@@ -1,0 +1,40 @@
+<div class="jumbotron">
+	<div class="container">
+		<br>
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Coach name: {{a.user}}</div>
+      <div class="datagrid">
+        <table>
+          <tbody>
+            <tr><td>Birthdate</td><td>{{ a.date_of_birth|date:"D d M Y" }}</td></tr>
+            <tr><td>Adress</td><td>{{ a.adress }}</td></tr>
+            <tr><td>email</td><td>{{ a.email }}</td></tr>
+            <tr><td>Skype login</td><td>{{ a.skype }}</td></tr>
+            <tr><td>Phone</td><td>{{ a.phone }}</td></tr>
+            <td>Courses</td>
+            <td>
+              <p>Instructor at:</p>
+            {% for coach in a.coach_courses.all %}
+              <ul>
+                <li><p>
+                  <a href="{% url 'courses:detail' coach.id %}">{{ coach.name }}</a>
+                </li></p>
+              </ul>
+            {% endfor %}
+              <p>Assistant at:</p>
+            {% for assistant in a.assistant_courses.all %}
+              <ul>
+               <li><p>
+                 <a href="{% url 'courses:detail' assistant.id %}">{{ assistant.name }}</a>
+               </li></p>
+              </ul>
+            {% endfor %}                            
+            </td>
+          </tbody>
+        </table>
+      </div>
+		</div>
+	</div>
+</div>
+

@@ -7,7 +7,9 @@ from django.views import generic
 def mainP(request):
     courses = Course.objects.all()
     lessons = Lesson.objects.all()
-    return render(request, 'index.html', {'courses': courses, 'lessons': lessons})
+    context = {'courses': courses, 'lessons': lessons, 'var1': "Hello World!"}
+    context['var2'] = ['a', 'b', 'c']
+    return render(request, 'index.html', context)
 
 def contact(request):
     return render(request, 'contact.html')
