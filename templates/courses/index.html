@@ -11,8 +11,8 @@
     <div class="container">
       <h2 align = 'center'>Course name: {{ a.name|upper }}</h2>
       <p> {{ a.description }} </p>
-      {% include "courses/inc_couches_info.html" with block_title='Instructor:' instructor=a.coach %}
-      {% include "courses/inc_couches_info.html" with block_title='Assistant:' instructor=a.assist %}
+      {% include "courses/inc_couches_info.html" with block_title='Instructor:' instructor=course.coach %}
+      {% include "courses/inc_couches_info.html" with block_title='Assistant:' instructor=course.assist %}
       <h2>Course plan</h2>
       {% include "courses/inc_course_info.html" %}
     </div>
