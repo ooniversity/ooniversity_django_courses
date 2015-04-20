@@ -1,0 +1,22 @@
+{% extends "students/base.html" %}
+
+
+{% block title%}
+	APPLY [!] {{ student.name }} {{student.surname}} - pyBursa
+{% endblock title %}
+
+
+{% block main_content %}
+			<h1>{{ student.name }} {{student.surname}}</h1>
+			
+		    <div class="row">
+		    <form method='post'> 
+		    	{% csrf_token %}
+		    	{{ form.as_p }}
+		    	<input type="submit">
+		    </form>
+		    <br/>
+		   
+		    </div>
+{% endblock main_content %}
+

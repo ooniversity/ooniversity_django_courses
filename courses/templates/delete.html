@@ -1,0 +1,32 @@
+{% extends "courses/base.html" %}
+
+
+{% block title%}
+	DEL course [!] - pyBursa
+{% endblock title %}
+
+
+{% block main_content %}
+			<h1>Удаление курса {{ course }}</h1>
+			
+		    <div class="row">
+
+		    {% if messages %}
+		    	<ul class="messages">
+		    	{% for message in messages %}
+		    		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+		    			{{ message }}
+		    		</li>
+		    	{% endfor %}
+		    	<ul>
+		    {% endif %}
+
+		    <form method='post'> 
+		    	{% csrf_token %}
+		    	<input type="submit">
+		    </form>
+		    <br/>
+		   
+		    </div>
+{% endblock main_content %}
+

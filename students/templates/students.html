@@ -1,61 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		{% load static from staticfiles %}
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Студенты курса {{ course.name }}</title>
-		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
-		<link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}">
-		<link rel="stylesheet" href="{% static "bootstrap/css/style.css" %}">
-	</head>
-	<body>
-		<!-- Static navbar -->
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Go Python!</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li>
-			              <a href="{% url "home" %}">Главная<span class="sr-only">(current)</span></a>
-			            </li>
-			            <li>
-			              <a href="{% url "contact" %}">Контакты</a>
-			            </li>
-			            <li class="active">
-			              <a href="{% url 'students:index' %}">Студенты</a>
-			            </li>
-			            <li>
-			              <a href="{% url "polls:index" %}">Polls</a>
-			            </li>
-			            <li>
-			              <a href="{% url "quadratic" %}">Quadratic</a>
-			            </li>
-			            <li>
-			              <a href="{% url "admin:index" %}">Admin</a>
-			            </li>
-					</ul>
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		</nav>
+{% extends "students/base.html" %}
 
-		<div class="container">
-			
+
+{% block title%}
+	Студенты курса {{ course.name }} - pyBursa
+{% endblock title %}
+
+
+{% block main_content %}		
 			<ol class="breadcrumb">
 			  <li class="active">Список студентов</li>
 			</ol>
 			
-			<div class="panel panel-default">
+			 {% if messages %}
+		    	<ul class="messages">
+		    	{% for message in messages %}
+		    		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+		    			{{ message }}
+		    		</li>
+		    	{% endfor %}
+		    	<ul>
+		    {% endif %}
+		    <br />
+		    </ul>
+			<a href="{% url "students:add" %}">[+] добавить студента</a>
+ 			<div class="panel panel-default">
 		      <!-- Default panel contents -->
 		      <div class="panel-heading">План курса</div>
 
@@ -65,46 +33,37 @@
 		          <tr>
 		          	 <th scope="row">#</th>
 		            <th>фамилия имя</th>
+		            <th>дата рождения</th>
 		            <th>адрес</th>
 		            <th>skype</th>
 		            <th>курсы</th>
+		            <th></th>
+		            <th></th>
 		          </tr>
 		        </thead>
 		        <tbody>
 		        {% for s in students %}
 		          <tr>
 		          	<td scope="row">{{ s.id }}</td>
-		            <td><a href="{% url "students:oneof" s.id %}">{{ s.surname }} {{ s.name }}</a></td>
-		            <td>{{ s.address }}</td>
-		            <td>{{ s.skype }}</td>
+		            <td><a href="{% url "students:oneof" s.id %}">{{ s.surname|upper }} {{ s.name }}</a></td>
+		            <td>{{ s.date_of_birth|date:"SHORT_DATE_FORMAT" }}</td>
+		            <td>{{ s.address|default:"not set"}}</td>
+		            <td>{{ s.skype|truncatechars:9 }}</td>
 
 		            <td>
 			            {% for c in s.courses %}
 			            	<a href="{% url "courses:oneof" c.id %}">{{ c }}</a> <br />
 			            {% endfor%}
 		            </td>
+		            <td>
+		            	<a href="{% url "students:edit" s.id %}">edit</a>
+		            </td>
+		             <td>
+		            	<a href="{% url "students:delete" s.id %}">delete</a>
+		            </td>
 		          </tr>
 		        {% endfor%}
 		        </tbody>
 		      </table>
 		    </div>
-
-			
-		</div><!--/.container-->
-
-		<footer class="footer">
-			<div class="container">
-				<p class="text-muted">
-					2015 &copy; PyBursa. Created by maximbilozorov
-				</p>
-			</div>
-		</footer>
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	</body>
-</html>
+{% endblock main_content %}		
