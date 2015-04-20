@@ -1,98 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>{{course.name}}</title>
+{% extends 'base.html' %}
 
-    <!-- Bootstrap -->
-    {% load staticfiles %}
-      <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  </head>
 
-  <body>
+{% load staticfiles %}
 
-      <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-              </div>
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                      <li><a href='{% url "home" %}'>Home</a></li>
-                      <li><a href='{% url "contact" %}'>Контакты</a></li>
-                      <li><a href='{% url "students_of_the_course" %}?course_id={{course.id}}'>Students</a></li>
-                  </ul>
-              </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-      </nav>
 
-      <div class="container">
-          <div class="jumbotron">
-              <h1 >{{ course.name }}</h1>
-              <p>{{ course.description }}</p>
-          </div>
+{% block title %} {{ course.name }} {% endblock title %}
+
+
+{% block students_link %}{% url 'students:students_of_the_course' %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block container %}
+
+
+{%include 'inc_ooniversity_descr.html' %}
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} >
+        {{ message }}
       </div>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+  <div class="container">
+      <div class="jumbotron">
+          <h1 >{{ course.name }}</h1>
+          <p>{{ course.description }}</p>
+      </div>
+  </div>
 
 
-      <div class="table-responsive">
-          <table class="table table-hover">
-              <h2 align='center'>Преподаватели курса</h2>
-              <thead>
-                  <tr>
-                      <th>Преподаватель</th>
-                      <th>Достижения</th>
-                  </tr>
-              </thead>
-              <tbody>
-                   <tr>
-                       <td><a href="{% url 'coach_info' course.instructor.id %}">{{ course.instructor }}</a></td>
-                       <td>{{ course.instructor.description }}</td>
-                   </tr>
-                   <tr>
-                       <td> <a href="{% url 'coach_info' course.assistant.id %}">{{ course.assistant }} </a></td>
-                       <td>{{ course.assistant.description }}</td>
-                   </tr>
+  <div class="table-responsive">
+      <table class="table table-hover">
+          <h2 align='center'>Преподаватели курса</h2>
+          <thead>
+              <tr>
+                  <th>Преподаватели курса</th>
+                  <th>Достижения</th>
+              </tr>
+          </thead>
+          <tbody>
+               <tr>
+                   <td><a href="{% url 'coaches:coach_info' course.instructor.id %}">{{ course.instructor }}</a></td>
+                   <td>{{ course.instructor.description }}</td>
+               </tr>
+               <tr>
+                   <td> <a href="{% url 'coaches:coach_info' course.assistant.id %}">{{ course.assistant }} </a></td>
+                   <td>{{ course.assistant.description }}</td>
+               </tr>
 
-              </tbody>
+          </tbody>
       </table>
-    </div>
+  </div>
 
-      <div class="table-responsive">
-          <table class="table table-hover">
-              <h2 align='center'>План курса</h2>
-              <thead>
+
+
+  <div class="table-responsive">
+      <table class="table table-hover">
+          <h2 align='center'>План курса</h2>
+
+          <a class="btn btn-primary active"
+          href="{% url 'courses:add_lesson' course.id %}" role="button">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Добавить занятие
+          </a>
+
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Тема</th>
+                  <th>Описание</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for lesson in lessons %}
                   <tr>
-                      <th>#</th>
-                      <th>Тема</th>
-                      <th>Описание</th>
+                      <td> {{ lesson.number }}</td>
+                      <td> {{ lesson.theme|default:"Тема отсутствует"  }}</td>
+                      <td>{{ lesson.description|truncatechars:50 }}</td>
                   </tr>
-              </thead>
-              <tbody>
-                  {% for lesson in lessons %}
-                      <tr>
-                          <td> {{ lesson.number }}</td>
-                          <td> {{ lesson.theme }}</td>
-                          <td>{{ lesson.description }}</td>
-                      </tr>
-                  {% endfor %}
-              </tbody>
+              {% endfor %}
+          </tbody>
       </table>
-    </div>
+  </div>
+{% endblock container %}
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-  </body>
-</html>

@@ -1,0 +1,18 @@
+{% extends "templates/base_students.html" %}
+
+
+{% block title %} Add_course {% endblock title %}
+
+
+{% block name_table %}Создание нового курса {% endblock name_table %}
+
+
+{% block maincontain %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="Submit" value="Создать курс">
+</form>
+
+{% endblock maincontain %}

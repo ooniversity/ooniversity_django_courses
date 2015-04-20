@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% load staticfiles %}
+
+
+{% block title %} Delete lesson in {{ course.name }} {% endblock title %}
+
+
+{% block container %}
+
+Delete {{ lesson.theme }}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="Submit" value="Создать урок">
+</form>
+
+
+{% endblock container %}
