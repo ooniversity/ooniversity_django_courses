@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+Delete Student
+{% endblock %}
+
+{% block extra_head %}
+  <script type="text/javascript">
+    $(function() {
+      $("ul.errorlist").each(function(index) {
+        // $(this).insertAfter($(this).next());
+        $(this).next().after(this);
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+<div class="student-delete">
+  <div>
+    <h2>Вы уверены, что хотите удалить <b><i>{{student.surname}} {{student.name}}</i></b>?</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      {% buttons %}
+        <div class="delete-std">
+          <button class="btn btn-info" type="submit">Да, удалить</button>
+          <a class="btn btn-default" href="{% url 'students:students-list' %}">
+              Нет, я передумал
+          </a>
+        </div>
+      {% endbuttons %}
+    </form>
+  </div> 
+</div>
+
+{% endblock %}

@@ -6,16 +6,30 @@
   <meta charset="utf-8">
   <title>Quadratic Results</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <script type="text/javascript" 
+          src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+  <script type="text/javascript" 
+          src="{% static 'js/bootstrap.js' %}"></script>
   <style type="text/css">
     body { 
       padding-top: 20px;
       margin-top: 10px;
     }
     .error {
-      color: red;
+      /*color: silver;*/
       font-style: italic;
     }
   </style>
+
+  <script type="text/javascript">
+    $(function() {
+      $("ul.errorlist").each(function(index) {
+        // $(this).insertAfter($(this).next());
+        $(this).next().after(this);
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -23,29 +37,21 @@
 <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <p> Квадратное уравнение вида: <b>ax<sup><small>2</small></sup> + bx + c = 0 </b></p>
 
-        <ul>
-          <li>a = {{ a }} <br>
-            {% if a_error %}
-              <span class="error">{{ a_error }}</span>
-            {% endif %}
-          </li>
-          <li>b = {{ b }} <br>
-            {% if b_error %}
-              <span class="error">{{ b_error }}</span>
-            {% endif %}
-          </li>
-          <li>c = {{ c }} <br>
-            {% if c_error %}
-              <span class="error">{{ c_error }}</span>
-            {% endif %}
-          </li>
-        </ul>
+        <p class="quadr-p"> 
+          Квадратное уравнение вида: 
+          <b>ax<sup><small>2</small></sup> + bx + c = 0 </b>
+        </p>
+        
+        <form>
+          {{ form.as_p }}
+          <input type="submit" value="Решить" class="btn btn-default btn-sm btn-info"
+          />
+        </form>
 
         {% if discr != None %}
 
-          <p><b> Дискриминант:</b> {{ discr }}</p>
+          <p style="padding-top:10px;"><b> Дискриминант:</b> {{ discr }}</p>
 
           {% if discr < 0 %}
             <p class="error">

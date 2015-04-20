@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% block section %}page-contact{% endblock %}
+
 {% load staticfiles %}
 
 {% block title %}
@@ -7,8 +9,8 @@ Contacts
 {% endblock %}
 
 {% block content %}
-      
-  <h2 class="h2-center">Организаторы курса Python/Django</h2>
+<div class="contacts">    
+  <h2>Организаторы курса Python/Django</h2>
 
   <div class="organaizer">
 
@@ -84,5 +86,5 @@ Contacts
         </p> 
     </div>
   </div>
-
+</div>
 {% endblock %}

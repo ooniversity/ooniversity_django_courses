@@ -25,14 +25,23 @@ body {
 }
 
 .course-info h2,
-.detail-info h2 {
+.detail-info h2,
+.student-add h2,
+.student-delete h2,
+.contacts h2 {
     background-color: #eeeeee;
     text-align: center;
+    padding: 10px;
 }
 
 .container > h2 {
     text-align:  center;
     padding-bottom: 20px;
+}
+
+.delete-std {
+    margin: 10px;
+    padding-top: 30px;
 }
 
 .footer {
@@ -61,10 +70,6 @@ body {
     text-align: center;
 }
 
-.h2-center {
-    text-align: center;
-}
-
 #history-info .text-history {
     padding-left: 20px;
     padding-right: 180px;
@@ -74,6 +79,31 @@ body {
 #program-info {
     width: 800px;
 }
+
+#page-contact .nav-contact,
+#page-students .nav-students,
+#page-home .nav-home {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.lesson-add {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.messages li {
+    list-style-type: none;
+}
+
+.messages {
+    padding: 0;
+}
+
+.messages-info {
+    padding: 20px;
+}
+
 .organaizer {
     float: left;
     padding-bottom: 20px;
@@ -104,23 +134,14 @@ body {
     margin-bottom: 20px;
 }
 
-.program table,
-.program th, 
-.program td {
-    padding: 5px;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-.program thead th,
-.courses thead, th {
+.courses thead th {
     text-transform: uppercase;
     text-align: center;
 }
 
-.program tbody td:nth-child(1) {
-    text-align: center;
-    font-weight: bold;
+.style-form td,
+.style-form th {
+    padding: 5px;
 }
 
 .table {
@@ -163,4 +184,18 @@ body {
 
 #teacher-info .float-right {
     width: 600px;
+}
+
+.quadr-p {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.errorlist {
+    color: red;
+    padding: 0;
+}
+
+.errorlist li {
+    list-style-type: none;
 }

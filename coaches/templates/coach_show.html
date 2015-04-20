@@ -12,12 +12,12 @@ Detail info
       <table class="table table-striped table-style" style="width:100%">
         <tr>
           <th>Имя и Фамилия</th>
-          <td>{{ coach_name }}</td>
+          <td>{{ coach_info.user.get_full_name|default:"Anonymous" }}</td>
         </tr>
 
         <tr>
           <th>Дата рождения</th>
-          <td>{{ coach_info.birth }}</td>
+          <td>{{ coach_info.birth|date:"F d, Y" }}</td>
         </tr>
 
         <tr>
@@ -43,12 +43,12 @@ Detail info
         <tr>
           <th>Курсы 'учитель'</th>
           <td>
-            {% for coach_course in coach_courses %}
+            {% for coach_course in coach_info.courses_as_coach.all %}
               <p>
                 <a href="{% url 'courses:show' coach_course.id %}">
                   {{ coach_course.title }}
                 </a>
-                [<a href="{% url 'students:students_list' %}?course_id={{ coach_course.id }}">
+                [<a href="{% url 'students:students-list' %}?course_id={{ coach_course.id }}">
                   cтуденты
                   <span class="glyphicon glyphicon-user"></span>
                 </a>]
@@ -60,12 +60,12 @@ Detail info
         <tr>
           <th>Курсы 'ассистент'</th>
           <td>
-            {% for assistant_course in assistant_courses %}
+            {% for assistant_course in coach_info.courses_as_assistant.all %}
               <p>
                 <a href="{% url 'courses:show' assistant_course.id %}">
                   {{ assistant_course.title }} 
                 </a>
-                [<a href="{% url 'students:students_list' %}?course_id={{ assistant_course.id }}">
+                [<a href="{% url 'students:students-list' %}?course_id={{ assistant_course.id }}">
                   cтуденты
                   <span class="glyphicon glyphicon-user"></span>
                 </a>]

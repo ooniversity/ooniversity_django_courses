@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 
+{% block section %}page-home{% endblock %}
+
 {% block title %}
 Courses
+{% endblock %}
+
+{% block extra_menu %}
+  <li>
+    <a href="{% url 'courses:course-add' %}">Новый курс</a>
+  </li>
 {% endblock %}
 
 {% block content %}
@@ -23,6 +31,8 @@ Courses
       <tr>
         <th>Курс</th>
         <th>Описание</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +40,16 @@ Courses
       <tr>
         <td><a href="{% url 'courses:show' course.id %}">{{ course.title }}</a></td>
         <td>{{ course.descr_sm }}</td>
+        <td>
+          <a href="{% url 'courses:course-edit' course.id %}">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </a>
+        </td>
+        <td>
+          <a href="{% url 'courses:course-delete' course.id %}">
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

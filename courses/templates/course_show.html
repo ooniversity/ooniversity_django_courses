@@ -13,37 +13,25 @@ Course detail info
     <h2>Преподаватели</h2>
 
     {% if coach_info %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Преподаватель</h3>
-      </div>
-      <div class="panel-body">
-        <a href="{% url 'coaches:coach_show' coach_info.id %}">
-          <h4>{{ coach_info.name }}</h4>
-        </a>
-        {{ coach_info.descr|linebreaksbr }}
-      </div>
-    </div>
+      {% include "inc_coach.html" with block_title="Преподаватель" coach=course.coach %}
     {% endif %}
 
     {% if assistant_info %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Ассистент</h3>
-      </div>
-      <div class="panel-body">
-        <a href="{% url 'coaches:coach_show' assistant_info.id %}">
-          <h4>{{ assistant_info.name }}</h4>
-        </a>
-        {{ assistant_info.descr|linebreaksbr }}
-      </div>
-    </div>
+      {% include "inc_assistant.html" with block_title="Ассистент" assistant=course.assistant %}
     {% endif %}
 
   </div>
 
   <div>
     <h2>План курса</h2>
+
+    <div class="lesson-add">
+      <a href="{% url 'courses:lesson-add' course.id %}">
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Добавить новый урок
+      </a>
+    </div>
+
     <div class="courses">
       <table class="table table-striped" style="width:100%">
       <thead>
@@ -51,6 +39,8 @@ Course detail info
           <th>№</th>
           <th>Тема</th>
           <th>Описание</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -59,6 +49,16 @@ Course detail info
           <td>{{ lesson.num_in_plan }}</td>
           <td>{{ lesson.theme }}</td>
           <td>{{ lesson.descr|linebreaksbr }}</td>
+          <td>
+            <a href="{% url 'courses:lesson-edit' lesson.id %}">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'courses:lesson-delete' lesson.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
