@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.contrib import messages
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from students.models import Student
 
 
@@ -20,11 +21,8 @@ class StudentsListView(ListView):
         return students
 
 
-def student_detail(request, student_id):
-    student = get_object_or_404(Student, pk=student_id)
-    courses = student.courses.all()
-    return render(request, 'students/student_detail.html', 
-                  {'student': student, 'courses': courses})
+class StudentDetailView(DetailView):
+    model = Student
 
 
 class StudentForm(forms.ModelForm):
