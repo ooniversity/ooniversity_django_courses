@@ -1,0 +1,14 @@
+{% extends 'base_delete.html' %}
+{% load staticfiles %}
+
+
+{% block title_deleted_name %}{{ object.surname }} {{ object.name }}{% endblock %}
+
+
+{% block deleted_name %}Студент {{ object.surname }} {{ object.name }}{% endblock %}
+
+
+{% block deleted_comment %}студентов{% endblock %}
+
+
+{% block back_url %}{% url 'students' %}{% endblock %}

@@ -80,7 +80,7 @@ def add_lesson(request, pk):
         form = LessonAddForm(request.POST)
         if form.is_valid():
             application = form.save()
-            messages.success(request, 'Registration complite!')
+            messages.success(request, 'Registration complete!')
             return redirect('courses:detail', pk=context['course_id'])
     else:
         consecutive_number = get_consecutive_number(pk)
@@ -118,7 +118,7 @@ def course_add(request):
         form = CourseAddForm(request.POST)
         if form.is_valid():
             application = form.save()
-            messages.success(request, 'Registration complite!')
+            messages.success(request, 'Registration complete!')
             return redirect('courses:courses')
     else:
         form = CourseAddForm()

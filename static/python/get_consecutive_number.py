@@ -6,7 +6,6 @@ def get_consecutive_number(pk):
     for i in Lesson.objects.filter(course_id=pk):
         consecutive_number_list.append(i.consecutive_number)
     consecutive_number_list.sort()
-    print consecutive_number_list
     if len(consecutive_number_list):
         if consecutive_number_list[0] != 1:
             number = 1
