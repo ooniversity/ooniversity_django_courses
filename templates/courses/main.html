@@ -6,6 +6,15 @@
 {% block nav_class_main %}active{% endblock %}
 
 {% block main_content %}
+
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>  
+  {% endfor %}
+{% endif %}
+
   <div class="jumbotron">
     <h2 style="color: #446785">ooniversity</h2>
     <p class="lead">
@@ -15,6 +24,16 @@
     </p>
   </div>
 
+  <div class="page-header">
+    <h3>Выбирай на каком курсе ты хочешь учиться!</h3>
+  </div>
+
+    <form action="{% url 'courses:course_add' %}">
+    <button type='submit' class="btn btn-info btn-sm">
+      <span class="glyphicon glyphicon-plus">
+      </span> Добавить курс</button>
+  </form>
+
   <div class="row">
     <div class="col-md-9">
       <table class="table table-striped">
@@ -22,13 +41,29 @@
           <tr>
             <th>Курс</th>
             <th>Описание</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {% for main_course in courses_list %}
           <tr>
-            <td><a href="{% url 'courses:course_info' main_course.id %}">{{ main_course.name }}</a></td>
-            <td>{{ main_course.short_description }}</td>
+            <td><a href="{% url 'courses:course_info' main_course.id %}">{{ main_course.name|upper }}</a></td>
+            <td>{{ main_course.short_description|truncatechars:20 }}</td>
+            <td>
+              <form action="{% url 'courses:course_edit' main_course.id %}">
+                <button type='submit' class="btn btn-info btn-sm">
+                  <span class="glyphicon glyphicon-pencil">
+                  </span> Изменить</button>
+              </form>
+            </td>
+            <td>
+              <form action="{% url 'courses:course_remove' main_course.id %}">
+                <button type='submit' class="btn btn-info btn-sm">
+                  <span class="glyphicon glyphicon-remove">
+                  </span> Удалить</button>
+              </form>
+            </td> 
           </tr>
           {% endfor %}
         </tbody>

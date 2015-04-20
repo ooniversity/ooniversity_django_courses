@@ -7,9 +7,14 @@
 
 {% block main_content %}
 
-  <h2 style="color: #446785">{% block page_header %}{% endblock %}</h2>
-  <div class="row">
+{% block message_button %}{% endblock %}      
+
+  <div class="page-header">
+    <h2 style="color: #446785">{% block page_header %}{% endblock %}</h2>
+  </div>
+  
     {% block page_content %}
     {% endblock page_content %}
+
   </div>
 {% endblock main_content %}

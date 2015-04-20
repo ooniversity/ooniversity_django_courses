@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block nav_class_contacts %}active{% endblock %}
+
+{% block main_content %}
+  <div class="page-header">
+    <h2 style="color: #446785">Контакты организаторов курса</h2>
+  </div>
+  <div class="panel panel-primary">
+     <div class="panel-heading">
+        <h2 >Организаторы</h2>
+     </div>
+  </div>
+  <div class="row">
+
+    {% include "inc_contact.html" with name="Павел Обод" image_path="img/photo_1.jpg" rank="Основатель ITbursa" email="itbursa100@gmail.com" skype="azaless" phone="+38 063 702 3 703" %}
+
+    {% include "inc_contact.html" with name="Анна Малахова" image_path="img/photo_2.jpg" rank="Менеджер ITbursa" email="anna.itbursa@gmail.com" skype="anechka.malakhova" phone="+38 096 070 53 47" %}
+
+  </div>
+  <div class="panel panel-success">
+     <div class="panel-heading">
+        <h2 >Преподователи</h2>
+     </div>
+  </div>
+  <div class="row">
+
+    {% include "inc_contact.html" with name="Алексей Радченко" image_path="img/radchenkoa.jpg" rank="Инструктор курса" email="dixon.che@gmail.com" skype="dixon.che" phone="Уточняется" %}
+
+    {% include "inc_contact.html" with name="Оксана Слюсаренко" image_path="img/photo_assistant.jpg" rank="Ассистент инструктора" email="Уточняется" skype="oksana.slu" phone="Уточняется" %}
+
+  </div>
+{% endblock main_content %}

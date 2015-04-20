@@ -2,16 +2,37 @@
 
 {% block page_header %}Список студентов{% endblock %}
 
+{% block message_button %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>  
+  {% endfor %}
+{% endif %}
+
+<form action="{% url 'students:student_add' %}">
+  <button type='submit' class="btn btn-info btn-sm">
+    <span class="glyphicon glyphicon-plus">
+    </span> Добавить нового студента</button>
+</form>
+{% endblock %}
+
 {% block page_content %}
+
+<div class="row">
   <div class="col-md-12">
     <table class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
           <th>фамилия имя</th>
+         
           <th>адрес</th>
           <th>skype</th>
           <th>курсы</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -23,8 +44,22 @@
           <td>{{ students_list.skype }}</td>
           <td>
             {% for course_list in students_list.courses.all %}
-             <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</a></p> 
+            <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</a></p> 
             {% endfor %}
+          </td>
+          <td>
+            <form action="{% url 'students:student_edit' students_list.id %}">
+              <button type='submit' class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-pencil">
+                </span> Изменить</button>
+            </form>
+          </td>
+          <td>
+            <form action="{% url 'students:student_remove' students_list.id %}">
+              <button type='submit' class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-remove">
+                </span> Удалить</button>
+            </form>
           </td> 
         </tr>
         {% endfor %}

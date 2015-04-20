@@ -1,59 +1,54 @@
+#!/user/bin/python
+# -*- coding: UTF-8 -*-
+
 from django.shortcuts import render
+from django import forms
 
 from quadratic.models import ReportAnError, ResultsCalc
 from quadratic.utils import QuadraticEquation
 
+class QuadraticForm(forms.Form):
+    a = forms.FloatField(label=u"коэффициент a")
+    b = forms.FloatField(label=u"коэффициент b")
+    c = forms.FloatField(label=u"коэффициент c")
+
+    def clean_a(self):
+        data = self.cleaned_data['a']
+        if data == 0:
+            raise forms.ValidationError(u"коэффициент при первом слогаемом уравнения не может быть равным нулю")
+        return data
+
 
 def quadratic_results(request):
+    context = {}
 
-	a = request.GET['a']
-	b = request.GET['b']
-	c = request.GET['c']
+    if request.GET:
+        form = QuadraticForm(request.GET)
 
-	re_a = re_b = re_c = line_1 = line_2 = None
+        if form.is_valid():
+            a = float(form.cleaned_data.get('a'))
+            b = float(form.cleaned_data.get('b'))
+            c = float(form.cleaned_data.get('c'))
 
-	if a == '':
-		re_a = "%s" %ReportAnError.objects.get(id=2)
-	elif int(a) == 0:
-		re_a = "%s" %ReportAnError.objects.get(id=1)
-	elif not a.replace('-', '').isdigit():
-		re_a = "%s" %ReportAnError.objects.get(id=3)
+            qe = QuadraticEquation(a, b, c)
+            qe.calc_discr()
+            discriminant = qe.get_discr()
 
-	if b == '':
-		re_b = "%s" %ReportAnError.objects.get(id=2)
-	elif not b.replace('-', '').isdigit():
-		re_b = "%s" %ReportAnError.objects.get(id=3)
+            context['line_1'] = "%s" %ResultsCalc.objects.get(id=1)
+            context['discriminant'] =  discriminant   
 
-	if c == '':
-		re_c = "%s" %ReportAnError.objects.get(id=2)
-	elif not c.replace('-', '').isdigit():
-		re_c = "%s" %ReportAnError.objects.get(id=3)	
+            if discriminant < 0:
+                context['line_2'] = "%s" %ResultsCalc.objects.get(id=2)
+            else:
+                x1 = qe.get_eq_root()
+                x2 = qe.get_eq_root(order = 2)
 
-	if re_a or re_b or re_c:
-		return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
-	
-	a = int(a)
-	b = int(b)
-	c= int(c)	
-
-	qe = QuadraticEquation(a, b, c)
-	qe.calc_discr()
-
-	if qe.get_discr() < 0:
-		line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
-		line_2 = "%s" %ResultsCalc.objects.get(id=2)
-		return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
-	else:
-		x1 = qe.get_eq_root()
-		x2 = qe.get_eq_root(order = 2)
-
-		print type(x1), type(x2)
-		if x1 == x2:
-			line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
-			line_2 = "%s x1 = x2 = %g" %(ResultsCalc.objects.get(id=3), x1)
-			return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
-		else:
-			line_1 = "%s %d" %(ResultsCalc.objects.get(id=1), qe.get_discr())
-			line_2 = "%s x1 = %d x2 = %d" %(ResultsCalc.objects.get(id=4), x1, x2)
-			return render(request, "result.html", {'a' : a, 're_a' : re_a, 'b' : b, 're_b' : re_b, 'c' : c, 're_c' : re_c, 'line_1' : line_1, 'line_2' : line_2})
+                if x1 == x2:
+                    context['line_2'] = "%s x1 = x2 = %g" %(ResultsCalc.objects.get(id=3), x1)
+                else:
+                    context['line_2'] = "%s x1 = %d  x2 = %d" %(ResultsCalc.objects.get(id=4), x1, x2)
+    else:
+        form = QuadraticForm()
+    context['form'] = form
+    return render(request, "result.html", context)
 
