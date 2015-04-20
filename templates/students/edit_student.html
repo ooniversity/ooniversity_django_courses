@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Edit student{% endblock %}
+
+
+{% block main %}
+
+
+<div class="container"> 
+<div class="jumbotron">         
+  
+  {% if messages %}
+  {% for message in messages%}
+  <p class="bg-success">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+  </form>
+</div>
+</div>
+{% endblock main %}
+

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Tutor detail{% endblock %}
+    
+
+{% block main %}
+<div class="container">
+<div class="jumbotron">
+  <h2>Univer.com - study online for free!</h2>
+  <h3>Info about {{coach.user.last_name|upper}} {{coach.user.first_name|upper}}</h3>
+</div>
+</div>
+
+<div class="container">          
+<div class="jumbotron"> 
+   <table class="table">
+    <tbody>
+    <tr>
+        <td>Date of birth</td>
+        <td>{{coach.birthday}}</td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>{{coach.address}}</td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td>{{coach.email}}</td>
+      </tr>
+       <tr>
+        <td>Skype</td>
+        <td>{{coach.skype}}</td>
+      </tr>
+       <tr>
+        <td>Cell</td>
+        <td>{{coach.cell}}</td>
+      </tr>
+       <tr>
+        <td>Courses teacher</td>
+        <td>
+           {%if teacher %}
+              {%for i in teacher%}
+              <a href="/courses/{{i.id}}/">{{i.name}}  </a>
+              <a href="{% url 'students:student_list' %}?course_id={{i.id}}">(students) | </a>
+              {%endfor%}
+            {%else%}
+              N/A
+            {%endif%}
+        </td>
+      </tr>
+      <tr>
+        <td>Courses assistant</td>
+        <td>
+            {%if assistant %}
+              {%for i in assistant%}
+                <a href="/courses/{{i.id}}/">{{i.name}}  </a>
+                <a href="{% url 'students:student_list' %}?course_id={{i.id}}">(students) | </a>
+              {%endfor%}
+            {%else%}
+              N/A
+            {%endif%}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock main %}
+

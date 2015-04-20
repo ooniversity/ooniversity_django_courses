@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Student list{% endblock %}
+
+
+{% block active_students %}active{% endblock %}
+
+
+{% block main %}
+
+
+{% include "inc_index.html" with text="Current students list:"%}
+
+<div class="container"> 
+<div class="jumbotron">         
+  
+  {% if messages %}
+  {% for message in messages%}
+  <p class="bg-success">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+
+  <p>
+    <a href="{% url 'students:add_student' %}" role="button" class="btn btn-primary">+ Add new student</a>
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Skype</th>
+        <th>Courses</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for student in students%}
+        <tr>
+          <td>
+            {{forloop.counter}}
+          </td>
+          <td>
+            <a href="/students/{{student.id}}/">{{student.surname}} {{student.name}}</a>
+          </td>
+          <td>
+            {{student.address}}
+          </td>
+          <td>
+            {{student.skype}}
+          </td>
+          <td>
+            {%for i in student.courses.all%}
+              <a href="/courses/{{i.id}}/">{{i.name}}</a>
+            {%endfor%}
+          </td>
+          <td>
+            <a href="/students/edit/{{student.id}}/" role="button" class="btn btn-primary">Edit</a>
+          </td>
+          <td>
+            <a href="/students/delete/{{student.id}}/" role="button" class="btn btn-primary">Delete</a>
+          </td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock main %}
+

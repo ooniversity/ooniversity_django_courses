@@ -1,47 +1,49 @@
-<p>Quadratic equation: a*x*x + b*x + c = 0<p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Quadratic</title>
+    {% load static from staticfiles %}
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+  <body>
 
-<ul>
-    {%if a = '0'%}
-        <li>a = 0</li>
-        <i>'a' can not be equal to zero</i>
-    {%elif a = 'error_type1'%}
-        <li>a = {{a_get}}</li>
-        <i>'a' is not defined</i>
-    {%elif a = 'error_type2'%}
-        <li>a = {{a_get}}</li>
-        <i>'a' is not a number</i>
-    {%else%}
-        <li>a = {{a_get}}</li>
-    {%endif%}
+    <div class="page-header">
+      <div class="col-md-1"></div>
+      <h1 class="row">Quadratic equation calculation with form validation</h1>
+    </div>
 
-    {%if b = 'error_type1'%}
-        <li>b = {{b_get}}</li>
-        <i>'b' is not defined</i>
-    {%elif b = 'error_type2'%}
-       <li>b = {{b_get}}</li>
-       <i>'b' is not a number</i>
-    {%else%}
-        <li>b = {{b_get}}</li>
-    {%endif%}
+    <div class="container">
+      <p class="lead">Quadratic equation: a*x*x + b*x + c = 0</p>
+      <form method="post" class="form-horizontal">
+        <div class="form-group">
+          {% csrf_token %}
+          <div class="col-sm-10">
+            {{ form.as_p }}
+          </div>
+          <div class="col-sm-10"><input type="submit" /></div>
+        </div>
+      </form>
 
-    {%if c = 'error_type1'%}
-        <li>c = {{c_get}}</li>
-        <i>'c' is not defined</i>
-    {%elif c = 'error_type2'%}
-       <li>c = {{c_get}}</li>
-        <i>'c' is not a number</i>
-    {%else%}
-        <li>c = {{c_get}}</li>
-    {%endif%}
-</ul>
+    {% if not error %}
+    <ul>
+      <li>a = {{ a }} </li>
+      <li>b = {{ b }} </li>
+      <li>a = {{ c }} </li>
+    </ul>
 
-{%if d != ''%}
-    Discriminant: {{d}}<br>
-    {%if d = 0%}
-        Discriminant = 0,  so only one root exists: x1 = x2 = {{x1}}.
-    {%elif d < 0%}
-        Discriminant < 0, so there are no real roots.
-    {%else%}
-        This equation has two roots: x1 = {{x1}}, x2 = {{x2}}
-    {%endif%}
-{%endif%}
+    Discriminant: {{ d }}
+    {{ result_message }}
+    {% endif %}
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
