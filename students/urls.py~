@@ -1,7 +1,0 @@
-from django.conf.urls import patterns, url
-from students import views
-
-urlpatterns = patterns('',
-    url(r'^$', views.student, name='index'),
-    url(r'^student_detail/(?P<student_id>\d+)/$', student_detail, name='student_detail'),
-)
