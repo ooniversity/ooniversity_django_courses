@@ -6,7 +6,7 @@ from django import forms
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from students.models import Student
 
@@ -44,30 +44,29 @@ class StudentCreateView(CreateView):
         return form
 
 
+class StudentUpdateView(UpdateView):
+    model = Student
+    success_url = '#'
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Редактирование данных студента"
+        return context
+    
+    def form_valid(self, form):
+        form = super(StudentUpdateView, self).form_valid(form)
+        messages.success(self.request, 
+                         u"Изменения данных студента сохранены в {0}"\
+                          .format(datetime.now().strftime("%H:%M:%S")))
+        return form
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
 
-'''
-def student_add(request):
-    page_title = u"Создание нового студента"
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            new_student = Student()
-            new_student = form.save()
-            messages.success(request, 
-                             u"Студент {0} успешно добавлен"\
-                              .format(new_student.full_name()))
-            return redirect('students:student_list')
-        else:
-            return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-    else:
-        form = StudentForm()   
-    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-'''
 
+'''
 def student_edit(request, student_id):
     page_title = u"Редактирование данных студента"
     student = get_object_or_404(Student, pk=student_id)
@@ -85,7 +84,7 @@ def student_edit(request, student_id):
     else:
         form = StudentForm(instance=student)   
     return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-
+'''
 
 def student_remove(request, student_id):
     student = get_object_or_404(Student, pk=student_id)
