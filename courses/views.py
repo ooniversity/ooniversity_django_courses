@@ -57,6 +57,23 @@ class CourseUpdateView(UpdateView):
         return form
 
 
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = 'remove.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDeleteView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Удаление курса"
+        context['page_header'] = u'Курс "{0}" будет удалён'.format(self.object.name)
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        response = super(CourseDeleteView, self).delete(self, request, *args, **kwargs)
+        messages.success(request, u'Курс "{0}" был удалён'.format(self.object.name))
+        return response
+
+
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
@@ -64,25 +81,6 @@ class CourseForm(forms.ModelForm):
 
 
 '''
-def course_edit(request, course_id):
-    page_title = u"Редактирование курса"
-    course = get_object_or_404(Course, pk=course_id)
-    if request.method == 'POST':
-        form = CourseForm(request.POST, instance=course)
-        if form.is_valid():
-            course = form.save()
-            messages.success(request, 
-                            u"Изменения данных курса сохранены в {0}"\
-                             .format(datetime.now().strftime("%H:%M:%S")))
-            return redirect('courses:course_edit', course_id)
-        else:
-            return render(request, 
-                          'add_edit.html', {'form': form, 'page_title':page_title})
-    else:
-        form = CourseForm(instance=course)   
-    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-'''
-
 def course_remove(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     name = course.name
@@ -94,7 +92,7 @@ def course_remove(request, course_id):
                          .format(name))
         return redirect('index')
     return render(request, 'remove.html', {'page_title':page_title, 'page_header':page_header})
-
+'''
 
 class LessonForm(forms.ModelForm):
     class Meta:
