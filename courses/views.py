@@ -39,6 +39,24 @@ class CourseCreateView(CreateView):
         return form
 
 
+class CourseUpdateView(UpdateView):
+    model = Course
+    template_name = 'add_edit.html'
+    success_url = '#'
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Редактирование курса"
+        return context
+    
+    def form_valid(self, form):
+        form = super(CourseUpdateView, self).form_valid(form)
+        messages.success(self.request, 
+                         u"Изменения данных курса сохранены в {0}"\
+                          .format(datetime.now().strftime("%H:%M:%S")))
+        return form
+
+
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
@@ -46,24 +64,6 @@ class CourseForm(forms.ModelForm):
 
 
 '''
-def course_add(request):
-    page_title = u"Создание нового курса"
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            new_course = Course()
-            new_course = form.save()
-            messages.success(request, 
-                             u'Курс "{0}" успешно добавлен'\
-                              .format(new_course.name))
-            return redirect('index')
-        else:
-            return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-    else:
-        form = CourseForm()   
-    return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-'''
-
 def course_edit(request, course_id):
     page_title = u"Редактирование курса"
     course = get_object_or_404(Course, pk=course_id)
@@ -81,7 +81,7 @@ def course_edit(request, course_id):
     else:
         form = CourseForm(instance=course)   
     return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-
+'''
 
 def course_remove(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
