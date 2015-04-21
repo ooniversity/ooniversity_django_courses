@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+{% block title %} Edit from course {% endblock title %}
+
+
+{% block nav_class_participate %} active {% endblock %}
+
+
+{% block main_content %}
+  <div class="jumbotron">
+    <div class="container">
+      <br>
+      <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit'>
+      </form>
+    </div>
+  </div>
+{% endblock main_content %}
+

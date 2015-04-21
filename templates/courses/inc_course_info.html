@@ -1,10 +1,17 @@
 ﻿<div class="datagrid">
+          Add lesson to <a href="{% url 'courses:add_lesson' course.id%}">{{ course.name }}</a>
           <table>
-            <thead><tr><th>#</th><th>Theme</th><th>Desription</th></tr></thead>
+            <thead><tr><th>#</th><th>Theme</th><th>Desription</th><th>Edit</th><th>Remove</th></tr></thead>
             <tbody>
               {% for item in lesson %}
               <tr>
                 <td>{{ item.number }}</td><td>{{ item.theme }}</td><td>{{ item.description }}</td>
+                <td>
+                <a href="{% url 'courses:edit_lesson' course.id%}">Edit</a>
+                </td>
+                <td>
+                <a href="{% url 'courses:delete_lesson' course.id%}">{{ course.name }}</a>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

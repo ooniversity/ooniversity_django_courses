@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+{% block title %} Delete from course {% endblock title %}
+
+
+{% block nav_class_participate %} active {% endblock %}
+
+
+{% block main_content %}
+  <div class="jumbotron">
+    <div class="container">
+      <br>
+      <form method='post'>
+        {% csrf_token %}
+        <p>Student {{ application.name }} {{ application.surname }} will be removed</p>
+        <input type='submit' value="Are you sure?">
+      </form>
+    </div>
+  </div>
+{% endblock main_content %}
+
