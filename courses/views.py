@@ -62,7 +62,7 @@ def lesson_add(request, course_id):
         if form.is_valid():
             lesson = form.save()
             messages.success(
-                request, u"Lesson {} add success!".format(
+                request, u"Lesson: {} add success!".format(
                     lesson.theme))
             return redirect('courses:show', course_id)
     else:
@@ -83,7 +83,7 @@ def lesson_edit(request, pk):
         if form.is_valid():
             lesson.save()
             messages.success(
-                request, u"{} update success!".format(
+                request, u"Lesson: {} update success!".format(
                     lesson.theme))
             return redirect('courses:show', course.id)
     else:
