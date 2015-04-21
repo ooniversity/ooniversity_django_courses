@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block media %}{{ form.media }}{% endblock %}
+
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block nav_extra_li %}

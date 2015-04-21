@@ -2,7 +2,6 @@
 <html>
   <head>
     {% load staticfiles %}
-    {{ form.media }}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +9,7 @@
     <title>ItBursa - {% block title %}{% endblock %}</title>
     <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "mystyles.css" %}" rel="stylesheet">
+    {% block media %}{% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-default">

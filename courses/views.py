@@ -9,6 +9,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from courses.models import Course, Lesson
+from courses.forms import CourseForm, LessonForm
+
 
 
 class CourseDetailView(DetailView):
@@ -27,6 +29,7 @@ class CourseCreateView(CreateView):
     model = Course
     template_name = 'add_edit.html'
     context_object_name = 'course'                #Just for Task 9.2
+    form_class = CourseForm
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
@@ -46,6 +49,7 @@ class CourseUpdateView(UpdateView):
     model = Course
     template_name = 'add_edit.html'
     context_object_name = 'course'                #Just for Task 9.2
+    form_class = CourseForm
     success_url = '#'
 
     def get_context_data(self, **kwargs):
@@ -77,12 +81,6 @@ class CourseDeleteView(DeleteView):
         response = super(CourseDeleteView, self).delete(self, request, *args, **kwargs)
         messages.success(request, u'Курс "{0}" был удалён'.format(self.object.name))
         return response
-
-
-class LessonForm(forms.ModelForm):
-    class Meta:
-        model = Lesson
-        exclude = ['course']
 
 
 def lesson_add(request, course_id):

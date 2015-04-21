@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from students.models import Student
-#from students.forms import StudentForm
+from students.forms import StudentForm
 
 
 class StudentsListView(ListView):
@@ -27,6 +27,7 @@ class StudentDetailView(DetailView):
 
 class StudentCreateView(CreateView):
     model = Student
+    form_class = StudentForm
     success_url = reverse_lazy('students:student_list')
 
     def get_context_data(self, **kwargs):
@@ -44,6 +45,7 @@ class StudentCreateView(CreateView):
 
 class StudentUpdateView(UpdateView):
     model = Student
+    form_class = StudentForm
     success_url = '#'
 
     def get_context_data(self, **kwargs):
