@@ -82,12 +82,21 @@ USE_L10N = True
 USE_TZ = True
 
 
+EMAIL_HOST = "localhost"
+
+EMAIL_PORT = 1025
+
+# EMAIL_HOST_USER
+
+# EMAIL_HOST_PASSWORD
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'), 
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),
 )
 
 TEMPLATES = [
