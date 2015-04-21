@@ -13,6 +13,8 @@ from courses.models import Course, Lesson
 
 class CourseDetailView(DetailView):
     model = Course
+    template_name = 'courses/course_detail.html'  #Just for Task 9.2
+    context_object_name = 'course'                #Just for Task 9.2
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -24,6 +26,7 @@ class CourseDetailView(DetailView):
 class CourseCreateView(CreateView):
     model = Course
     template_name = 'add_edit.html'
+    context_object_name = 'course'                #Just for Task 9.2
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
@@ -42,6 +45,7 @@ class CourseCreateView(CreateView):
 class CourseUpdateView(UpdateView):
     model = Course
     template_name = 'add_edit.html'
+    context_object_name = 'course'                #Just for Task 9.2
     success_url = '#'
 
     def get_context_data(self, **kwargs):
@@ -60,6 +64,7 @@ class CourseUpdateView(UpdateView):
 class CourseDeleteView(DeleteView):
     model = Course
     template_name = 'remove.html'
+    context_object_name = 'course'                #Just for Task 9.2
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
@@ -73,26 +78,6 @@ class CourseDeleteView(DeleteView):
         messages.success(request, u'Курс "{0}" был удалён'.format(self.object.name))
         return response
 
-
-class CourseForm(forms.ModelForm):
-    class Meta:
-        model = Course
-        fields = '__all__'
-
-
-'''
-def course_remove(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
-    name = course.name
-    page_title = u"Удаление курса"
-    page_header = u'Курс "{0}" будет удалён'.format(name)
-    if request.method == 'POST':
-        course.delete()
-        messages.success(request,u'Курс "{0}" был удалён'\
-                         .format(name))
-        return redirect('index')
-    return render(request, 'remove.html', {'page_title':page_title, 'page_header':page_header})
-'''
 
 class LessonForm(forms.ModelForm):
     class Meta:
