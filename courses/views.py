@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views import generic
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from models import Course, Lesson
@@ -55,6 +56,11 @@ class CourseCreateView(CreateView):
 class CourseUpdateView(UpdateView):
     model = Course
     template_name = "courses/edit.html"
+
+    def get_success_url(self):
+        return reverse(
+            'courses:edit_course', kwargs={'pk': self.object.pk, }
+            )
 
     def get_context_data(self, **kwargs):
         context = super(CourseUpdateView, self).get_context_data(**kwargs)
