@@ -1,0 +1,31 @@
+{% extends "base_students.html" %}
+
+{% block additional-info %}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
+
+{% block page-header %}{{ page_title }}{% endblock %}
+
+
+{% block page-content %}
+<form method="post" > 
+  {% csrf_token %}    
+  <p>{{ form.as_p }}</p>
+  <input type="submit" value={{ button_value }}> 
+</form>           
+{% endblock %}            
+
+       
+
+      
+    
+
+ 

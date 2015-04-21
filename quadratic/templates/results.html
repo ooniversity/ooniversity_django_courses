@@ -6,7 +6,7 @@
 <body>
   <h1>Квадратное уравнение a*x**2 + b*x + c = 0</h1>
   <div class="row">
-    <form method="post">
+    <form>
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit">

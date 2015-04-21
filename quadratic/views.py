@@ -16,7 +16,7 @@ class EquationForm(forms.Form):
 
 	
 def quadratic_results(request):
-	form = EquationForm(request.POST or None)
+	form = EquationForm(request.GET or None)
 	if form.is_valid():
 		a=form.cleaned_data["a"]
 		roots, discr = get_roots(a=form.cleaned_data["a"],
@@ -34,6 +34,6 @@ def get_roots(a, b, c):
 	roots = []
 	discr = get_discr(a, b, c)
 	if discr >= 0 and a != 0:
-		roots = [(-b + discr**(1/2.0))/(2*a), (-b - discr*(1/2.0))/(2*a)]
+		roots = [(-b + discr**(1/2.0))/(2*a), (-b - discr**(1/2.0))/(2*a)]
 	return roots, discr	
 
