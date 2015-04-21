@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, url
-from courses.views import course_detail, course_add, course_edit, course_remove, lesson_add
+from courses.views import CourseDetailView, course_add, course_edit, course_remove, lesson_add
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<course_id>\d+)/$', course_detail, name='course_detail'),
+    url(r'^(?P<pk>\d+)/$', CourseDetailView.as_view(), name='course_detail'),
     url(r'^add/$', course_add, name='course_add'),
     url(r'^edit/(?P<course_id>\d+)/$', course_edit, name='course_edit'),
     url(r'^remove/(?P<course_id>\d+)/$', course_remove, name='course_remove'),

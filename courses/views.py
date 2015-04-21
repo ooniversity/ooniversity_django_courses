@@ -5,15 +5,28 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.db.models import Max
 from django.contrib import messages
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 from courses.models import Course, Lesson
 
 
+class CourseDetailView(DetailView):
+    model = Course
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        course = context['course']
+        context['lessons'] = Lesson.objects.filter(course=course).order_by('number')
+        return context
+
+'''
 def course_detail(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     lessons = Lesson.objects.filter(course=course).order_by('number')
     return render(request, 'courses/course_detail.html', 
                   {'course': course, 'lessons': lessons})
-
+'''
 
 class CourseForm(forms.ModelForm):
     class Meta:
