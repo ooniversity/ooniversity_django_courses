@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block nav_feedback %}active{% endblock %}
+
+{% block title %}Обратная связь{% endblock %}
+
+
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+<div class="page-header">
+  <h2>Оставьте свое сообщение</h2>
+</div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Отправить">
+  </form>
+{% endblock content %}
