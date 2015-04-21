@@ -20,13 +20,24 @@ class CourseDetailView(DetailView):
         context['lessons'] = Lesson.objects.filter(course=course).order_by('number')
         return context
 
-'''
-def course_detail(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
-    lessons = Lesson.objects.filter(course=course).order_by('number')
-    return render(request, 'courses/course_detail.html', 
-                  {'course': course, 'lessons': lessons})
-'''
+
+class CourseCreateView(CreateView):
+    model = Course
+    template_name = 'add_edit.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = u"Создание нового курса"
+        return context
+    
+    def form_valid(self, form):
+        form = super(CourseCreateView, self).form_valid(form)
+        messages.success(self.request, 
+                 u'Курс "{0}" успешно добавлен'\
+                  .format(self.object.name))
+        return form
+
 
 class CourseForm(forms.ModelForm):
     class Meta:
@@ -34,6 +45,7 @@ class CourseForm(forms.ModelForm):
         fields = '__all__'
 
 
+'''
 def course_add(request):
     page_title = u"Создание нового курса"
     if request.method == 'POST':
@@ -50,7 +62,7 @@ def course_add(request):
     else:
         form = CourseForm()   
     return render(request, 'add_edit.html', {'form': form, 'page_title':page_title})
-
+'''
 
 def course_edit(request, course_id):
     page_title = u"Редактирование курса"
