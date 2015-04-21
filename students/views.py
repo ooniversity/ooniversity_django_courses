@@ -41,7 +41,7 @@ class StudentModification(forms.ModelForm):
 
 
 def student_add(request):
-    student = Student()
+    #student = Student()#no need!!!
     if request.method == "POST":
         form_add = StudentModification(request.POST)
         if form_add.is_valid():                
@@ -60,7 +60,7 @@ def student_edit(request, stud_id):
         if form_edit.is_valid():                
             student = form_edit.save()
             messages.success(request, 'Info successfully changed!')
-            #return redirect("student_edit")
+            return redirect("students:student_edit", student.id)#need to redirect! if class: self.object; ассоциация урла: из словаря брать айди - %s (см.документацию); исползовать слаг
     else:
         form_edit = StudentModification(instance=student)
     return render(request, 'students/student_edit.html', {"form_edit": form_edit})
