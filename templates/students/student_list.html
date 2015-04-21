@@ -2,12 +2,9 @@
 
 {% load staticfiles %}
 
-
 {% block title %} Students {% endblock title %}
 
-
 {% block nav_class_student %} active {% endblock %}
-
 
 {% block main_content %}
     <br><br><br>
@@ -30,14 +27,14 @@
               </ul>
               {% endfor %}
             </td>
-            <td><a href="{% url 'students:edit' student.id %}">Change User data</a></td>
-            <td><a href="{% url 'students:delete' student.id %}">Delete User</a></td>
+            <td><a href="{% url 'students:edit' student.id %}">Edit</a></td>
+            <td><a href="{% url 'students:delete' student.id %}">Delete</a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-    {% endblock main_content %}
+{% endblock main_content %}
 
 
 

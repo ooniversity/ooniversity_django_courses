@@ -1,63 +1,56 @@
 from students.models import Student, CourseApplication
 from courses.models import Course, Lesson
+from students.forms import StudentModelForm
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from django import forms
 from django.contrib import messages
+from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
+class StudentDetailView(DetailView):
+    model = Student
 
-class CourseApplicationForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        exclude = ['slug']
-        labels = {'email': "Mail"}
-        help_texts = {'email': 'Enter Personal email'}
+class StudentListView(ListView):
+    model = Student
+    context_object_name = 'students'
 
-def stud_list(request):
-    students = Student.objects.all()
-    return render(request, "student_list.html", 
-                 {'students': students})
+    def get_queryset(self):
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            students = Student.objects.filter(courses__id=course_id)
+        else:
+            students = Student.objects.all()
+        return students
 
-def detail(request, student_id):
-    crs = Student.objects.get(id=student_id)
-    return render(request, 'students/student_detail.html',
-                 {'a': crs, 'lesson': Student.objects.all().filter(courses=student_id)})
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy('students:registred')
 
-def registred(request):
-    return render(request, "students/registy_completed.html")
+    def get_context_data(self, **kwargs):
+        context = super(StudentCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'Student add'
+        return context
 
-def apply_to_course(request):
-    if request.method == 'POST':
-        form = CourseApplicationForm(request.POST)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, "User added!")
-            return redirect('/students/registred/')
-    else:
-        form = CourseApplicationForm()
-    return render(request, "students/apply.html", {'form': form})
+class StudentUpdateView(UpdateView):
+    model = Student
+    success_url = reverse_lazy('students:registred')
 
-def edit_from_course(request, pk):
-    application = Student.objects.get(id=pk)
-    if request.method == 'POST':
-        form = CourseApplicationForm(request.POST, instance=application)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, "User saved!")
-            return redirect('/students/registred/')
-    else:
-        form = CourseApplicationForm()   
-    form = CourseApplicationForm(instance=application)
-    return render(request, "students/edit.html", {'form': form})
+    def get_context_data(self, **kwargs):
+        context = super(StudentUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = 'Student edit'
+        return context
 
-def delete_from_course(request, pk):
-    application = Student.objects.get(id=pk)
-    if request.method == 'POST':
-        application.delete()
-        messages.success(request, "User Removed!")
-        return redirect('/students/registred/')
-    return render(request, "students/delete.html", {'application': application})
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:registred')
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentDeleteView, self).get_context_data(**kwargs)
+        context['page_title'] = 'Student remove'
+        return context
+
