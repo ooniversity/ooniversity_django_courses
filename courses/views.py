@@ -49,14 +49,10 @@ def create_lesson(request, pk):
         if model_form.is_valid():
             application = model_form.save()
             messages.success(request, u'Урок {} для курса {} успешно добавлен'.format(application.theme, application.course.name))
-            list_path = request.path.split('/')
-            #Переменная request.path используется для ф-ции рендер на страницу с курсом
-            #догадываюсь, что есть красивый путь, но.. На занятии спрошу как надо
-            #Важно было чтобы работало. Стыдно!
-            return redirect (request.path[:request.path.find(pk)+1])
+
+            return redirect ('courses:course', application.course_id)
     else:
         model_form = LessonForm(initial={'course':pk,})
-        print model_form
     return render(request, 'courses/new_lesson.HTML',
                   {'model_form':model_form})
 
