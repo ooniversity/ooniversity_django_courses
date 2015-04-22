@@ -43,8 +43,7 @@ def edit_course(request, pk_course):
             course_app = course_form.save()
             course_mess = u'Данные о курсе - {} - успешно изменены !'.format(course_app.title)
             messages.success(request, course_mess)
-            print 'request.path  = ', request.path
-            return redirect(request.path)				# ('courses:edit-course' course.id)
+            return redirect('courses:edit-course', pk_course)
     else:
         course_form = CourseForm(instance=course_app)
     return render(request, 'courses/edit_course.html', {'course_form': course_form,
@@ -73,16 +72,9 @@ def add_lesson(request, pk_course):
         lesson_form = LessonForm(request.POST, initial={'course': lesson_course})
         if lesson_form.is_valid():
             lesson_app = lesson_form.save()
-            print 'lesson_app = ', lesson_app
-            print 'lesson_course = ', lesson_course
             lesson_mess = u'Занятие - {} - было успешно создано !'.format(lesson_app.theme)
             messages.success(request, lesson_mess)
-            # Processing URL path for redirect
-            print 'request.path  = ', request.path
-            redir_path = request.path
-            redir_path = redir_path[:redir_path.rfind('/', 0, -1) + 1]
-            print 'redir_path = ', redir_path
-            return redirect(redir_path)
+            return redirect('courses:course-coaches', pk_course)
     else:
         lesson_form = LessonForm(initial={'course': lesson_course})
     return render(request, 'courses/add_lesson.html', {'lesson_form': lesson_form,

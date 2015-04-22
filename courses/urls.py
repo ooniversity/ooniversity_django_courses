@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^courses/remove/(?P<pk_course>\d+)/$', delete_course, name='del-course'),
 
     # URLs for edition lessons
-    url(r'^courses/(?P<pk_course>\d+)/add_lesson/$', add_lesson, name = 'add-lesson'),
+    url(r'^courses/(?P<pk_course>\d+)/add_lesson/$', add_lesson, name='add-lesson'),
 
 )

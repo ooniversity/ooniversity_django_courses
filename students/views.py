@@ -52,8 +52,7 @@ def edit_student(request, pk_stud):
             student_mess = u'Данные о студенте - {} {} - успешно изменены !'.format(student_app.name,
                                                                                     student_app.surname)
             messages.success(request, student_mess)
-            print 'request.path  = ', request.path
-            return redirect(request.path)
+            return redirect('students:student-edit', pk_stud)
     else:
         student_form = StudentForm(instance=student_app)
     return render(request, 'students/edit_student.html', {'student_form': student_form,

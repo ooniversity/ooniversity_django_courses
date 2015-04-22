@@ -11,7 +11,7 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         widgets = {'description': forms.Textarea}
-        help_text = {'coach': u'Выберите учителя из списка',
+        help_texts = {'coach': u'Выберите учителя из списка',
                      'assistant': u'Выберите ассистента из списка'}
 
 
