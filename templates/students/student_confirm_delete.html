@@ -1,0 +1,15 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Student_del{% endblock %}
+
+{% block page_header %}Студент {{ student.name }} {{ student.surname }} будет удален{% endblock %}
+
+{% block page_content %}
+
+  <form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type='submit' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-remove"></span> Удалить</button></p>
+  </form>
+ 
+{% endblock page_content %}

@@ -1,0 +1,14 @@
+{% extends 'students/base.html' %}
+
+{% block title %}{{ block_title }}{% endblock %}
+
+{% block page_header %}{{ page_header }}{% endblock %}
+
+{% block page_content %}
+  <form id='add_student' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type='submit' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-user"></span> {{ button_name }}</button></p>
+  </form>
+ 
+{% endblock page_content %}

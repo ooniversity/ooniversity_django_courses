@@ -39,7 +39,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for choice_lesson in lessons_list %}
+          {% for choice_lesson in current_course.lesson_set.all %}
           <tr>
             <td>{{ choice_lesson.number_order }}</td>
             <td>{{ choice_lesson.topic }}</td>

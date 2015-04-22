@@ -2,6 +2,14 @@
 
 {% block title %}Add_lesson{% endblock %}
 
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>  
+  {% endfor %}
+{% endif %}
+
 <div class="page-header">
   <h2 style="color: #446785">Создание нового занятия</h2>
 </div>

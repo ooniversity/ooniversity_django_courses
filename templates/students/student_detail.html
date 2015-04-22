@@ -2,7 +2,7 @@
 
 {% block title %}Student_info{% endblock %}
 
-{% block page_header %}{{ student_info.surname }}  {{ student_info.name }}{% endblock %}
+{% block page_header %}{{ student.surname }}  {{ student.name }}{% endblock %}
 
 {% block page_content %}
 <div class="row">
@@ -11,28 +11,28 @@
       <tbody>
         <tr>
           <td>дата рождения</td>
-          <td>{{ student_info.birth_date|date:"d E Y" }}</td>
+          <td>{{ student.birth_date|date:"d E Y" }}</td>
         </tr>
         <tr>
           <td>адрес</td>
-          <td>{{ student_info.address }}</td>
+          <td>{{ student.address }}</td>
         </tr>
         <tr>
           <td>почта</td>
-          <td>{{ student_info.email }}</td>
+          <td>{{ student.email }}</td>
         </tr>
         <tr>
           <td>логин skype</td>
-          <td>{{ student_info.skype }}</td>
+          <td>{{ student.skype }}</td>
         </tr>
         <tr>
           <td>телефон</td>
-          <td>{{ student_info.phone }}</td>
+          <td>{{ student.phone }}</td>
         </tr>
         <tr>
           <td>курсы</td>
           <td>
-            {% for course_list in student_info.courses.all %}
+            {% for course_list in student.courses.all %}
               <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</p> 
             {% endfor %}
           </td>
