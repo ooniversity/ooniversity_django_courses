@@ -13,7 +13,7 @@ from django.views.generic.detail import DetailView
 class StudentListView(ListView):
     model = Student
     #template_name = "students/students.html"
-    context_object_name = "course_students"
+    context_object_name = "students"
 
     def get_queryset(self):
         qs = super(StudentListView, self).get_queryset()
