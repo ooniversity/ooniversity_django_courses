@@ -47,6 +47,7 @@
             <li class="{% block nav_class_index %}{% endblock %}"><a href="/">главная</a></li>
             <li class="{% block nav_class_student_list %}{% endblock %}">{% block students_list %}<a href="{% url 'students:student-list' %}">студенты</a>{% endblock students_list %}</li>
             <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
+            <li class="{% block nav_class_feedback %}{% endblock %}"><a href="{% url 'mails:send-mail' %}">обратная связь</a></li>
           </ul>
         </div>
       </div>
