@@ -31,7 +31,7 @@
   <table>
    {{ form.as_table }}
   </table>
-  <input type="Submit" value="Сохранить">
+  <input type="Submit" value="{% block submit_button %}Сохранить{% endblock %}">
 <form>
 
 {% endblock body %}
