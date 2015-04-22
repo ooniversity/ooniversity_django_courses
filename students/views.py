@@ -7,8 +7,30 @@ from students.models import Student
 from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from django.contrib import messages
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
-def students(request):
+class StudentListView(ListView):
+    model = Student
+    #template_name = "students/students.html"
+    context_object_name = "course_students"
+
+    def get_queryset(self):
+        qs = super(StudentListView, self).get_queryset()
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            qs = qs.filter(courses__id = course_id)
+        return qs
+
+
+
+class StudentDetailView(DetailView):
+    model = Student
+    #context_object_name = "student_one"
+
+
+
+def students(request):#obsolete
     try:
         course_id = request.GET.get('course_id', '')
         comment, course_name, course_students = "", "", "" #in order not to be referenced before assignment
@@ -17,15 +39,14 @@ def students(request):
             course_students = Student.objects.filter(courses__id = course_id)
         else:
             course_students = Student.objects.all()
-        for item in course_students:
-            item.url = str(item.id) + "/"
         return render(request, 'students/students.html',  {"course_students": course_students, "course_name": course_name, "course_id": course_id})
     except ObjectDoesNotExist:
         comment = "Sorry, no course with id = %s exists yet. So no relevant students list exists."%(course_id)
-        return render(request, 'students/students.html',  {"comment": comment})        
+        return render(request, 'students/students.html',  {"comment": comment}) 
 
 
-def student_one(request, student_id):
+
+def student_one(request, student_id): #obsolete
     try:
         student_one = Student.objects.get(id=student_id)
         msg = ""
