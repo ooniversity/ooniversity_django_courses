@@ -5,6 +5,8 @@ from django import forms
 from students.models import Student
 
 
+'''
+# Widget from admin
 class CalendarWidget(forms.TextInput):
     class Media:
         js = ('/admin/jsi18n/',
@@ -18,6 +20,24 @@ class CalendarWidget(forms.TextInput):
 
     def __init__(self, attrs={}):
         super(CalendarWidget, self).__init__(attrs={'class': 'vDateField', 'size': '10'})
+'''
+
+
+class CalendarWidget(forms.TextInput):
+    class Media:
+        js = (
+              #settings.STATIC_URL + 'widgets/calendar/dict.js',
+              #settings.STATIC_URL + "widgets/calendar/common1.js",
+              settings.STATIC_URL + "widgets/calendar/calendar.js",
+             )
+        css = {
+            'all': (
+                settings.STATIC_URL + 'widgets/calendar/calendar.css',
+                   )
+              }
+
+    def __init__(self, attrs={}):
+        super(CalendarWidget, self).__init__(attrs={'class': 'date', 'size': '25'})
 
 
 class StringWidget(forms.TextInput):

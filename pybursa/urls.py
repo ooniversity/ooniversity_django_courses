@@ -4,7 +4,7 @@ from pybursa.views import index, contact
 
 
 urlpatterns = patterns('',
-    url(r'^admin/jsi18n/', 'django.views.i18n.javascript_catalog'),
+#    url(r'^admin/jsi18n/', 'django.views.i18n.javascript_catalog'),  #For CalendarWidget from admin
     url(r'^$', index, name='index'),
     url(r'^contact/$', contact, name='contact'),
     url(r'^courses/', include('courses.urls', namespace="courses")),
