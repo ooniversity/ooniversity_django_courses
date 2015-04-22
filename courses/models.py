@@ -17,7 +17,7 @@ class Course (models.Model):
 class Lesson (models.Model):
     theme = models.CharField(verbose_name='Theme of lesson', max_length=40)
     discription = models.TextField(verbose_name='Lesson discription', null=True, blank=True)
-    course = models.ForeignKey(Course, related_name='course_lesson')
+    course = models.ForeignKey(Course)
     number = models.PositiveIntegerField(verbose_name='Number of lesson')
 
     def __unicode__(self):

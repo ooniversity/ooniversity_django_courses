@@ -76,12 +76,6 @@ class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('students:student-list')
 
-    #Добавляем название страницы шаблона HTML в контекстные данные
-    def get_context_data(self, **kwargs):
-        context = super(StudentDeleteView, self).get_context_data(**kwargs)
-        context['page_title'] = u"Удаление студента"
-        return context
-
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, u'Запись успешно удалена')
         return super (StudentDeleteView, self).delete(request, *args, **kwargs)

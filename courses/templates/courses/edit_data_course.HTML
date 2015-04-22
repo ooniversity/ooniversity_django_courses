@@ -20,7 +20,7 @@
   <!--Редактирование формы студента-->
   <form class ="custome" method="post">
     {% csrf_token %}
-    {{ model_form.as_p }}
+    {{ form.as_p }}
     <input id="custom_btn" class="btn btn-primary"  type='submit' value="Изменить">
   </form>
 {% endblock main_content %}

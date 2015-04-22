@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from courses.models import Course, Lesson
 from django import forms
 from django.contrib import messages
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 
 #Создаем форму для веб браузера на основе модели Course
@@ -19,26 +22,54 @@ class LessonForm(forms.ModelForm):
         #Указываем поля, которые не нужно выводить пользователю
 
 
-# Create your views here.
-def show_courses(request, pk):
-    course = Course.objects.get(id = pk)
-    lessons = Lesson.objects.filter(course__name = course.name)
-    return render(request, 'courses/courses.HTML', {'course': course, 'lessons': lessons})
+# С помощью класса DetailView выводим информацию о курсе на HTML страничку
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'courses/courses.HTML'
+
+    #Переопределяем context
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        course = Course.objects.get(pk = self.kwargs['pk'])
+        context['course'] = Course.objects.get(pk = self.kwargs['pk'])
+        return context
 
 
-#Вьюшка для создания нового курса
-def create_course(request):
-    if request.method == 'POST':
-        #Инстанцирование формы для студента
-        model_form = CourseForm(request.POST)
-        if model_form.is_valid():
-            application = model_form.save()
-            messages.success(request, u'Курс {} успешно добавлен'.format(application.name))
-            return redirect ('/')
-    else:
-        model_form = CourseForm()
-    return render(request, 'courses/new_course.HTML',
-                  {'model_form':model_form})
+#Класс для создания курса
+class CourseCreateView(CreateView):
+    model = Course
+    template_name = 'courses/new_course.HTML'
+    success_url = ('/')
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Курс {} успешно добавлен'.format(self.application.name))
+        return super(CourseCreateView, self).form_valid(form)
+
+
+#Класс для редактирования(обновления) данных о курсе
+class CourseUpdateView(UpdateView):
+    model = Course
+    template_name = 'courses/edit_data_course.HTML'
+
+    def get_success_url(self):
+        return reverse_lazy('courses:edit-course', kwargs={'pk':self.kwargs['pk']})
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Данные о курсе {} изменены'.format(self.application.name))
+        return super(CourseUpdateView, self).form_valid(form)
+
+
+#Класс для удаления данных о курсе
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = 'courses/remove_course.HTML'
+    success_url = reverse_lazy('index_itbursa')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, u'Курс успешно удален')
+        return super (CourseDeleteView, self).delete(request, *args, **kwargs)
 
 
 #Вьюшка для создания нового урока
@@ -57,22 +88,6 @@ def create_lesson(request, pk):
                   {'model_form':model_form})
 
 
-#Вьюшка для редактирования нового курса
-def edit_course(request, pk):
-    application = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        model_form = CourseForm(request.POST, instance=application)
-        if model_form.is_valid():
-            application = model_form.save()
-            messages.success(request, u'Данные о курсе {} успешно изменены'.format(application.name))
-
-            return redirect (request.path)
-    else:
-        model_form = CourseForm(instance=application)
-    return render(request, 'courses/edit_data_course.HTML',
-                  {'model_form':model_form})
-
-
 #Вьюшка для редактирования нового урока
 def edit_lesson(request, pk):
     application = Course.objects.get(id=pk)
@@ -87,17 +102,6 @@ def edit_lesson(request, pk):
         model_form = LessonForm(instance=application)
     return render(request, 'courses/edit_data_lesson.HTML',
                   {'model_form':model_form})
-
-
-#Вьюшка для удаления курса
-def remove_course(request, pk):
-    application = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        application.delete()
-        messages.success(request, u'Курс {} был удален'.format(application.name))
-        return redirect ('index_itbursa')
-    return render(request, 'courses/remove_course.HTML',
-                  {'course':application})
 
 
 #qs = Lesson.objects.get(id=pk)
