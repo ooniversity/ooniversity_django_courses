@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
@@ -21,9 +24,10 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        course = self.get_object()
+        # не нужно делать get_object() уже есть в методе super()
+        # course = self.get_object()
         context['course_lessons'] = (
-            course.lessons_list.all().order_by('num_in_plan'))
+            self.object.lessons_list.all().order_by('num_in_plan'))
         return context
 
 
@@ -34,11 +38,11 @@ class CourseDeleteView(DeleteView):
     success_message = "Course: '%(title)s' was deleted success!"
 
     def delete(self, request, *args, **kwargs):
-        course = self.get_object()
+        context = super(CourseDeleteView, self).delete(request, *args, **kwargs)
         messages.success(self.request, self.success_message % {
-            'title': course.title,
+            'title': self.object.title,
         })
-        return super(CourseDeleteView, self).delete(request, *args, **kwargs)
+        return context
 
 
 class CourseCreateView(SuccessMessageMixin, CreateView):
@@ -102,7 +106,7 @@ def lesson_delete(request, pk):
     if request.method == "POST":
         lesson.delete()
         messages.success(
-            request, u"Lesson: {} was deleted".format(
+            request, u"Lesson: {} was deleted!".format(
                 lesson.theme))
         return redirect('courses:show', course.id)
 
