@@ -67,6 +67,41 @@
         {% endfor %}
       </tbody>
     </table>
+
+      <nav>
+        <ul class="pagination">
+          <li>
+            {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  previous
+              </a>
+            {% endif %}
+          </li>
+          {% for page in paginator.page_range %}
+
+            {% if page_obj.number == page %}
+              <li class="active">
+                <a href="#" class="disabled">{{ page }}</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="?page={{ page }}" class="disabled">{{ page }}</a>
+              </li>
+            {% endif %}
+
+          {% endfor %}
+          {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              next
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+
   </div>
 </div>
 {% endblock content %}

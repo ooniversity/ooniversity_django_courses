@@ -8,6 +8,7 @@ from students.models import Student
 
 class StudentListView(ListView):
     model = Student
+    paginate_by = 2
 
     def get_queryset(self):
         qs = super(StudentListView, self).get_queryset()
