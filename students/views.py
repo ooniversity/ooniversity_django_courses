@@ -1,9 +1,78 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from students.models import Student
 from students.forms import StudentForm
+
+
+class StudentListView(ListView):
+    model = Student
+
+    def get_queryset(self):
+        queryset = super(StudentListView, self).get_queryset()
+        course_id = self.request.GET.get('course_id')
+        if course_id:
+            queryset = queryset.filter(course__id=int(course_id))
+        return queryset
+
+
+class StudentDetailView(DetailView):
+    model = Student
+
+
+class StudentCreateView(CreateView):
+    model = Student
+    form_class = StudentForm
+    success_url = reverse_lazy('students:index')
+
+    def get_context_data(self, **kwargs):
+        context_data = super(StudentCreateView, self).get_context_data(**kwargs)
+        context_data['page_title'] = 'Создать студента'
+        context_data['h3_title'] = 'Создание нового студента'
+        return context_data
+
+    def form_valid(self, form):
+        response = super(StudentCreateView, self).form_valid(form)
+        messages.success(self.request, u'Студент {0} успешно добавлен'.format(self.object.full_name()))
+        return response
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    form_class = StudentForm
+    success_url = reverse_lazy('students:index')
+
+    def get_context_data(self, **kwargs):
+        context_data = super(StudentUpdateView, self).get_context_data(**kwargs)
+        context_data['page_title'] = 'Редактирование студента'
+        context_data['h3_title'] = 'Редактирование данных студента'
+        return context_data
+
+    def form_valid(self, form):
+        response = super(StudentUpdateView, self).form_valid(form)
+        messages.success(self.request, u'Данные студента {0} успешно изменены'.format(self.object.full_name()))
+        return response
+
+
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:index')
+
+    def get_context_data(self, **kwargs):
+        context_data = super(StudentDeleteView, self).get_context_data(**kwargs)
+        context_data['page_title'] = 'Удаление студента'
+        context_data['h3_title'] = 'Удаление данных студента'
+        return context_data
+
+    def delete(self, request, *args, **kwargs):
+        response = super(StudentDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(request, u'Студент {0} успешно удален'.format(self.object.full_name()))
+        return response
 
 
 def student(request):
@@ -26,7 +95,7 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             new_student = form.save()
-            messages.success(request, 'Студент {0} успешно добавлен'.format(new_student))
+            messages.success(request, u'Студент {0} успешно добавлен'.format(new_student))
             return redirect('students:index')
     else:
         form = StudentForm()
@@ -40,7 +109,7 @@ def edit_student(request, pk):
         form = StudentForm(request.POST, instance=current_student)
         if form.is_valid():
             current_student = form.save()
-            messages.success(request, 'Данные студента {0} успешно изменены'.format(current_student))
+            messages.success(request, u'Данные студента {0} успешно изменены'.format(current_student))
             return redirect('students:index')
     else:
         form = StudentForm(instance=current_student)
@@ -52,7 +121,7 @@ def delete_student(request, pk):
     current_student = get_object_or_404(Student, pk=pk)
     if request.method == "POST":
         current_student.delete()
-        messages.success(request, 'Студент {0} успешно удален'.format(current_student))
+        messages.success(request, u'Студент {0} успешно удален'.format(current_student))
         return redirect('students:index')
     template_name = 'students/delete_student.html'
     return render(request, template_name, {'student': current_student})

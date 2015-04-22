@@ -4,6 +4,9 @@
 
 {% block title %} Детали курса {% endblock title %}
 
+{% if course %}
+  {% block nav_students_url %}?course_id={{ course.id }}{% endblock  %}
+{% endif %}
 
 {% block content %}
   {% if messages %}
