@@ -1,16 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
 from courses.models import Course, Lesson
-from students.models import Student 
-from coaches.models import Coach
-from datetime import datetime
 from django import forms
-
-
-class CourseForm(forms.ModelForm):
-    class Meta:
-        model = Course
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 
 class LessonForm(forms.ModelForm):
@@ -18,45 +15,44 @@ class LessonForm(forms.ModelForm):
         model = Lesson
 
 
-def show_course(request, id):
-    course = Course.objects.get(id = int(id))
-    lessons = Lesson.objects.filter(course__name = course.name)
-    return render(request, 'courses/course.html', {'course': course, 'lessons': lessons})
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = "courses/course.html"
 
 
-def add_course(request):
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            application = form.save()
-            msg = "Course {} was added!".format(application.name)
-            messages.success(request, msg)
-            return redirect('index_pybursa')
-    else:
-        form = CourseForm()
-    return render(request, 'courses/add_course.html', {'form': form})
+class CourseCreateView(CreateView):
+    model = Course
+    success_url = reverse_lazy('index_pybursa')
+    template_name = "courses/add_course.html"
+
+    def form_valid(self, form):
+        super_valid = super(CourseCreateView, self).form_valid(form)
+        msg = "Course {} was added!".format(self.object.name)
+        messages.success(self.request, msg)
+        return super_valid
 
 
-def edit_course(request, id):
-    course = Course.objects.get(id=id)
-    if request.method == 'POST':
-        form = CourseForm(request.POST, instance=course)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Course edited!')
-    else:
-        form = CourseForm(instance=course)
-    return render(request, 'courses/edit_course.html', {'form': form})
+class CourseUpdateView(UpdateView):
+    model = Course
+    success_url = reverse_lazy('index_pybursa')
+    template_name = "courses/edit_course.html"
+
+    def form_valid(self, form):
+        msg = "Course edited!"
+        messages.success(self.request, msg)
+        return super(CourseUpdateView, self).form_valid(form) 
 
 
-def delete_course(request, id):
-    course = Course.objects.get(id=id)
-    if request.method == 'POST':
-        msg = "Course {} deleted!".format(course.name)
-        course.delete()
-        messages.success(request, msg)
-        return redirect('index_pybursa')
-    return render(request, 'courses/delete_course.html', {'name': course.name})
+class CourseDeleteView(DeleteView):
+    model = Course
+    success_url = reverse_lazy('index_pybursa')
+    template_name = "courses/delete_course.html"
+
+    def delete(self, request, *args, **kwargs):
+        delete_super = super(CourseDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request,
+                         u'Course {} deleted.'.format(self.object.name))
+        return delete_super
 
 
 def add_lesson(request, id):

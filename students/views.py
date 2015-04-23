@@ -34,10 +34,11 @@ class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('students:student_list')
 
-    def form_valid(self, form):
-        msg = "Student deleted!"
-        messages.success(self.request, msg)
-        return super(StudentDeleteView, self).form_valid(form) 
+    def delete(self, request, *args, **kwargs):
+        delete_super = super(StudentDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request,
+                         u'Student {} deleted.'.format(self.object.name))
+        return delete_super
 
 
 class StudentListView(ListView):
