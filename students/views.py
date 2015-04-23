@@ -1,6 +1,5 @@
 #!/usr/bin/python		
 # -*- coding: UTF-8 -*-
-
 from django.shortcuts import render, redirect
 from courses.models import Course, Lesson
 from students.models import Student
@@ -16,6 +15,13 @@ class StudentListView(ListView):
     model = Student
     #template_name = "students/students.html"
     context_object_name = "students"
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            context['course_name'] = Course.objects.get(id=course_id).name
+        return context
 
     def get_queryset(self):
         qs = super(StudentListView, self).get_queryset()
@@ -36,6 +42,8 @@ class StudentCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(StudentCreateView, self).get_context_data(**kwargs)
+        context['form_title'] = u'Создание нового студента'
+        context['button_name'] = u'Создать'
         return context
 
     def form_valid(self, form):
@@ -46,29 +54,34 @@ class StudentCreateView(CreateView):
         return super(StudentCreateView, self).form_valid(form)
 
 
-class StudentModification(forms.ModelForm):
-    class Meta:
-        model = Student
+class StudentUpdateView(UpdateView):
+    model = Student
+    #success_url = reverse_lazy("students:students") #need to redirect to itself! if class: self.object; ассоциация урла: из словаря брать айди - %s (см.документацию); можно исползовать слаг
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentUpdateView, self).get_context_data(**kwargs)
+        context['form_title'] = u'Редактирование данных о студенте'
+        context['button_name'] = u'Сохранить'
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Info successfully changed!');
+        return super(StudentUpdateView, self).form_valid(form)
 
 
-def student_edit(request, stud_id):
-    student = Student.objects.get(id=stud_id)
-    if request.method == "POST":
-        form_edit = StudentModification(request.POST, instance=student)
-        if form_edit.is_valid():                
-            student = form_edit.save()
-            messages.success(request, 'Info successfully changed!')
-            return redirect("students:student_edit", student.id)#need to redirect! if class: self.object; ассоциация урла: из словаря брать айди - %s (см.документацию); исползовать слаг
-    else:
-        form_edit = StudentModification(instance=student)
-    return render(request, 'students/student_edit.html', {"form_edit": form_edit})
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy("students:students")
 
+    def get_context_data(self, **kwargs):
+        context = super(StudentDeleteView, self).get_context_data(**kwargs)
+        context['form_title'] = u'Удаление данных о студенте'
+        context['button_name'] = u'Удалить'
+        return context
 
-def student_delete(request, stud_id):
-    student = Student.objects.get(id=stud_id)
-    if request.method == "POST":
-        student.delete()
-        messages.success(request, "Info on student %s %s has been deleted."%(student.name, student.surname))
-        return redirect("students:students")
-    return render(request, 'students/student_delete.html', {"student": student})
-
+    def form_valid(self, form):
+        student = Student.objects.get(id=pk)
+        messages.success(self.request, "Info on student %s %s has been deleted."%(student.name, student.surname));
+        #messages.success(self.request, "Info on student has been deleted.");
+        return super(StudentDeleteView, self).form_valid(form)
