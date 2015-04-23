@@ -3,9 +3,7 @@ from django.contrib import messages
 from students.models import Student 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 
@@ -43,15 +41,15 @@ class StudentDeleteView(DeleteView):
 
 class StudentListView(ListView):
     model = Student
+    paginate_by = 2
 
-    def get_context_data(self, **kwargs):
-        context = super(StudentListView, self).get_context_data(**kwargs)
+    def get_queryset(self):
         courseid = self.request.GET.get('course_id', None)
         if courseid is None:
-            context['students'] = Student.objects.all()
+            students = Student.objects.all()
         else:
-            context['students'] = Student.objects.filter(courses__id = courseid)
-        return context
+            students = Student.objects.filter(courses__id = courseid)
+        return students
 
 
 class StudentDetailView(DetailView):
