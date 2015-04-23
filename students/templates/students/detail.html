@@ -1,0 +1,41 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %} PyBursa Student detail {% endblock title %}
+
+
+{% block students_link %}{% url 'students:students' %}{% endblock %}
+
+
+{% block page_content %}
+
+<div class="panel panel-info">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style = "font-size:20px">{% block page_header %}{% endblock %}</div>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'students:students' %}">{% block page_header %}Студенты{% endblock %}</a></li>
+      <li class="active">Детальная информация о студенте</li>
+    </ol>
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="{% static 'bootstrap/images/student_photo.png' %}" alt="student photo">
+      </a>
+      <h4 class="media-heading"> {{ student.name }} {{ student.surname }}</h4>
+      <div class = "well well-sm">
+        <p><b>Дата рождения:</b> {{student.date_of_birth|date:'F j, Y'}}</p>
+        <p><b>Адрес:</b> {{ student.address|default:"No address provided"|truncatechars:19 }}</p>
+        <p><b>Почта:</b> {{ student.email }}</a></p>
+        <p><img src = "{% static 'bootstrap/images/skypeic.png' %}"> {{ student.skype }}</p>
+        <p><b>Курсы:</b>
+        {% for course in student.courses.all %}
+        <a href="{% url 'courses:courses' course.id %}">{{ course }}</a></br>
+        {% endfor %}</p>
+      </div>
+    </div>
+</div>
+
+{% endblock page_content %}
+
