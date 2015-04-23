@@ -66,4 +66,23 @@
       </tbody>
     </table>
   </div>
+
+{% if paginator.num_pages > 1 %}
+  <ul class="pagination">
+
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo; previous</a></li>
+    {% endif %}
+
+    {% for page_name in paginator.page_range %}
+      <li {% if page_name = page_obj.number %}class="active"{% endif %}><a href="?page={{ page_name }}">{{ page_name }}</a></li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo; next</a></li>
+    {% endif %}
+
+  </ul>
+{% endif %}
+
 {% endblock page_content %}
