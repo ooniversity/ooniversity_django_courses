@@ -42,8 +42,10 @@
         {% endblock %}
 
       </ul>
-
       <ul class="nav navbar-nav navbar-right">
+        <li class="nav-feedback">
+          <a href="{% url 'feedback:feedbacks' %}">Обратная связь</a>
+        </li>
         <li class="nav-contact">
           <a href="{% url 'contact' %}">Контакты</a>
         </li>
