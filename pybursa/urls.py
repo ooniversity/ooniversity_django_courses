@@ -1,14 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from pybursa.views import index, contact, student_list, student_detail
-from courses.views import course_view
+from courses import views
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'pybursa.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', course_view, name='main'),
+    url(r'^$', views.CourseView.as_view(), name='main'),
     url(r'^courses/', include('courses.urls', namespace="courses")),
     url(r'^coaches/', include('coaches.urls', namespace="coaches")),
     url(r'^students/', include('students.urls', namespace='students')),

@@ -2,23 +2,23 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Учитель: <a href="{% url 'coaches:coach' coach.0.id %}">
-              {{ coach.0.full_name|upper }}</a></h3>
+          <h3 class="panel-title">Учитель: <a href="{% url 'coaches:coach' planmodel.coach.id %}">
+              {{ planmodel.coach.full_name|upper }}</a></h3>
         </div>
         <div class="panel-body" style="width: 100%; height: auto">
 
-          <p>{{ coach.1 }}</p>
+          <p>{{ planmodel.coach.description }}</p>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Асcистент: <a href="{% url 'coaches:coach' assistant.0.id %}">
-              {{ assistant.0.full_name|upper }}</a></h3>
+          <h3 class="panel-title">Асcистент: <a href="{% url 'coaches:coach' planmodel.assistant.id %}">
+              {{ planmodel.assistant.full_name|upper }}</a></h3>
         </div>
         <div class="panel-body">
-           <p>{{ assistant.1|truncatechars:120 }}</p>
+           <p>{{ planmodel.assistant.description|truncatechars:120 }}</p>
            </div>
       </div>
 </div>

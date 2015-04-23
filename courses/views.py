@@ -12,46 +12,45 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from courses.models import Course, Lesson
 
 
-
 class CourseView(ListView):
     model = Course
     template_name = 'index.html'
-
+    context_object_name = 'model'
 
 class CoursePlanView(DetailView):
     model = Course
     template_name = 'courses.html'
     context_object_name = 'planmodel'
 
+    def get_context_data(self, **kwargs):
+        planmodel = super(CoursePlanView, self).get_context_data(**kwargs)
+        planmodel['lessons'] = (
+            self.object.coursekey.all().order_by('order_number'))
+        return planmodel
+
+class CourseCreateView(SuccessMessageMixin, CreateView):
+    model = Course
+    success_url = reverse_lazy('main')
+    template_name = "cadd_edit.html"
+    success_message = u"Курс: '%(name)s' успешно создан!"
+
+
+class CourseUpdateView(SuccessMessageMixin, UpdateView):
+    model = Course
+    success_url = "#"
+    template_name = "cadd_edit.html"
+    success_message = u"Данные изменены!"
 
 
 class CourseDeleteView(DeleteView):
     model = Course
     success_url = reverse_lazy('main')
     template_name = "cdelete.html"
-    success_message = "Course: '%(title)s' was deleted success!"
 
     def delete(self, request, *args, **kwargs):
-        context = super(CourseDeleteView, self).delete(request, *args, **kwargs)
-        messages.success(self.request, self.success_message % {
-            'title': self.object.title,
-        })
-        return context
-
-
-class CourseCreateView(SuccessMessageMixin, CreateView):
-    model = Course
-    success_url = reverse_lazy('main')
-    template_name = "cadd_edit.html"
-    success_message = "Course: '%(title)s' was added success!"
-
-
-class CourseUpdateView(SuccessMessageMixin, UpdateView):
-    model = Course
-    success_url = reverse_lazy('main')
-    template_name = "cadd_edit.html"
-    success_message = "Course: '%(title)s' was updated success!"
-
+        response = super(CourseDeleteView, self).delete(request, *args, **kwargs)
+        messages.warning(request, u'Курс %s был удалён!' % self.object.name)
+        return response
 
 class LessonForm(ModelForm):
     class Meta:
