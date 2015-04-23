@@ -16,7 +16,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class StudentsList(ListView):
     model = Student
-    context_object_name = "students"
 
     def get_queryset(self):
         student = super(StudentsList, self).get_queryset()
