@@ -93,8 +93,13 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 
 
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = 1025
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
 # EMAIL_HOST_USER = 'username'
-# EMAIL_HOST_PASSWORD = 'cvcbgh'
+# EMAIL_HOST_PASSWORD = 'my_password'
+
+
+ADMINS = (('Alexey', 'alexey@example.com'), )
+
+
 
