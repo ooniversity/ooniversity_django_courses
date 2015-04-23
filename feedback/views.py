@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 
 from feedback.models import Feedback, FeedbackForm
@@ -11,11 +10,10 @@ from django.views.generic.base import View
 
 class FeedbackView(View):
     form_class = FeedbackForm
-    initial = {'key': 'value'}
     template_name = "feedback/feedback.html"
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):

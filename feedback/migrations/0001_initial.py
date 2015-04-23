@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
             name='Feedback',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name_sender', models.CharField(max_length=100, verbose_name=b'Name of sender')),
-                ('subject', models.CharField(max_length=300, verbose_name=b'Theme of message')),
+                ('sender_name', models.CharField(max_length=100, verbose_name=b'Your name')),
+                ('subject', models.CharField(max_length=300, verbose_name=b'Subject')),
+                ('sender_email', models.EmailField(max_length=75, verbose_name=b'Your email')),
                 ('message', models.TextField(max_length=1000, verbose_name=b'Message')),
-                ('email_sender', models.EmailField(max_length=75, verbose_name=b'Email of sender')),
-                ('date_create', models.DateTimeField(default=django.utils.timezone.now, blank=True)),
+                ('create_at', models.DateTimeField(default=django.utils.timezone.now, blank=True)),
             ],
             options={
             },
