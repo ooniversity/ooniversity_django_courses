@@ -9,6 +9,8 @@ from django import forms
 from django.contrib import messages
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 class StudentListView(ListView):
     model = Student
@@ -23,55 +25,30 @@ class StudentListView(ListView):
         return qs
 
 
-
 class StudentDetailView(DetailView):
     model = Student
     #context_object_name = "student_one"
 
 
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy("students:students")
 
-def students(request):#obsolete
-    try:
-        course_id = request.GET.get('course_id', '')
-        comment, course_name, course_students = "", "", "" #in order not to be referenced before assignment
-        if course_id:
-            course_name = Course.objects.get(id=course_id)
-            course_students = Student.objects.filter(courses__id = course_id)
-        else:
-            course_students = Student.objects.all()
-        return render(request, 'students/students.html',  {"course_students": course_students, "course_name": course_name, "course_id": course_id})
-    except ObjectDoesNotExist:
-        comment = "Sorry, no course with id = %s exists yet. So no relevant students list exists."%(course_id)
-        return render(request, 'students/students.html',  {"comment": comment}) 
+    def get_context_data(self, **kwargs):
+        context = super(StudentCreateView, self).get_context_data(**kwargs)
+        return context
 
-
-
-def student_one(request, student_id): #obsolete
-    try:
-        student_one = Student.objects.get(id=student_id)
-        msg = ""
-        return render(request, 'students/student_one.html',  {"student_one": student_one, "msg": msg, "student_id": student_id})
-    except ObjectDoesNotExist:        
-        msg = "Sorry, no student with id = %s takes our courses yet."%(student_id)
-        return render(request, 'students/student_one.html',  {"msg": msg})
+    def form_valid(self, form):
+        #student = form.save()
+        form.save()
+        #messages.success(self.request, message);
+        messages.success(self.request, 'Info on a new student successfully added!');
+        return super(StudentCreateView, self).form_valid(form)
 
 
 class StudentModification(forms.ModelForm):
     class Meta:
         model = Student
-
-
-def student_add(request):
-    #student = Student()#no need!!!
-    if request.method == "POST":
-        form_add = StudentModification(request.POST)
-        if form_add.is_valid():                
-            student = form_add.save()
-            messages.success(request, 'Info on a new student successfully added!');
-            return redirect("students:students")
-    else:
-        form_add = StudentModification()
-    return render(request, 'students/student_add.html', {"form_add": form_add})
 
 
 def student_edit(request, stud_id):
