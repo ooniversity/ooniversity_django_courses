@@ -82,7 +82,8 @@ body {
 
 #page-contact .nav-contact,
 #page-students .nav-students,
-#page-home .nav-home {
+#page-home .nav-home,
+#page-feedback .nav-feedback {
     font-weight: bold;
     background-color: #f0f0f0;
 }
