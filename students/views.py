@@ -1,64 +1,57 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
-from courses.models import Course, Lesson
 from students.models import Student 
-from coaches.models import Coach
-from datetime import datetime
-from django import forms
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 
-class StudentForm(forms.ModelForm):
-    class Meta:
-        model = Student
+class StudentCreateView(CreateView):
+    model = Student
+    success_url = reverse_lazy('students:student_list')
+
+    def form_valid(self, form):
+        super_valid = super(StudentCreateView, self).form_valid(form)
+        msg = "Student {} {} was added!".format(self.object.name, self.object.surname)
+        messages.success(self.request, msg)
+        return super_valid
 
 
-def add_student(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            application = form.save()
-            msg = "Student {} {} was added!".format(application.name, application.surname)
-            messages.success(request, msg)
-            return redirect('students:student_list')
-    else:
-        form = StudentForm()
-    return render(request, 'students/add_student.html', {'form': form})
+class StudentUpdateView(UpdateView):
+    model = Student
+    success_url = reverse_lazy('students:student_list')
+
+    def form_valid(self, form):
+        msg = "Student edited!"
+        messages.success(self.request, msg)
+        return super(StudentUpdateView, self).form_valid(form) 
 
 
-def edit_student(request, id):
-    student = Student.objects.get(id=id)
-    if request.method == 'POST':
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Student edited!')
-    else:
-        form = StudentForm(instance=student)
-    return render(request, 'students/edit_student.html', {'form': form})
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:student_list')
+
+    def form_valid(self, form):
+        msg = "Student deleted!"
+        messages.success(self.request, msg)
+        return super(StudentDeleteView, self).form_valid(form) 
 
 
-def delete_student(request, id):
-    student = Student.objects.get(id=id)
-    if request.method == 'POST':
-        msg = "Student {} {} deleted!".format(student.name, student.surname)
-        student.delete()
-        messages.success(request, msg)
-        return redirect('students:student_list')
-    return render(request, 'students/delete_student.html', {'name': student.name, 'surname': student.surname})
+class StudentListView(ListView):
+    model = Student
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        courseid = self.request.GET.get('course_id', None)
+        if courseid is None:
+            context['students'] = Student.objects.all()
+        else:
+            context['students'] = Student.objects.filter(courses__id = courseid)
+        return context
 
 
-def show_students(request):
-    if request.GET.get('course_id') is None:
-        students = Student.objects.all()
-        return render(request, 'students/student_list.html', {'students': students})
-    else:
-        students = Student.objects.filter(courses__id = int(request.GET.get('course_id')))
-        return render(request, 'students/student_list.html', {'students': students})
-
-
-def show_student(request, id):
-    student = Student.objects.get(id = int(id))
-    return render(request, 'students/student_detail.html', {'student': student})
-
-
+class StudentDetailView(DetailView):
+    model = Student
