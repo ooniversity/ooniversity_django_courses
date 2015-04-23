@@ -76,6 +76,25 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <br><br><br><br>
+    <!--Пагинация-->
+    <div class="row paginator">
+      <nav>
+        <ul class="pagination  pagination-lg">
+        {% if page_obj.has_previous %}
+          <li ><a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;prev</span></a></li>
+        {% endif %}
+        {% for number in paginator.page_range %}
+          {% if page_obj.number == forloop.counter %}
+            <li class="active"><a href="?page={{ forloop.counter }}">{{ forloop.counter }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }} <span class="sr-only">(current)</span></a></li>
+          {% endif %}
+        {% endfor %}
+          {% if page_obj.has_next %}
+            <li ><a href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">next&raquo;</span></a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+
 {% endblock main_content %}
