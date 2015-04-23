@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block title %}Отредактировать данные студента{% endblock title %}
+{% block title %}Отредактировать данные студента {{ object.first_name }} {{ object.surname }}{% endblock title %}
 
 
 {% block nav %}{% include "nav.html" with active_students='active' %}{% endblock nav %}
@@ -10,7 +10,7 @@
 {% block jumbotron %}{% endblock jumbotron %}
 
 {% block table %}
-<h2>Отредактировать данные студента</h2>
+<h2>Отредактировать студента {{ object.first_name }} {{ object.surname }}</h2>
 <div class="table-responsive">
 
 <form method="post">
