@@ -17,7 +17,7 @@ class FeedbackForm(ModelForm):
         model = Feedback
         widgets = {
             'email': forms.EmailInput,
-            'message' : forms.TextInput,
+            'message': forms.TextInput,
             'date_create': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S')
         }
         exclude = ('date_create',)
