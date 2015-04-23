@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block section %}page-feedback{% endblock %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+Feedback
+{% endblock %}
+
+{% block extra_head %}
+  <script type="text/javascript">
+    $(function() {
+      $("ul.errorlist").each(function(index) {
+        // $(this).insertAfter($(this).next());
+        $(this).next().after(this);
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+<div class="student-add">
+  <h2>Обратная связь</h2>
+
+  <div class="col-md-6 col-md-offset-3">
+    <form action="" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <!-- <input type="submit" value="Создать" class="btn btn-default btn-sm btn-info"
+        style="margin-top:30px;" /> -->
+        <div class="row" style="margin-bottom: 10px; padding-left:10px;">
+          <button class="btn btn-info" type="submit">Отправить</button>
+          <a class="btn btn-default" href="{% url 'home' %}">
+            Отменить
+          </a>
+        </div>
+      {% endbuttons %}
+    </form>
+
+  </div> 
+
+</div>
+
+{% endblock %}
