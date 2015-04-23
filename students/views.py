@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.contrib import messages
-from django.contrib.messages import get_messages
 from django.forms import *
 
 from students.models import Student
-from courses.models import Course
 
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
