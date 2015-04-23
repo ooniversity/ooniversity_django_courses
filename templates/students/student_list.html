@@ -66,4 +66,67 @@
   {% else %}
     <p><br />Нет студентов.</p>
   {% endif %}
+
+{% if object_list.paginator.num_pages %}
+  <nav>
+    <ul class="pagination">
+     {% if object_list.has_previous %}
+      <li>
+        <a href="?page={{ object_list.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span> Previous
+        </a>
+      </li>
+      {% endif %}
+
+      {% for page_number in paginator_list %}
+          {% if page_number == object_list.number %}
+           <li class="active">
+            {% else %}
+           <li>
+            {% endif %}
+           <a href="?page={{ page_number }}">{{ page_number }}</a></li>
+      {% endfor %}
+
+      {% if object_list.has_next %}
+      <li>
+        <a href="?page={{ object_list.next_page_number }}" aria-label="Next">
+          Next <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+{% if is_paginated %}
+  <nav>
+    <ul class="pagination">
+     {% if page_obj.has_previous %}
+      <li>
+        <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span> Previous
+        </a>
+      </li>
+      {% endif %}
+
+      {% for page_number in paginator.page_range %}
+          {% if page_number == page_obj.number %}
+           <li class="active">
+            {% else %}
+           <li>
+            {% endif %}
+           <a href="?page={{ page_number }}">{{ page_number }}</a></li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li>
+        <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+          Next <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
 {% endblock content %}
