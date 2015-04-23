@@ -34,6 +34,7 @@ class StudentCreateView(CreateView):
         context_data = super(StudentCreateView, self).get_context_data(**kwargs)
         context_data['page_title'] = 'Создать студента'
         context_data['h3_title'] = 'Создание нового студента'
+        context_data['cancel_url'] = reverse_lazy('students:index')
         return context_data
 
     def form_valid(self, form):
@@ -51,6 +52,7 @@ class StudentUpdateView(UpdateView):
         context_data = super(StudentUpdateView, self).get_context_data(**kwargs)
         context_data['page_title'] = 'Редактирование студента'
         context_data['h3_title'] = 'Редактирование данных студента'
+        context_data['cancel_url'] = reverse_lazy('students:index')
         return context_data
 
     def form_valid(self, form):
@@ -62,12 +64,6 @@ class StudentUpdateView(UpdateView):
 class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('students:index')
-
-    def get_context_data(self, **kwargs):
-        context_data = super(StudentDeleteView, self).get_context_data(**kwargs)
-        context_data['page_title'] = 'Удаление студента'
-        context_data['h3_title'] = 'Удаление данных студента'
-        return context_data
 
     def delete(self, request, *args, **kwargs):
         response = super(StudentDeleteView, self).delete(request, *args, **kwargs)
