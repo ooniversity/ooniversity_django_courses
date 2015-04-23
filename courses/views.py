@@ -94,7 +94,7 @@ def lesson_add(request, course_id):
             messages.success(request, u"Занятие %s было создано!" % lesson.subject)
             return redirect('courses:lessons', course_id)
     else:
-        form = form = LessonForm(initial={'course': course})
+        form = LessonForm(initial={'course': course})
     return render(request, 'ladd_edit.html', {'form': form})
 
 def lesson_edit(request, pk):

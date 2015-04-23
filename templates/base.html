@@ -29,7 +29,12 @@
 		<ul class="nav navbar-nav">
 			<li class="{% block nav_active_index %}{% endblock %}"><a href="{% url 'main' %}">Описание</a></li>
 			<li class="{% block nav_active_contact %}{% endblock %}"><a href="{% url 'contact' %}">Контакты</a></li>
-			<li class="{% block nav_active_students %}{% endblock %}"><a href="{% url 'students:students_list' %}">Студенты</a></li>
+			<li class="{% block nav_active_students %}{% endblock %}">
+                {% if planmodel %}
+                    <a href="{% url 'students:students_list' %}?course_id={{ planmodel.id }}">Студенты</a>
+                {% else %}
+                    <a href="{% url 'students:students_list' %}">Студенты</a></li>
+            {% endif %}
             {% block nav_st_detail %}<li class="active"><a href="#"><b>Детальная информация о студентах</b></a></li>{% endblock %}
 		</ul>
     </div>
