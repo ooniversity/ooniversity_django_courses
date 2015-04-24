@@ -16,6 +16,7 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 
 class StudentListView(ListView):
     model = Student
+    paginate_by = 2
     #context_object_name = 'students'  # improvement
 
     def get_queryset(self):
