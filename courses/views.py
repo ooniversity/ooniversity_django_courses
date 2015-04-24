@@ -2,6 +2,10 @@
 from django.shortcuts import render, redirect
 from django.forms import ModelForm
 from django.contrib import messages
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 from courses.models import Courses, Lesson
 
 
@@ -21,49 +25,45 @@ def index(request):
     return render(request, 'index.html', c)
 
 
-def course_view(request, pk):
-    course = Courses.objects.get(pk=pk)
-    lessons = course.lesson_set.all()
-    c = {"course": course, "lessons": lessons}
-    return render(request, 'course.html', c)
+class CoursesDetailView(DetailView):
+    model = Courses
+    template_name = 'course.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CoursesDetailView, self).get_context_data(*args, **kwargs)
+        context["course"] = self.object
+        context["lessons"] = self.object.lesson_set.all()
+        return context
 
 
-def course_add(request):
-    if request.method == 'POST':
-        form = CoursesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            course = form.cleaned_data['name']
-            messages.success(request, (u'Новый курс %s был добавлен' % course))
-            return redirect('home')
-    else:
-        form = CoursesForm()
-    context = {'form': form}
-    return render(request, 'course_add.html', context)
+class CoursesCreateView(SuccessMessageMixin, CreateView):
+    model = Courses
+    template_name = 'course_add.html'
+    success_url = reverse_lazy('home')
+    success_message = u"Новый курс %(name)s был добавлен"
 
 
-def course_edit(request, pk):
-    course = Courses.objects.get(id=int(pk))
-    form = CoursesForm(instance=course)
-    if request.method == 'POST':
-        form = CoursesForm(request.POST, instance=course)
-        if form.is_valid():
-            form.save()
-            messages.success(request, (u'Информация о курсе %s обновлена' % course.name))
-            return redirect('home')
-    context = {'form': form,
-               'course': course}
-    return render(request, 'course_edit.html', context)
+class CoursesUpdateView(SuccessMessageMixin, UpdateView):
+    model = Courses
+    template_name = 'course_edit.html'
+    success_url = reverse_lazy('home')
+    success_message = u"Информация о курсе %(name)s обновлена"
 
 
-def course_delete(request, pk):
-    course = Courses.objects.get(id=int(pk))
-    if request.method == 'POST':
-        course.delete()
-        messages.success(request, (u'Курс %s был удален' % course.name))
-        return redirect('home')
-    context = {'course': course}
-    return render(request, 'course_delete.html', context)
+class CoursesDeleteView(DeleteView):
+    model = Courses
+    template_name = 'course_delete.html'
+    success_url = reverse_lazy('home')
+
+    def delete(self, request, *args, **kwargs):
+        response = super(CoursesDeleteView, self).delete(self, request, *args, **kwargs)
+        messages.success(request, u"Курс %s был удалён" % self.object.name)
+        return response
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CoursesDeleteView, self).get_context_data(*args, **kwargs)
+        context["course"] = self.object
+        return context
 
 
 def add_lesson(request, pk):

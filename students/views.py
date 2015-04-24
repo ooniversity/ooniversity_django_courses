@@ -45,7 +45,6 @@ class StudentsUpdateView(SuccessMessageMixin, UpdateView):
 class StudentsDeleteView(DeleteView):
     model = Students
     success_url = reverse_lazy('student_list')
-    success_message = u"Студент был успешно удален"
 
     def delete(self, request, *args, **kwargs):
         response = super(StudentsDeleteView, self).delete(self, request, *args, **kwargs)
