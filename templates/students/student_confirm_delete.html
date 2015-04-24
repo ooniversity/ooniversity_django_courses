@@ -6,6 +6,9 @@
 {% block title %}Deletion Student{% endblock title %}
 
 
+{% block nav_header %}Ooniversity > Удаление студента - {{ student.full_name|title }}{% endblock %}
+
+
 {% block nav_class_student %}active{% endblock %}
 
 
@@ -13,9 +16,9 @@
 
     <div>
       <br>
-      <h1><b> А Вы уверены, что хотите удалить студента - {{ student_app.full_name|upper }} ? </b></h1>
+      <h1><b> А Вы уверены, что хотите удалить студента - {{ student.full_name|upper }} ? </b></h1>
       <br>
-      <h2> Студент - {{ student_app.full_name|upper }} - будет удален !!! </h2>
+      <h2> Студент - {{ student.full_name|upper }} - будет удален !!! </h2>
       <br>
       <br>
 

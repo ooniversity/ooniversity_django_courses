@@ -7,7 +7,7 @@ from students.models import Student
 
 # Create form for model Student
 
-class StudentForm(forms.ModelForm):
+class StudentModelForm(forms.ModelForm):
     class Meta:
         model = Student
 
