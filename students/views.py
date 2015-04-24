@@ -18,7 +18,7 @@ class StudentForm(forms.ModelForm):
 
 class StudentListView(ListView):
 	model = Student
-	# context_object_name = "students"
+	paginate_by = 2
 	
 	def get_queryset(self):
 		course_id = self.request.GET.get('course_id' or None)
@@ -28,6 +28,13 @@ class StudentListView(ListView):
 		else:
 			student_list = Student.objects.all()
 		return student_list
+
+	def get_context_data(self, **kwargs):
+		context = super(StudentListView, self).get_context_data(**kwargs)
+		course_id = self.request.GET.get('course_id' or None)
+		if course_id:
+			context['course_id'] = course_id
+		return context	
 
 
 class StudentDetailView(DetailView):

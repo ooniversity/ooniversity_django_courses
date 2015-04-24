@@ -66,4 +66,25 @@
     </tr>
   {% endfor %} 
 </tbody>
+<nav>
+  <ul class="pagination">
+    <li>
+      {% if page_obj.has_previous %}
+      <a href="?course_id={{ course_id }}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+      {% endif %}
+    </li>
+    {% for page in page_obj.paginator.page_range %}
+      <li><a href="?course_id={{ course_id }}&page={{ page }}">{{ page }}</a></li>
+    {% endfor %}
+    <li>
+      {% if page_obj.has_next %}
+      <a href="?course_id={{ course_id }}&page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
 {% endblock %}
