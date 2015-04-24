@@ -41,7 +41,7 @@
         <tbody>
           {% for student in student_list %}
           <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
             <td><a href="{% url 'students:student_detail' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
             <td>{{ student.address|truncatechars:50 }}</td>
             <td>{{ student.skype }}</td>
