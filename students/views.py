@@ -9,12 +9,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from students.models import Students
 
 
-class MessageMixin(object):
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super(MessageMixin, self).delete(request, *args, **kwargs)
-
-
 def contact(request):
     return render(request, 'contact.html')
 
@@ -48,7 +42,13 @@ class StudentsUpdateView(SuccessMessageMixin, UpdateView):
     success_message = u"Информация о студенте %(first_name)s %(surname)s была успешно обновлена"
 
 
-class StudentsDeleteView(MessageMixin, DeleteView):
+class StudentsDeleteView(DeleteView):
     model = Students
     success_url = reverse_lazy('student_list')
     success_message = u"Студент был успешно удален"
+
+    def delete(self, request, *args, **kwargs):
+        response = super(StudentsDeleteView, self).delete(self, request, *args, **kwargs)
+        student = self.object.first_name + ' ' + self.object.surname
+        messages.success(request, u"Студент %s был удалён" % student)
+        return response
