@@ -22,6 +22,16 @@ class StudentsListView(ListView):
             students = Student.objects.all()
         return students
 
+    def get_context_data(self, **kwargs):
+        context = super(StudentsListView, self).get_context_data(**kwargs)
+        course_id = self.request.GET.get('course_id')
+        if course_id:
+            pagination_prefix = u'?course_id={0}&'.format(course_id)
+        else:
+            pagination_prefix = u'?'
+        context['pagination_prefix'] = pagination_prefix
+        return context
+
 
 class StudentDetailView(DetailView):
     model = Student
