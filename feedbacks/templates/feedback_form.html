@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block page_title %}List students {{ block.super }}{% endblock %}
+
+
+{% block nav_feedback %}active{% endblock %}
+
+
+{% block content %} 
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
+<h2 class="sub-header"></h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      {% block page-header %}{{ page_title }}{% endblock %}
+
+<form method="post" > 
+  {% csrf_token %}    
+  <p>{{ form.as_p }}</p>
+  <input type="submit" value={{ button_value }}> 
+</form> 
+
+    </table>
+  </div>    
+{% endblock %}
