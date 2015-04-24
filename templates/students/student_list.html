@@ -103,7 +103,7 @@
     <ul class="pagination">
      {% if page_obj.has_previous %}
       <li>
-        <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <a href="{{ page_path }}page={{ page_obj.previous_page_number }}" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span> Previous
         </a>
       </li>
@@ -115,12 +115,12 @@
             {% else %}
            <li>
             {% endif %}
-           <a href="?page={{ page_number }}">{{ page_number }}</a></li>
+           <a href="{{ page_path }}page={{ page_number }}">{{ page_number }}</a></li>
       {% endfor %}
 
       {% if page_obj.has_next %}
       <li>
-        <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <a href="{{ page_path }}page={{ page_obj.next_page_number }}" aria-label="Next">
           Next <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

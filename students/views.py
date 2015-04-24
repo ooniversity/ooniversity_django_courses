@@ -19,8 +19,17 @@ class StudentListView(ListView):
         course_id = self.request.GET.get('course_id')
         if course_id:
             queryset = queryset.filter(course__id=int(course_id))
-        print queryset
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context_data = super(StudentListView, self).get_context_data(**kwargs)
+        page_path = '?'
+        course_id = self.request.GET.get('course_id')
+        if course_id:
+            page_path = '?course_id={0}&'.format(course_id)
+        context_data['page_path'] = page_path
+        return context_data
+
 
 
 class StudentDetailView(DetailView):
