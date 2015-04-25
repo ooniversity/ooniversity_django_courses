@@ -98,4 +98,4 @@ EMAIL_PORT = 1025
 #EMAIL_HOST_USER = 'ivan.simeyko'
 #EMAIL_HOST_PASSWORD = 'bla'
 
-ADMINS = (('Ivan', 'iv.simeyko@gmail.com'), )
+ADMINS = (('Ivan', 'ivan@gmail.com'), ('Vasya', 'vasya@gmail.com'),)
