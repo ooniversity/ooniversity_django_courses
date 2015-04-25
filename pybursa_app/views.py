@@ -97,9 +97,6 @@ def index(request):
     })
     return HttpResponse(template.render(context))
 
-
-
-
 def contacts(request):
 #    return HttpResponse("You're looking at poll %s." % poll_id)
     return render_to_response('contacts.html')
