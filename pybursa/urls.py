@@ -21,10 +21,4 @@ urlpatterns = patterns('',
                        url(r'^quadratic/',
                            include('quadratic.urls', namespace='quadratic')),
 
-                       url(r'^add/', views.course_adding, name="add_course"),
-                       url(r'^edit_course/(?P<pk>\d+)/$', views.edit_course,
-                           name="edit_course"),
-                       url(r'^delete_course/(?P<pk>\d+)/$', views.delete_course,
-                           name="delete_course"),
-
                        )

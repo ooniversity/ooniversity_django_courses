@@ -27,7 +27,7 @@
           </p>
       {% endif %}
 
-      <a href="{% url 'add_course' %}">
+      <a href="{% url 'courses:add_course' %}">
         <button class="btn btn-primary" type="button">
           <span class="glyphicon glyphicon-plus"> </span> Добавить курс
         </button>
@@ -56,14 +56,14 @@
           </td>
           <td>
             <p>
-            <a href="{% url 'edit_course' course.id %}">
+            <a href="{% url 'courses:edit_course' course.id %}">
               <button class="btn btn-primary" type="button">
                 <span class="glyphicon glyphicon-pencil"> </span> Изменить
               </button>
             </a>
             </p>
             <p>
-            <a href="{% url 'delete_course' course.id %}">
+            <a href="{% url 'courses:delete_course' course.id %}">
               <button class="btn btn-primary" type="button">
                 <span class="glyphicon glyphicon-erase"> </span> Удалить
               </button>
