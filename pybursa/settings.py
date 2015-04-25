@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedbacks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,3 +97,15 @@ SERVE_MEDIA = DEBUG
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 1025
+
+#EMAIL_HOST_USER = 'pyro'
+
+#EMAIL_HOST_PASSWORD = 'qwe123'
+
+ADMINS = (('Yaroslav', 'pyromanser@exemple.com'), )
+
+#DEFAULT_FROM_EMAIL = 'mypyburse@exemple.com'

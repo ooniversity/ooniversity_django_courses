@@ -163,9 +163,7 @@ class CourseDeleteView(DeleteView):
         return context
 
     def delete(self, request, *args, **kwargs):
-        lessons = Lesson.objects.filter(course=Course.objects.get(pk=self.kwargs['pk']))
-        for lesson in lessons:
-            lesson.delete()
+        Lesson.objects.filter(course_id=self.kwargs['pk']).delete()
         response = super(CourseDeleteView, self).delete(request, *args, **kwargs)
         messages.warning(request, u'Object {} deleted!'.format(self.object.name))
         return response
