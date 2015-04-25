@@ -79,7 +79,7 @@ class LessonModification(forms.ModelForm):
         model = Lesson
 
 
-def lesson_add(request, course_id):
+def lesson_add(request, pk):
     lesson = Lesson()
     form_lesson_add = LessonModification()
     if request.method == "POST":
@@ -87,9 +87,9 @@ def lesson_add(request, course_id):
         if form_lesson_add.is_valid():                
             lesson = form_lesson_add.save()
             messages.success(request, 'Info on a new lesson successfully added!');
-            return redirect("courses:course", course_id = course_id)
+            return redirect("courses:course", pk=pk)
     else:
-        form_lesson_add = LessonModification(initial={'course': course_id})
+        form_lesson_add = LessonModification(initial={'course': pk})
     return render(request, 'courses/lesson_add.html', {"form_lesson_add": form_lesson_add})
 
 
