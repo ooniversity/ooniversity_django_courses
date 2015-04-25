@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block title %}Отправить сообщение администрации сайта Pybursa{% endblock title %}
+
+
+{% block nav %}{% include "nav.html" with active_feedback='active' %}{% endblock nav %}
+
+
+{% block jumbotron %}{% endblock jumbotron %}
+
+{% block table %}
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+        </div>
+    {% endif %}
+<h2>Связаться с администрацией</h2><br />
+<div class="table-responsive">
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Отправить сообщение">
+</form>
+
+</div>
+{% endblock table %}
