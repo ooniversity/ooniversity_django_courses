@@ -79,7 +79,7 @@
           Добавить занятие
         </a>
 
-  {% if lesson_list %}     
+  {% if course.lesson_set > 0 %}     
       <table class="table table-hover">
 
       <thead>
@@ -91,7 +91,7 @@
       </thead>
       <tbody>
 
-    {% for lesson in lesson_list %}
+    {% for lesson in course.lesson_set.all %}
         <tr >
           <td>{{ lesson.release_num }}</a></td>
           <td>{{ lesson.title }}</a></td>
