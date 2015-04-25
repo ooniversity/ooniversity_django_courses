@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedback',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,3 +91,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), '/static/',)
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), 'quadratic/templates']
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 1025
+#EMAIL_HOST_USER = 'admin'
+#EMAIL_HOST_PASSWORD = 'admin'
+ADMINS = (('admin', 'sasha_nurekil@mail.ru'), )

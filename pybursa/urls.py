@@ -21,4 +21,6 @@ urlpatterns = patterns('',
                        url(r'^quadratic/',
                            include('quadratic.urls', namespace='quadratic')),
 
+                       url(r'^feedback/',
+                           include('feedback.urls', namespace="feedback")),
                        )

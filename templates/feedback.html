@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+
+{% block title %} PythonClasses | Отправка отзыва |{% endblock %}
+
+
+{% block nav_class_feedback %} active {% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+
+    {% if messages %}
+        <p class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        </p>
+    {% endif %}
+    
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+      <div class="panel-heading"><h2>Заполнение отзыва</h2></div>
+        <div class="panel-body">
+          <div class="row" style="margin-top:30px; margin-left:30px">
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }} 
+              <input type="submit" value="Отправить" class="btn btn-success">
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>  
+</div>
+
+  
+{% endblock %}
