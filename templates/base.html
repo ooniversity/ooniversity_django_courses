@@ -46,6 +46,8 @@
           <li role="presentation" class="{% block nav_class_students %}{% endblock %}">
               <a href="{% url 'students:index' %}{% block nav_students_url %}{% endblock %}">
                 Студенты</a></li>
+          <li role="presentation" class="{% block nav_class_feedback %}{% endblock %}">
+              <a href="{% url 'feedback' %}">Обратная связь</a></li>
        </ul>
       </nav>
       <h3 class="text-muted">ITBursa</h3>
