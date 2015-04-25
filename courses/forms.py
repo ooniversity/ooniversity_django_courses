@@ -7,9 +7,12 @@ from courses.models import Course, Lesson
 
 # Create form for model Course
 
-class CourseForm(forms.ModelForm):
+class CourseModelForm(forms.ModelForm):
     class Meta:
         model = Course
+
+        fields = '__all__'
+
         widgets = {'description': forms.Textarea}
         help_texts = {'coach': u'Выберите учителя из списка',
                      'assistant': u'Выберите ассистента из списка'}
@@ -18,7 +21,8 @@ class CourseForm(forms.ModelForm):
 
 # Create form for model Lesson
 
-class LessonForm(forms.ModelForm):
+class LessonModelForm(forms.ModelForm):
     class Meta:
         model = Lesson
 
+        fields = '__all__'
