@@ -52,5 +52,12 @@
         <tr>{% endfor %}
     </tbody>
 </table>
+
+{% if request.GET.course_id %}
+    {% include "paginator.html" with get='course_id=' course_id=request.GET.course_id separator='&'  %}
+{% else %}
+    {% include "paginator.html" %}
+{% endif %}
+
 </div>
 {% endblock table %}
