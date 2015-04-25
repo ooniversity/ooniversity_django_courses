@@ -19,17 +19,12 @@
     {% endfor %}
   {% endif %}
 
-  {{ request.META.HTTP_REFERER }}
-
   {% if form %}
    <h3>Ваш вопрос:</h3>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="btn btn-primary" value="Послать" />
-    <a href="{{ request.META.HTTP_REFERER }}">
-      <input type="button" class="btn btn-primary" name="Cancel" value="Отмена" />
-    </a>
   </form>
   {% endif %}
   <br />
