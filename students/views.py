@@ -28,14 +28,14 @@ class StudentListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(StudentListView, self).get_context_data(**kwargs)
-        course_id = self.request.GET.get('course_id', None)
+        course_id = self.request.GET.get('pk', None)
         if course_id:
             context['course_name'] = Course.objects.get(id=course_id).name
         return context
 
     def get_queryset(self):
         qs = super(StudentListView, self).get_queryset()
-        course_id = self.request.GET.get('course_id', None)
+        course_id = self.request.GET.get('pk', None)
         if course_id:
             qs = qs.filter(courses__id = course_id)
         return qs
@@ -62,7 +62,7 @@ class StudentUpdateView(SuccessMessageMixin, FormContextMixin, UpdateView):
         context = super(StudentUpdateView, self).get_context_data(**kwargs)
         context.update({'form_title': self.form_title, 'button_name': self.button_name})
         return context
-#http://stackoverflow.com/questions/18232851/django-passing-variables-to-templates-from-class-based-views
+        #http://stackoverflow.com/questions/18232851/django-passing-variables-to-templates-from-class-based-views
 
 
 class StudentDeleteView(DeleteView):
