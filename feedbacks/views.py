@@ -13,7 +13,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import mail_admins
 
 
-
 #  creating forms
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -31,18 +30,8 @@ class ContactFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ContactFormView, self).get_context_data(**kwargs)
-        context['page_title'] = u'Связаться с администратором сайта'
+        context['page_title'] = u'Написать администратору сайта'
         return context
-
-    '''
-    def form_valid(self, form):
-        name = self.request.POST.get('name', '')
-        subject = self.request.POST.get('subject', '')
-        message = self.request.POST.get('body', '')
-        from_email = self.request.POST.get('email', '')
-        send_mail(subject, message, from_email, ['admin@gmail.com'])
-        return super(ContactFormView, self).form_valid(form)
-    '''
 
     def form_valid(self, form):
         #form = super(ContactFormView, self).form_valid(form)
