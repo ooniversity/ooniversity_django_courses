@@ -2,15 +2,16 @@
 # -*- coding: UTF-8 -*-
 
 from django.shortcuts import render
-from courses.models import Course, Lesson
+from courses.models import Course
 from students.models import Student
 from coaches.models import Coach
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-def coach_detail(request, co_id):
+def coach_detail(request, pk):
     try:
-        coaches = Coach.objects.get(id=co_id)
+        #coaches = Coach.objects.get(id=pk)
+        coaches = Coach.objects.get(pk=pk)
         message = ""
         coaches_info = {
             "fullname": coaches.user.get_full_name(),
@@ -24,6 +25,6 @@ def coach_detail(request, co_id):
             }    
         return render(request, 'coaches/coach.html', {"coaches": coaches, "coaches_info": coaches_info})
     except ObjectDoesNotExist:
-        message = "Sorry, no coach with id = %s exists yet."%(co_id)
+        message = "Sorry, no coach with id = %s exists yet."%(pk)
         return render(request, 'coaches/coach.html', {"message": message})
 

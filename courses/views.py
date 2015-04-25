@@ -8,72 +8,69 @@ from coaches.models import Coach
 from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from django.contrib import messages
-
-def course_detail(request, course_id):
-    try:
-        course_current = Course.objects.get(id=course_id)
-        course_name = course_current.name
-        course_description = course_current.description
-        course_id = course_id #to show relevant list of students (nav student href in course_detail.html template)
-        lessons = Lesson.objects.filter(course=course_current)
-
-        trainer_info = {
-            "id": course_current.trainer.id,       
-            "fullname": course_current.trainer.user.get_full_name(),
-            "description": course_current.trainer.description,
-        }
-
-        assistant_info = {
-            "id": course_current.assistant.id,       
-            "fullname": course_current.assistant.user.get_full_name(),
-            "description": course_current.assistant.description,
-        }
- 
-        message = ""
-        return render(request, 'courses/course_detail.html', {"course_current":course_current,"lessons": lessons, "message": message, "course_name": course_name, "course_description": course_description, 'trainer_info': trainer_info, 'assistant_info': assistant_info, 'course_id': course_id})
-    except ObjectDoesNotExist:
-        message = "Sorry, no course with id = %s exists yet."%(course_id)
-        return render(request, 'course_detail.html', {"message": message})
-#https://docs.djangoproject.com/en/1.8/ref/models/querysets/#django.db.models.query.QuerySet.get
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 
-class CoursetModification(forms.ModelForm):
-    class Meta:
-        model = Course
+class FormContextMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(FormContextMixin, self).get_context_data(**kwargs)
+        context['form_title'] = u'Создание нового курса'
+        context['button_name'] = u'Создать'
+        return context
 
 
-def course_add(request):
-    course = Course()
-    if request.method == "POST":
-        form_add = CoursetModification(request.POST)
-        if form_add.is_valid():                
-            course = form_add.save()
-            messages.success(request, 'Info on a new course successfully added!');
-            return redirect("/")
-    else:
-        form_add = CoursetModification()
-    return render(request, 'courses/course_add.html', {"form_add": form_add})
+class CourseDetailView(DetailView):
+    model = Course
+    context_object_name = "course"
+    template_name = "courses/course_detail.html"
 
-def course_edit(request, course_id):
-    course = Course.objects.get(id=course_id)
-    if request.method == "POST":
-        form_edit = CoursetModification(request.POST, instance=course)
-        if form_edit.is_valid():                
-            course = form_edit.save()
-            messages.success(request, 'Info on a course has been modified!');
-            #return redirect("/")
-    else:
-        form_edit = CoursetModification(instance=course)
-    return render(request, 'courses/course_edit.html', {"form_edit": form_edit})
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.filter(course=self.object)
+        context['course_current'] = self.object
+        #to show relevant list of students:
+        context['course_name'] = self.object.name
+        context['course_id'] = self.object.id
+        return context
 
 
-def course_delete(request, course_id):
-    course = Course.objects.get(id=course_id)
-    if request.method == "POST":
-        course.delete()
-        messages.success(request, "Course %s has been deleted."%(course.name))
-        return redirect("/")
-    return render(request, 'courses/course_delete.html', {"course": course})
+class CourseCreateView(SuccessMessageMixin, FormContextMixin, CreateView):
+    model = Course
+    template_name = "courses/course_modify.html"
+    success_url = reverse_lazy("index")
+    success_message = 'Info on a new course successfully added!' 
+
+
+class CourseUpdateView(SuccessMessageMixin, FormContextMixin, UpdateView):
+    model = Course
+    template_name = "courses/course_modify.html"
+    success_message = 'Info successfully changed!'
+    form_title = u'Редактирование данных о курсе'
+    button_name = u'Сохранить'
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseUpdateView, self).get_context_data(**kwargs)
+        context.update(
+            {'form_title': self.form_title, 
+            'button_name': self.button_name}
+            )
+        return context
+
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = "courses/course_delete.html"
+    success_url = reverse_lazy("index")
+
+    def delete(self, request, *args, **kwargs):        
+        response = super(CourseDeleteView, self).delete(self, request, *args, **kwargs)
+        name = self.object.name
+        messages.success(self.request, "Info on %s has been deleted."%(name))
+        return response
 
 
 

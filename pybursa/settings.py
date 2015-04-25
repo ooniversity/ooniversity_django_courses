@@ -96,3 +96,8 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 #'django.template.loaders.app_directories.Loader')
 
 #AUTH_PROFILE_MODULE = 'coaches.Coach'
+
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
+#EMAIL_HOST_USER = "OPersian"
+#EMAIL_HOST_PASSWORD = "password"
