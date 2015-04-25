@@ -2,74 +2,70 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from students.models import Student
-from StudentForm import StudentForm
+#from StudentForm import StudentForm
 
 
-def index(request):
-    pk = request.GET.get('course_id')
-    if pk:
-        linked_students = Student.objects.filter(courses=int(pk))
-    else:
-        linked_students = Student.objects.all()
+class ItemListView(ListView):
+    model = Student
 
-    return render(request, 'students/index.html', {'student_list': linked_students})
+    def get_queryset(self):
+        pk = self.request.GET.get('course_id', None)
+        if pk:
+            linked_students = Student.objects.filter(courses=int(pk))
+        else:
+            linked_students = Student.objects.all()
 
-
-def student_detail(request, pk):
-    student = Student.objects.get(id=pk)
-
-    return render(request, 'students/detail.html', {'student': student})
+        return linked_students
 
 
-def student_add(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            new_student = form.save()
-            info_message = 'Студент ' + str(new_student.full_name()) + ' успешно добавлен'
-            messages.success(request, info_message)
-            return redirect('students:index')
-    else:
-        form = StudentForm()
-    action_name = "   Создать   "
-
-    return render(request, 'students/add.html', {
-        'form': form,
-        'action_name': action_name,})
+class ItemDetailView(DetailView):
+    model = Student
 
 
-def student_edit(request, pk):
-    student = Student.objects.get(id=pk)
-    if request.method == 'POST':
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            new_student = form.save()
-            info_message = 'Данные изменены.'
-            messages.success(request, info_message)
-            return redirect('students:edit', pk=pk)
-    else:
-        form = StudentForm(instance=student)
-    action_name = "   Изменить   "
+class ItemCreateView(SuccessMessageMixin, CreateView):
+    model = Student
+    success_url = reverse_lazy('students:index')
+    success_message = u"Студент %(name)s %(surname)s успешно добавлен"
 
-    return render(request, 'students/edit.html', {
-        'form': form,
-        'action_name': action_name,})
+    def get_context_data(self, **kwargs):
+        context = super(ItemCreateView, self).get_context_data(**kwargs)
+        context['action_name'] = "Создать"
+        context['action_text'] = "Создание нового студента"
+        return context
 
 
-def student_remove(request, pk):
-    student = Student.objects.get(id=pk)
-    if request.method == 'POST':
-        info_message = 'Студент ' + str(student.full_name()) + ' был удален.'
-        student.delete()
-        messages.success(request, info_message)
-        return redirect('students:index')
-    form = None
-    action_name = "   Удалить   "
+class ItemUpdateView(SuccessMessageMixin, UpdateView):
+    model = Student
+    success_message = u"Данные изменены."
+    
+    def get_context_data(self, **kwargs):
+        context = super(ItemUpdateView, self).get_context_data(**kwargs)
+        context['action_name'] = "Изменить"
+        context['action_text'] = "Редактирование данных студента"
+        return context
 
-    return render(request, 'students/remove.html', {
-        'form': form,
-        'action_name': action_name,
-        'student': student.full_name,})
+
+class ItemDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:index')
+    
+    def get_context_data(self, **kwargs):
+        context = super(ItemDeleteView, self).get_context_data(**kwargs)
+        context['action_name'] = "Удалить"
+        return context
+
+    def delete(self, request, *args, **kwargs):
+        success_message = u"Студент " + self.get_object().full_name() + u" был удален."
+        messages.success(self.request, success_message)
+        return super(ItemDeleteView, self).delete(request, *args, **kwargs)
 

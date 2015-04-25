@@ -13,18 +13,25 @@
 
 {% block main_content %}
 
+
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
         <h2>
 
         </h2>
 
         <div>
           <h4>
-            Создание нового студента
+            Студент {{ student }} будет удален
           </h4>
         </div>
 
 
-{% include "students/student_form.html" %}
+{% include "students/item_form.html" %}
 
 
 {% endblock main_content %}
