@@ -6,6 +6,12 @@
 
 {% block content %}
   <br>
+    {% if text %}
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <p> {{ text }} </p>
+      </div>
+    {% endif %}
   <div class="container">
   <h3>Вам предлагаются следующие курсы:</h3>
   {% if course_list %}
@@ -19,6 +25,10 @@
 
       {% endfor %}
     </ul>
+    <div class="container text-right">
+       <p><a href="/course_add/">
+       <button class="btn btn-small btn-primary" type="button">Добавить курс</button></a></p>
+    </div>
   {% else %}
     <p>Ничего нет по Вашему запросу.</p>
   {% endif %}

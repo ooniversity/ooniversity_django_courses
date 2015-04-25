@@ -2,11 +2,14 @@
 
 
 from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse_lazy, reverse
 from courses.models import Course, Lesson
 from students.models import Student
 from coaches.models import Coach
 from django.template import RequestContext, loader
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django import forms
 from django.forms import ModelForm
@@ -15,9 +18,35 @@ class LessonForm(ModelForm):
     class Meta:
         model = Lesson
         fields = 'lesson_number', 'lesson_course', 'lesson_theme', 'lesson_description'
-#        exclude = ['lesson_course', 'lesson_number']
 
+class CourseEdit(UpdateView):
+    model = Course
+    template_name = 'course_add.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseEdit, self).get_context_data(**kwargs)
+        self.course = Course.objects.get(pk=self.kwargs['pk'])
+
+        context['shead'] = 'Измените данные курса'
+        context['prompt'] = 'Сохранить изменения'
+        return context
+    def get_success_url(self):
+        return reverse('courses:course_mod_redirect', kwargs={'course_id': self.object.pk})
+
+class CourseDelete(DeleteView):
+    model = Course
+    template_name = 'course_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDelete, self).get_context_data(**kwargs)
+        self.course = Course.objects.get(pk=self.kwargs['pk'])
+
+        context['shead'] = 'Вы действительно хотите удалить данные курса '
+        context['prompt'] = 'Удалить'
+
+        return context
+    def get_success_url(self):
+        return reverse('pybursa_app:index')
 
 
 
@@ -129,3 +158,20 @@ def lesson_mod_redirect(request, course_id, lesson_id):
     return HttpResponse(template.render(context))
 
 
+def course_mod_redirect(request, course_id=None):
+
+    course_list = Course.objects.all()
+    name = ''
+
+    if course_id:
+        s = course_list.get(pk=course_id)
+        name= s.course_name
+
+    text = name + u' ' +u"- данные курса изменены в базе данных"
+    template = loader.get_template('index.html')
+    context = RequestContext(request, {
+        'course_list': course_list,
+        'text': text,
+    })
+
+    return HttpResponse(template.render(context))
