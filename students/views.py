@@ -40,6 +40,7 @@ class StudentAddForm(ModelForm):
 
 class StudentsView(ListView):
     model = Student
+    paginate_by = 2
 
     def get_queryset(self):
         query = Course.objects.filter(pk=self.request.GET.get('course_id'))
@@ -47,6 +48,11 @@ class StudentsView(ListView):
             return Student.objects.filter(course=query)
         else:
             return Student.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentsView, self).get_context_data(**kwargs)
+        context['course_id'] = self.request.GET.get('course_id')
+        return context
 
 
 class StudentView(DetailView):

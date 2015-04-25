@@ -5,7 +5,7 @@
 {% block title %}{{ course_info.name }}{% endblock %}
 
 {% block nav_additional_botton %}
-            <li><a href="{% url 'students' %}?course_info_id={{ course_info.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
+            <li><a href="{% url 'students' %}?course_id={{ course_info.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
 {% endblock %}
 
 

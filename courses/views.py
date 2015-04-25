@@ -73,6 +73,7 @@ class CourseDetialView(DetailView):
     template_name = 'courses/detail.html'
     context_object_name = 'course_info'
 
+
 class LessonCreateView(CreateView):
     model = Lesson
     form_class = LessonAddForm
