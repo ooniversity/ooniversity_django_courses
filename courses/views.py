@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from courses.models import Course
 from courses.models import Lesson
 from coaches.models import Coach
@@ -11,7 +11,7 @@ def course (request):
 
 
 def lesson_pd (request):
-    lessons = Lesson.objects.filter(course__id=1)
+    lessons = Lesson.objects.filter(course_id=4)
     coaches = Coach.objects.all()
     return render(request, 'pd.html', 
                   {'lessons': lessons, 'coaches': coaches})
@@ -19,14 +19,14 @@ def lesson_pd (request):
 
 
 def lesson_js (request):
-    lessons = Lesson.objects.filter(course__id=2)
+    lessons = Lesson.objects.filter(course__id=5)
     coaches = Coach.objects.all()
     return render(request, 'js.html', 
                   {'lessons':lessons, 'coaches': coaches})
 
 
 def lesson_rr (request):
-    lessons = Lesson.objects.filter(course__id=3)
+    lessons = Lesson.objects.filter(course__id=6)
     coaches = Coach.objects.all()
     return render(request, 'rr.html', 
                   {'lessons':lessons, 'coaches': coaches})
@@ -38,7 +38,14 @@ class LessonForm(forms.ModelForm):
 
 
 def add_lesson(request):
-    model_form = LessonForm()
+    if request.method == "POST":
+        model_form = LessonForm(request.POST)
+        if model_form.is_valid():
+            model_form.save()
+            return redirect('home')
+    else:
+        model_form = LessonForm()
+    
     return render(request, 'add_lesson.html', 
                     {'model_form':model_form}
       )

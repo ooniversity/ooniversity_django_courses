@@ -11,8 +11,8 @@
 
 {% block content %}
 <h2>Добавить занятие</h2>
-<form method="post", action={% url "1" %}>
-<!--{% csrf_token %}-->
+<form method="post", action={% url "add_lesson" %}>
+{% csrf_token %}
 <p>{{ model_form.as_p }}</p>
 <input type='submit' value='Добавить'>
 </form>
