@@ -17,29 +17,14 @@ def contact(request):
 class StudentsListView(ListView):
     model = Students
     template_name = 'students/students_list.html'
+    paginate_by = 2
 
     def get_queryset(self):
         course_id = self.request.GET.get('course_id', None)
         if course_id:
-            all_students = Students.objects.filter(course=course_id)
-            paginator = Paginator(all_students, 2)
-            page = self.request.GET.get('page', None)
-            try:
-                students = paginator.page(page)
-            except PageNotAnInteger:
-                students = paginator.page(1)
-            except EmptyPage:
-                students = paginator.page(paginator.num_pages)
+            students = Students.objects.filter(course=course_id)
         else:
-            all_students = Students.objects.all()
-            paginator = Paginator(all_students, 2)
-            page = self.request.GET.get('page', None)
-            try:
-                students = paginator.page(page)
-            except PageNotAnInteger:
-                students = paginator.page(1)
-            except EmptyPage:
-                students = paginator.page(paginator.num_pages)
+            students = Students.objects.all()
         return students
 
 

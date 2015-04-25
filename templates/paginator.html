@@ -1,21 +1,21 @@
 <nav>
   <ul class="pagination">
 
-        {% if object_list.has_previous %}<li>
-            <a href="?{{ get }}{{ course_id }}{{ separator }}page={{ object_list.previous_page_number }}" aria-label="Previous">
+        {% if page_obj.has_previous %}<li>
+            <a href="?{{ get }}{{ course_id }}{{ separator }}page={{ page_obj.previous_page_number }}" aria-label="Previous">
             <span aria-hidden="true">&laquo; назад</span></a>
             </li>{% endif %}
 
-        {% for num in object_list.paginator.page_range %}
-            {% if num == object_list.number %}
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
             <li class="active"><a>{{ num }}</a></li>
             {% else %}
             <li><a href="?{{ get }}{{ course_id }}{{ separator }}page={{ num }}">{{ num }}</a></li>
             {% endif %}
         {% endfor %}
 
-        {% if object_list.has_next %}<li>
-            <a href="?{{ get }}{{ course_id }}{{ separator }}page={{ object_list.next_page_number }}" aria-label="Next">
+        {% if page_obj.has_next %}<li>
+            <a href="?{{ get }}{{ course_id }}{{ separator }}page={{ page_obj.next_page_number }}" aria-label="Next">
             <span aria-hidden="true">вперед &raquo;</span></a>
             </li>{% endif %}
 
