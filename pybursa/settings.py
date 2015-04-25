@@ -92,6 +92,8 @@ EMAIL_PORT = 1025
 # EMAIL_HOST_PASSWORD
 
 
+ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
