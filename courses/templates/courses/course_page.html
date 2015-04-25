@@ -29,13 +29,13 @@
 
 <div class="panel panel-default">      
   <div class="panel-heading"><h4>Учитель:</h4></div>
-  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' coach.id %}">
-  {{ coach }}</a></h4></p>{{ coach.description }}</div>
+  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' course.coach.id %}">
+  {{ course.coach }}</a></h4></p>{{ course.coach.description }}</div>
 </div>
 <div class="panel panel-default"> 
   <div class="panel-heading"><p><h4>Ассистент:</h4></p></div>
-  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' assistant.id %}">
-  {{ assistant }}</a></h4></p>{{ assistant.description }}</div>
+  <div class="panel-body"><p><h4><a href="{% url 'coaches:coach_info' course.assistant.id %}">
+  {{ course.assistant }}</a></h4></p>{{ course.assistant.description }}</div>
 </div>
 
 <div class="panel-body"><h3>План курса</h3></div>
@@ -49,7 +49,7 @@
       <th class="column20">Тема</th> 
       <th>Описание</th>
     </tr>
-    {% for lesson in lessons %}
+    {% for lesson in course.lesson_set.all %}
     <tr>
       <td>{{ lesson.number }}</td>
       <td>{{ lesson.theme }}</td>
@@ -58,7 +58,6 @@
     {% endfor %}
   </table>
 </div>
-
 
 {% include 'inc_add_events.html' %}
 
