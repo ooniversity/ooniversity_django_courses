@@ -34,7 +34,7 @@ Students
       <tbody>
         {% for student in students %}
         <tr>
-          <td>{{ student.id }}</td>
+          <td>{{ forloop.counter }}</td>
           <td><a href="{% url 'students:student-detail' student.id %}">
               {{ student.surname}} {{ student.name}}
               </a>
@@ -58,6 +58,54 @@ Students
         {% endfor %}
       </tbody>
       </table>
+
+    <nav>
+      <ul class="pagination">
+        <li>
+          {% if page_obj.has_previous %}
+            {% if request.GET.course_id %}           
+              <a href="?page={{ page_obj.previous_page_number }}&course_id={{ request.GET.course_id }}"
+                {% else %}   
+                  <a href="?page={{ page_obj.previous_page_number }}"
+            {% endif %}
+                 aria-label="Previous">
+                <span aria-hidden="true">&laquo; previous</span>
+              </a>
+
+          {% endif %}
+        </li>
+
+        {% for num in paginator.page_range %}
+          {% if num == page_obj.number %}
+            <li class="active">
+          {% else %}
+            <li>
+          {% endif %}
+            {% if request.GET.course_id %}
+              <a href="?page={{ num }}&course_id={{ request.GET.course_id }}"
+                {% else %}
+                 <a href="?page={{ num }}"
+            {% endif %}
+              >{{ num }}</a>
+            </li>
+        {% endfor %}
+
+        <li>
+          {% if page_obj.has_next %}
+            {% if request.GET.course_id %}
+              <a href="?page={{ page_obj.next_page_number }}&course_id={{ request.GET.course_id }}"
+              {% else %}
+                <a href="?page={{ page_obj.next_page_number }}"
+            {% endif %}
+               aria-label="Next">
+                <span aria-hidden="true">&raquo; next</span>
+              </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+
+
     </div>
   </div>
 </div>

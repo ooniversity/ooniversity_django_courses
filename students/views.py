@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -10,10 +10,13 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 class StudentListView(ListView):
     model = Student
     context_object_name = "students"
+    paginate_by = 2
 
     def get_queryset(self):
         student = super(StudentListView, self).get_queryset()
