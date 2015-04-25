@@ -26,11 +26,13 @@ class StudentListView(ListView):
     model = Student
     paginate_by = 2
 
+
     #Определяем какую выборку данных показывать - или всех студентов, или студентов конкретного курса
     def get_queryset(self):
         course_id = self.request.GET.get('course_id', None)
         if course_id is None:
             student_list = Student.objects.all()
+
         else:
             student_list = Student.objects.filter(courses__id = course_id)
         return student_list
@@ -78,8 +80,9 @@ class StudentDeleteView(DeleteView):
     success_url = reverse_lazy('students:student-list')
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, u'Запись успешно удалена')
-        return super (StudentDeleteView, self).delete(request, *args, **kwargs)
+        student = super (StudentDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request, u'Запись о студенте {} {} успешно удалена'.format(self.object.surname, self.object.name))
+        return student
 
 
 

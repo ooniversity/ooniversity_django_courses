@@ -26,6 +26,7 @@ class LessonForm(forms.ModelForm):
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/courses.HTML'
+    context_object_name = 'course'
 
     #Переопределяем context
     def get_context_data(self, **kwargs):
@@ -39,6 +40,7 @@ class CourseDetailView(DetailView):
 class CourseCreateView(CreateView):
     model = Course
     template_name = 'courses/new_course.HTML'
+    context_object_name = 'course'
     success_url = ('/')
 
     def form_valid(self, form):
@@ -51,6 +53,7 @@ class CourseCreateView(CreateView):
 class CourseUpdateView(UpdateView):
     model = Course
     template_name = 'courses/edit_data_course.HTML'
+    context_object_name = 'course'
 
     def get_success_url(self):
         return reverse_lazy('courses:edit-course', kwargs={'pk':self.kwargs['pk']})
@@ -65,11 +68,13 @@ class CourseUpdateView(UpdateView):
 class CourseDeleteView(DeleteView):
     model = Course
     template_name = 'courses/remove_course.HTML'
+    context_object_name = 'course'
     success_url = reverse_lazy('index_itbursa')
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request, u'Курс успешно удален')
-        return super (CourseDeleteView, self).delete(request, *args, **kwargs)
+        course = super (CourseDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request, u'Курс {} успешно удален'.format(self.object.name))
+        return course
 
 
 #Вьюшка для создания нового урока
