@@ -4,5 +4,4 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = patterns( '',
-    url(r'feedback/$', views.contact, name='feedback'),
-    )
+   )

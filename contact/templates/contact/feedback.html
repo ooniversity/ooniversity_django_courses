@@ -7,7 +7,7 @@
 {% block title %} PyBursa Contact Form {% endblock title %}
 
 
-{% block nav_class_index %}active{% endblock %}
+{% block nav_class_contactform %}active{% endblock %}
 
 
 {% block students_link %}{% url 'students:students' %}{% endblock %}
@@ -15,8 +15,6 @@
 
 {% block main_content %}
 
-
-hello!
 
 <form method="post">
 {% csrf_token %}
