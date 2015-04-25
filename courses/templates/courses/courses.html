@@ -7,7 +7,7 @@
 {% block title %}Course Detail{% endblock title %}
 
 
-{% block goToStudentCourse %} "{% url 'students:students' %}?course_id={{courses.crs.id}}" {% endblock %}
+{% block goToStudentCourse %} "{% url 'students:students' %}?course_id={{course.id}}" {% endblock %}
 
 
 {% block nav_class_students %}{% endblock %}
@@ -24,12 +24,12 @@
 <div class="jumbotron">
   			<div class="container">
 
-					<h1>{{ courses.crs.name }}</h1>
- 				  <p>{{ courses.crs.description|truncatechars:158 }}</p>
+					<h1>{{ course.name }}</h1>
+ 				  <p>{{ course.description|truncatechars:158 }}</p>
   				
     
   			</div>
-		</div>	
+		
 </div>
 
 <div class='container'>
@@ -38,7 +38,7 @@
 	TEACHER START
 	-->
 
-{% include "courses/inc_instructor.html" with block_title="Учитель" instructor=courses.cch %}
+{% include "courses/inc_instructor.html" with block_title="Учитель" instructor=coach %}
 
 	<!-- 
 	TEACHER START
@@ -48,7 +48,7 @@
 	ASSISTANT START
 	-->
 	
-{% include "courses/inc_instructor.html" with block_title="Ассистент" instructor=courses.assst %}
+{% include "courses/inc_instructor.html" with block_title="Ассистент" instructor=assistant %}
 	
 	<!-- 
 	ASSISTANT START
@@ -57,7 +57,7 @@
 <!--TABLE
 ====================================================-->
 <div class="container"><h3>План курса</h3>
-<p><a href="{% url 'courses:add_lesson' courses.crs.id %}" class="glyphicon glyphicon-plus btn btn-info">Добавить занятие</a></p>
+<p><a href="{% url 'courses:add_lesson' course.id %}" class="glyphicon glyphicon-plus btn btn-info">Добавить занятие</a></p>
 <div class="panel panel-default">
 	
   <!-- Default panel contents -->
@@ -68,11 +68,11 @@
     				<th>Урок</th>
 						<th>Описание</th>
 					</tr>
-{% for les in courses.lssn %}
+{% for lesson in lessons %}
 					<tr>
-						<td>{{les.order_number}}</td>
-						<td>{{les.theme}}</td>
-						<td>{{les.description}}</td>
+						<td>{{lesson.order_number}}</td>
+						<td>{{lesson.theme}}</td>
+						<td>{{lesson.description}}</td>
 					</tr>
 {% endfor %}						
 				</table>  

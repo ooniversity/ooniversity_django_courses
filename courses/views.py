@@ -5,17 +5,31 @@ from courses.models import Course, Lesson
 from coaches.models import Coach
 from django import forms
 from django.contrib import messages
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
+
+
+#class CourseView(TemplateView):
+#    template_name = 'courses/courses.html'
+
+
+class CourseDetailView(DetailView):
+    model = Course
+
+
+class CourseListView(ListView):
+    model = Course
 
 
 def course(request, c_id):
-    lesson = Lesson.objects.filter(course__id=c_id)
+    lessons = Lesson.objects.filter(course__id=c_id)
     course = Course.objects.get(id=c_id)
-    coach = Coach.objects.filter(user=course.coach.user)[0]
-    assistant = Coach.objects.filter(user=course.assistant.user)[0]
+    coach = Coach.objects.get(user=course.coach.user)
+    assistant = Coach.objects.get(user=course.assistant.user)
     print coach.user.first_name
-    d_core = {'crs':course, 'lssn':lesson, 'cch': coach, 'assst':assistant}
-    return render(request, 'courses/courses.html', {'courses': d_core})
+    d_core = {'course':course, 'lessons':lessons, 'coach': coach, 'assistant':assistant}
+    return render(request, 'courses/courses.html', d_core)
 
 
 class CourseForm(forms.ModelForm):
