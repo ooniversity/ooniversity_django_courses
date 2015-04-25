@@ -21,18 +21,20 @@ class LessonForm(forms.ModelForm):
         model = Lesson
         fields = '__all__'
 
-
+'''
 def index_courses(request):
     courses = Course.objects.get()
     return render(request, 'index_courses.html', {'courses': courses})
+'''
 
-
+'''
 def course_description(request, course_id):
     course = Course.objects.get(pk=course_id)
     lessons = Lesson.objects.filter(course=course).order_by('number')
     return render(request, 'course_detail.html', {'course': course, 'lessons': lessons})
+'''
 
-
+'''
 def add_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
@@ -43,8 +45,9 @@ def add_course(request):
     else:
         form = CourseForm()
     return render(request, 'add_course.html', {'form': form})
+'''
 
-
+'''
 def edit_course(request, course_id):
     course = Course.objects.get(pk=course_id)
     if request.method == "POST":
@@ -56,8 +59,9 @@ def edit_course(request, course_id):
     else:
         form = CourseForm(instance=course)
     return render(request, 'edit_course.html', {'form': form})
+'''
 
-
+'''
 def delete_course(request, course_id):
     course = Course.objects.get(pk=course_id)
     if request.method == "POST":
@@ -65,7 +69,7 @@ def delete_course(request, course_id):
         messages.success(request, "Course %s was successfully deleted" % course.name)
         return redirect('home')
     return render(request, 'delete_course.html', {'course': course})
-
+'''
 
 def add_lesson(request, course_id):
     if request.POST:
