@@ -3,6 +3,7 @@ from django.contrib import admin
 from pybursa.views import contact, student_list, student_detail, index
 from quadratic.views import quadratic_results
 from courses import views
+from feedbacks.views import FeedbackCreateView
 
 
 urlpatterns = patterns('',
@@ -16,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^courses/', include('courses.urls', namespace="courses")),
     url(r'^students/', include('students.urls', namespace="students")),
     url(r'^coaches/', include('coaches.urls', namespace="coaches")),
+    url(r'^feedback/$', FeedbackCreateView.as_view(), name="feedback"),
 
     url(r'^quadratic/results/$', quadratic_results),
     url(r'^admin/', include(admin.site.urls)),
