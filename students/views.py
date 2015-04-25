@@ -3,7 +3,6 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy
 from students.models import Student
-from django.utils.datastructures import MultiValueDictKeyError
 from models import Student
 from django.contrib import messages
 from django.views.generic.detail import DetailView
@@ -23,11 +22,8 @@ class StudentListView(ListView):
 
 
 
-
 class StudentDetailView(DetailView):
     model = Student
-
-
 
 
 class StudentCreateView(CreateView):
@@ -44,8 +40,6 @@ class StudentCreateView(CreateView):
         messages.success(self.request, u"Студент {} успешно добавлен".format(self.object.full_name()))
         return form
 
-
-    
 
 class StudentUpdateView(UpdateView):
     model = Student
