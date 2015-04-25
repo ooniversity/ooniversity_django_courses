@@ -4,7 +4,7 @@
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
 
@@ -37,7 +37,7 @@
       {% for course in coach_info.coach_on_course.all %} 
         <p>
           <a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a> - Cтуденты курса
-          <a href="{% url 'students:students_on_course' %}?course_id={{ course.id }}">
+          <a href="{% url 'students:list' %}?course_id={{ course.id }}">
           <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
         </p>
         {% endfor %}
@@ -49,7 +49,7 @@
         {% for course in coach_info.assistant_on_course.all %} 
         <p>
           <a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a> - Cтуденты курса
-          <a href="{% url 'students:students_on_course' %}?course_id={{ course.id }}">
+          <a href="{% url 'students:list' %}?course_id={{ course.id }}">
           <span class="glyphicon glyphicon-eject" aria-hidden="true"></span></a>
         </p>
         {% endfor %}

@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from pybursa.views import *
-from courses.views import courses_main
 
+from pybursa.views import *
+
+from courses.views import courses_main
 
 
 urlpatterns = patterns('',

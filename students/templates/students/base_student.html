@@ -21,10 +21,10 @@
       <th></th> 
       <th></th>      
     </tr>
-    {% for student in students %}
+    {% for student in student_list %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td><a href="{% url 'students:student_info' student.id%}">{{ student.surname }} {{ student.name }}</a></td>
+      <td><a href="{% url 'students:detail' student.id%}">{{ student.surname }} {{ student.name }}</a></td>
       <td>{{ student.adress|truncatechars:32|default:"Не указан" }}</td>
       <td>{{ student.skype }}</td>
       <td>
@@ -34,10 +34,10 @@
       </td>
 
       <td>
-        <p><a class="btn btn-success" href="{% url 'students:edit_student' student.id%}" role="button">Изменить</a></p>  
+        <p><a class="btn btn-success" href="{% url 'students:edit' student.id%}" role="button">Изменить</a></p>  
       </td>
       <td>
-        <p><a class="btn btn-danger" href="{% url 'students:remove_student' student.id%}" role="button">Удалить</a></p>  
+        <p><a class="btn btn-danger" href="{% url 'students:remove' student.id%}" role="button">Удалить</a></p>  
       </td>
 
     </tr>    

@@ -1,8 +1,7 @@
 from django.shortcuts import render
-
-#from courses import views           
-from courses.models import Course
 from django.views import generic
+
+from courses.models import Course
 
 
 

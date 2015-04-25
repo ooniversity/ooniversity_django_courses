@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Pybursa. Добавление занятия{% endblock title %}
+{% block title %}Pybursa. Добавление курса{% endblock title %}
 
 
 {% block students_link %}
-<a href="{% url 'students:list'%}?course_id={{course.id}}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
 
@@ -16,7 +16,7 @@
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type = "Submit" class="btn btn-primary btn-lg" value="Добавить" >  
+      <input type = "Submit" class="btn btn-primary btn-lg" value="Добавить курс" >  
     </form>
    </div>
  </div>

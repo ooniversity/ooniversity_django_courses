@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Pybursa. Удаление студента{% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block students_link %}
+<a href="{% url 'students:list' %}">
+{% endblock students_link %}
+
+
+{% block main_contant %} 
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3> Удаление данных студента </h3></div>
+  <div class="panel-body">
+    <div class="alert alert-danger" role="alert">Данные студента {{ student.name }} {{ student.surname }} будут удалены</div>
+    <form method="post">
+      {% csrf_token %}
+      <input type='submit' class="btn btn-danger" value='Удалить'>
+    </form>
+  </div>
+</div>
+
+{% endblock main_contant %}  
