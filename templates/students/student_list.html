@@ -21,7 +21,8 @@
 
         <a href="{% url 'students:student_add' %}">
           <button class="btn btn-primary">
-            Добавить студента
+            <span class="glyphicon glyphicon-user"></span>
+             Добавить студента
           </button>
         </a> 
 
@@ -58,12 +59,25 @@
   {% endfor %}
    <!--http://stackoverflow.com/questions/3998527/how-to-display-a-list-of-objects-containing-many-to-many-relations-in-django-tem-->
    </td>
+
    <td> 
-     <a href="{% url 'students:student_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
+     <a href="{% url 'students:student_edit' i.id %}">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span> 
+            Изменить
+        </button>
+     </a>
    </td>
+
    <td> 
-     <a href="{% url 'students:student_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a> 
+     <a href="{% url 'students:student_delete' i.id %}">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-trash"></span> 
+            Удалить
+        </button>
+     </a>
    </td>
+
 </tr>
 {% endfor %}
 </tbody>
