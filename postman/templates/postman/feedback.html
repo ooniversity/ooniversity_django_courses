@@ -1,0 +1,34 @@
+﻿{% extends "base/base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}
+  Обратная связь
+{% endblock %}
+
+
+{% block menu_feedback %}active{% endblock menu_feedback %}
+
+
+{% block main_content %}
+
+
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+        <div>
+
+        </div>
+
+        <h4>
+          
+        </h4>
+{% include "courses/item_form.html" %}
+
+
+{% endblock main_content %}
+

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'postman',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,4 +92,12 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+)
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+ADMINS = (
+    ('Admin', 'admin@localhost'),
+    ('root', 'root@localhost'),
 )
