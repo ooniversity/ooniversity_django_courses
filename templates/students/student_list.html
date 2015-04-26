@@ -99,7 +99,45 @@
             {% endfor %}
           </tbody>
         </table>
-
       </div>
+
+
+      <!-- Pagination students -->
+
+      <br><br>
+
+      <div class="pagination">
+        <nav>
+          <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}"><big>{{ '<<' }} previous</big></a></li>
+            {% endif %}
+
+            {% for num_page in paginator.page_range %}
+                {% if num_page == page_obj.number %}
+                    <li class="active"><a href="?page={{ num_page }}"><big><b> {{ num_page }} </b></big></a></li>
+                {% else %}
+                    <li><a href="?page={{ num_page }}"><big> {{ num_page }} </big></a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}"><big>next {{ '>>' }}</big></a></li>
+            {% endif %}
+
+          </ul>
+        </nav>
+      </div>
+
+
+{% comment %}
+      <!-- PRINT VALUES -->
+      <div>
+        <br>{{ paginator }}<br>
+        {{ paginator.page_range }}<br>
+      </div>
+{% endcomment %}
+
 
 {% endblock main_content %}
