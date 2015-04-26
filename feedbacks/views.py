@@ -47,9 +47,10 @@ class ContactFormView(FormView):
 
 # second variant
 class ContactCreateView(CreateView):
-    form_class = ContactForm
+    model = Contact
     template_name = 'feedbacks/contact_form.html'
-    success_url = 'feedbacks:contact_form'
+    form_class = ContactForm
+    success_url = '#'
 
     def get_context_data(self, **kwargs):
         context = super(ContactCreateView, self).get_context_data(**kwargs)
@@ -58,11 +59,12 @@ class ContactCreateView(CreateView):
 
     def form_valid(self, form):
         form = super(ContactCreateView, self).form_valid(form)
-        name = form.cleaned_data.get('name')
-        subject = form.cleaned_data.get('subject')
-        message = form.cleaned_data.get('body')
-        from_email = form.cleaned_data.get('email')
+        name = self.object.name
+        subject = self.object.subject
+        message = self.object.body
+        email = self.object.email
+        date = self.object.date
         mail_admins(subject, message, fail_silently=False, connection=None, html_message=None)
-        messages.success(self.request, 'Mail successfully send')
+        messages.success(self.request, 'Mail from %s successfully send' % name)
         return form
 
