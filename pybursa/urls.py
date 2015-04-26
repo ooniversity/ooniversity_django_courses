@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from courses.views import course, lesson_pd, lesson_js, lesson_rr, add_lesson
-#from students.views import student
+#from feedbacks.views import feedback
 
  
 
@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^polls/', include('polls.urls', namespace="polls")),
     url(r'^quadratic/', include('quadratic.urls')),
     url(r'^', include('students.urls', namespace='students')),
-    url(r'^', include('feedbacks.urls', namespace="feedbacks"))
+    url(r'^', include('feedbacks.urls', namespace="feedbacks")),
     url(r'^admin/', include(admin.site.urls)),
 )
