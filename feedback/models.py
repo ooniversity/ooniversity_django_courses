@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm
 from django import forms
 from django.utils import timezone #see turorial - polls app
 
@@ -9,12 +9,8 @@ class Feedback(models.Model):
     message = models.TextField()
     email = models.EmailField()    
     #date = models.DateField(auto_now_add=True)
-    date = models.DateField('date created', auto_now_add=True)
+    #date = models.DateField('date created', auto_now_add=True)
+    date = models.DateTimeField('date, time created', auto_now_add=True)
 
     def __unicode__(self):
         return self.name
-
-
-class FeedbackForm(ModelForm):
-    class Meta:
-        model = Feedback

@@ -3,7 +3,8 @@
 from django.conf import settings
 #from django.template import Context
 from django.shortcuts import render, redirect
-from feedback.models import Feedback, FeedbackForm
+from feedback.models import Feedback
+from feedback.forms import FeedbackForm
 from django.views.generic import View
 from django import forms
 from django.contrib import messages
