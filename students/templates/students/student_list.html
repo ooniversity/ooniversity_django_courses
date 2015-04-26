@@ -83,8 +83,16 @@
         {% endif %}
 
         <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            
         </span>
+
+        {% for page in page_obj.paginator.page_range %}
+          {% if page = page_obj.number %}
+            <a href="?page={{ page }}" class="btn btn-primary btn-sm">{{ page }}</a>
+          {% else %}
+            <a href="?page={{ page }}" class="btn btn-default btn-sm">{{ page }}</a>
+          {% endif %}
+        {% endfor %}
 
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">next</a>
