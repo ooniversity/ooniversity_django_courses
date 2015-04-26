@@ -16,6 +16,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class StudentList(ListView):
     model = Student
+    paginate_by = 2
     template_name = 'students.html'
 
 
