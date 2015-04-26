@@ -8,7 +8,7 @@ class Letter(models.Model):
 							null=False, blank=False)
 	body = models.TextField(verbose_name=u'Сообщение', null=False, blank=False)
 	email = models.EmailField(verbose_name=u'Ваш Email')
-	send_time = models.DateTimeField(verbose_name=u'Время отправки', auto_now_add=True)
+	send_time = models.DateTimeField(verbose_name=u'Время отправки', auto_now_add=True, editable=False)
 
 	def __unicode__ (self):
 		return self.name
