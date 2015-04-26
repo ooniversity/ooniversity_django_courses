@@ -13,6 +13,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class StudentsList(ListView):
     model = Student
+    paginate_by = 2
 
     def get_queryset(self):
         student = super(StudentsList, self).get_queryset()
@@ -20,6 +21,11 @@ class StudentsList(ListView):
         if course_id:
             student = student.filter(courses=course_id).order_by('id')
         return student
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentsList, self).get_context_data(**kwargs)
+        context['course_id'] = self.request.GET.get('course_id')
+        return context
 
 
 class StudentDetails(DetailView):
