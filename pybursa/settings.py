@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedback',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,3 +102,6 @@ EMAIL_HOST = "localhost"
 EMAIL_PORT = 1025
 #EMAIL_HOST_USER = "OPersian"
 #EMAIL_HOST_PASSWORD = "password"
+
+#ADMINS = (('OPersian', 'olena.persianova@gmail.com'),)
+ADMINS = ('olena.persianova@gmail.com',)

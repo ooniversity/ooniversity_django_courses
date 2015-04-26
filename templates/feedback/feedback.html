@@ -1,0 +1,31 @@
+{% extends "tech/base.html" %}
+{% load staticfiles %}
+
+{% block title %} Обратная связь {% endblock title %}
+{% block nav_class_feedback %}active{% endblock %}
+{% block jumbotron %}{% endblock jumbotron %}
+{% block courses_table %}{% endblock courses_table %}
+
+{% block content_header %}{% endblock content_header %}
+
+{% block main_content %}
+ 
+{% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>    
+          {{ message }}
+  {% endfor %}
+    </div>
+{% endif %}
+
+<h2>{{form_title}}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type='submit' class="btn btn-primary" value={{button_name}} />    
+</form>
+
+
+{% endblock main_content %}
