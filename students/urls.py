@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     url(r'^add/$', StudentCreateView.as_view(), name='student_add'),
     url(r'^edit/(?P<pk>\d+)/$', StudentUpdateView.as_view(), name='student_edit'),
     url(r'^remove/(?P<pk>\d+)/$',  StudentDeleteView.as_view(), name='student_delete'),
+    #url(r'^page(?P<page>\d+)/$', PaginatedView.as_view()),
 )

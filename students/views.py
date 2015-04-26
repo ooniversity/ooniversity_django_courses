@@ -11,6 +11,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.core.paginator import Paginator
+#from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+#from django.views.generic.list import MultipleObjectMixin
 
 
 class FormContextMixin(object):
@@ -25,12 +28,14 @@ class StudentListView(ListView):
     model = Student
     #template_name = "students/students.html"
     #context_object_name = "students"
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super(StudentListView, self).get_context_data(**kwargs)
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             context['course_name'] = Course.objects.get(id=course_id).name
+            context['course_id'] = course_id
         return context
 
     def get_queryset(self):
@@ -38,8 +43,8 @@ class StudentListView(ListView):
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             qs = qs.filter(courses__id=course_id)
+            paginate_by = 12
         return qs
-
 
 class StudentDetailView(DetailView):
     model = Student
