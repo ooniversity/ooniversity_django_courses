@@ -7,6 +7,8 @@ from students.forms import StudentForm
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 
@@ -15,6 +17,8 @@ class StudentListView(ListView):
     model = Student
     template_name = 'students/students.html'
     context_object_name = "students"
+    paginate_by = 2
+    
 
    
 class StudentDetailView(DetailView):
@@ -51,3 +55,4 @@ class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/delete_student.html'
     success_url = reverse_lazy('students:student-list')
+
