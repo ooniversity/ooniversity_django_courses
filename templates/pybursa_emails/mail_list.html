@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %} PyBursa - Почта {% endblock title %}
+
+{% block nav_class_feedback  %}active {% endblock %}
+
+{% block content %}
+    <div class="container">
+     <h4>Отправленные сообщения:</h4>
+     {% if text %}
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">X</button>
+        <p> {{ text }} </p>
+      </div>
+      {% endif %}
+    </div>
+    {% if mail_list %}
+
+      <div class="container text-right">
+
+       <p><a href="{% url 'pybursa_emails:mail_add' %}">
+       <button class="btn btn-small btn-primary" type="button">Создать сообщение</button></a></p>
+     </div>
+      <div class="container">
+        <table id="main-table" class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>№ п/п</th>
+              <th>Имя отправителя</th>
+              <th>Тема сообщения</th>
+              <th>Сообщение</th>
+              <th>Дата создания</th>
+              <th>Дата отправки</th>
+              <th>Адрес эл.почты </th>
+              <th> </th>
+              <th> </th>
+           </tr>
+          </thead>
+
+          <tbody>
+          {% for mail in mail_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td >{{ mail.sender_name }} </td>
+              <td>{{ mail.message_theme }}</td>
+              <td>{{ mail.message }}</td>
+
+              <td>{{ mail.message_date }}</td>
+              <td>{{ mail.send_date }}</td>
+              <td>{{ mail.sender_email }}</td>
+               <td>
+                <a href="{% url 'pybursa_emails:mail_send' mail.id %}"<button class="btn btn-mini btn-primary" type="button"> Отправить</button></a>
+              </td>
+              <td>
+                <a href="{% url 'pybursa_emails:mail_rem' mail.id %}"<button class="btn btn-mini btn-primary" type="button"> Удалить</button></a>
+              </td>
+            </tr>
+           {% endfor %}
+
+           </tbody>
+         </table>
+       {% else %}
+         <p>Ничего нет по Вашему запросу.</p>
+       {% endif %}
+  </div>
+
+{% endblock content %}
+

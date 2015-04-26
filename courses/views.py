@@ -21,6 +21,7 @@ class LessonForm(ModelForm):
 
 class CourseEdit(UpdateView):
     model = Course
+    form_class = LessonForm
     template_name = 'course_add.html'
 
     def get_context_data(self, **kwargs):

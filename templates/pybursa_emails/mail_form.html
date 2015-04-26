@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %} PyBursa - Удалить курс {% endblock title %}
+{% block title %} PyBursa - Создать сообщение {% endblock title %}
 
 
 
 {% block content %}
   <br><br>
   <div class="container">
-      <h3> {{ shead }} (  {{ object.course_name }} ) ?</h3>
+      <h3> {{ shead }}</h3>
   </div>
     <div  class="container">
         <form  method="post">
         {% csrf_token%}
+          {{ form.as_p}}
 
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">{{ prompt }}</button>
-            <button type="button" class="btn"><a href="{% url 'pybursa_app:index' %}">Отмена</a></button>
+            <button type="button" class="btn"><a href="{% url 'pybursa_emails:feedback' %}">Отмена</a></button>
           </div>
         </form>
 
@@ -23,3 +24,4 @@
 
 
 {% endblock content %}
+
