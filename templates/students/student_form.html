@@ -1,6 +1,7 @@
 {% extends "tech/base.html" %}
 {% load staticfiles %}
-{% block title %} Добавление курса {% endblock title %}
+{% block title %} Новый студент {% endblock title %}
+{% block nav_class_students %}active{% endblock %}
 {% block jumbotron %}{% endblock jumbotron %}
 {% block courses_table %}{% endblock courses_table %}
 {% block content_header %}{% endblock content_header %}
@@ -17,14 +18,12 @@
     </div>
 {% endif %}
 
-<h2>Изменение курса</h2>
+<h2>{{form_title}}</h2>
 
           <form method="post">
               {% csrf_token %}
               {{form.as_p}}
-              <input type='submit' class="btn btn-primary" value='Создать' />    
+              <input type='submit' class="btn btn-primary" value={{button_name}} />    
           </form>
 
 {% endblock main_content %}
-
-

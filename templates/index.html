@@ -28,7 +28,8 @@
 
         <a href="{% url 'courses:course_add' %}">
           <button class="btn btn-primary">
-            Добавить курс
+            <span class="glyphicon glyphicon-plus"></span>
+             Добавить курс
           </button>
         </a> 
 <br/>
@@ -47,13 +48,25 @@
       <tr>
       <td><a href="{% url 'courses:course' i.id %}">{{i.name|upper}} </a></td>
       <td>{{i.short_description}}</td>
-      <td>
-         <a href="{% url 'courses:course_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
-     </td>
-      <td>
-         <a href="{% url 'courses:course_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a>
-     </td>
-      </tr>
+
+   <td> 
+     <a href="{% url 'courses:course_edit' i.id %}">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span> 
+            Изменить
+        </button>
+     </a>
+   </td>
+
+   <td> 
+     <a href="{% url 'courses:course_delete' i.id %}">
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-trash"></span> 
+            Удалить
+        </button>
+     </a>
+   </td>
+  </tr>
 {% endfor %}
     </tbody>
     </table>
