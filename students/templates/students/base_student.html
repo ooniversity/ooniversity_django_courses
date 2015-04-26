@@ -43,6 +43,32 @@
     </tr>    
     {% endfor %}
   </table>
+
+  <div class="btn-toolbar" role="toolbar">
+    <div class="btn-group" role="group">
+      <div class="pagination">
+
+        {% if page_obj.has_previous %}
+          <a type="button" class="btn btn-default" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        {% for page in paginator.page_range %}
+
+          {% if page == page_obj.number %}
+          <a type="button" class="btn btn-primary" href="?page={{ page }}">{{ page }}</a>
+          {% else %}
+          <a type="button" class="btn btn-default" href="?page={{ page }}">{{ page }}</a>
+          {% endif %}
+        
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a type="button" class="btn btn-default" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+        {% endif %} 
+      </div>    
+    </div>  
+  </div>
+  
 </div>
 
 {% endblock main_contant %}
