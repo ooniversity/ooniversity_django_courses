@@ -17,6 +17,7 @@ from students.models import Student
 
 class ItemListView(ListView):
     model = Student
+    paginate_by = 2
 
     def get_queryset(self):
         pk = self.request.GET.get('course_id', None)
