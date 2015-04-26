@@ -56,6 +56,9 @@
 
            </tbody>
          </table>
+
+
+
          <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -63,7 +66,7 @@
         {% endif %}
 
         <span class="current">
-            Стр. {{ page_obj.number }} из {{ paginator.num_pages }}.
+            Стр. {{ page_obj.number }} из {{ paginator.num_pages }}
         </span>
 
         {% if page_obj.has_next %}
