@@ -25,4 +25,6 @@ urlpatterns = patterns('',
     url(r'^', include('courses.urls', namespace='courses')),		# app - courses
     url(r'^', include('coaches.urls', namespace='coaches')),		# app - coaches
 
+    url(r'^', include('feedbacks.urls', namespace='feedbacks')),	# app - feedbacks
+
 )

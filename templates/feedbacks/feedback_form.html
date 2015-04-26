@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+
+{% block title %}Feedback - Contact{% endblock title %}
+
+
+{% block nav_header %}Ooniversity > Обратная связь{% endblock %}
+
+
+{% block nav_class_feedback %}active{% endblock %}
+
+
+{% block main_content %}
+
+    <br>
+
+{% include "includes/inc_messages.html" %}  {# Подключение сообщения #}
+
+    <div>
+      <br>
+      <h2> Обратная связь - Отправить письмо администраторам сайта </h2>
+      <br>
+      <br>
+
+      <!-- Создание формы для обратной связи -->
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <br>
+        <input class="btn btn-primary"  type='submit' value="Отправить">
+      </form>
+
+    </div>
+
+{% endblock main_content %}

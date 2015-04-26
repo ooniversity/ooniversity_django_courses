@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedbacks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,3 +94,18 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 # Template files (HTML)
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+
+# EMAIL settings
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 1025
+
+#EMAIL_HOST_USER = 'TeplovAlexander'
+
+#EMAIL_HOST_PASSWORD = '123456'
+
+
+ADMINS = (('Alexander', 'sasha_tep@mail.ru'),)
+
