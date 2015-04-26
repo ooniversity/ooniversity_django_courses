@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Pybursa.Обратная_связь{% endblock %}
+
+
+{% block nav_st_detail %}{% endblock %}
+
+
+{% block nav_active_feedback %}active{% endblock %}
+
+
+{% block bodyhead %}{% endblock %}
+
+
+{% block content %}
+<div class="page-header">
+  <h1>Оставьте нам своё сообщение!</h1>
+</div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+   {{ form.as_p }}
+  </table>
+  <input type="Submit" value="Отправить">
+<form>
+{% endblock content %}

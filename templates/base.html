@@ -36,6 +36,7 @@
                     <a href="{% url 'students:students_list' %}">Студенты</a></li>
             {% endif %}
             {% block nav_st_detail %}<li class="active"><a href="#"><b>Детальная информация о студентах</b></a></li>{% endblock %}
+            <li class="{% block nav_active_feedback %}{% endblock %}"><a href="{% url 'feedbacks:feedback' %}">Обратная_связь</a></li>
 		</ul>
     </div>
 	</nav>

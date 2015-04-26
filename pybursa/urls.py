@@ -18,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^polls/', include('polls.urls',  namespace="polls")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^quadratic/', include('quadratic.urls',  namespace="quadratic")),
+    url(r'^feedback/', include('feedback.urls', namespace='feedbacks')),
 )
