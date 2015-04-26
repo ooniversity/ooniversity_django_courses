@@ -24,6 +24,7 @@ class FeedbackView(TemplateView):
     def post(self, request, *args, **kwargs):
         form = FeedbackForm(request.POST)
         if form.is_valid():
+            new_item = form.save()
             subject = form.cleaned_data['subject']
             body = form.cleaned_data['body']
             mail_admins(subject, body)
