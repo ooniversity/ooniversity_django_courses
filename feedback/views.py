@@ -1,7 +1,6 @@
 #!/usr/bin/python		
 # -*- coding: UTF-8 -*-
 from django.conf import settings
-#from django.template import Context
 from django.shortcuts import render, redirect
 from feedback.models import Feedback
 from feedback.forms import FeedbackForm
@@ -12,9 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.core.mail import send_mail, mail_admins
 
 class FeedbackView(View):
-    #model = Feedback
     form_class = FeedbackForm 
-    #FeedbackForm configured in models.py with Meta
     template_name = 'feedback/feedback.html'
 
     def get(self, request, *args, **kwargs):
