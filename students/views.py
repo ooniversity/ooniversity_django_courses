@@ -21,6 +21,7 @@ class StudentAddingForm(forms.ModelForm):
 
 class StudentsListView(ListView):
     model = Student
+    paginate_by = 2
 
     def get_queryset(self):
         course_id = self.request.GET.get('course_id')
@@ -29,6 +30,16 @@ class StudentsListView(ListView):
         else:
             students = Student.objects.all()
         return students
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentsListView, self).get_context_data(**kwargs)
+        course_id = self.request.GET.get('course_id')
+        if course_id:
+            pagination_prefix = u'?course_id={0}&'.format(course_id)
+        else:
+            pagination_prefix = u'?'
+        context['pagination_prefix'] = pagination_prefix
+        return context
 
 
 class StudentDetailView(DetailView):
