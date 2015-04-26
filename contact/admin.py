@@ -5,7 +5,7 @@ from contact.models import Contact
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ['senders_email', 'date_created']
+    list_display = ['your_email', 'date']
 
 
 admin.site.register(Contact, ContactAdmin)

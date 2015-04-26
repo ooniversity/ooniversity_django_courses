@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse,  HttpRequest
 from django.views import generic
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
@@ -12,6 +12,7 @@ from pybursa.utils import detail_view
 from pybursa.views import MixinCourseContext
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.edit import (
     FormView,
     CreateView,
@@ -34,6 +35,8 @@ class StudentForm(forms.ModelForm):
 class StudentListView(MixinCourseContext, ListView):
     model = Student
     context_object_name = "students"
+    paginate_by = 2
+    template_name = "stundets/student_detail.html"
 
     def get_queryset(self):
         qs = super(StudentListView, self).get_queryset()

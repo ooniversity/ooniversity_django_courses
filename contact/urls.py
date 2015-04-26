@@ -3,5 +3,4 @@ from contact import views
 from django.views.generic import TemplateView
 
 
-urlpatterns = patterns( '',
-   )
+urlpatterns = patterns('', )

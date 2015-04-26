@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.views.generic.edit import FormView
+from __future__ import unicode_literals
+from django.core.mail import EmailMessage
+from django.views.generic.edit import FormView, View
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
@@ -10,19 +12,22 @@ from django import forms
 from models import Contact
 from django.core.mail import mail_admins
 
+
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
 
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            form.save()
-            mail_admins(data['subject'], data['body'], fail_silently=False)
-            messages.success(request, "Messages was sent")
-            return redirect('contact/feedback')
-    else:
-        form = ContactForm()
-    return render(request, 'contact/feedback.html', {'form': form})
+
+class ContactFormView(FormView):
+
+    form_class = ContactForm
+    template_name = "contact/feedback.html"
+    success_url = '/feedback/'
+
+    def form_valid(self, form):
+        message = "\n\n{0}".format(form.cleaned_data.get('body'))
+        subject = form.cleaned_data.get('subject').strip()
+        mail_admins(subject, message, fail_silently=False)
+        form.save()
+        messages.success(self.request, u'Спасибо! Ваше сообщение отправлено')
+        return super(ContactFormView, self).form_valid(form)
