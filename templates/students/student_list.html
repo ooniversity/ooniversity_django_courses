@@ -71,15 +71,15 @@
   <ul class="pagination">
 
     {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo; previous</a></li>
+      <li><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo; previous</a></li>
     {% endif %}
 
     {% for page_name in paginator.page_range %}
-      <li {% if page_name = page_obj.number %}class="active"{% endif %}><a href="?page={{ page_name }}">{{ page_name }}</a></li>
+      <li {% if page_name = page_obj.number %}class="active"{% endif %}><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_name }}">{{ page_name }}</a></li>
     {% endfor %}
 
     {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">&raquo; next</a></li>
+      <li><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.next_page_number }}">&raquo; next</a></li>
     {% endif %}
 
   </ul>

@@ -100,9 +100,9 @@ EMAIL_PORT = 1025
 
 #EMAIL_HOST = 'smtp.sendgrid.net'
 #EMAIL_HOST_USER = 'paha_tet'
-#EMAIL_HOST_PASSWORD = 'burunduk_80'
+#EMAIL_HOST_PASSWORD = '**********'
 #EMAIL_PORT = 587
-#SEMAIL_USE_TLS = True
+#EMAIL_USE_TLS = True
 
 ADMINS = (('paha', "paha_tet@mail.ru"), 
           ('pavel', "paha.burundukis@gmail.com"))

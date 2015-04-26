@@ -22,6 +22,13 @@ class StudentListView(ListView):
             qs = qs.filter(courses__id=course_id)
         return qs
 
+    def get_context_data(self, **kwargs):
+            context = super(StudentListView, self).get_context_data(**kwargs)
+            course_id = self.request.GET.get('course_id', None)
+            if course_id:
+                local = {'course_id': course_id}
+                context.update(local)
+            return context
 
 class StudentDetailView(DetailView):
     model = Student
