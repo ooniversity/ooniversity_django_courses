@@ -1,8 +1,8 @@
 from django.conf.urls import url
 from . import views
-from django.views.generic.edit import CreateView
+from django.views.generic import View
 
 
 urlpatterns = [
-    url(r'^$', views.FeedbackCreateView.as_view(), name='feedback_form'), 
+    url(r'^$', views.FeedbackView.as_view(), name='feedback_form'), 
 ]
