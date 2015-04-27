@@ -10,12 +10,12 @@ def home(request):
     return render(request, 'index.html', {'courses': courses})
 
 
-class ContactViews(TemplateView):
+#class ContactViews(TemplateView):
     template_name = 'contact.html'
 
 
-def contact(request):
-    return render(request, 'contact.html')
+#def contact(request):
+    #return render(request, 'contact.html')
 
 
 def student_list(request):

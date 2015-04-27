@@ -5,9 +5,7 @@ from django.contrib.auth.models import User
 class Coach(models.Model):
     user = models.OneToOneField(User)
     date_of_birth = models.DateField('Birthday')
-    sex = models.CharField(max_length=1, choices=(
-        ('M', 'Male'), ('F', 'Female'))
-    )
+    sex = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
     phone = models.CharField(max_length=15, null=True, blank=True)
     address = models.CharField(max_length=100)
     skype = models.CharField(max_length=25)

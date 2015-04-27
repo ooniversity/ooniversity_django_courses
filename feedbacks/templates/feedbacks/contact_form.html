@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block nav_class_feedback %} active {% endblock %}
+
+
+{% block title %} {{ page_title }} {% endblock title %}
+
+
+{% block container %}
+
+<p>
+    <h3> {{ page_title }} </h3>
+</p>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form method="post" >
+
+  {% csrf_token %}
+  {{ form.as_p }}
+
+
+  <input type="Submit" value="Отправить">
+</form>
+
+{% endblock container %}
