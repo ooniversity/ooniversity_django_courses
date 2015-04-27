@@ -42,18 +42,18 @@
            <th></th>
        </tr>
     </thead>
-    {% for i in lessons %}
+    {% for lesson in lessons %}
     <tbody>
        <tr>
-           <td>{{ i.order_number }}</td>
-           <td>{{ i.subject }}</td>
-           <td>{{ i.description }}</td>
+           <td>{{ lesson.order_number }}</td>
+           <td>{{ lesson.subject }}</td>
+           <td>{{ lesson.description }}</td>
            <td>
                 <p>
-                    <a href="{% url 'courses:lesson_edit' i.id %}" class="btn btn-success btn-small btn-primary" type="button">ПРАВИТЬ</a>
+                    <a href="{% url 'courses:lesson_edit' lesson.id %}" class="btn btn-success btn-small btn-primary" type="button">ПРАВИТЬ</a>
                 </p>
                 <p>
-                    <a href="{% url 'courses:lesson_delete' i.id %}" class="btn btn-danger btn-small" type="button">УДАЛИТЬ</a>
+                    <a href="{% url 'courses:lesson_delete' lesson.id %}" class="btn btn-danger btn-small" type="button">УДАЛИТЬ</a>
                 </p>
            </td>
        </tr>

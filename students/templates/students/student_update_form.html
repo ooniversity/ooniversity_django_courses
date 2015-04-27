@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Pybursa.Занятие{% endblock %}
+{% block title %}Pybursa.Редактирование{% endblock %}
+
+
+{% block nav_active_students %}active{% endblock %}
 
 
 {% block nav_st_detail %}{% endblock %}
@@ -12,7 +15,7 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>Занятие</h1>
+  <h1>Редактирование студента</h1>
 </div>
 
     {% if messages %}

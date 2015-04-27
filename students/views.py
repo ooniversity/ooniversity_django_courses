@@ -1,76 +1,55 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.contrib import messages
-from django.contrib.messages import get_messages
 from django.forms import *
 
 from students.models import Student
-from courses.models import Course
+
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-def students(request):
-    messages = get_messages(request)
-    storage = []
-    for message in messages:
-        storage.append(message.message)
-    messages = storage
-    course_id = request.GET.get('course_id')
-    if course_id != None:
-        course = Course.objects.get(pk=int(course_id))
-        students = course.student_set.all().order_by('id')
-    else:
-        students = Student.objects.all()
-    return render_to_response('student_list.html', {'students': students, 'messages':messages})
+class StudentsList(ListView):
+    model = Student
+    paginate_by = 2
+
+    def get_queryset(self):
+        student = super(StudentsList, self).get_queryset()
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            student = student.filter(courses=course_id).order_by('id')
+        return student
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentsList, self).get_context_data(**kwargs)
+        context['course_id'] = self.request.GET.get('course_id')
+        return context
 
 
-def students_details(request, pk):
-    student = Student.objects.get(pk=pk)
-    courses = student.courses.all()
-    return render_to_response('student_detail.html', {'student': student,
-        'courses': courses,
-        })
+class StudentDetails(DetailView):
+    model = Student
 
 
-class StudentForm(ModelForm):
-    class Meta:
-        model = Student
-        fields = '__all__'
+class StudentAdd(SuccessMessageMixin, CreateView):
+    model = Student
+    success_url = reverse_lazy('students:students_list')
+    success_message = u"Студент %(name)s %(surname)s успешно добавлен!"
 
 
-def student_add(request):
-    if request.method == "POST":
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            student = form.save()
-            messages.success(request, u"Студент {} {} успешно добавлен!".format(
-                    student.name, student.surname))
-            return redirect('students:students_list')
-    else:
-        form = StudentForm()
-    return render(request, 'add_edit.html', {'form': form,})
+class StudentUpdate(SuccessMessageMixin, UpdateView):
+    model = Student
+    success_url = "#"
+    template_name_suffix = '_update_form'
+    success_message = u"Данные изменены !"
 
 
-def student_edit(request, id):
-    student = get_object_or_404(Student, pk=id)
-    if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            student.update_data(**form.cleaned_data)
-            student.save()
-            messages.success(request, u"Данные изменены!")
-            return redirect('students:student_edit', id)
-    else:
-        form = StudentForm(instance=student)
-    return render(request, 'add_edit.html', {'form': form,})
+class StudentDelete(DeleteView):
+    model = Student
+    success_url = reverse_lazy('students:students_list')
 
-
-def student_delete(request, id):
-    student = get_object_or_404(Student, pk=id)
-    if request.method == "POST":
-        student.delete()
-        messages.success(
-            request, u"Студент {} {} был удалён".format(
-                student.name, student.surname))
-        return redirect('students:students_list')
-    else:
-        return render(request, 'delete.html', {'student': student,})
+    def delete(self, request, *args, **kwargs):
+        response = super(StudentDelete, self).delete(request, *args, **kwargs)
+        messages.warning(request, u'Cтудент {} {} был удалён!'.format(self.object.surname, self.object.name))
+        return response

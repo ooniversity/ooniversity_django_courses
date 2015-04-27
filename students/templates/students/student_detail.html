@@ -36,7 +36,7 @@
         <tr>
             <th>Курсы: </th>
             <td>
-            {% for i in courses %}
+            {% for i in student.courses.all %}
                <p><a href="{% url 'courses:lessons' i.id %}">{{ i.name }}</a></p>
             {% endfor %}
             </td>

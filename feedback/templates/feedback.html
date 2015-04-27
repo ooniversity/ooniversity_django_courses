@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Pybursa.Занятие{% endblock %}
+
+{% block title %}Pybursa.Обратная_связь{% endblock %}
 
 
 {% block nav_st_detail %}{% endblock %}
+
+
+{% block nav_active_feedback %}active{% endblock %}
 
 
 {% block bodyhead %}{% endblock %}
@@ -12,7 +16,7 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>Занятие</h1>
+  <h1>Оставьте нам своё сообщение!</h1>
 </div>
 
     {% if messages %}
@@ -30,6 +34,6 @@
   <table>
    {{ form.as_p }}
   </table>
-  <input type="Submit" value="Сохранить">
+  <input type="Submit" value="Отправить">
 <form>
 {% endblock content %}

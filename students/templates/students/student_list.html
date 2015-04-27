@@ -45,7 +45,7 @@
 			</thead>
 			<tbody>
 				<tr style="display: table-row;">
-                {% for i in students %}
+                {% for i in object_list %}
 					<td>{{ i.id }}</td>
 					<td><a href="{% url 'students:student_details' i.id %}">
                               {{ i.surname}} {{ i.name}}
@@ -71,5 +71,22 @@
 		</table>
 	</div>
 </div>
+<nav>
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li><a href="{% url 'students:students_list' %}?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.previous_page_number }}">
+            <span aria-hidden="true">PREV</span></a>
+        </li>
+    {% endif %}
+    {% for page in paginator.page_range %}
+         <li class="{% if page_obj.number == page %}active{% endif %}"><a href="{% url 'students:students_list' %}?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page }}">{{ page }}</a></li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+         <li><a href="{% url 'students:students_list' %}?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.next_page_number }}">
+             <span aria-hidden="true">NEXT</span></a>
+         </li>
+    {% endif %}
+    </ul>
+</nav>
 <div class="clear"></div>
 {% endblock content %}
