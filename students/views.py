@@ -8,6 +8,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from students.models import Student
 from students.forms import StudentForm
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudentsListView(ListView):

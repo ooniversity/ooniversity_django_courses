@@ -10,7 +10,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from courses.models import Course, Lesson
 from courses.forms import CourseForm, LessonForm
+import logging
 
+
+logger = logging.getLogger(__name__)
 
 
 class CourseDetailView(DetailView):
@@ -19,8 +22,15 @@ class CourseDetailView(DetailView):
     context_object_name = 'course'                #Just for Task 9.2
 
     def get_context_data(self, **kwargs):
+        logger.debug('Logging is running in debug mode')
+        logger.info('Before getting context data')
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        course = context['course']
+        logger.warning('Before getting course from context data')
+        try:
+            course = context['course']
+        except KeyError:
+            logger.error('No course in context data')
+            raise
         context['lessons'] = Lesson.objects.filter(course=course).order_by('number')
         return context
 
