@@ -34,7 +34,7 @@
         <th></th>
     </tr>
     </thead>
-    <tbody>{% for st in stud %}
+    <tbody>{% for st in object_list %}
         <tr data-href="http://google.com">
             <th scope="row">{{st.id}}</th>
             <td><a href="{% url 'student_detail' st.id %}">{{st.first_name}} {{st.surname}}</a></td>
@@ -44,11 +44,20 @@
                 <li><a href="{% url 'course' c.id %}">{{c.name}}</a></li>{% endfor %}
                 </ul></td>
             <td><a class="btn btn-primary glyphicon glyphicon-pencil"
-                   href="{% url 'student_edit' st.id %}" role="button"> Изменить</a></td>
+                   href="{% url 'student_edit' st.id %}" role="button"
+                   title="Изменить данные о студенте {{st.first_name}} {{st.surname}}"></a></td>
             <td><a class="btn btn-primary glyphicon glyphicon-remove"
-                   href="{% url 'student_delete' st.id %}" role="button"> Удалить</a></td>
+                   href="{% url 'student_delete' st.id %}" role="button"
+                   title="Удалить студента {{st.first_name}} {{st.surname}} из базы"></a></td>
         <tr>{% endfor %}
     </tbody>
 </table>
+
+{% if request.GET.course_id %}
+    {% include "paginator.html" with get='course_id=' course_id=request.GET.course_id separator='&'  %}
+{% else %}
+    {% include "paginator.html" %}
+{% endif %}
+
 </div>
 {% endblock table %}

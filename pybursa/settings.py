@@ -36,11 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'polls',
+    # 'polls',
     'students',
     'quadratic',
     'courses',
     'coaches',
+    'feedback',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +52,16 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
 )
 
 ROOT_URLCONF = 'pybursa.urls'
@@ -73,7 +84,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -90,3 +101,19 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+ADMINS = (('Sergey Che', 'sergei.4e@gmail.com'), ('Che Sergey', '4e.sergei@gmail.com'))
+
+# Email settings
+
+EMAIL_HOST = 'mail.ukraine.com.ua'
+
+EMAIL_PORT = '2525'
+
+SERVER_EMAIL = 'test@balakleya.info'
+
+EMAIL_HOST_USER = 'test@balakleya.info'
+
+EMAIL_SUBJECT_PREFIX = '[PyBursa] '
+
+EMAIL_HOST_PASSWORD = '4NoYshNA48y3'

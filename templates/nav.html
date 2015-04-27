@@ -5,8 +5,10 @@
                 <a href="{% url 'home' %}">Главная</a></li>
             <li role="presentation" class="{{ active_contact }}">
                 <a href="{% url 'contact' %}">Контакты</a></li>
+            <li role="presentation" class="{{ active_feedback }}">
+                <a href="{% url 'feedback' %}">Связаться</a></li>
             <li role="presentation" class="{{ active_students }}">
-                <a href="{% url 'student_list' %}{{ get }}">Студенты</a></li>
+                <a href="{% url 'student_list' %}{{ get }}{{ id }}">Студенты</a></li>
         </ul>
     </nav>
     <h3 class="text-muted">KievBursa</h3>

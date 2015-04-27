@@ -1,70 +1,56 @@
 # -*- coding: utf_8 -*-
 from django.shortcuts import render, redirect
-from django.forms import ModelForm
 from django.contrib import messages
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from students.models import Students
-
-
-class StudentsForm(ModelForm):
-    class Meta:
-        model = Students
 
 
 def contact(request):
     return render(request, 'contact.html')
 
 
-def student_list(request):
-    if request.GET:
-        n = request.GET[u'course_id']
-        stud = Students.objects.filter(course=int(n))
-        c = {'stud': stud}
-        return render(request, 'student_list.html', c)
-    stud = Students.objects.all()
-    c = {"stud": stud}
-    return render(request, 'student_list.html', c)
+class StudentsListView(ListView):
+    model = Students
+    template_name = 'students/students_list.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        course_id = self.request.GET.get('course_id', None)
+        if course_id:
+            students = Students.objects.filter(course=course_id)
+        else:
+            students = Students.objects.all()
+        return students
 
 
-def student_detail(request, pk):
-    stud = Students.objects.get(id__exact=int(pk))
-    c = {"stud": stud}
-    return render(request, 'student_detail.html', c)
+class StudentsDetailView(DetailView):
+    model = Students
 
 
-def student_add(request):
-    if request.method == 'POST':
-        form = StudentsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            student = form.cleaned_data['first_name'] + ' ' + form.cleaned_data['surname']
-            messages.success(request, (u'Новый студент %s был добавлен' % student))
-            return redirect('student_list')
-    else:
-        form = StudentsForm()
-    context = {'form': form}
-    return render(request, 'student_add.html', context)
+class StudentsCreateView(SuccessMessageMixin, CreateView):
+    model = Students
+    success_url = reverse_lazy('student_list')
+    success_message = u"Студент %(first_name)s %(surname)s был успешно создан"
 
 
-def student_edit(request, pk):
-    student = Students.objects.get(id__exact=int(pk))
-    form = StudentsForm(instance=student)
-    if request.method == 'POST':
-        form = StudentsForm(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
-            student_name = student.first_name + ' ' + student.surname
-            messages.success(request, (u'Информация о студенте %s обновлена' % student_name))
-            return redirect('student_list')
-    context = {'form': form}
-    return render(request, 'student_edit.html', context)
+class StudentsUpdateView(SuccessMessageMixin, UpdateView):
+    model = Students
+    success_url = reverse_lazy('student_list')
+    template_name_suffix = '_update_form'
+    success_message = u"Информация о студенте %(first_name)s %(surname)s была успешно обновлена"
 
 
-def student_delete(request, pk):
-    student = Students.objects.get(id__exact=int(pk))
-    if request.method == 'POST':
-        student.delete()
-        student_name = student.first_name + ' ' + student.surname
-        messages.success(request, (u'Студент %s был удален' % student_name))
-        return redirect('student_list')
-    context = {'student': student}
-    return render(request, 'student_delete.html', context)
+class StudentsDeleteView(DeleteView):
+    model = Students
+    success_url = reverse_lazy('student_list')
+
+    def delete(self, request, *args, **kwargs):
+        response = super(StudentsDeleteView, self).delete(self, request, *args, **kwargs)
+        student = self.object.first_name + ' ' + self.object.surname
+        messages.success(request, u"Студент %s был удалён" % student)
+        return response

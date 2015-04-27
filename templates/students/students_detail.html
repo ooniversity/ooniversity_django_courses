@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 
-{% block title %}{{stud.first_name}} {{stud.surname}} - студент Pybursa на курсах:
-    {% for c in stud.course.all %}
-        {{c.name}}{% if stud.course.all|length != forloop.counter %}, {% else %}{% endif %}
+{% block title %}{{object.first_name}} {{object.surname}} - студент Pybursa на курсах:
+    {% for c in object.course.all %}
+        {{c.name}}{% if object.course.all|length != forloop.counter %}, {% else %}{% endif %}
     {% endfor %}
 {% endblock title %}
 
@@ -15,32 +15,32 @@
 
 {% block table %}
 <p><a href="{% url 'student_list' %}">Вернуться к списку</a></p>
-<h2>{{stud.first_name}} {{stud.surname}}</h2>
+<h2>{{object.first_name}} {{object.surname}}</h2>
 <div class="table-responsive">
 <table class="table table-hover">
   <tbody>
     <tr data-href="http://google.com">
       <th scope="row">Дата рождения</th>
-      <td>{{stud.birdth_date|date:"d.m.Y"}}</td>
+      <td>{{object.birdth_date|date:"d.m.Y"}}</td>
     <tr>
       <th scope="row">Адрес</th>
-      <td>{{stud.adress}}</td>
+      <td>{{object.adress}}</td>
     </tr>
     <tr>
       <th scope="row">Почта</th>
-      <td>{{stud.email}}</td>
+      <td>{{object.email}}</td>
     </tr>
     <tr>
       <th scope="row">Логин skype</th>
-      <td>{{stud.skype}}</td>
+      <td>{{object.skype}}</td>
     </tr>
     <tr>
       <th scope="row">Телефон</th>
-      <td>{{stud.phone}}</td>
+      <td>{{object.phone}}</td>
     </tr>
     <tr>
       <th scope="row">Курсы</th>
-      <td>{% for c in stud.course.all %}
+      <td>{% for c in object.course.all %}
           <a href="{% url 'course' c.id %}">{{c.name}}</a><br />{% endfor %}</td>
     </tr>
   </tbody>
