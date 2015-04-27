@@ -1,0 +1,13 @@
+{% extends 'base_registration_and_edit.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{% if not form.name.value %}Регистрация нового студента{% else %}{{ form.surname.value }} {{ form.name.value }}{% endif %}{% endblock %}
+
+
+{% block form_name %}{% if not form.name.value %}Форма регистрации{% else %}{{ form.surname.value }} {{ form.name.value }}{% endif %}{% endblock form_name %}
+
+
+{% block buttom_back %}
+    <a href="{% url 'students' %}" class="btn btn-primary" role="button">Назад</a>
+{% endblock %}

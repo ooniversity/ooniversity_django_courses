@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from courses.models import Course
 
@@ -24,3 +25,6 @@ class Student(models.Model):
             return '(No image)'
     admin_thumbnail.short_description = 'Image'
     admin_thumbnail.allow_tags = True
+
+    def get_absolute_url(self):
+        return reverse('student', args=[str(self.pk)])

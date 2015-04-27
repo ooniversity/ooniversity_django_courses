@@ -1,10 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import generic
-from django import forms
+from django.forms import ModelForm, ValidationError
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -14,7 +18,7 @@ from coaches.models import Coach
 from static.python.get_consecutive_number import get_consecutive_number
 
 
-class LessonAddForm(forms.ModelForm):
+class LessonAddForm(ModelForm):
     class Meta:
         model = Lesson
         fields = '__all__'
@@ -25,11 +29,11 @@ class LessonAddForm(forms.ModelForm):
         for i in Lesson.objects.filter(course=self.cleaned_data['course']):
             consecutive_number_list.append(i.consecutive_number)
         if data in consecutive_number_list and data != self.instance.consecutive_number:
-            raise forms.ValidationError(u"Такой номер уже задействован!")
+            raise ValidationError(u"Такой номер уже задействован!")
         return data
 
 
-class CourseAddForm(forms.ModelForm):
+class CourseAddForm(ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
@@ -37,13 +41,13 @@ class CourseAddForm(forms.ModelForm):
     def clean_coach(self):
         data = self.cleaned_data['coach']
         if not data:
-            raise forms.ValidationError(u"Выбирете преподавателя.")
+            raise ValidationError(u"Выбирете преподавателя.")
         return data
 
     def clean_assistant(self):
         data = self.cleaned_data['assistant']
         if not data:
-            raise forms.ValidationError(u"Выбирете ассистента.")
+            raise ValidationError(u"Выбирете ассистента.")
 
         return data
 
@@ -64,87 +68,103 @@ class CourseView(generic.ListView):
     model = Course
 
 
-class CourseDetialView(generic.ListView):
-    template_name = 'courses/detail.html'
+class CourseDetialView(DetailView):
     model = Course
-
-    def get_queryset(self):
-        qs = get_object_or_404(Course, pk=self.kwargs['pk'])
-        return qs
+    template_name = 'courses/detail.html'
+    context_object_name = 'course_info'
 
 
-def add_lesson(request, pk):
-    context = dict()
-    context['course_id'] = pk
-    if request.method == 'POST':
-        form = LessonAddForm(request.POST)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Registration complite!')
-            return redirect('courses:detail', pk=context['course_id'])
-    else:
-        consecutive_number = get_consecutive_number(pk)
-        course_name = get_object_or_404(Course, pk=pk).name
+class LessonCreateView(CreateView):
+    model = Lesson
+    form_class = LessonAddForm
+    template_name = 'courses/add_lesson.html'
+
+    def get_initial(self):
+        consecutive_number = get_consecutive_number(self.kwargs['pk'])
+        course_name = get_object_or_404(Course, pk=self.kwargs['pk']).name
         theme = u'{}, лекция {}'.format(course_name, consecutive_number)
-        form = LessonAddForm(initial={'course': pk, 'consecutive_number': consecutive_number, 'theme': theme})
-    context['form'] = form
-    return render(request, 'courses/add_lesson.html', context)
+        initial = {'course': self.kwargs['pk'], 'consecutive_number': consecutive_number, 'theme': theme}
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(LessonCreateView, self).get_context_data(**kwargs)
+        context['course_id'] = self.kwargs['pk']
+        return context
+
+    def get_success_url(self):
+        return '/courses/{}/'.format(self.kwargs['pk'])
+
+    def form_valid(self, form):
+        response = super(LessonCreateView, self).form_valid(form)
+        messages.success(self.request, 'Registration complete!')
+        return response
 
 
-def edit_lesson(request, pk):
-    application = get_object_or_404(Lesson, pk=pk)
-    if request.method == 'POST':
-        form = LessonAddForm(request.POST, instance=application)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Changes have been saved!')
-    else:
-        form = LessonAddForm(instance=application)
-    return render(request, 'courses/edit_lesson.html', {'form': form, 'application': application})
+class LessonUpdateView(UpdateView):
+    model = Lesson
+    form_class = LessonAddForm
+    template_name = 'courses/edit_lesson.html'
+    success_url = '#'
+    context_object_name = 'application'
+
+    def form_valid(self, form):
+        response = super(LessonUpdateView, self).form_valid(form)
+        messages.success(self.request, 'Changes have been saved!')
+        return response
 
 
-def remove_lesson(request, pk):
-    application = get_object_or_404(Lesson, pk=pk)
-    if request.method == 'POST':
-        application.delete()
-        messages.warning(request, u'Object {} deleted!'.format(application.theme))
-        return redirect('courses:detail', pk=application.course.pk)
-    return render(request, 'courses/delete_lesson.html', {'application': application})
+class LessonDeleteView(DeleteView):
+    model = Lesson
+    template_name = 'courses/delete_lesson.html'
+    context_object_name = 'application'
+
+    def get_success_url(self):
+        course_pk = Course.objects.get(lesson=Lesson.objects.get(pk=self.kwargs['pk'])).pk
+        return '/courses/{}/'.format(course_pk)
+
+    def delete(self, request, *args, **kwargs):
+        response = super(LessontDeleteView, self).delete(request, *args, **kwargs)
+        messages.warning(request, u'Object {} deleted!'.format(self.object.theme))
+        return response
+
+class CourseCreateView(CreateView):
+    model = Course
+    form_class = CourseAddForm
+    template_name = 'courses/add_course.html'
+    success_url = '/courses/'
+
+    def form_valid(self, form):
+        response = super(CourseCreateView, self).form_valid(form)
+        messages.success(self.request, 'Registration complete!')
+        return response
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    form_class = CourseAddForm
+    template_name = 'courses/edit_course.html'
+    success_url = '#'
+    context_object_name = 'application'
+
+    def form_valid(self, form):
+        response = super(CourseUpdateView, self).form_valid(form)
+        messages.success(self.request, 'Changes have been saved!')
+        return response
 
 
-def course_add(request):
-    context = dict()
-    if request.method == 'POST':
-        form = CourseAddForm(request.POST)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Registration complite!')
-            return redirect('courses:courses')
-    else:
-        form = CourseAddForm()
-    context['form'] = form
-    return render(request, 'courses/add_course.html', context)
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = 'courses/delete_course.html'
+    context_object_name = 'application'
+    success_url = '/courses/'
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseDeleteView, self).get_context_data(**kwargs)
+        lessons = Lesson.objects.filter(course=Course.objects.get(pk=self.kwargs['pk']))
+        context['lessons_count'] = len(lessons)
+        return context
 
-def course_edit(request, pk):
-    application = get_object_or_404(Course, pk=pk)
-    if request.method == 'POST':
-        form = CourseAddForm(request.POST, instance=application)
-        if form.is_valid():
-            application = form.save()
-            messages.success(request, 'Changes have been saved!')
-    else:
-        form = CourseAddForm(instance=application)
-    return render(request, 'courses/edit_course.html', {'form': form})
-
-
-def course_remove(request, pk):
-    application = get_object_or_404(Course, pk=pk)
-    lessons = Lesson.objects.filter(course=application)
-    if request.method == 'POST':
-        for lesson in lessons:
-            lesson.delete()
-        application.delete()
-        messages.warning(request, u'Object {} deleted!'.format(application.name))
-        return redirect('courses:courses')
-    return render(request, 'courses/delete_course.html', {'application': application, 'lessons_count': len(lessons)})
+    def delete(self, request, *args, **kwargs):
+        Lesson.objects.filter(course_id=self.kwargs['pk']).delete()
+        response = super(CourseDeleteView, self).delete(request, *args, **kwargs)
+        messages.warning(request, u'Object {} deleted!'.format(self.object.name))
+        return response

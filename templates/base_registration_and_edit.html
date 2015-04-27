@@ -3,8 +3,7 @@
 
 
 {% block main %}
-{% block message %}
-{% endblock %}
+{% include "includes/inc_messages.html" %}
 <div class='container'>
   <h1>{% block form_name %}{% endblock %}</h1>
   <form method="post" enctype="multipart/form-data">
@@ -13,7 +12,9 @@
     {{ form.as_table }}
     </table>
 {% block submit_buttom %}
-{% endblock %}
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <button type="reset" class="btn btn-danger">Очистить</button>
+{% endblock submit_buttom %}
 {% block buttom_back %}
 {% endblock %}
   </form>

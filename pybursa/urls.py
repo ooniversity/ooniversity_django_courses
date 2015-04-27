@@ -11,6 +11,7 @@ urlpatterns = patterns(
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^contact/$', contact, name='contact'),
+    url(r'^feedback/$', FeedbackView.as_view(), name='feedback'),
     url(r'^student_list/$', student_list, name='student_list'),
     url(r'^student_detail/$', student_detail, name='student_detail'),
     url(r'^polls/', include('polls.urls', namespace="polls")),

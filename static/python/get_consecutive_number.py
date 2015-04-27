@@ -3,14 +3,12 @@ from courses.models import Lesson
 
 def get_consecutive_number(pk):
     consecutive_number_list = []
-    for i in Lesson.objects.filter(course_id=pk):
-        consecutive_number_list.append(i.consecutive_number)
+    consecutive_number_list = list(Lesson.objects.filter(course_id=pk).values_list('consecutive_number', flat=True))
     consecutive_number_list.sort()
-    print consecutive_number_list
     if len(consecutive_number_list):
         if consecutive_number_list[0] != 1:
             number = 1
-        elif consecutive_number_list == [i for i in xrange(1, consecutive_number_list[-1]+1)]:
+        elif consecutive_number_list == range(1, consecutive_number_list[-1]+1):
             number = consecutive_number_list[-1] + 1
         else:
             set_number, set_range = set(), set()

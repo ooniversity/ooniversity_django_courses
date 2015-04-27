@@ -2,20 +2,20 @@
 {% load staticfiles %}
 
 
-{% block title %}{{ object_list.name }}{% endblock %}
+{% block title %}{{ course_info.name }}{% endblock %}
 
 {% block nav_additional_botton %}
-            <li><a href="{% url 'students' %}?course_id={{ object_list.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
+            <li><a href="{% url 'students' %}?course_id={{ course_info.pk }}">Студенты <sub style="font-size:50%">(этого курса)</sub></a></li>
 {% endblock %}
 
 
 {% block main %}
 {% include "includes/inc_messages.html" %}
-<!-- Course info ================================================== -->
+<!-- course_info info ================================================== -->
 
     <div class="container">
-      <h1>{{ object_list.name }}</h1>
-      <p>{{ object_list.description|linebreaks }}</p>
+      <h1>{{ course_info.name }}</h1>
+      <p>{{ course_info.description|linebreaks }}</p>
     </div>
 
 <!-- Coaches ================================================== -->
@@ -26,18 +26,18 @@
 
     <div class="container">
       <div class="row">
-{% include 'includes/inc_block_instructor.html' with title='Учитель' instructor=object_list.coach %}
-{% include 'includes/inc_block_instructor.html' with title='Ассистент' instructor=object_list.assistant %}
+{% include 'includes/inc_block_instructor.html' with title='Учитель' instructor=course_info.coach %}
+{% include 'includes/inc_block_instructor.html' with title='Ассистент' instructor=course_info.assistant %}
       </div>
     </div>
 
 <!-- Button add lessen ================================================== -->
 
     <div class="container">
-      <a href="{% url 'courses:add_lesson' object_list.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Добавление лекции</a>
+      <a href="{% url 'courses:add_lesson' course_info.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Добавление лекции</a>
     </div>
 
-<!-- COURSE lessen ================================================== -->
+<!-- Course lessen ================================================== -->
 
     <div class="container">
       <h2 class="sub-header">План курса</h2>
@@ -54,7 +54,7 @@
               <th></th>
             </tr>
           </thead>
-          {% for lesson in object_list.lesson_set.filter|dictsort:"consecutive_number" %}
+          {% for lesson in course_info.lesson_set.filter|dictsort:"consecutive_number" %}
           <tbody>
             <tr>
               <td><p>{{ lesson.consecutive_number }}</p></td>

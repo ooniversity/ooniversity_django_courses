@@ -1,0 +1,10 @@
+{% extends 'personal_info_template.html' %}
+{% load staticfiles %}
+
+
+{% block title %}{{ student.surname }} {{ student.name }}{% endblock %}
+
+
+{% block personal_info %}
+{% include 'includes/inc_personal_info.html' with person=student img_class='' img_width='' %}
+{% endblock personal_info %}

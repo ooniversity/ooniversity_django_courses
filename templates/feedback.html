@@ -1,0 +1,17 @@
+{% extends 'base_registration_and_edit.html' %}
+{% load staticfiles %}
+
+
+{% block title %}Feedback{% endblock %}
+
+
+{% block nav_class_feedback %}active{% endblock %}
+
+
+{% block form_name %}Feedback send form{% endblock %}
+
+
+{% block submit_buttom %}
+    <button type="submit" class="btn btn-success">Отправить</button>
+    <button type="reset" class="btn btn-danger">Очистить</button>
+{% endblock submit_buttom %}
