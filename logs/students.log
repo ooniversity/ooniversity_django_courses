@@ -1,0 +1,12 @@
+WARNING 2015-04-27 21:24:50,228 
+Module: views 
+Function: get_context_data 
+Message: Context data exist!
+
+
+ERROR 2015-04-27 21:24:50,228 
+Module: views 
+Function: get_context_data 
+Message: Everything is correct, but we need the error message for task 11
+
+

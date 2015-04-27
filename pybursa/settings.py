@@ -126,20 +126,20 @@ LOGGING = {
             'file_courses': {
                 'level': 'DEBUG',
                 'class': 'logging.FileHandler',
-                'filename': os.path.join(BASE_DIR, 'courses.log'),
+                'filename': os.path.join(BASE_DIR, 'logs', 'courses.log'),
                 'formatter': 'simple',
                 },
             'file_students': {
                 'level': 'WARNING',
                 'class': 'logging.FileHandler',
-                'filename': os.path.join(BASE_DIR, 'students.log'),
+                'filename': os.path.join(BASE_DIR, 'logs', 'students.log'),
                 'formatter': 'verbose',
                 },
         },
     'formatters':
         {
             'verbose': {
-                'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+                'format': '%(levelname)s %(asctime)s \nModule: %(module)s \nFunction: %(funcName)s \nMessage: %(message)s\n\n'
                 },
             'simple': {
                 'format': '%(levelname)s %(message)s'
