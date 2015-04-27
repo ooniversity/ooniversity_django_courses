@@ -7,6 +7,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+import logging
+logger = logging.getLogger(__name__) #courses.view
 
 
 #Создаем форму для веб браузера на основе модели Student
@@ -19,6 +21,14 @@ class StudentForm(forms.ModelForm):
 # С помощью класса DetailView выводим информацию о студенте на HTML страничку
 class StudentDetailView(DetailView):
     model = Student
+    def get_queryset(self):
+        student = Student.objects.filter(pk = self.kwargs['pk'])
+        #логгирование
+        logger.debug(u'Some debug info for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.info(u'Some info discription for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.warning(u'Some warning info for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.error(u'Some error info for student - {} {}'.format(student[0].name, student[0].surname))
+        return student
 
 
 # С помощью класса ListView выводим список студентов на HTML страничку

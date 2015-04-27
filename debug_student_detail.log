@@ -1,0 +1,10 @@
+WARNING 2015-04-27 15:36:22,360 views 3559 140196498323200 Some warning info for student - Ольга Котульская
+ERROR 2015-04-27 15:36:22,367 views 3559 140196498323200 Some error info for student - Ольга Котульская
+WARNING 2015-04-27 15:46:21,852 views 3691 140691418900224 Some warning info for student - Ольга Котульская
+ERROR 2015-04-27 15:46:21,857 views 3691 140691418900224 Some error info for student - Ольга Котульская
+WARNING 2015-04-27 15:47:21,356 views 3691 140691418900224 Some warning info for student - Михаил Жуланов
+ERROR 2015-04-27 15:47:21,367 views 3691 140691418900224 Some error info for student - Михаил Жуланов
+WARNING 2015-04-27 16:05:31,931 views get_queryset Some warning info for student - Анна Рассоха
+ERROR 2015-04-27 16:05:31,940 views get_queryset Some error info for student - Анна Рассоха
+WARNING 2015-04-27 16:08:29,523 views get_queryset 29 Some warning info for student - Максим Топчий
+ERROR 2015-04-27 16:08:29,528 views get_queryset 30 Some error info for student - Максим Топчий
