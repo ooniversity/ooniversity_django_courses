@@ -5,7 +5,7 @@ from students.models import Student
 
 class StudentAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Personal info',{'fields': ['name', 'surname', 'date_of_birth']}),
+        ('Personal info', {'fields': ['name', 'surname', 'date_of_birth']}),
         ('Contact info', {'fields': ['email', 'phone', 'address', 'skype', 'course']}),
     ]
     list_display = ('full_name', 'email', 'skype')

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block nav_class_feedback %}active{% endblock %}
+
+
+{% block title %} Обратная связь {% endblock title %}
+
+
+{% block content %}
+  {% if messages %}
+    {% for message in messages %}
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ message }}</h3>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if form %}
+   <h3>Ваш вопрос:</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Послать" />
+  </form>
+  {% endif %}
+  <br />
+{% endblock content %}

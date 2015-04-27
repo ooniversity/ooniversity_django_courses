@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Студенты {% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock %}
+
+
+{% block content %}
+
+
+{% if messages %}
+  {% for message in messages %}
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ message }}</h3>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
+
+  <form action="{% url 'students:add_student' %}">
+  <button type="submit" class="btn btn-primary" value="Add">
+    <span class="glyphicon glyphicon-plus"></span> Добавить студента
+  </button>
+  </form>
+  {% if object_list %}
+  <h2>Список студентов</h2>
+  <table  class="table table-striped ">
+    <thead>
+      <tr>
+       <th>#</th><th>Фамилия имя</th><th>Адрес</th><th>Skype</th><th>Курсы</th><th></th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for student in object_list %}
+      <tr>
+       <td>{{ forloop.counter }}</td>
+       <td><a href="{% url 'students:detail' student.id %}">{{ student.full_name }}</a></td>
+       <td>{{ student.address|truncatechars:16 }}</td>
+       <td>{{ student.skype }}</td>
+       <td>{% for course in student.course.all %}
+           <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+           <br/>{% endfor %}
+       </td>
+        <td>
+          <form action="{% url 'students:edit_student' student.id %}">
+            <button type="submit" class="btn btn-primary" value="Edit">
+              <span class="glyphicon glyphicon-pencil"></span> Редактировать
+            </button>
+          </form>
+        </td>
+        <td>
+          <form action="{% url 'students:delete_student' student.id %}">
+            <button type="submit" class="btn btn-primary" value="Delete">
+              <span class="glyphicon glyphicon-trash"></span> Удалить
+            </button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p><br />Нет студентов.</p>
+  {% endif %}
+
+{% if object_list.paginator.num_pages %}
+  <nav>
+    <ul class="pagination">
+     {% if object_list.has_previous %}
+      <li>
+        <a href="?page={{ object_list.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span> Previous
+        </a>
+      </li>
+      {% endif %}
+
+      {% for page_number in paginator_list %}
+          {% if page_number == object_list.number %}
+           <li class="active">
+            {% else %}
+           <li>
+            {% endif %}
+           <a href="?page={{ page_number }}">{{ page_number }}</a></li>
+      {% endfor %}
+
+      {% if object_list.has_next %}
+      <li>
+        <a href="?page={{ object_list.next_page_number }}" aria-label="Next">
+          Next <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+{% if is_paginated %}
+  <nav>
+    <ul class="pagination">
+     {% if page_obj.has_previous %}
+      <li>
+        <a href="{{ page_path }}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span> Previous
+        </a>
+      </li>
+      {% endif %}
+
+      {% for page_number in paginator.page_range %}
+          {% if page_number == page_obj.number %}
+           <li class="active">
+            {% else %}
+           <li>
+            {% endif %}
+           <a href="{{ page_path }}page={{ page_number }}">{{ page_number }}</a></li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li>
+        <a href="{{ page_path }}page={{ page_obj.next_page_number }}" aria-label="Next">
+          Next <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+{% endblock content %}

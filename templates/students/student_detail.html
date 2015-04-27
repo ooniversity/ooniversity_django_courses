@@ -1,0 +1,51 @@
+{% extends 'students/index.html' %}
+{% load staticfiles %}
+
+
+{% block title %} Данные студента {% endblock title %}
+
+
+{% block content %}
+  {% if student %}
+  <h2>{{ student.full_name|upper }}</h2>
+
+  <table  class="table ">
+  <tbody>
+   <tr>
+     <td>Дата рождения</td>
+     <td>{{ student.date_of_birth|date:'j F Y' }}</td>
+   </tr>
+   <tr>
+      <td>Адрес</td>
+      <td>{{ student.address }}</td>
+   </tr>
+   <tr>
+      <td>Почта</td>
+      <td>{{ student.email }}</td>
+   </tr>
+   <tr>
+      <td>Логин skype</td>
+      <td>{{ student.skype }}</td>
+   </tr>
+   <tr>
+      <td>Телефон</td>
+      <td>{{ student.phone }}</td>
+   </tr>
+   <tr>
+      <td>Курсы</td>
+      <td>
+        {% for course in student.course.all %}
+         <a href="{% url 'courses:detail' course.id %}">{{ course }}</a>
+         <br/>
+        {% endfor %}
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  {% else %}
+    <p>Нет данных о студенте.</p>
+  {% endif %}
+      
+
+
+{% endblock content %}

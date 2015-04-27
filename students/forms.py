@@ -20,3 +20,5 @@ class StudentForm(forms.ModelForm):
         for field in self.fields.values():
             field.error_messages = {'required': 'Поле {fieldname} обязательно должно быть заполнено!'.format(
                 fieldname=field.label)}
+        self.base_fields['course'].help_text = ('Удерживайте нажатой кнопку "Control", или \
+        "Command" на Mac, чтобы выбрать более одного курса. Должен быть выбран хотя бы один курс.')
