@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from coaches.models import Coach
 
 
@@ -20,6 +21,13 @@ class Lessons(models.Model):
 	number = models.PositiveIntegerField()
 
 	def __unicode__(self):
-		return self.theme	
+		return self.theme
+
+			
+
+
+
+
+		
 
 

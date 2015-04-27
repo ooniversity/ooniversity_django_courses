@@ -1,0 +1,42 @@
+{% extends "base_students.html" %}
+
+
+{% block page-header %}{{ student.surname }} {{ student.name }}{% endblock %}
+
+
+{% block page-content %}    
+              <tr>
+                <td>дата рождения</td>
+                <td>{{ student.date_birthday|date:'F j, Y' }}</td>
+              </tr>
+              <tr>
+                <td>адрес</td>
+                <td>{{ student.address }}</td>
+              </tr>
+              <tr>
+                <td>почта</td>
+                <td>{{ student.mail }}</td>
+              </tr>
+              <tr>
+                <td>логин skype</td>
+                <td>{{ student.skype }}</td>
+              </tr>
+              <tr>
+                <td>телефон</td>
+                <td>{{ student.phone }}</td>
+              </tr>
+              <tr>
+                <td>курсы</td>
+                <td>{% for course in student.courses.all%}
+                      <a href="{% url 'courses:course_description' course.id %}">{{ course }}</a></br>
+                      {% endfor %}
+                </td>
+              </tr>
+{% endblock %}            
+
+       
+
+      
+    
+
+ 

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block page_title %}List students {{ block.super }}{% endblock %}
+
+
+{% block nav_student %}active{% endblock %}
+
+
+{% block content %} 
+{% block additional-info %}{% endblock %}       
+  <h3 class="sub-header">Урок "{{ lessons.theme }}" будет удален</h3>
+    <div class="table-responsive">
+      <table class="table table-striped">
+
+<form method="post" > 
+  {% csrf_token %}
+  <p>Вы уверены, что хотите удалить этот урок?</p>    
+  <input type="submit" value="Удалить"> 
+</form> 
+
+      </table>
+    </div>    
+{% endblock %}

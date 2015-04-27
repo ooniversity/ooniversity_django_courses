@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedbacks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,3 +95,8 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_HOST = "localhost"
+EMAIL_PORT = '1025'
+
+ADMINS = (('Olga', 'kotulska@mail.ru'),)
