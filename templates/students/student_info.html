@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}{{ student.surname|title }}{% endblock title %}
+
+
+{% block nav_class_student %}{% endblock %}
+
+
+{% block content %}
+
+<!-- Student Information -->
+<div class="jumbotron">
+  <h3>{{ student.surname|upper }} {{ student.name|upper }}</h3>
+</div>
+<div >
+<!-- Table -->
+  <table class='courses_list'>
+    <tbody>
+      <tr>
+        <th><h4 align="right">Курсы:</h4></th>
+        <th>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
