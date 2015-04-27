@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block media %}{{ form.media }}{% endblock %}
+
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block nav_extra_li %}
@@ -29,7 +31,7 @@
   <table>
    {{ form.as_table }}
   </table>
-  <input type="Submit" value="Сохранить">
+  <input type="Submit" value="{% block submit_button %}Сохранить{% endblock %}">
 <form>
 
 {% endblock body %}

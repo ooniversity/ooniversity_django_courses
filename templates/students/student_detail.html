@@ -19,7 +19,7 @@
           <tr>
             <th class="col1" scope="row">Курсы:</th>
             <td>
-              {% for course in courses %}
+              {% for course in student.courses.all %}
               <p>
               <a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a>
               </p>
