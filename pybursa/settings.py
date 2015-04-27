@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'feedback',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,6 +60,16 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+)
 
 ROOT_URLCONF = 'pybursa.urls'
 
@@ -96,3 +107,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 1025
+ADMINS =('peter@gmail.com', )

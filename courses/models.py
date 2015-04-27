@@ -57,4 +57,3 @@ class LessonForm(ModelForm):
             'num_in_plan': 'Number in plan'
         }
         fields = '__all__'
-
