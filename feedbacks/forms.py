@@ -2,13 +2,13 @@
 
 from django import forms
 
-from students.models import Student
+from feedbacks.models import Feedback
 
 
 # Create form for model Student
 
-class StudentModelForm(forms.ModelForm):
+class FeedbackModelForm(forms.ModelForm):
     class Meta:
-        model = Student
+        model = Feedback
 
         fields = '__all__'

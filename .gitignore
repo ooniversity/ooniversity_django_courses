@@ -10,3 +10,6 @@ static/bootstrap/justified-nav.css
 # python precompiled files:
 *.pyc
 *.pyo
+
+# archive files:
+*.tar.gz

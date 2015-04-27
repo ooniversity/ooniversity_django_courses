@@ -3,7 +3,10 @@
 {% load static from staticfiles %}
 
 
-{% block title %}Edition Student{% endblock title %}
+{% block title %}{{ block_title }}{% endblock title %}
+
+
+{% block nav_header %}Ooniversity > {{ page_title|cut:" - " }}{% endblock %}
 
 
 {% block nav_class_student %}active{% endblock %}
@@ -17,7 +20,7 @@
 
     <div>
       <br>
-      <h2> Редактирование данных студента - {{ student_app.full_name|title }}</h2>
+      <h2> {{ page_title }}{{ student.full_name|title }}</h2>
       <br>
       <br>
 
@@ -25,10 +28,10 @@
 
       <form method="post">
         {% csrf_token %}
-        {{ student_form.as_p }}
+        {{ form.as_p }}
         <br>
         <br>
-        <input class="btn btn-primary" type='submit' value="Изменить">
+        <input class="btn btn-primary" type='submit' value="Сохранить">
       </form>
     </div>
 

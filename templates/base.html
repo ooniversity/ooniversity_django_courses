@@ -42,17 +42,27 @@
         <h3 class="text-muted">{% block nav_header %}{% endblock %}</h3>
         <nav>
           <ul class="nav nav-justified">
+
             <li class="{% block nav_class_index %}{% endblock %}">
               <a href="{% url 'index-ooniversity' %}">Главная</a>
             </li>
+
             <li><a href="#">Преподаватели</a></li>
+
             <li class="{% block nav_class_student %}{% endblock %}">
               <a href="{% url 'students:student-list' %}{% block urlget %}{% endblock %}">Студенты</a>
             </li>
+
             <li class="{% block nav_class_contact %}{% endblock %}">
               <a href="{% url 'contact' %}">Контакты</a>
             </li>
+
+            <li class="{% block nav_class_feedback %}{% endblock %}">
+              <a href="{% url 'feedbacks:feedback-form' %}">Обратная связь</a>
+            </li>
+
             <li><a href="http://itbursa.com/about_us">ItBursa</a></li>
+
           </ul>
         </nav>
       </div>
