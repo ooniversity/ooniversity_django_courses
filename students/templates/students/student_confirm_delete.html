@@ -2,10 +2,11 @@
 
 {% load static from staticfiles %}
 
-{% block title %}IT Bursa - Редактировать студента {% endblock title %}
+{% block title %}IT Bursa - Удаление студента {% endblock title %}
 
 
 {% block nav_class_student_list %}active{% endblock %}
+
 
 {% block css_for_page %}
     <link href="{% static "students-list.css" %}" rel="stylesheet">
@@ -14,13 +15,12 @@
 
 {% block main_content %}
   <!--Сообщение-->
-  {% include "inc_message.HTML"%}
-  <h3 class="media-heading"> Редактирование данных студента </h3><br>
 
-  <!--Редактирование формы студента-->
+  <h3 class="media-heading"> Студент {{ student.surname }} {{ student.name }} будет удален</h3><br>
+
+  <!--Удаление студента-->
   <form class ="custome" method="post">
     {% csrf_token %}
-    {{ model_form.as_p }}
-    <input id="custom_btn" class="btn btn-primary"  type='submit' value="Изменить">
+    <input id="custom_btn" class="btn btn-danger"  type='submit' value="Удалить">
   </form>
 {% endblock main_content %}

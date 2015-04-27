@@ -5,11 +5,11 @@ from students import views
 
 urlpatterns = patterns('',
 
-    url(r'^$', views.show_students, name = 'student-list'),
-    url(r'^(?P<id>\d+)/$', views.show_student_detail, name = 'student-detail'),
-    url(r'^add/$', views.create_student, name = 'create-student'),
-    url(r'^edit/(?P<pk>\d+)/$', views.edit_student, name = 'edit-student'),
-    url(r'^remove/(?P<pk>\d+)/$', views.remove_student, name = 'remove-student'),
+    url(r'^$', views.StudentListView.as_view(), name = 'student-list'),
+    url(r'^(?P<pk>\d+)/$', views.StudentDetailView.as_view(), name = 'student-detail'),
+    url(r'^add/$', views.StudentCreateView.as_view(), name = 'create-student'),
+    url(r'^edit/(?P<pk>\d+)/$', views.StudentUpdateView.as_view(), name = 'edit-student'),
+    url(r'^remove/(?P<pk>\d+)/$', views.StudentDeleteView.as_view(), name = 'remove-student'),
 
 )
 

@@ -28,7 +28,15 @@
 
 .custome{
     margin-left: 450px;
-    height: 500px;
+    height: 650px;
+}
+
+.paginator{
+    height: 200px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-top:150px;
+    padding-left: 340px;
 }
 
 #custom_btn{

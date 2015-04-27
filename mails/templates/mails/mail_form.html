@@ -2,7 +2,7 @@
 
 {% load static from staticfiles %}
 
-{% block title %}IT Bursa - Новый курс {% endblock title %}
+{% block title %}IT Bursa - отправка email {% endblock title %}
 
 
 {% block css_for_page %}
@@ -14,12 +14,15 @@
 
 
 {% block main_content %}
-  <h3 class="media-heading"> Создание нового курса </h3><br>
+
+  <!--Сообщение-->
+  {% include "inc_message.HTML"%}
+
+  <h3 class="media-heading"> Отправить письмо </h3><br>
 
   <!--Создание формы для нового студента-->
-  <form class ="custome" method="post">
-    {% csrf_token %}
+  <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input id="custom_btn" class="btn btn-primary"  type='submit' value="Создать">
+    <input type="submit" value="Send message" />
   </form>
 {% endblock main_content %}

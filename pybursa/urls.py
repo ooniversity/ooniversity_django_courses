@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^courses/', include('courses.urls', namespace = "courses")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^coaches/', include('coaches.urls', namespace = "coaches")),
+    url(r'^feedback/', include('mails.urls', namespace = "mails")),
 )
