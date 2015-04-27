@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'mail'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,3 +91,11 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+#Email data
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ADMINS = (('admin', 'admin@pybursa.com'), ('Mike', 'mike.s@univer.com')) 

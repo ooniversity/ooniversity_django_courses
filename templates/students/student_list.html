@@ -38,7 +38,7 @@
       </tr>
     </thead>
     <tbody>
-      {%for student in students%}
+      {%for student in student_list%}
         <tr>
           <td>
             {{forloop.counter}}
@@ -67,6 +67,25 @@
       {%endfor%}
     </tbody>
   </table>
+<div class="row pagination">
+    <nav>
+    <ul class="pagination pagination-sm">
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&laquo;</span></a></li>
+        {% endif %}
+        {% for number in paginator.page_range %}
+          {% if page_obj.number == forloop.counter%}
+            <li class="active"><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+          {% else %}
+            <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}"><span aria-hidden="true">&raquo;</span></a></li>
+        {% endif %}
+    </ul>    
+    </nav>
+</div>
 </div>
 </div>
 {% endblock main %}

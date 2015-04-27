@@ -12,4 +12,5 @@ urlpatterns =  patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^courses', include('courses.urls', namespace = "courses")),
     url(r'^coaches/(?P<id>\d+)/$', views.show_coach, name = 'coach'),
+    url(r'^feedback/', include('mail.urls', namespace = "mail")),
 )

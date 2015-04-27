@@ -7,7 +7,11 @@
 {% block title %}Unver.com Course description{% endblock %}
 
 
+{% block student_list_link %}<a href="{% url 'students:student_list' %}?course_id={{ course.id }}">Students Overview</a>{% endblock %}
+
+
 {% block main %}
+
 
 <div class="container">
 <div class="jumbotron">
@@ -65,7 +69,7 @@
       </tr>
     </thead>
     <tbody>
-      {%for lesson in lessons%}
+      {%for lesson in course.lesson_set.all%}
         <tr>
           <td>
             {{forloop.counter}}

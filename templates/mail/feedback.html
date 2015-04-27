@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% load static from staticfiles %}
+
+
+{% block title %}Unver.com Feedback{% endblock %}
+
+
+{% block active_feedback %}active{% endblock %}
+
+
+{% block main %}
+
+<div class="container"> 
+
+  {% if messages %}
+  {% for message in messages%}
+  <p class="bg-success">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+
+<div class="jumbotron">         
+  <form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+  </form>
+</div>
+</div>
+
+{% endblock main %}
+
