@@ -108,12 +108,12 @@ LOGGING = {
     'loggers': 
         {
             'courses': {
-                'handlers': ['console', 'file_courses'],
+                'handlers': ['file_courses'],
                 'level': 'DEBUG',
                 },
             'students': {
-                'handlers': ['console', 'file_students'],
-                'level': 'DEBUG',
+                'handlers': ['file_students'],
+                'level': 'WARNING',
                 },
         },
     'handlers':
