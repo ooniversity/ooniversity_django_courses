@@ -2,34 +2,31 @@
 
 {% load staticfiles %}
 
-
-{% block title %} {{a.name}} {{a.surname}} details {% endblock title %}
-
+{% block title %} {{object.name}} {{object.surname}} details {% endblock title %}
 
 {% block nav_class_student %} active {% endblock nav_class_student %}
 
-
 {% block main_content %}
-	<div class="jumbotron">
-		<div class="container">
-			<br>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Student full name : {{a.name}} {{a.surname}}</div>
-				<div class="panel-body">
-				</div>
+  <div class="jumbotron">
+    <div class="container">
+      <br>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Student full name : {{ object.name }} {{ object.surname }}</div>
+        <div class="panel-body">
+        </div>
         <div class="datagrid">
           <table>
             <tbody>
-              <tr><td>Birthdate</td><td>{{ a.date_of_birth|date:"D d M Y" }}</td></tr>
-              <tr><td>Adress</td><td>{{ a.adress }}</td></tr>
-              <tr><td>email</td><td>{{ a.email }}</td></tr>
-              <tr><td>Skype login</td><td>{{ a.skype }}</td></tr>
-              <tr><td>Phone</td><td>{{ a.phone }}</td></tr>
+              <tr><td>Birthdate</td><td>{{ object.date_of_birth|date:"D d M Y" }}</td></tr>
+              <tr><td>Adress</td><td>{{ object.adress }}</td></tr>
+              <tr><td>email</td><td>{{ object.email }}</td></tr>
+              <tr><td>Skype login</td><td>{{ object.skype }}</td></tr>
+              <tr><td>Phone</td><td>{{ object.phone }}</td></tr>
               <tr>
               <td>Courses</td>
               <td>
-              {% for course in a.courses.all %}
+              {% for course in object.courses.all %}
               <ul>
                 <li><p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a></li></p>
               </ul>
@@ -39,9 +36,8 @@
             </tbody>
           </table>
         </div>
-
-				</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 {% endblock main_content %}
 

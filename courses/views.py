@@ -10,17 +10,22 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django import forms
 from django.contrib import messages
+from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
 class CourseLessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+#def index(request):
+ #   return HttpResponse("Hello, world. You're at the polls index.")
 
 def detail(request, question_id):
-    crs = Course.objects.all().filter(id=question_id)[0]
-    return render(request, 'courses/index.html', {'course': crs, 'lesson': Lesson.objects.all().filter(course=question_id)})
+   course_obj= Course.objects.all().filter(id=question_id)[0]
+   return render(request, 'courses/index.html', {'course': course_obj, 'lesson': Lesson.objects.all().filter(course=question_id)})
 
 def add_lesson_to_course(request, question_id):
     if request.method == 'POST':
@@ -34,7 +39,7 @@ def add_lesson_to_course(request, question_id):
     return render(request, "courses/apply.html", {'form': form})
 
 def edit_lesson_in_course(request, question_id):
-    application = Lesson.objects.get(id=question_id)
+    application = get_object_or_404(Lesson, id=question_id)
     if request.method == 'POST':
         form = CourseLessonForm(request.POST, instance=application)
         if form.is_valid():
@@ -47,9 +52,15 @@ def edit_lesson_in_course(request, question_id):
     return render(request, "courses/edit.html", {'form': form})
 
 def delete_lesson_from_course(request, question_id):
-    application = Lesson.objects.get(id=question_id)
+    application = get_object_or_404(Lesson, id=question_id)
     if request.method == 'POST':
         application.delete()
         messages.success(request, "Lesson Removed!")
         return redirect('/')
     return render(request, "courses/delete.html", {'application': application})
+
+
+#def lesson_overal(request, question_id, obj_class):
+#    obj_name = obj_class.__name__.lower()
+#    obj = get_object_or_404(obj_class, question_id=question_id)
+#    return render(request, "%ss/edit.html", %obj_name, {obj_name: obj})

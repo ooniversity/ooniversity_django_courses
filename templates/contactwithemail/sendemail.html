@@ -1,0 +1,26 @@
+﻿{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} {{ page_title }} {% endblock title %}
+
+{% block nav_class_participate %}{% endblock %}
+{% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+{% endif %}
+{% block main_content %}
+  <div class="jumbotron">
+    <div class="container">
+      <br>
+      <form method='get'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit'>
+      </form>
+    </div>
+  </div>
+{% endblock main_content %}
