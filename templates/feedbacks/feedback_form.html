@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Feedback_form{% endblock %}
+{% block nav_class_feedback %}active{% endblock %}
+
+<div class="page-header">
+  <h2 style="color: #446785">Контакт форма</h2>
+</div>
+
+{% block main_content %}
+
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>  
+  {% endfor %}
+{% endif %}
+
+  <form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type='submit' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-send"></span> Отправить</button></p>
+  </form>
+ 
+{% endblock main_content %}

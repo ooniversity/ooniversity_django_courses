@@ -1,7 +1,7 @@
 import datetime
 from courses.models import Course
-
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Student(models.Model):

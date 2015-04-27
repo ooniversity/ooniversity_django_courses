@@ -31,6 +31,7 @@
             <li class="{% block nav_class_main %}{% endblock %}"><a href="{% url 'main' %}">Главная</a></li>
             <li class="{% block nav_class_contacts %}{% endblock %}"><a href="{% url 'courses:contacts' %}">Контакты</a></li>
             <li  class="{% block nav_class_students %}{% endblock %}"><a href="{% url 'students:students_all' %}{% block url_students %}{% endblock %}">Студенты</a></li>
+            <li  class="{% block nav_class_feedback %}{% endblock %}"><a href="{% url 'feedback' %}">Обратная связь</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </nav>

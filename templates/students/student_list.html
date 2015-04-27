@@ -18,7 +18,7 @@
 </form>
 {% endblock %}
 
-{% block page_content %}
+{% block page_content %} 
 
 <div class="row">
   <div class="col-md-12">
@@ -36,26 +36,26 @@
         </tr>
       </thead>
       <tbody>
-        {% for students_list in students_all %}
+        {% for student in object_list %}
         <tr>
           <td>{{ forloop.counter }}</td>
-          <td><a href="{% url 'students:student_info' students_list.id %}">{{ students_list.surname }} {{ students_list.name }}</a></td>
-          <td>{{ students_list.address }}</td>
-          <td>{{ students_list.skype }}</td>
+          <td><a href="{% url 'students:student_info' student.id %}">{{ student.surname }} {{ student.name }}</a></td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.skype }}</td>
           <td>
-            {% for course_list in students_list.courses.all %}
+            {% for course_list in student.courses.all %}
             <p><a href="{% url 'courses:course_info' course_list.id %}">{{ course_list.name }}</a></p> 
             {% endfor %}
           </td>
           <td>
-            <form action="{% url 'students:student_edit' students_list.id %}">
+            <form action="{% url 'students:student_edit' student.id %}">
               <button type='submit' class="btn btn-info btn-sm">
                 <span class="glyphicon glyphicon-pencil">
                 </span> Изменить</button>
             </form>
           </td>
           <td>
-            <form action="{% url 'students:student_remove' students_list.id %}">
+            <form action="{% url 'students:student_remove' student.id %}">
               <button type='submit' class="btn btn-info btn-sm">
                 <span class="glyphicon glyphicon-remove">
                 </span> Удалить</button>
@@ -66,4 +66,23 @@
       </tbody>
     </table>
   </div>
+
+{% if paginator.num_pages > 1 %}
+  <ul class="pagination">
+
+    {% if page_obj.has_previous %}
+      <li><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.previous_page_number }}">&laquo; previous</a></li>
+    {% endif %}
+
+    {% for page_name in paginator.page_range %}
+      <li {% if page_name = page_obj.number %}class="active"{% endif %}><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_name }}">{{ page_name }}</a></li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li><a href="?{% if course_id %}course_id={{ course_id }}&{% endif %}page={{ page_obj.next_page_number }}">&raquo; next</a></li>
+    {% endif %}
+
+  </ul>
+{% endif %}
+
 {% endblock page_content %}

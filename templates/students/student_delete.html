@@ -2,7 +2,9 @@
 
 {% block title %}Student_del{% endblock %}
 
-{% block page_header %}Студент {{ application.name }} {{ application.surname }} будет удален{% endblock %}
+{% block page_header %}Студент {{ object_list.name }} {{ student.surname }} будет удален
+ {{object}} {{student}}
+{% endblock %}
 
 {% block page_content %}
 
@@ -11,5 +13,5 @@
     {{ form.as_p }}
     <p><button type='submit' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-remove"></span> Удалить</button></p>
   </form>
- 
+
 {% endblock page_content %}
