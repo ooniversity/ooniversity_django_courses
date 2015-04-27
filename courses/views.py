@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from models import Course, Lesson
 from coaches.models import Coach
 from django.contrib import messages
 from django import forms
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import (
+    FormView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 
 
 class LessonForm(forms.ModelForm):
@@ -18,54 +28,64 @@ class CourseForm(forms.ModelForm):
         model = Course
 
 
-def course_d(request, pk):
-    course = get_object_or_404(Course, pk=pk)
-    return render(request, 'courses/courses.html', {'course': course})
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = "courses/courses.html"
 
 
-def add_course(request):
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            course = form.save()
-            messages.success(
-                            request,
-                            u'Курс %s успешно добавлен' % (course.name))
-            return redirect('index')
-    else:
-        form = CourseForm()
-    return render(request, 'courses/add.html', {'form': form})
+class CourseCreateView(CreateView):
+    model = Course
+    form_class = CourseForm
+    template_name = "courses/add.html"
 
+    success_url = reverse_lazy('index')
 
-def edit_course(request, pk):
-    course = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        form = CourseForm(request.POST, instance=course)
-        if form.is_valid():
-            course = form.save()
-            messages.success(request, u'Курс успешно изменен')
-    else:
-        form = CourseForm(instance=course)
-    return render(
-                request,
-                'courses/edit.html',
-                {'form': form, 'course': course})
+    def get_context_data(self, **kwargs):
+        context = super(CourseCreateView, self).get_context_data(**kwargs)
+        context['page_title'] = "Создание нового студента"
+        return context
 
-
-def remove_course(request, pk):
-    course = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        course.delete()
+    def form_valid(self, form):
+        response = super(CourseCreateView, self).form_valid(form)
         messages.success(
-                        request,
-                        u'Курс %s был успешно удален' % (course.name),
-                        {'course': course})
-        return redirect('index')
-    form = None
-    return render(
-                request,
-                'courses/remove.html',
-                {'form': form, 'course': course})
+            self.request, u'Курс %s успешно добавлен' % (self.object.name)
+            )
+        return response
+
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    template_name = "courses/edit.html"
+
+    def get_success_url(self):
+        return reverse(
+            'courses:edit_course', kwargs={'pk': self.object.pk, }
+            )
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseUpdateView, self).get_context_data(**kwargs)
+        context['page_title'] = "Редактирование данных курса"
+        return context
+
+    def form_valid(self, form):
+        response = super(CourseUpdateView, self).form_valid(form)
+        messages.success(
+            self.request, u'Данные курса %s изменены' % (self.object.name)
+            )
+        return response
+
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    success_url = reverse_lazy('index')
+    template_name = "courses/remove.html"
+
+    def delete(self, request, *args, **kwargs):
+        response = super(
+            CourseDeleteView, self).delete(request, *args, **kwargs)
+        messages.warning(request, u'Курс %s был успешно удален'
+                                  % (self.object.name))
+        return response
 
 
 def add_lesson(request, pk):

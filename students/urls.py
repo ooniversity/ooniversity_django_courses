@@ -3,9 +3,12 @@ from students import views
 
 
 urlpatterns = patterns(
-    '', url(r'^/$', views.students, name='students'),
-    url(r'^(?P<pk>\d+)/$', views.student_d, name='student_d'),
-    url(r'/add/$', views.add_student, name='add_student'),
-    url(r'/edit/(?P<pk>\d+)/$', views.edit_student, name='edit_student'),
-    url(r'/remove/(?P<pk>\d+)/$', views.remove_student, name='remove_student'),
+    '', url(r'^/$', views.StudentListView.as_view(), name='students'),
+    url(r'^/(?P<pk>\d+)/$', views.StudentDetailView.as_view(),
+        name='student_d'),
+    url(r'/add/$', views.StudentCreateView.as_view(), name='add_student'),
+    url(r'/edit/(?P<pk>\d+)/$', views.StudentUpdateView.as_view(),
+        name='edit_student'),
+    url(r'/remove/(?P<pk>\d+)/$', views.StudentDeleteView.as_view(),
+        name='remove_student'),
 )
