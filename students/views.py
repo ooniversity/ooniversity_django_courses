@@ -10,6 +10,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class StudentListView(ListView):
     model = Student
@@ -32,6 +36,12 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+    logger.debug('DEBUG in student detail!!')
+    logger.info('INFO in student detail!!')
+    logger.warning('WARNING in student detail!')
+    logger.error(u'Ошибка произошла в детальном описании студента!')
+
+
 
 
 class StudentCreateView(CreateView):
