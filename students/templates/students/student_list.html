@@ -1,0 +1,106 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Student's List{% endblock title %}
+
+
+{% block main_content %}
+
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+
+<a href="{% url 'students:add_student' %}" class="glyphicon glyphicon-plus btn btn-info">Добавить нового студента</a>
+
+
+<h3>Список Студентов</h3>
+
+<div class="panel panel-default">
+  <table class="table">
+     <tr>
+       <th>#</th>
+       <th>Фамилия Имя</th>
+       <th>Адрес</th>
+       <th>skype</th>
+       <th>курсы</th>
+       <th></th>
+       <th></th>
+     </tr>
+{% for student in student_list %}
+     <tr>
+       <td>{{forloop.counter}}</td>
+       <td><a href="{% url 'students:get_student' student.id %}">{{student.surname}} {{student.name}}</a></td>
+       <td>{{student.address}}</td>
+       <td>{{student.skype}}</td>
+       <td>{% for c in student.courses.all %}
+				<a href="{% url 'courses:courses' c.id %}">{{c|upper}}</a><br />
+				{% endfor %}</td>
+       <td><a href="{% url 'students:edit_student' student.id %}" class="glyphicon glyphicon-pencil btn btn-info">Изменить</a></td>
+       <td><a href="{% url 'students:remove_student' student.id %}" class="glyphicon glyphicon-remove btn btn-info">Удалить</a></td>
+     </tr>
+    
+{% endfor %}						
+  </table>  
+</div>
+
+{% if object_list.paginator.num_pages %}
+<nav>
+<ul class="pagination">
+{% if object_list.has_previous %}
+<li>
+<a href="{{ page_path }}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span> Previous
+</a>
+</li>
+{% endif %}
+{% for page_number in paginator_list %}
+{% if page_number == object_list.number %}
+<li class="active">
+{% else %}
+<li>
+{% endif %}
+ <a href="{{ page_path }}page={{ page_number }}">{{ page_number }}</a></li>
+{% endfor %}
+{% if object_list.has_next %}
+<li>
+<a href="{{ page_path }}page={{ page_obj.next_page_number }}" aria-label="Next">
+Next <span aria-hidden="true">&raquo;</span>
+</a>
+</li>
+{% endif %}
+</ul>
+</nav>
+{% endif %}
+{% if is_paginated %}
+<nav>
+<ul class="pagination">
+{% if page_obj.has_previous %}
+<li>
+<a href="{{ page_path }}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span> Previous
+</a>
+</li>
+{% endif %}
+{% for page_number in paginator.page_range %}
+{% if page_number == page_obj.number %}
+<li class="active">
+{% else %}
+<li>
+{% endif %}
+<a href="{{ page_path }}page={{ page_number }}">{{ page_number }}</a></li>
+{% endfor %}
+{% if page_obj.has_next %}
+<li>
+<a href="{{ page_path }}page={{ page_obj.next_page_number }}" aria-label="Next">
+Next <span aria-hidden="true">&raquo;</span>
+</a>
+</li>
+{% endif %}
+</ul>
+</nav>
+{% endif %}
+
+{% endblock main_content %}

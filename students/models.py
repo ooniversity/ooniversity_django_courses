@@ -1,5 +1,6 @@
 from django.db import models
 import courses
+from django.core.urlresolvers import reverse
 
 class Student(models.Model):
     name = models.CharField(max_length=255)
@@ -17,5 +18,9 @@ class Student(models.Model):
     
     def __unicode__(self):
         return self.surname
+
+
+   # def get_absolute_url(self):
+    #    return reverse("students:get_student", pk=self.pk)
 
 

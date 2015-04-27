@@ -2,9 +2,9 @@ from django.conf.urls import patterns, url
 from students import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.student, name='students'),
-    url(r'^(?P<s_id>\d+)/$', views.get_student, name='get_student'),
-    url(r'^add/$', views.add_student, name='add_student'),
-    url(r'^edit/(?P<id>\d+)/$', views.edit_student, name='edit_student'),
-    url(r'^remove/(?P<id>\d+)/$', views.remove_student, name='remove_student'),
+    url(r'^$', views.StudentListView.as_view(), name='students'),
+    url(r'^(?P<pk>\d+)/$', views.StudentDetailView.as_view(), name='get_student'),
+    url(r'^add/$', views.StudentCreateView.as_view(), name='add_student'),
+    url(r'^edit/(?P<pk>\d+)/$', views.StudentUpdateView.as_view(), name='edit_student'),
+    url(r'^remove/(?P<pk>\d+)/$', views.StudentDeleteView.as_view(), name='remove_student'),
 )

@@ -1,0 +1,32 @@
+{% extends "students/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %}Feedback{% endblock title %}
+
+{% block nav_class_students %}{% endblock %}
+{% block nav_class_feedback %}active{% endblock %}
+
+
+{% block main_content %}
+
+
+<h3>Отправка нового сообщения</h3>
+
+
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+
+
+
+  <form method='post'>
+    {% csrf_token %}  
+    {{ form.as_p }}
+    <input type="submit" value="Отправить">
+  </form>
+
+{% endblock main_content %}
+
