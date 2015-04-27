@@ -4,13 +4,13 @@ from django.shortcuts import render
 from students import views
 
 urlpatterns = patterns('',
-                       url(r'^$', views.students_list, name="students_list"),
-                       url(r'^(?P<id>\d+)/$', views.student_info,
+                       url(r'^$', views.StudentsListView.as_view(), name="student_list"),
+                       url(r'^(?P<pk>\d+)/$', views.StudentDetailView.as_view(),
                            name="student_detail"),
-                       url(r'^add/$', views.student_adding,
+                       url(r'^add/$', views.StudentCreateView.as_view(),
                            name="student_add"),
-                       url(r'^edit_student/(?P<pk>\d+)/$', views.edit_student,
+                       url(r'^edit_student/(?P<pk>\d+)/$', views.StudentUpdateView.as_view(),
                            name="edit_student"),
-                       url(r'^delete_student/(?P<pk>\d+)/$', views.delete_student,
+                       url(r'^delete_student/(?P<pk>\d+)/$', views.StudentDeleteView.as_view(),
                            name="delete_student"),
                        )

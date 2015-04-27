@@ -50,8 +50,10 @@
             <li class="{% block nav_class_main %}{% endblock %}"><a href="{% url 'index' %}">Главная</a></li>
             <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contact' %}">Контакты</a></li>
             <li class="{% block nav_class_student %}{% endblock %}">
-              <a href="{% url 'students:students_list'%}{% block idcourse %}{% endblock %}">Студенты</a>
+              <a href="{% url 'students:student_list'%}{% block idcourse %}{% endblock %}">Студенты</a>
             </li>
+            <li class="{% block nav_class_feedback %}{% endblock %}"><a href="{% url 'feedback:message' %}">Обратная связь</a></li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 Полезные ссылки <span class="caret"></span>

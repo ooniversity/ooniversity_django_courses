@@ -10,7 +10,7 @@
 
 
 {% block content %}
-  <div class="container">
+  <div class="container" style="margin-bottom:30px">
     <div class = jumbotron>
       <h1>PythonClasses</h1>
       <p class="text">
@@ -18,6 +18,21 @@
         онлайн консультирование в skype
       </p>
     </div>
+
+      {% if messages %}
+          <p class="messages">
+              {% for message in messages %}
+                  <div class="alert alert-success" role="alert">{{ message }}</div>
+              {% endfor %}
+          </p>
+      {% endif %}
+
+      <a href="{% url 'courses:add_course' %}">
+        <button class="btn btn-primary" type="button">
+          <span class="glyphicon glyphicon-plus"> </span> Добавить курс
+        </button>
+      </a>
+
     <table>
     <caption><h2>Выбери курсы, которые хочешь освоить:</h2></caption>
       <tbody>
@@ -28,6 +43,9 @@
           <th>
             Описание
           </th>
+          <th>
+              
+          </th>
         </tr>
         {% for course in courses %}
         <tr>
@@ -35,6 +53,22 @@
           </td>
           <td>
             {{ course.about }}
+          </td>
+          <td>
+            <p>
+            <a href="{% url 'courses:edit_course' course.id %}">
+              <button class="btn btn-primary" type="button">
+                <span class="glyphicon glyphicon-pencil"> </span> Изменить
+              </button>
+            </a>
+            </p>
+            <p>
+            <a href="{% url 'courses:delete_course' course.id %}">
+              <button class="btn btn-primary" type="button">
+                <span class="glyphicon glyphicon-erase"> </span> Удалить
+              </button>
+            </a>
+            </p>
           </td>
         </tr>
         {% endfor %}

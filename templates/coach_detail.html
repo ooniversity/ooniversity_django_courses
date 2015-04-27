@@ -61,7 +61,7 @@
               <td>
                 {% for course in coach.courses_coach.all %}
                     <p><a href="{% url 'courses:courseinfo' course.id %}">{{course.title}}</a>
-                    студенты курса<a href="{% url 'students:students_list' %}?course_id={{ course.id }}"class="external"></a></p>
+                    студенты курса<a href="{% url 'students:student_list' %}?course_id={{ course.id }}"class="external"></a></p>
                   {% empty %}
                   Нет курсов
                 {% endfor %}
@@ -74,7 +74,7 @@
               <td>
                 {% for course in coach.courses_assistant.all %}
                     <p><a href="{% url 'courses:courseinfo' course.id %}">{{ course.title }}</a>
-                    студенты курса<a href="{% url 'students:students_list' %}?course_id={{ course.id }}"class="external"></a></p>
+                    студенты курса<a href="{% url 'students:student_list' %}?course_id={{ course.id }}"class="external"></a></p>
                   {% empty %}
                   Нет курсов
                 {% endfor %}
