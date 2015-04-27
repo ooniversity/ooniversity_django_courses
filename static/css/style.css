@@ -203,5 +203,13 @@ label
   border-color: #c0cffb;
 }
 
+.pagination_color
+{
+  background-color: #f9e29e;
+}
 
+#id_date_created
+{
+  color: gray;
+}
 										

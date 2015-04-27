@@ -11,8 +11,8 @@
 
 {% block jumbotron_content %}
     {% if not message %}
-        <h1>{{course_name}}</h1>
-        <p>{{course_description|truncatechars:250}}</p>
+        <h1>{{course.name}}</h1>
+        <p>{{course.description|truncatechars:250}}</p>
     {% endif %}
 {% endblock jumbotron_content %}
 
@@ -24,8 +24,8 @@
 	<h2> Преподаватели </h2>
 
 	{% if not message %}
-		{% include "tech/incl_coach.html" with block_title="Учитель" instructor=trainer_info|default:"no instructor assigned" %}
-		{% include "tech/incl_coach.html" with block_title="Ассистент" instructor=assistant_info|default:"no assistant assigned" %}
+		{% include "tech/incl_coach.html" with block_title="Учитель" instructor=course_current.trainer|default:"no instructor assigned" %}
+		{% include "tech/incl_coach.html" with block_title="Ассистент" instructor=course_current.assistant|default:"no assistant assigned" %}
 
     <h2> План курса </h2>
 
@@ -41,6 +41,7 @@
 
        <a href="{% url 'courses:lesson_add' course_current.id %}">
           <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus"></span> 
             Добавить урок
           </button>
        </a>

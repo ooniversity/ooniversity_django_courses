@@ -28,9 +28,9 @@ def results(request):
         message=''
         discriminant=0
         if form.is_valid():
-            a = float(form.cleaned_data.get('a', ''))
-            b = float(form.cleaned_data.get('b', ''))
-            c = float(form.cleaned_data.get('c', ''))            
+            a = float(form.cleaned_data.get('a', ''))#no need???
+            b = float(form.cleaned_data.get('b', ''))#no need???
+            c = float(form.cleaned_data.get('c', ''))#no need???          
             discriminant=int(b**2-4*a*c)
             context['discriminant']=discriminant
             if discriminant<0:
