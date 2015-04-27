@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
+    'pybursa_emails'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,5 +102,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+ADMINS = (('Alexandr',"alexandr.movchan@gmail.com"),('Sergiy',"sergiy.movchan@gmail.com"),)
 
 #STATICFILES_DIRS = ('static',~Public/ooniversity_django_courses/static)

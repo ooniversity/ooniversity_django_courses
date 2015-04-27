@@ -6,7 +6,7 @@
 
   <div class="container">
 
-    <h4>Гранит науки сейчас грызет   <b><a href="/student_detail/{{ student_list.id }}">{{ student_list.student_last_name }} {{ student_list.student_name }}</a></b></h4>
+    <h4>Гранит науки сейчас грызет   <b><a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></b></h4>
   </div>
     <div class="container">
       <table id="main-table" class="table table-striped table-hover table-bordered">
@@ -22,11 +22,11 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ student_list.student_birth }}</td>
-            <td><a href="mailto:{{ student_list.student_email }}">{{ student_list.student_email }}</a></td>
-            <td>{{ student_list.student_phone }}</td>
-            <td>{{ student_list.student_addr }}</td>
-            <td>{{ student_list.student_skype }}</td>
+            <td>{{ student.student_birth }}</td>
+            <td><a href="mailto:{{ student.student_email }}">{{ student.student_email }}</a></td>
+            <td>{{ student.student_phone }}</td>
+            <td>{{ student.student_addr }}</td>
+            <td>{{ student.student_skype }}</td>
             <td>{% for course in course_list %} <a href="{% url 'pybursa_app:course' course.id %}">{{ course.course_name }}</a><br>{% endfor %} </td>
           </tr>
          </tbody>

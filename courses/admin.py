@@ -25,6 +25,7 @@ class CourseAdmin(admin.ModelAdmin):
 class LessonAdmin(admin.ModelAdmin):
     fields = [('lesson_number', 'lesson_theme'), 'lesson_description']
     list_filter = ['lesson_course']
+
 admin.site.register(Course,  CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
 
