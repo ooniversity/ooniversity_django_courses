@@ -4,6 +4,13 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from courses.models import Course, Lesson
 from CourseForm import CourseForm
@@ -16,68 +23,52 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Course.objects.order_by('-id')
 
-
-def detail(request, pk):
-    course = Course.objects.get(id=pk)
-    lesson_list = Lesson.objects.filter(course=pk)
-
-    return render(request, 'courses/detail.html', {
-        'course': course,
-        'lesson_list': lesson_list})
+class ItemDetailView(DetailView):
+    model = Course
+    template_name = 'courses/detail.html'
 
 
 def contact(request):
     return render(request, 'courses/contact.html')
 
 
-def course_add(request):
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            new_course = form.save()
-            info_message = 'Курс ' + str(new_course.title) + ' успешно добавлен'
-            messages.success(request, info_message)
-            return redirect('courses:index')
-    else:
-        form = CourseForm()
-    action_name = "   Создать   "
+class ItemCreateView(SuccessMessageMixin, CreateView):
+    model = Course
+    template_name = 'courses/add.html'
+    success_url = reverse_lazy('courses:index')
+    success_message = u"Курс %(title)s успешно добавлен"
 
-    return render(request, 'courses/add.html', {
-        'form': form,
-        'action_name': action_name,})
+    def get_context_data(self, **kwargs):
+        context = super(ItemCreateView, self).get_context_data(**kwargs)
+        context['action_name'] = "Создать"
+        return context
 
 
-def course_edit(request, pk):
-    course = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        form = CourseForm(request.POST, instance=course)
-        if form.is_valid():
-            new_course = form.save()
-            info_message = 'Данные изменены.'
-            messages.success(request, info_message)
-            return redirect('courses:edit', pk=pk)
-    else:
-        form = CourseForm(instance=course)
-    action_name = "   Изменить   "
-
-    return render(request, 'courses/edit.html', {
-        'form': form,
-        'action_name': action_name,})
+class ItemUpdateView(SuccessMessageMixin, UpdateView):
+    model = Course
+    template_name = 'courses/edit.html'
+    success_url = reverse_lazy('courses:index')
+    success_message = u"Данные изменены."
+    
+    def get_context_data(self, **kwargs):
+        context = super(ItemUpdateView, self).get_context_data(**kwargs)
+        context['action_name'] = "Изменить"
+        return context
 
 
-def course_remove(request, pk):
-    course = Course.objects.get(id=pk)
-    if request.method == 'POST':
-        info_message = 'Курс ' + str(course.title) + ' был удален.'
-        course.delete()
-        messages.success(request, info_message)
-        return redirect('courses:index')
-    form = None
-    action_name = "   Удалить   "
+class ItemDeleteView(DeleteView):
+    model = Course
+    template_name = 'courses/remove.html'
+    success_url = reverse_lazy('courses:index')
+    
+    def get_context_data(self, **kwargs):
+        context = super(ItemDeleteView, self).get_context_data(**kwargs)
+        context['action_name'] = "Удалить"
+        return context
 
-    return render(request, 'courses/remove.html', {
-        'form': form,
-        'action_name': action_name,
-        'course': course.title,})
+    def delete(self, request, *args, **kwargs):
+        success_message = u"Курс " + self.get_object().title + u" был удален."
+        messages.success(self.request, success_message)
+        return super(ItemDeleteView, self).delete(request, *args, **kwargs)
 
 

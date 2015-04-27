@@ -1,9 +1,38 @@
-    <form method='post'>
-      {% csrf_token %}
+﻿{% extends "base/base.html" %}
 
-      {% if form %}
-        {{ form.as_p }}
-      {% endif %}
+{% load staticfiles %}
 
-      <input type='submit' value="{{ action_name }}">
-    </form> 
+
+{% block title %}
+  Студенты
+{% endblock %}
+
+
+{% block menu_students %}active{% endblock menu_students %}
+
+
+{% block main_content %}
+
+
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+        <h2>
+
+        </h2>
+
+        <div>
+          <h4>
+            {{ action_text }}
+          </h4>
+        </div>
+
+
+{% include "students/item_form.html" %}
+
+
+{% endblock main_content %}
+

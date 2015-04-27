@@ -4,11 +4,11 @@
 
 
 {% block title %}
-  Студенты
+  Обратная связь
 {% endblock %}
 
 
-{% block menu_students %}active{% endblock menu_students %}
+{% block menu_feedback %}active{% endblock menu_feedback %}
 
 
 {% block main_content %}
@@ -20,18 +20,14 @@
     {% endfor %}
 {% endif %}
 
-        <h2>
-
-        </h2>
-
         <div>
-          <h4>
-            Студент {{ student }} будет удален
-          </h4>
+
         </div>
 
-
-{% include "students/student_form.html" %}
+        <h4>
+          
+        </h4>
+{% include "courses/item_form.html" %}
 
 
 {% endblock main_content %}

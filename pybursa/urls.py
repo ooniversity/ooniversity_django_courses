@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
 
 from pybursa import views
+from postman.views import FeedbackView 
 
 
 urlpatterns = patterns('',
@@ -16,8 +16,9 @@ urlpatterns = patterns('',
     url(r'^students/', include('students.urls', namespace="students")),
     url(r'^coaches/', include('coaches.urls', namespace="coaches")),
     url(r'^contact/', 'courses.views.contact', name='contact'),
+    #url(r'^feedback/', 'postman.views.feedback', name='feedback'),
+    url(r'^feedback/', FeedbackView.as_view(), name='feedback'),
 
-    #url(r'^$', TemplateView.as_view(template_name="index.html")),
     #url(r'^contact/', views.contact, name='contact'),
     url(r'^student_list/', views.student_list, name='student_list'),
     url(r'^student_detail/', views.student_detail, name='student_detail'),
