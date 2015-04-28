@@ -12,6 +12,11 @@ from courses.models import Course, Lesson, CourseForm, LessonForm
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 def index_courses(request):
     courses = Course.objects.all()
@@ -24,6 +29,10 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
+        logger.debug("Debug is Ok in courses detail")
+        logger.info("You get to the page of detail course view")
+        logger.warning("You may only see this page")
+        logger.error("Something is happened")
         # не нужно делать get_object() уже есть в методе super()
         # course = self.get_object()
         context['course_lessons'] = (
