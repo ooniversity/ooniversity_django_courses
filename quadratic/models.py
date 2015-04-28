@@ -2,19 +2,24 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
+
 def find_exception(coefficient, value):
     if not value:
         return "Коэффициент не определен"
+
     try:
         value = int(value)
     except ValueError:
         return "Коэффициент не целое число"
+        
     if coefficient == 'a' and value == 0:
         return "Коэффициент при первом слагаемом уравнения не может быть равным нулю"
 
+
 def get_discr(a, b, c):
     d = int(b)**2 - 4*int(a)*int(c)
-    return d    
+    return d 
+
 
 def get_eq_root(a, b, d):
     if int(d) < 0:

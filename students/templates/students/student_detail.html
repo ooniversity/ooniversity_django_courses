@@ -7,7 +7,7 @@
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
 
@@ -15,33 +15,33 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3>{{ student_info.name }}  {{ student_info.surname }}</h3>
+    <h3>{{ student.name }}  {{ student.surname }}</h3>
   </div>  
   <table class="table">
     <tr>
       <td class="column25">Дата рождения</td>
-      <td>{{ student_info.birth_date|date:"d.m.Y" }}</td>           
+      <td>{{ student.birth_date|date:"d.m.Y" }}</td>           
     </tr>
     <tr>
     <td>Адрес</td>
-      <td>{{ student_info.adress|default:"Не указан" }}</td>           
+      <td>{{ student.adress|default:"Не указан" }}</td>           
     </tr>
     <tr>
       <td>Почта</td>
-      <td>{{ student_info.email }}</td>           
+      <td>{{ student.email }}</td>           
     </tr>
     <tr>
       <td>Cкайп</td>
-      <td>{{ student_info.skype }}</td>           
+      <td>{{ student.skype }}</td>           
     </tr>
     <tr>
       <td>Телефон</td>
-      <td>{{ student_info.phone }}</td>           
+      <td>{{ student.phone }}</td>           
       </tr>  
       <tr>
       <td>Курсы</td>
       <td>
-        {% for course in student_info.courses.all %}
+        {% for course in student.courses.all %}
         <p><a href="{% url 'courses:course_info' course.id %}">{{ course.title }}</a></p>
         {% endfor %}
       </td>           

@@ -7,11 +7,23 @@
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
-
 {% block main_contant %}
+
+
+{% block message %} 
+<div class="row">
+  {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock message%} 
 
 <div class="jumbotron"><h1>ooniversity</h1>
   <p><h3>Профессиональные курсы, специализирующиеся на "модных" языках программирования</h3></p> 
@@ -33,20 +45,38 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <h3>Выбирай курс, на котором хочешь учиться!</h3>
-    </div> 
-    <table class="table main-table" >
-      <tr>
-        <th class="column25">Курс</th>
-        <th>Описание</th> 
-      </tr> 
-      {% for course in courses %}
-      <tr>
-        <td><a href="{% url 'courses:course_info' course.id %}"><b>{{ course.title }}</b></a></td>
-          <td>{{ course.short_description }}</td>
-      </tr>
-      {% endfor %}
-    </table>       
+    </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a class="btn btn-primary" href="{% url 'courses:add_course' %}" role="button">Добавить курс</a>
+    </div>
   </div>
+
+  <table class="table main-table" >
+    <tr>
+      <th class="column25">Курс</th>
+      <th>Описание</th>
+      <th class="column05"></th>
+      <th class="column05"></th> 
+    </tr> 
+    {% for course in courses %}
+    <tr>
+      <td><a href="{% url 'courses:course_info' course.id %}"><b>{{ course.title }}</b></a></td>
+      <td>{{ course.short_description }}</td>
+
+      <td>
+        <p><a class="btn btn-success" href="{% url 'courses:edit_course' course.id%}" role="button">Изменить</a></p>  
+      </td>
+      
+      <td>
+      <p><a class="btn btn-danger" href="{% url 'courses:remove_course' course.id %}" role="button">Удалить</a></p>  
+      </td>
+    </tr>
+
+    {% endfor %}
+  </table>       
+</div>
 
 {% include "inc_add_events.html" %} 
 

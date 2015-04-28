@@ -28,6 +28,8 @@
               <a href="{% url 'contact_list' %}"><b>Контакты</b></a></li>
             <li class="{% block nav_class_students %}{% endblock%}">
               {% block students_link %}{% endblock students_link %}<b>Студенты</b></a></li>
+            <li class="{% block nav_class_feedback %}{% endblock%}">
+              <a href="{% url 'feedback:letter' %}"><b>Обратная связь</b></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

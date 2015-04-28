@@ -4,5 +4,5 @@ from views import *
 
 
 urlpatterns = patterns('',
-    url(r'^results/$', parameters, name='result'),
-)
+	url(r'^$', LetterCreateView.as_view(), name='letter'),	
+	)

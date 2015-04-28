@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Pybursa. Редактирование студента{% endblock title %}
-
-
-{% block nav_class_students %}active{% endblock %}
+{% block title %}Pybursa. {{ page_title }}{% endblock title %}
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list'%}?course_id={{course.id}}">
 {% endblock students_link %}
 
 
@@ -29,7 +26,7 @@
 {% endblock message%}
 
 <div class="panel panel-default">
-  <div class="panel-heading"><h3> Изменение данных студента </h3></div>
+  <div class="panel-heading"><h3> Изменение данных о курсе </h3></div>
   <div class="panel-body">
     <form method="post">
     {% csrf_token %}

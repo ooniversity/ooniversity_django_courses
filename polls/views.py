@@ -27,6 +27,7 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
+    
 
 def detail(request, question_id):
     p = get_object_or_404(Question, pk=question_id)

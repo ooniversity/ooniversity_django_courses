@@ -4,7 +4,7 @@
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
 
@@ -22,7 +22,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <a class="btn btn-primary btn-lg" href="{% url 'students:add_student' %}" role="button">Зарегистрировать студента</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'students:add' %}" role="button">Зарегистрировать студента</a>
   </div>
 </div>
 

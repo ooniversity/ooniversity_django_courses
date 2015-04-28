@@ -7,16 +7,17 @@
 
 
 {% block students_link %}
-<a href="{% url 'students:students_on_course' %}">
+<a href="{% url 'students:list' %}">
 {% endblock students_link %}
 
 
 {% block main_contant %} 
 
+
 <div class="panel panel-default">
   <div class="panel-heading"><h3> Удаление данных студента </h3></div>
   <div class="panel-body">
-    <div class="alert alert-danger" role="alert">Данные студента {{ application.name }} {{ application.surname }} будут удалены</div>
+    <div class="alert alert-danger" role="alert">Данные студента {{ student.name }} {{ student.surname }} будут удалены</div>
     <form method="post">
       {% csrf_token %}
       <input type='submit' class="btn btn-danger" value='Удалить'>
