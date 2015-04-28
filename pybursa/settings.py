@@ -52,8 +52,10 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -75,6 +77,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ROOT_URLCONF = 'pybursa.urls'
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 LOGGING = {
     'version': 1,
@@ -100,6 +108,7 @@ LOGGING = {
         #     'level': 'DEBUG',
         #     'class': 'logging.StreamHandler',
         # },
+
         'students_file':
         {
             'level': 'DEBUG',
