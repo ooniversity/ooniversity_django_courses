@@ -76,6 +76,66 @@ ROOT_URLCONF = 'pybursa.urls'
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
 
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'students':
+        {
+            'handlers': ['students_file'],
+            'level': 'WARNING',
+        },
+
+        'courses':
+        {
+            'handlers': ['courses_file'],
+            'level': 'DEBUG',
+        },
+    },
+
+    'handlers':
+    {
+        # 'console':
+        # {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.StreamHandler',
+        # },
+        'students_file':
+        {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students.log'),
+            'formatter': 'students_format',
+        },
+
+        'courses_file':
+        {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses.log'),
+            'formatter': 'courses_format',
+        },
+    },
+
+    'formatters':
+    {
+        'students_format':
+        {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+
+        'courses_format':
+        {
+            'format': '%(levelname)s %(message)s'
+        },
+
+        'simple':
+        {
+            'format': '%(levelname)s %(message)s'
+        },
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
