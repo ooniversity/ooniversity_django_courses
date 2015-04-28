@@ -17,6 +17,7 @@ from django.views.generic.detail import SingleObjectMixin, SingleObjectTemplateR
 
 from pybursa.settings import ADMINS
 
+
 class FeedbackAddForm(ModelForm):
     date_of_create = DateTimeField(initial=datetime.datetime.now, widget=DateTimeInput(attrs={'readonly':'readonly'}))
     class Meta:

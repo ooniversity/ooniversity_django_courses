@@ -109,3 +109,39 @@ EMAIL_PORT = 1025
 ADMINS = (('Yaroslav', 'pyromanser@exemple.com'), )
 
 #DEFAULT_FROM_EMAIL = 'mypyburse@exemple.com'
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s: %(asctime)s, %(module)s, %(lineno)d line, %(funcName)s. %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'loggers': {
+        'courses': {
+            'handlers': ['file-simple'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['file-verbose'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers': {
+        'file-simple': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': 'courses_debug.log',
+        },
+        'file-verbose': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': 'students_debug.log',
+        },
+    },
+}
