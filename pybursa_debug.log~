@@ -1,0 +1,23 @@
+DEBUG 2015-04-29 16:35:42,046 views  Точка входа в  pybursa_app.views
+INFO 2015-04-29 16:35:42,049 views  Точка входа в pybursa_app.views
+WARNING 2015-04-29 16:35:42,049 views  Точка входа в pybursa_app.views
+ERROR 2015-04-29 16:35:42,049 views  Точка входа в pybursa_app.views
+CRITICAL 2015-04-29 16:35:42,050 views  Точка входа в pybursa_app.views
+ERROR 2015-04-29 16:35:47,683 views  Точка загрузки index.html (список курсов) pybursa_app.views
+ERROR 2015-04-29 16:35:51,693 views  Точка загрузки course.html (список курсов) pybursa_app.views
+DEBUG 2015-04-29 16:54:09,631 views  Точка загрузки students.html в  pybursa_app.views
+INFO 2015-04-29 16:54:09,635 views  Точка загрузки students.html в pybursa_app.views
+WARNING 2015-04-29 16:54:09,635 views  Точка загрузки students.html в pybursa_app.views
+ERROR 2015-04-29 16:54:09,635 views  Точка загрузки students.html в pybursa_app.views
+ERROR 2015-04-29 16:54:09,653 views  Точка загрузки course.html (список курсов) pybursa_app.views
+ERROR 2015-04-29 16:54:32,693 views  Точка загрузки index.html (список курсов) pybursa_app.views
+ERROR 2015-04-29 16:54:51,599 views  Точка загрузки course.html (список курсов) pybursa_app.views
+WARNING 2015-04-29 17:03:40,829 views  Точка загрузки student_detail.html в pybursa_app.views
+DEBUG 2015-04-29 17:05:59,726 views  Точка загрузки students.html в  pybursa_app.views
+INFO 2015-04-29 17:05:59,727 views  Точка загрузки students.html в pybursa_app.views
+WARNING 2015-04-29 17:05:59,727 views  Точка загрузки students.html в pybursa_app.views
+ERROR 2015-04-29 17:05:59,732 views  Точка загрузки students.html в pybursa_app.views
+WARNING 2015-04-29 17:05:59,738 views  Точка загрузки student_detail.html в pybursa_app.views
+WARNING 2015-04-29 17:06:04,446 views  Точка загрузки student_detail.html в pybursa_app.views
+ERROR 2015-04-29 17:06:11,482 views  Точка загрузки index.html (список курсов) pybursa_app.views
+ERROR 2015-04-29 17:06:13,740 views  Точка загрузки course.html (CourseDetail) pybursa_app.views

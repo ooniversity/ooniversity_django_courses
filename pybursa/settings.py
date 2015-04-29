@@ -107,3 +107,50 @@ EMAIL_PORT = 1025
 ADMINS = (('Alexandr',"alexandr.movchan@gmail.com"),('Sergiy',"sergiy.movchan@gmail.com"),)
 
 #STATICFILES_DIRS = ('static',~Public/ooniversity_django_courses/static)
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s  %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+
+    'handlers': {
+
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses_debug.log'),
+            'formatter': 'simple'
+        },
+        'file-s': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'pybursa_debug.log'),
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'courses': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+
+        },
+        'pybursa_app': {
+            'handlers': ['file-s', 'console'],
+            'level': 'WARNING',
+
+        },
+
+    },
+}

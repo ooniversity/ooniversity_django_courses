@@ -38,7 +38,7 @@
           <tbody>
           {% for student in student_list %}
             <tr>
-              <td>{{ forloop.counter }}</td>
+              <td>{{ page_p.start_index|add:forloop.counter0 }}</td>
               <td > <a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
               <td>{{ student.student_addr }}</td>
               <td>{{ student.student_skype }}</td>
@@ -57,22 +57,33 @@
            </tbody>
          </table>
 
+  <div class="row">
+  <div class="blok-f">
+    <div class="large-3 large-offset-5 columns">
+      <ul class="pagination">
+      {% if page_p.has_previous %}
+        <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.previous_page_number %}">&laquo;</a></li>
+      {% else %}
+        <li class="arrow unavailable"><a href="">&laquo;</a></li>
+      {% endif %}
+      {% for page in  page_p.paginator.page_range %}
 
-
-         <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">предыдущая </a>
+        {% if page == page_p.number %}
+           <li class="active"><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
+        {% else %}
+          <li><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
         {% endif %}
+      {% endfor %}
+      {% if page_p.has_next %}
+      <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.next_page_number %}">&raquo;</a></li>
+      {% else %}
+        <li class="arrow unavailable"><a href="">&raquo;</a></li>
+      {% endif %}
+    </ul>
+  </div>
 
-        <span class="current">
-            Стр. {{ page_obj.number }} из {{ paginator.num_pages }}
-        </span>
+</div>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"> следующая</a>
-        {% endif %}
-    </span>
 </div>
        {% else %}
          <p>Ничего нет по Вашему запросу.</p>

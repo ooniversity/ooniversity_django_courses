@@ -25,3 +25,9 @@
     background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
     color: #a00;
 }
+div.blok-f {
+position: fixed;
+left: 250px;
+top: 600px;
+width: 900px
+}
