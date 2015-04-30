@@ -104,7 +104,6 @@ EMAIL_PORT = 1025
 
 ADMINS = (('Nikolay', 'nikolay.borovenskiy@gmail.com'), ('Sasha', 'sasha_tep@mail.ru'))
 
-#Конфигурирование логгирования
 LOGGING = {
     'version': 1,
     'formatters': {
@@ -115,7 +114,7 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
         'student': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(lineno)d %(message)s'
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
         },
     },
     'loggers':
