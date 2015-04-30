@@ -1,0 +1,17 @@
+DEBUG: datetime 2015-05-01 02:26:06,559; module courses.views in CoursesForm; message: it works
+DEBUG: datetime 2015-05-01 02:26:06,561; module courses.views in LessonForm; message: it works
+DEBUG: datetime 2015-05-01 02:26:06,562; module courses.views in CoursesDetailView; message: it works
+DEBUG: datetime 2015-05-01 02:26:06,562; module courses.views in CoursesCreateView; message: it works
+DEBUG: datetime 2015-05-01 02:26:07,481; module courses.views in index; message: it works
+DEBUG: datetime 2015-05-01 02:26:14,014; module courses.views in index; message: it works
+WARNING: datetime 2015-05-01 02:26:14,014; module courses.views in index; message: unnecessary GET parameters
+INFO: datetime 2015-05-01 02:26:18,114; module courses.views in get_context_data; message: works with context: {'lessons': [<Lesson: Вводное занятие>, <Lesson: Основное занятие>, <Lesson: Заключительное занятие>], 'courses': <Courses: python / django>, u'object': <Courses: python / django>, 'course': <Courses: python / django>, u'view': <courses.views.CoursesDetailView object at 0x7fb95c3d2bd0>}
+ERROR: datetime 2015-05-01 02:26:23,726; module courses.views in add_lesson; message: Form is not valid!
+    <ul class="errorlist"><li>thema<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+ERROR: datetime 2015-05-01 02:26:27,542; module courses.views in add_lesson; message: Form is not valid!
+    <ul class="errorlist"><li>text<ul class="errorlist"><li>This field is required.</li></ul></li><li>thema<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+ERROR: datetime 2015-05-01 02:26:30,853; module courses.views in add_lesson; message: Form is not valid!
+    <ul class="errorlist"><li>text<ul class="errorlist"><li>This field is required.</li></ul></li><li>num<ul class="errorlist"><li>This field is required.</li></ul></li><li>thema<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO: datetime 2015-05-01 02:26:34,136; module courses.views in get_context_data; message: works with context: {'lessons': [<Lesson: Вводное занятие>, <Lesson: Основное занятие>, <Lesson: Заключительное занятие>], 'courses': <Courses: python / django>, u'object': <Courses: python / django>, 'course': <Courses: python / django>, u'view': <courses.views.CoursesDetailView object at 0x7fb95c31c090>}
+ERROR: datetime 2015-05-01 02:26:55,483; module students.views in delete; message: Student Василий Новиков was deleted
+DEBUG: datetime 2015-05-01 02:26:57,065; module courses.views in index; message: it works

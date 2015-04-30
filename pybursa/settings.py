@@ -117,3 +117,36 @@ EMAIL_HOST_USER = 'test@balakleya.info'
 EMAIL_SUBJECT_PREFIX = '[PyBursa] '
 
 EMAIL_HOST_PASSWORD = '4NoYshNA48y3'
+
+# Logger config
+# LOGGING_CONFIG = None
+
+LOGGING = {
+    'version': 1,
+
+    'formatters': {
+        'main': {
+            'format': '%(levelname)s: datetime %(asctime)s; module %(name)s in %(funcName)s; message: %(message)s'
+        },
+    },
+
+    'loggers': {
+        'courses': {
+            'handlers': ['file'],
+            'level': 'DEBUG'
+        },
+        'students': {
+            'handlers': ['file'],
+            'level': 'WARNING'
+        },
+    },
+
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'main'
+        },
+    },
+}
