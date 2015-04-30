@@ -32,7 +32,6 @@
              Добавить курс
           </button>
         </a> 
-<br/>
 <table class="table">
  <thead>
    <tr>
@@ -66,14 +65,7 @@
         </button>
      </a>
    </td>
-
-      <td>
-         <a href="{% url 'courses:course_edit' i.id %}"><button class="btn btn-primary">Изменить</button></a>
-     </td>
-      <td>
-         <a href="{% url 'courses:course_delete' i.id %}"><button class="btn btn-primary">Удалить</button></a>
-     </td>
-      </tr>
+  </tr>
 {% endfor %}
     </tbody>
     </table>

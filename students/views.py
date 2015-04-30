@@ -15,6 +15,8 @@ from django.core.paginator import Paginator
 #from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #from django.views.generic.list import MultipleObjectMixin
 
+import logging
+logger = logging.getLogger(__name__)#to log only if student-detail url visited?
 
 class FormContextMixin(object):
     def get_context_data(self, **kwargs):
@@ -46,9 +48,14 @@ class StudentListView(ListView):
             paginate_by = 12
         return qs
 
+
 class StudentDetailView(DetailView):
     model = Student
     #context_object_name = "student_one"
+    logger.debug('StudentDetailView has been debugged!')
+    logger.info('StudentDetailView informs you!')
+    logger.warning('StudentDetailView warns you!')
+    logger.error('StudentDetailView went wrong!')#make it in EXCEPT!
 
 
 class StudentCreateView(SuccessMessageMixin, FormContextMixin, CreateView):

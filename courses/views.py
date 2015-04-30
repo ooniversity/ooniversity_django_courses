@@ -14,6 +14,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
+import logging
+logger = logging.getLogger(__name__)
 
 class FormContextMixin(object):
     def get_context_data(self, **kwargs):
@@ -27,6 +29,10 @@ class CourseDetailView(DetailView):
     model = Course
     context_object_name = "course"
     template_name = "courses/course_detail.html"
+    logger.debug('CourseDetailView has been debugged!')
+    logger.info('CourseDetailView informs you!')
+    logger.warning('CourseDetailView warns you!')
+    logger.error('CourseDetailView went wrong!')#make it in EXCEPT!
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)

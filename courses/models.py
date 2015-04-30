@@ -2,7 +2,6 @@ from django.db import models
 from coaches.models import Coach
 from django.core.urlresolvers import reverse
 
-
 # Create your models here.
 class Course(models.Model):
 
