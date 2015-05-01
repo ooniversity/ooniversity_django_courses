@@ -109,3 +109,65 @@ EMAIL_PORT = 1025
 
 ADMINS = (('Alexander', 'sasha_tep@mail.ru'),)
 
+
+# Configuration logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    # Loggers settings
+    'loggers': {
+        'courses': {
+            'level': 'DEBUG',
+            'handlers': ['null', 'console_course', 'file_course'],
+            'propagate': True,
+        },
+        'students': {
+            'level': 'WARNING',
+            'handlers': ['console_student', 'file_student'],
+            'propagate': True,
+        }
+    },
+
+    # Handlers settings
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console_course': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'console_student': {
+            'level': 'WARNING',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        # Logging files for applications (courses and students)
+        'file_course': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses/debug.log'),
+            'formatter': 'simple'
+        },
+        'file_student': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students/debug.log'),
+            'formatter': 'verbose'
+        }
+    },
+
+    # Formatters using settings
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s in %(funcName)s - %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s - %(message)s'
+        }
+    }
+}

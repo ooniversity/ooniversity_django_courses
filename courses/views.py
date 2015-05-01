@@ -11,6 +11,11 @@ from courses.models import Course, Lesson
 from courses.forms import CourseModelForm, LessonModelForm
 
 
+# Added Logging
+import logging
+logger = logging.getLogger(__name__)
+
+
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/course_coaches.html'
@@ -18,6 +23,14 @@ class CourseDetailView(DetailView):
     pk_url_kwarg = 'id_course'
 
     def get_context_data(self, *args, **kwargs):
+
+        logger.debug(u'Любая отладочная информация!')
+        logger.info(u'Информационные сообщения!')
+        logger.warning(u'Что-то может пойти не так!')
+        logger.error(u'Что-то пошло не так!')
+        #logger.critical(u'Случилось что-то нехорошое!')
+        #logger.fatal(u'Дела совсем плохи!!!')		# Этот логгер не найден, но хотелось-бы его иметь !!!
+
         context = super(CourseDetailView, self).get_context_data(*args, **kwargs)
         self.course = Course.objects.get(pk=self.kwargs['id_course'])
         context['course'] = self.course
