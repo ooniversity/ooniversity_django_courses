@@ -44,12 +44,16 @@
           </thead>
           <tbody>
                <tr>
+                   {% if course.instructor %}
                    <td><a href="{% url 'coaches:coach_info' course.instructor.id %}">{{ course.instructor }}</a></td>
                    <td>{{ course.instructor.description }}</td>
+                   {% endif %}
                </tr>
                <tr>
+                   {% if course.assistant %}
                    <td> <a href="{% url 'coaches:coach_info' course.assistant.id %}">{{ course.assistant }} </a></td>
                    <td>{{ course.assistant.description }}</td>
+                   {% endif %}
                </tr>
 
           </tbody>
