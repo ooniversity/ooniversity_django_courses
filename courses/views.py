@@ -132,7 +132,7 @@ class LessonDeleteView(DeleteView):
         return '/courses/{}/'.format(course_pk)
 
     def delete(self, request, *args, **kwargs):
-        response = super(LessontDeleteView, self).delete(request, *args, **kwargs)
+        response = super(LessonDeleteView, self).delete(request, *args, **kwargs)
         messages.warning(request, u'Object {} deleted!'.format(self.object.theme))
         return response
 
