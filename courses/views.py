@@ -9,6 +9,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)   # __name__ = courses.views
+
 
 class CourseForm(forms.ModelForm):
     class Meta:
@@ -93,9 +99,11 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
+        logger.debug('DEBUG - logger')
+        logger.info('INFO - logger')
+        logger.warning('WARNING- logger')
+        logger.error('ERROR - logger')
         course = self.get_object()
-        print self.kwargs['pk']
-        print 1
         context['lessons'] = course.lesson_set.all()
         return context
 

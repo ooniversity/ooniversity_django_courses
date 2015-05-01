@@ -91,7 +91,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),'students/templates']
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'), 'students/templates']
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
@@ -99,3 +99,46 @@ EMAIL_PORT = 1025
 #EMAIL_HOST_PASSWORD = 'bla'
 
 ADMINS = (('Ivan', 'ivan@gmail.com'), ('Vasya', 'vasya@gmail.com'),)
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'courses': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['console', 'file_student'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers':
+    {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',  # to clarify
+        },
+         'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'simple',
+            },
+         'file_student': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student.log'),
+            'formatter': 'verbose',
+            },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+}
