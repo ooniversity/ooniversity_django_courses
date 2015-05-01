@@ -1,4 +1,6 @@
 # python precompiled files:
 *.pyc
 *.pyo
-*.log~
+*.log
+*.*~
+local_settings.py

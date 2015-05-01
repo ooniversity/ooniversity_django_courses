@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '+ks=!r_ohmlznsp&$j8&m++b$u#5@*(52!7dg)3*i^4srg3yhs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-#ALLOWED_HOSTS = ['127.0.0.1:8000']
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -88,6 +87,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "img")
 
 MEDIA_URL = '/photos/'
@@ -110,38 +111,9 @@ ADMINS = (('Yaroslav', 'pyromanser@exemple.com'), )
 
 #DEFAULT_FROM_EMAIL = 'mypyburse@exemple.com'
 
-LOGGING = {
-    'version': 1,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s: %(asctime)s, %(module)s, %(lineno)d line, %(funcName)s. %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s: %(message)s'
-        },
-    },
-    'loggers': {
-        'courses': {
-            'handlers': ['file-simple'],
-            'level': 'DEBUG',
-        },
-        'students': {
-            'handlers': ['file-verbose'],
-            'level': 'WARNING',
-        },
-    },
-    'handlers': {
-        'file-simple': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'simple',
-            'filename': 'courses_debug.log',
-        },
-        'file-verbose': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': 'students_debug.log',
-        },
-    },
-}
+LOGGING = {}
+
+try:
+    from local_settings import *
+except ImportError:
+    print 'Warning! local_settings are not defined!'
