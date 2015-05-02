@@ -22,10 +22,10 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        logger.debug("logger is wrong")
-        logger.info("logger is wrong")
-        logger.warning("logger is wrong")
-        logger.error("logger is wrong")
+        logger.debug("logger-message")
+        logger.info("logger-message")
+        logger.warning("logger-message")
+        logger.error("logger-message")
         course = context['course']
         context['coach']  = Coach.objects.get(user=course.coach.user)
         context['assistant'] = Coach.objects.get(user=course.assistant.user)
