@@ -12,6 +12,8 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from models import Course, Lesson
 
+import logging
+logger = logging.getLogger(__name__) #courses.views
 
 class CourseDetailView(DetailView):
     model = Course
@@ -20,6 +22,10 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
+        logger.debug("logger is wrong")
+        logger.info("logger is wrong")
+        logger.warning("logger is wrong")
+        logger.error("logger is wrong")
         course = context['course']
         context['coach']  = Coach.objects.get(user=course.coach.user)
         context['assistant'] = Coach.objects.get(user=course.assistant.user)
