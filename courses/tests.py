@@ -22,6 +22,7 @@ class CourseTest(TestCase):
         self.assertContains(response, "Python")
         
         # checking the detail info about course
+        
         response = client.get('/courses/1/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Python')
