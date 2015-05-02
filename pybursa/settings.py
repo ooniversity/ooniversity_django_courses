@@ -121,19 +121,16 @@ STATICFILES_DIRS = (
 
 LOGGING = {
     'version': 1,
-    'loggers':
-    {
-        'courses':{
-            'handlers': ['file'],
-            'level': 'DEBUG',
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(message)s'
         },
-        'students':{
-            'handlers': ['file2'],
-            'level': 'WARNING',
+        'verbose_full': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
     },
-    'handlers':
-    {
+    'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
@@ -147,12 +144,15 @@ LOGGING = {
             'formatter': 'verbose_full',
         },
    },
-   'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(message)s'
+    'loggers':
+    {
+        'courses':{
+            'handlers': ['file'],
+            'level': 'DEBUG',
         },
-        'verbose_full': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        'students':{
+            'handlers': ['file2'],
+            'level': 'WARNING',
         },
     },
 }
