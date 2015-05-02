@@ -4,12 +4,12 @@
 {% block nav_class_index %}active{% endblock %}
 
 {% block jumbotron %}
-            <div class="jumbotron">
-            <div class="jumbo_internal">
+    <div class="jumbotron">
+        <div class="jumbo_internal">
             <h1>Go to ITBursa!</h1>
-            <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
-          </div>
-          </div>
+                <p>Web разработка приятна и проста с Python/Django. Back-end разработке вас научат в <strong>ITBursa</strong> - это <a href = "http://dev.by/lenta/ciklum/it-jam-2015-it-innovatsii-i-obrazovanie" target="_blank"> лучший</a> региональный IT проект! Добро пожаловать в <a href = "http://pybursa.com/" target="_blank">PyBursa</a>,  <a href = "http://jsbursa.com/" target="_blank">JSBursa</a> и  <a href = "http://rubybursa.com/" target="_blank">RubyBursa</a>!</p>
+        </div>
+    </div>
 {% endblock jumbotron %}
 
 {% block courses_table %}
@@ -42,7 +42,7 @@
    </tr>
  </thead>
                
-{% for i in courses %}
+{% for i in course.objects.all %}
     <tbody>
       <tr>
       <td><a href="{% url 'courses:course' i.id %}">{{i.name|upper}} </a></td>

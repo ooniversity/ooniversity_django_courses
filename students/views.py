@@ -52,10 +52,10 @@ class StudentListView(ListView):
 class StudentDetailView(DetailView):
     model = Student
     #context_object_name = "student_one"
-    logger.debug('StudentDetailView has been debugged!')
-    logger.info('StudentDetailView informs you!')
-    logger.warning('StudentDetailView warns you!')
-    logger.error('StudentDetailView went wrong!')#make it in EXCEPT!
+    logger.debug('App\'s DetailView has been debugged!')
+    logger.info('Logger informs you!')
+    logger.warning('Logger warns you!')
+    logger.error('App\'s DetailView went wrong!')#make it in EXCEPT!
 
 
 class StudentCreateView(SuccessMessageMixin, FormContextMixin, CreateView):
