@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = (
     'coaches',
     'quadratic',
     'contact',
+    'debug_toolbar',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,9 +111,48 @@ TEMPLATES = [
         'APP_DIRS': True,
     },
 ]
+STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 )
 
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'courses':{
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+        'students':{
+            'handlers': ['file2'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers':
+    {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_courses.log'),
+            'formatter': 'verbose',
+        },
+        'file2': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student.log'),
+            'formatter': 'verbose_full',
+        },
+   },
+   'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'verbose_full': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+}

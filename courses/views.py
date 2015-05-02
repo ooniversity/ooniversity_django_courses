@@ -17,6 +17,9 @@ from django.views.generic.edit import (
     DeleteView
 )
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class LessonForm(forms.ModelForm):
     class Meta:
@@ -31,6 +34,10 @@ class CourseForm(forms.ModelForm):
 class CourseDetailView(DetailView):
     model = Course
     template_name = "courses/courses.html"
+    logger.debug("Debug error in course detail view")
+    logger.info("Info in course detail view")
+    logger.warning("Warning  in course detail view")
+    logger.error("Critical error in course detail view")
 
 
 class CourseCreateView(CreateView):

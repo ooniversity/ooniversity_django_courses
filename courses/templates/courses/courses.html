@@ -27,12 +27,12 @@
 
 {% include "inc_course_description.html" %}
 
-
-{% include "inc_instructor.html" with block_title="Учитель" instructor=course.coach %}
-
-
-{% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
-
+{% if course.coach %}
+  {% include "inc_instructor.html" with block_title="Учитель" instructor=course.coach %}
+{% endif %}
+{% if course.assistant %}
+  {% include "inc_instructor.html" with block_title="Ассистент" instructor=course.coach %}
+{% endif %}
 <h3><a class="btn btn-primary active" href="{% url 'courses:add_lesson' course.id %}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Добавить новый урок</span></a></h3>
 
 {% include "inc_lessons.html" with lessons=course.lesson_set.all %}
