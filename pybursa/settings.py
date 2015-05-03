@@ -86,13 +86,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-EMAIL_HOST = "localhost"
+EMAIL_HOST = "smtp.gmail.com"
 
-EMAIL_PORT = 1025
+EMAIL_PORT = 587
 
-# EMAIL_HOST_USER
+EMAIL_HOST_USER = "z.lisa.gosteva@gmail.com"
 
-# EMAIL_HOST_PASSWORD
+EMAIL_HOST_PASSWORD = "lisa6tgd6g"
+
+EMAIL_USE_TLS = 1
 
 
 ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
@@ -101,6 +103,9 @@ ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),
 )
@@ -111,9 +116,22 @@ TEMPLATES = [
         'APP_DIRS': True,
     },
 ]
-STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),

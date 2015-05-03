@@ -31,6 +31,7 @@ class StudentDetailView(DetailView):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
+        fields = '__all__'
         # template_name = "..."
         # context_object_name = "st"
 

@@ -24,11 +24,13 @@ logger = logging.getLogger(__name__)
 class LessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
+        fields = '__all__'
 
 
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
+        fields = '__all__'
 
 
 class CourseDetailView(DetailView):
