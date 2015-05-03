@@ -15,13 +15,12 @@
       {% endif %}
       <h4>Гранит науки сейчас грызут:</h4>
     </div>
-    {% if student_list %}
 
       <div class="container text-right">
-
        <p><a href="/student_add/">
        <button class="btn btn-small btn-primary" type="button">Добавить</button></a></p>
      </div>
+     {% if student_list %}
       <div class="container">
         <table id="main-table" class="table table-hover table-bordered">
           <thead>
@@ -56,35 +55,8 @@
 
            </tbody>
          </table>
+{% include "pages.html" %}
 
-  <div class="row">
-  <div class="blok-f">
-    <div class="large-3 large-offset-5 columns">
-      <ul class="pagination">
-      {% if page_p.has_previous %}
-        <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.previous_page_number %}">&laquo;</a></li>
-      {% else %}
-        <li class="arrow unavailable"><a href="">&laquo;</a></li>
-      {% endif %}
-      {% for page in  page_p.paginator.page_range %}
-
-        {% if page == page_p.number %}
-           <li class="active"><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
-        {% else %}
-          <li><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
-        {% endif %}
-      {% endfor %}
-      {% if page_p.has_next %}
-      <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.next_page_number %}">&raquo;</a></li>
-      {% else %}
-        <li class="arrow unavailable"><a href="">&raquo;</a></li>
-      {% endif %}
-    </ul>
-  </div>
-
-</div>
-
-</div>
        {% else %}
          <p>Ничего нет по Вашему запросу.</p>
        {% endif %}

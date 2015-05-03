@@ -22,10 +22,10 @@ class StudentList(ListView):
     model = Student
     paginate_by = 2
     template_name = 'students.html'
-    logger.debug(u'Точка загрузки students.html в  %s', __name__)
-    logger.info(u'Точка загрузки students.html в %s', __name__)
-    logger.warning(u'Точка загрузки students.html в %s', __name__)
-    logger.error(u'Точка загрузки students.html в %s', __name__)
+#    logger.debug(u'Точка загрузки students.html в  %s', __name__)
+#    logger.info(u'Точка загрузки students.html в %s', __name__)
+#    logger.warning(u'Точка загрузки students.html в %s', __name__)
+#    logger.error(u'Точка загрузки students.html в %s', __name__)
 
 
 class StudentListCourse(ListView):
@@ -42,7 +42,7 @@ class StudentDetail(DetailView):
     model = Student
 
     def get_context_data(self, **kwargs):
-        logger.warning(u'Точка загрузки student_detail.html в %s', __name__)
+#        logger.warning(u'Точка загрузки student_detail.html в %s', __name__)
         context = super(StudentDetail, self).get_context_data(**kwargs)
         self.student = Student.objects.get(pk=self.kwargs['pk'])
         self.course =  Course.objects.filter(student=self.student)
@@ -99,7 +99,7 @@ class StudentDeleteForm(ModelForm):
         fields = 'student_name', 'student_last_name', 'student_birth', 'student_email'
 
 def index(request):
-    logger.error(u'Точка загрузки index.html (список курсов) %s', __name__)
+#    logger.error(u'Точка загрузки index.html (список курсов) %s', __name__)
     course_list = Course.objects.all()
     template = loader.get_template('index.html')
     context = RequestContext(request, {
@@ -115,8 +115,8 @@ class CourseDetail(DetailView):
     model = Course
     template_name = 'course.html'
     def get_context_data(self, **kwargs):
-        logger.error(u'Точка загрузки course.html (CourseDetail) %s', __name__)
-        logger.warning(u'Точка загрузки course.html (CourseDetail) %s', __name__)
+#        logger.error(u'Точка загрузки course.html (CourseDetail) %s', __name__)
+#        logger.warning(u'Точка загрузки course.html (CourseDetail) %s', __name__)
         context = super(CourseDetail, self).get_context_data(**kwargs)
         self.course = Course.objects.get(pk=self.kwargs['pk'])
         self.lesson =  Lesson.objects.filter(lesson_course=self.course)
@@ -236,8 +236,7 @@ def student_list(request, page_number=1):
 
     student_list = Student.objects.all()
     course_list = Course.objects.all()
-    paginator = Paginator(student_list, 2)
-
+    paginator = Paginator(student_list, 4)
     template = loader.get_template('students.html')
     context = RequestContext(request, {
         'student_list': paginator.page(page_number),

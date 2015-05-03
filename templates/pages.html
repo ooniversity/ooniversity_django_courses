@@ -1,0 +1,28 @@
+  <div class="row">
+  {% if page_p.has_other_pages %}
+    <center>
+      <ul class="pagination pagination-centered">
+      {% if page_p.has_previous %}
+        <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.previous_page_number %}">&laquo;</a></li>
+      {% else %}
+      <li class="arrow unavailable"><a>&laquo;</a></li>
+      {% endif %}
+      {% for page in  page_p.paginator.page_range %}
+
+        {% if page == page_p.number %}
+           <li class="active"><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
+        {% else %}
+          <li><a href="{% url 'pybursa_app:student_page' page %}">{{ page }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_p.has_next %}
+      <li class="arrow"><a href="{% url 'pybursa_app:student_page' page_p.next_page_number %}">&raquo;</a></li>
+      {% else %}
+        <li class="arrow unavailable"><a>&raquo;</a></li>
+      {% endif %}
+    </ul>
+  </center>
+  {% endif %}
+</div>
+
+

@@ -31,3 +31,10 @@ left: 250px;
 top: 600px;
 width: 900px
 }
+
+div.blok-f2 {
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%
+}
