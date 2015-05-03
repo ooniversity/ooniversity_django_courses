@@ -3,3 +3,6 @@
 *.pyo
 *.txt~
 *.gitignore~
+*.*~
+*.log
+local_settings.py

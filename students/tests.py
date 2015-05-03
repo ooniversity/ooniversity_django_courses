@@ -2,7 +2,9 @@
 
 from django.test import TestCase, Client
 from students.models import Student
+from courses.models import Course
 from datetime import date
+from django.core.urlresolvers import reverse
 
 
 class StudentsTests(TestCase):
@@ -34,11 +36,15 @@ class StudentsTests(TestCase):
         response = client.get('/students/1/')
         # проверка что страницы не существует
         self.assertEqual(response.status_code, 404)
+        # создание курса
+        course1 = Course.objects.create(name='Python/Django', short_description="Wed development with Django")
         # создание студента
         student1 = Student.objects.create(name=u'Миша', surname=u'Булгаков', date_of_birth=date(1891, 05, 03),
                                           email='master@margarita.com', phone='321', address=u'Киев-Москва',
                                           skype='Misha')
-        response = client.get('/students/1/')
+        student1.courses.add(course1)
+        #response = client.get('/students/1/')
+        response = client.get(reverse('students:student_info', args=(course1.id,)))
         # проверка странички
         self.assertEqual(response.status_code, 200)
         # проверка наличия информации о сдуденте на стриничке
