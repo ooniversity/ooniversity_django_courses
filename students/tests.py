@@ -11,14 +11,9 @@ def create_course(name):
         description='CourseDescription')  
 
 class StudentTests(TestCase):
-    #check ListView when no student exists
-    #def test_students_empty_list(self): 
-
-    #check ListView when students exist:
     def test_students_list(self): 
         from django.test import Client
         client = Client()
-        #create_student('StudentSurname1')
 
         student1 = Student.objects.create(
             name='StudentName1', 
@@ -43,73 +38,41 @@ class StudentTests(TestCase):
         student2.courses.add(course1)
 
         response = client.get(reverse('students:students'))
-        #print response.context['object_list'] #no need to print
         self.assertEqual(response.status_code, 200) 
         self.assertEqual(Student.objects.all().count(), 2)
-        #context testing:
-        #https://docs.djangoproject.com/en/1.7/intro/tutorial05/#testing-our-new-view
-        #'object_list' instead of 'student_list' is also possible
-
-        """       
-        self.assertQuerysetEqual(
-            response.context['student_list'],
-            #['<Student: StudentSurname1>']#can we parametrize???
-            ['<Student: StudentSurname1>', '<Student: StudentSurname2>']
-        )
-        """
-
-        """
-        self.assertQuerysetEqual(
-            response.context['latest_question_list'],
-            ['<Question: Past question 2.>', '<Question: Past question 1.>']
-        )
-        """
-        #https://docs.djangoproject.com/en/1.7/topics/testing/tools/#django.test.Response.context
-        #http://django-testing-docs.readthedocs.org/en/latest/views.html
-        """
-        self.assertEqual([student.pk for student in response.context['student_list']], [1])
-        """
+ 
         self.assertTrue('student_list' in response.context)
-        self.assertEqual(student1.email, 'email1@email.email')#?????
-        self.assertEqual(student2.email, 'email2@email.email')#?????
+
+        for item in Student.objects.all():
+            self.assertContains(response, item.surname.upper())
+
+        for item in Student.objects.all():
+            self.assertContains(response, item.name)
+
+        for item in Student.objects.all():
+            self.assertContains(response, item.address)
+
+        for item in Student.objects.all():
+            self.assertContains(response, item.scype)
+
+        self.assertEqual(response.context['student_list'][0], 
+                         student1) 
+        self.assertEqual(response.context['student_list'][1], 
+                         student2) 
+
+        #additional checks:
+        self.assertEqual(student1.email, 'email1@email.email')
+        self.assertEqual(student2.email, 'email2@email.email')
 
         self.assertContains(response, 'CourseName1')
-        self.assertContains(response, 'StudentName1')
-        self.assertContains(response, 'StudentName2')
-        self.assertContains(response, 'STUDENTSURNAME1')#upper!
-        self.assertContains(response, 'STUDENTSURNAME2')#upper!
-        self.assertContains(response, 'address1')
-        self.assertContains(response, 'address2')
-        self.assertContains(response, 'scype1')
-        self.assertContains(response, 'scype2')
+        self.assertEqual(response.context['student_list'][0].courses.all()[0].name, course1.name) 
+        self.assertEqual(response.context['student_list'][1].courses.all()[0].name, course1.name) 
+       
 
-        self.assertEqual(response.context['student_list'][0].name, 
-                         'StudentName1') 
-        self.assertEqual(response.context['student_list'][1].name, 
-                         'StudentName2') 
-        
-        self.assertEqual(response.context['student_list'][0].name, 
-                         student1.name) #???????????????
-        self.assertEqual(response.context['student_list'][1].name, 
-                         student2.name) #???????????????
-        
-        #self.assertEqual([student.courses.count() for student in response.context['student_list']], [1])
-        #self.assertTrue(not student.courses for student in response.context['student_list'])#?????? not student.courses ALSO WORKS!!!
-        #self.assertTrue(students)#AssertionError: [] is not true
-        #self.assertTrue(students.count())#AssertionError: 0 is not true
-        #self.assertEqual(student.courses, 1) #AssertionError: <django.db.models.fields.related.ManyRelatedManager object at 0x7ffe8094c5d0> != 1
-        #self.assertEqual((student.courses for student in response.context['student_list']), 1) #AssertionError: <generator object <genexpr> at 0x7f40f8588370> != 1
-
-#CHECK IF STUDENT OBJECT CAN CONTAIN SEVERAL COURSES!!
-#need it really??? M2M!!! not evident?!
-
-
-    #https://docs.djangoproject.com/en/1.7/intro/tutorial05/#testing-the-detailview
     def test_student_detail(self):
         from django.test import Client
         client = Client()
 
-        #response = client.get('/students/1/')
         response = client.get(reverse(
                                 'students:student_one', 
                                 args=(1,)))
@@ -118,7 +81,7 @@ class StudentTests(TestCase):
         student1 = Student.objects.create(
             name='StudentName1', 
             surname='StudentSurname1',
-            birth_date='1988-01-01',#'YYYY-MM-DD'
+            birth_date='1988-01-11',#'YYYY-MM-DD'
             email='email1@email.email',
             phone='333-555-666',
             address='address1',
@@ -130,31 +93,24 @@ class StudentTests(TestCase):
         student1.courses.add(course2)
         response = client.get(reverse(
                                  'students:student_one', 
-                                 args=(student1.pk,)))#???????????????
-        #response = client.get(reverse(
-        #                        'students:student_one', 
-        #                        args=(1,)))
-        #print response.context['object'] #no need to print
+                                 args=(student1.pk,)))
         self.assertEqual(response.status_code, 200)    
         self.assertTrue('student' in response.context) 
-        self.assertContains(response, "StudentName1")
-        #context testing:
-        #http://toastdriven.com/blog/2011/apr/10/guide-to-testing-in-django/
-        #self.assertEqual(response.context['student'].pk, 1)   
+        self.assertContains(response, "StudentName1")  
         self.assertEqual(response.context['student'].pk, student1.pk)   
         #'object' instead of 'student' is also possible
         self.assertEqual(response.context['student'].name, 
-                         'StudentName1')#to parametrize!
+                         'StudentName1')#we can parametrize!
         self.assertEqual(response.context['student'].surname,
                          student1.surname) 
-        self.assertContains(response, 'StudentName1')
-        self.assertContains(response, '1988, January 1')
-        #self.assertContains(response, '1988-01-01')
-        #self.assertContains(response, datetime.date(1988, 1, 1))
-        #AssertionError: datetime.date(1988, 1, 1) != '1988-01-01'
-        #self.assertEqual(response.context['student'].birth_date, 
-                         #student1.birth_date)
-        """
+        self.assertContains(response, student1.name)
+        self.assertContains(response, student1.surname.upper())
+        self.assertContains(response, '1988, January 11')
+        self.assertContains(response, student1.email)
+        self.assertContains(response, student1.phone)
+        self.assertContains(response, student1.address)
+        self.assertContains(response, student1.scype)
+
         self.assertEqual(response.context['student'].email, 
                          student1.email) 
         self.assertEqual(response.context['student'].phone,
@@ -162,27 +118,13 @@ class StudentTests(TestCase):
         self.assertEqual(response.context['student'].address,
                          student1.address)  
         self.assertEqual(response.context['student'].scype, 
-                         student1.scype) 
-        """
-        self.assertEqual(response.context['student'].name, 
-                         'StudentName1') 
-        self.assertEqual(response.context['student'].surname,
-                         'StudentSurname1') 
-        self.assertEqual(response.context['student'].email, 
-                         'email1@email.email') 
-        self.assertEqual(response.context['student'].phone,
-                         '333-555-666') 
-        self.assertEqual(response.context['student'].address,
-                         'address1')  
-        self.assertEqual(response.context['student'].scype, 
-                         'scype1') 
+                         student1.scype)   
 
         self.assertContains(response, 'CourseName1')
         self.assertContains(response, 'CourseName2')
-
-        #http://toastdriven.com/blog/2011/apr/10/guide-to-testing-in-django/
+        self.assertEqual(response.context['student'].courses.all()[0].name, course1.name) 
+        self.assertEqual(response.context['student'].courses.all()[1].name, course2.name) 
         courses=student1.courses.all()
-        self.assertEqual(courses[0].pk, course1.pk) #???
-        self.assertEqual(courses[1].pk, course2.pk) #???
-        #self.assertEqual(courses[0].pk, 1)
         self.assertEqual(courses.count(), 2)
+        self.assertEqual(courses[0].pk, course1.pk)
+        self.assertEqual(courses[1].pk, course2.pk)
