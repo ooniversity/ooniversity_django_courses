@@ -64,3 +64,7 @@ WARNING 2015-04-30 14:25:31,855 views get_context_data Some warning info for stu
 ERROR 2015-04-30 14:25:31,856 views get_context_data Some error info for student - Михаил Жуланов
 WARNING 2015-04-30 14:29:18,341 views get_context_data Some warning info for student - Алена Твердохлеб
 ERROR 2015-04-30 14:29:18,342 views get_context_data Some error info for student - Алена Твердохлеб
+WARNING 2015-04-30 14:36:52,884 views get_context_data Some warning info for student - Алена Твердохлеб
+ERROR 2015-04-30 14:36:52,885 views get_context_data Some error info for student - Алена Твердохлеб
+WARNING 2015-04-30 14:38:05,105 views get_context_data Some warning info for student - Алена Твердохлеб
+ERROR 2015-04-30 14:38:05,105 views get_context_data Some error info for student - Алена Твердохлеб
