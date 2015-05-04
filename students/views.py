@@ -5,6 +5,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+import logging
+logger = logging.getLogger(__name__)
 
 
 class StudentCreateView(CreateView):
@@ -54,3 +56,11 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+
+    def get_queryset(self):
+        student = Student.objects.filter(pk = self.kwargs['pk'])
+        logger.debug(u'Debug info for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.info(u'Debug description for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.warning(u'Debug warning info for student - {} {}'.format(student[0].name, student[0].surname))
+        logger.error(u'Debug error info for student - {} {}'.format(student[0].name, student[0].surname))
+        return student

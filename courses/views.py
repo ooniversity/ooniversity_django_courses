@@ -8,6 +8,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
+import logging
+logger = logging.getLogger(__name__)
 
 
 class LessonForm(forms.ModelForm):
@@ -18,6 +20,16 @@ class LessonForm(forms.ModelForm):
 class CourseDetailView(DetailView):
     model = Course
     template_name = "courses/course.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        course = Course.objects.get(pk = self.kwargs['pk'])
+        logger.debug(u'Some debug info for course - {}'.format(course.name))
+        logger.info(u'Some info discription for course - {}'.format(course.name))
+        logger.warning(u'Some warning info for course - {}'.format(course.name))
+        logger.error(u'Some error info for course - {}'.format(course.name))
+        context['course'] = course
+        return context
 
 
 class CourseCreateView(CreateView):
