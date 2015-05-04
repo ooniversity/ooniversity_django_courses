@@ -15,7 +15,6 @@ from django.core.urlresolvers import reverse_lazy
 
 from courses.models import Course, Lesson
 from CourseForm import CourseForm
-
 from CourseLoggingMixin import CourseLoggingMixin
 
 

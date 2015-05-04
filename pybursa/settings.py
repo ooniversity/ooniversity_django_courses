@@ -108,7 +108,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '%(levelname)s %(asctime)s %(module)s:%(funcName)s - %(message)s'
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -137,13 +137,11 @@ LOGGING = {
         'courses': {
             'handlers': ['courses_h'],
             'level': 'DEBUG',
-            #'propagate': False,
             'propagate': True,
         },
         'students': {
-            'handlers': ['console', 'students_h'],
+            'handlers': ['students_h'],
             'level': 'WARNING',
-            #'propagate': False,
             'propagate': True,
         },
     }
