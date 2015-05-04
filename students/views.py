@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from students.models import Student 
 from django.views.generic.list import ListView
@@ -56,11 +56,12 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
-
-    def get_queryset(self):
-        student = Student.objects.filter(pk = self.kwargs['pk'])
-        logger.debug(u'Debug info for student - {} {}'.format(student[0].name, student[0].surname))
-        logger.info(u'Debug description for student - {} {}'.format(student[0].name, student[0].surname))
-        logger.warning(u'Debug warning info for student - {} {}'.format(student[0].name, student[0].surname))
-        logger.error(u'Debug error info for student - {} {}'.format(student[0].name, student[0].surname))
-        return student
+    def get_context_data(self, **kwargs):
+        context = super(StudentDetailView, self).get_context_data(**kwargs)
+        student = get_object_or_404(Student, pk = self.kwargs['pk'])
+        logger.debug(u'Debug info for student - {} {}'.format(student.name, student.surname))
+        logger.info(u'Debug description for student - {} {}'.format(student.name, student.surname))
+        logger.warning(u'Debug warning info for student - {} {}'.format(student.name, student.surname))
+        logger.error(u'Debug error info for student - {} {}'.format(student.name, student.surname))
+        context['student'] = student
+        return context

@@ -64,6 +64,8 @@
             <a href="/students/delete/{{student.id}}/" role="button" class="btn btn-primary">Delete</a>
           </td>
         </tr>
+        {% empty %}
+        No students here
       {%endfor%}
     </tbody>
   </table>

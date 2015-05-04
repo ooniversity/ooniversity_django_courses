@@ -50,6 +50,8 @@
           <a href="/courses/delete/{{course.id}}/" role="button" class="btn btn-default btn-xs">Delete</a>
         </td>
       </tr>
+        {% empty %}
+        No courses here
       {% endfor %}
     </tbody>
   </table>
