@@ -6,8 +6,8 @@ from students.models import Student
 
 students = {
     'student1': {
-        'name': 'Stu1',
-        'surname': 'Stu1',
+        'name': 'Ivan',
+        'surname': 'Petrov',
         'birth_date': '1981-02-02',
         'email': 'student1@test.com',
         'phone': '12345',
@@ -15,8 +15,8 @@ students = {
         'skype': 'skype1',
     },
     'student2': {
-        'name': 'Stu2',
-        'surname': 'Stu2',
+        'name': 'Peter',
+        'surname': 'Ivanov',
         'birth_date': '1980-01-02',
         'email': 'student2@test.com',
         'phone': '12345',
@@ -47,8 +47,25 @@ class ItemsListTests(TestCase):
         response = client.get('/students/')
         self.assertEqual(response.status_code, 200)
 
-        self.assertContains(response, "Stu1", status_code=200)
+        # checking if surname is present
+        self.assertContains(response, "Petrov", status_code=200)
         #print response
-        self.assertContains(response, "Stu2", status_code=200)
+        self.assertContains(response, "Ivanov", status_code=200)
+
+
+class ItemDetailTests(TestCase):
+
+    def test_item_detail(self):
+        # create some student items
+        create_student(students['student1'])
+        create_student(students['student2'])
+
+        client = Client()
+        response = client.get('/students/1/')
+        self.assertContains(response, "Petrov", status_code=200)
+
+        response = client.get('/students/2/')
+        self.assertContains(response, "Ivanov", status_code=200)
+
 
 
