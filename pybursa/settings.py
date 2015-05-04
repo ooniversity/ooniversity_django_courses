@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'courses',
     'coaches',
     'feedback',
+    # 'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (

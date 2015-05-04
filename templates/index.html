@@ -11,6 +11,7 @@
 
 
 {% block table %}
+{% if cour %}
 <h2>Доступные курсы по программированию:</h2><br />
     {% if messages %}
         <div class="alert alert-success" role="alert">
@@ -42,6 +43,9 @@
     </tbody>
 </table>
 {{text|default:"Это дефолтное описание, если мы добавим переменную text в этот шаблон, то она заменит это описание."}}
+{% else %}
+    <h2>На данный момент нет активных курсов</h2>
+{% endif%}
 {% endblock table %}
 
 

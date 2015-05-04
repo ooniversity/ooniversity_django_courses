@@ -15,7 +15,7 @@
     <h2>{{course.name}}</h2>
     <p>{{course.text}}</p>
 </div>
-
+{% if course.trener or course.assist %}
 <div>
     <h3>Преподаватель</h3>
     <p><b><a href="{% url 'coach' course.trener.id %}">
@@ -26,6 +26,9 @@
         {{course.assist.user.first_name}} {{course.assist.user.last_name}}</a></b></p>
     <p>{{course.assist.desc|truncatechars:80}}</p>
 </div>
+{% else %}
+    <h4>Преподаватель и Ассистент еще не назначены на данный курс</h4>
+{% endif %}
 {% endblock jumbotron %}
 
 {% block table %}

@@ -11,6 +11,7 @@
 
 
 {% block table %}
+{% if object_list %}
 <h2>Список студентов</h2><br />
     {% if messages %}
         <div class="alert alert-success" role="alert">
@@ -60,4 +61,7 @@
 {% endif %}
 
 </div>
+{% else %}
+<h2>Пока-что нет ни одного студента</h2>
+{% endif %}
 {% endblock table %}
