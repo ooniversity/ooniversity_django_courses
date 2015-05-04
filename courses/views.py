@@ -8,6 +8,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from courses.models import Course, Lesson
 
+import logging
+logger = logging.getLogger(__name__) 
+
 
 class LessonAdditionForm(forms.ModelForm):
 	class Meta:
@@ -23,6 +26,11 @@ class CourseDetailView(DetailView):
 	model = Course	
 	template_name = 'courses/course_page.html'
 	context_object_name = 'course'
+
+	logger.debug("Course debug")
+	logger.info("Course info")
+	logger.warning("Course warning")
+	logger.error("Course error")
 
 
 class CourseCreateView(CreateView):
@@ -81,7 +89,7 @@ def add_lesson(request, pk):
 		form = LessonAdditionForm(request.POST)
 		if form.is_valid():
 			application = form.save()
-			messages.success(request, u'Занятие %s успешно добавлено!' %(application.theme))
+			messages.success(request, u'Занятие  успешно добавлено!' %(application.theme))
 			return redirect ('courses:course_info', application.pk)
 	else:
 		form = LessonAdditionForm()		
