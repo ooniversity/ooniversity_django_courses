@@ -74,13 +74,59 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Kiev' # UTC--- Kyiv; by OPersian ???
+TIME_ZONE = 'Europe/Kiev' # UTC--- Kyiv; by OPersian
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+# Debugging - by OPersian
+LOGGING = {
+    'version': 1,
+    #'disable_existing_loggers': False,
+    'loggers': {
+        'courses': {
+            'handlers': ['file_courses'],
+            'level': 'DEBUG',
+            #'propagate': True,
+        },
+        'students': {
+            'handlers': ['file_students'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers': {
+        'file_courses': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            #'filename': '/path/to/django/debug.log',
+            'filename': os.path.join(BASE_DIR, 'courses_debug.log'),
+            'formatter': 'verbose_user_defined',
+        },
+        'file_students': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students_debug.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            #'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+        'verbose_user_defined': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+
+
+}
 
 
 # Static files (CSS, JavaScript, Images)
