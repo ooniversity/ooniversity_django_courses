@@ -16,6 +16,8 @@ from static.python.AdminImageWidget import AdminImageWidget
 from students.models import Student
 from courses.models import Course
 
+import logging
+logger = logging.getLogger(__name__) #students.view
 
 birth_years = xrange(2015, 1930, -1)
 
@@ -57,6 +59,14 @@ class StudentsView(ListView):
 
 class StudentView(DetailView):
     model = Student
+    
+    def get_context_data(self, **kwargs):
+        context = super(StudentView, self).get_context_data(**kwargs)
+        logger.debug('debug-message')
+        logger.info('info-message')
+        logger.warning('warning-message')
+        logger.error('error-message')
+        return context
 
 
 class StudentCreateView(CreateView):

@@ -17,6 +17,9 @@ from coaches.models import Coach
 
 from static.python.get_consecutive_number import get_consecutive_number
 
+import logging
+logger = logging.getLogger(__name__) #courses.view
+
 
 class LessonAddForm(ModelForm):
     class Meta:
@@ -48,7 +51,6 @@ class CourseAddForm(ModelForm):
         data = self.cleaned_data['assistant']
         if not data:
             raise ValidationError(u"Выбирете ассистента.")
-
         return data
 
     def clean(self):
@@ -73,6 +75,13 @@ class CourseDetialView(DetailView):
     template_name = 'courses/detail.html'
     context_object_name = 'course_info'
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetialView, self).get_context_data(**kwargs)
+        logger.debug('debug-message')
+        logger.info('info-message')
+        logger.warning('warning-message')
+        logger.error('error-message')
+        return context
 
 class LessonCreateView(CreateView):
     model = Lesson
@@ -123,7 +132,7 @@ class LessonDeleteView(DeleteView):
         return '/courses/{}/'.format(course_pk)
 
     def delete(self, request, *args, **kwargs):
-        response = super(LessontDeleteView, self).delete(request, *args, **kwargs)
+        response = super(LessonDeleteView, self).delete(request, *args, **kwargs)
         messages.warning(request, u'Object {} deleted!'.format(self.object.theme))
         return response
 

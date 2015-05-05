@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '+ks=!r_ohmlznsp&$j8&m++b$u#5@*(52!7dg)3*i^4srg3yhs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-#ALLOWED_HOSTS = ['127.0.0.1:8000']
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -88,7 +87,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static", "img")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/photos/'
 
@@ -109,3 +110,10 @@ EMAIL_PORT = 1025
 ADMINS = (('Yaroslav', 'pyromanser@exemple.com'), )
 
 #DEFAULT_FROM_EMAIL = 'mypyburse@exemple.com'
+
+LOGGING = {}
+
+try:
+    from local_settings import *
+except ImportError:
+    print 'Warning! local_settings are not defined!'
