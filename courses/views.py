@@ -6,6 +6,7 @@ from django.views import generic
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
@@ -14,16 +15,18 @@ from django.core.urlresolvers import reverse_lazy
 
 from courses.models import Course, Lesson
 from CourseForm import CourseForm
+from CourseLoggingMixin import CourseLoggingMixin
 
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'courses/index.html'
     context_object_name = 'course_list'
 
     def get_queryset(self):
+        #logger.debug('Getting courses queryset...')
         return Course.objects.order_by('-id')
 
-class ItemDetailView(DetailView):
+class ItemDetailView(CourseLoggingMixin, DetailView):
     model = Course
     template_name = 'courses/detail.html'
 

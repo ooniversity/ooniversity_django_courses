@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from students.models import Student
 #from StudentForm import StudentForm
+from StudentLoggingMixin import StudentLoggingMixin
 
 
 class ItemListView(ListView):
@@ -29,7 +30,7 @@ class ItemListView(ListView):
         return linked_students
 
 
-class ItemDetailView(DetailView):
+class ItemDetailView(StudentLoggingMixin, DetailView):
     model = Student
 
 
