@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ coach.full_name|title }}{% endblock title %}
+
+
+{% block nav_class_student %}{{ coach.full_name|title }}{% endblock %}
+
+
+{% block content %}
+
+    <div >
+        <h2>{{ coach.full_name|upper }}</h2>
+    </div>
+    <div >
+<!-- Table -->
+        <table class='courses_list'>
+            <tbody>
+{% include "includes/inc_person_detail.html" with person=coach person_mail=coach.user_email %}
+{% include "includes/inc_course_instructor.html" with block_title='Преподаватель' instructors=coach.coach %}
+{% include "includes/inc_course_instructor.html" with block_title='Ассистент' instructors=coach.assistant %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock content %}

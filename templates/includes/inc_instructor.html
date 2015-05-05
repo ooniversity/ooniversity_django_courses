@@ -1,0 +1,23 @@
+<div>
+<!-- Table -->
+    <table class='courses_list'>
+        <thead>
+            <tr>
+                <th><b>{{ block_title|title }}</b></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th>
+                    <a href="{% url 'coaches:coach-info' instructor.id %}">
+                        {{ instructor.full_name|upper }}
+                    </a>
+                    <br>
+                    <p>{{ instructor.description|truncatechars:365 }}</p>
+                </th>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Редактирование курса{% endblock title %}
+
+
+{% block nav_class_student %}Редактирование курса - {{ course_app.title }}{% endblock %}
+
+
+{% block content %}
+
+<div>
+  <br>
+  <h2>Редактирование курса</h2>
+  <br>
+{% include "includes/inc_messages.html" %}
+  <br>
+<!-- Создание формы для  редактирование курса -->
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <br>
+    <input class="btn btn-primary" type='submit' value="Изменить">
+  </form>
+</div>
+
+{% endblock content %}

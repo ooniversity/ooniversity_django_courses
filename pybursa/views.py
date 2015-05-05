@@ -1,15 +1,11 @@
 from django.shortcuts import render
 
-def pybursa (request):
-    return render(request, 'index.html')
+from courses.models import Course
 
-def pybursa_contact (request):
+
+def index_ooniversity(request):
+    courses = Course.objects.all()
+    return render(request, 'index_list.html', {'courses': courses})
+
+def contact(request):
     return render(request, 'contact.html')
-
-
-def pybursa_student_list (request):
-    return render(request, 'student_list.html')
-
-
-def pybursa_student_detail (request):
-    return render(request, 'student_detail.html')

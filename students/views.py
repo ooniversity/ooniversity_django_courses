@@ -9,6 +9,10 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 
 
 
@@ -25,6 +29,12 @@ class StudentDetailView(DetailView):
     model = Student
     template_name = 'students/student_info.html'
     context_object_name = "student"
+    def dispatch(self, request, *args, **kwargs):
+        logger.debug(u'Отладочная информация')
+        logger.info(u'Информационное сообщение')
+        logger.warning(u'Предупреждающая информация')
+        logger.error(u'Информация об ошибке')
+        return super(StudentDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class StudentCreateView(CreateView):

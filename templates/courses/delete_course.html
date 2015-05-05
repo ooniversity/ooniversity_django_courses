@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Удаление курса{% endblock title %}
+
+
+{% block nav_class_student %}Удаление курса - {{ course_app.title }}{% endblock %}
+
+
+{% block content %}
+
+<div>
+  <br>
+  <h2>Вы уверены, что хотите удалить курс - {{ course_app.title }} ?</h2>
+  <br>
+  <h2> Курс - {{ course_app.title }} - будет удален !!! </h2>
+  <br>
+<!-- Удаление курса -->
+  <form method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type='submit' value="Удалить">
+  </form>
+</div>
+
+{% endblock content %}

@@ -21,8 +21,14 @@
   <table class='courses_list'>
     <tbody>
       <tr>
-        <th><h4 align="right">Курсы:</h4></th>
+        <th><h6 align="right">Курсы:</h6></th>
         <th>
+            {% for stud_course in student.courses.all %}
+                <a href="{% url 'courses:course-coaches' stud_course.id %}">
+                    <big>{{ stud_course.course_title }}</big>
+                </a>
+                <br>
+            {% endfor %}
         </th>
       </tr>
     </tbody>
