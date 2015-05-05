@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, redirect, get_object_or_404
+from django.shortcuts import render, render_to_response, redirect
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,6 +12,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class StudentListView(ListView):
     model = Student
@@ -20,6 +25,7 @@ class StudentListView(ListView):
 
     def get_queryset(self):
         student = super(StudentListView, self).get_queryset()
+        logger.debug("Debug info - list of students")
         course_id = self.request.GET.get('course_id', None)
         if course_id:
             student = student.filter(courses=course_id)
@@ -28,6 +34,10 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+    logger.info("Success view detail info about student")
+    logger.debug("Debug is Ok for student")
+    logger.warning("Something is wrong")
+    logger.error("Couldn't show a student")
 
 
 class StudentCreateView(SuccessMessageMixin, CreateView):
@@ -52,6 +62,7 @@ class StudentDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         context = super(StudentDeleteView, self).delete(request, *args, **kwargs)
+        logger.warning("Delete student for ever")
         messages.success(self.request, self.success_message % {
             'surname': self.object.surname,
             'name': self.object.name,

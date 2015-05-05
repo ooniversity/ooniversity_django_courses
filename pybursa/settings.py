@@ -48,11 +48,14 @@ INSTALLED_APPS = (
     'students',
     'coaches',
     'feedback',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -74,6 +77,73 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ROOT_URLCONF = 'pybursa.urls'
 
 WSGI_APPLICATION = 'pybursa.wsgi.application'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'students':
+        {
+            'handlers': ['students_file'],
+            'level': 'WARNING',
+        },
+
+        'courses':
+        {
+            'handlers': ['courses_file'],
+            'level': 'DEBUG',
+        },
+    },
+
+    'handlers':
+    {
+        # 'console':
+        # {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.StreamHandler',
+        # },
+
+        'students_file':
+        {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students.log'),
+            'formatter': 'students_format',
+        },
+
+        'courses_file':
+        {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses.log'),
+            'formatter': 'courses_format',
+        },
+    },
+
+    'formatters':
+    {
+        'students_format':
+        {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+
+        'courses_format':
+        {
+            'format': '%(levelname)s %(message)s'
+        },
+
+        'simple':
+        {
+            'format': '%(levelname)s %(message)s'
+        },
+    }
+}
 
 
 # Database
