@@ -99,3 +99,45 @@ EMAIL_PORT = 1025
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ADMINS = (('admin', 'admin@pybursa.com'), ('Mike', 'mike.s@univer.com')) 
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'student': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(lineno)d %(message)s'
+        },
+    },
+    'loggers':
+    {
+        'courses': {
+            'handlers': ['file_course'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['file_student'],
+            'level': 'DEBUG',
+        },
+    },
+    'handlers':
+    {
+        'file_course': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_course.log'),
+            'formatter': 'simple'
+        },
+        'file_student': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student.log'),
+            'formatter': 'student'
+        },
+    },
+
+}
