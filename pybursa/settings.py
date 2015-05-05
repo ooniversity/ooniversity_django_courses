@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for pybursa project.
 
@@ -95,10 +96,58 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 #EMAIL_HOST_USER = 'NikolayBorovenskiy'
-#EMAIL_HOST_PASSWORD = 'acmilan'
+# EMAIL_HOST_PASSWORD = 'acmilan'
 
 #EMAIL_BACKEND = "sgbackend.SendGridBackend"
 #SENDGRID_USER = "NikolayBorovenskiy"
 #SENDGRID_PASSWORD = "acmilan"
 
 ADMINS = (('Nikolay', 'nikolay.borovenskiy@gmail.com'), ('Sasha', 'sasha_tep@mail.ru'))
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'student': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+    },
+    'loggers':
+    {
+        'courses': {
+            'handlers': ['file_course'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['file_student'],
+            'level': 'DEBUG',
+        },
+    },
+    'handlers':
+    {
+        'file_course': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_course_detail.log'),
+            'formatter': 'simple'
+        },
+        'file_student': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student_detail.log'),
+            'formatter': 'student'
+        },
+    },
+
+}
+
+# Load file local_settings.py
+try:
+    from local_settings import *
+except ImportError:
+    print "Warning! local_settings are not defined!"

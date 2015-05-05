@@ -25,12 +25,20 @@
     <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
 
 <!--Информация о преподавателе курса -->
+  {% if course.teacher %}
     {% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
-
+  {% else %}
+    <p>Преподаватель курса пока не определен</p>
+  {% endif %}
     <br><br><br><br><br>
 
+
 <!--Иформация о ассистенте курса -->
-  {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+  {% if course.assistent %}
+    {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+  {% else %}
+    <p>Ассистент курса пока не определен</p>
+  {% endif %}
     <!--Кнопка добавить нового студента-->
     <div class="row">
       <a class="add btn btn-success btn-md " href="add_lesson/">

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
+from django.http import Http404
 from courses.models import Course, Lesson
 from django import forms
 from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-
+import logging
+logger = logging.getLogger(__name__) #courses.view
 
 #Создаем форму для веб браузера на основе модели Course
 class CourseForm(forms.ModelForm):
@@ -32,7 +34,12 @@ class CourseDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         course = Course.objects.get(pk = self.kwargs['pk'])
-        context['course'] = Course.objects.get(pk = self.kwargs['pk'])
+        #логгирование
+        logger.debug(u'Some debug info for course - {}'.format(course.name))
+        logger.info(u'Some info discription for course - {}'.format(course.name))
+        logger.warning(u'Some warning info for course - {}'.format(course.name))
+        logger.error(u'Some error info for course - {}'.format(course.name))
+        context['course'] = course
         return context
 
 
