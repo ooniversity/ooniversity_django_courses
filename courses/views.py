@@ -10,6 +10,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class CourseListView(ListView):
     model = Course
@@ -22,6 +26,10 @@ class CourseDetailView(DetailView):
     model = Course
     template_name ='courses/course_info.html'
     context_object_name = 'current_course'
+    logger.debug('DEBUG in courses detail!!')
+    logger.info('INFO in courses detail!!')
+    logger.warning('WARNING in courses detail!')
+    logger.error(u'Ошибка произошла в детальном описании курса!')
 
 
 class CourseCreateView(CreateView):
@@ -57,6 +65,7 @@ class CourseDeleteView(DeleteView):
         messages.success(self.request, u'Курс %s успешно удален' 
                                             %(self.object.name))
         return response
+
 
 class LessonApplicationForm(forms.ModelForm):
     class Meta:

@@ -106,3 +106,40 @@ EMAIL_PORT = 1025
 
 ADMINS = (('paha', "paha_tet@mail.ru"), 
           ('pavel', "paha.burundukis@gmail.com"))
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'courses': {
+            'handlers': ['file_courses'],
+            'level': 'DEBUG',
+        },
+        'students': {
+            'handlers': ['file_students'],
+            'level': 'WARNING',
+        },
+    },
+    'handlers': {
+        'file_courses': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_courses.log'),
+            'formatter': 'courses',
+        },
+        'file_students': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_students.log'),
+            'formatter': 'students',
+        },
+    },
+    'formatters': {
+        'courses': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'students': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(funcName)s %(message)s'
+        },
+    },
+}

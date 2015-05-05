@@ -15,9 +15,13 @@
     <h2 style="color: #446785">Преподаватели</h2>
   </div>
   <div class="row">
+    {% if current_course.coach %}
     {% include "inc_instructor.html" with block_title="Учитель" instructor=current_course.coach %}
+    {% endif %}
 
+    {% if current_course.assistant %}
     {% include "inc_instructor.html" with block_title="Асистент" instructor=current_course.assistant %}
+    {% endif %}
   </div>
   <div class="page-header">
     <h2 style="color: #446785">План курса</h2>
