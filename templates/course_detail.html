@@ -41,10 +41,13 @@
 
     <h2>Преподаватели:</h2><p></p>
 
+{% if course.coach %}
+  {% include "inc_coach_name_about.html" with block_title="Учитель" position=course.coach %}
+{% endif %}
 
-{% include "inc_coach_name_about.html" with block_title="Учитель" position=course.coach %}
-{% include "inc_coach_name_about.html" with block_title="Ассистент" position=course.assistant %}
-
+{% if course.assistant %}
+  {% include "inc_coach_name_about.html" with block_title="Ассистент" position=course.assistant %}
+{% endif %}
 
   <table>
     <caption><h2>План курса:</h2></caption>

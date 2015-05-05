@@ -98,3 +98,47 @@ EMAIL_PORT = 1025
 #EMAIL_HOST_USER = 'admin'
 #EMAIL_HOST_PASSWORD = 'admin'
 ADMINS = (('admin', 'sasha_nurekil@mail.ru'), )
+
+LOGGING = {
+    'version': 1,
+    'loggers': 
+        {
+            'courses': {
+                'handlers': ['console', 'file_courses'],
+                'level': 'DEBUG',
+                },
+            'students': {
+                'handlers': ['console', 'file_students'],
+                'level': 'DEBUG',
+                },
+        },
+    'handlers':
+        {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple',
+                },
+            'file_courses': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs', 'courses.log'),
+                'formatter': 'simple',
+                },
+            'file_students': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs', 'students.log'),
+                'formatter': 'verbose',
+                },
+        },
+    'formatters':
+        {
+            'verbose': {
+                 'format': '%(levelname)s %(asctime)s \nModule: %(module)s \nFunction: %(funcName)s \nMessage: %(message)s\n\n'
+                },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+                },
+        },
+    }
