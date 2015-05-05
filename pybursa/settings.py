@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'courses',
     'students',
     'coaches',
-    'feedback'
+    'feedback',
+    #'debug_toolbar',
+    'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -97,3 +99,48 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
 ADMINS = (('admin', 'oleg_ishchenko@i.ua'),)
+
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'students': {  
+            'handlers': ['console', 'file_student'],
+            'level': 'DEBUG',            
+        },
+        'courses': {   
+            'handlers': ['console', 'file_course'],
+            'level': 'DEBUG',            
+        },
+    },
+    'handlers':
+    {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'file_student': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student.log'),
+            'formatter': 'verbose',
+        },
+        'file_course': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_course.log'),
+            'formatter': 'simple',
+        },
+    },
+    'formatters':{
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(name)s %(funcName)s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple':{
+        'format': '%(levelname)s %(message)s'
+        },
+    },
+    }
+    

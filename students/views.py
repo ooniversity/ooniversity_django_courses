@@ -9,6 +9,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from students.models import Student
 
+import logging
+logger = logging.getLogger(__name__) 
+
 
 class StudentModelForm(forms.ModelForm):
 	class Meta:
@@ -18,10 +21,15 @@ class StudentModelForm(forms.ModelForm):
 class StudentDetailView(DetailView):
 	model = Student
 
+	logger.debug("Student debug")
+	logger.info("Student info")
+	logger.warning("Student warning")
+	logger.error("Student error")
 
 class StudentListView(ListView):
 	model = Student
 	paginate_by = 2
+
 
 	def get_queryset(self):
 			course_id = self.request.GET.get('course_id',  None)
