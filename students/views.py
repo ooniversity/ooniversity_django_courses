@@ -13,6 +13,11 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)   # __name__ = courses.views
 
 class StudentListView(ListView):
     model = Student
@@ -20,11 +25,15 @@ class StudentListView(ListView):
     #context_object_name = 'students'  # improvement
 
     def get_queryset(self):
+        logger.debug('Debug in student list')
+        logger.info('Some Info in student list')
         qs = super(StudentListView, self).get_queryset()   #get origin queryser Student
         if self.request.GET.get('course_id'):
             course_id = self.request.GET['course_id']
             course = Course.objects.get(pk=course_id)
             qs = course.student_set.all()
+        logger.warning('WARNING!')
+        logger.error('Error in student list')
         return qs
 
 # my old function

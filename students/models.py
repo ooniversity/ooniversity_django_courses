@@ -1,6 +1,7 @@
 from django.db import models
 from courses.models import Course
 
+
 #class Adress(models.Model):
     #city = models.CharField(max_length=21)
     #other = models.CharField(max_length=21)
