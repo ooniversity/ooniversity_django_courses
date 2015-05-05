@@ -11,7 +11,8 @@
     <!-- Template for static files -->
     {% load static from staticfiles %}
 
-    <link rel="icon" href="_.ico">
+    {# <link rel="icon" href="_.ico"> #}
+    <link rel="icon" href="{% static 'img/icon/python-blue.png' %}">
 
     <title>{% block title %}{% endblock %}</title>
 
