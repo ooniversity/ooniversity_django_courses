@@ -18,8 +18,8 @@ class FeedbackCreateView(CreateView):
         self.feedback = form.save()
 
         # Формирование письма для отправки
-        subject = self.feedback.mail_theme
-        message_mail = u'Письмо от: {},  E-mail: {}\n\nОтправлено: {}\n\n---\n\n{}'.format(
+        subject = self.feedback.mail_theme	# u'Пагинация - есть хорошо!'	# unicode(self.feedback.mail_theme)
+        message_mail = u'Письмо от: {},  E-mail: {}\n\nОтправлено: {}\n\n---\n\n{}\n'.format(
             self.feedback.sender_name, self.feedback.sender_email,
             self.feedback.mail_datetime.strftime('%Y-%m-%d  %H:%M'),
             self.feedback.mail_body

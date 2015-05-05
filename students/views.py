@@ -11,6 +11,11 @@ from students.models import Student
 from students.forms import StudentModelForm
 
 
+# Added Logging
+import logging
+logger = logging.getLogger(__name__)
+
+
 class StudentListView(ListView):
     model = Student
 
@@ -27,6 +32,17 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+
+    def dispatch(self, request, *args, **kwargs):
+
+        logger.debug(u'Любая отладочная информация!')
+        logger.info(u'Информационные сообщения!')
+        logger.warning(u'Что-то может пойти не так!')
+        logger.error(u'Что-то пошло не так!')
+        #logger.critical(u'Случилось что-то нехорошое!')
+        #logger.fatal(u'Дела совсем плохи!!!')		# Этот логгер не найден, но хотелось-бы его иметь !!!
+
+        return super(StudentDetailView, self).dispatch(request, *args, **kwargs)
 
 
 

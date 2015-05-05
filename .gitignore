@@ -13,3 +13,6 @@ static/bootstrap/justified-nav.css
 
 # archive files:
 *.tar.gz
+
+# logging files:
+*debug.log
