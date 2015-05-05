@@ -37,9 +37,9 @@
 	<!-- 
 	TEACHER START
 	-->
-
+{% if course.coach %}
 {% include "courses/inc_instructor.html" with block_title="Учитель" instructor=coach %}
-
+{% endif %}
 	<!-- 
 	TEACHER START
 	-->
@@ -47,9 +47,9 @@
 	<!-- 
 	ASSISTANT START
 	-->
-	
+{% if course.assistant %}	
 {% include "courses/inc_instructor.html" with block_title="Ассистент" instructor=assistant %}
-	
+{% endif %}	
 	<!-- 
 	ASSISTANT START
 	-->

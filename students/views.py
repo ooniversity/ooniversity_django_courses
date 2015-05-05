@@ -11,6 +11,9 @@ from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteVi
 from students.forms import StudentModelForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+import logging
+logger = logging.getLogger(__name__) #students.views
+
 class StudentListView(ListView):
     model = Student
     paginate_by = 2
@@ -35,6 +38,10 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+    logger.debug("DEBUG logger in course")
+    logger.info("INFO logger in course")
+    logger.warning("WARNING logger in course")
+    logger.error("ERROR logger in course")
 
 
 class StudentCreateView(CreateView):
