@@ -12,3 +12,13 @@ WARNING: 2015-05-05 18:12:11,590, views, get_context_data, students_warning_mess
 ERROR: 2015-05-05 18:12:11,591, views, get_context_data, students_error_message
 WARNING: 2015-05-05 18:12:18,288, views, get_context_data, students_warning_message
 ERROR: 2015-05-05 18:12:18,288, views, get_context_data, students_error_message
+WARNING: 2015-05-05 20:35:40,058, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 20:35:40,059, views, get_context_data, students_error_message
+WARNING: 2015-05-05 20:42:21,667, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 20:42:21,668, views, get_context_data, students_error_message
+WARNING: 2015-05-05 20:42:21,700, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 20:42:21,700, views, get_context_data, students_error_message
+WARNING: 2015-05-05 20:43:18,680, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 20:43:18,681, views, get_context_data, students_error_message
+WARNING: 2015-05-05 20:43:24,659, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 20:43:24,662, views, get_context_data, students_error_message
