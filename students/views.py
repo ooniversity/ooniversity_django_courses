@@ -10,6 +10,11 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class StudentsList(ListView):
     model = Student
@@ -30,6 +35,14 @@ class StudentsList(ListView):
 
 class StudentDetails(DetailView):
     model = Student
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentDetails, self).get_context_data(**kwargs)
+        logger.debug('students_debug_message')
+        logger.info('students_info_message')
+        logger.warning('students_warning_message')
+        logger.error('students_error_message')
+        return context
 
 
 class StudentAdd(SuccessMessageMixin, CreateView):

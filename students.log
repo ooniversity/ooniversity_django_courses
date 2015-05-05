@@ -1,0 +1,14 @@
+WARNING: 2015-05-05 17:44:58,429, views, StudentDetails, students_warning_message
+ERROR: 2015-05-05 17:44:58,429, views, StudentDetails, students_error_message
+WARNING: 2015-05-05 17:52:38,736, views, StudentDetails, students_warning_message
+ERROR: 2015-05-05 17:52:38,737, views, StudentDetails, students_error_message
+WARNING: 2015-05-05 17:55:59,638, views, StudentDetails, students_warning_message
+ERROR: 2015-05-05 17:55:59,643, views, StudentDetails, students_error_message
+WARNING: 2015-05-05 18:08:42,014, views, StudentDetails, students_warning_message
+ERROR: 2015-05-05 18:08:42,019, views, StudentDetails, students_error_message
+WARNING: 2015-05-05 18:11:54,590, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 18:11:54,592, views, get_context_data, students_error_message
+WARNING: 2015-05-05 18:12:11,590, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 18:12:11,591, views, get_context_data, students_error_message
+WARNING: 2015-05-05 18:12:18,288, views, get_context_data, students_warning_message
+ERROR: 2015-05-05 18:12:18,288, views, get_context_data, students_error_message
