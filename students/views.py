@@ -20,6 +20,9 @@ from django.views.generic.edit import (
     DeleteView
 )
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class StudentDetailView(DetailView):
     model = Student
@@ -28,6 +31,7 @@ class StudentDetailView(DetailView):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
+        fields = '__all__'
         # template_name = "..."
         # context_object_name = "st"
 
@@ -39,6 +43,10 @@ class StudentListView(MixinCourseContext, ListView):
     template_name = "stundets/student_detail.html"
 
     def get_queryset(self):
+        logger.debug("Debug error in student list")
+        logger.info("Info in student list")
+        logger.warning("Warning  in student list")
+        logger.error("Critical error in student list")
         qs = super(StudentListView, self).get_queryset()
         course_id = self.request.GET.get('course_id', None)
         if course_id:

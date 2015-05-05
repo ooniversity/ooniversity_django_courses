@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -17,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-6-_rzz&7sp6j*5xtn0)k2#2+55#6n#-kt$gaf-v)+s@u1ce#1'
+SECRET_KEY = 'secret_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +43,8 @@ INSTALLED_APPS = (
     'coaches',
     'quadratic',
     'contact',
+    'debug_toolbar',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,14 +86,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-EMAIL_HOST = "localhost"
+EMAIL_HOST = "smtp.gmail.com"
 
-EMAIL_PORT = 1025
+EMAIL_PORT = 465
 
-# EMAIL_HOST_USER
+EMAIL_HOST_USER = "a@gmail.com"
 
-# EMAIL_HOST_PASSWORD
+EMAIL_HOST_PASSWORD = "mailpass"
 
+EMAIL_USE_TLS = 1
 
 ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
 
@@ -98,6 +102,9 @@ ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),
 )
@@ -109,8 +116,65 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 )
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'verbose_full': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_courses.log'),
+            'formatter': 'verbose',
+        },
+        'file2': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug_student.log'),
+            'formatter': 'verbose_full',
+        },
+   },
+    'loggers':
+    {
+        'courses':{
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+        'students':{
+            'handlers': ['file2'],
+            'level': 'WARNING',
+        },
+    },
+}
+
+try:
+    from local_settings import *
+except ImportError:
+    print "Warning! local_settings are not defined"

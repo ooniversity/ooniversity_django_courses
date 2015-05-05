@@ -1,4 +1,5 @@
 <h2>{{ block_title }}</h2>
+
 <div class="media">
     <p><a href="{% url 'coaches:coach_d' instructor.id %}">{{ instructor.user.first_name|upper }} {{ instructor.user.last_name|upper }}</a></p>
     <p class="custom_well">{{ instructor.description }}</p>
