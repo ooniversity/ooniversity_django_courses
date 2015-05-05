@@ -14,6 +14,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django import forms
 from django.forms import ModelForm
 
+import logging
+logger = logging.getLogger(__name__)
+#logger.debug(u'Точка входа в  %s (редактирование и удаление)', __name__)
+#logger.info(u'Точка входа в %s', __name__)
+#logger.warning(u'Точка входа в %s', __name__)
+#logger.error(u'Точка входа в %s', __name__)
+#logger.critical(u'Точка входа в %s', __name__)
+
+
 class LessonForm(ModelForm):
     class Meta:
         model = Lesson

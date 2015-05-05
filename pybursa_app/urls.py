@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from pybursa_app.views import StudentList, StudentListCourse, StudentDetail, StudentCreate
 from pybursa_app.views import StudentEdit, StudentDelete, CourseDetail, CourseCreate
 
+
 urlpatterns = patterns('pybursa_app.views',
     url(r'^$', 'index', name='index'),
     url(r'^course/(?P<pk>\d+)/$', CourseDetail.as_view(), name='course'),
@@ -9,9 +10,10 @@ urlpatterns = patterns('pybursa_app.views',
     url(r'^coach/(?P<coach_id>\d+)/$', 'coach', name='coach'),
 
     url(r'^contacts/$', 'contacts', name='contacts'),
-#    url(r'^student_list/$', 'student_list', name='student_list'),
-    url(r'^student_list/$', StudentList.as_view(), name='student_list'),
-    url(r'^student_list/(?P<course_id>\d+)/$', StudentListCourse.as_view(), name='student_cours'),
+    url(r'^student_list/$', 'student_list', name='student_list'),
+    url(r'^student_list/(?P<page_number>\d+)/$', 'student_list', name='student_page'),
+#    url(r'^student_list/$', StudentList.as_view(), name='student_list'),
+    url(r'^student_cours/(?P<course_id>\d+)/$', StudentListCourse.as_view(), name='student_cours'),
 #    url(r'^student_list/(?P<course_id>\d+)/$', 'student_list', name='student_cours'),
 #    url(r'^student_add/$', 'student_add', name='student_add'),
     url(r'^student_add/$', StudentCreate.as_view(), name='student_add'),

@@ -15,13 +15,12 @@
       {% endif %}
       <h4>Гранит науки сейчас грызут:</h4>
     </div>
-    {% if student_list %}
 
       <div class="container text-right">
-
        <p><a href="/student_add/">
        <button class="btn btn-small btn-primary" type="button">Добавить</button></a></p>
      </div>
+     {% if student_list %}
       <div class="container">
         <table id="main-table" class="table table-hover table-bordered">
           <thead>
@@ -38,7 +37,7 @@
           <tbody>
           {% for student in student_list %}
             <tr>
-              <td>{{ forloop.counter }}</td>
+              <td>{{ page_p.start_index|add:forloop.counter0 }}</td>
               <td > <a href="/student_detail/{{ student.id }}">{{ student.student_last_name }} {{ student.student_name }}</a></td>
               <td>{{ student.student_addr }}</td>
               <td>{{ student.student_skype }}</td>
@@ -56,24 +55,8 @@
 
            </tbody>
          </table>
+{% include "pages.html" %}
 
-
-
-         <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">предыдущая </a>
-        {% endif %}
-
-        <span class="current">
-            Стр. {{ page_obj.number }} из {{ paginator.num_pages }}
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"> следующая</a>
-        {% endif %}
-    </span>
-</div>
        {% else %}
          <p>Ничего нет по Вашему запросу.</p>
        {% endif %}
