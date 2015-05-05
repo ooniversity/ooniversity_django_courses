@@ -10,6 +10,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 class StudentForm(forms.ModelForm):
 	class Meta:
 	    model = Student
@@ -18,7 +22,7 @@ class StudentForm(forms.ModelForm):
 
 class StudentListView(ListView):
 	model = Student
-	paginate_by = 2
+	#paginate_by = 2
 	
 	def get_queryset(self):
 		course_id = self.request.GET.get('course_id' or None)
@@ -39,6 +43,14 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
 	model = Student
+
+	def get_context_data(self, **kwargs):
+		context = super(StudentDetailView, self).get_context_data(**kwargs)
+		logger.debug("Debug!!")
+		logger.info("Info!!")
+		logger.warning("Warning!!")
+		logger.error("Error!!")		
+		return context
 
 
 class StudentCreateView(CreateView):

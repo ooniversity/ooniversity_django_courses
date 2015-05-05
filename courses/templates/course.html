@@ -18,13 +18,16 @@
   </ul>
 {% endif %}
       <div class="jumbotron">
-        <h2>{{ course.name|upper }}</h2>
+        <h2>{{ course.name }}</h2>
         <p class="lead">{{ course.description }}</p>
       </div>
 
+{% if course.trainer %}
 {% include "include_coach.html" with block_title="Учитель" instructor=course.trainer %}   
-
-{% include "include_coach.html" with block_title="Ассистент" instructor=course.assistant %}    
+{% endif %}
+{% if course.assistant %}
+{% include "include_coach.html" with block_title="Ассистент" instructor=course.assistant %}
+{% endif %}    
 
       <h2 class="sub-header">План курса</h2>
       <a class="btn btn-primary active" 

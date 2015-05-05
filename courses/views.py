@@ -9,6 +9,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 class AddLessonForm(forms.ModelForm):
 	class Meta:
 		model = Lessons
@@ -22,6 +26,10 @@ class CourseDetailView(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(CourseDetailView, self).get_context_data(**kwargs)
+		logger.debug("Debug!!")
+		logger.info("Info!!")
+		logger.warning("Warning!!")
+		logger.error("Error!!")
 		lessons = self.object.lessons_set.all()
 		context['lessons'] = lessons
 		return context	
