@@ -27,12 +27,28 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="{% url 'coaches:coach_detail' course.coach.id %}">{{ course.coach.full_name }}</a></td>
-            <td><a href="{% url 'coaches:coach_detail' course.assistant.id %}">{{ course.assistant.full_name }}</a></td>
+            <td>
+              {% if course.coach %}
+                <a href="{% url 'coaches:coach_detail' course.coach.id %}">{{ course.coach.full_name }}</a>
+              {% endif %}
+            </td>
+            <td>
+              {% if course.assistant %}
+                <a href="{% url 'coaches:coach_detail' course.assistant.id %}">{{ course.assistant.full_name }}</a>
+              {% endif %}
+            </td>
           </tr>
           <tr>
-            <td>{{ course.coach.description }}</td>
-            <td>{{ course.assistant.description }}</td>
+            <td>
+              {% if course.coach %}
+                {{ course.coach.description }}
+              {% endif %}
+            </td>
+            <td>
+              {% if course.assistant %}
+                {{ course.assistant.description }}
+              {% endif %}
+            </td>
           </tr>
         </tbody>
       </table>

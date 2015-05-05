@@ -103,4 +103,46 @@ EMAIL_PORT = 1025
 ADMINS = (('Alexey', 'alexey@example.com'), )
 
 
-
+LOGGING = {
+    'version': 1,
+    'loggers': 
+        {
+            'courses': {
+                'handlers': ['file_courses'],
+                'level': 'DEBUG',
+                },
+            'students': {
+                'handlers': ['file_students'],
+                'level': 'WARNING',
+                },
+        },
+    'handlers':
+        {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple',
+                },
+            'file_courses': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs', 'courses.log'),
+                'formatter': 'simple',
+                },
+            'file_students': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs', 'students.log'),
+                'formatter': 'verbose',
+                },
+        },
+    'formatters':
+        {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s \nModule: %(module)s \nFunction: %(funcName)s \nMessage: %(message)s\n\n'
+                },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+                },
+        },
+    }

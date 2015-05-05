@@ -8,6 +8,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from students.models import Student
 from students.forms import StudentForm
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudentsListView(ListView):
@@ -35,6 +39,14 @@ class StudentsListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+
+    def get_context_data(self, **kwargs):
+        logger.debug('Logging is running in debug mode')
+        logger.info('Before getting context data')
+        context = super(StudentDetailView, self).get_context_data(**kwargs)
+        logger.warning('Context data exist!')
+        logger.error('Everything is correct, but we need the error message for task 11')
+        return context
 
 class StudentCreateView(CreateView):
     model = Student
