@@ -11,6 +11,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from courses.models import Course, Lesson
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class CourseView(ListView):
     model = Course
@@ -26,6 +31,10 @@ class CoursePlanView(DetailView):
         planmodel = super(CoursePlanView, self).get_context_data(**kwargs)
         planmodel['lessons'] = (
             self.object.coursekey.all().order_by('order_number'))
+        logger.debug('courses_debug_message')
+        logger.info('courses_info_message')
+        logger.warning('courses_warning_message')
+        logger.error('courses_error_message')
         return planmodel
 
 class CourseCreateView(SuccessMessageMixin, CreateView):

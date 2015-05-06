@@ -97,3 +97,42 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
 ADMINS = (('Andrey Sviridov', 'sviridofff@inbox.ru'), )
+
+LOGGING = {
+    'version': 1,
+    'loggers':
+    {
+        'courses': {
+            'handlers': ['course_file'],
+            'level': 'DEBUG',
+            },
+        'students': {
+            'handlers': ['student_file'],
+            'level': 'WARNING',
+            },
+    },
+    'handlers':
+    {
+        'course_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'courses.log'),
+            'formatter': 'simple',
+            },
+        'student_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'students.log'),
+            'formatter': 'verbose',
+            },
+     },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+            },
+        'verbose': {
+            'format': '%(levelname)s: %(asctime)s, %(module)s, %(funcName)s, %(message)s'
+            },
+
+    },
+}
