@@ -8,11 +8,21 @@ from django.core.urlresolvers import reverse_lazy
 from courses.models import Course
 from courses.forms import CourseForm, LessonForm
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/detail_course.html'
     context_object_name = 'course'
+
+    def get_context_data(self, **kwargs):
+        logger.debug("Show DetailView courses debug")
+        logger.info("Show DetailView courses info")
+        logger.error("Show DetailView courses error")
+        logger.warning("Show DetailView courses warning")
+        return super(CourseDetailView, self).get_context_data(**kwargs)
 
 
 class CourseCreateView(CreateView):
@@ -23,6 +33,7 @@ class CourseCreateView(CreateView):
     context_object_name = 'form'
 
     def get_context_data(self, **kwargs):
+        logger.debug("show CreateView by courses ")
         context_data = super(CourseCreateView, self).get_context_data(**kwargs)
         context_data['page_title'] = 'Создать курс'
         context_data['h3_title'] = 'Создание нового курса'
@@ -30,8 +41,14 @@ class CourseCreateView(CreateView):
         return context_data
 
     def form_valid(self, form):
+        logger.info("Form create courses success")
         response = super(CourseCreateView, self).form_valid(form)
         messages.success(self.request, u'Курс {0} успешно добавлен'.format(self.object.name))
+        return response
+
+    def form_invalid(self, form):
+        response = super(CourseCreateView, self).form_valid(form)
+        logger.error("Form create courses invalid!")
         return response
 
 
@@ -43,6 +60,7 @@ class CourseUpdateView(UpdateView):
     context_object_name = 'form'
 
     def get_context_data(self, **kwargs):
+        logger.debug("show UpdateView by courses ")
         context_data = super(CourseUpdateView, self).get_context_data(**kwargs)
         context_data['page_title'] = 'Редактирование курса'
         context_data['h3_title'] = 'Редактирование данных курса'
@@ -50,6 +68,7 @@ class CourseUpdateView(UpdateView):
         return context_data
 
     def form_valid(self, form):
+        logger.info("Form update courses success")
         response = super(CourseUpdateView, self).form_valid(form)
         messages.success(self.request, u'Данные курса {0} успешно изменены'.format(self.object.name))
         return response
@@ -62,6 +81,7 @@ class CourseDeleteView(DeleteView):
     context_object_name = 'course'
 
     def delete(self, request, *args, **kwargs):
+        logger.warning("Delete course!")
         response = super(CourseDeleteView, self).delete(request, *args, **kwargs)
         messages.success(request, u'Курс {0} успешно удален'.format(self.object.name))
         return response
@@ -72,58 +92,18 @@ class IndexView(generic.ListView):
     context_object_name = 'courses_list'
 
     def get_queryset(self):
+        logger.debug("show IndexView by courses ")
         return Course.objects.all()
 
 
-def course_detail(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
-    template_name = 'courses/detail_course.html'
-    return render(request, template_name, {'course': course})
-
-
-def add_course(request):
-    if request.method == "POST":
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            new_course = form.save()
-            messages.success(request, 'Курс {0} успешно добавлен'.format(new_course))
-            return redirect('courses:index')
-    else:
-        form = CourseForm()
-    template_name = 'courses/add_course.html'
-    return render(request, template_name, {'form': form})
-
-
-def edit_course(request, pk):
-    current_course = get_object_or_404(Course, pk=pk)
-    if request.method == "POST":
-        form = CourseForm(request.POST, instance=current_course)
-        if form.is_valid():
-            current_course = form.save()
-            messages.success(request, 'Данные курса {0} успешно изменены'.format(current_course))
-            return redirect('courses:index')
-    else:
-        form = CourseForm(instance=current_course)
-    template_name = 'courses/edit_course.html'
-    return render(request, template_name, {'form': form})
-
-
-def delete_course(request, pk):
-    current_course = get_object_or_404(Course, pk=pk)
-    if request.method == "POST":
-        current_course.delete()
-        messages.success(request, 'Курс {0} успешно удален'.format(current_course))
-        return redirect('courses:index')
-    template_name = 'courses/delete_course.html'
-    return render(request, template_name, {'course': current_course})
-
-
 def add_lesson(request, pk):
+    logger.debug("show form, where add lesson to course")
     course = get_object_or_404(Course, pk=pk)
     if request.method == "POST":
         form = LessonForm(request.POST)
         if form.is_valid():
             new_lesson = form.save()
+            logger.info("Create lesson {0} in {1} course success".format(new_lesson, course.name))
             messages.success(request, 'Занятие {0} успешно добавлено'.format(new_lesson))
             return redirect('courses:detail', pk=pk)
     else:

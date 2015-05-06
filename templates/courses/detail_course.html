@@ -25,7 +25,7 @@
   </div>
 
   <h2>Преподаватели</h2>
-  {% if course %}
+  {% if course and course.coach %}
     {% include "inc_panel_primary.html" with block_title="Учитель" person=course.coach  %}
     {% include "inc_panel_primary.html" with block_title="Ассистент" person=course.assistant  %}
   {% else %}

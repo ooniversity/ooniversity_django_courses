@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'students',
     'coaches',
     'feedbacks',
+    'debug_toolbar',
+    'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,6 +98,58 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
 ADMINS = (('Anya', 'blackqueenn@yandex.ua'), )
+
+CACHES = {
+    'default':{
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'courses': {
+            'handlers': ['console_courses', 'file_courses'],
+            'level': 'DEBUG'
+        },
+        'students': {
+            'handlers': ['console_students', 'file_students'],
+            'level': 'WARNING'
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console_courses': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file_courses': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'simple'
+        },
+        'console_students': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file_students': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose'
+        }
+    }
+}
 
 # EMAIL_HOST_USER
 # EMAIL_HOST_PASSWORD
