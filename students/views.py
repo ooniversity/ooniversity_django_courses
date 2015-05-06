@@ -11,6 +11,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class StudentAddingForm(forms.ModelForm):
@@ -44,6 +48,10 @@ class StudentsListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
+    logger.debug('Logging debug | student detail')
+    logger.info('Some info.... | student detail')
+    logger.warning('Hey you. Pay attention! | student detail')
+    logger.error('Check again. There can be an error! | student detail')
 
 
 class StudentCreateView(CreateView):

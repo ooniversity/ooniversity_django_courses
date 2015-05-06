@@ -1,0 +1,36 @@
+WARNING 2015-05-05 22:57:39,709 
+Module: views 
+Function: StudentDetailView 
+Message: Hey you. Pay attention! | student detail
+
+
+ERROR 2015-05-05 22:57:39,709 
+Module: views 
+Function: StudentDetailView 
+Message: Check again. There can be an error! | student detail
+
+
+DEBUG 2015-05-05 22:58:57,460 
+Module: views 
+Function: StudentDetailView 
+Message: Logging debug | student detail
+
+
+INFO 2015-05-05 22:58:57,460 
+Module: views 
+Function: StudentDetailView 
+Message: Some info.... | student detail
+
+
+WARNING 2015-05-05 22:58:57,460 
+Module: views 
+Function: StudentDetailView 
+Message: Hey you. Pay attention! | student detail
+
+
+ERROR 2015-05-05 22:58:57,460 
+Module: views 
+Function: StudentDetailView 
+Message: Check again. There can be an error! | student detail
+
+

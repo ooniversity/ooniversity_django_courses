@@ -15,6 +15,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
 from models import Course, Lesson
+import logging
+ 
+logger = logging.getLogger(__name__)
 
 
 class LessonAddingForm(forms.ModelForm):
@@ -29,6 +32,10 @@ class CourseDetailView(DetailView):
     context_object_name = 'course'
 
     def get_context_data(self, **kwargs):
+        logger.debug('Logging debug')
+        logger.info('Some info....')
+        logger.warning('Hey you. Pay attention!')
+        logger.error('Check again. There can be an error!')
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         course = context['course']
         context['lessons'] = Lesson.objects.filter(course=course).order_by('num')
