@@ -96,6 +96,12 @@
                   </td>
 
                 </tr>
+            {% empty %}
+                <tr>
+                  <td colspan=3 align=center>
+                    <h3> {{ '< НЕТ зарегистрированных студентов >' }} </h3>
+                  </td>
+                </tr>
             {% endfor %}
           </tbody>
         </table>

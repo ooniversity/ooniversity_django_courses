@@ -32,11 +32,27 @@
       <h2>Преподаватели</h2>
       <br>
 
-{% include "includes/inc_instructor.html" with block_title='Учитель' instructor=course.coach %}
+
+<!-- Проверка наличия и вывод тренера с уведомлением -->
+
+{% if course.coach %}
+    {% include "includes/inc_instructor.html" with block_title='Учитель' instructor=course.coach %}
+{% else %}
+    <div>
+      <p>
+        <h3>{{ '< на данный момент на курсе НЕТ зарегистрированных учителей >' }}</h3>
+      </p>
+    </div>
+{% endif %}
 
       <br>
 
-{% include "includes/inc_instructor.html" with block_title='Ассистент' instructor=course.assistant %}
+<!-- Проверка наличия и вывод ассистента -->
+
+{% if course.assistent %}
+    {% include "includes/inc_instructor.html" with block_title='Ассистент' instructor=course.assistant %}
+{% endif %}
+
 
       <br>
       <h2>План курса</h2>
@@ -67,6 +83,12 @@
 
                   <td>
                     <h4>{{ lesson.description|default:"< описание отсутствует >" }}</h4>
+                  </td>
+                </tr>
+            {% empty %}
+                <tr>
+                  <td colspan=3 align=center>
+                    <h3> {{ '< на этом курсе пока НЕТ занятий >' }} </h3>
                   </td>
                 </tr>
             {% endfor %}
