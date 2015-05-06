@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.course_title }}{% endblock title %}
+
+
+{% block nav_class_student %}Курсы > {{ course.course_title }}{% endblock %}
+
+
+{% block urlget %}?course_id={{ course.id }}{% endblock %}
+
+
+{% block content %}
+
+<br>
+{% include "includes/inc_messages.html" %}
+<!-- lead : Information about course ! -->
+<div>
+    <br>
+    <h3><b>{{ course.course_title }} !</b></h3>
+    <br>
+    <p><i>{{ course.description }}</i></p>
+</div>
+<!-- Block information about coaches ! -->
+<br>
+<h3>Преподаватели</h3>
+<br>
+{% include "includes/inc_instructor.html" with block_title='Преподаватель' instructor=course.coach %}
+<br>
+{% include "includes/inc_instructor.html" with block_title='Ассистент' instructor=course.assistant %}
+<br>
+<h3>План курса</h3>
+<br>
+<div>
+<!-- Table -->
+<table class='courses_list'>
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Тема</th>
+            <th>Описание</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>
+                    {{ lesson.consecutive_number }}
+                </td>
+                <td>
+                    {{ lesson.theme }}
+                </td>
+                <td>
+                    {{ lesson.description|default:"< описание отсутствует >" }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<!-- Кнопка - Добавить новое занятие -->
+<br>
+<div>
+    <a class="add btn btn-success btn-md " href="{% url 'courses:add-lesson' course.id %}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <big>Добавить занятие</big>
+    </a>
+</div>
+
+{% endblock content %}

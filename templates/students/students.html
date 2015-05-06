@@ -57,7 +57,12 @@
                     </td>
 
                     <td>
-                        
+                        {% for stud_course in student.courses.all %}
+                            <a href="{% url 'courses:course-coaches' stud_course.id %}">
+                                <big>{{ stud_course.title }}</big>
+                            </a>
+                            <br>
+                        {% endfor %}
                     </td>
 <!-- Кнопка - Изменить -->
                     <td>

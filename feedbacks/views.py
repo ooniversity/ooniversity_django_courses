@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from feedbacks.models import Feedback
 from django import forms
+from django.core.mail import send_mail
+from django.contrib import messages 
 
 class FeedbackAppForm(forms.ModelForm):
     class Meta:

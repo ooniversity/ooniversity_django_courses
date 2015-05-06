@@ -2,6 +2,7 @@
 from django.db import models
 
 
+
 class Feedback(models.Model):
     name = models.CharField(max_length=225)
     theme = models.CharField(max_length=225)

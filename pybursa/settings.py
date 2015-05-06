@@ -94,3 +94,60 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT =  1025
 
 ADMINS = (('Oleg', 'khazar65@mail.ru'), )
+
+LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        
+        'loggers': {
+            'courses': {
+                'level': 'DEBUG',
+                'handlers': ['null', 'console_courses', 'file_courses'],
+                'propagate': True,
+            },
+            'students': {
+                'level': 'WARNING',
+                'handlers': ['console_students', 'file_students'],
+                'propagate': True,
+            }
+        },
+        
+        'handlers': {
+            'null': {
+                'level': 'DEBUG',
+                'class': 'logging.NullHandler',
+            },
+            'console_courses': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple'
+            },
+            'console_students': {
+                'level': 'WARNING',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            },
+        
+            'file_courses': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'courses/debug.log'),
+                'formatter': 'simple'
+            },
+            'file_students': {
+                'level': 'WARNING',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'students/debug.log'),
+                'formatter': 'verbose'
+            }
+        },
+
+        'formatters': {
+            'verbose': {
+                'format': '%(asctime)s %(levelname)s %(module)s in %(funcName)s - %(message)s'
+            },
+            'simple': {
+                'format': '%(levelname)s - %(message)s'
+            }
+        }
+}
