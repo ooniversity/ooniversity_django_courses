@@ -1,0 +1,22 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Server error{% endblock title %}
+
+
+
+{% block css_for_page %}
+    <link href="{% static "error.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block main_content %}
+
+    <div class="row">
+      <div class="container error">
+        <img src="{% static 'IMG/500.gif' %}" alt="...">
+      </div>
+    </div>
+
+{% endblock main_content %}
