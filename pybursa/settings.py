@@ -21,9 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'secret_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -96,7 +96,7 @@ EMAIL_HOST_PASSWORD = "mailpass"
 
 EMAIL_USE_TLS = 1
 
-ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'))
+ADMINS = (('Lisa', 'lisa.gosteva@gmail.com'),)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -109,12 +109,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),
 )
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'APP_DIRS': True,
-    },
-]
 
 TEMPLATES = [
     {
@@ -135,6 +129,10 @@ TEMPLATES = [
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder", 
+
+                       "django.contrib.staticfiles.finders.AppDirectoriesFinder")
 
 LOGGING = {
     'version': 1,
@@ -169,7 +167,7 @@ LOGGING = {
         },
         'students':{
             'handlers': ['file2'],
-            'level': 'WARNING',
+            'level': 'DEBUG',
         },
     },
 }
