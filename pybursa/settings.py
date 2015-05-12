@@ -93,14 +93,20 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
 #EMAIL_HOST_USER = 'NikolayBorovenskiy'
 # EMAIL_HOST_PASSWORD = 'acmilan'
 
 #EMAIL_BACKEND = "sgbackend.SendGridBackend"
 #SENDGRID_USER = "NikolayBorovenskiy"
 #SENDGRID_PASSWORD = "acmilan"
+#Send email with service send grid
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'NikolayB'
+EMAIL_HOST_PASSWORD = 'acmilan86'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 ADMINS = (('Nikolay', 'nikolay.borovenskiy@gmail.com'), ('Sasha', 'sasha_tep@mail.ru'))
 
