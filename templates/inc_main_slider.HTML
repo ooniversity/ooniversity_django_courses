@@ -5,7 +5,11 @@
       <div class="row">
         <div class="col-sm-12 col-md-12">
           <div class="thumbnail">
-            <img src="{% static "IMG/slider1.jpg" %}" alt="...">
+            {% if block_static %}
+              <img src="{% static block_photo_slider %}" alt="...">
+            {% else %}
+              <img src="/{{ block_photo_slider }}" alt="...">
+            {% endif %}
           </div>
         </div>
       </div>

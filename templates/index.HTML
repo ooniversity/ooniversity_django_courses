@@ -15,16 +15,16 @@
 
 {% block main_content %}
 
-{% include "inc_main_slider.HTML"%}
+{% include "inc_main_slider.HTML" with block_photo_slider='IMG/slider1.jpg' block_static=True %}
 <!--Сообщение-->
-{% include "inc_message.HTML"%}
+{% include "inc_message.HTML" %}
     <!--Все курсы -->
     <div class="row">
       {% for course in courses %}
         <div class="col-sm-4 col-md-4" >
           <div class="thumbnail" id = 'python'>
             <a href="{% url 'courses:course' course.id %}">
-              <img src = "/static/IMG/Course_{{course.id}}.jpg" alt="...">
+              <img src = "{{ course.logo }}" alt="...">
               <div class="caption">
                 <h3>{{ course.info }}</h3></a>
                 <br>
