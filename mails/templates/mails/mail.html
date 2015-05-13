@@ -7,6 +7,7 @@
 
 {% block css_for_page %}
     <link href="{% static "students-list.css" %}" rel="stylesheet">
+    <link href="{% static "mail.css" %}" rel="stylesheet">
 {% endblock css_for_page %}
 
 
@@ -18,11 +19,17 @@
   <!--Сообщение-->
   {% include "inc_message.HTML"%}
 
-  <h3 class="media-heading"> Отправить письмо </h3><br>
-
-  <!--Создание формы для нового студента-->
-  <form class ="custome" action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input id="custom_btn" class="btn btn-primary" type="submit" value="Отправить письмо" />
-  </form>
+    <div class="container">
+        <div class="container-inner3">
+        </div>
+      <!--Создание формы для нового студента-->
+        <div class="container-inner1">
+          <form class ="custome" action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input id="custom_btn" class="btn btn-primary" type="submit" value="Отправить письмо" />
+          </form>
+        </div>
+        <div class="container-inner2">
+        </div>
+    </div>
 {% endblock main_content %}

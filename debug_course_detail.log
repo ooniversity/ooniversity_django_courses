@@ -222,3 +222,11 @@ DEBUG Some debug info for course - RUBY
 INFO Some info discription for course - RUBY
 WARNING Some warning info for course - RUBY
 ERROR Some error info for course - RUBY
+DEBUG Some debug info for course - RUBY
+INFO Some info discription for course - RUBY
+WARNING Some warning info for course - RUBY
+ERROR Some error info for course - RUBY
+DEBUG Some debug info for course - DJANGO
+INFO Some info discription for course - DJANGO
+WARNING Some warning info for course - DJANGO
+ERROR Some error info for course - DJANGO

@@ -1,0 +1,56 @@
+body{
+    background-color: #FFF;
+
+}
+
+.container{
+    width: auto;
+    height: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.custome{
+    height: 550px;
+}
+
+.container-inner1{
+    background-color: #fcf09f;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 4%;
+    height: 550px;
+    width: 500px;
+    position: absolute;
+    top: 30px;
+    left: 30%;
+    z-index: 4;
+    border: 1px solid #999;
+}
+
+.container-inner2{
+    background-image: url("../static/IMG/Konvert1.gif");
+    background-position: bottom right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 450px;
+    width: 450px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 3;
+}
+
+.container-inner3{
+    background-image: url("../static/IMG/Mail stamps.gif");
+    background-position: top left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 350px;
+    width: 350px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
