@@ -29,3 +29,11 @@ a{
 #student div{
     padding-left: 50px;
 }
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  height: 200px;
+}

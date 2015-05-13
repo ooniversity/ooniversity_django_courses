@@ -13,17 +13,22 @@
 	padding-top: 0px;
 	top: 0px;
 	left: 0px;
-
-
-
-
 }
 .header img{
 	height: 50px;
 	padding-top: 2px;
 }
 .media{
-	padding: 36px 100px 29px;
+	padding: 0px;
+	height: 200px;
+	width: 545px;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+.media-body{
+
+
 }
 
 h2{
@@ -64,3 +69,24 @@ body{
 	background: #FFF;
 }
 
+.container{
+	width: auto;
+	height: 740px;
+	border: 1px solid #999;
+	border-radius: 10px;
+	margin: 5px;
+	background-image: url("../static/IMG/phone.gif");
+	background-position: center;
+	background-color: #c2a4e7;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.two-contact{
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.one-contact{
+	width: 500px;
+}

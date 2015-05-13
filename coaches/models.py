@@ -1,3 +1,5 @@
+ #-*- coding: utf-8 -*-
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -5,6 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Coach (models.Model):
     user = models.OneToOneField(User)
+    photo = models.ImageField(upload_to='static/images/Coaches/', verbose_name=u'Фото',null=True, blank=True)
     date_of_birth = models.DateField(verbose_name='Birth date')
     gender = models.CharField(verbose_name='Gender', max_length=1,
                               choices=(('M', 'Man'), ('W', 'Woman')))

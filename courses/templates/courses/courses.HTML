@@ -14,9 +14,9 @@
 
 {% block main_content %}
 <!--Вставка слайдера-->
-{% include "inc_main_slider.HTML"%}
+{% include "inc_main_slider.HTML" with block_photo_slider=course.slider block_static=False %}
 <!--Сообщение-->
-{% include "inc_message.HTML"%}
+{% include "inc_message.HTML" %}
 
   <!--Курс Питон датальная информация представленная в табличной форме-->
   <div class="row">

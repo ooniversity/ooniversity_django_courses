@@ -40,7 +40,7 @@ class StudentDetailView(DetailView):
 # С помощью класса ListView выводим список студентов на HTML страничку
 class StudentListView(ListView):
     model = Student
-    paginate_by = 2
+    paginate_by = 8
 
 
     #Определяем какую выборку данных показывать - или всех студентов, или студентов конкретного курса

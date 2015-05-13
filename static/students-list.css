@@ -58,3 +58,14 @@
 
 }
 
+.img-responsive{
+  height: 60px;
+}
+
+.placeholder {
+    margin-bottom: 0px;
+}
+
+.gender {
+    height: 35px;
+}
