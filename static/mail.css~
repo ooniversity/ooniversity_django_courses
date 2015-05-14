@@ -1,0 +1,92 @@
+.header h2{
+	font-size: 24px;
+	color:  #FFCC00;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 12px 290px 10px 77px;
+	margin-top: 0px;
+}
+
+.header{
+	height: 50px;
+	background: #222;
+	padding-top: 0px;
+	top: 0px;
+	left: 0px;
+}
+.header img{
+	height: 50px;
+	padding-top: 2px;
+}
+.media{
+	padding: 0px;
+	height: 200px;
+	width: 545px;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-radius: 10px;
+}
+.media-body{
+
+
+}
+
+h2{
+	text-align: center;
+	margin-top: 80px;
+	font-weight: bold;
+	color: #936;
+	font-size: 40px;
+	text-transform: uppercase;
+}
+
+.panel-footer{
+	background-color:rgb(67, 72, 76);
+	height: 60px;
+}
+
+.panel-footer small{
+	font-size: 100%;
+	padding-left: 40px;
+	color: #FFF;
+	vertical-align: text-bottom;
+}
+
+.panel-footer p{
+	font-size: 18px;
+	padding-left: 40px;
+	color: #FFF;
+	vertical-align: text-bottom;
+	text-align: center;
+}
+.panel-footer i{
+	margin-left: 4px;
+	margin-right: 4px;
+
+}
+
+body{
+	background: #FFF;
+}
+
+.container{
+	width: auto;
+	height: 740px;
+	border: 1px solid #999;
+	border-radius: 10px;
+	margin: 5px;
+	background-image: url("../static/IMG/phone.gif");
+	background-position: center;
+	background-color: #c2a4e7;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.two-contact{
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.one-contact{
+	width: 500px;
+}

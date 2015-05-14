@@ -18,6 +18,17 @@
 {% include "inc_main_slider.HTML" with block_photo_slider='IMG/slider1.jpg' block_static=True %}
 <!--Сообщение-->
 {% include "inc_message.HTML" %}
+    <!--Фото дня и фраза дня-->
+    <div class="row">
+      <div class="col-sm-5 col-md-5 col-lg-5 thumbnail photo-day" >
+        <img src="../static/IMG/Course_1.jpg" alt="...">
+        <h3>Фото дня</h3>
+      </div>
+      <div class="col-sm-7 col-md-7 col-lg-7 container-inner" >
+        <p>{{ excerption }}</p>
+        <p id="autor">{{ autor }}</p>
+      </div>
+    </div>
     <!--Все курсы -->
     <div class="row">
       {% for course in courses %}

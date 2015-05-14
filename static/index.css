@@ -136,3 +136,40 @@ p{
 .caption{
 	padding: 0px;
 }
+
+.photo-day{
+	margin-left: 30px;
+	margin-bottom: 30px;
+	height: 200px;
+}
+
+.photo-day img{
+	height: 100px;
+}
+
+.container-inner{
+    background-image: url("../static/IMG/Desk_board.jpg");
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+	height: 300px;
+ 	width: 50%;
+}
+
+.container-inner{
+	padding-left: 17%;
+	padding-top: 35px;
+	padding-right: 21px;
+}
+
+.container-inner p{
+	font-family: 'PT Sans', Arial;
+	font-size: 17px;
+	font-style: italic;
+	color: #fff;
+}
+
+#autor {
+	font-size: 19px;
+	color: #FF3333;
+}

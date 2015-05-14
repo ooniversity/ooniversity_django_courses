@@ -106,3 +106,7 @@ WARNING 2015-05-13 13:32:54,792 views get_context_data Some warning info for stu
 ERROR 2015-05-13 13:32:54,793 views get_context_data Some error info for student - Екатерина Сдержикова
 WARNING 2015-05-13 14:13:34,262 views get_context_data Some warning info for student - Светлана Корж
 ERROR 2015-05-13 14:13:34,267 views get_context_data Some error info for student - Светлана Корж
+WARNING 2015-05-13 23:49:47,442 views get_context_data Some warning info for student - Михаил Жуланов
+ERROR 2015-05-13 23:49:47,442 views get_context_data Some error info for student - Михаил Жуланов
+WARNING 2015-05-13 23:50:02,761 views get_context_data Some warning info for student - Владимир Хатиновский
+ERROR 2015-05-13 23:50:02,761 views get_context_data Some error info for student - Владимир Хатиновский
