@@ -1,0 +1,62 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - {{ new.title }} {% endblock title %}
+
+{% block css_for_page %}
+    <link href="{% static "new-detail.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+{% block main_content %}
+    <div class='row data'>
+      {{ new.date_public }}
+    </div>
+    <div class='container-form'>
+      <form action="{% url 'news:new-detail' new.id %}" method="get">
+      {% csrf_token %}
+      <div class="container-inner1">
+        <input type = "checkbox" checked = "checked" name = "choice"  value="like" />
+      </div>
+      <div class="container-inner2">
+        <button type="submit" class="btn btn-success btn-md" aria-label="Left Align">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </button>
+        {{ new.likes }}
+      </div>
+      </form>
+    </div>
+
+    <div class='container-form'>
+      <form action="{% url 'news:new-detail' new.id %}" method="get">
+      {% csrf_token %}
+        <div class="container-inner1">
+          <input type = "checkbox" checked = "checked" name = "choice"  value="dislike" />
+        </div>
+        <div class="container-inner2 dislike">
+          <button type="submit" class="btn btn-danger btn-md" aria-label="Left Align">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+          </button>
+          {{ new.dislikes }}
+        </div>
+      </form>
+    </div>
+
+  <div class="container">
+    <h3>{{ new.title }}</h3>
+    <div class="thumbnail">
+      <img src="/{{ new.photo }}" alt="...">
+    </div>
+
+    <div class="row marketing">
+      <p>{{ new.text }}</p>
+    </div>
+
+
+  </div> <!-- /container -->
+
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+{% endblock main_content %}

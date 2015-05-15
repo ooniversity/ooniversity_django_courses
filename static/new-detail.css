@@ -1,0 +1,52 @@
+.thumbnail{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 15%;
+    height: 350px;
+    width: 710px;
+}
+
+.thumbnail img{
+    height: 340px;
+}
+
+h3{
+    text-align: center;
+    margin-top: 0px;
+}
+
+p{
+    font-size: 20px;
+}
+
+.container-form{
+    position: relative;
+    margin-top: 5px;
+    margin-left: 80%;
+    width: 75px;
+    z-index: 3;
+    height: 38px;
+}
+
+.container-inner1{
+    position: absolute;
+    z-index: 3;
+    height: 110px;
+    margin-left: 0px;
+}
+
+.container-inner2{
+    position: absolute;
+    z-index: 4;
+    height: 110px;
+    font-size: 20px;
+    color: #009933;
+}
+
+.dislike{
+    color: #FF3333;
+}
+
+.data{
+    margin-left: 20%;
+}

@@ -19,36 +19,50 @@
 <!--Сообщение-->
 {% include "inc_message.HTML" %}
     <!--Фото дня и фраза дня-->
-    <div class="row">
-      <div class="col-sm-5 col-md-5 col-lg-5 thumbnail photo-day" >
-        <img src="../static/IMG/Course_1.jpg" alt="...">
-        <h3>Фото дня</h3>
-      </div>
-      <div class="col-sm-7 col-md-7 col-lg-7 container-inner" >
-        <p>{{ excerption }}</p>
-        <p id="autor">{{ autor }}</p>
-      </div>
-    </div>
     <!--Все курсы -->
     <div class="row">
+      <!--Панель справа(фото дня, фраза дня, новости)-->
+      <div class="col-sm-4 col-md-4 col-lg-4 news-line" >
+        <h3>ItBursa - это мы</h3>
+        <div class="thumbnail photo-day">
+          <img src="{{ photo.photo }}" alt="...">
+        </div>
+        <h3>Мудрость</h3>
+        <div class="container-inner">
+          <p>{{ excerption }}</p>
+          <p id="autor">{{ autor }}</p>
+        </div>
+        <!--Новостная лента-->
+        <h3>новости</h3>
+
+        {% for new in last_news %}
+          <div class="list-group news">
+            <a href="{% url 'news:new-detail' new.id %}" class="list-group-item">
+              <h4 class="list-group-item-heading">{{ new.title }}</h4>
+              <p class="list-group-item-text">{{ new.text|truncatechars:150 }}</p>
+              <p class="list-group-item-text date">{{ new.date_public }} <small class='like'>{{ new.likes }}</small><small class='dislike'>{{ new.dislikes }}</small></p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
       {% for course in courses %}
-        <div class="col-sm-4 col-md-4" >
+        <div class="col-sm-4 col-md-4 col-lg-4" >
           <div class="thumbnail" id = 'python'>
             <a href="{% url 'courses:course' course.id %}">
-              <img src = "{{ course.logo }}" alt="...">
-              <div class="caption">
-                <h3>{{ course.info }}</h3></a>
-                <br>
-                  <p>{{ course.discription|truncatechars:350 }}</p>
-                  <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
-                  <a class="edit btn btn-primary btn-md " href="{% url 'courses:edit-course' course.id %}">
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Изменить
-                </a>
-                <a class="del btn btn-danger btn-md " href="{% url 'courses:remove-course' course.id %}">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить
-                </a>
-              </div>
+            <img src = "{{ course.logo }}" alt="...">
+            <div class="caption">
+              <h3>{{ course.info }}</h3></a>
+              <br>
+                <p>{{ course.discription|truncatechars:350 }}</p>
+                <p><a href="http://pybursa.com/" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
+                <a class="edit btn btn-primary btn-md " href="{% url 'courses:edit-course' course.id %}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Изменить
+              </a>
+              <a class="del btn btn-danger btn-md " href="{% url 'courses:remove-course' course.id %}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить
+              </a>
             </div>
+          </div>
         </div>
       {% empty %}
         нет активных курсов
