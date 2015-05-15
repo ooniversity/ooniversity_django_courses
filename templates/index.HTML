@@ -33,8 +33,7 @@
           <p id="autor">{{ autor }}</p>
         </div>
         <!--Новостная лента-->
-        <h3>новости</h3>
-
+        <a href="{% url 'news:new-list' %}"><h3>новости</h3></a>
         {% for new in last_news %}
           <div class="list-group news">
             <a href="{% url 'news:new-detail' new.id %}" class="list-group-item">

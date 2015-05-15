@@ -1,0 +1,51 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Новости {% endblock title %}
+
+
+{% block nav_class_student_list %}active{% endblock %}
+
+
+{% block css_for_page %}
+    <link href="{% static "new-list.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block main_content %}
+
+  {% for new in new_list %}
+    <div class="list-group">
+      <a href="{% url 'news:new-detail' new.id %}" class="list-group-item">
+        <p class="list-group-item-text date">{{ new.date_public }} <small class='like'>{{ new.likes }}</small><small class='dislike'>{{ new.dislikes }}</small></p>
+        <h4 class="list-group-item-heading">{{ new.title }}</h4>
+        <p class="list-group-item-text">{{ new.text|truncatechars:250 }}</p>
+      </a>
+    </div>
+  {% empty %}
+    Новостей нет
+  {% endfor %}
+
+    <!--Пагинация-->
+    <div class="row paginator">
+      <nav>
+        <ul class="pagination  pagination-lg">
+        {% if page_obj.has_previous %}
+          <li ><a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;назад</span></a></li>
+        {% endif %}
+        {% for number in paginator.page_range %}
+          {% if page_obj.number == forloop.counter %}
+            <li class="active"><a href="?page={{ forloop.counter }}">{{ forloop.counter }} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+            <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }} <span class="sr-only">(current)</span></a></li>
+          {% endif %}
+        {% endfor %}
+          {% if page_obj.has_next %}
+            <li ><a href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">вперед&raquo;</span></a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+
+{% endblock main_content %}

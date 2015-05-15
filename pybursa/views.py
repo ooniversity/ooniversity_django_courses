@@ -28,11 +28,8 @@ def show_index(request):
     photo = random.choice(Photo.objects.all())
 
     #Вывод последних 10 новостей.
-    last_news = New.objects.order_by("date_public")
-    last_news = last_news[len(last_news)-10:]
-    last_news = last_news[::-1]
-    print last_news
-
+    #last_news = New.objects.order_by("-date_public")[:11]
+    last_news = New.objects.all()[:10]
     return render(request, 'index.HTML',
                  {'courses': courses, 'excerption': excerption,
                  'autor': autor, 'photo': photo, 'last_news': last_news})

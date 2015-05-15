@@ -28,3 +28,18 @@ class NewDetailView(DetailView):
             new.save()
         context['new'] = new
         return context
+
+# С помощью класса ListView выводим список всех новостей на HTML страничку
+class NewListView(ListView):
+    model = New
+    paginate_by = 8
+
+    #def get_context_data(self, **kwargs):
+     #   context = super(NewListView, self).get_context_data(**kwargs)
+        #Сортировка новостей по дате публикации
+      #  new_list = New.objects.order_by("date_public")[::-1]
+       # context['new_list'] = new_list
+        #return context
+
+
+
