@@ -36,4 +36,6 @@ def show_index(request):
 
 
 def show_contacts(request):
-    return render(request, 'contact.HTML')
+    courses = Course.objects.all()
+    return render(request, 'contact.HTML',
+                  {'courses': courses})

@@ -57,10 +57,47 @@
   height: 60px;
 }
 
-.placeholder {
-    margin-bottom: 0px;
+.coach-photo{
+    height: 150px;
 }
 
 .gender {
     height: 35px;
+}
+
+.container-filter{
+    display: inline-block;
+    padding-bottom: auto;
+    padding-top: auto;
+    font-size: 15px;
+    height: 100px;
+}
+
+.container-filter input{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.custom-filter{
+    height: 40px;
+}
+.filter{
+    padding-top: 15px;
+    padding-left: 20%;
+    padding-bottom: 15px;
+}
+
+.container-filter1{
+    padding-left: 30%;
+}
+
+.nav-tabs{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.tab-content{
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 300px;
 }

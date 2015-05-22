@@ -8,4 +8,15 @@ from coaches.models import Coach
 def show_coach_detail(request, id_c):
     id_coach=int(id_c)
     coach = Coach.objects.get(id = id_c)
-    return render(request, 'coaches/coaches.HTML', {'coach': coach, })
+    courses = Course.objects.all()
+    return render(request, 'coaches/coaches.HTML', {'coach': coach,
+                                                    'courses': courses,})
+
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context

@@ -8,8 +8,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.utils.datastructures import MultiValueDictKeyError
 
 from students.models import Student
+from courses.models import Course
 
 logger = logging.getLogger(__name__) #courses.view
 
@@ -34,13 +36,22 @@ class StudentDetailView(DetailView):
         logger.warning(u'Some warning info for student - {} {}'.format(student.name, student.surname))
         logger.error(u'Some error info for student - {} {}'.format(student.name, student.surname))
         context['student'] = student
+        courses = Course.objects.all()
+        context['courses'] = courses
         return context
 
 
 # С помощью класса ListView выводим список студентов на HTML страничку
 class StudentListView(ListView):
     model = Student
-    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentListView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
+
+
 
 
     #Определяем какую выборку данных показывать - или всех студентов, или студентов конкретного курса
@@ -48,6 +59,39 @@ class StudentListView(ListView):
         course_id = self.request.GET.get('course_id', None)
         if course_id is None:
             student_list = Student.objects.all()
+            #student_list = Student.objects.filter(gender = 'W')
+            if len(self.request.GET)>1:
+                get_param_list = []
+                sum_get_param = 1
+                for param in ['Man', 'Woman'] + [str(course.id) for course in Course.objects.all()]:
+                    try:
+                        if self.request.GET[param]:
+                            get_param_list.append(param)
+                            sum_get_param += 1
+                    except MultiValueDictKeyError:
+                        print 'Parameter {} not defined'.format(param)
+                    if sum_get_param == len(self.request.GET):
+                        break
+                index = 1000
+                for i in get_param_list:
+                    if i == 'Man' or i == 'Woman':
+                        index = get_param_list.index(i)
+                print index
+                #Фильтрация данных, где выбраны только курсы
+                if index == 1000:
+                    student_list = Student.objects.filter(courses__id__in = get_param_list)
+                #Фильтрация только половых данных
+                if index == 0 and (len(get_param_list)<2):
+                    student_list = Student.objects.filter(gender = str(get_param_list[0][:1]))
+                #Фильтрование и половых данных, и данных курса
+                if index == 0 and (len(get_param_list)>=2):
+                    student_list = Student.objects.filter(gender = str(get_param_list[0][:1])).filter(courses__id__in = get_param_list[1:])
+
+
+
+
+
+
 
         else:
             student_list = Student.objects.filter(courses__id = course_id)

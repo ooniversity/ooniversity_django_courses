@@ -40,6 +40,8 @@ class CourseDetailView(DetailView):
         logger.warning(u'Some warning info for course - {}'.format(course.name))
         logger.error(u'Some error info for course - {}'.format(course.name))
         context['course'] = course
+        courses = Course.objects.all()
+        context['courses'] = courses
         return context
 
 

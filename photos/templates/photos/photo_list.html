@@ -1,0 +1,28 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Галерея {% endblock title %}
+
+
+{% block nav_class_photos %}active{% endblock %}
+
+
+{% block css_for_page %}
+    <link href="{% static "photos-list.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block main_content %}
+  <div class="row photos">
+    {% for photo in photo_list %}
+      <div class="col-xs-6 col-md-2 col-lg-2">
+        <a href="{% url 'photos:photo-detail' photo.id %}" class="thumbnail">
+          <img src="/{{ photo.photo }}" alt="..." title="{{ photo.discription }}">
+        </a>
+      </div>
+    {% empty %}
+      Фотографий нет
+    {% endfor %}
+    </div>
+{% endblock main_content %}

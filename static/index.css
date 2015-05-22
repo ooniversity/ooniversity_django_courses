@@ -10,9 +10,9 @@
 }
 
 #navbar ul{
-	padding: 0px 120px;
+	padding-right: 0%;
 	text-transform: uppercase;
-	font-size: 19px;
+	font-size: 15px;
 }
 
 #slider img{
@@ -31,6 +31,7 @@
 }
 
 .placeholders{
+	margin-top: 10px;
 	margin-left: 25px;
 }
 
@@ -46,9 +47,10 @@
 }
 
 .teacher1-text{
-	margin-right: 30px;
-	margin-left: 15px;
-	font-size: 21px;
+	margin-top: 30px;
+	margin-right: 10px;
+	margin-left: 1px;
+	font-size: 17px;
 	text-indent: 30px;
 	text-align: justify;
 }
@@ -83,8 +85,8 @@
 }
 
 .table-responsive{
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .panel-footer{

@@ -45,9 +45,19 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li class="{% block nav_class_index %}{% endblock %}"><a href="/">главная</a></li>
+            <li class="{% block nav_class_news %}{% endblock %}"><a href="{% url 'news:new-list' %}">новости</a></li>
+            <li class="dropdown {% block nav_class_courses %}{% endblock %}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">курсы <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                {% for course in courses %}
+                  <li><a href="{% url 'courses:course' course.id %}">{{ course.name }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
             <li class="{% block nav_class_student_list %}{% endblock %}">{% block students_list %}<a href="{% url 'students:student-list' %}">студенты</a>{% endblock students_list %}</li>
-            <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
+            <li class="{% block nav_class_photos %}{% endblock %}"><a href="{% url 'photos:photo-list' %}">галерея</a></li>
             <li class="{% block nav_class_feedback %}{% endblock %}"><a href="{% url 'mails:send-mail' %}">обратная связь</a></li>
+            <li class="{% block nav_class_contact %}{% endblock %}"><a href="{% url 'contacts_itbursa' %}">контакты</a></li>
           </ul>
         </div>
       </div>

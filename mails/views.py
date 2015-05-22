@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.mail import send_mail, send_mass_mail
 from django.views.generic.edit import FormView, CreateView
 from mails.models import Mail
+from courses.models import Course
 from django.core.urlresolvers import reverse_lazy
 
 
@@ -14,6 +15,12 @@ class MailCreateView(CreateView):
     template_name = 'mails/mail.html'
     model = Mail
     success_url = reverse_lazy('mails:send-mail')
+
+    def get_context_data(self, **kwargs):
+        context = super(MailCreateView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
 
     def form_valid(self, form):
         self.application = form.save()

@@ -20,15 +20,9 @@
 }
 .media{
 	padding: 0px;
-	height: 200px;
-	width: 545px;
-	background-color: #fff;
-	border: 1px solid #999;
-	border-radius: 10px;
-}
-.media-body{
-
-
+	height: 210px;
+	width: 455px;
+	background-color: #fae345;
 }
 
 h2{
@@ -71,20 +65,19 @@ body{
 
 .container{
 	width: auto;
-	height: 740px;
-	border: 1px solid #999;
-	border-radius: 10px;
-	margin: 5px;
+	height: 700px;
 	background-image: url("../static/IMG/phone.gif");
 	background-position: center;
-	background-color: #c2a4e7;
+	background-color: #fff;
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
 .two-contact{
-	padding-top: 80px;
+	padding-top: 60px;
 	padding-bottom: 80px;
+	padding-left: 8%;
+
 }
 
 .one-contact{

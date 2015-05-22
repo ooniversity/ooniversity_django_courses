@@ -110,3 +110,5 @@ WARNING 2015-05-13 23:49:47,442 views get_context_data Some warning info for stu
 ERROR 2015-05-13 23:49:47,442 views get_context_data Some error info for student - Михаил Жуланов
 WARNING 2015-05-13 23:50:02,761 views get_context_data Some warning info for student - Владимир Хатиновский
 ERROR 2015-05-13 23:50:02,761 views get_context_data Some error info for student - Владимир Хатиновский
+WARNING 2015-05-21 00:36:31,521 views get_context_data Some warning info for student - Михаил Жуланов
+ERROR 2015-05-21 00:36:31,522 views get_context_data Some error info for student - Михаил Жуланов

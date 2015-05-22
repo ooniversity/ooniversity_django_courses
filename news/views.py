@@ -7,15 +7,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from news.models import New
+from courses.models import Course
 
 
 # С помощью класса DetailView выводим информацию о конкретной новости на HTML страничку
 class NewDetailView(DetailView):
     model = New
-
-    def get_success_url(self):
-        return reverse_lazy('students:student-list')
-
 
     def get_context_data(self, **kwargs):
         context = super(NewDetailView, self).get_context_data(**kwargs)
@@ -27,13 +24,21 @@ class NewDetailView(DetailView):
                 new.dislikes+=1
             new.save()
         context['new'] = new
+        courses = Course.objects.all()
+        context['courses'] = courses
         return context
+
 
 # С помощью класса ListView выводим список всех новостей на HTML страничку
 class NewListView(ListView):
     model = New
     paginate_by = 8
 
+    def get_context_data(self, **kwargs):
+        context = super(NewListView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
     #def get_context_data(self, **kwargs):
      #   context = super(NewListView, self).get_context_data(**kwargs)
         #Сортировка новостей по дате публикации

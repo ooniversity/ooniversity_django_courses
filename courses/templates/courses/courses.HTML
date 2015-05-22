@@ -5,6 +5,9 @@
 {% block title %}IT Bursa - {{ course.name|title }}{% endblock title %}
 
 
+{% block nav_class_courses %}active{% endblock %}
+
+
 {% block css_for_page %}
     <link href="{% static "students-list.css" %}" rel="stylesheet">
 {% endblock css_for_page %}
@@ -18,61 +21,82 @@
 <!--Сообщение-->
 {% include "inc_message.HTML" %}
 
-  <!--Курс Питон датальная информация представленная в табличной форме-->
-  <div class="row">
-    <h2 class="sub-header">{{ course.name }}</h2>
-    <p class = "p-courses">{{ course.discription }}</p>
-    <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
+  <div role="tabpanel">
 
-<!--Информация о преподавателе курса -->
-  {% if course.teacher %}
-    {% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
-  {% else %}
-    <p>Преподаватель курса пока не определен</p>
-  {% endif %}
-    <br><br><br><br><br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Информация о курсе</a></li>
+      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Программа курса</a></li>
+      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преподаватели курса</a></li>
+      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Отзывы</a></li>
+    </ul>
 
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+        <div class="row">
+          <h2 class="sub-header">{{ course.name }}</h2>
+          <p class = "p-courses">{{ course.discription }}</p>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="profile">
+        <h2 class="media-heading">ПРОГРАММА КУРСА</h2>
+        <div class="table-responsive">
+          <table ip = 'base-python' class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ТЕМА</th>
+                <th>СОДЕРЖАНИЕ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for lesson in course.lesson_set.all %}
+                <tr>
+                  <td>
+                    {{ forloop.counter }}
+                  </td>
+                  <td>
+                    {{ lesson.theme }}
+                  </td>
+                  <td>
+                    {{ lesson.discription }}
+                  </td>
+                </tr>
+              {% empty %}
+                ни один урок пока не создан
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!--Кнопка добавить новый урок-->
+        <div class="row">
+          <a class="add btn btn-success btn-md " href="add_lesson/">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить новый урок
+          </a>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="messages">
+        <!--Курс Питон датальная информация представленная в табличной форме-->
+        <h2 class="media-heading">ПРЕПОДАВАТЕЛИ КУРСА</h2>
 
-<!--Иформация о ассистенте курса -->
-  {% if course.assistent %}
-    {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
-  {% else %}
-    <p>Ассистент курса пока не определен</p>
-  {% endif %}
-    <!--Кнопка добавить нового студента-->
-    <div class="row">
-      <a class="add btn btn-success btn-md " href="add_lesson/">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить новый урок
-      </a>
+        <!--Информация о преподавателе курса -->
+        {% if course.teacher %}
+          {% include 'inc_coach.HTML' with block_title='преподаватель' instructor=course.teacher %}
+        {% else %}
+          <p>Преподаватель курса пока не определен</p>
+        {% endif %}
+          <br><br>
+
+        <!--Иформация о ассистенте курса -->
+        {% if course.assistent %}
+          {% include 'inc_coach.HTML' with block_title='ассистент' instructor=course.assistent %}
+        {% else %}
+          <p>Ассистент курса пока не определен</p>
+        {% endif %}
+      </div>
+      <div role="tabpanel" class="tab-pane" id="settings">Отзывы</div>
     </div>
-    <h2 class="media-heading">ПЛАН КУРСА</h2>
-    <div class="table-responsive">
-      <table ip = 'base-python' class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ТЕМА</th>
-            <th>СОДЕРЖАНИЕ</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for lesson in course.lesson_set.all %}
-            <tr>
-              <td>
-                {{ forloop.counter }}
-              </td>
-              <td>
-                {{ lesson.theme }}
-              </td>
-              <td>
-                {{ lesson.discription }}
-              </td>
-            </tr>
-          {% empty %}
-            ни один урок пока не создан
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+
   </div>
 {% endblock main_content %}
