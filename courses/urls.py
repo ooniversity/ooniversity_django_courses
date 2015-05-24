@@ -18,5 +18,8 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/add_comment/$', views.CommentCreateView.as_view(), name = 'create-comment'),
     url(r'^(?P<id>\d+)/edit_comment/(?P<pk>\d+)/$', views.CommentUpdateView.as_view(), name = 'edit-comment'),
     url(r'^(?P<id>\d+)/remove_comment/(?P<pk>\d+)/$', views.CommentDeleteView.as_view(), name = 'remove-comment'),
+
+    #Урл для записи на курс
+    url(r'^enroll/(?P<pk>\d+)/$', views.MailCourseCreateView.as_view(), name = 'enroll-course'),
 )
 

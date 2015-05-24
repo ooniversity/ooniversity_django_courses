@@ -110,7 +110,7 @@ EMAIL_HOST_PASSWORD = 'acmilan86'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-ADMINS = (('Nikolay', 'nikolay.borovenskiy@gmail.com'), ('Sasha', 'sasha_tep@mail.ru'))
+ADMINS = (('Nikolay', 'nikolay.borovenskiy@gmail.com'), )
 
 LOGGING = {
     'version': 1,

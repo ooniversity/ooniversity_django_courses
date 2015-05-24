@@ -14,38 +14,37 @@
 
 
 {% block main_content %}
-  <br><br><br><br>
   <!--Контакты конкретного студента-->
-  {% if student %}
-    <div class = 'row'>
-      <div id = 'student' class="media">
-        <div class="media-left media-middle">
-          <div class="row placeholders">
-            <div class="col-xs-12 col-sm-12 placeholder">
-              <img src="/{{ student.photo }}" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>{{ student.surname }} {{ student.name }}</h4>
-              <span class="text-muted">студент ITBursa</span>
+  <div class = 'row student'>
+    {% if student %}
+        <div id = 'student' class="media">
+          <div class="media-left media-middle">
+            <div class="row placeholders">
+              <div class="col-xs-12 col-sm-12 placeholder">
+                <img src="/{{ student.photo }}" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>{{ student.surname }} {{ student.name }}</h4>
+                <span class="text-muted">студент ITBursa</span>
+              </div>
+            </div>
+          </div>
+          <div class="media-body">
+            <div class = 'teacher1-text'>
+              <p> <small>дата рождения:</small> {{ student.date_of_birth|date:"d M Y" }} </p>
+              <p> <small>адрес:</small> {{ student.address|default:'адрес не задан' }} </p>
+              <p> <small>e-mail:</small> {{ student.email }} </p>
+              <p> <small>skype:</small> {{ student.skype|default:'Skype не задан' }}  </p>
+              <p> <small>телефон:</small> {{ student.phone }} </p>
+              <p> <small>курсы:</small>
+                {% for i in student.courses.all %}
+                  {{ i.name }}
+                {% endfor %}
+              </p>
             </div>
           </div>
         </div>
-        <div class="media-body">
-          <div class = 'teacher1-text'>
-            <p> <small>дата рождения:</small> {{ student.date_of_birth|date:"d M Y" }} </p>
-            <p> <small>адрес:</small> {{ student.address|default:'адрес не задан' }} </p>
-            <p> <small>e-mail:</small> {{ student.email }} </p>
-            <p> <small>skype:</small> {{ student.skype|default:'Skype не задан' }}  </p>
-            <p> <small>телефон:</small> {{ student.phone }} </p>
-            <p> <small>курсы:</small>
-              {% for i in student.courses.all %}
-                {{ i.name }}
-              {% endfor %}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  {% else %}
-    <h2>Такого студента не существует</h2>
-  {% endif %}
-  <br><br>
+
+    {% else %}
+      <h2>Такого студента не существует</h2>
+    {% endif %}
+  </div>
 {% endblock main_content %}

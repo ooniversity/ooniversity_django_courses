@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date, datetime
+from datetime import date
 from django.utils import timezone
 from django.db import models
 from coaches.models import Coach
@@ -17,6 +17,22 @@ class Course (models.Model):
     start = models.DateField(blank=True, null=True, verbose_name=u'Начало курса')
     finish = models.DateField(blank=True, null=True, verbose_name=u'Окончание курса')
     price = models.IntegerField(default=0, verbose_name=u'Стоимость курса')
+
+    #Определяем когда курс окончен, когда еще не начался и можно на него записаться, и когда курс уже идет
+    def active(self):
+        if self.start <=  date.today() and date.today()<= self.finish:
+            self.status = 'begin'
+        elif self.finish < date.today():
+            self.status = 'finish'
+        else:
+            self.status = 'not_begin'
+        return self.status
+    #Определяем рейтинг курса в виде звезд. По количеству студентов, которые учатся на курсе
+    def reiting(self):
+        self.stars = []
+        for i in xrange(len(self.student_set.all())/3):
+            self.stars.append(1)
+        return self.stars
 
     def __unicode__(self):
         return self.name
@@ -40,3 +56,15 @@ class Comment (models.Model):
 
     def __unicode__(self):
         return self.autor
+
+#Письма с заявками на выбранный курс
+class MailCourse (models.Model):
+    name = models.CharField(verbose_name=u'Ваше имя', max_length=30)
+    surname = models.CharField(verbose_name=u'Ваша фамилия', max_length=30)
+    course = models.ForeignKey(Course)
+    email = models.EmailField(verbose_name='E-mail')
+    phone = models.CharField(verbose_name='Phone number', max_length=15)
+    mail_date = models.DateTimeField(verbose_name=u'Время и дата заявки', editable=False, auto_now_add=True)
+
+    def __unicode__(self):
+        return self.surname

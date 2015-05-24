@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.http import Http404
-from courses.models import Course, Lesson, Comment
+from courses.models import Course, Lesson, Comment, MailCourse
 from django import forms
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail, send_mass_mail
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -29,11 +31,11 @@ class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/courses.HTML'
     context_object_name = 'course'
-
     #Переопределяем context
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         course = Course.objects.get(pk = self.kwargs['pk'])
+        print len(course.student_set.all())
         #логгирование
         logger.debug(u'Some debug info for course - {}'.format(course.name))
         logger.info(u'Some info discription for course - {}'.format(course.name))
@@ -133,6 +135,12 @@ class CommentCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('courses:course', kwargs={'pk':self.kwargs['pk']})
 
+    def get_context_data(self, **kwargs):
+        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
+
     def form_valid(self, form):
         self.application = form.save()
         messages.success(self.request, u'Ваш отзыв успешно добавлен')
@@ -148,6 +156,12 @@ class CommentUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
 
+    def get_context_data(self, **kwargs):
+        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
+
     def form_valid(self, form):
         self.application = form.save()
         messages.success(self.request, u'Отзыв успешно изменен')
@@ -161,6 +175,12 @@ class CommentDeleteView(DeleteView):
     context_object_name = 'comment'
     #success_url = reverse_lazy('index_itbursa')
 
+    def get_context_data(self, **kwargs):
+        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
+
     def get_success_url(self):
         return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
 
@@ -168,6 +188,38 @@ class CommentDeleteView(DeleteView):
         comment = super (CommentDeleteView, self).delete(request, *args, **kwargs)
         messages.success(self.request, u'Отзыв успешно удален')
         return comment
+
+#Отправка заявок студентов на выбранный курс обучения
+class MailCourseCreateView(CreateView):
+    template_name = 'courses/enroll.html'
+    model = MailCourse
+    success_url = '/'
+
+    def get_initial(self):
+         return {'course': self.kwargs['pk']}
+
+    def get_context_data(self, **kwargs):
+        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        return context
+
+    def form_valid(self, form):
+        self.application = form.save()
+        address_list = [address for (login, address) in settings.ADMINS]
+        send_mail(
+            subject='Запись на курс {}'.format(self.application.course),
+            message=u'Студент {} {} записался на курс {}. Телефон - {}. Email - {}'.format(self.application.surname,
+                                                                                           self.application.name,
+                                                                                           self.application.course,
+                                                                                           self.application.phone,
+                                                                                           self.application.email,),
+            from_email=self.application.email,
+            recipient_list=address_list,
+        )
+        messages.success(self.request, u'Ваша заявка отправлена. Ожидайте, мы с Вами свяжемся. Спасибо, что выбрали нас!')
+
+        return super(MailCourseCreateView, self).form_valid(form)
 
 #qs = Lesson.objects.get(id=pk)
 #Вьюшка для удаления урока

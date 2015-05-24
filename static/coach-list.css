@@ -1,0 +1,18 @@
+.coaches{
+    min-height: 610px;
+    padding: 160px 5% 1px 5%;
+}
+
+.coaches h4{
+    font-size: 18px;
+    color: #666666;
+}
+
+.coaches h5{
+    font-size: 14px;
+    color: #999999;
+}
+
+.coaches img{
+    width: 170px;
+}

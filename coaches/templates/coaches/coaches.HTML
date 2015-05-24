@@ -5,6 +5,9 @@
 {% block title %}IT Bursa - {{ coach.user.last_name }} {{ coach.user.first_name }} {% endblock title %}
 
 
+{% block nav_class_coaches %}active{% endblock %}
+
+
 {% block css_for_page %}
     <link href="{% static 'coach.css' %}" rel="stylesheet">
 {% endblock css_for_page %}

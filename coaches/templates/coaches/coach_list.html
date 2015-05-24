@@ -1,0 +1,32 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Преподаватели{% endblock title %}
+
+
+{% block nav_class_coaches %}active{% endblock %}
+
+
+{% block css_for_page %}
+    <link href="{% static "coach-list.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+student_list
+{% block main_content %}
+<div class='row coaches'>
+  <div class="media-left media-middle">
+    <div class="placeholders">
+      {% for coach in coach_list %}
+        <div class="col-md-2 col-lg-2 placeholder ">
+          <a href="{% url 'coaches:coach-detail' coach.id %}"><img src="/{{ coach.photo }}" class="img-responsive coach-photo" alt="Generic placeholder thumbnail"></a>
+          <h4>{{ coach.user.last_name|upper }}</h4>
+          <h5>{{ coach.user.first_name|upper }}</h5>
+        </div>
+      {% empty %}
+        <p><h2>Преподаватели пока не определены</h2></p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock main_content %}

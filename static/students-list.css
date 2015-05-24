@@ -102,6 +102,19 @@
     padding-right: 20px;
     min-height: 300px;
 }
+.course-info{
+    margin:20px 20px 1px 60%;
+    padding: 15px;
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 30px;
+    height: 260px;
+    width: 350px;
+    font-size: 24px;
+    color: #006666;
+    background-color: #ccff99;
+}
+
 
 .jumbotron{
     border-radius: 20px;

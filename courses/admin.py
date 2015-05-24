@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from courses.models import Course, Lesson, Comment
+from courses.models import Course, Lesson, Comment, MailCourse
 # Register your models here.
 
 
@@ -20,6 +20,12 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['autor', 'course', 'date_public']
     list_filter = ['course', 'date_public']
 
+class MailCourseAdmin(admin.ModelAdmin):
+    search_fields = ['surname']
+    list_display = ['surname', 'course', 'mail_date', 'phone', 'email']
+    list_filter = ['course', 'mail_date']
+
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(MailCourse, MailCourseAdmin)
 admin.site.register(Lesson)

@@ -2,6 +2,7 @@
 import random;
 
 from django.shortcuts import render
+from datetime import datetime
 from courses.models import Course
 from photos.models import Photo
 from news.models import New
@@ -10,6 +11,7 @@ from news.models import New
 
 def show_index(request):
     courses = Course.objects.all()
+
     try:
         with open('static/text.txt', 'r') as text_file:
             text = text_file.read().decode('utf-8')

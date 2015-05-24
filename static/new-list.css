@@ -3,11 +3,16 @@
 }
 
 body{
-    background-color: #f0f0bb;
+    background-color: #cccccc;
 
 }
 
 .paginator{
     margin-left: 30%;
     margin-right: auto;
+}
+
+.list-group{
+    border-radius: 35px;
+    border: 1px solid #999;
 }

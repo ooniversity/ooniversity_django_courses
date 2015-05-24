@@ -28,7 +28,7 @@
       <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Информация о курсе</a></li>
       <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Программа курса</a></li>
       <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Преподаватели курса</a></li>
-      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Отзывы</a></li>
+      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Отзывы ({{ course.comment_set.all|length }})</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -36,6 +36,19 @@
       <div role="tabpanel" class="tab-pane active" id="home">
         <div class="row">
           <h2 class="sub-header">{{ course.name }}</h2>
+          <div class="course-info">
+            <p><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>{{ course.price }}</p>
+            <p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{ course.start }}</p>
+            <p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{ course.finish }}</p>
+            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ course.student_set.all|length }}</p>
+            {% if  course.active == 'not_begin' %}
+                <p><a href="{% url 'courses:enroll-course' course.id %}" class="btn btn-success btn-lg btn-block" role="button">ЗАПИСАТЬСЯ</a> </p>
+              {% elif course.active == 'finish' %}
+                <p id='finish'>Курс окончен</p>
+              {% elif course.active == 'begin' %}
+                <p id='started'>Курс начат</p>
+              {% endif %}
+          </div>
           <p class = "p-courses">{{ course.discription }}</p>
         </div>
       </div>
