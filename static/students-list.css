@@ -36,7 +36,8 @@
 
 #custom_btn{
     margin: 40px;
-    font-size: 18px;
+    margin-left: 24%;
+    font-size: 14px;
     font-weight: bold;
     padding: 10px 10px;
     text-align:center;
@@ -100,4 +101,23 @@
     padding-left: 20px;
     padding-right: 20px;
     min-height: 300px;
+}
+
+.jumbotron{
+    border-radius: 20px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 10px;
+    width: auto;
+    padding: 20px;
+}
+
+.jumbotron h4{
+    padding-left: 6%;
+    font-weight: bold;
+}
+
+#date-comment {
+    font-size: 15px;
+    color: #CC9966;
 }

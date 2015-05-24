@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.http import Http404
-from courses.models import Course, Lesson
+from courses.models import Course, Lesson, Comment
 from django import forms
 from django.contrib import messages
 from django.views.generic.detail import DetailView
@@ -56,6 +56,8 @@ class CourseCreateView(CreateView):
         self.application = form.save()
         messages.success(self.request, u'Курс {} успешно добавлен'.format(self.application.name))
         return super(CourseCreateView, self).form_valid(form)
+
+
 
 
 #Класс для редактирования(обновления) данных о курсе
@@ -117,6 +119,55 @@ def edit_lesson(request, pk):
     return render(request, 'courses/edit_data_lesson.HTML',
                   {'model_form':model_form})
 
+
+
+#Класс для создания коментария курса
+class CommentCreateView(CreateView):
+    model = Comment
+    template_name = 'courses/new_comment.HTML'
+    context_object_name = 'comment'
+
+    def get_initial(self):
+         return {'course': self.kwargs['pk']}
+
+    def get_success_url(self):
+        return reverse_lazy('courses:course', kwargs={'pk':self.kwargs['pk']})
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Ваш отзыв успешно добавлен')
+        return super(CommentCreateView, self).form_valid(form)
+
+
+#Класс для редактирования коментариев о курсе
+class CommentUpdateView(UpdateView):
+    model = Comment
+    template_name = 'courses/edit_data_comment.HTML'
+    context_object_name = 'comment'
+
+    def get_success_url(self):
+        return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
+
+    def form_valid(self, form):
+        self.application = form.save()
+        messages.success(self.request, u'Отзыв успешно изменен')
+        return super(CommentUpdateView, self).form_valid(form)
+
+
+#Класс для удаления комментария о курсе
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = 'courses/remove_comment.HTML'
+    context_object_name = 'comment'
+    #success_url = reverse_lazy('index_itbursa')
+
+    def get_success_url(self):
+        return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
+
+    def delete(self, request, *args, **kwargs):
+        comment = super (CommentDeleteView, self).delete(request, *args, **kwargs)
+        messages.success(self.request, u'Отзыв успешно удален')
+        return comment
 
 #qs = Lesson.objects.get(id=pk)
 #Вьюшка для удаления урока

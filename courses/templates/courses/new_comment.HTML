@@ -1,0 +1,26 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Новый отзыв {% endblock title %}
+
+
+{% block css_for_page %}
+    <link href="{% static "students-list.css" %}" rel="stylesheet">
+    <link href="{% static "forms.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block nav_class_courses %}active{% endblock %}
+
+
+{% block main_content %}
+  <h3 class="media-heading"> Ваш отзыв </h3><br>
+
+  <!--Создание формы для нового комментария-->
+  <form class ="custome" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input id="custom_btn" class="btn btn-primary btn-sm"  type='submit' value="Создать">
+  </form>
+{% endblock main_content %}

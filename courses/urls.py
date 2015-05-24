@@ -14,6 +14,9 @@ urlpatterns = patterns('',
 #    url(r'^(?P<pk>\d+)/edit_lesson/$', views.edit_lesson, name = 'edit-lesson'),
 #    url(r'^(?P<pk>\d+)/remove_lesson/$', views.remove_lesson, name = 'remove-lesson'),
 
-
+    #Урлы для редактирования комментариев
+    url(r'^(?P<pk>\d+)/add_comment/$', views.CommentCreateView.as_view(), name = 'create-comment'),
+    url(r'^(?P<id>\d+)/edit_comment/(?P<pk>\d+)/$', views.CommentUpdateView.as_view(), name = 'edit-comment'),
+    url(r'^(?P<id>\d+)/remove_comment/(?P<pk>\d+)/$', views.CommentDeleteView.as_view(), name = 'remove-comment'),
 )
 
