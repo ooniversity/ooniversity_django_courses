@@ -14,7 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
-
+    <link href="{% static "bootstrap/css/font-awesome.css" %}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static "dashboard.css" %}" rel="stylesheet">
     <link href="{% static "index.css" %}" rel="stylesheet">
@@ -40,8 +40,15 @@
           <a class="navbar-brand" href="/"><img src="{% static "IMG/logo.gif" %}"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <a href="http://pybursa.com/" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
+          <form class="navbar-form navbar-right register">
+
+              {% if username %}
+                <p><a href="{% url 'autorization:logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Выйти</a></p>
+                <p>{{ username|truncatechars:20 }}</p>
+              {% else %}
+                <p><a href="{% url 'autorization:login' %}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Войти</a></p><p>Кто Вы?</p>
+              {% endif %}
+
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li class="{% block nav_class_index %}{% endblock %}"><a href="/">главная</a></li>
@@ -73,16 +80,16 @@
       <div class="panel-footer">
         <div class="col-sm-3 col-md-3">
             <small>2015 © Borovenskiy Nikolay</small>
+            <small>Kharkov Ukraine</small>
         </div>
         <div class="col-sm-6 col-md-6">
             <p>ITBursa</p>
         </div>
         <div class="col-sm-3 col-md-3">
-            <!--<a href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
-            <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x"></i></a>
-            <a href="https://www.youtube.com/"><i class="fa fa-youtube-play fa-3x"></i></a>
-            <a href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>-->
-            <small>Kharkov Ukraine</small>
+            <a id="footer" href="https://vk.com/wall-82364378_7"><i class="fa fa-vk fa-3x"></i></a>
+            <a id="footer" href="https://twitter.com/"><i class="fa fa-twitter-square fa-3x"></i></a>
+            <a id="footer" href="https://www.youtube.com/"><i class="fa fa-youtube-play fa-3x"></i></a>
+            <a id="footer" href="https://www.facebook.com/pages/ItBursa/1539330322946469"><i class="fa fa-facebook-square fa-3x"></i></a>
         </div>
       </div>
     </div>

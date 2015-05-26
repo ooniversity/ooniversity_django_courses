@@ -14,6 +14,31 @@
 	font-size: 100%;
 }
 
+.register{
+	margin: 0px;
+	padding: 0px;
+}
+
+.register a{
+	text-transform: capitalize;
+	font-size: 14px;
+	color: #FFFFFF;
+	padding-right: 10px;
+	text-align: center;
+}
+
+
+.register p{
+	margin: 0px;
+	text-transform: capitalize;
+	font-size: 13px;
+	color: #FFFF00;
+	text-align: center;
+	padding: 0px;
+	padding-top: 4px;
+}
+
+
 #slider img{
 	margin-right: auto;
   	margin-left: auto;
@@ -163,8 +188,23 @@
 }
 
 a{
-	color: #047105;
+	color: #006666;
 }
+
+a:hover{
+	color: #339933;
+}
+
+#footer {
+	color: #FFFFFF;
+	margin-left: 5px;
+
+}
+
+#footer:hover{
+	color: #0066FF;
+}
+
 p{
 	text-align:justify;
 	text-indent: 25px;
@@ -240,3 +280,9 @@ p{
 .dislike {
 	color: #FF3333;
 }
+
+.list-group-item {
+    background-color: #CAEAFC;
+}
+
+

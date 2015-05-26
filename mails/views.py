@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from students.models import Student
 from django import forms
 from django.contrib import messages
+from django.contrib import auth
 from django.conf import settings
 from django.core.mail import send_mail, send_mass_mail
 from django.views.generic.edit import FormView, CreateView
@@ -20,6 +21,7 @@ class MailCreateView(CreateView):
         context = super(MailCreateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):

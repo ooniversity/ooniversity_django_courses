@@ -82,12 +82,14 @@
             </tbody>
           </table>
         </div>
-        <!--Кнопка добавить новый урок-->
-        <div class="row">
-          <a class="add btn btn-success btn-md " href="add_lesson/">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить новый урок
-          </a>
-        </div>
+        {% if username %}
+          <!--Кнопка добавить новый урок-->
+          <div class="row">
+            <a class="add btn btn-success btn-md " href="add_lesson/">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить новый урок
+            </a>
+          </div>
+        {% endif %}
       </div>
       <div role="tabpanel" class="tab-pane" id="messages">
         <!--Курс Питон датальная информация представленная в табличной форме-->

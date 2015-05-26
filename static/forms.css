@@ -1,8 +1,11 @@
-form{
-    margin-left: 25%;
-}
+
 
 .container{
     padding-top: 50px;
+    padding-left: 26%;
     min-height: 550px;
+}
+
+#custom_btn {
+    margin-left: 22%;
 }

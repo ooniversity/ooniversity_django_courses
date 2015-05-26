@@ -4,6 +4,7 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.contrib import messages
+from django.contrib import auth
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -38,6 +39,7 @@ class StudentDetailView(DetailView):
         context['student'] = student
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -49,6 +51,7 @@ class StudentListView(ListView):
         context = super(StudentListView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -112,6 +115,7 @@ class StudentCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(StudentCreateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Создание студента"
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -131,6 +135,7 @@ class StudentUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(StudentUpdateView, self).get_context_data(**kwargs)
         context['page_title'] = u"Редактирование студента"
+        context['username'] = auth.get_user(self.request).username
         return context
 
 

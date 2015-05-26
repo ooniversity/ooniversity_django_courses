@@ -1,0 +1,19 @@
+.login{
+    min-height: 560px;
+    padding: 5% 30% 0% 30%;
+
+}
+
+.login h2{
+    text-align: center;
+}
+
+.login input{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.login button{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}

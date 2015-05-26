@@ -17,13 +17,11 @@
 {% block main_content %}
   <!--Сообщение-->
   {% include "inc_message.HTML"%}
+  <h3 class="media-heading"> Удалить ваш отзыв?</h3><br>
   <div class="container">
-    <h3 class="media-heading"> Удалить ваш отзыв?</h3><br>
-  <!--Удаление студента-->
-
-      <form class ="custome" method="post">
-        {% csrf_token %}
-        <input id="custom_btn" class="btn btn-danger"  type='submit' value="Удалить">
-      </form>
+    <form class ="custome" method="post">
+      {% csrf_token %}
+      <input id="custom_btn" class="btn btn-danger"  type='submit' value="Удалить">
+    </form>
   </div>
 {% endblock main_content %}

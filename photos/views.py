@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+from django.contrib import auth
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
@@ -15,6 +16,7 @@ class PhotoListView(ListView):
         context = super(PhotoListView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -27,4 +29,5 @@ class PhotoDetailView(DetailView):
         context['courses'] = courses
         photos = Photo.objects.all()
         context['photos'] = photos
+        context['username'] = auth.get_user(self.request).username
         return context

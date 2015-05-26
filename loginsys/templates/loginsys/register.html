@@ -1,0 +1,23 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Регистрация {% endblock title %}
+
+
+{% block css_for_page %}
+    <link href="{% static "students-list.css" %}" rel="stylesheet">
+    <link href="{% static "register.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block main_content %}
+  <div class="container login">
+    <form action="{% url 'autorization:register' %}" class ="custome" action="" method="post">{% csrf_token %}
+      <h2 class="form-signin-heading">Регистрация</h2>
+      {{ form.as_p }}
+      <input id="custom_btn" class="btn btn-primary btn-md" type="submit" value="Зарегистрироваться" />
+    </form>
+  </div>
+
+{% endblock main_content %}

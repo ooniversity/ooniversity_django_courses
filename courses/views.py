@@ -4,6 +4,7 @@ from django.http import Http404
 from courses.models import Course, Lesson, Comment, MailCourse
 from django import forms
 from django.contrib import messages
+from django.contrib import auth
 from django.conf import settings
 from django.core.mail import send_mail, send_mass_mail
 from django.views.generic.detail import DetailView
@@ -44,6 +45,7 @@ class CourseDetailView(DetailView):
         context['course'] = course
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
 
@@ -130,15 +132,17 @@ class CommentCreateView(CreateView):
     context_object_name = 'comment'
 
     def get_initial(self):
-         return {'course': self.kwargs['pk']}
+         return {'course': self.kwargs['pk'],
+                'autor': auth.get_user(self.request).username}
 
     def get_success_url(self):
         return reverse_lazy('courses:course', kwargs={'pk':self.kwargs['pk']})
 
     def get_context_data(self, **kwargs):
-        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        context = super(CommentCreateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):
@@ -157,9 +161,10 @@ class CommentUpdateView(UpdateView):
         return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
 
     def get_context_data(self, **kwargs):
-        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        context = super(CommentCreateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):
@@ -176,9 +181,10 @@ class CommentDeleteView(DeleteView):
     #success_url = reverse_lazy('index_itbursa')
 
     def get_context_data(self, **kwargs):
-        context = super(MailCourseCreateView, self).get_context_data(**kwargs)
+        context = super(CommentCreateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def get_success_url(self):
@@ -196,12 +202,13 @@ class MailCourseCreateView(CreateView):
     success_url = '/'
 
     def get_initial(self):
-         return {'course': self.kwargs['pk']}
+        return {'course': self.kwargs['pk'],}
 
     def get_context_data(self, **kwargs):
         context = super(MailCourseCreateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
+        context['username'] = auth.get_user(self.request).username
         return context
 
     def form_valid(self, form):

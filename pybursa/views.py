@@ -3,6 +3,7 @@ import random;
 
 from django.shortcuts import render
 from datetime import datetime
+from django.contrib import auth
 from courses.models import Course
 from photos.models import Photo
 from news.models import New
@@ -34,10 +35,12 @@ def show_index(request):
     last_news = New.objects.all()[:10]
     return render(request, 'index.HTML',
                  {'courses': courses, 'excerption': excerption,
-                 'autor': autor, 'photo': photo, 'last_news': last_news})
+                 'autor': autor, 'photo': photo, 'last_news': last_news,
+                  'username': auth.get_user(request).username})
 
 
 def show_contacts(request):
     courses = Course.objects.all()
     return render(request, 'contact.HTML',
-                  {'courses': courses})
+                  {'courses': courses,
+                  'username': auth.get_user(request).username})

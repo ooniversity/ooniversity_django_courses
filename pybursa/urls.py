@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^feedback/', include('mails.urls', namespace = "mails")),
     url(r'^news/', include('news.urls', namespace = "news")),
     url(r'^gallery/', include('photos.urls', namespace = "photos")),
+    url(r'^auth/', include('loginsys.urls', namespace = "autorization")),
 )

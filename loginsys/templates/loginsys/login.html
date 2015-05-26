@@ -1,0 +1,38 @@
+{% extends "base.HTML" %}
+
+{% load static from staticfiles %}
+
+{% block title %}IT Bursa - Вход {% endblock title %}
+
+
+{% block css_for_page %}
+    <link href="{% static "students-list.css" %}" rel="stylesheet">
+    <link href="{% static "login.css" %}" rel="stylesheet">
+{% endblock css_for_page %}
+
+
+{% block main_content %}
+
+  <div class="container login">
+
+    <form action="{% url 'autorization:login' %}" method="post" class="form-signin">
+      {% csrf_token %}
+      <h2 class="form-signin-heading">Авторизация</h2>
+      <label for="username" class="sr-only">Имя пользователя</label>
+      <input type="text" id="inputEmail" class="form-control" name="username"
+      placeholder="Логин пользователя" required autofocus>
+      <label for="inputPassword" class="sr-only">Пароль</label>
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+      {% if login_error %}
+        <label class="error">{{ login_error }}</label>
+      {% endif %}
+      <div class="checkbox">
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    </form>
+
+    <a href="{% url 'autorization:register' %}" class="form-control btn btn-success btn-md" role="button">Регистрация</a>
+
+    </div> <!-- /container -->
+
+{% endblock main_content %}

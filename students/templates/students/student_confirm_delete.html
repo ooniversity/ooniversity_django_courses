@@ -10,6 +10,7 @@
 
 {% block css_for_page %}
     <link href="{% static "students-list.css" %}" rel="stylesheet">
+    <link href="{% static "forms.css" %}" rel="stylesheet">
 {% endblock css_for_page %}
 
 
@@ -17,10 +18,11 @@
   <!--Сообщение-->
 
   <h3 class="media-heading"> Студент {{ student.surname }} {{ student.name }} будет удален</h3><br>
-
+  <div class="container">
   <!--Удаление студента-->
   <form class ="custome" method="post">
     {% csrf_token %}
     <input id="custom_btn" class="btn btn-danger"  type='submit' value="Удалить">
   </form>
+  </div>
 {% endblock main_content %}
