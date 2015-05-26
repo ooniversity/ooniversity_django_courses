@@ -63,9 +63,9 @@ class StudentListView(ListView):
         if course_id is None:
             student_list = Student.objects.all()
             #student_list = Student.objects.filter(gender = 'W')
-            if len(self.request.GET)>1:
+            if len(self.request.GET):
                 get_param_list = []
-                sum_get_param = 1
+                sum_get_param = 0
                 for param in ['Man', 'Woman'] + [str(course.id) for course in Course.objects.all()]:
                     try:
                         if self.request.GET[param]:
@@ -80,6 +80,7 @@ class StudentListView(ListView):
                     if i == 'Man' or i == 'Woman':
                         index = get_param_list.index(i)
                 print index
+                print get_param_list
                 #Фильтрация данных, где выбраны только курсы
                 if index == 1000:
                     student_list = Student.objects.filter(courses__id__in = get_param_list)

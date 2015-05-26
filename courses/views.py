@@ -132,8 +132,12 @@ class CommentCreateView(CreateView):
     context_object_name = 'comment'
 
     def get_initial(self):
-         return {'course': self.kwargs['pk'],
-                'autor': auth.get_user(self.request).username}
+        if auth.get_user(self.request).username:
+            autor = auth.get_user(self.request).username
+        else:
+            autor = u'Гость'
+        return {'course': self.kwargs['pk'],
+                'autor': autor}
 
     def get_success_url(self):
         return reverse_lazy('courses:course', kwargs={'pk':self.kwargs['pk']})
@@ -161,7 +165,7 @@ class CommentUpdateView(UpdateView):
         return reverse_lazy('courses:course', kwargs={'pk':int(self.kwargs['id'])})
 
     def get_context_data(self, **kwargs):
-        context = super(CommentCreateView, self).get_context_data(**kwargs)
+        context = super(CommentUpdateView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
         context['username'] = auth.get_user(self.request).username
@@ -181,7 +185,7 @@ class CommentDeleteView(DeleteView):
     #success_url = reverse_lazy('index_itbursa')
 
     def get_context_data(self, **kwargs):
-        context = super(CommentCreateView, self).get_context_data(**kwargs)
+        context = super(CommentDeleteView, self).get_context_data(**kwargs)
         courses = Course.objects.all()
         context['courses'] = courses
         context['username'] = auth.get_user(self.request).username
