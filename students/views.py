@@ -46,6 +46,7 @@ class StudentDetailView(DetailView):
 # С помощью класса ListView выводим список студентов на HTML страничку
 class StudentListView(ListView):
     model = Student
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(StudentListView, self).get_context_data(**kwargs)
@@ -54,16 +55,14 @@ class StudentListView(ListView):
         context['username'] = auth.get_user(self.request).username
         return context
 
-
-
-
     #Определяем какую выборку данных показывать - или всех студентов, или студентов конкретного курса
     def get_queryset(self):
         course_id = self.request.GET.get('course_id', None)
         if course_id is None:
             student_list = Student.objects.all()
             #student_list = Student.objects.filter(gender = 'W')
-            if len(self.request.GET):
+            if len(self.request.GET) and not(len(dict(self.request.GET))==1 and dict(self.request.GET).has_key('page')):
+                print dict(self.request.GET),len(dict(self.request.GET)), 'Hello!'
                 get_param_list = []
                 sum_get_param = 0
                 for param in ['Man', 'Woman'] + [str(course.id) for course in Course.objects.all()]:
@@ -79,8 +78,8 @@ class StudentListView(ListView):
                 for i in get_param_list:
                     if i == 'Man' or i == 'Woman':
                         index = get_param_list.index(i)
-                print index
-                print get_param_list
+                #print index
+                #print get_param_list
                 #Фильтрация данных, где выбраны только курсы
                 if index == 1000:
                     student_list = Student.objects.filter(courses__id__in = get_param_list)
@@ -90,13 +89,6 @@ class StudentListView(ListView):
                 #Фильтрование и половых данных, и данных курса
                 if index == 0 and (len(get_param_list)>=2):
                     student_list = Student.objects.filter(gender = str(get_param_list[0][:1])).filter(courses__id__in = get_param_list[1:])
-
-
-
-
-
-
-
         else:
             student_list = Student.objects.filter(courses__id = course_id)
         return student_list

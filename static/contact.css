@@ -59,16 +59,12 @@ h2{
 
 }
 
-body{
-	background: #FFF;
-}
-
 .container{
 	width: auto;
 	height: 700px;
 	background-image: url("../static/IMG/phone.gif");
 	background-position: center;
-	background-color: #fff;
+
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -76,7 +72,7 @@ body{
 .two-contact{
 	padding-top: 60px;
 	padding-bottom: 80px;
-	padding-left: 8%;
+	padding-left: 10%;
 
 }
 

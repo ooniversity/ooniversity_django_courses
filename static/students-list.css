@@ -1,3 +1,6 @@
+.main-content{
+    min-height: 550px;
+}
 
 .add {
     margin: 40px;
@@ -123,6 +126,8 @@
     margin-top: 10px;
     width: auto;
     padding: 20px;
+    background-color: #FFF;
+    border: 1px solid #ccc;
 }
 
 .jumbotron h4{
