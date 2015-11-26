@@ -16,7 +16,7 @@ from django.core.mail import mail_admins
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-
+        fields = '__all__'
 
 class ContactFormView(FormView):
 
@@ -25,9 +25,12 @@ class ContactFormView(FormView):
     success_url = '/feedback/'
 
     def form_valid(self, form):
-        message = "\n\n{0}".format(form.cleaned_data.get('body'))
-        subject = form.cleaned_data.get('subject').strip()
-        mail_admins(subject, message, fail_silently=False)
-        form.save()
-        messages.success(self.request, u'Спасибо! Ваше сообщение отправлено')
-        return super(ContactFormView, self).form_valid(form)
+        try:
+            message = "\n\n{0}".format(form.cleaned_data.get('body'))
+            subject = form.cleaned_data.get('subject').strip()
+            mail_admins(subject, message, fail_silently=False)
+            form.save()
+            messages.success(self.request, u'Спасибо! Ваше сообщение отправлено')
+            return super(ContactFormView, self).form_valid(form)
+        except Exception as e:
+            print e, "EXC"
