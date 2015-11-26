@@ -7,7 +7,7 @@ class CoachAdmin(admin.ModelAdmin):
     # list_display = ('user',)  # 'user_last_name', 'user_first_name'
 
     search_fields = ['user', 'user_email', 'skype', 'gender', ]
-    list_filter = ['gender', 'user__is_staff', ]  # exceeds min reqs
+    list_filter = ['gender', 'user__is_staff', ]
 
 
 admin.site.register(Coach, CoachAdmin)
