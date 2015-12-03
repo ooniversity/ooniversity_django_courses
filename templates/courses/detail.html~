@@ -16,9 +16,9 @@
   <h1>Преподаватели</h1>
 </div>
 
-  {% include "include/coach.html" with title="Учитель" coach=course.coach %}
+  {% include "include/coach_include.html" with title="Учитель" coach=course.coach %}
 
-  {% include "include/coach.html" with title="Ассистент" coach=course.assistant %}
+  {% include "include/coach_include.html" with title="Ассистент" coach=course.assistant %}
 
 <div class="page-header">
   <h1>План курса</h1>
