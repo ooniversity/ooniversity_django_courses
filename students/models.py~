@@ -5,7 +5,7 @@ from courses.models import Course
 class Student(models.Model):
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
-    date_of_birth = models.DateTimeField() # DateField
+    date_of_birth = models.DateField(null=True) # DateField
     email = models.EmailField()
     phone = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
