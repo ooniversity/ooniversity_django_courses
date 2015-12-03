@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('courses', '0002_course_short_description'),
+        ('courses', '0003_auto_20150407_0654'),
     ]
 
     operations = [
@@ -17,12 +17,12 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=255)),
                 ('surname', models.CharField(max_length=255)),
-                ('date_of_birth', models.DateField()),
+                ('date_of_birth', models.DateTimeField()),
                 ('email', models.EmailField(max_length=75)),
                 ('phone', models.CharField(max_length=255)),
                 ('address', models.CharField(max_length=255)),
                 ('skype', models.CharField(max_length=255)),
-                ('course', models.ManyToManyField(to='courses.Course')),
+                ('courses', models.ManyToManyField(to='courses.Course')),
             ],
             options={
             },

@@ -11,9 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
+        migrations.AlterField(
             model_name='student',
-            old_name='course',
-            new_name='courses',
+            name='date_of_birth',
+            field=models.DateField(),
+            preserve_default=True,
         ),
     ]
