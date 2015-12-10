@@ -22,7 +22,7 @@ class StudentDetailView(DetailView):
     model = Student
 
     def get_object(self):
-        return get_object_or_404(Student, pk=request.session['student_id'])
+        return get_object_or_404(Student, pk=self.object.pk)
 
 
 class StudentCreateView(CreateView):
