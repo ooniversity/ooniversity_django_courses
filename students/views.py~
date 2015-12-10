@@ -21,9 +21,6 @@ class StudentListView(ListView):
 class StudentDetailView(DetailView):
     model = Student
 
-    def get_object(self):
-        return get_object_or_404(Student, pk=request.session['student_id'])
-
 
 class StudentCreateView(CreateView):
     model = Student

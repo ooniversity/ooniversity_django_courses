@@ -2,7 +2,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-from django.shortcuts import get_object_or_404 
 
 from students.models import Student
 
@@ -20,9 +19,6 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
-
-    def get_object(self):
-        return get_object_or_404(Student, pk=self.object.pk)
 
 
 class StudentCreateView(CreateView):
